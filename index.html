@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 기존 여주성결교회의 따뜻하고 경건한 느낌을 주는 타이틀 디자인 설정 -->
+    <title>여주성결교회 - 기독교대한성결교회</title>
+    <!-- 디자인 설정을 위한 가장 강력하고 안정적인 Tailwind CSS 라이브러리 사용 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 깔끔하고 세련된 아이콘을 배치하기 위한 Font Awesome 라이브러리 연동 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-slate-800 flex flex-col min-h-screen">
+
+    <!-- [최상단 띠 배너] 교회 표어 및 예배 시간 상시 안내 -->
+    <div class="bg-amber-600 text-white text-[11px] md:text-xs py-2 px-4 shadow-sm">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-1 md:gap-0 font-medium">
+            <span><i class="fa-solid fa-church text-amber-200 mr-1.5"></i> 기독교대한성결교회 여주교회</span>
+            <span>주일 예배: 1부 오전 9:00 / 2부 오전 11:00 / 오후예배 오후 2:00</span>
+        </div>
+    </div>
+
+    <!-- [헤더 및 메인 메뉴 바] 기존 홈페이지의 세련된 네비게이션 복사 -->
+    <header class="bg-white/95 backdrop-blur-md shadow-sm sticky top-0 z-40 border-b border-stone-100">
+        <div class="max-w-6xl mx-auto px-4 py-3.5 flex justify-between items-center">
+            
+            <!-- 교회의 고유 로고 영역 (교회 로고 이미지가 있으면 <img> 태그로 대체 가능합니다) -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 bg-gradient-to-br from-blue-800 to-indigo-950 text-white rounded-full flex items-center justify-center shadow-md">
+                    <i class="fa-solid fa-cross text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg md:text-xl font-bold text-slate-900 tracking-tight group-hover:text-blue-800 transition">여주성결교회</h1>
+                    <p class="text-[9px] text-slate-400 tracking-wider uppercase font-semibold">Yeoju Holiness Church</p>
+                </div>
+            </a>
+
+            <!-- 스마트폰 및 컴퓨터 모두에서 아름답게 어우러지는 주메뉴 구조 -->
+            <nav class="hidden md:flex space-x-8 font-semibold text-sm text-slate-600">
+                <a href="#pastor" class="hover:text-blue-800 hover:border-b-2 hover:border-blue-800 pb-1 transition">교회소개</a>
+                <a href="#sermon" class="hover:text-blue-800 hover:border-b-2 hover:border-blue-800 pb-1 transition">주일설교</a>
+                <a href="#schedule" class="hover:text-blue-800 hover:border-b-2 hover:border-blue-800 pb-1 transition">예배시간</a>
+                <a href="#bulletin" class="hover:text-blue-800 hover:border-b-2 hover:border-blue-800 pb-1 transition">교회소식</a>
+                <a href="#location" class="hover:text-blue-800 hover:border-b-2 hover:border-blue-800 pb-1 transition">오시는길</a>
+            </nav>
+
+            <!-- 실시간 예배 유튜브 연결 핫버튼 -->
+            <a href="https://www.youtube.com/@%EC%97%AC%EC%A3%BC%EC%84%B1%EA%B2%B0%EA%B5%90%ED%9A%8C" target="_blank" 
+               class="bg-red-600 hover:bg-red-700 text-white px-3.5 py-1.5 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-bold flex items-center space-x-1.5 shadow-sm hover:shadow-md transition duration-200">
+                <i class="fa-brands fa-youtube text-base animate-pulse"></i>
+                <span>실시간 예배</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- [메인 비주얼 슬라이드 배너] 교회 메인 테마 및 연도 표어 -->
+    <section class="relative bg-gradient-to-r from-slate-900 via-blue-950 to-slate-900 text-white py-20 md:py-32 px-4 text-center overflow-hidden">
+        <!-- 배경 디자인 요소 (은은한 십자가 형상 배치) -->
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:24px_24px]"></div>
+        <div class="absolute right-[-10%] bottom-[-20%] text-white/5 text-[350px] font-bold pointer-events-none">
+            <i class="fa-solid fa-cross"></i>
+        </div>
+
+        <div class="max-w-4xl mx-auto relative z-10">
+            <span class="bg-amber-500/90 text-white text-[11px] md:text-xs font-bold tracking-widest px-3 py-1 rounded-full uppercase shadow-sm">
+                기독교대한성결교회 여주교회 2026 표어
+            </span>
+            <!-- [수정 가능] 목사님이 정하신 표어 내용을 매년 연초에 여기서 간편하게 수정하세요 -->
+            <h2 class="text-3xl md:text-6xl font-black mt-5 mb-6 leading-tight tracking-tight text-amber-50 drop-shadow-md">
+                하나님의 때에, <br class="md:hidden"><span class="text-amber-400">하나님이 이루십니다!</span>
+            </h2>
+            <p class="text-xs md:text-lg text-slate-300 max-w-xl mx-auto mb-10 leading-relaxed font-light">
+                "우리가 낙심하지 아니하고 포기하지 아니하면 <br class="md:hidden">때가 이르매 거두리라" (갈라디아서 6:9)
+            </p>
+            
+            <div class="flex flex-wrap justify-center gap-3">
+                <a href="#pastor" class="bg-white text-blue-950 px-6 py-3 rounded-xl text-xs md:text-sm font-bold shadow-md hover:bg-stone-100 transition">교회 처음이신가요?</a>
+                <a href="#sermon" class="bg-blue-700 hover:bg-blue-800 text-white px-6 py-3 rounded-xl text-xs md:text-sm font-bold border border-blue-500/50 shadow-md transition">이번 주 설교 말씀 듣기</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- [퀵 링크 그리드 배너] 성도들이 접속하자마자 가장 필요로 하는 핵심 4대 기능 -->
+    <section class="max-w-5xl mx-auto px-4 -mt-10 relative z-20 w-full mb-12">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            
+            <!-- ① 주보 보기 링크 (클릭 시 팝업 활성화) -->
+            <button onclick="openCustomModal('juboModal')" class="bg-white p-5 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-stone-100/80 text-center group">
+                <div class="w-11 h-11 bg-amber-50 text-amber-700 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-105 transition">
+                    <i class="fa-solid fa-file-pdf text-xl"></i>
+                </div>
+                <h3 class="font-bold text-sm md:text-base text-slate-800">이번 주 주보</h3>
+                <p class="text-[10px] text-slate-400 mt-1">매주 토요일 신규 등록</p>
+            </button>
+
+            <!-- ② 예배 시간 확인 링크 -->
+            <button onclick="openCustomModal('timeModal')" class="bg-white p-5 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-stone-100/80 text-center group">
+                <div class="w-11 h-11 bg-emerald-50 text-emerald-700 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-105 transition">
+                    <i class="fa-solid fa-calendar-check text-xl"></i>
+                </div>
+                <h3 class="font-bold text-sm md:text-base text-slate-800">예배 시간표</h3>
+                <p class="text-[10px] text-slate-400 mt-1">주일 및 삼일 기도회</p>
+            </button>
+
+            <!-- ③ 온라인 헌금 전용 계좌번호 안내 -->
+            <button onclick="openCustomModal('donationModal')" class="bg-white p-5 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-stone-100/80 text-center group">
+                <div class="w-11 h-11 bg-blue-50 text-blue-700 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-105 transition">
+                    <i class="fa-solid fa-heart text-xl"></i>
+                </div>
+                <h3 class="font-bold text-sm md:text-base text-slate-800">온라인 헌금</h3>
+                <p class="text-[10px] text-slate-400 mt-1">헌금 안내 및 계좌 복사</p>
+            </button>
+
+            <!-- ④ 교회 유치부/초등부/청소년부/청년회 부서 안내 -->
+            <button onclick="openCustomModal('departmentModal')" class="bg-white p-5 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-stone-100/80 text-center group">
+                <div class="w-11 h-11 bg-purple-50 text-purple-700 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-105 transition">
+                    <i class="fa-solid fa-children text-xl"></i>
+                </div>
+                <h3 class="font-bold text-sm md:text-base text-slate-800">교회학교/부서</h3>
+                <p class="text-[10px] text-slate-400 mt-1">다음 세대 양육 기관</p>
+            </button>
+
+        </div>
+    </section>
+
+    <!-- [설교 말씀 다시보기 섹션] 유튜브 최신 동영상 연동 -->
+    <section id="sermon" class="max-w-4xl mx-auto px-4 py-8 w-full mb-12">
+        <div class="text-center mb-8">
+            <span class="text-blue-800 font-bold text-xs uppercase tracking-wider">Sunday Sermon</span>
+            <h3 class="text-2xl md:text-3xl font-bold text-slate-900 mt-1">주일 설교 다시보기</h3>
+            <p class="text-xs md:text-sm text-slate-500 mt-2">말씀을 통하여 하늘의 소망과 풍성한 위로를 누리시기 바랍니다.</p>
+        </div>
+
+        <!-- 주일 설교 비디오 프레임 박스 -->
+        <div class="aspect-video w-full rounded-2xl overflow-hidden shadow-lg border border-stone-200 bg-black">
+            <!-- [목사님 전용 가이드] 아래 유튜브 URL 주소의 맨 끝 부분 "yEpx3Z8qDyw"를 이번 주 설교 고유 ID로 바꾸어 주세요 -->
+            <iframe 
+                class="w-full h-full"
+                src="https://www.youtube.com/embed/yEpx3Z8qDyw" 
+                title="기독교대한성결교회 여주교회 주일 설교 말씀" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen>
+            </iframe>
+        </div>
+        
+        <div class="text-center mt-6">
+            <a href="https://www.youtube.com/@%EC%97%AC%EC%A3%BC%EC%84%B1%EA%B2%B0%EA%B5%90%ED%9A%8C" target="_blank" 
+               class="inline-flex items-center space-x-2 text-red-600 hover:text-red-700 font-bold text-sm md:text-base transition">
+                <i class="fa-brands fa-youtube text-lg"></i>
+                <span>여주성결교회 공식 유튜브에서 전체 설교영상 시청하기</span>
+                <i class="fa-solid fa-circle-chevron-right text-xs"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- [담임목사 인사말 섹션] 따뜻한 환영과 소개 글 -->
+    <section id="pastor" class="bg-stone-100 py-16 px-4">
+        <div class="max-w-4xl mx-auto grid md:grid-cols-12 gap-8 items-center">
+            
+            <!-- 목사님 프로필 영역 (추후 프로필 이미지 등록 및 연동 가능) -->
+            <div class="md:col-span-4 text-center">
+                <div class="w-52 h-52 bg-slate-300 rounded-3xl mx-auto overflow-hidden shadow-md flex items-center justify-center text-slate-400 relative">
+                    <!-- 목사님 정면 고화질 사진을 올린 뒤 아래 src 경로에 이미지 주소를 교체하시면 적용됩니다 -->
+                    <i class="fa-solid fa-user text-8xl absolute bottom-0"></i>
+                </div>
+                <h4 class="text-xl font-bold mt-4 text-slate-800">조영준 담임목사</h4>
+                <p class="text-xs text-slate-500 mt-1">기독교대한성결교회 여주교회 시무</p>
+            </div>
+
+            <!-- 목회 철학 및 인사말 소개 -->
+            <div class="md:col-span-8">
+                <span class="text-xs text-blue-800 font-bold tracking-wider uppercase block mb-1">Pastor's Message</span>
+                <h3 class="text-2xl md:text-3xl font-extrabold text-slate-900 leading-tight mb-5">
+                    "주님의 기쁨이 되고 세상의 빛과 소금이 되는 여주성결교회"
+                </h3>
+                <p class="text-sm text-slate-600 leading-relaxed space-y-4">
+                    여주성결교회는 영혼 구원의 귀중한 사명을 가슴에 품고, <br class="hidden md:inline">
+                    이 시대를 치유하고 변화시키는 성결의 복음을 전하는 귀한 공동체입니다.<br><br>
+                    예배의 기쁨과 구원의 확신이 온 성도들의 일상에 넘쳐나도록 기도로 헌신하고 있으며, 
+                    복음의 빚진 자 된 마음으로 지역사회를 뜨겁게 섬기고 보듬고 있습니다. 
+                    말씀 안에서 함께 기뻐하고 함께 성장해 갈 모든 분들을 진심으로 초청합니다.
+                </p>
+                <div class="mt-6 border-l-4 border-amber-500 pl-4 py-0.5">
+                    <p class="italic text-xs md:text-sm text-slate-500 font-medium">"오직 성령이 너희에게 임하시면 너희가 권능을 받고... 내 증인이 되리라" (사도행전 1:8)</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- [예배 시간 안내 섹션] 요일별 / 부서별 상세 정리표 -->
+    <section id="schedule" class="max-w-4xl mx-auto px-4 py-16 w-full">
+        <div class="text-center mb-10">
+            <span class="text-amber-600 font-bold text-xs uppercase tracking-wider">Service Schedule</span>
+            <h3 class="text-2xl md:text-3xl font-bold text-slate-900 mt-1">정기 예배 및 집회 시간</h3>
+            <p class="text-xs md:text-sm text-slate-400 mt-2">정성스럽게 준비한 마음으로 하나님께 경배드립니다.</p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-stone-200/80 overflow-hidden">
+            <div class="grid grid-cols-3 bg-gradient-to-r from-slate-900 to-blue-950 text-white text-xs md:text-sm font-bold p-3.5 text-center">
+                <div>예배 및 집회명</div>
+                <div>정기 예배 시간</div>
+                <div>예배 진행 장소</div>
+            </div>
+            
+            <div class="divide-y divide-stone-100 text-xs md:text-sm text-slate-700">
+                <div class="grid grid-cols-3 p-4 text-center items-center hover:bg-slate-50/50 transition">
+                    <div class="font-semibold text-slate-900">주일 오전 1부 예배</div>
+                    <div class="text-slate-600">오전 09:00</div>
+                    <div class="text-slate-500">대예배실 (본당 2층)</div>
+                </div>
+                <div class="grid grid-cols-3 p-4 text-center items-center bg-slate-50/20 hover:bg-slate-50/50 transition">
+                    <div class="font-semibold text-slate-900 text-blue-900">주일 오전 2부 예배 (찬양대)</div>
+                    <div class="text-slate-600 font-medium">오전 11:00</div>
+                    <div class="text-slate-500">대예배실 (본당 2층)</div>
+                </div>
+                <div class="grid grid-cols-3 p-4 text-center items-center hover:bg-slate-50/50 transition">
+                    <div class="font-semibold text-slate-900">주일 오후 찬양 예배</div>
+                    <div class="text-slate-600">오후 02:00</div>
+                    <div class="text-slate-500">대예배실 (본당 2층)</div>
+                </div>
+                <div class="grid grid-cols-3 p-4 text-center items-center bg-slate-50/20 hover:bg-slate-50/50 transition">
+                    <div class="font-semibold text-slate-900">삼일 기도회 (수요일)</div>
+                    <div class="text-slate-600">오후 07:30</div>
+                    <div class="text-slate-500">소예배실 (본당 1층)</div>
+                </div>
+                <div class="grid grid-cols-3 p-4 text-center items-center hover:bg-slate-50/50 transition">
+                    <div class="font-semibold text-slate-900">금요 심야 성령집회</div>
+                    <div class="text-slate-600">오후 08:30</div>
+                    <div class="text-slate-500">소예배실 (본당 1층)</div>
+                </div>
+                <div class="grid grid-cols-3 p-4 text-center items-center bg-slate-50/20 hover:bg-slate-50/50 transition">
+                    <div class="font-semibold text-slate-900">매일 새벽 제단 (월~금)</div>
+                    <div class="text-slate-600">오전 05:00</div>
+                    <div class="text-slate-500">소예배실 (본당 1층)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- [교회 소식 및 안내판] 최신 공지사항과 새가족을 위한 정보 -->
+    <section id="bulletin" class="bg-stone-100/50 py-16 px-4">
+        <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+            
+            <!-- ① 최근 공지 게시판 영역 -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200/50">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="font-bold text-lg text-slate-900 flex items-center">
+                        <i class="fa-solid fa-bullhorn text-blue-700 mr-2"></i> 교회 소식통
+                    </h3>
+                    <span class="text-xs text-slate-400">교회 주요 일정</span>
+                </div>
+                <div class="space-y-4">
+                    <div class="p-3 bg-stone-50 rounded-xl hover:bg-blue-50/40 transition">
+                        <div class="flex justify-between text-[10px] text-slate-400 mb-1">
+                            <span class="font-bold text-blue-800">예배위원회</span>
+                            <span>2026-05-17</span>
+                        </div>
+                        <h4 class="font-bold text-xs md:text-sm text-slate-800 hover:text-blue-800 transition">상반기 연합 구역장 인도자 성경공부 세미나 개최</h4>
+                    </div>
+                    <div class="p-3 bg-stone-50 rounded-xl hover:bg-blue-50/40 transition">
+                        <div class="flex justify-between text-[10px] text-slate-400 mb-1">
+                            <span class="font-bold text-amber-600">교회학교</span>
+                            <span>2026-05-12</span>
+                        </div>
+                        <h4 class="font-bold text-xs md:text-sm text-slate-800 hover:text-blue-800 transition">2026년도 여름성경학교 및 청소년부 연합수련회 교사 모집</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ② 새가족 정착 안내 정보 영역 -->
+            <div class="bg-gradient-to-br from-blue-900 to-indigo-950 p-6 rounded-2xl shadow-sm text-white flex flex-col justify-between">
+                <div>
+                    <span class="bg-amber-500 text-white text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded">Welcome</span>
+                    <h3 class="text-xl font-bold mt-3 mb-3">처음 오신 새가족을 환영합니다!</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed mb-6">
+                        여주성결교회를 처음 방문해 주신 소중한 분들을 기쁜 마음으로 영접합니다. <br>
+                        예배 후 본당 1층 새가족실을 찾아주시면 정착을 성심성의껏 도와드립니다.
+                    </p>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="bg-white/10 p-3 rounded-xl border border-white/10 text-center">
+                        <h4 class="font-bold text-white text-xs">새가족 등록 안내</h4>
+                        <p class="text-[9px] text-slate-300 mt-1">본당 2층 안내 데스크</p>
+                    </div>
+                    <div class="bg-white/10 p-3 rounded-xl border border-white/10 text-center">
+                        <h4 class="font-bold text-white text-xs">동반 양육 교육</h4>
+                        <p class="text-[9px] text-slate-300 mt-1">매주 주일 2부 예배 후</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- [오시는 길 및 지도 위치 안내] 기존 카카오/네이버 맵 직접 연결 -->
+    <section id="location" class="max-w-4xl mx-auto px-4 py-16 w-full">
+        <div class="text-center mb-8">
+            <span class="text-blue-800 font-bold text-xs uppercase tracking-wider">Location Guide</span>
+            <h3 class="text-2xl md:text-3xl font-bold text-slate-900 mt-1">찾아오시는 길 및 안내</h3>
+            <p class="text-xs md:text-sm text-slate-400 mt-2">안전하고 질서정연하게 오실 수 있도록 오시는 길을 상세히 알려드립니다.</p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm p-6 grid md:grid-cols-12 gap-6 border border-stone-200/80">
+            <!-- 텍스트 주소록 정보 -->
+            <div class="md:col-span-5 flex flex-col justify-center space-y-4">
+                <div class="flex items-start space-x-3">
+                    <div class="w-8 h-8 bg-amber-50 text-amber-700 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-800 text-xs md:text-sm">교회 공식 도로명 주소</h4>
+                        <p class="text-[11px] md:text-xs text-slate-500 mt-0.5 leading-relaxed">경기도 여주시 세종로 149 (지번: 홍문동 335-5)</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start space-x-3">
+                    <div class="w-8 h-8 bg-amber-50 text-amber-700 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <i class="fa-solid fa-phone"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-800 text-xs md:text-sm">대표 행정 문의처</h4>
+                        <p class="text-[11px] md:text-xs text-slate-500 mt-0.5">교회사무실: 031-885-xxxx / 팩스: 031-885-xxxx</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start space-x-3">
+                    <div class="w-8 h-8 bg-amber-50 text-amber-700 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <i class="fa-solid fa-car-side"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-800 text-xs md:text-sm">교회 전용 주차장 무료 완비</h4>
+                        <p class="text-[11px] md:text-xs text-slate-500 mt-0.5 leading-relaxed">교회당 뒤편 및 성전 본관 좌우 주차공간 상시 개방</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 네비게이션 직접 연결 링크 박스 -->
+            <div class="md:col-span-7 bg-stone-50 rounded-xl p-6 flex flex-col justify-center items-center text-center border border-stone-200">
+                <i class="fa-solid fa-signs-post text-4xl text-slate-400 mb-3"></i>
+                <h4 class="font-bold text-slate-800 text-sm mb-1.5">지도 바로가기 안내</h4>
+                <p class="text-xs text-slate-500 max-w-xs mb-5 leading-relaxed">아래 포털 지도를 누르시면 스마트폰 내비게이션 길찾기 앱으로 연동되어 편리합니다.</p>
+                <div class="flex space-x-2">
+                    <a href="https://map.naver.com" target="_blank" class="bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2 rounded-xl text-xs font-bold transition">네이버 지도 연동</a>
+                    <a href="https://map.kakao.com" target="_blank" class="bg-yellow-400 hover:bg-yellow-500 text-slate-950 px-4 py-2 rounded-xl text-xs font-bold transition">카카오 지도 연동</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- [푸터 및 교회 권리 안내] 주소 및 카피라이트 정보 -->
+    <footer class="bg-slate-900 text-slate-400 py-12 px-4 mt-auto text-xs">
+        <div class="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-left">
+                <h5 class="text-white font-bold text-base mb-2">기독교대한성결교회 여주교회</h5>
+                <p class="mb-1 leading-relaxed">경기도 여주시 세종로 149 | 담임목사: 조영준 | 대표전화: 031-885-xxxx</p>
+                <p class="text-slate-500">&copy; 2026 Yeoju Holiness Church. All Rights Reserved. (자체 제작 깃허브 관리용 사이트)</p>
+            </div>
+            <div class="flex space-x-3 text-lg">
+                <a href="https://www.youtube.com/@%EC%97%AC%EC%A3%BC%EC%84%B1%EA%B2%B0%EA%B5%90%ED%9A%8C" target="_blank" 
+                   class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center text-red-500 hover:text-white hover:bg-red-600 transition shadow-inner">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ==================== 성도 편의용 팝업 창 (모달) 제어 영역 ==================== -->
+
+    <!-- ① 이번 주 주보 안내 팝업 -->
+    <div id="juboModal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 relative shadow-2xl border border-stone-100">
+            <button onclick="closeCustomModal('juboModal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-800 text-xl"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center"><i class="fa-solid fa-file-pdf text-amber-600 mr-2"></i>이번 주 예배 주보</h3>
+            <div class="bg-stone-50 rounded-xl p-8 text-center border-2 border-dashed border-stone-200">
+                <i class="fa-regular fa-file-pdf text-5xl text-red-500 mb-3"></i>
+                <p class="font-bold text-slate-800 text-sm">2026년 주일 대예배 주보</p>
+                <p class="text-[10px] text-slate-400 mt-1">파일 업로드 후 아래 다운로드 버튼 주소를 변경하시면 됩니다.</p>
+                <!-- [가이드] 깃허브에 주보 pdf를 올린 뒤 href="jubo.pdf" 등으로 링크하시면 다운로드 및 바로보기가 가능해집니다 -->
+                <a href="jubo.pdf" target="_blank" class="mt-4 inline-block bg-blue-800 text-white px-5 py-2 rounded-xl text-xs font-bold hover:bg-blue-900 transition">새 주보 열어보기</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ② 상세 예배 시간 안내 팝업 -->
+    <div id="timeModal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 relative shadow-2xl border border-stone-100">
+            <button onclick="closeCustomModal('timeModal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-800 text-xl"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center"><i class="fa-solid fa-clock text-emerald-600 mr-2"></i>상세 정기 집회 일정</h3>
+            <div class="space-y-2.5 text-xs md:text-sm text-slate-700">
+                <div class="flex justify-between border-b pb-1.5"><span class="font-semibold text-slate-800">주일 오전 1부 예배</span><span>오전 09:00 (본당 2층)</span></div>
+                <div class="flex justify-between border-b pb-1.5"><span class="font-semibold text-slate-800 text-blue-900">주일 오전 2부 예배</span><span class="font-medium">오전 11:00 (본당 2층)</span></div>
+                <div class="flex justify-between border-b pb-1.5"><span class="font-semibold text-slate-800">주일 오후 찬양 예배</span><span>오후 02:00 (본당 2층)</span></div>
+                <div class="flex justify-between border-b pb-1.5"><span class="font-semibold text-slate-800">삼일 기도회 (수요)</span><span>오후 07:30 (본당 1층)</span></div>
+                <div class="flex justify-between border-b pb-1.5"><span class="font-semibold text-slate-800">금요 성령기도회</span><span>오후 08:30 (본당 1층)</span></div>
+                <div class="flex justify-between"><span class="font-semibold text-slate-800">매일 새벽 제단 (월~금)</span><span>오전 05:00 (본당 1층)</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ③ 온라인 헌금 계좌 복사 안내 팝업 -->
+    <div id="donationModal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 relative shadow-2xl border border-stone-100">
+            <button onclick="closeCustomModal('donationModal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-800 text-xl"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="text-lg font-bold text-slate-900 mb-3 flex items-center"><i class="fa-solid fa-heart text-blue-700 mr-2"></i>온라인 헌금 계좌번호</h3>
+            <p class="text-[11px] text-slate-500 mb-4 leading-relaxed">온라인을 통해 헌금을 봉헌하실 수 있는 교회 공식 금융 계좌입니다.</p>
+            <div class="space-y-3">
+                <div class="bg-stone-50 p-4 rounded-xl border border-stone-150">
+                    <span class="text-[10px] text-slate-400 block font-semibold">농협은행 (일반 및 십일조/감사)</span>
+                    <strong class="text-base text-slate-800 block mt-1 select-all tracking-wide">351-xxxx-xxxx-xx</strong>
+                    <span class="text-[10px] text-slate-500 block mt-0.5">예금주: 기독교대한성결교회 여주교회</span>
+                </div>
+            </div>
+            <p class="text-[10px] text-amber-600 mt-4 text-center font-medium">계좌번호를 클릭 및 터치하시면 텍스트를 손쉽게 복사할 수 있습니다.</p>
+        </div>
+    </div>
+
+    <!-- ④ 다음세대 교회학교 부서 안내 팝업 -->
+    <div id="departmentModal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 relative shadow-2xl border border-stone-100">
+            <button onclick="closeCustomModal('departmentModal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-800 text-xl"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center"><i class="fa-solid fa-children text-purple-700 mr-2"></i>교회 교육 부서 안내</h3>
+            <div class="space-y-2 text-xs md:text-sm text-slate-700">
+                <div class="flex justify-between border-b pb-1.5"><span class="font-semibold text-slate-800">영·유치부</span><span>주일 오전 11:00 (유치부실)</span></div>
+                <div class="flex justify-between border-b pb-1.5"><span class="font-semibold text-slate-800">유·초등부</span><span>주일 오전 11:00 (초등부실)</span></div>
+                <div class="flex justify-between border-b pb-1.5"><span class="font-semibold text-slate-800">청소년부 (중고등)</span><span>주일 오전 09:00 (청소년실)</span></div>
+                <div class="flex justify-between"><span class="font-semibold text-slate-800">청년회 (디모데)</span><span>주일 오후 02:00 (소예배실)</span></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 팝업 창을 마우스 클릭으로 끄고 켜기 위한 가벼운 동작 장치 -->
+    <script>
+        function openCustomModal(modalId) {
+            document.getElementById(modalId).classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // 뒷 배경화면이 상하로 움직이지 않게 고정
+        }
+
+        function closeCustomModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+            document.body.style.overflow = ''; // 배경화면 스크롤 다시 활성화
+        }
+    </script>
+</body>
+</html>
