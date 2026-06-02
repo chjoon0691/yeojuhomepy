@@ -23,25 +23,33 @@
             border-bottom-left-radius: 50% 120px;
             border-bottom-right-radius: 50% 120px;
         }
+        /* 모바일용 곡선 조정 */
         @media (max-width: 768px) {
             .curved-top {
                 border-top-left-radius: 3rem;
                 border-top-right-radius: 3rem;
             }
             .curved-bottom {
-                border-bottom-left-radius: 50% 50px;
-                border-bottom-right-radius: 50% 50px;
+                border-bottom-left-radius: 50% 40px;
+                border-bottom-right-radius: 50% 40px;
             }
+        }
+        /* 햄버거 메뉴 토글 기능 */
+        #mobile-menu {
+            display: none;
+        }
+        #mobile-menu.open {
+            display: flex;
         }
     </style>
 </head>
 <body class="text-gray-800">
 
     <!-- Header & Navigation -->
-    <header class="bg-[#1a3668] text-white w-full z-50 relative">
-        <!-- Top Utility Menu -->
-        <div class="border-b border-white/20">
-            <div class="max-w-7xl mx-auto px-4 py-2 flex justify-end items-center space-x-4 text-xs font-light">
+    <header class="bg-[#244177] text-white w-full z-50 relative">
+        <!-- Top Utility Menu (PC Only) -->
+        <div class="hidden md:block border-b border-white/20">
+            <div class="max-w-7xl mx-auto px-4 py-2 flex justify-end items-center space-x-4 text-sm font-light">
                 <a href="#" class="hover:text-blue-300">로그인</a>
                 <a href="#" class="hover:text-blue-300">회원가입</a>
                 <button class="text-white hover:text-blue-300"><i class="fas fa-bars text-lg"></i></button>
@@ -49,9 +57,9 @@
         </div>
         
         <!-- Main Navigation -->
-        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
             <!-- Logo -->
-            <div class="flex items-center space-x-3 mb-4 md:mb-0 cursor-pointer">
+            <div class="flex items-center space-x-3 cursor-pointer z-50">
                 <i class="fa-solid fa-cross text-3xl text-blue-300"></i>
                 <div>
                     <h1 class="text-2xl font-bold tracking-tight">여주성결교회</h1>
@@ -59,8 +67,13 @@
                 </div>
             </div>
             
-            <!-- Menu -->
-            <nav class="flex flex-wrap justify-center space-x-4 md:space-x-8 text-sm md:text-base font-medium">
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-white text-3xl z-50" onclick="document.getElementById('mobile-menu').classList.toggle('open')">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Menu (Desktop) -->
+            <nav class="hidden md:flex space-x-8 text-lg font-medium">
                 <a href="#" class="hover:text-blue-300 transition">환영합니다</a>
                 <a href="#" class="hover:text-blue-300 transition">말씀과 찬양</a>
                 <a href="#" class="hover:text-blue-300 transition">공동체</a>
@@ -70,149 +83,172 @@
                 <a href="#" class="hover:text-blue-300 transition">행정서비스</a>
             </nav>
         </div>
+
+        <!-- Mobile Menu (Dropdown) -->
+        <div id="mobile-menu" class="absolute top-full left-0 w-full bg-[#1a3668] flex-col items-center py-4 space-y-4 shadow-xl z-50 text-lg">
+            <a href="#" class="text-white hover:text-blue-300">환영합니다</a>
+            <a href="#" class="text-white hover:text-blue-300">말씀과 찬양</a>
+            <a href="#" class="text-white hover:text-blue-300">공동체</a>
+            <a href="#" class="text-white hover:text-blue-300">다음세대</a>
+            <a href="#" class="text-white hover:text-blue-300">전도와 선교</a>
+            <a href="#" class="text-white hover:text-blue-300">교회소식</a>
+            <a href="#" class="text-white hover:text-blue-300">행정서비스</a>
+            <div class="border-t border-white/20 w-3/4 pt-4 flex justify-center space-x-6">
+                <a href="#" class="text-sm">로그인</a>
+                <a href="#" class="text-sm">회원가입</a>
+            </div>
+        </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="bg-[#1a3668] text-white pt-16 pb-64 relative flex items-center justify-center text-center overflow-hidden curved-bottom">
-        <!-- Background subtle overlay (optional, mimicking texture) -->
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-[#102242] opacity-50"></div>
+    <section class="bg-[#244177] text-white pt-16 pb-48 md:pb-64 relative flex items-center justify-center text-center overflow-hidden curved-bottom shadow-[0_10px_30px_rgba(0,0,0,0.2)]">
+        <!-- Background Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-b from-[#102242]/40 to-[#102242]/80 opacity-60"></div>
         
-        <div class="relative z-10 max-w-4xl mx-auto px-4 flex flex-col items-center">
+        <div class="relative z-10 max-w-5xl mx-auto px-4 flex flex-col items-center w-full">
             <!-- Left Arrow -->
-            <button class="absolute left-0 md:-left-20 top-1/2 transform -translate-y-1/2 text-white/50 hover:text-white text-5xl hidden md:block">
+            <button class="absolute left-2 md:-left-10 top-1/2 transform -translate-y-1/2 text-white/50 hover:text-white text-4xl md:text-5xl">
                 <i class="fas fa-angle-left"></i>
             </button>
 
-            <!-- Oikos Church - 목사님 요청사항 반영: O와 C만 대문자, 폰트 2배 확장 (text-4xl) -->
-            <p class="text-4xl font-bold mb-4 tracking-wide text-blue-200">Oikos Church</p>
+            <!-- Oikos Church (O, C 대문자 / text-4xl / 폰트 크기 확대) -->
+            <p class="text-2xl md:text-5xl font-bold mb-4 tracking-wide text-blue-200">Oikos Church</p>
             
-            <h2 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">기도하는 구역, 기대되는 교회</h2>
+            <h2 class="text-3xl md:text-6xl font-extrabold mb-6 md:mb-8 leading-tight">기도하는 구역, 기대되는 교회</h2>
             
-            <p class="text-sm md:text-lg mb-10 opacity-90 font-light max-w-2xl leading-relaxed">
+            <p class="text-sm md:text-xl mb-8 md:mb-12 opacity-90 font-light max-w-2xl leading-relaxed hidden md:block">
                 그들이 사도의 가르침을 받아 서로 교제하고 떡을 떼며 오로지 기도하기를 힘쓰니라<br>
                 (사도행전 2:42)
             </p>
             
-            <button class="border border-white/70 px-8 py-3 rounded-md hover:bg-white hover:text-[#1a3668] transition duration-300 font-medium">
+            <button class="border border-white px-6 md:px-10 py-2 md:py-3 rounded-md hover:bg-white hover:text-[#1a3668] transition duration-300 text-sm md:text-lg font-bold">
                 주일예배 바로가기
             </button>
 
             <!-- Right Arrow -->
-            <button class="absolute right-0 md:-right-20 top-1/2 transform -translate-y-1/2 text-white/50 hover:text-white text-5xl hidden md:block">
+            <button class="absolute right-2 md:-right-10 top-1/2 transform -translate-y-1/2 text-white/50 hover:text-white text-4xl md:text-5xl">
                 <i class="fas fa-angle-right"></i>
             </button>
         </div>
     </section>
 
-    <!-- 3 Overlapping Cards -->
-    <section class="max-w-6xl mx-auto px-4 -mt-32 relative z-20">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <!-- 3 Overlapping Cards (모바일에서도 3열 유지) -->
+    <section class="max-w-6xl mx-auto px-2 md:px-4 -mt-20 md:-mt-32 relative z-20">
+        <div class="grid grid-cols-3 gap-2 md:gap-6">
             <!-- Card 1 -->
-            <div class="bg-white rounded-3xl shadow-xl p-8 text-center flex flex-col items-center justify-center h-56 cursor-pointer hover:-translate-y-2 transition duration-300">
-                <i class="fas fa-book-open text-5xl text-[#5c85b5] mb-5"></i>
-                <h3 class="text-xl font-bold text-[#1a3668]">금주의 주보</h3>
+            <div class="bg-white rounded-xl md:rounded-3xl shadow-xl p-3 md:p-8 text-center flex flex-col items-center justify-center h-28 md:h-56 cursor-pointer hover:-translate-y-2 transition duration-300">
+                <i class="fas fa-book-open text-2xl md:text-5xl text-[#5c85b5] mb-2 md:mb-5"></i>
+                <h3 class="text-xs md:text-3xl font-extrabold text-[#5c85b5]">금주의 주보</h3>
+                <p class="text-[0.6rem] md:text-sm text-[#5c85b5] mt-1 md:mt-2 hidden sm:block">Weekly News</p>
             </div>
             <!-- Card 2 (Blue) -->
-            <div class="bg-[#6b8cba] rounded-3xl shadow-xl text-white p-8 text-center flex flex-col items-center justify-center h-56 cursor-pointer hover:-translate-y-2 transition duration-300">
-                <i class="fas fa-bible text-5xl mb-5"></i>
-                <h3 class="text-xl font-bold">예배시간 안내</h3>
+            <div class="bg-[#6b8cba] rounded-xl md:rounded-3xl shadow-xl text-white p-3 md:p-8 text-center flex flex-col items-center justify-center h-28 md:h-56 cursor-pointer hover:-translate-y-2 transition duration-300">
+                <i class="fas fa-bible text-2xl md:text-5xl mb-2 md:mb-5"></i>
+                <h3 class="text-xs md:text-3xl font-extrabold">예배시간 안내</h3>
+                <p class="text-[0.6rem] md:text-sm text-blue-100 mt-1 md:mt-2 hidden sm:block">Sermon Schedule</p>
             </div>
             <!-- Card 3 -->
-            <div class="bg-white rounded-3xl shadow-xl p-8 text-center flex flex-col items-center justify-center h-56 cursor-pointer hover:-translate-y-2 transition duration-300">
-                <i class="fas fa-laptop text-5xl text-[#5c85b5] mb-5"></i>
-                <h3 class="text-xl font-bold text-[#1a3668]">유튜브 바로가기</h3>
+            <div class="bg-white rounded-xl md:rounded-3xl shadow-xl p-3 md:p-8 text-center flex flex-col items-center justify-center h-28 md:h-56 cursor-pointer hover:-translate-y-2 transition duration-300">
+                <i class="fas fa-laptop text-2xl md:text-5xl text-[#5c85b5] mb-2 md:mb-5"></i>
+                <h3 class="text-xs md:text-3xl font-extrabold text-[#5c85b5]">유튜브 바로가기</h3>
+                <p class="text-[0.6rem] md:text-sm text-[#5c85b5] mt-1 md:mt-2 hidden sm:block">Youtube Channel</p>
             </div>
         </div>
     </section>
 
-    <!-- Welcome Section -->
-    <section class="py-24 max-w-7xl mx-auto px-4 text-center">
-        <h2 class="text-3xl font-extrabold mb-16 text-gray-900">여주성결교회에 오신 것을 환영합니다</h2>
+    <!-- Welcome Section (모바일 반응형 그리드) -->
+    <section class="py-16 md:py-32 max-w-7xl mx-auto px-4 text-center relative overflow-hidden">
+        <h2 class="text-3xl md:text-5xl font-extrabold mb-4 md:mb-6 text-gray-900">여주성결교회에 오신 것을 환영합니다</h2>
+        <p class="text-xs md:text-lg text-gray-500 mb-12 md:mb-20 font-medium">Welcome to Yeoju Evangelical Holiness Church's Homepage.<br class="hidden md:block"> Yeoju Church hopes you have a peaceful and graceful time.</p>
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-            <!-- Left Text Blocks -->
-            <div class="space-y-16 text-left">
-                <div class="flex flex-col items-start">
-                    <h4 class="text-xl font-extrabold mb-3 text-gray-900">여주성결교회에 처음 오셨나요?</h4>
-                    <p class="text-[0.9rem] text-gray-500 mb-5 leading-relaxed font-medium">"꿈과 사랑이 있는 여주교회"<br>새가족이 되심을<br>진심으로 축하드립니다.</p>
-                    <button class="bg-[#6b8cba] text-white text-sm font-bold px-6 py-2 rounded hover:bg-[#1a3668] transition shadow-sm">새가족 안내</button>
-                </div>
-                <div class="flex flex-col items-start">
-                    <h4 class="text-xl font-extrabold mb-3 text-gray-900">세계로 선교하는 교회</h4>
-                    <p class="text-[0.9rem] text-gray-500 mb-5 leading-relaxed font-medium">여주성결교회는 선교에 동참하는 공동체로<br>복음이 필요한 국내,외 지구촌 곳곳에<br>하나님의 복음을 전하는데<br>그 가치를 두고 있습니다</p>
-                    <button class="bg-[#6b8cba] text-white text-sm font-bold px-6 py-2 rounded hover:bg-[#1a3668] transition shadow-sm">국내외 선교</button>
-                </div>
+        <!-- 중앙 교회 이미지 (모바일에서는 배경으로 스며들게 배치) -->
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0 opacity-20 md:opacity-100 md:relative md:top-0 md:left-0 md:transform-none flex justify-center items-center pointer-events-none mt-20 md:mt-0 w-48 md:w-full">
+            <img src="image_8bddfb.png" alt="여주성결교회 성전 이미지" class="w-full max-w-[320px] object-contain hidden md:block">
+            <img src="image_8bddfb.png" alt="여주성결교회 성전 이미지 모바일" class="w-full max-w-[200px] object-contain md:hidden mt-20">
+        </div>
+
+        <div class="grid grid-cols-2 gap-y-12 gap-x-4 md:gap-x-0 md:grid-cols-2 relative z-10 md:-mt-[350px]">
+            <!-- Top Left -->
+            <div class="flex flex-col items-start text-left md:pr-48">
+                <h4 class="text-lg md:text-3xl font-extrabold mb-2 md:mb-4 text-gray-900">여주성결교회에<br class="md:hidden"> 처음 오셨나요?</h4>
+                <p class="text-xs md:text-lg text-gray-500 mb-3 md:mb-6 leading-relaxed font-medium">"꿈과 사랑이 있는 여주교회"<br>새가족이 되심을<br>진심으로 축하드립니다.</p>
+                <button class="bg-[#6b8cba] text-white text-xs md:text-lg font-bold px-4 py-2 md:px-8 md:py-3 rounded hover:bg-[#1a3668] transition shadow-sm">새가족 안내</button>
+            </div>
+            
+            <!-- Top Right -->
+            <div class="flex flex-col items-end text-right md:pl-48">
+                <h4 class="text-lg md:text-3xl font-extrabold mb-2 md:mb-4 text-gray-900">다음세대가<br class="md:hidden"> 함께하는 교회</h4>
+                <p class="text-xs md:text-lg text-gray-500 mb-3 md:mb-6 leading-relaxed font-medium">여주성결교회의 다음세대 교회학교는<br>예수님의 작은 제자들이<br>올바른 그리스도의 자녀로 성장하기 위한<br>훈련과정을 담고 있습니다</p>
+                <button class="bg-[#6b8cba] text-white text-xs md:text-lg font-bold px-4 py-2 md:px-8 md:py-3 rounded hover:bg-[#1a3668] transition shadow-sm">다음세대</button>
             </div>
 
-            <!-- Center Graphic (Church Outline Image) -->
-            <div class="hidden md:flex justify-center items-center">
-                <img src="image_8bddfb.png" alt="여주성결교회 성전 이미지" class="w-full max-w-[280px] object-contain">
+            <!-- Bottom Left -->
+            <div class="flex flex-col items-start text-left md:pr-48 md:mt-32">
+                <h4 class="text-lg md:text-3xl font-extrabold mb-2 md:mb-4 text-gray-900">세계로<br class="md:hidden"> 선교하는 교회</h4>
+                <p class="text-xs md:text-lg text-gray-500 mb-3 md:mb-6 leading-relaxed font-medium">여주성결교회는 선교에 동참하는 공동체로<br>복음이 필요한 국내,외 지구촌 곳곳에<br>하나님의 복음을 전하는데<br>그 가치를 두고 있습니다</p>
+                <button class="bg-[#6b8cba] text-white text-xs md:text-lg font-bold px-4 py-2 md:px-8 md:py-3 rounded hover:bg-[#1a3668] transition shadow-sm">국내외 선교</button>
             </div>
 
-            <!-- Right Text Blocks -->
-            <div class="space-y-16 text-right">
-                <div class="flex flex-col items-end">
-                    <h4 class="text-xl font-extrabold mb-3 text-gray-900">다음세대가 함께하는 교회</h4>
-                    <p class="text-[0.9rem] text-gray-500 mb-5 leading-relaxed font-medium">여주성결교회의 다음세대 교회학교는<br>예수님의 작은 제자들이<br>올바른 그리스도의 자녀로 성장하기 위한<br>훈련과정을 담고 있습니다</p>
-                    <button class="bg-[#6b8cba] text-white text-sm font-bold px-6 py-2 rounded hover:bg-[#1a3668] transition shadow-sm">다음세대</button>
-                </div>
-                <div class="flex flex-col items-end">
-                    <h4 class="text-xl font-extrabold mb-3 text-gray-900">예수 제자를 양육하는 교회</h4>
-                    <p class="text-[0.9rem] text-gray-500 mb-5 leading-relaxed font-medium">여주성결교회는 성도들이 예수님의 사랑을<br>경험하는 것을 가치있게 여기는 교회로<br>모든 성도들의 신앙성숙을 도와<br>예수 제자를 양육하고 있습니다</p>
-                    <button class="bg-[#6b8cba] text-white text-sm font-bold px-6 py-2 rounded hover:bg-[#1a3668] transition shadow-sm">양육&훈련</button>
-                </div>
+            <!-- Bottom Right -->
+            <div class="flex flex-col items-end text-right md:pl-48 md:mt-32">
+                <h4 class="text-lg md:text-3xl font-extrabold mb-2 md:mb-4 text-gray-900">예수 제자를<br class="md:hidden"> 양육하는 교회</h4>
+                <p class="text-xs md:text-lg text-gray-500 mb-3 md:mb-6 leading-relaxed font-medium">여주성결교회는 성도들이 예수님의 사랑을<br>경험하는 것을 가치있게 여기는 교회로<br>모든 성도들의 신앙성숙을 도와<br>예수 제자를 양육하고 있습니다</p>
+                <button class="bg-[#6b8cba] text-white text-xs md:text-lg font-bold px-4 py-2 md:px-8 md:py-3 rounded hover:bg-[#1a3668] transition shadow-sm">양육&훈련</button>
             </div>
         </div>
     </section>
 
     <!-- Worship & Praise Section -->
-    <section class="bg-[#f0f2f5] py-20">
+    <section class="bg-[#e2e8f0] py-16 md:py-24">
         <div class="max-w-6xl mx-auto px-4">
-            <h2 class="text-3xl font-extrabold text-center mb-12 text-gray-900">금주의 예배와 찬양</h2>
+            <h2 class="text-3xl md:text-5xl font-extrabold text-center mb-8 md:mb-16 text-gray-900">금주의 예배와 찬양</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Video Card 1 -->
-                <div>
-                    <div class="relative h-64 rounded-2xl overflow-hidden shadow-lg group cursor-pointer">
-                        <img src="https://images.unsplash.com/photo-1438283173091-5dbf5c5a3206?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="수요예배" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <div class="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-white p-4">
-                            <h3 class="text-2xl font-bold mb-1">수요 예배</h3>
-                            <p class="text-xs opacity-80">Wednesday Worship</p>
+            <!-- 모바일: 담임목사(col-span-2) / 수요(col-span-1) / 찬양(col-span-1) -->
+            <!-- PC: 각각 col-span-1 (총 3칸) -->
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
+                
+                <!-- Video Card 1 (담임목사 - 모바일에서 가장 위, 넓게) -->
+                <div class="col-span-2 md:col-span-1 order-1 md:order-2">
+                    <div class="relative h-48 md:h-72 rounded-2xl md:rounded-3xl overflow-hidden shadow-lg group cursor-pointer border-4 md:border-8 border-white">
+                        <img src="https://images.unsplash.com/photo-1438283173091-5dbf5c5a3206?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="주일설교 성경책" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-black/40 flex flex-col justify-center items-center md:items-start md:p-8 text-white p-4">
+                            <h3 class="text-2xl md:text-4xl font-extrabold mb-1">담임목사<br>주일설교</h3>
+                            <p class="text-xs md:text-base opacity-80">Sunday sermon</p>
                         </div>
                     </div>
-                    <div class="text-center mt-4">
-                        <h4 class="font-bold text-lg">마태복음 강해</h4>
-                        <p class="text-xs text-gray-500">2026.05.13 마태복음 15:29-39</p>
+                    <div class="text-center md:text-left mt-4 px-2">
+                        <h4 class="font-extrabold text-lg md:text-2xl">나도 복을 받을 수 있을까?(1)</h4>
+                        <p class="text-xs md:text-base text-gray-600 mt-1">2026.05.31 마태복음 5:1-3(신 ...</p>
                     </div>
                 </div>
 
-                <!-- Video Card 2 -->
-                <div>
-                    <div class="relative h-64 rounded-2xl overflow-hidden shadow-lg group cursor-pointer border-4 border-white">
-                        <img src="https://images.unsplash.com/photo-1599927958611-3d7120db89d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="주일설교" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <div class="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-white p-4">
-                            <h3 class="text-2xl font-bold mb-1">담임목사 주일설교</h3>
-                            <p class="text-xs opacity-80">Sunday sermon</p>
+                <!-- Video Card 2 (수요예배) -->
+                <div class="col-span-1 order-2 md:order-1">
+                    <div class="relative h-40 md:h-72 rounded-2xl md:rounded-3xl overflow-hidden shadow-lg group cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1504052434569-70ad5836ab65?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="수요예배 십자가" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-black/50 flex flex-col justify-center md:justify-end items-center md:items-start text-white p-3 md:p-6">
+                            <h3 class="text-lg md:text-3xl font-extrabold mb-1">수요<br>예배</h3>
+                            <p class="text-[0.6rem] md:text-sm opacity-80">Wednesday Worship</p>
                         </div>
                     </div>
-                    <div class="text-center mt-4">
-                        <h4 class="font-bold text-lg">나도 복을 받을 수 있을까?(1)</h4>
-                        <p class="text-xs text-gray-500">2026.05.31 마태복음 5:1-3(신 ...</p>
+                    <div class="text-center mt-3 px-1">
+                        <h4 class="font-extrabold text-base md:text-xl">마태복음 강해</h4>
+                        <p class="text-[0.65rem] md:text-sm text-gray-600 mt-1">2026.05.13 마태복음 15:29-39</p>
                     </div>
                 </div>
 
-                <!-- Video Card 3 -->
-                <div>
-                    <div class="relative h-64 rounded-2xl overflow-hidden shadow-lg group cursor-pointer">
-                        <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="찬양대" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <div class="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-white p-4">
-                            <h3 class="text-2xl font-bold mb-1">찬양대 찬양</h3>
-                            <p class="text-xs opacity-80">Praise</p>
+                <!-- Video Card 3 (찬양대) -->
+                <div class="col-span-1 order-3">
+                    <div class="relative h-40 md:h-72 rounded-2xl md:rounded-3xl overflow-hidden shadow-lg group cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1473280025148-643f9b0cbac2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="찬양대 손" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-black/40 flex flex-col justify-center md:justify-end items-center md:items-start text-white p-3 md:p-6">
+                            <h3 class="text-lg md:text-3xl font-extrabold mb-1">찬양대<br>찬양</h3>
+                            <p class="text-[0.6rem] md:text-sm opacity-80">Praise</p>
                         </div>
                     </div>
-                    <div class="text-center mt-4">
-                        <h4 class="font-bold text-lg">감사의 기도</h4>
-                        <p class="text-xs text-gray-500">2026.05.31</p>
+                    <div class="text-center mt-3 px-1">
+                        <h4 class="font-extrabold text-base md:text-xl">감사의 기도</h4>
+                        <p class="text-[0.65rem] md:text-sm text-gray-600 mt-1">2026.05.31</p>
                     </div>
                 </div>
             </div>
@@ -220,162 +256,163 @@
     </section>
 
     <!-- Background transition image (Dark mountain/sky) -->
-    <div class="h-48 bg-[#3b4b66] w-full" style="background-image: url('https://images.unsplash.com/photo-1519817650390-64a93db51149?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center;"></div>
+    <div class="h-32 md:h-56 bg-[#3b4b66] w-full" style="background-image: url('https://images.unsplash.com/photo-1519817650390-64a93db51149?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center;"></div>
 
     <!-- News & Event Banner Section -->
-    <section class="bg-white curved-top -mt-20 pt-20 pb-16 relative z-10 shadow-[0_-10px_30px_rgba(0,0,0,0.1)]">
-        <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12">
+    <section class="bg-[#f8fafc] curved-top -mt-16 md:-mt-24 pt-16 md:pt-24 pb-16 md:pb-20 relative z-10 shadow-[0_-10px_30px_rgba(0,0,0,0.1)]">
+        <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
             
             <!-- Notice Board -->
-            <div>
-                <div class="flex justify-between items-end border-b-2 border-gray-900 pb-2 mb-4">
-                    <h2 class="text-2xl font-bold text-gray-900">여주성결교회 <span class="text-[#5c85b5]">새소식</span></h2>
-                    <a href="#" class="text-xs text-blue-500 font-bold uppercase">more</a>
+            <div class="bg-white rounded-3xl p-6 md:p-8 shadow-sm">
+                <div class="flex justify-between items-end border-b-2 border-[#5c85b5] pb-3 mb-5">
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-gray-900">여주성결교회 <span class="text-[#5c85b5]">새소식</span></h2>
+                    <a href="#" class="text-xs md:text-base text-blue-500 font-bold uppercase">more</a>
                 </div>
-                <ul class="space-y-3">
-                    <li class="flex justify-between text-sm py-2 border-b border-gray-100 hover:text-blue-600 cursor-pointer">
-                        <span class="truncate pr-4">장례 - 고대성성도(고미선권사 부친, 임태복권사 장인)</span>
-                        <span class="text-gray-400 flex-shrink-0">26.05.26</span>
+                <ul class="space-y-4">
+                    <li class="flex justify-between text-sm md:text-lg py-2 border-b border-gray-50 hover:text-blue-600 cursor-pointer transition">
+                        <span class="truncate pr-4 font-medium">장례 - 고대성성도(고미선권사 부친, 온...</span>
+                        <span class="text-gray-400 flex-shrink-0 text-xs md:text-base">26.05.26</span>
                     </li>
-                    <li class="flex justify-between text-sm py-2 border-b border-gray-100 hover:text-blue-600 cursor-pointer">
-                        <span class="truncate pr-4">손성필성도(9남)안영하권사(18여) 손율재청년 손다현청년 손가현청년 / 1구...</span>
-                        <span class="text-gray-400 flex-shrink-0">26.05.17</span>
+                    <li class="flex justify-between text-sm md:text-lg py-2 border-b border-gray-50 hover:text-blue-600 cursor-pointer transition">
+                        <span class="truncate pr-4 font-medium">손성필성도(9남)안영하권사(18여) 손율...</span>
+                        <span class="text-gray-400 flex-shrink-0 text-xs md:text-base">26.05.17</span>
                     </li>
-                    <li class="flex justify-between text-sm py-2 border-b border-gray-100 hover:text-blue-600 cursor-pointer">
-                        <span class="truncate pr-4">김현석집사(8남) 한주은집사(17여) / 4교구 현대강변2구역</span>
-                        <span class="text-gray-400 flex-shrink-0">26.05.17</span>
+                    <li class="flex justify-between text-sm md:text-lg py-2 border-b border-gray-50 hover:text-blue-600 cursor-pointer transition">
+                        <span class="truncate pr-4 font-medium">김현석집사(8남) 한주은집사(17여) / 4...</span>
+                        <span class="text-gray-400 flex-shrink-0 text-xs md:text-base">26.05.17</span>
                     </li>
-                    <li class="flex justify-between text-sm py-2 border-b border-gray-100 hover:text-blue-600 cursor-pointer">
-                        <span class="truncate pr-4">정하연성도(22여) 방승리청년 / 5교구 온유구역</span>
-                        <span class="text-gray-400 flex-shrink-0">26.05.17</span>
+                    <li class="flex justify-between text-sm md:text-lg py-2 border-b border-gray-50 hover:text-blue-600 cursor-pointer transition">
+                        <span class="truncate pr-4 font-medium">정하연성도(22여) 방승리청년 / 5교구 ...</span>
+                        <span class="text-gray-400 flex-shrink-0 text-xs md:text-base">26.05.17</span>
                     </li>
-                    <li class="flex justify-between text-sm py-2 border-b border-gray-100 hover:text-blue-600 cursor-pointer">
-                        <span class="truncate pr-4">김옥분성도(14여) / 11교구 능서구역</span>
-                        <span class="text-gray-400 flex-shrink-0">26.05.17</span>
+                    <li class="flex justify-between text-sm md:text-lg py-2 border-b border-gray-50 hover:text-blue-600 cursor-pointer transition">
+                        <span class="truncate pr-4 font-medium">김옥분성도(14여) / 11교구 능서구역</span>
+                        <span class="text-gray-400 flex-shrink-0 text-xs md:text-base">26.05.17</span>
                     </li>
                 </ul>
             </div>
 
             <!-- Event Banner -->
             <div class="flex items-center justify-center">
-                <!-- Using a placeholder styled like the poster in the image -->
-                <div class="w-full bg-gradient-to-r from-orange-100 to-yellow-50 rounded-lg shadow-md p-6 text-center border border-gray-200">
-                    <p class="text-xs text-gray-500 mb-1">여주성결교회 청년부 말레이시아 단기선교</p>
-                    <h3 class="text-3xl font-extrabold text-red-600 mb-2" style="font-family: serif;">하나님의 사랑,</h3>
-                    <h3 class="text-3xl font-extrabold text-[#1a3668] mb-4" style="font-family: serif;">상상 이상의 사랑</h3>
-                    <p class="bg-yellow-400 text-black text-sm font-bold py-1 px-4 rounded-full inline-block mb-4">2026. 6. 28. (주) ~ 7. 4. (토), 5박 6일</p>
-                    <div class="h-24 bg-cover bg-center rounded" style="background-image: url('https://images.unsplash.com/photo-1596422846543-75c6fc197f0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
-                </div>
+                <img src="https://images.unsplash.com/photo-1596422846543-75c6fc197f0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="말레이시아 단기선교 포스터" class="w-full h-auto rounded-3xl shadow-md border border-gray-100 hover:opacity-90 transition cursor-pointer">
             </div>
         </div>
     </section>
 
     <!-- Gallery & Quick Links Section -->
-    <section class="bg-[#e4eff9] curved-top -mt-6 pt-20 pb-32">
-        <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12">
+    <section class="bg-white pb-24 md:pb-40">
+        <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
             
             <!-- Gallery -->
             <div>
-                <div class="flex justify-between items-end border-b-2 border-blue-900 pb-2 mb-4">
-                    <h2 class="text-2xl font-bold text-gray-900">여주성결교회 <span class="text-[#5c85b5]">갤러리</span></h2>
-                    <a href="#" class="text-xs text-blue-500 font-bold uppercase">more</a>
+                <div class="flex justify-between items-end pb-3 mb-5">
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-gray-900">여주성결교회 <span class="text-[#5c85b5]">갤러리</span></h2>
+                    <a href="#" class="text-xs md:text-base text-blue-500 font-bold uppercase">more</a>
                 </div>
-                <div class="grid grid-cols-2 gap-2">
-                    <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="갤러리1" class="w-full h-32 object-cover rounded shadow-sm hover:opacity-80 cursor-pointer transition">
-                    <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="갤러리2" class="w-full h-32 object-cover rounded shadow-sm hover:opacity-80 cursor-pointer transition">
-                    <img src="https://images.unsplash.com/photo-1544207963-80b72a6b22b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="갤러리3" class="w-full h-32 object-cover rounded shadow-sm hover:opacity-80 cursor-pointer transition">
-                    <img src="https://images.unsplash.com/photo-1473280025148-643f9b0cbac2?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="갤러리4" class="w-full h-32 object-cover rounded shadow-sm hover:opacity-80 cursor-pointer transition">
+                <!-- 2x2 사진 그리드 -->
+                <div class="grid grid-cols-2 gap-1 md:gap-2">
+                    <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="갤러리1" class="w-full h-32 md:h-48 object-cover shadow-sm hover:opacity-80 cursor-pointer transition">
+                    <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="갤러리2" class="w-full h-32 md:h-48 object-cover shadow-sm hover:opacity-80 cursor-pointer transition">
+                    <img src="https://images.unsplash.com/photo-1544207963-80b72a6b22b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="갤러리3" class="w-full h-32 md:h-48 object-cover shadow-sm hover:opacity-80 cursor-pointer transition">
+                    <img src="https://images.unsplash.com/photo-1473280025148-643f9b0cbac2?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="갤러리4" class="w-full h-32 md:h-48 object-cover shadow-sm hover:opacity-80 cursor-pointer transition">
                 </div>
             </div>
 
             <!-- Quick Links -->
-            <div class="flex flex-col justify-center space-y-6">
+            <div class="flex flex-col justify-center space-y-6 md:space-y-8 bg-[#f8fafc] p-6 md:p-10 rounded-3xl">
                 <!-- Link 1 -->
-                <div class="flex items-center justify-between bg-transparent border-b border-blue-200 pb-4">
+                <div class="flex items-center justify-between border-b border-gray-200 pb-5">
                     <div>
-                        <h4 class="font-bold text-gray-800">환영의 인사</h4>
-                        <p class="text-xs text-gray-500 mt-1">여주성결교회 조형준 담임목사님의<br>인사말을 소개합니다</p>
+                        <h4 class="text-base md:text-xl font-extrabold text-gray-800">담임목사님을 소개합니다</h4>
+                        <p class="text-[0.7rem] md:text-sm text-gray-500 mt-1">여주성결교회 조형준 담임목사님의<br>인사말을 소개합니다</p>
                     </div>
-                    <button class="bg-[#6b8cba] text-white text-xs font-semibold px-6 py-2 rounded-full hover:bg-[#1a3668] transition shadow-md">WELCOME</button>
+                    <button class="bg-[#7896c3] text-white text-[0.65rem] md:text-sm font-bold px-4 py-2 md:px-6 md:py-3 rounded-full hover:bg-[#1a3668] transition shadow-sm w-24 md:w-32">PASTOR</button>
                 </div>
                 <!-- Link 2 -->
-                <div class="flex items-center justify-between bg-transparent border-b border-blue-200 pb-4">
+                <div class="flex items-center justify-between border-b border-gray-200 pb-5">
                     <div>
-                        <h4 class="font-bold text-gray-800">성도기업 소개</h4>
-                        <p class="text-xs text-gray-500 mt-1">여주성결교회 성도님들의<br>성도기업을 소개합니다</p>
+                        <h4 class="text-base md:text-xl font-extrabold text-gray-800">성도기업 소개</h4>
+                        <p class="text-[0.7rem] md:text-sm text-gray-500 mt-1">여주성결교회 성도님들의<br>성도기업을 소개합니다</p>
                     </div>
-                    <button class="bg-[#6b8cba] text-white text-xs font-semibold px-6 py-2 rounded-full hover:bg-[#1a3668] transition shadow-md">COMPANY</button>
+                    <button class="bg-[#7896c3] text-white text-[0.65rem] md:text-sm font-bold px-4 py-2 md:px-6 md:py-3 rounded-full hover:bg-[#1a3668] transition shadow-sm w-24 md:w-32">COMPANY</button>
                 </div>
                 <!-- Link 3 -->
-                <div class="flex items-center justify-between bg-transparent border-b border-blue-200 pb-4">
+                <div class="flex items-center justify-between border-b border-gray-200 pb-5">
                     <div>
-                        <h4 class="font-bold text-gray-800">서식자료</h4>
-                        <p class="text-xs text-gray-500 mt-1">대관신청 및 차량신청 등을<br>온라인에서 지원하고 있습니다</p>
+                        <h4 class="text-base md:text-xl font-extrabold text-gray-800">서식자료</h4>
+                        <p class="text-[0.7rem] md:text-sm text-gray-500 mt-1">대관신청 및 차량신청 등을<br>온라인에서 지원하고 있습니다</p>
                     </div>
-                    <button class="bg-[#6b8cba] text-white text-xs font-semibold px-6 py-2 rounded-full hover:bg-[#1a3668] transition shadow-md">APPLICATION</button>
+                    <button class="bg-[#7896c3] text-white text-[0.65rem] md:text-sm font-bold px-4 py-2 md:px-6 md:py-3 rounded-full hover:bg-[#1a3668] transition shadow-sm w-24 md:w-32">APPLICATION</button>
                 </div>
                 <!-- Link 4 -->
-                <div class="flex items-center justify-between bg-transparent">
+                <div class="flex items-center justify-between">
                     <div>
-                        <h4 class="font-bold text-gray-800">차량운행 안내</h4>
-                        <p class="text-xs text-gray-500 mt-1">여주성결교회의 차량운행 시간을<br>안내해드리고 있습니다</p>
+                        <h4 class="text-base md:text-xl font-extrabold text-gray-800">차량운행 안내</h4>
+                        <p class="text-[0.7rem] md:text-sm text-gray-500 mt-1">여주성결교회의 차량운행 시간을<br>안내해드리고 있습니다</p>
                     </div>
-                    <button class="bg-[#6b8cba] text-white text-xs font-semibold px-6 py-2 rounded-full hover:bg-[#1a3668] transition shadow-md">CONTACT US</button>
+                    <button class="bg-[#7896c3] text-white text-[0.65rem] md:text-sm font-bold px-4 py-2 md:px-6 md:py-3 rounded-full hover:bg-[#1a3668] transition shadow-sm w-24 md:w-32">CONTACT US</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Pre-Footer Info Cards -->
-    <div class="max-w-5xl mx-auto px-4 -mt-16 relative z-20 grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-        <div class="bg-[#2c3d5a] text-white p-8 rounded-xl text-center shadow-lg hover:-translate-y-1 transition duration-300">
-            <i class="fas fa-map-marker-alt text-3xl mb-3 text-blue-300"></i>
-            <h4 class="font-bold mb-2">오시는길</h4>
-            <p class="text-xs opacity-75">경기도 여주시 우암로 96<br>(하동, 여주성결교회)</p>
+    <!-- Pre-Footer Info Cards (모바일: 가로형 박스 / PC: 세로형 박스) -->
+    <div class="max-w-6xl mx-auto px-4 -mt-10 md:-mt-24 relative z-20 grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-6 mb-8 md:mb-16">
+        <div class="bg-[#48566a] text-white p-5 md:p-10 rounded-2xl md:rounded-3xl shadow-lg flex flex-row md:flex-col items-center justify-start md:justify-center text-left md:text-center hover:-translate-y-1 transition duration-300">
+            <i class="fas fa-map-marker-alt text-2xl md:text-4xl text-gray-300 w-12 md:w-auto md:mb-4"></i>
+            <div>
+                <h4 class="text-base md:text-xl font-extrabold mb-1 md:mb-2">오시는길</h4>
+                <p class="text-xs md:text-base text-gray-300">경기도 여주시 우암로 96<br class="hidden md:block"> (하동, 여주성결교회)</p>
+            </div>
         </div>
-        <div class="bg-[#2c3d5a] text-white p-8 rounded-xl text-center shadow-lg hover:-translate-y-1 transition duration-300">
-            <i class="fas fa-phone-alt text-3xl mb-3 text-blue-300"></i>
-            <h4 class="font-bold mb-2">교회전화</h4>
-            <p class="text-xs opacity-75">교회사무실 : (031)882-9966<br>팩스번호 : (031)882-9965</p>
+        <div class="bg-[#38455a] text-white p-5 md:p-10 rounded-2xl md:rounded-3xl shadow-lg flex flex-row md:flex-col items-center justify-start md:justify-center text-left md:text-center hover:-translate-y-1 transition duration-300">
+            <i class="fas fa-phone-alt text-2xl md:text-4xl text-gray-300 w-12 md:w-auto md:mb-4"></i>
+            <div>
+                <h4 class="text-base md:text-xl font-extrabold mb-1 md:mb-2">교회전화</h4>
+                <p class="text-xs md:text-base text-gray-300">교회사무실 : (031)882-9966<br>팩스번호 : (031)882-9965</p>
+            </div>
         </div>
-        <div class="bg-[#2c3d5a] text-white p-8 rounded-xl text-center shadow-lg hover:-translate-y-1 transition duration-300">
-            <i class="fas fa-heart text-3xl mb-3 text-blue-300"></i>
-            <h4 class="font-bold mb-2">섬기는분들</h4>
-            <p class="text-xs opacity-75">담임목사님과 장로님들을<br>소개합니다</p>
+        <div class="bg-[#2d3748] text-white p-5 md:p-10 rounded-2xl md:rounded-3xl shadow-lg flex flex-row md:flex-col items-center justify-start md:justify-center text-left md:text-center hover:-translate-y-1 transition duration-300">
+            <i class="fas fa-heart text-2xl md:text-4xl text-gray-300 w-12 md:w-auto md:mb-4"></i>
+            <div>
+                <h4 class="text-base md:text-xl font-extrabold mb-1 md:mb-2">섬기는분들</h4>
+                <p class="text-xs md:text-base text-gray-300">담임목사님과 장로님들을<br>소개합니다</p>
+            </div>
         </div>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-white border-t border-gray-200 py-12">
-        <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-start md:items-center">
+    <footer class="bg-white border-t border-gray-100 py-10 md:py-16">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col items-center text-center">
             
-            <!-- Left Info -->
-            <div class="mb-8 md:mb-0">
-                <h3 class="font-bold text-2xl text-[#1a3668] mb-4 tracking-tight">여주성결교회</h3>
-                <div class="text-xs text-gray-500 space-y-1">
-                    <p>(12625) 경기도 여주시 우암로 96 (하동, 여주성결교회)</p>
-                    <p>TEL . 031-882-9966</p>
-                    <p>FAX . 031-882-9965</p>
-                </div>
-                <div class="mt-6 text-[0.65rem] text-gray-400">
-                    <p>COPYRIGHT (C) 여주성결교회. All Rights Reserved.</p>
-                    <p>PROVIDED BY 교회사랑넷</p>
-                </div>
+            <!-- Link Menu -->
+            <div class="flex justify-center space-x-4 md:space-x-8 text-xs md:text-sm text-gray-600 font-medium mb-8">
+                <a href="#" class="hover:text-[#1a3668]">사이트맵</a>
+                <span class="text-gray-300">|</span>
+                <a href="#" class="hover:text-[#1a3668]">개인정보처리방침</a>
+                <span class="text-gray-300">|</span>
+                <a href="#" class="hover:text-[#1a3668]">이메일무단수집거부</a>
             </div>
 
-            <!-- Right Links -->
-            <div class="flex flex-col md:flex-row gap-8 md:gap-16 text-sm text-gray-600 font-medium">
-                <div class="space-y-3">
-                    <p><a href="#" class="hover:text-[#1a3668]">사이트맵</a></p>
-                    <p><a href="#" class="hover:text-[#1a3668]">개인정보처리방침</a></p>
-                    <p><a href="#" class="hover:text-[#1a3668]">이메일무단수집거부</a></p>
-                </div>
-                <div class="space-y-3">
-                    <p><a href="#" class="hover:text-[#1a3668] flex items-center gap-2"><i class="fab fa-youtube text-red-500 w-4"></i> 유튜브채널</a></p>
-                    <p><a href="#" class="hover:text-[#1a3668] flex items-center gap-2"><i class="fab fa-instagram text-pink-500 w-4"></i> 인스타그램</a></p>
-                    <p><a href="#" class="hover:text-[#1a3668] flex items-center gap-2"><i class="fab fa-facebook text-blue-600 w-4"></i> 페이스북</a></p>
-                </div>
+            <!-- Info -->
+            <h3 class="font-extrabold text-2xl md:text-4xl text-[#3b82f6] mb-4 md:mb-6 tracking-tight">여주성결교회</h3>
+            <div class="text-xs md:text-base text-gray-500 space-y-1 md:space-y-2 mb-8">
+                <p>(12625) 경기도 여주시 우암로 96 (하동, 여주성결교회)</p>
+                <p>TEL . 031-882-9966 &nbsp;&nbsp; FAX . 031-882-9965</p>
             </div>
+
+            <div class="text-[0.65rem] md:text-sm text-gray-400 mb-8">
+                <p>COPYRIGHT (C) 여주성결교회. All Rights Reserved.</p>
+                <!-- PROVIDED BY 삭제됨 -->
+            </div>
+
+            <!-- Social Links -->
+            <div class="flex justify-center space-x-6 text-sm md:text-base text-gray-600 font-medium">
+                <a href="#" class="hover:text-[#1a3668] flex items-center gap-2"><i class="fab fa-youtube text-gray-500"></i> 유튜브채널</a>
+                <a href="#" class="hover:text-[#1a3668] flex items-center gap-2"><i class="fab fa-instagram text-gray-500"></i> 인스타그램</a>
+                <a href="#" class="hover:text-[#1a3668] flex items-center gap-2"><i class="fab fa-facebook text-gray-500"></i> 페이스북</a>
+            </div>
+            
         </div>
     </footer>
 
