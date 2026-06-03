@@ -24,7 +24,7 @@
 </head>
 <body class="text-gray-800">
 
-    <!-- Header & Navigation (메인과 동일) -->
+    <!-- Header & Navigation -->
     <header class="bg-[#244177] text-white w-full z-50 relative">
         <!-- Top Utility Menu -->
         <div class="hidden md:block border-b border-white/20 bg-[#1b315b]">
@@ -37,9 +37,9 @@
         
         <!-- Main Navigation -->
         <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-            <!-- Logo (index.html로 이동하도록 링크 연결) -->
-            <a href="index.html" class="flex items-center space-x-3 cursor-pointer z-50">
-                <img src="여주성결교회 로고타입1_3.png" alt="여주성결교회 로고" class="h-8 md:h-10 w-auto object-contain brightness-0 invert">
+            <!-- Logo (루트 경로의 index.html로 이동 및 images 경로 수정) -->
+            <a href="../index.html" class="flex items-center space-x-3 cursor-pointer z-50">
+                <img src="../images/여주성결교회 로고타입1_3.png" alt="여주성결교회 로고" class="h-8 md:h-10 w-auto object-contain brightness-0 invert">
             </a>
             
             <!-- Mobile Menu Button -->
@@ -49,8 +49,8 @@
 
             <!-- Menu (Desktop) -->
             <nav class="hidden md:flex items-center space-x-8 text-lg font-medium">
-                <!-- 현재 페이지 강조 (text-blue-300) -->
-                <a href="welcome.html" class="text-blue-300 font-bold transition">환영합니다</a>
+                <!-- 같은 폴더 내 greeting.html로 연결 -->
+                <a href="greeting.html" class="text-blue-300 font-bold transition">환영합니다</a>
                 <a href="#" class="hover:text-blue-300 transition">말씀과 찬양</a>
                 <a href="#" class="hover:text-blue-300 transition">공동체</a>
                 <a href="#" class="hover:text-blue-300 transition">다음세대</a>
@@ -66,7 +66,7 @@
 
         <!-- Mobile Menu (Dropdown) -->
         <div id="mobile-menu" class="absolute top-full left-0 w-full bg-[#1a3668] flex-col items-center py-4 space-y-4 shadow-xl z-50 text-lg">
-            <a href="welcome.html" class="text-blue-300 font-bold">환영합니다</a>
+            <a href="greeting.html" class="text-blue-300 font-bold">환영합니다</a>
             <a href="#" class="text-white hover:text-blue-300">말씀과 찬양</a>
             <a href="#" class="text-white hover:text-blue-300">공동체</a>
             <a href="#" class="text-white hover:text-blue-300">다음세대</a>
@@ -81,7 +81,7 @@
         </div>
     </header>
 
-    <!-- Sub-page Top Banner (십자가 배경으로 교체) -->
+    <!-- Sub-page Top Banner -->
     <section class="bg-[#102242] py-12 md:py-20 text-center relative overflow-hidden">
         <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1504052434569-70ad5836ab65?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-luminosity"></div>
         <div class="relative z-10">
@@ -90,23 +90,22 @@
         </div>
     </section>
 
-    <!-- 모바일 전용 상단 네비게이션 바 (PC에서는 숨김) -->
+    <!-- 모바일 전용 상단 네비게이션 바 -->
     <div class="md:hidden border-b border-gray-300 bg-white relative z-30 shadow-sm">
         <div class="flex text-sm md:text-base">
-            <!-- Home 버튼 -->
-            <a href="index.html" class="px-4 py-3 border-r border-gray-300 text-gray-600 flex items-center justify-center hover:bg-gray-50">
+            <!-- 루트 경로의 index.html로 연결 -->
+            <a href="../index.html" class="px-4 py-3 border-r border-gray-300 text-gray-600 flex items-center justify-center hover:bg-gray-50">
                 Home
             </a>
 
-            <!-- 1차 카테고리 (환영합니다) -->
+            <!-- 1차 카테고리 -->
             <div class="flex-1 border-r border-gray-300 relative">
                 <button onclick="toggleMobileSubMenu('menu-depth1')" class="w-full flex justify-between items-center px-4 py-3 text-gray-800 focus:outline-none">
                     <span>환영합니다</span>
                     <i class="fas fa-plus text-gray-400 text-xs"></i>
                 </button>
-                <!-- 1차 드롭다운 -->
                 <ul id="menu-depth1" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
-                    <li class="border-b border-gray-100"><a href="welcome.html" class="block px-4 py-3 text-blue-600 font-bold bg-gray-50">환영합니다</a></li>
+                    <li class="border-b border-gray-100"><a href="greeting.html" class="block px-4 py-3 text-blue-600 font-bold bg-gray-50">환영합니다</a></li>
                     <li class="border-b border-gray-100"><a href="#" class="block px-4 py-3 hover:bg-gray-50">말씀과 찬양</a></li>
                     <li class="border-b border-gray-100"><a href="#" class="block px-4 py-3 hover:bg-gray-50">공동체</a></li>
                     <li class="border-b border-gray-100"><a href="#" class="block px-4 py-3 hover:bg-gray-50">다음세대</a></li>
@@ -116,15 +115,14 @@
                 </ul>
             </div>
 
-            <!-- 2차 하위 메뉴 (인사말) -->
+            <!-- 2차 카테고리 -->
             <div class="flex-1 relative">
                 <button onclick="toggleMobileSubMenu('menu-depth2')" class="w-full flex justify-between items-center px-4 py-3 text-gray-800 focus:outline-none">
                     <span>인사말</span>
                     <i class="fas fa-plus text-gray-400 text-xs"></i>
                 </button>
-                <!-- 2차 드롭다운 -->
                 <ul id="menu-depth2" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
-                    <li class="border-b border-gray-100"><a href="welcome.html" class="block px-4 py-3 text-blue-600 font-bold bg-gray-50">인사말</a></li>
+                    <li class="border-b border-gray-100"><a href="greeting.html" class="block px-4 py-3 text-blue-600 font-bold bg-gray-50">인사말</a></li>
                     <li class="border-b border-gray-100"><a href="#" class="block px-4 py-3 hover:bg-gray-50">교회연혁</a></li>
                     <li class="border-b border-gray-100"><a href="#" class="block px-4 py-3 hover:bg-gray-50">섬기는 분들</a></li>
                     <li class="border-b border-gray-100"><a href="#" class="block px-4 py-3 hover:bg-gray-50">예배안내</a></li>
@@ -141,21 +139,18 @@
         
         <!-- Left Sidebar (LNB - 모바일에서는 숨김) -->
         <aside class="hidden md:block w-64 flex-shrink-0">
-            <!-- Sidebar Header -->
             <div class="bg-[#6b8cba] text-white text-center py-4 text-xl font-bold rounded-t-lg">
                 환영합니다
             </div>
-            <!-- Sidebar Menu -->
             <ul class="border border-t-0 border-gray-200 flex flex-col">
-                <!-- Active Item -->
                 <li class="border-b border-gray-200">
-                    <a href="welcome.html" class="flex justify-between items-center px-5 py-3 text-[#3b82f6] font-bold bg-gray-50 hover:bg-gray-100 transition">
+                    <!-- 같은 폴더 내 greeting.html로 연결 -->
+                    <a href="greeting.html" class="flex justify-between items-center px-5 py-3 text-[#3b82f6] font-bold bg-gray-50 hover:bg-gray-100 transition">
                         인사말 <i class="fas fa-chevron-right text-xs"></i>
                     </a>
                 </li>
                 <li class="border-b border-gray-200">
                     <a href="#" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">교회연혁</a>
-                    <!-- 추가된 교회연혁 하위 메뉴 (PC에서만 보임) -->
                     <ul class="py-2 bg-white">
                         <li><a href="#" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">성전건축이야기</a></li>
                         <li><a href="#" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">교육관건축사진</a></li>
@@ -180,25 +175,23 @@
             </ul>
         </aside>
 
-        <!-- Right Content Area (인사말 본문) -->
+        <!-- Right Content Area -->
         <main class="flex-1">
             
-            <!-- 인사말 배너 (디자인 및 폰트 변경) -->
+            <!-- 인사말 배너 -->
             <div class="w-full bg-gradient-to-r from-[#1b315b] to-[#486395] rounded-xl h-48 md:h-64 flex flex-col justify-center items-center text-white mb-10 shadow-md relative overflow-hidden">
-                <!-- 배경 이미지 투명도를 기존 10에서 30으로 올려 이미지가 더 잘 보이게 수정 -->
                 <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1504052434569-70ad5836ab65?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
                 
-                <!-- 기도하는 구역, 기대되는 교회 (줄간격 적절하게 조정) -->
-                <h3 class="text-xl md:text-3xl font-normal mb-0 tracking-tight relative z-10 -translate-x-10 md:-translate-x-12">
+                <h3 class="text-xl md:text-3xl font-normal mb-0 tracking-tight relative z-10 -translate-x-6 md:-translate-x-8">
                     기도하는 <span class="font-normal text-5xl md:text-7xl" style="font-family: 'Nanum Brush Script', cursive; transform: translateY(4px); display: inline-block;">구역</span>
                 </h3>
-                <!-- 두 번째 줄 간격을 너무 좁지도, 넓지도 않게 미세 조정 (-mt-2 적용) -->
-                <h3 class="text-xl md:text-3xl font-normal mt-1 md:-mt-2 relative z-10 translate-x-10 md:translate-x-12">
+                
+                <h3 class="text-xl md:text-3xl font-normal mt-3 md:mt-3 relative z-10 translate-x-6 md:translate-x-8">
                     기대되는 <span class="font-normal text-5xl md:text-7xl" style="font-family: 'Nanum Brush Script', cursive; transform: translateY(4px); display: inline-block;">교회</span>
                 </h3>
             </div>
 
-            <!-- 인사말 텍스트 (글씨 크기 +1 확대 및 모두 가운데 정렬 적용) -->
+            <!-- 인사말 텍스트 -->
             <div class="text-gray-700 leading-8 md:leading-9 text-base md:text-lg tracking-wide text-center flex flex-col items-center">
                 <p class="mb-6 font-bold text-xl md:text-2xl text-gray-900">
                     할렐루야!<br>
@@ -216,7 +209,6 @@
                     이를 위해 여주성결교회는 W.O.R.L.D. 사역을 추구합니다.
                 </p>
 
-                <!-- W.O.R.L.D 리스트 (내용은 좌측 정렬 유지하되, 박스 자체를 중앙 배치) -->
                 <ul class="mb-8 space-y-2 bg-gray-50 p-6 rounded-lg border border-gray-100 inline-block text-left shadow-sm">
                     <li><strong class="text-blue-700 text-lg mr-1">W</strong>orshiping Church : 예배하는 교회</li>
                     <li><strong class="text-blue-700 text-lg mr-1">O</strong>ikos Church : 교제하는 교회</li>
@@ -229,7 +221,7 @@
                     여주성결교회와 함께 예배하며 교제하며 하나님 나라를 위해 헌신하며 평안과 은혜를 누리시기를 소망합니다.
                 </p>
 
-                <!-- 서명 영역 (여주성결교회 폰트 확대 및 조형준 붓글씨 적용) -->
+                <!-- 서명 영역 -->
                 <div class="border-t border-dashed border-gray-300 pt-8 flex justify-end w-full">
                     <div class="text-right">
                         <p class="text-gray-900 text-base md:text-lg mb-1">여주성결교회</p>
@@ -241,11 +233,10 @@
         </main>
     </div>
 
-    <!-- Footer (메인과 동일) -->
+    <!-- Footer -->
     <footer class="bg-gray-50 border-t border-gray-200 py-10 md:py-16">
         <div class="max-w-6xl mx-auto px-4 flex flex-col items-center text-center">
             
-            <!-- Link Menu -->
             <div class="flex justify-center space-x-4 md:space-x-8 text-sm md:text-base text-gray-600 font-medium mb-8">
                 <a href="#" class="hover:text-[#1a3668]">사이트맵</a>
                 <span class="text-gray-300">|</span>
@@ -254,7 +245,6 @@
                 <a href="#" class="hover:text-[#1a3668]">이메일무단수집거부</a>
             </div>
 
-            <!-- Info -->
             <h3 class="font-bold text-3xl md:text-5xl text-[#3b82f6] mb-4 md:mb-6 tracking-tight">여주성결교회</h3>
             <div class="text-sm md:text-lg text-gray-500 space-y-1 md:space-y-2 mb-8">
                 <p>(12625) 경기도 여주시 우암로 96 (하동, 여주성결교회)</p>
@@ -268,7 +258,6 @@
         </div>
     </footer>
 
-    <!-- 모바일 드롭다운 메뉴 스크립트 -->
     <script>
         function toggleMobileSubMenu(menuId) {
             const targetMenu = document.getElementById(menuId);
