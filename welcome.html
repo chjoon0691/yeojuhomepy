@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+        /* 나눔손글씨 붓 폰트 불러오기 */
+        @import url('https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap');
+        
         body { 
             font-family: 'Pretendard', sans-serif; 
             background-color: #ffffff;
@@ -34,7 +37,7 @@
         
         <!-- Main Navigation -->
         <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-            <!-- Logo -->
+            <!-- Logo (index.html로 이동하도록 링크 연결) -->
             <a href="index.html" class="flex items-center space-x-3 cursor-pointer z-50">
                 <img src="여주성결교회 로고타입1_3.png" alt="여주성결교회 로고" class="h-8 md:h-10 w-auto object-contain brightness-0 invert">
             </a>
@@ -78,9 +81,9 @@
         </div>
     </header>
 
-    <!-- Sub-page Top Banner -->
+    <!-- Sub-page Top Banner (십자가 배경으로 교체) -->
     <section class="bg-[#102242] py-12 md:py-20 text-center relative overflow-hidden">
-        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1438283173091-5dbf5c5a3206?ixlib=rb-4.0.3')] bg-cover bg-center opacity-20"></div>
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1504052434569-70ad5836ab65?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-luminosity"></div>
         <div class="relative z-10">
             <h2 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-2">환영합니다</h2>
             <p class="text-blue-200 text-sm md:text-base">Welcome to Yeoju Evangelical Holiness Church</p>
@@ -136,7 +139,7 @@
     <!-- Main Content Layout (2-Column) -->
     <div class="max-w-7xl mx-auto px-4 py-12 md:py-20 flex flex-col md:flex-row gap-10">
         
-        <!-- Left Sidebar (LNB - 모바일에서는 숨김 처리: hidden md:block 적용) -->
+        <!-- Left Sidebar (LNB - 모바일에서는 숨김) -->
         <aside class="hidden md:block w-64 flex-shrink-0">
             <!-- Sidebar Header -->
             <div class="bg-[#6b8cba] text-white text-center py-4 text-xl font-bold rounded-t-lg">
@@ -150,16 +153,13 @@
                         인사말 <i class="fas fa-chevron-right text-xs"></i>
                     </a>
                 </li>
-                <!-- Dropdown Item (교회연혁) -->
                 <li class="border-b border-gray-200">
-                    <a href="#" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">
-                        교회연혁
-                    </a>
-                    <!-- Sub-menu -->
-                    <ul class="bg-gray-50 text-sm border-t border-gray-200">
-                        <li><a href="#" class="block px-8 py-2 text-gray-500 hover:text-blue-600 before:content-['-'] before:mr-2">성전건축이야기</a></li>
-                        <li><a href="#" class="block px-8 py-2 text-gray-500 hover:text-blue-600 before:content-['-'] before:mr-2">교육관건축사진</a></li>
-                        <li><a href="#" class="block px-8 py-2 text-gray-500 hover:text-blue-600 before:content-['-'] before:mr-2">이전 홈페이지 사진들</a></li>
+                    <a href="#" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">교회연혁</a>
+                    <!-- 추가된 교회연혁 하위 메뉴 (PC에서만 보임) -->
+                    <ul class="py-2 bg-white">
+                        <li><a href="#" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">성전건축이야기</a></li>
+                        <li><a href="#" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">교육관건축사진</a></li>
+                        <li><a href="#" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">이전 홈페이지 사진들</a></li>
                     </ul>
                 </li>
                 <li class="border-b border-gray-200">
@@ -183,18 +183,24 @@
         <!-- Right Content Area (인사말 본문) -->
         <main class="flex-1">
             
-            <!-- 인사말 배너 이미지 -->
+            <!-- 인사말 배너 (디자인 및 폰트 변경) -->
             <div class="w-full bg-gradient-to-r from-[#1b315b] to-[#486395] rounded-xl h-48 md:h-64 flex flex-col justify-center items-center text-white mb-10 shadow-md relative overflow-hidden">
-                <!-- 배경 무늬용 이미지 살짝 합성 -->
-                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1504052434569-70ad5836ab65?ixlib=rb-4.0.3')] bg-cover bg-center opacity-10 mix-blend-overlay"></div>
+                <!-- 배경 이미지 투명도를 기존 10에서 30으로 올려 이미지가 더 잘 보이게 수정 -->
+                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1504052434569-70ad5836ab65?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
                 
-                <h3 class="text-3xl md:text-5xl font-extrabold mb-3 italic tracking-tight relative z-10" style="font-family: serif;">기도하는 구역,</h3>
-                <h3 class="text-4xl md:text-6xl font-extrabold relative z-10" style="font-family: serif;">기대되는 교회</h3>
+                <!-- 기도하는 구역, 기대되는 교회 (줄간격 적절하게 조정) -->
+                <h3 class="text-xl md:text-3xl font-normal mb-0 tracking-tight relative z-10 -translate-x-10 md:-translate-x-12">
+                    기도하는 <span class="font-normal text-5xl md:text-7xl" style="font-family: 'Nanum Brush Script', cursive; transform: translateY(4px); display: inline-block;">구역</span>
+                </h3>
+                <!-- 두 번째 줄 간격을 너무 좁지도, 넓지도 않게 미세 조정 (-mt-2 적용) -->
+                <h3 class="text-xl md:text-3xl font-normal mt-1 md:-mt-2 relative z-10 translate-x-10 md:translate-x-12">
+                    기대되는 <span class="font-normal text-5xl md:text-7xl" style="font-family: 'Nanum Brush Script', cursive; transform: translateY(4px); display: inline-block;">교회</span>
+                </h3>
             </div>
 
-            <!-- 인사말 텍스트 -->
-            <div class="text-gray-700 leading-8 md:leading-9 text-sm md:text-base tracking-wide">
-                <p class="mb-6 font-bold text-lg md:text-xl text-gray-900">
+            <!-- 인사말 텍스트 (글씨 크기 +1 확대 및 모두 가운데 정렬 적용) -->
+            <div class="text-gray-700 leading-8 md:leading-9 text-base md:text-lg tracking-wide text-center flex flex-col items-center">
+                <p class="mb-6 font-bold text-xl md:text-2xl text-gray-900">
                     할렐루야!<br>
                     여주성결교회에<br>
                     오신 것을 환영합니다!
@@ -210,8 +216,8 @@
                     이를 위해 여주성결교회는 W.O.R.L.D. 사역을 추구합니다.
                 </p>
 
-                <!-- W.O.R.L.D 리스트 -->
-                <ul class="mb-8 space-y-2 bg-gray-50 p-6 rounded-lg border border-gray-100">
+                <!-- W.O.R.L.D 리스트 (내용은 좌측 정렬 유지하되, 박스 자체를 중앙 배치) -->
+                <ul class="mb-8 space-y-2 bg-gray-50 p-6 rounded-lg border border-gray-100 inline-block text-left shadow-sm">
                     <li><strong class="text-blue-700 text-lg mr-1">W</strong>orshiping Church : 예배하는 교회</li>
                     <li><strong class="text-blue-700 text-lg mr-1">O</strong>ikos Church : 교제하는 교회</li>
                     <li><strong class="text-blue-700 text-lg mr-1">R</strong>eaching out Church : 봉사하는 교회</li>
@@ -223,11 +229,11 @@
                     여주성결교회와 함께 예배하며 교제하며 하나님 나라를 위해 헌신하며 평안과 은혜를 누리시기를 소망합니다.
                 </p>
 
-                <!-- 서명 -->
-                <div class="border-t border-dashed border-gray-300 pt-8 flex justify-end">
+                <!-- 서명 영역 (여주성결교회 폰트 확대 및 조형준 붓글씨 적용) -->
+                <div class="border-t border-dashed border-gray-300 pt-8 flex justify-end w-full">
                     <div class="text-right">
-                        <p class="text-gray-500 text-sm mb-1">여주성결교회</p>
-                        <p class="text-xl md:text-2xl font-extrabold text-gray-900">담임목사 조 형 준</p>
+                        <p class="text-gray-900 text-base md:text-lg mb-1">여주성결교회</p>
+                        <p class="text-xl md:text-2xl font-extrabold text-gray-900">담임목사 <span class="text-3xl md:text-4xl font-normal text-gray-900 ml-1" style="font-family: 'Nanum Brush Script', cursive; display: inline-block; transform: translateY(4px);">조형준</span></p>
                     </div>
                 </div>
             </div>
@@ -240,7 +246,7 @@
         <div class="max-w-6xl mx-auto px-4 flex flex-col items-center text-center">
             
             <!-- Link Menu -->
-            <div class="flex justify-center space-x-4 md:space-x-8 text-xs md:text-sm text-gray-600 font-medium mb-8">
+            <div class="flex justify-center space-x-4 md:space-x-8 text-sm md:text-base text-gray-600 font-medium mb-8">
                 <a href="#" class="hover:text-[#1a3668]">사이트맵</a>
                 <span class="text-gray-300">|</span>
                 <a href="#" class="hover:text-[#1a3668]">개인정보처리방침</a>
@@ -249,13 +255,13 @@
             </div>
 
             <!-- Info -->
-            <h3 class="font-extrabold text-2xl md:text-4xl text-[#3b82f6] mb-4 md:mb-6 tracking-tight">여주성결교회</h3>
-            <div class="text-xs md:text-base text-gray-500 space-y-1 md:space-y-2 mb-8">
+            <h3 class="font-extrabold text-3xl md:text-5xl text-[#3b82f6] mb-4 md:mb-6 tracking-tight">여주성결교회</h3>
+            <div class="text-sm md:text-lg text-gray-500 space-y-1 md:space-y-2 mb-8">
                 <p>(12625) 경기도 여주시 우암로 96 (하동, 여주성결교회)</p>
                 <p>TEL . 031-882-9966 &nbsp;&nbsp; FAX . 031-882-9965</p>
             </div>
 
-            <div class="text-[0.65rem] md:text-sm text-gray-400 mb-8">
+            <div class="text-xs md:text-base text-gray-400 mb-8">
                 <p>COPYRIGHT (C) 여주성결교회. All Rights Reserved.</p>
             </div>
             
@@ -275,10 +281,8 @@
             const otherMenuId = menuId === 'menu-depth1' ? 'menu-depth2' : 'menu-depth1';
             const otherMenu = document.getElementById(otherMenuId);
             
-            // 다른 메뉴가 열려있으면 닫기
             if (otherMenu && !otherMenu.classList.contains('hidden')) {
                 otherMenu.classList.add('hidden');
-                // 다른 메뉴의 아이콘을 플러스로 변경
                 const otherIcon = otherMenu.previousElementSibling.querySelector('.fas');
                 if(otherIcon) {
                     otherIcon.classList.remove('fa-minus');
@@ -286,10 +290,8 @@
                 }
             }
             
-            // 클릭한 메뉴 열기/닫기 토글
             if (targetMenu) {
                 targetMenu.classList.toggle('hidden');
-                // 클릭한 메뉴의 아이콘 변경 (플러스 <-> 마이너스)
                 const icon = targetMenu.previousElementSibling.querySelector('.fas');
                 if(icon) {
                     if(targetMenu.classList.contains('hidden')) {
