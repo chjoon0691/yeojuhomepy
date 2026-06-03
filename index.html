@@ -60,19 +60,20 @@
         
         <!-- Main Navigation -->
         <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-            <!-- Logo -->
-            <div class="flex items-center cursor-pointer z-50">
+            <!-- Logo (클릭 시 index.html 홈으로 이동하도록 a 태그로 변경) -->
+            <a href="index.html" class="flex items-center cursor-pointer z-50">
                 <img src="여주성결교회 로고타입1_3.png" alt="여주성결교회 로고" class="h-10 md:h-12 w-auto object-contain brightness-0 invert">
-            </div>
+            </a>
             
-            <!-- Mobile Menu Button (네모 박스 형태로 변경) -->
+            <!-- Mobile Menu Button (네모 박스 형태) -->
             <button class="md:hidden border border-white/40 w-10 h-10 flex items-center justify-center rounded text-white text-xl z-50 hover:bg-white/10 transition" onclick="document.getElementById('mobile-menu').classList.toggle('open')">
                 <i class="fas fa-bars"></i>
             </button>
 
             <!-- Menu (Desktop) -->
             <nav class="hidden md:flex items-center space-x-8 text-lg font-medium">
-                <a href="#" class="hover:text-blue-300 transition">환영합니다</a>
+                <!-- 환영합니다 메뉴에 서브페이지 링크 연결 -->
+                <a href="welcome.html" class="hover:text-blue-300 transition">환영합니다</a>
                 <a href="#" class="hover:text-blue-300 transition">말씀과 찬양</a>
                 <a href="#" class="hover:text-blue-300 transition">공동체</a>
                 <a href="#" class="hover:text-blue-300 transition">다음세대</a>
@@ -89,7 +90,8 @@
 
         <!-- Mobile Menu (Dropdown) -->
         <div id="mobile-menu" class="absolute top-full left-0 w-full bg-[#1a3668] flex-col items-center py-4 space-y-4 shadow-xl z-50 text-lg">
-            <a href="#" class="text-white hover:text-blue-300">환영합니다</a>
+            <!-- 환영합니다 메뉴에 서브페이지 링크 연결 -->
+            <a href="welcome.html" class="text-white hover:text-blue-300">환영합니다</a>
             <a href="#" class="text-white hover:text-blue-300">말씀과 찬양</a>
             <a href="#" class="text-white hover:text-blue-300">공동체</a>
             <a href="#" class="text-white hover:text-blue-300">다음세대</a>
@@ -213,7 +215,6 @@
                 <div class="col-span-1">
                     <div class="relative h-48 md:h-72 rounded-2xl md:rounded-3xl overflow-hidden shadow-lg group cursor-pointer">
                         <img src="https://images.unsplash.com/photo-1504052434569-70ad5836ab65?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="수요예배 십자가" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <!-- 텍스트를 하단(justify-end) 및 중앙(items-center) 정렬 -->
                         <div class="absolute inset-0 bg-black/40 flex flex-col justify-end items-center text-white pb-6 md:pb-10">
                             <h3 class="text-lg md:text-3xl font-extrabold mb-1">수요예배</h3>
                             <p class="text-[0.7rem] md:text-sm opacity-80">Wednesday Worship</p>
@@ -229,7 +230,6 @@
                 <div class="col-span-1">
                     <div class="relative h-48 md:h-72 rounded-2xl md:rounded-3xl overflow-hidden shadow-lg group cursor-pointer">
                         <img src="https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="주일설교 성경책과 십자가" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <!-- 텍스트를 하단 및 중앙 정렬 -->
                         <div class="absolute inset-0 bg-black/40 flex flex-col justify-end items-center text-white pb-6 md:pb-10">
                             <h3 class="text-lg md:text-3xl font-extrabold mb-1">주일설교</h3>
                             <p class="text-[0.7rem] md:text-sm opacity-80">Sunday sermon</p>
@@ -244,9 +244,7 @@
                 <!-- Video Card 3 (찬양대 찬양) -->
                 <div class="col-span-1">
                     <div class="relative h-48 md:h-72 rounded-2xl md:rounded-3xl overflow-hidden shadow-lg group cursor-pointer">
-                        <!-- 찬양하는 이미지로 변경 -->
                         <img src="https://images.unsplash.com/photo-1510590337019-5ef8d3d32116?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="찬양대 찬양" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <!-- 텍스트를 하단 및 중앙 정렬 -->
                         <div class="absolute inset-0 bg-black/40 flex flex-col justify-end items-center text-white pb-6 md:pb-10">
                             <h3 class="text-lg md:text-3xl font-extrabold mb-1">찬양대 찬양</h3>
                             <p class="text-[0.7rem] md:text-sm opacity-80">Praise</p>
@@ -262,7 +260,7 @@
         </div>
     </section>
 
-    <!-- Background transition image (기독교 테마 - 십자가/언덕 이미지로 교체) -->
+    <!-- Background transition image -->
     <div class="h-32 md:h-56 bg-[#3b4b66] w-full" style="background-image: url('https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center;"></div>
 
     <!-- News & Event Banner Section -->
