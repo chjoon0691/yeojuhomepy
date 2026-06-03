@@ -177,13 +177,13 @@
         
         <!-- Content Area (그리드와 중앙 이미지) -->
         <div class="relative max-w-6xl mx-auto mt-8 md:mt-20">
-            <!-- 중앙 교회 이미지 (모바일 크기 130% 확대: max-w-[220px]) -->
+            <!-- 중앙 교회 이미지 (공통) -->
             <div class="absolute inset-0 flex justify-center items-center pointer-events-none z-0">
-                <img src="../images/image_8bddfb.png" alt="여주성결교회 성전 이미지" class="w-full max-w-[220px] sm:max-w-[260px] md:max-w-[320px] object-contain opacity-100">
+                <img src="https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/images/image_8bddfb.png" alt="여주성결교회 성전 이미지" class="w-full max-w-[160px] sm:max-w-[200px] md:max-w-[320px] object-contain opacity-100">
             </div>
 
-            <!-- 텍스트 영역 (모바일 gap-y 확대 및 그림 쪽으로 밀착하기 위한 좌우 패딩 추가) -->
-            <div class="grid grid-cols-2 gap-y-36 md:gap-y-32 gap-x-2 md:gap-x-8 relative z-10">
+            <!-- 텍스트 영역 (모바일에서도 좌우 2열 배치 유지) -->
+            <div class="grid grid-cols-2 gap-y-24 md:gap-y-32 gap-x-2 md:gap-x-8 relative z-10">
                 <!-- Top Left -->
                 <div class="flex flex-col items-start text-left md:pr-40 pl-3 sm:pl-8 md:pl-0">
                     <h4 class="text-base md:text-3xl font-extrabold mb-3 md:mb-4 text-gray-900 leading-tight">여주성결교회에<br class="md:hidden"> 처음 오셨나요?</h4>
