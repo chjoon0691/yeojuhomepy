@@ -184,48 +184,47 @@
                     </div>
                     <div class="p-2 bg-gray-50 h-full">
                         <table class="w-full text-left text-base md:text-lg border-collapse table-fixed">
-                            <!-- 칸 너비 비율 완벽 조정 (시간 칸을 대폭 늘려서 두 줄 방지) -->
+                            <!-- 칸 너비 재조정: 첫번째 칸을 넓혀서 줄바꿈 방지 -->
                             <colgroup>
-                                <col class="w-[30%] md:w-[28%]">
-                                <col class="w-[38%] md:w-[37%]">
-                                <col class="w-[32%] md:w-[35%]">
+                                <col class="w-[38%] md:w-[36%]">
+                                <col class="w-[28%] md:w-[26%]">
+                                <col class="w-[34%] md:w-[38%]">
                             </colgroup>
                             <tbody>
                                 <tr class="border-b border-gray-200/50">
-                                    <td class="py-3 px-2 md:px-4 font-bold text-gray-800">주일예배 1부</td>
-                                    <td class="py-3 px-2 md:px-4 text-gray-600">오전 9:00</td>
-                                    <td class="py-3 px-2 md:px-4 text-gray-600">푸른초장(3층)</td>
+                                    <td class="py-3 px-2 md:px-4 font-bold text-gray-800 whitespace-nowrap">주일예배 1부</td>
+                                    <td class="py-3 px-2 md:px-4 text-gray-600 whitespace-nowrap">오전 9:00</td>
+                                    <td class="py-3 px-2 md:px-4 text-gray-600 whitespace-nowrap">푸른초장(3층)</td>
                                 </tr>
                                 <tr class="bg-gray-100/50 border-b border-gray-200/50">
-                                    <td class="py-3 px-2 md:px-4 font-bold text-gray-800">주일예배 2부</td>
-                                    <td class="py-3 px-2 md:px-4 text-gray-600">오전 11:00</td>
-                                    <td class="py-3 px-2 md:px-4 text-gray-600">푸른초장(3층)</td>
+                                    <td class="py-3 px-2 md:px-4 font-bold text-gray-800 whitespace-nowrap">주일예배 2부</td>
+                                    <td class="py-3 px-2 md:px-4 text-gray-600 whitespace-nowrap">오전 11:00</td>
+                                    <td class="py-3 px-2 md:px-4 text-gray-600 whitespace-nowrap">푸른초장(3층)</td>
                                 </tr>
                                 <tr class="border-b border-gray-200/50">
-                                    <td class="py-3 px-2 md:px-4 font-bold text-gray-800">주일오후예배</td>
-                                    <td class="py-3 px-2 md:px-4 text-gray-600">오후 1:30</td>
-                                    <td class="py-3 px-2 md:px-4 text-gray-600">푸른초장(3층)</td>
+                                    <td class="py-3 px-2 md:px-4 font-bold text-gray-800 whitespace-nowrap">주일오후예배</td>
+                                    <td class="py-3 px-2 md:px-4 text-gray-600 whitespace-nowrap">오후 1:30</td>
+                                    <td class="py-3 px-2 md:px-4 text-gray-600 whitespace-nowrap">푸른초장(3층)</td>
                                 </tr>
                                 <tr class="bg-gray-100/50 border-b border-gray-200/50">
-                                    <td class="py-3 px-2 md:px-4 font-bold text-gray-800">수요예배</td>
-                                    <td class="py-3 px-2 md:px-4 text-gray-600">오후 7:30</td>
-                                    <td class="py-3 px-2 md:px-4 text-gray-600">푸른초장(3층)</td>
+                                    <td class="py-3 px-2 md:px-4 font-bold text-gray-800 whitespace-nowrap">수요예배</td>
+                                    <td class="py-3 px-2 md:px-4 text-gray-600 whitespace-nowrap">오후 7:30</td>
+                                    <td class="py-3 px-2 md:px-4 text-gray-600 whitespace-nowrap">푸른초장(3층)</td>
                                 </tr>
                                 <tr class="border-b border-gray-200/50">
-                                    <td class="py-3 px-2 md:px-4 font-bold text-gray-800">금요성령집회</td>
-                                    <td class="py-3 px-2 md:px-4 text-gray-600">오후 9:00</td>
-                                    <td class="py-3 px-2 md:px-4 text-gray-600">비전홀(2층)</td>
+                                    <td class="py-3 px-2 md:px-4 font-bold text-gray-800 whitespace-nowrap">금요성령집회</td>
+                                    <td class="py-3 px-2 md:px-4 text-gray-600 whitespace-nowrap">오후 9:00</td>
+                                    <td class="py-3 px-2 md:px-4 text-gray-600 whitespace-nowrap">비전홀(2층)</td>
                                 </tr>
                                 <tr class="bg-gray-100/50 border-b border-gray-200/50">
-                                    <td class="py-3 px-2 md:px-4 font-bold text-gray-800">새벽예배 (1부)</td>
-                                    <!-- 줄바꿈 방지 클래스 유지 및 공간 확보로 겹침 해결 -->
-                                    <td class="py-3 px-2 md:px-4 text-gray-600 whitespace-nowrap">오전 5:00<span class="text-sm font-normal text-gray-500 ml-1">(월-금)</span></td>
-                                    <td class="py-3 px-2 md:px-4 text-gray-600">비전홀(2층)</td>
+                                    <td class="py-3 px-2 md:px-4 font-bold text-gray-800 whitespace-nowrap">새벽예배 1부</td>
+                                    <td class="py-3 px-2 md:px-4 text-gray-600 whitespace-nowrap">오전 5:00</td>
+                                    <td class="py-3 px-2 md:px-4 text-gray-600 whitespace-nowrap">비전홀(2층)</td>
                                 </tr>
                                 <tr>
-                                    <td class="py-3 px-2 md:px-4 font-bold text-gray-800">새벽예배 (2부)</td>
-                                    <td class="py-3 px-2 md:px-4 text-gray-600 whitespace-nowrap">오전 6:30<span class="text-sm font-normal text-gray-500 ml-1">(월-금)</span></td>
-                                    <td class="py-3 px-2 md:px-4 text-gray-600">비전홀(2층)</td>
+                                    <td class="py-3 px-2 md:px-4 font-bold text-gray-800 whitespace-nowrap">새벽예배 2부</td>
+                                    <td class="py-3 px-2 md:px-4 text-gray-600 whitespace-nowrap">오전 6:30</td>
+                                    <td class="py-3 px-2 md:px-4 text-gray-600 whitespace-nowrap">비전홀(2층)</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -241,50 +240,50 @@
                         <table class="w-full text-left text-base md:text-lg border-collapse table-fixed">
                             <!-- 동일하게 칸 너비 조정 적용 -->
                             <colgroup>
-                                <col class="w-[30%] md:w-[28%]">
-                                <col class="w-[38%] md:w-[37%]">
-                                <col class="w-[32%] md:w-[35%]">
+                                <col class="w-[38%] md:w-[36%]">
+                                <col class="w-[28%] md:w-[26%]">
+                                <col class="w-[34%] md:w-[38%]">
                             </colgroup>
                             <tbody>
                                 <tr class="border-b border-gray-200/50">
-                                    <td class="py-3 px-2 md:px-4 font-bold text-gray-800">영아부 <span class="font-normal text-gray-500 text-sm ml-1">0-3세</span></td>
+                                    <td class="py-3 px-2 md:px-4 font-bold text-gray-800 whitespace-nowrap">영아부 <span class="font-normal text-gray-500 text-sm ml-1">0-3세</span></td>
                                     <td class="py-3 px-2 md:px-4 text-gray-600 whitespace-nowrap">오전 11:00</td>
-                                    <td class="py-3 px-2 md:px-4 text-gray-600">영아부실(1층)</td>
+                                    <td class="py-3 px-2 md:px-4 text-gray-600 whitespace-nowrap">영아부실(1층)</td>
                                 </tr>
                                 <tr class="bg-gray-100/50 border-b border-gray-200/50">
-                                    <td class="py-3 px-2 md:px-4 font-bold text-gray-800">유치부 <span class="font-normal text-gray-500 text-sm ml-1">4-7세</span></td>
+                                    <td class="py-3 px-2 md:px-4 font-bold text-gray-800 whitespace-nowrap">유치부 <span class="font-normal text-gray-500 text-sm ml-1">4-7세</span></td>
                                     <td class="py-3 px-2 md:px-4 text-gray-600 whitespace-nowrap">오전 11:00</td>
-                                    <td class="py-3 px-2 md:px-4 text-gray-600">사랑방(1층)</td>
+                                    <td class="py-3 px-2 md:px-4 text-gray-600 whitespace-nowrap">사랑방(1층)</td>
                                 </tr>
                                 <tr class="border-b border-gray-200/50">
-                                    <td class="py-3 px-2 md:px-4 font-bold text-gray-800">유년부 <span class="font-normal text-gray-500 text-sm ml-1">8-10세</span></td>
+                                    <td class="py-3 px-2 md:px-4 font-bold text-gray-800 whitespace-nowrap">유년부 <span class="font-normal text-gray-500 text-sm ml-1">8-10세</span></td>
                                     <td class="py-3 px-2 md:px-4 text-gray-600 whitespace-nowrap">오전 11:00</td>
-                                    <td class="py-3 px-2 md:px-4 text-gray-600">물댄동산(3층)</td>
+                                    <td class="py-3 px-2 md:px-4 text-gray-600 whitespace-nowrap">물댄동산(3층)</td>
                                 </tr>
                                 <tr class="bg-gray-100/50 border-b border-gray-200/50">
-                                    <td class="py-3 px-2 md:px-4 font-bold text-gray-800">초등부 <span class="font-normal text-gray-500 text-sm ml-1">11-13세</span></td>
+                                    <td class="py-3 px-2 md:px-4 font-bold text-gray-800 whitespace-nowrap">초등부 <span class="font-normal text-gray-500 text-sm ml-1">11-13세</span></td>
                                     <td class="py-3 px-2 md:px-4 text-gray-600 whitespace-nowrap">오전 11:00</td>
-                                    <td class="py-3 px-2 md:px-4 text-gray-600">초등부실(2층)</td>
+                                    <td class="py-3 px-2 md:px-4 text-gray-600 whitespace-nowrap">초등부실(2층)</td>
                                 </tr>
                                 <tr class="border-b border-gray-200/50">
-                                    <td class="py-3 px-2 md:px-4 font-bold text-gray-800">어와나 <span class="font-normal text-gray-500 text-sm ml-1">7-13세</span></td>
+                                    <td class="py-3 px-2 md:px-4 font-bold text-gray-800 whitespace-nowrap">어와나 <span class="font-normal text-gray-500 text-sm ml-1">7-13세</span></td>
                                     <td class="py-3 px-2 md:px-4 text-gray-600 whitespace-nowrap">오후 1:30</td>
-                                    <td class="py-3 px-2 md:px-4 text-gray-600">사랑방(1층)</td>
+                                    <td class="py-3 px-2 md:px-4 text-gray-600 whitespace-nowrap">사랑방(1층)</td>
                                 </tr>
                                 <tr class="bg-gray-100/50 border-b border-gray-200/50">
-                                    <td class="py-3 px-2 md:px-4 font-bold text-gray-800">중등부 <span class="font-normal text-gray-500 text-sm ml-1">14-16세</span></td>
+                                    <td class="py-3 px-2 md:px-4 font-bold text-gray-800 whitespace-nowrap">중등부 <span class="font-normal text-gray-500 text-sm ml-1">14-16세</span></td>
                                     <td class="py-3 px-2 md:px-4 text-gray-600 whitespace-nowrap">오전 11:00</td>
-                                    <td class="py-3 px-2 md:px-4 text-gray-600">중등부실(1층)</td>
+                                    <td class="py-3 px-2 md:px-4 text-gray-600 whitespace-nowrap">중등부실(1층)</td>
                                 </tr>
                                 <tr class="border-b border-gray-200/50">
-                                    <td class="py-3 px-2 md:px-4 font-bold text-gray-800">고등부 <span class="font-normal text-gray-500 text-sm ml-1">17-19세</span></td>
+                                    <td class="py-3 px-2 md:px-4 font-bold text-gray-800 whitespace-nowrap">고등부 <span class="font-normal text-gray-500 text-sm ml-1">17-19세</span></td>
                                     <td class="py-3 px-2 md:px-4 text-gray-600 whitespace-nowrap">오전 11:00</td>
-                                    <td class="py-3 px-2 md:px-4 text-gray-600">비전홀(2층)</td>
+                                    <td class="py-3 px-2 md:px-4 text-gray-600 whitespace-nowrap">비전홀(2층)</td>
                                 </tr>
                                 <tr class="bg-gray-100/50">
-                                    <td class="py-3 px-2 md:px-4 font-bold text-gray-800">청년부 <span class="font-normal text-gray-500 text-sm ml-1">20세~</span></td>
+                                    <td class="py-3 px-2 md:px-4 font-bold text-gray-800 whitespace-nowrap">청년부 <span class="font-normal text-gray-500 text-sm ml-1">20세~</span></td>
                                     <td class="py-3 px-2 md:px-4 text-gray-600 whitespace-nowrap">오후 1:30</td>
-                                    <td class="py-3 px-2 md:px-4 text-gray-600">비전홀(2층)</td>
+                                    <td class="py-3 px-2 md:px-4 text-gray-600 whitespace-nowrap">비전홀(2층)</td>
                                 </tr>
                             </tbody>
                         </table>
