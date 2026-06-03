@@ -208,52 +208,61 @@
                 </ul>
             </div>
 
-            <!-- Registration Process (화살표 추가 및 4x2 중앙정렬 적용) -->
+            <!-- Registration Process -->
             <div>
                 <h3 class="text-2xl font-extrabold text-gray-900 mb-6 border-l-4 border-[#1b315b] pl-4">등록절차</h3>
-                <div class="flex flex-wrap justify-center gap-x-2 sm:gap-x-3 gap-y-5 md:gap-x-4 md:flex-nowrap">
+                <div class="flex flex-col md:flex-row items-center justify-center gap-y-4 md:gap-y-0 md:gap-x-2 w-full">
                     
-                    <!-- 1. 안내 -->
-                    <div class="relative bg-white border-2 border-[#6b8cba] rounded-xl p-1 md:p-2 lg:p-3 text-center text-[11px] sm:text-xs md:text-sm font-bold h-20 md:h-24 flex items-center justify-center shadow-sm w-[calc(25%-0.4rem)] sm:w-[calc(25%-0.6rem)] md:w-full">
-                        안내
-                        <i class="fas fa-chevron-right absolute top-1/2 -right-[6px] sm:-right-[9px] md:-right-[12px] -translate-y-1/2 z-10 text-[#6b8cba] text-[10px] sm:text-xs md:text-sm bg-white rounded-full"></i>
+                    <!-- 1~4번 박스 그룹 (모바일 1행 / PC 좌측) -->
+                    <div class="flex items-center justify-center gap-x-1 sm:gap-x-2 w-full md:w-auto">
+                        <!-- 1. 안내 -->
+                        <div class="flex flex-col items-center justify-center w-[21%] sm:w-[22%] md:w-24 lg:w-28 h-20 sm:h-24 bg-white border-2 border-[#6b8cba] rounded-xl shadow-sm p-1">
+                            <span class="text-[11px] sm:text-xs md:text-sm font-bold text-gray-800">안내</span>
+                        </div>
+                        <i class="fas fa-chevron-right text-[#6b8cba] text-[10px] sm:text-xs md:text-sm"></i>
+                        <!-- 2. 등록 -->
+                        <div class="flex flex-col items-center justify-center w-[21%] sm:w-[22%] md:w-24 lg:w-28 h-20 sm:h-24 bg-white border-2 border-[#6b8cba] rounded-xl shadow-sm p-1">
+                            <span class="text-[11px] sm:text-xs md:text-sm font-bold text-gray-800">등록</span>
+                        </div>
+                        <i class="fas fa-chevron-right text-[#6b8cba] text-[10px] sm:text-xs md:text-sm"></i>
+                        <!-- 3. 예배 -->
+                        <div class="flex flex-col items-center justify-center w-[21%] sm:w-[22%] md:w-24 lg:w-28 h-20 sm:h-24 bg-white border-2 border-[#6b8cba] rounded-xl shadow-sm p-1">
+                            <span class="text-[11px] sm:text-xs md:text-sm font-bold text-gray-800">예배</span>
+                            <span class="text-[8px] sm:text-[9px] md:text-[10px] text-gray-500 font-normal mt-0.5 leading-tight tracking-tighter text-center">(푸른초장<br class="sm:hidden">새가족석)</span>
+                        </div>
+                        <i class="fas fa-chevron-right text-[#6b8cba] text-[10px] sm:text-xs md:text-sm"></i>
+                        <!-- 4. 담임목사님 -->
+                        <div class="flex flex-col items-center justify-center w-[21%] sm:w-[22%] md:w-24 lg:w-28 h-20 sm:h-24 bg-[#eef2f6] border-2 border-[#1b315b] rounded-xl shadow-sm p-1">
+                            <span class="text-[10px] sm:text-[11px] md:text-sm font-bold text-[#1b315b] leading-tight tracking-tighter text-center">담임목사님<br>과의 만남</span>
+                            <span class="text-[8px] sm:text-[9px] md:text-[10px] text-gray-500 font-normal mt-0.5 leading-tight tracking-tighter text-center">(영접실)</span>
+                        </div>
                     </div>
 
-                    <!-- 2. 등록 -->
-                    <div class="relative bg-white border-2 border-[#6b8cba] rounded-xl p-1 md:p-2 lg:p-3 text-center text-[11px] sm:text-xs md:text-sm font-bold h-20 md:h-24 flex items-center justify-center shadow-sm w-[calc(25%-0.4rem)] sm:w-[calc(25%-0.6rem)] md:w-full">
-                        등록
-                        <i class="fas fa-chevron-right absolute top-1/2 -right-[6px] sm:-right-[9px] md:-right-[12px] -translate-y-1/2 z-10 text-[#6b8cba] text-[10px] sm:text-xs md:text-sm bg-white rounded-full"></i>
+                    <!-- PC에서만 보이는 그룹 간 연결 화살표 -->
+                    <i class="fas fa-chevron-right text-[#6b8cba] text-sm hidden md:block mx-1 lg:mx-2"></i>
+
+                    <!-- 5~7번 박스 그룹 (모바일 2행 / PC 우측) -->
+                    <div class="flex items-center justify-center gap-x-1 sm:gap-x-2 w-full md:w-auto">
+                        <!-- 모바일에서만 2행 시작을 알리는 화살표 -->
+                        <i class="fas fa-chevron-right text-[#6b8cba] text-[10px] sm:text-xs block md:hidden mr-1"></i>
+
+                        <!-- 5. 기념사진 -->
+                        <div class="flex flex-col items-center justify-center w-[21%] sm:w-[22%] md:w-24 lg:w-28 h-20 sm:h-24 bg-white border-2 border-[#6b8cba] rounded-xl shadow-sm p-1">
+                            <span class="text-[10px] sm:text-[11px] md:text-sm font-bold text-gray-800 leading-tight tracking-tighter text-center">기념사진<br class="md:hidden">촬영</span>
+                        </div>
+                        <i class="fas fa-chevron-right text-[#6b8cba] text-[10px] sm:text-xs md:text-sm"></i>
+                        <!-- 6. 식사 -->
+                        <div class="flex flex-col items-center justify-center w-[21%] sm:w-[22%] md:w-24 lg:w-28 h-20 sm:h-24 bg-white border-2 border-[#6b8cba] rounded-xl shadow-sm p-1">
+                            <span class="text-[11px] sm:text-xs md:text-sm font-bold text-gray-800">식사</span>
+                            <span class="text-[8px] sm:text-[9px] md:text-[10px] text-gray-500 font-normal mt-0.5 leading-tight tracking-tighter text-center">(식당<br class="sm:hidden">새가족석)</span>
+                        </div>
+                        <i class="fas fa-chevron-right text-[#6b8cba] text-[10px] sm:text-xs md:text-sm"></i>
+                        <!-- 7. 귀가 -->
+                        <div class="flex flex-col items-center justify-center w-[21%] sm:w-[22%] md:w-24 lg:w-28 h-20 sm:h-24 bg-white border-2 border-[#6b8cba] rounded-xl shadow-sm p-1">
+                            <span class="text-[11px] sm:text-xs md:text-sm font-bold text-gray-800">귀가</span>
+                        </div>
                     </div>
 
-                    <!-- 3. 예배 -->
-                    <div class="relative bg-white border-2 border-[#6b8cba] rounded-xl p-1 md:p-2 lg:p-3 text-center text-[11px] sm:text-xs md:text-sm font-bold h-20 md:h-24 flex flex-col items-center justify-center shadow-sm w-[calc(25%-0.4rem)] sm:w-[calc(25%-0.6rem)] md:w-full">
-                        예배<br><span class="text-[9px] lg:text-[10px] text-gray-500 font-normal mt-0.5 md:mt-1 leading-tight tracking-tighter">(푸른초장<br class="sm:hidden">새가족석)</span>
-                        <i class="fas fa-chevron-right absolute top-1/2 -right-[6px] sm:-right-[9px] md:-right-[12px] -translate-y-1/2 z-10 text-[#6b8cba] text-[10px] sm:text-xs md:text-sm bg-white rounded-full"></i>
-                    </div>
-
-                    <!-- 4. 담임목사님과의 만남 (모바일에서는 줄바꿈 되므로 화살표 숨김) -->
-                    <div class="relative bg-[#eef2f6] border-2 border-[#1b315b] rounded-xl p-1 md:p-2 lg:p-3 text-center text-[11px] sm:text-xs md:text-sm font-bold h-20 md:h-24 flex flex-col items-center justify-center shadow-sm text-[#1b315b] w-[calc(25%-0.4rem)] sm:w-[calc(25%-0.6rem)] md:w-full">
-                        <span class="leading-tight tracking-tighter">담임목사님<br>과의 만남</span><span class="text-[9px] lg:text-[10px] text-gray-500 font-normal mt-0.5 md:mt-1 leading-tight">(영접실)</span>
-                        <i class="fas fa-chevron-right absolute top-1/2 -right-[6px] sm:-right-[9px] md:-right-[12px] -translate-y-1/2 z-10 text-[#1b315b] text-[10px] sm:text-xs md:text-sm bg-[#eef2f6] rounded-full hidden md:block"></i>
-                    </div>
-
-                    <!-- 5. 기념사진촬영 -->
-                    <div class="relative bg-white border-2 border-[#6b8cba] rounded-xl p-1 md:p-2 lg:p-3 text-center text-[11px] sm:text-xs md:text-sm font-bold h-20 md:h-24 flex items-center justify-center shadow-sm w-[calc(25%-0.4rem)] sm:w-[calc(25%-0.6rem)] md:w-full">
-                        <span class="leading-tight tracking-tighter">기념사진<br class="md:hidden">촬영</span>
-                        <i class="fas fa-chevron-right absolute top-1/2 -right-[6px] sm:-right-[9px] md:-right-[12px] -translate-y-1/2 z-10 text-[#6b8cba] text-[10px] sm:text-xs md:text-sm bg-white rounded-full"></i>
-                    </div>
-
-                    <!-- 6. 식사 -->
-                    <div class="relative bg-white border-2 border-[#6b8cba] rounded-xl p-1 md:p-2 lg:p-3 text-center text-[11px] sm:text-xs md:text-sm font-bold h-20 md:h-24 flex flex-col items-center justify-center shadow-sm w-[calc(25%-0.4rem)] sm:w-[calc(25%-0.6rem)] md:w-full">
-                        식사<br><span class="text-[9px] lg:text-[10px] text-gray-500 font-normal mt-0.5 md:mt-1 leading-tight tracking-tighter">(식당<br class="sm:hidden">새가족석)</span>
-                        <i class="fas fa-chevron-right absolute top-1/2 -right-[6px] sm:-right-[9px] md:-right-[12px] -translate-y-1/2 z-10 text-[#6b8cba] text-[10px] sm:text-xs md:text-sm bg-white rounded-full"></i>
-                    </div>
-
-                    <!-- 7. 귀가 -->
-                    <div class="relative bg-white border-2 border-[#6b8cba] rounded-xl p-1 md:p-2 lg:p-3 text-center text-[11px] sm:text-xs md:text-sm font-bold h-20 md:h-24 flex items-center justify-center shadow-sm w-[calc(25%-0.4rem)] sm:w-[calc(25%-0.6rem)] md:w-full">
-                        귀가
-                    </div>
-                    
                 </div>
             </div>
         </main>
