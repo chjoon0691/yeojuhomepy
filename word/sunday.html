@@ -27,6 +27,7 @@
             color: #4b5563;
             font-size: 14px;
             transition: all 0.2s;
+            margin: 0 2px;
         }
         .page-link:hover {
             background-color: #f3f4f6;
@@ -41,7 +42,6 @@
 </head>
 <body class="text-gray-800">
 
-    <!-- Header & Navigation (전체 공통 적용) -->
     <header class="bg-[#244177] text-white w-full z-50 relative">
         <div class="hidden md:block border-b border-white/20 bg-[#1b315b]">
             <div class="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center text-sm font-light">
@@ -52,7 +52,7 @@
         
         <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
             <!-- Logo -->
-            <a href="../index.html" class="flex items-center space-x-3 cursor-pointer z-50">
+            <a href="../index.html" class="flex items-center gap-1 cursor-pointer z-50">
                 <img src="../images/교회마크만01.png" alt="여주성결교회 마크" class="h-8 md:h-11 w-auto object-contain">
                 <img src="../images/여주성결교회 로고타입1_3.png" alt="여주성결교회 로고" class="h-6 md:h-8 w-auto object-contain brightness-0 invert">
             </a>
@@ -63,13 +63,12 @@
 
             <!-- Menu (Desktop) -->
             <nav class="hidden md:flex items-center space-x-8 text-lg font-medium">
-                <!-- 환영합니다 -->
                 <div class="relative group py-2">
                     <a href="../welcome/greeting.html" class="hover:text-blue-300 transition">환영합니다</a>
                     <div class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                         <div class="w-48 bg-white text-gray-800 rounded-2xl shadow-xl py-3 border border-gray-100">
                             <a href="../welcome/greeting.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">인사말</a>
-                            <a href="../welcome/history/history.html" class="flex justify-between items-center px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">교회연혁 <i class="fas fa-plus text-[0.6rem] text-gray-400"></i></a>
+                            <a href="../welcome/history/history.html" class="flex justify-between items-center px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">교회연혁</a>
                             <a href="../welcome/serve/serve.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">섬기는 분들</a>
                             <a href="../welcome/worship/worship.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">예배안내</a>
                             <a href="../welcome/bus/bus.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">차량운행안내</a>
@@ -79,7 +78,6 @@
                     </div>
                 </div>
 
-                <!-- 말씀과 찬양 (현재 카테고리 강조) -->
                 <div class="relative group py-2">
                     <a href="sunday.html" class="text-blue-300 font-bold transition">말씀과 찬양</a>
                     <div class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
@@ -95,7 +93,6 @@
                     </div>
                 </div>
 
-                <!-- 공동체 -->
                 <div class="relative group py-2">
                     <a href="#" class="hover:text-blue-300 transition">공동체</a>
                     <div class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
@@ -109,7 +106,6 @@
                     </div>
                 </div>
 
-                <!-- 다음세대 -->
                 <div class="relative group py-2">
                     <a href="#" class="hover:text-blue-300 transition">다음세대</a>
                     <div class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
@@ -126,7 +122,6 @@
                     </div>
                 </div>
 
-                <!-- 전도와 선교 -->
                 <div class="relative group py-2">
                     <a href="#" class="hover:text-blue-300 transition">전도와 선교</a>
                     <div class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
@@ -140,7 +135,6 @@
                     </div>
                 </div>
 
-                <!-- 교회소식 -->
                 <div class="relative group py-2">
                     <a href="#" class="hover:text-blue-300 transition">교회소식</a>
                     <div class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
@@ -153,7 +147,6 @@
                     </div>
                 </div>
 
-                <!-- 행정서비스 -->
                 <div class="relative group py-2">
                     <a href="#" class="hover:text-blue-300 transition">행정서비스</a>
                     <div class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
@@ -163,14 +156,12 @@
                     </div>
                 </div>
                 
-                <!-- PC 전용 햄버거 아이콘 -->
                 <button class="border border-white/40 w-10 h-10 hidden md:flex items-center justify-center rounded text-white text-xl hover:bg-white/10 transition" onclick="toggleSitemap()">
                     <i class="fas fa-bars"></i>
                 </button>
             </nav>
         </div>
 
-        <!-- Mobile Menu (Dropdown) -->
         <div id="mobile-menu" class="absolute top-full left-0 w-full bg-[#1a3668] flex-col items-center py-4 space-y-4 shadow-xl z-50 text-lg">
             <a href="../welcome/greeting.html" class="text-white hover:text-blue-300">환영합니다</a>
             <a href="sunday.html" class="text-blue-300 font-bold">말씀과 찬양</a>
@@ -185,7 +176,6 @@
         </div>
     </header>
 
-    <!-- Sub-page Top Banner -->
     <section class="bg-[#102242] py-12 md:py-20 text-center relative overflow-hidden">
         <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-luminosity"></div>
         <div class="relative z-10">
@@ -194,7 +184,6 @@
         </div>
     </section>
 
-    <!-- 모바일 전용 상단 네비게이션 바 -->
     <div class="md:hidden border-b border-gray-300 bg-white relative z-30 shadow-sm">
         <div class="flex text-sm md:text-base">
             <a href="../index.html" class="px-4 py-3 border-r border-gray-300 text-gray-600 flex items-center justify-center hover:bg-gray-50">
@@ -233,10 +222,9 @@
         </div>
     </div>
 
-    <!-- Main Content Layout -->
     <div class="max-w-7xl mx-auto px-4 py-12 md:py-20 flex flex-col md:flex-row gap-10">
         
-        <!-- Left Sidebar (LNB) -->
+        <!-- Left Sidebar -->
         <aside class="hidden md:block w-64 flex-shrink-0">
             <div class="bg-[#6b8cba] text-white text-center py-4 text-xl font-bold rounded-t-lg">
                 말씀과 찬양
@@ -265,16 +253,14 @@
             </ul>
         </aside>
 
-        <!-- Right Content Area (게시판) -->
+        <!-- Right Content Area -->
         <main class="flex-1">
             
-            <!-- 이너 배너 -->
             <div class="w-full bg-[#1b315b] rounded-xl h-24 md:h-32 flex flex-col justify-center items-center text-white shadow-md relative overflow-hidden mb-8">
                 <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
                 <h3 class="text-2xl md:text-3xl font-extrabold relative z-10 tracking-tight">주일 예배</h3>
             </div>
 
-            <!-- 검색바 -->
             <div class="flex justify-end mb-4 border-b border-gray-200 pb-4">
                 <div class="flex border border-gray-300 rounded shadow-sm overflow-hidden bg-white">
                     <select class="px-3 py-1.5 text-sm md:text-base border-r border-gray-300 text-gray-700 focus:outline-none bg-gray-50 cursor-pointer">
@@ -289,163 +275,44 @@
                 </div>
             </div>
 
-            <!-- 설교 목록 테이블 (반응형: 모바일에서는 스크롤 가능하게 처리하여 형태 유지) -->
-            <div class="w-full overflow-x-auto pb-4">
-                <table class="w-full text-center text-sm md:text-base min-w-[700px] border-t-2 border-gray-800">
-                    <thead class="bg-gray-50 text-gray-700 font-bold border-b border-gray-300">
-                        <tr>
-                            <th class="py-3 px-2 w-[8%]">번호</th>
-                            <th class="py-3 px-4 w-[32%] text-left">제목</th>
-                            <th class="py-3 px-2 w-[28%]">본문</th>
-                            <th class="py-3 px-2 w-[12%]">설교자</th>
-                            <th class="py-3 px-2 w-[12%] text-gray-500">날짜 <i class="fas fa-sort text-[10px]"></i></th>
-                            <th class="py-3 px-2 w-[8%]">보기</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-gray-600">
-                        <!-- Data Rows -->
-                        <tr class="border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer">
-                            <td class="py-4 text-gray-400">393</td>
-                            <td class="py-4 px-4 text-left font-medium text-gray-800">나도 복을 받을 수 있을까?(1)</td>
-                            <td class="py-4 text-[13px] md:text-sm">마태복음 5:1-3(신 5쪽)</td>
-                            <td class="py-4">조형준 목사</td>
-                            <td class="py-4 text-[13px] md:text-sm">2026-05-31</td>
-                            <td class="py-4"><button class="bg-[#5c5c5c] hover:bg-gray-800 text-white rounded w-7 h-6 flex items-center justify-center mx-auto transition"><i class="fas fa-tv text-xs"></i></button></td>
-                        </tr>
-                        <tr class="border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer">
-                            <td class="py-4 text-gray-400">392</td>
-                            <td class="py-4 px-4 text-left font-medium text-gray-800">성령충만한 가정</td>
-                            <td class="py-4 text-[13px] md:text-sm">사도행전 10:44-48(신 206쪽)</td>
-                            <td class="py-4">조형준 목사</td>
-                            <td class="py-4 text-[13px] md:text-sm">2026-05-24</td>
-                            <td class="py-4"><button class="bg-[#5c5c5c] hover:bg-gray-800 text-white rounded w-7 h-6 flex items-center justify-center mx-auto transition"><i class="fas fa-tv text-xs"></i></button></td>
-                        </tr>
-                        <tr class="border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer">
-                            <td class="py-4 text-gray-400">391</td>
-                            <td class="py-4 px-4 text-left font-medium text-gray-800">최고의 스승 예수</td>
-                            <td class="py-4 text-[13px] md:text-sm">마태복음 19:16-22(신 32쪽)</td>
-                            <td class="py-4">조형준 목사</td>
-                            <td class="py-4 text-[13px] md:text-sm">2026-05-17</td>
-                            <td class="py-4"><button class="bg-[#5c5c5c] hover:bg-gray-800 text-white rounded w-7 h-6 flex items-center justify-center mx-auto transition"><i class="fas fa-tv text-xs"></i></button></td>
-                        </tr>
-                        <tr class="border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer">
-                            <td class="py-4 text-gray-400">390</td>
-                            <td class="py-4 px-4 text-left font-medium text-gray-800">안 아픈 손가락이 있을까</td>
-                            <td class="py-4 text-[13px] md:text-sm">누가복음 15:31-32</td>
-                            <td class="py-4">조형준 목사</td>
-                            <td class="py-4 text-[13px] md:text-sm">2026-05-10</td>
-                            <td class="py-4"><button class="bg-[#5c5c5c] hover:bg-gray-800 text-white rounded w-7 h-6 flex items-center justify-center mx-auto transition"><i class="fas fa-tv text-xs"></i></button></td>
-                        </tr>
-                        <tr class="border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer">
-                            <td class="py-4 text-gray-400">389</td>
-                            <td class="py-4 px-4 text-left font-medium text-gray-800">어린 아이와 같이</td>
-                            <td class="py-4 text-[13px] md:text-sm">누가복음 18:15-17</td>
-                            <td class="py-4">조형준 목사</td>
-                            <td class="py-4 text-[13px] md:text-sm">2026-05-03</td>
-                            <td class="py-4"><button class="bg-[#5c5c5c] hover:bg-gray-800 text-white rounded w-7 h-6 flex items-center justify-center mx-auto transition"><i class="fas fa-tv text-xs"></i></button></td>
-                        </tr>
-                        <tr class="border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer">
-                            <td class="py-4 text-gray-400">388</td>
-                            <td class="py-4 px-4 text-left font-medium text-gray-800">당신의 삶이 전도입니다</td>
-                            <td class="py-4 text-[13px] md:text-sm">창세기 26:25-29</td>
-                            <td class="py-4">조형준 목사</td>
-                            <td class="py-4 text-[13px] md:text-sm">2026-04-26</td>
-                            <td class="py-4"><button class="bg-[#5c5c5c] hover:bg-gray-800 text-white rounded w-7 h-6 flex items-center justify-center mx-auto transition"><i class="fas fa-tv text-xs"></i></button></td>
-                        </tr>
-                        <tr class="border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer">
-                            <td class="py-4 text-gray-400">387</td>
-                            <td class="py-4 px-4 text-left font-medium text-gray-800">진실함의 열매</td>
-                            <td class="py-4 text-[13px] md:text-sm">요한복음 4:39-42</td>
-                            <td class="py-4">조형준 목사</td>
-                            <td class="py-4 text-[13px] md:text-sm">2026-04-19</td>
-                            <td class="py-4"><button class="bg-[#5c5c5c] hover:bg-gray-800 text-white rounded w-7 h-6 flex items-center justify-center mx-auto transition"><i class="fas fa-tv text-xs"></i></button></td>
-                        </tr>
-                        <tr class="border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer">
-                            <td class="py-4 text-gray-400">386</td>
-                            <td class="py-4 px-4 text-left font-medium text-gray-800">하나님이 기뻐하시는 것을 행하라</td>
-                            <td class="py-4 text-[13px] md:text-sm">누가복음 24:44-49(신 142쪽)</td>
-                            <td class="py-4">조형준 목사</td>
-                            <td class="py-4 text-[13px] md:text-sm">2026-04-12</td>
-                            <td class="py-4"><button class="bg-[#5c5c5c] hover:bg-gray-800 text-white rounded w-7 h-6 flex items-center justify-center mx-auto transition"><i class="fas fa-tv text-xs"></i></button></td>
-                        </tr>
-                        <tr class="border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer">
-                            <td class="py-4 text-gray-400">385</td>
-                            <td class="py-4 px-4 text-left font-medium text-gray-800">예수 다시 사셨네</td>
-                            <td class="py-4 text-[13px] md:text-sm">누가복음 24:1-6(신 139쪽)</td>
-                            <td class="py-4">조형준 목사</td>
-                            <td class="py-4 text-[13px] md:text-sm">2026-04-05</td>
-                            <td class="py-4"><button class="bg-[#5c5c5c] hover:bg-gray-800 text-white rounded w-7 h-6 flex items-center justify-center mx-auto transition"><i class="fas fa-tv text-xs"></i></button></td>
-                        </tr>
-                        <tr class="border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer">
-                            <td class="py-4 text-gray-400">384</td>
-                            <td class="py-4 px-4 text-left font-medium text-gray-800">정욕을 극복하라(6)</td>
-                            <td class="py-4 text-[13px] md:text-sm">창세기 39:7-10(구 60쪽)</td>
-                            <td class="py-4">조형준 목사</td>
-                            <td class="py-4 text-[13px] md:text-sm">2026-03-29</td>
-                            <td class="py-4"><button class="bg-[#5c5c5c] hover:bg-gray-800 text-white rounded w-7 h-6 flex items-center justify-center mx-auto transition"><i class="fas fa-tv text-xs"></i></button></td>
-                        </tr>
-                        <tr class="border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer">
-                            <td class="py-4 text-gray-400">383</td>
-                            <td class="py-4 px-4 text-left font-medium text-gray-800">탐욕을 버리라(5)</td>
-                            <td class="py-4 text-[13px] md:text-sm">디모데전서 6:6-10(신 341쪽)</td>
-                            <td class="py-4">조형준 목사</td>
-                            <td class="py-4 text-[13px] md:text-sm">2026-03-22</td>
-                            <td class="py-4"><button class="bg-[#5c5c5c] hover:bg-gray-800 text-white rounded w-7 h-6 flex items-center justify-center mx-auto transition"><i class="fas fa-tv text-xs"></i></button></td>
-                        </tr>
-                        <tr class="border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer">
-                            <td class="py-4 text-gray-400">382</td>
-                            <td class="py-4 px-4 text-left font-medium text-gray-800">나태함을 극복하라(4)</td>
-                            <td class="py-4 text-[13px] md:text-sm">마태복음 25:24-30(신 44쪽)</td>
-                            <td class="py-4">조형준 목사</td>
-                            <td class="py-4 text-[13px] md:text-sm">2026-03-15</td>
-                            <td class="py-4"><button class="bg-[#5c5c5c] hover:bg-gray-800 text-white rounded w-7 h-6 flex items-center justify-center mx-auto transition"><i class="fas fa-tv text-xs"></i></button></td>
-                        </tr>
-                        <tr class="border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer">
-                            <td class="py-4 text-gray-400">381</td>
-                            <td class="py-4 px-4 text-left font-medium text-gray-800">분노를 다스리라(3)</td>
-                            <td class="py-4 text-[13px] md:text-sm">사무엘상 24:1-7(구 449쪽)</td>
-                            <td class="py-4">조형준 목사</td>
-                            <td class="py-4 text-[13px] md:text-sm">2026-03-08</td>
-                            <td class="py-4"><button class="bg-[#5c5c5c] hover:bg-gray-800 text-white rounded w-7 h-6 flex items-center justify-center mx-auto transition"><i class="fas fa-tv text-xs"></i></button></td>
-                        </tr>
-                        <tr class="border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer">
-                            <td class="py-4 text-gray-400">380</td>
-                            <td class="py-4 px-4 text-left font-medium text-gray-800">시기의 죄를 이기라(2)</td>
-                            <td class="py-4 text-[13px] md:text-sm">사무엘상 18:6-11(구 439쪽)</td>
-                            <td class="py-4">조형준 목사</td>
-                            <td class="py-4 text-[13px] md:text-sm">2026-03-01</td>
-                            <td class="py-4"><button class="bg-[#5c5c5c] hover:bg-gray-800 text-white rounded w-7 h-6 flex items-center justify-center mx-auto transition"><i class="fas fa-tv text-xs"></i></button></td>
-                        </tr>
-                        <tr class="border-b border-gray-800 hover:bg-gray-50 transition cursor-pointer">
-                            <td class="py-4 text-gray-400">379</td>
-                            <td class="py-4 px-4 text-left font-medium text-gray-800">그리스도의 보혈로 죄를 씻으라(1)</td>
-                            <td class="py-4 text-[13px] md:text-sm">마태복음 18:6-7</td>
-                            <td class="py-4">조형준 목사</td>
-                            <td class="py-4 text-[13px] md:text-sm">2026-02-22</td>
-                            <td class="py-4"><button class="bg-[#5c5c5c] hover:bg-gray-800 text-white rounded w-7 h-6 flex items-center justify-center mx-auto transition"><i class="fas fa-tv text-xs"></i></button></td>
-                        </tr>
-                    </tbody>
-                </table>
+            <!-- PC Version Table (hidden on mobile) -->
+            <table class="hidden md:table w-full text-center text-sm md:text-base border-t-2 border-gray-800 table-fixed">
+                <colgroup>
+                    <col class="w-[8%]">
+                    <col class="w-[36%]">
+                    <col class="w-[24%]">
+                    <col class="w-[12%]">
+                    <col class="w-[12%]">
+                    <col class="w-[8%]">
+                </colgroup>
+                <thead class="bg-gray-50 text-gray-700 font-bold border-b border-gray-300">
+                    <tr>
+                        <th class="py-3 px-2">번호</th>
+                        <th class="py-3 px-4 text-left">제목</th>
+                        <th class="py-3 px-2">본문</th>
+                        <th class="py-3 px-2">설교자</th>
+                        <th class="py-3 px-2 text-gray-500">날짜 <i class="fas fa-sort text-[10px]"></i></th>
+                        <th class="py-3 px-2">보기</th>
+                    </tr>
+                </thead>
+                <!-- JS가 데이터를 밀어넣을 공간 -->
+                <tbody id="sermon-list-pc" class="text-gray-600">
+                </tbody>
+            </table>
+
+            <!-- Mobile Version List (hidden on PC) -->
+            <div id="sermon-list-mobile" class="md:hidden block w-full border-t-2 border-gray-800">
+                <!-- JS가 데이터를 밀어넣을 공간 -->
             </div>
 
-            <!-- 페이지네이션 (Pagination) -->
-            <div class="flex justify-center items-center gap-1 mt-8 mb-6">
-                <a href="#" class="page-link active font-bold">1</a>
-                <a href="#" class="page-link">2</a>
-                <a href="#" class="page-link">3</a>
-                <a href="#" class="page-link">4</a>
-                <a href="#" class="page-link">5</a>
-                <a href="#" class="page-link hidden sm:inline-flex">6</a>
-                <a href="#" class="page-link hidden sm:inline-flex">7</a>
-                <a href="#" class="page-link hidden sm:inline-flex">8</a>
-                <a href="#" class="page-link text-gray-400 hover:text-gray-600"><i class="fas fa-chevron-right text-xs"></i></a>
-                <a href="#" class="page-link text-gray-400 hover:text-gray-600"><i class="fas fa-angle-double-right text-xs"></i></a>
+            <!-- 페이지네이션 (Pagination) - JS에서 자동 생성 -->
+            <div id="pagination" class="flex justify-center items-center mt-8 mb-6 flex-wrap gap-y-2">
+                <!-- 자동 생성 영역 -->
             </div>
 
         </main>
     </div>
 
-    <!-- Footer -->
     <footer class="bg-gray-50 border-t border-gray-200 py-10 md:py-16 mt-10">
         <div class="max-w-6xl mx-auto px-4 flex flex-col items-center text-center">
             <div class="flex justify-center space-x-4 md:space-x-8 text-sm md:text-base text-gray-600 font-medium mb-8">
@@ -482,7 +349,6 @@
             
             <div id="sitemap-content" class="p-8 md:p-10 overflow-y-auto">
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-x-8 gap-y-12">
-                    <!-- 1열 (환영합니다 / 전도와 선교) -->
                     <div class="flex flex-col gap-10">
                         <div>
                             <h3 class="font-bold text-gray-800 text-center border-t-2 border-gray-400 pt-3 pb-4">환영합니다</h3>
@@ -514,7 +380,6 @@
                             </ul>
                         </div>
                     </div>
-                    <!-- 2열 (말씀과 찬양 / 교회소식) -->
                     <div class="flex flex-col gap-10">
                         <div>
                             <h3 class="font-bold text-gray-800 text-center border-t-2 border-gray-400 pt-3 pb-4">말씀과 찬양</h3>
@@ -549,7 +414,6 @@
                             </ul>
                         </div>
                     </div>
-                    <!-- 3열 (공동체 / 행정서비스) -->
                     <div class="flex flex-col gap-10">
                         <div>
                             <h3 class="font-bold text-gray-800 text-center border-t-2 border-gray-400 pt-3 pb-4">공동체</h3>
@@ -568,7 +432,6 @@
                             </ul>
                         </div>
                     </div>
-                    <!-- 4열 (다음세대) -->
                     <div class="flex flex-col gap-10">
                         <div>
                             <h3 class="font-bold text-gray-800 text-center border-t-2 border-gray-400 pt-3 pb-4">다음세대</h3>
@@ -589,19 +452,125 @@
         </div>
     </div>
 
-    <!-- Script for mobile menu and sitemap -->
     <script>
-        function toggleSitemap() {
-            const modal = document.getElementById('sitemap-modal');
-            if (modal.classList.contains('hidden')) {
-                modal.classList.remove('hidden');
-                document.body.style.overflow = 'hidden'; 
-            } else {
-                modal.classList.add('hidden');
-                document.body.style.overflow = ''; 
+        // 1. 여기에 매주 새로운 설교 데이터를 계속 추가하시면 됩니다. 
+        // (맨 위에 추가하면 최신글이 됩니다.)
+        const sermonData = [
+            { title: "나도 복을 받을 수 있을까?(1)", text: "마태복음 5:1-3", preacher: "조형준 목사", date: "2026-05-31", link: "https://www.youtube.com/watch?v=E0rhsktTc8g&t=2209s" },
+            { title: "성령충만한 가정", text: "사도행전 10:44-48", preacher: "조형준 목사", date: "2026-05-24", link: "#" },
+            { title: "최고의 스승 예수", text: "마태복음 19:16-22", preacher: "조형준 목사", date: "2026-05-17", link: "#" },
+            { title: "안 아픈 손가락이 있을까", text: "누가복음 15:31-32", preacher: "조형준 목사", date: "2026-05-10", link: "#" },
+            { title: "어린 아이와 같이", text: "누가복음 18:15-17", preacher: "조형준 목사", date: "2026-05-03", link: "#" },
+            { title: "당신의 삶이 전도입니다", text: "창세기 26:25-29", preacher: "조형준 목사", date: "2026-04-26", link: "#" },
+            { title: "진실함의 열매", text: "요한복음 4:39-42", preacher: "조형준 목사", date: "2026-04-19", link: "#" },
+            { title: "하나님이 기뻐하시는 것을 행하라", text: "누가복음 24:44-49", preacher: "조형준 목사", date: "2026-04-12", link: "#" },
+            { title: "예수 다시 사셨네", text: "누가복음 24:1-6", preacher: "조형준 목사", date: "2026-04-05", link: "#" },
+            { title: "정욕을 극복하라(6)", text: "창세기 39:7-10", preacher: "조형준 목사", date: "2026-03-29", link: "#" },
+            { title: "탐욕을 버리라(5)", text: "디모데전서 6:6-10", preacher: "조형준 목사", date: "2026-03-22", link: "#" },
+            { title: "나태함을 극복하라(4)", text: "마태복음 25:24-30", preacher: "조형준 목사", date: "2026-03-15", link: "#" },
+            { title: "분노를 다스리라(3)", text: "사무엘상 24:1-7", preacher: "조형준 목사", date: "2026-03-08", link: "#" },
+            { title: "시기의 죄를 이기라(2)", text: "사무엘상 18:6-11", preacher: "조형준 목사", date: "2026-03-01", link: "#" },
+            { title: "그리스도의 보혈로 죄를 씻으라(1)", text: "마태복음 18:6-7", preacher: "조형준 목사", date: "2026-02-22", link: "#" },
+            // 테스트용 임시 데이터 (15개 이상일 때 페이징 작동 확인용)
+            { title: "이전 설교 테스트 1", text: "창세기 1:1", preacher: "조형준 목사", date: "2026-02-15", link: "#" },
+            { title: "이전 설교 테스트 2", text: "창세기 1:2", preacher: "조형준 목사", date: "2026-02-08", link: "#" }
+        ];
+
+        // 2. 가장 최신 글(맨 윗글)의 시작 번호를 설정합니다.
+        // 현재 데이터 갯수가 17개이므로, 393이 되도록 설정 (새글 추가시 이 번호만 올려주면 됩니다)
+        let startNumber = 393; 
+        
+        // 데이터 배열에 자동으로 번호를 1씩 깎으면서 부여합니다.
+        const formattedData = sermonData.map((item, index) => {
+            return {
+                id: startNumber - index, 
+                ...item
+            };
+        });
+
+        const itemsPerPage = 15; // 한 페이지에 보일 갯수 고정
+        let currentPage = 1;
+
+        // 테이블과 모바일 리스트를 그리는 함수
+        function renderTable(page) {
+            const startIndex = (page - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const pageData = formattedData.slice(startIndex, endIndex);
+
+            const pcTbody = document.getElementById('sermon-list-pc');
+            const mobileContainer = document.getElementById('sermon-list-mobile');
+
+            // 기존 내용 비우기
+            pcTbody.innerHTML = '';
+            mobileContainer.innerHTML = '';
+
+            pageData.forEach(item => {
+                // PC 버전 렌더링 (테이블 형태)
+                const tr = document.createElement('tr');
+                tr.className = 'border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer';
+                tr.innerHTML = `
+                    <td class="py-4 text-gray-400">${item.id}</td>
+                    <td class="py-4 px-4 text-left font-medium text-gray-800 truncate">${item.title}</td>
+                    <td class="py-4 text-[13px] md:text-sm truncate">${item.text}</td>
+                    <td class="py-4">${item.preacher}</td>
+                    <td class="py-4 text-[13px] md:text-sm">${item.date}</td>
+                    <td class="py-4">
+                        ${item.link !== '#' 
+                            ? `<a href="${item.link}" target="_blank" class="bg-[#5c5c5c] hover:bg-[#1b315b] text-white rounded w-8 h-6 flex items-center justify-center mx-auto transition"><i class="fas fa-tv text-xs"></i></a>` 
+                            : `<button class="bg-[#e5e7eb] text-gray-400 cursor-not-allowed rounded w-8 h-6 flex items-center justify-center mx-auto"><i class="fas fa-tv text-xs"></i></button>`}
+                    </td>
+                `;
+                pcTbody.appendChild(tr);
+
+                // 모바일 버전 렌더링 (리스트 형태)
+                const mDiv = document.createElement('div');
+                mDiv.className = 'border-b border-gray-200 py-4 flex items-start';
+                mDiv.innerHTML = `
+                    <div class="w-12 text-gray-400 font-medium text-center pt-1 shrink-0">${item.id}</div>
+                    <div class="flex-1 pr-2 relative">
+                        <h4 class="text-gray-800 font-bold text-base mb-1.5 pr-8 leading-snug">${item.title}</h4>
+                        <div class="flex flex-wrap items-center text-[13px] text-gray-500 gap-x-3 gap-y-1">
+                            <span>${item.text}</span>
+                            <span class="text-gray-300">|</span>
+                            <span>${item.preacher}</span>
+                            <span class="text-gray-300">|</span>
+                            <span>${item.date}</span>
+                        </div>
+                        ${item.link !== '#' 
+                            ? `<a href="${item.link}" target="_blank" class="absolute top-0 right-0 text-gray-400 hover:text-[#1b315b] transition p-1"><i class="fas fa-tv text-xl"></i></a>` 
+                            : `<button class="absolute top-0 right-0 text-gray-300 cursor-not-allowed p-1"><i class="fas fa-tv text-xl"></i></button>`}
+                    </div>
+                `;
+                mobileContainer.appendChild(mDiv);
+            });
+            
+            // 페이지 그리기 호출
+            renderPagination();
+        }
+
+        // 하단 페이지 번호(페이징) 생성 함수
+        function renderPagination() {
+            const totalPages = Math.ceil(formattedData.length / itemsPerPage);
+            const paginationContainer = document.getElementById('pagination');
+            paginationContainer.innerHTML = '';
+
+            for (let i = 1; i <= totalPages; i++) {
+                const a = document.createElement('a');
+                a.href = '#';
+                a.className = `page-link ${i === currentPage ? 'active' : ''} rounded`;
+                a.textContent = i;
+                a.onclick = (e) => {
+                    e.preventDefault();
+                    currentPage = i;
+                    renderTable(currentPage);
+                    // 페이지 이동 시 살짝 위로 스크롤
+                    window.scrollTo({top: 400, behavior: 'smooth'}); 
+                };
+                paginationContainer.appendChild(a);
             }
         }
 
+        // 모바일 서브메뉴 토글 기능
         function toggleMobileSubMenu(menuId) {
             const targetMenu = document.getElementById(menuId);
             const otherMenuId = menuId === 'menu-depth1' ? 'menu-depth2' : 'menu-depth1';
@@ -628,6 +597,23 @@
                 }
             }
         }
+
+        // PC 사이트맵 팝업 토글
+        function toggleSitemap() {
+            const modal = document.getElementById('sitemap-modal');
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden'; 
+            } else {
+                modal.classList.add('hidden');
+                document.body.style.overflow = ''; 
+            }
+        }
+
+        // 페이지가 열리면 첫 번째 페이지(15개) 화면을 그립니다.
+        document.addEventListener('DOMContentLoaded', () => {
+            renderTable(currentPage);
+        });
     </script>
 </body>
 </html>
