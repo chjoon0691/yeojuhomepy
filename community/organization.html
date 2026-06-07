@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>기관소개 - 여주성결교회</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -56,6 +57,14 @@
         </div>
     </header>
 
+    <section class="bg-[#102242] py-12 md:py-20 text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-luminosity"></div>
+        <div class="relative z-10">
+            <h2 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-2">공동체</h2>
+            <p class="text-blue-200 text-sm md:text-base">Community</p>
+        </div>
+    </section>
+
     <div class="max-w-7xl mx-auto px-4 py-12 md:py-20 flex flex-col md:flex-row gap-10">
         <aside class="hidden md:block w-64 flex-shrink-0">
             <div class="bg-[#6b8cba] text-white text-center py-4 text-xl font-bold rounded-t-lg">공동체</div>
@@ -74,27 +83,28 @@
                 <h3 class="text-3xl md:text-4xl font-extrabold relative z-10 tracking-tight">남·여전도회 조직</h3>
             </div>
 
-            <!-- 남전도회 -->
+            <!-- 남전도회 조직 -->
             <div class="mb-16">
                 <h4 class="text-2xl font-bold text-gray-800 mb-6 border-l-4 border-[#1b315b] pl-4">남전도회 조직</h4>
-                <div class="overflow-x-auto">
-                    <table class="w-full border-collapse border border-gray-300 text-sm md:text-base">
+                <div class="overflow-x-auto shadow-sm border border-gray-200 rounded-lg">
+                    <table class="w-full text-center text-[10px] sm:text-xs md:text-sm lg:text-base">
                         <thead class="bg-gray-700 text-white">
-                            <tr><th class="py-3 px-2 border">구분</th><th class="py-3 px-4 border">연령/대상</th><th class="py-3 px-2 border">회장</th><th class="py-3 px-2 border">부회장</th><th class="py-3 px-2 border">총무</th><th class="py-3 px-2 border">서기</th><th class="py-3 px-2 border">회계</th></tr>
+                            <tr><th class="py-3 px-1 border whitespace-nowrap">구분</th><th class="py-3 px-1 border whitespace-nowrap">연령/대상</th><th class="py-3 px-1 border whitespace-nowrap">회장</th><th class="py-3 px-1 border whitespace-nowrap">부회장</th><th class="py-3 px-1 border whitespace-nowrap">총무</th><th class="py-3 px-1 border whitespace-nowrap">서기</th><th class="py-3 px-1 border whitespace-nowrap">회계</th></tr>
                         </thead>
-                        <tbody class="text-gray-700 text-center">
-                            <tr class="bg-gray-50"><td class="border py-2 font-bold">남</td><td class="border py-2">&lt;연 합 회&gt;</td><td class="border py-2">김기호</td><td class="border py-2">김종성, 곽정우</td><td class="border py-2">김병두</td><td class="border py-2">이재영</td><td class="border py-2">남기태</td></tr>
-                            <tr><td class="border py-2 font-bold">1남</td><td class="border py-2">1951년 이상</td><td class="border py-2">박광선</td><td class="border py-2">조은제</td><td class="border py-2">곽영인</td><td class="border py-2">이임수</td><td class="border py-2">백만종</td></tr>
-                            <tr class="bg-gray-50"><td class="border py-2 font-bold">2남</td><td class="border py-2">1952~1955년생</td><td class="border py-2">장기평</td><td class="border py-2">신동성</td><td class="border py-2">김상진</td><td class="border py-2">유기환</td><td class="border py-2">원제석</td></tr>
-                            <tr><td class="border py-2 font-bold">3남</td><td class="border py-2">1956~1958년생</td><td class="border py-2">김종성</td><td class="border py-2">-</td><td class="border py-2">강성구</td><td class="border py-2">-</td><td class="border py-2">-</td></tr>
-                            <tr class="bg-gray-50"><td class="border py-2 font-bold">4남</td><td class="border py-2">1959~1960년생</td><td class="border py-2">김기호</td><td class="border py-2">강경주</td><td class="border py-2">정선호</td><td class="border py-2">이웅재</td><td class="border py-2">심상진</td></tr>
-                            <tr><td class="border py-2 font-bold">5남</td><td class="border py-2">1961~1963년생</td><td class="border py-2">곽정우</td><td class="border py-2">최철수</td><td class="border py-2">김태윤</td><td class="border py-2">길동배</td><td class="border py-2">노성호</td></tr>
-                            <tr class="bg-gray-50"><td class="border py-2 font-bold">6남</td><td class="border py-2">1964~1967년생</td><td class="border py-2">김병두</td><td class="border py-2">박찬명, 김기태</td><td class="border py-2">김일래</td><td class="border py-2">이상호</td><td class="border py-2">홍기성</td></tr>
-                            <tr><td class="border py-2 font-bold">7남</td><td class="border py-2">1968~1970년생</td><td class="border py-2">남기태</td><td class="border py-2">최재영</td><td class="border py-2">어성건</td><td class="border py-2">허범선</td><td class="border py-2">김강용</td></tr>
-                            <tr class="bg-gray-50"><td class="border py-2 font-bold">8남</td><td class="border py-2">1971~1973년생</td><td class="border py-2">이주훈</td><td class="border py-2">홍선희</td><td class="border py-2">조창선</td><td class="border py-2">김대중</td><td class="border py-2">김영호</td></tr>
-                            <tr><td class="border py-2 font-bold">9남</td><td class="border py-2">1974~1976년생</td><td class="border py-2">김태원</td><td class="border py-2">이종수</td><td class="border py-2">이상문</td><td class="border py-2">장병환</td><td class="border py-2">장병환</td></tr>
-                            <tr class="bg-gray-50"><td class="border py-2 font-bold">10남</td><td class="border py-2">1977~1980년생</td><td class="border py-2">이재영</td><td class="border py-2">정성희</td><td class="border py-2">이모훈</td><td class="border py-2">이모훈</td><td class="border py-2">정성희</td></tr>
-                            <tr><td class="border py-2 font-bold">11남</td><td class="border py-2">1981년 이하</td><td class="border py-2">박성수</td><td class="border py-2">정재유</td><td class="border py-2">강석일</td><td class="border py-2">김근태</td><td class="border py-2">신봉환</td></tr>
+                        <tbody class="text-gray-700">
+                            <!-- JS 페이징 없이 전체 출력 (내용이 많지 않음) -->
+                            <tr class="bg-gray-50 whitespace-nowrap"><td class="border py-3 font-bold">남</td><td class="border py-3">&lt;연 합 회&gt;</td><td class="border py-3">김기호</td><td class="border py-3">김종성, 곽정우</td><td class="border py-3">김병두</td><td class="border py-3">이재영</td><td class="border py-3">남기태</td></tr>
+                            <tr class="whitespace-nowrap"><td class="border py-3 font-bold">1남</td><td class="border py-3">1951년 이상</td><td class="border py-3">박광선</td><td class="border py-3">조은제</td><td class="border py-3">곽영인</td><td class="border py-3">이임수</td><td class="border py-3">백만종</td></tr>
+                            <tr class="bg-gray-50 whitespace-nowrap"><td class="border py-3 font-bold">2남</td><td class="border py-3">1952~1955년생</td><td class="border py-3">장기평</td><td class="border py-3">신동성</td><td class="border py-3">김상진</td><td class="border py-3">유기환</td><td class="border py-3">원제석</td></tr>
+                            <tr class="whitespace-nowrap"><td class="border py-3 font-bold">3남</td><td class="border py-3">1956~1958년생</td><td class="border py-3">김종성</td><td class="border py-3">-</td><td class="border py-3">강성구</td><td class="border py-3">-</td><td class="border py-3">-</td></tr>
+                            <tr class="bg-gray-50 whitespace-nowrap"><td class="border py-3 font-bold">4남</td><td class="border py-3">1959~1960년생</td><td class="border py-3">김기호</td><td class="border py-3">강경주</td><td class="border py-3">정선호</td><td class="border py-3">이웅재</td><td class="border py-3">심상진</td></tr>
+                            <tr class="whitespace-nowrap"><td class="border py-3 font-bold">5남</td><td class="border py-3">1961~1963년생</td><td class="border py-3">곽정우</td><td class="border py-3">최철수</td><td class="border py-3">김태윤</td><td class="border py-3">길동배</td><td class="border py-3">노성호</td></tr>
+                            <tr class="bg-gray-50 whitespace-nowrap"><td class="border py-3 font-bold">6남</td><td class="border py-3">1964~1967년생</td><td class="border py-3">김병두</td><td class="border py-3">박찬명, 김기태</td><td class="border py-3">김일래</td><td class="border py-3">이상호</td><td class="border py-3">홍기성</td></tr>
+                            <tr class="whitespace-nowrap"><td class="border py-3 font-bold">7남</td><td class="border py-3">1968~1970년생</td><td class="border py-3">남기태</td><td class="border py-3">최재영</td><td class="border py-3">어성건</td><td class="border py-3">허범선</td><td class="border py-3">김강용</td></tr>
+                            <tr class="bg-gray-50 whitespace-nowrap"><td class="border py-3 font-bold">8남</td><td class="border py-3">1971~1973년생</td><td class="border py-3">이주훈</td><td class="border py-3">홍선희</td><td class="border py-3">조창선</td><td class="border py-3">김대중</td><td class="border py-3">김영호</td></tr>
+                            <tr class="whitespace-nowrap"><td class="border py-3 font-bold">9남</td><td class="border py-3">1974~1976년생</td><td class="border py-3">김태원</td><td class="border py-3">이종수</td><td class="border py-3">이상문</td><td class="border py-3">장병환</td><td class="border py-3">장병환</td></tr>
+                            <tr class="bg-gray-50 whitespace-nowrap"><td class="border py-3 font-bold">10남</td><td class="border py-3">1977~1980년생</td><td class="border py-3">이재영</td><td class="border py-3">정성희</td><td class="border py-3">이모훈</td><td class="border py-3">이모훈</td><td class="border py-3">정성희</td></tr>
+                            <tr class="whitespace-nowrap"><td class="border py-3 font-bold">11남</td><td class="border py-3">1981년 이하</td><td class="border py-3">박성수</td><td class="border py-3">정재유</td><td class="border py-3">강석일</td><td class="border py-3">김근태</td><td class="border py-3">신봉환</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -103,40 +113,39 @@
             <!-- 여전도회 -->
             <div class="mb-16">
                 <h4 class="text-2xl font-bold text-gray-800 mb-6 border-l-4 border-[#1b315b] pl-4">여전도회 조직</h4>
-                <div class="overflow-x-auto">
+                <div class="overflow-x-auto shadow-sm border border-gray-200 rounded-lg">
                     <table class="w-full border-collapse border border-gray-300 text-sm md:text-base">
                         <thead class="bg-gray-700 text-white">
-                            <tr><th class="py-3 px-2 border">구분</th><th class="py-3 px-4 border">연령/대상</th><th class="py-3 px-2 border">회장</th><th class="py-3 px-2 border">부회장</th><th class="py-3 px-2 border">총무</th><th class="py-3 px-2 border">서기</th><th class="py-3 px-2 border">회계</th></tr>
+                            <tr><th class="py-3 px-1 border whitespace-nowrap">구분</th><th class="py-3 px-1 border whitespace-nowrap">연령/대상</th><th class="py-3 px-1 border whitespace-nowrap">회장</th><th class="py-3 px-1 border whitespace-nowrap">부회장</th><th class="py-3 px-1 border whitespace-nowrap">총무</th><th class="py-3 px-1 border whitespace-nowrap">서기</th><th class="py-3 px-1 border whitespace-nowrap">회계</th></tr>
                         </thead>
                         <tbody class="text-gray-700 text-center">
-                            <tr class="bg-gray-50"><td class="border py-2 font-bold">여</td><td class="border py-2">&lt;연 합 회&gt;</td><td class="border py-2">박선분</td><td class="border py-2">진혜욱, 김문순</td><td class="border py-2">박선자</td><td class="border py-2">곽숙희</td><td class="border py-2">최진명</td></tr>
-                            <tr><td class="border py-2 font-bold">1여</td><td class="border py-2">1945년 이상</td><td class="border py-2">전성자</td><td class="border py-2">이정운</td><td class="border py-2">이종련</td><td class="border py-2">윤효순</td><td class="border py-2">윤정애</td></tr>
-                            <tr class="bg-gray-50"><td class="border py-2 font-bold">2여</td><td class="border py-2">1946~1949년생</td><td class="border py-2">장정순</td><td class="border py-2">윤영희</td><td class="border py-2">강명효</td><td class="border py-2">모영희</td><td class="border py-2">장순자</td></tr>
-                            <tr><td class="border py-2 font-bold">3여</td><td class="border py-2">1950~1952년생</td><td class="border py-2">김주란</td><td class="border py-2">정광실</td><td class="border py-2">이왕우</td><td class="border py-2">윤숙노</td><td class="border py-2">윤숙노</td></tr>
-                            <tr class="bg-gray-50"><td class="border py-2 font-bold">4여</td><td class="border py-2">1953~1954년생</td><td class="border py-2">김효자</td><td class="border py-2">이혜정</td><td class="border py-2">이정자</td><td class="border py-2">문기화</td><td class="border py-2">김호순</td></tr>
-                            <tr><td class="border py-2 font-bold">5여</td><td class="border py-2">1955년생</td><td class="border py-2">허혜숙</td><td class="border py-2">심연자</td><td class="border py-2">강명자</td><td class="border py-2">박현숙</td><td class="border py-2">박현숙</td></tr>
-                            <tr class="bg-gray-50"><td class="border py-2 font-bold">6여</td><td class="border py-2">1956~1957년생</td><td class="border py-2">김기숙</td><td class="border py-2">신윤자</td><td class="border py-2">김경희</td><td class="border py-2">김정숙</td><td class="border py-2">이선영</td></tr>
-                            <tr><td class="border py-2 font-bold">7여</td><td class="border py-2">1958년생</td><td class="border py-2">오경순</td><td class="border py-2">조영희B</td><td class="border py-2">백옥선</td><td class="border py-2">박은희</td><td class="border py-2">송영순</td></tr>
-                            <tr class="bg-gray-50"><td class="border py-2 font-bold">8여</td><td class="border py-2">1959년생</td><td class="border py-2">진혜욱</td><td class="border py-2">최명옥</td><td class="border py-2">박기선</td><td class="border py-2">가경숙</td><td class="border py-2">원명자</td></tr>
-                            <tr><td class="border py-2 font-bold">9여</td><td class="border py-2">1960년생</td><td class="border py-2">차정림</td><td class="border py-2">한나현</td><td class="border py-2">김영이</td><td class="border py-2">김선연</td><td class="border py-2">서혜숙</td></tr>
-                            <tr class="bg-gray-50"><td class="border py-2 font-bold">10여</td><td class="border py-2">1961년생</td><td class="border py-2">박선자</td><td class="border py-2">신경옥</td><td class="border py-2">고향숙</td><td class="border py-2">엄윤희</td><td class="border py-2">함미숙</td></tr>
-                            <tr><td class="border py-2 font-bold">11여</td><td class="border py-2">1962~1963년생</td><td class="border py-2">곽숙희</td><td class="border py-2">유옥자</td><td class="border py-2">동순남</td><td class="border py-2">안순자</td><td class="border py-2">최낙정</td></tr>
-                            <tr class="bg-gray-50"><td class="border py-2 font-bold">12여</td><td class="border py-2">1964~1965년생</td><td class="border py-2">김화숙B</td><td class="border py-2">김은경C</td><td class="border py-2">임미경</td><td class="border py-2">-</td><td class="border py-2">박재숙</td></tr>
-                            <tr><td class="border py-2 font-bold">13여</td><td class="border py-2">1966년생</td><td class="border py-2">김미숙</td><td class="border py-2">허동숙</td><td class="border py-2">김영주</td><td class="border py-2">-</td><td class="border py-2">한상은</td></tr>
-                            <tr class="bg-gray-50"><td class="border py-2 font-bold">14여</td><td class="border py-2">1967~1968년생</td><td class="border py-2">김문순</td><td class="border py-2">김숙희</td><td class="border py-2">김미현</td><td class="border py-2">이진숙</td><td class="border py-2">김완순</td></tr>
-                            <tr><td class="border py-2 font-bold">15여</td><td class="border py-2">1969~1970년생</td><td class="border py-2">방 미</td><td class="border py-2">윤은종</td><td class="border py-2">김은경</td><td class="border py-2">이미숙</td><td class="border py-2">김진희</td></tr>
-                            <tr class="bg-gray-50"><td class="border py-2 font-bold">16여</td><td class="border py-2">1971~1973년생</td><td class="border py-2">안경희</td><td class="border py-2">김현미</td><td class="border py-2">이경희B</td><td class="border py-2">김숙영</td><td class="border py-2">김경희H</td></tr>
-                            <tr><td class="border py-2 font-bold">17여</td><td class="border py-2">1974~1976년생</td><td class="border py-2">최진명</td><td class="border py-2">이한나</td><td class="border py-2">김재선</td><td class="border py-2">이세원</td><td class="border py-2">곽성란</td></tr>
-                            <tr class="bg-gray-50"><td class="border py-2 font-bold">18여</td><td class="border py-2">1977~1978년생</td><td class="border py-2">박혜란</td><td class="border py-2">권민정</td><td class="border py-2">임예인</td><td class="border py-2">황진영</td><td class="border py-2">이성혜</td></tr>
-                            <tr><td class="border py-2 font-bold">19여</td><td class="border py-2">1979~1980년생</td><td class="border py-2">나선휘</td><td class="border py-2">임희정</td><td class="border py-2">신주윤</td><td class="border py-2">-</td><td class="border py-2">임혜선</td></tr>
-                            <tr class="bg-gray-50"><td class="border py-2 font-bold">20여</td><td class="border py-2">1981~1983년생</td><td class="border py-2">이은선</td><td class="border py-2">윤효윤</td><td class="border py-2">한수정</td><td class="border py-2">이은선</td><td class="border py-2">염전옥</td></tr>
-                            <tr><td class="border py-2 font-bold">21여</td><td class="border py-2">1984~1988년생</td><td class="border py-2">박혜미</td><td class="border py-2">김지혜</td><td class="border py-2">서샘물</td><td class="border py-2">김영란</td><td class="border py-2">이아름</td></tr>
-                            <tr class="bg-gray-50"><td class="border py-2 font-bold">22여</td><td class="border py-2">1989년 이하</td><td class="border py-2">이신애</td><td class="border py-2">류리나</td><td class="border py-2">이신애</td><td class="border py-2">허예린</td><td class="border py-2">이인애</td></tr>
+                            <tr class="bg-gray-50 whitespace-nowrap"><td class="border py-3 font-bold">여</td><td class="border py-3">&lt;연 합 회&gt;</td><td class="border py-3">박선분</td><td class="border py-3">진혜욱, 김문순</td><td class="border py-3">박선자</td><td class="border py-3">곽숙희</td><td class="border py-3">최진명</td></tr>
+                            <tr class="whitespace-nowrap"><td class="border py-3 font-bold">1여</td><td class="border py-3">1945년 이상</td><td class="border py-3">전성자</td><td class="border py-3">이정운</td><td class="border py-3">이종련</td><td class="border py-3">윤효순</td><td class="border py-3">윤정애</td></tr>
+                            <tr class="bg-gray-50 whitespace-nowrap"><td class="border py-3 font-bold">2여</td><td class="border py-3">1946~1949년생</td><td class="border py-3">장정순</td><td class="border py-3">윤영희</td><td class="border py-3">강명효</td><td class="border py-3">모영희</td><td class="border py-3">장순자</td></tr>
+                            <tr class="whitespace-nowrap"><td class="border py-3 font-bold">3여</td><td class="border py-3">1950~1952년생</td><td class="border py-3">김주란</td><td class="border py-3">정광실</td><td class="border py-3">이왕우</td><td class="border py-3">윤숙노</td><td class="border py-3">윤숙노</td></tr>
+                            <tr class="bg-gray-50 whitespace-nowrap"><td class="border py-3 font-bold">4여</td><td class="border py-3">1953~1954년생</td><td class="border py-3">김효자</td><td class="border py-3">이혜정</td><td class="border py-3">이정자</td><td class="border py-3">문기화</td><td class="border py-3">김호순</td></tr>
+                            <tr class="whitespace-nowrap"><td class="border py-3 font-bold">5여</td><td class="border py-3">1955년생</td><td class="border py-3">허혜숙</td><td class="border py-3">심연자</td><td class="border py-3">강명자</td><td class="border py-3">박현숙</td><td class="border py-3">박현숙</td></tr>
+                            <tr class="bg-gray-50 whitespace-nowrap"><td class="border py-3 font-bold">6여</td><td class="border py-3">1956~1957년생</td><td class="border py-3">김기숙</td><td class="border py-3">신윤자</td><td class="border py-3">김경희</td><td class="border py-3">김정숙</td><td class="border py-3">이선영</td></tr>
+                            <tr class="whitespace-nowrap"><td class="border py-3 font-bold">7여</td><td class="border py-3">1958년생</td><td class="border py-3">오경순</td><td class="border py-3">조영희B</td><td class="border py-3">백옥선</td><td class="border py-3">박은희</td><td class="border py-3">송영순</td></tr>
+                            <tr class="bg-gray-50 whitespace-nowrap"><td class="border py-3 font-bold">8여</td><td class="border py-3">1959년생</td><td class="border py-3">진혜욱</td><td class="border py-3">최명옥</td><td class="border py-3">박기선</td><td class="border py-3">가경숙</td><td class="border py-3">원명자</td></tr>
+                            <tr class="whitespace-nowrap"><td class="border py-3 font-bold">9여</td><td class="border py-3">1960년생</td><td class="border py-3">차정림</td><td class="border py-3">한나현</td><td class="border py-3">김영이</td><td class="border py-3">김선연</td><td class="border py-3">서혜숙</td></tr>
+                            <tr class="bg-gray-50 whitespace-nowrap"><td class="border py-3 font-bold">10여</td><td class="border py-3">1961년생</td><td class="border py-3">박선자</td><td class="border py-3">신경옥</td><td class="border py-3">고향숙</td><td class="border py-3">엄윤희</td><td class="border py-3">함미숙</td></tr>
+                            <tr class="whitespace-nowrap"><td class="border py-3 font-bold">11여</td><td class="border py-3">1962~1963년생</td><td class="border py-3">곽숙희</td><td class="border py-3">유옥자</td><td class="border py-3">동순남</td><td class="border py-3">안순자</td><td class="border py-3">최낙정</td></tr>
+                            <tr class="bg-gray-50 whitespace-nowrap"><td class="border py-3 font-bold">12여</td><td class="border py-3">1964~1965년생</td><td class="border py-3">김화숙B</td><td class="border py-3">김은경C</td><td class="border py-3">임미경</td><td class="border py-3">-</td><td class="border py-3">박재숙</td></tr>
+                            <tr class="whitespace-nowrap"><td class="border py-3 font-bold">13여</td><td class="border py-3">1966년생</td><td class="border py-3">김미숙</td><td class="border py-3">허동숙</td><td class="border py-3">김영주</td><td class="border py-3">-</td><td class="border py-3">한상은</td></tr>
+                            <tr class="bg-gray-50 whitespace-nowrap"><td class="border py-3 font-bold">14여</td><td class="border py-3">1967~1968년생</td><td class="border py-3">김문순</td><td class="border py-3">김숙희</td><td class="border py-3">김미현</td><td class="border py-3">이진숙</td><td class="border py-3">김완순</td></tr>
+                            <tr class="whitespace-nowrap"><td class="border py-3 font-bold">15여</td><td class="border py-3">1969~1970년생</td><td class="border py-3">방 미</td><td class="border py-3">윤은종</td><td class="border py-3">김은경</td><td class="border py-3">이미숙</td><td class="border py-3">김진희</td></tr>
+                            <tr class="bg-gray-50 whitespace-nowrap"><td class="border py-3 font-bold">16여</td><td class="border py-3">1971~1973년생</td><td class="border py-3">안경희</td><td class="border py-3">김현미</td><td class="border py-3">이경희B</td><td class="border py-3">김숙영</td><td class="border py-3">김경희H</td></tr>
+                            <tr class="whitespace-nowrap"><td class="border py-3 font-bold">17여</td><td class="border py-3">1974~1976년생</td><td class="border py-3">최진명</td><td class="border py-3">이한나</td><td class="border py-3">김재선</td><td class="border py-3">이세원</td><td class="border py-3">곽성란</td></tr>
+                            <tr class="bg-gray-50 whitespace-nowrap"><td class="border py-3 font-bold">18여</td><td class="border py-3">1977~1978년생</td><td class="border py-3">박혜란</td><td class="border py-3">권민정</td><td class="border py-3">임예인</td><td class="border py-3">황진영</td><td class="border py-3">이성혜</td></tr>
+                            <tr class="whitespace-nowrap"><td class="border py-3 font-bold">19여</td><td class="border py-3">1979~1980년생</td><td class="border py-3">나선휘</td><td class="border py-3">임희정</td><td class="border py-3">신주윤</td><td class="border py-3">-</td><td class="border py-3">임혜선</td></tr>
+                            <tr class="bg-gray-50 whitespace-nowrap"><td class="border py-3 font-bold">20여</td><td class="border py-3">1981~1983년생</td><td class="border py-3">이은선</td><td class="border py-3">윤효윤</td><td class="border py-3">한수정</td><td class="border py-3">이은선</td><td class="border py-3">염전옥</td></tr>
+                            <tr class="whitespace-nowrap"><td class="border py-3 font-bold">21여</td><td class="border py-3">1984~1988년생</td><td class="border py-3">박혜미</td><td class="border py-3">김지혜</td><td class="border py-3">서샘물</td><td class="border py-3">김영란</td><td class="border py-3">이아름</td></tr>
+                            <tr class="bg-gray-50 whitespace-nowrap"><td class="border py-3 font-bold">22여</td><td class="border py-3">1989년 이하</td><td class="border py-3">이신애</td><td class="border py-3">류리나</td><td class="border py-3">이신애</td><td class="border py-3">허예린</td><td class="border py-3">이인애</td></tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-
         </main>
     </div>
 
