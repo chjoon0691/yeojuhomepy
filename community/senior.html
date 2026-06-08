@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>청춘대학 - 여주성결교회</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+        body { font-family: 'Pretendard', sans-serif; background-color: #ffffff; overflow-x: hidden; }
+        #mobile-menu { display: none; }
+        #mobile-menu.open { display: flex; }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="bg-[#244177] text-white w-full z-50 relative">
+        <div class="hidden md:block border-b border-white/20 bg-[#1b315b]">
+            <div class="max-w-7xl mx-auto px-4 py-2 flex justify-end items-center space-x-6 text-sm font-light">
+                <a href="https://www.youtube.com/@여주성결교회" target="_blank" class="hover:text-blue-300 flex items-center gap-1.5 transition"><i class="fab fa-youtube text-red-500 text-lg"></i> 유튜브채널</a>
+            </div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="../index.html" class="flex items-center gap-1 cursor-pointer z-50">
+                <img src="../images/교회마크만01.png" alt="여주성결교회 마크" class="h-8 md:h-11 w-auto object-contain">
+                <img src="../images/여주성결교회 로고타입1_3.png" alt="여주성결교회 로고" class="h-6 md:h-8 w-auto object-contain brightness-0 invert">
+            </a>
+            
+            <button class="md:hidden border border-white/40 w-10 h-10 flex items-center justify-center rounded text-white text-xl z-50 hover:bg-white/10 transition" onclick="document.getElementById('mobile-menu').classList.toggle('open')">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <nav class="hidden md:flex items-center space-x-8 text-lg font-medium">
+                <a href="../welcome/greeting.html" class="hover:text-blue-300 transition">환영합니다</a>
+                <a href="../word/sunday.html" class="hover:text-blue-300 transition">말씀과 찬양</a>
+                <a href="parish.html" class="text-blue-300 font-bold transition">공동체</a>
+                <a href="#" class="hover:text-blue-300 transition">다음세대</a>
+                <a href="#" class="hover:text-blue-300 transition">전도와 선교</a>
+                <a href="#" class="hover:text-blue-300 transition">교회소식</a>
+                <a href="#" class="hover:text-blue-300 transition">행정서비스</a>
+            </nav>
+        </div>
+
+        <div id="mobile-menu" class="absolute top-full left-0 w-full bg-[#1a3668] flex-col items-center py-4 space-y-4 shadow-xl z-50 text-lg">
+            <a href="../welcome/greeting.html" class="text-white hover:text-blue-300">환영합니다</a>
+            <a href="../word/sunday.html" class="text-white hover:text-blue-300">말씀과 찬양</a>
+            <a href="parish.html" class="text-blue-300 font-bold">공동체</a>
+            <a href="#" class="text-white hover:text-blue-300">다음세대</a>
+            <a href="#" class="text-white hover:text-blue-300">전도와 선교</a>
+            <a href="#" class="text-white hover:text-blue-300">교회소식</a>
+            <a href="#" class="text-white hover:text-blue-300">행정서비스</a>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-4 py-12 md:py-20 flex flex-col md:flex-row gap-10">
+        <!-- 좌측 사이드바 -->
+        <aside class="hidden md:block w-64 flex-shrink-0">
+            <div class="bg-[#6b8cba] text-white text-center py-4 text-xl font-bold rounded-t-lg">공동체</div>
+            <ul class="border border-t-0 border-gray-200 flex flex-col">
+                <li><a href="parish.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">교구</a></li>
+                <li><a href="organization.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">기관</a></li>
+                <li><a href="training.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">양육&훈련</a></li>
+                <li><a href="senior.html" class="flex justify-between items-center px-5 py-3 text-[#3b82f6] font-bold bg-gray-50 hover:bg-gray-100 transition border-b border-gray-200">청춘대학 <i class="fas fa-chevron-right text-xs"></i></a></li>
+                <li><a href="#" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition rounded-b-lg">성도기업</a></li>
+            </ul>
+        </aside>
+
+        <!-- 메인 콘텐츠 영역 -->
+        <main class="flex-1">
+            <div class="w-full bg-[#1b315b] rounded-xl h-32 md:h-48 flex flex-col justify-center items-center text-white shadow-md relative overflow-hidden mb-10">
+                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
+                <h3 class="text-3xl md:text-4xl font-extrabold relative z-10 tracking-tight">청춘대학</h3>
+            </div>
+
+            <!-- 청춘대학 상세 내용 영역 -->
+            <div class="flex flex-col lg:flex-row gap-8 items-start">
+                
+                <!-- 왼쪽 사진 -->
+                <div class="w-full lg:w-[45%] flex-shrink-0">
+                    <img src="청춘대학.jpg" alt="청춘대학 어르신 체조" class="w-full shadow-md object-cover rounded" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+                </div>
+                
+                <!-- 오른쪽 텍스트 정보 -->
+                <div class="flex-1 w-full">
+                    <!-- 따옴표 타이틀 -->
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="text-6xl text-gray-200 font-serif leading-none mt-4">“</span>
+                        <h4 class="text-3xl md:text-4xl font-bold text-[#629755] tracking-tight">청춘대학</h4>
+                        <span class="text-6xl text-gray-200 font-serif leading-none mt-4">”</span>
+                    </div>
+
+                    <!-- 회색 테두리 박스 내용 -->
+                    <div class="border border-gray-300 p-6 md:p-8 text-gray-700 text-[15px] leading-relaxed bg-white">
+                        <p class="mb-5">
+                            지역의 65세이상 되는 어르신들을 위한 노인대학<br>
+                            (컬러링북 활동, 건강체조, 공예활동, 건강교육, 레크레이션 등) 운영<br>
+                            1) 시간: 3-6월, 9-11월 매주 수요일 오전 10:30-오후1시<br>
+                            2) 장소: 여주성결교회 1층 사랑방<br>
+                            3) 대상: 여주지역 65세 이상 되는 어르신
+                        </p>
+
+                        <div class="mb-5">
+                            <p class="mb-1">조직</p>
+                            <ul class="space-y-1">
+                                <li>- 학장: 조형준 목사</li>
+                                <li>- 학감: 정완길 장로</li>
+                                <li>- 위원: 당회원</li>
+                                <li>- 회계: 김숙희 권사</li>
+                                <li>- 교사: 김영희 김정숙 동순남 박복동 장명숙</li>
+                                <li>- 담당교역자: 김대희 목사</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <p class="mb-1">운영방침</p>
+                            <p>
+                                - 지역내 65세 이상 어르신들을 대상으로 운영 되며 지역 어르신들을 섬기면서 불신자 어르신들이 교회로 나올 수 있도록 전도의 장을 제공하며, 노후의 행복한 삶의 질을 높이는 데 돕는 역할을 감당하고 있습니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <footer class="bg-white border-t border-gray-100 py-10 md:py-16 mt-10">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col items-center text-center">
+            <div class="flex justify-center space-x-4 md:space-x-8 text-sm md:text-base text-gray-600 font-medium mb-8">
+                <a href="#" class="hover:text-[#1a3668]">사이트맵</a>
+                <span class="text-gray-300">|</span>
+                <a href="#" class="hover:text-[#1a3668]">개인정보처리방침</a>
+                <span class="text-gray-300">|</span>
+                <a href="#" class="hover:text-[#1a3668]">이메일무단수집거부</a>
+            </div>
+            <h3 class="font-extrabold text-3xl md:text-5xl text-[#3b82f6] mb-4 md:mb-6 tracking-tight">여주성결교회</h3>
+            <div class="text-sm md:text-lg text-gray-500 space-y-1 md:space-y-2 mb-8">
+                <p>(12625) 경기도 여주시 우암로 96 (하동, 여주성결교회)</p>
+                <p>TEL . 031-882-9966 &nbsp;&nbsp; FAX . 031-882-9965</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        function toggleMobileSubMenu(menuId) {
+            const targetMenu = document.getElementById(menuId);
+            if (targetMenu) targetMenu.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>
