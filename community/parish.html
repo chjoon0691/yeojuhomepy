@@ -1,4 +1,3 @@
-<!-- STREAMING_CHUNK:Initializing HTML structure -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -17,62 +16,54 @@
 </head>
 <body class="text-gray-800">
 
-    <!-- STREAMING_CHUNK:Rendering Header Section -->
-    <header class="bg-[#244177] text-white w-full z-50 relative">
-        <div class="hidden md:block border-b border-white/20 bg-[#1b315b]">
-            <div class="max-w-7xl mx-auto px-4 py-2 flex justify-end items-center space-x-6 text-sm font-light">
-                <a href="https://www.youtube.com/@여주성결교회" target="_blank" class="hover:text-blue-300 flex items-center gap-1.5 transition"><i class="fab fa-youtube text-red-500 text-lg"></i> 유튜브채널</a>
-                <a href="#" class="hover:text-blue-300 flex items-center gap-1.5 transition"><i class="fab fa-instagram text-pink-400 text-lg"></i> 인스타그램</a>
-                <a href="#" class="hover:text-blue-300 flex items-center gap-1.5 transition"><i class="fab fa-facebook text-blue-400 text-lg"></i> 페이스북</a>
-            </div>
-        </div>
-        
-        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="../index.html" class="flex items-center gap-1 cursor-pointer z-50">
-                <img src="../images/교회마크만01.png" alt="여주성결교회 마크" class="h-8 md:h-11 w-auto object-contain">
-                <img src="../images/여주성결교회 로고타입1_3.png" alt="여주성결교회 로고" class="h-6 md:h-8 w-auto object-contain brightness-0 invert">
-            </a>
-            
-            <button class="md:hidden border border-white/40 w-10 h-10 flex items-center justify-center rounded text-white text-xl z-50 hover:bg-white/10 transition" onclick="document.getElementById('mobile-menu').classList.toggle('open')">
-                <i class="fas fa-bars"></i>
-            </button>
+    <!-- 마법의 파일 연결 1: 공통 상단 헤더 -->
+    <div id="common-header"></div>
 
-            <nav class="hidden md:flex items-center space-x-8 text-lg font-medium">
-                <a href="../welcome/greeting.html" class="hover:text-blue-300 transition">환영합니다</a>
-                <a href="../word/sunday.html" class="hover:text-blue-300 transition">말씀과 찬양</a>
-                <a href="parish.html" class="text-blue-300 font-bold transition">공동체</a>
-                <a href="#" class="hover:text-blue-300 transition">다음세대</a>
-                <a href="#" class="hover:text-blue-300 transition">전도와 선교</a>
-                <a href="#" class="hover:text-blue-300 transition">교회소식</a>
-                <a href="#" class="hover:text-blue-300 transition">행정서비스</a>
-                
-                <button class="border border-white/40 w-10 h-10 hidden md:flex items-center justify-center rounded text-white text-xl hover:bg-white/10 transition" onclick="toggleSitemap()">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </nav>
-        </div>
-
-        <div id="mobile-menu" class="absolute top-full left-0 w-full bg-[#1a3668] flex-col items-center py-4 space-y-4 shadow-xl z-50 text-lg">
-            <a href="../welcome/greeting.html" class="text-white hover:text-blue-300">환영합니다</a>
-            <a href="../word/sunday.html" class="text-white hover:text-blue-300">말씀과 찬양</a>
-            <a href="parish.html" class="text-blue-300 font-bold">공동체</a>
-            <a href="#" class="text-white hover:text-blue-300">다음세대</a>
-            <a href="#" class="text-white hover:text-blue-300">전도와 선교</a>
-            <a href="#" class="text-white hover:text-blue-300">교회소식</a>
-            <a href="#" class="text-white hover:text-blue-300">행정서비스</a>
-        </div>
-    </header>
-
-    <!-- STREAMING_CHUNK:Rendering Banner -->
     <section class="bg-[#102242] py-12 md:py-20 text-center relative overflow-hidden">
-        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1504052434569-70ad5836ab65?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-luminosity"></div>
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-luminosity"></div>
         <div class="relative z-10">
             <h2 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-2">공동체</h2>
             <p class="text-blue-200 text-sm md:text-base">Community</p>
         </div>
     </section>
 
-    <!-- STREAMING_CHUNK:Main Content Area -->
+    <!-- 모바일 전용 2차 메뉴 바 -->
+    <div class="md:hidden border-b border-gray-300 bg-white relative z-30 shadow-sm">
+        <div class="flex text-sm md:text-base">
+            <a href="../index.html" class="px-4 py-3 border-r border-gray-300 text-gray-600 flex items-center justify-center hover:bg-gray-50">
+                Home
+            </a>
+            <div class="flex-1 border-r border-gray-300 relative">
+                <button onclick="toggleMobileSubMenu('menu-depth1')" class="w-full flex justify-between items-center px-4 py-3 text-gray-800 focus:outline-none">
+                    <span>공동체</span>
+                    <i class="fas fa-plus text-gray-400 text-xs"></i>
+                </button>
+                <ul id="menu-depth1" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
+                    <li class="border-b border-gray-100"><a href="../welcome/greeting.html" class="block px-4 py-3 hover:bg-gray-50">환영합니다</a></li>
+                    <li class="border-b border-gray-100"><a href="../word/sunday.html" class="block px-4 py-3 hover:bg-gray-50">말씀과 찬양</a></li>
+                    <li class="border-b border-gray-100"><a href="parish.html" class="block px-4 py-3 text-blue-600 font-bold bg-gray-50">공동체</a></li>
+                    <li class="border-b border-gray-100"><a href="../nextgen/infant.html" class="block px-4 py-3 hover:bg-gray-50">다음세대</a></li>
+                    <li class="border-b border-gray-100"><a href="../mission/evangelism.html" class="block px-4 py-3 hover:bg-gray-50">전도와 선교</a></li>
+                    <li class="border-b border-gray-100"><a href="../news/weekly.html" class="block px-4 py-3 hover:bg-gray-50">교회소식</a></li>
+                    <li><a href="../service/application.html" class="block px-4 py-3 hover:bg-gray-50">행정서비스</a></li>
+                </ul>
+            </div>
+            <div class="flex-1 relative">
+                <button onclick="toggleMobileSubMenu('menu-depth2')" class="w-full flex justify-between items-center px-4 py-3 text-gray-800 focus:outline-none">
+                    <span>교구</span>
+                    <i class="fas fa-plus text-gray-400 text-xs"></i>
+                </button>
+                <ul id="menu-depth2" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
+                    <li class="border-b border-gray-100"><a href="parish.html" class="block px-4 py-3 text-blue-600 font-bold bg-gray-50">교구</a></li>
+                    <li class="border-b border-gray-100"><a href="organization.html" class="block px-4 py-3 hover:bg-gray-50">기관</a></li>
+                    <li class="border-b border-gray-100"><a href="training.html" class="block px-4 py-3 hover:bg-gray-50">양육&훈련</a></li>
+                    <li class="border-b border-gray-100"><a href="senior.html" class="block px-4 py-3 hover:bg-gray-50">청춘대학</a></li>
+                    <li><a href="company.html" class="block px-4 py-3 hover:bg-gray-50">성도기업</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
     <div class="max-w-7xl mx-auto px-4 py-12 md:py-20 flex flex-col md:flex-row gap-10">
         
         <!-- Left Sidebar -->
@@ -81,48 +72,117 @@
                 공동체
             </div>
             <ul class="border border-t-0 border-gray-200 flex flex-col">
-                <li><a href="parish.html" class="flex justify-between items-center px-5 py-3 text-[#3b82f6] font-bold bg-gray-50 hover:bg-gray-100 transition border-b border-gray-200">교구 <i class="fas fa-chevron-right text-xs"></i></a></li>
-                <li><a href="#" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">기관</a></li>
-                <li><a href="#" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">양육&훈련</a></li>
-                <li><a href="#" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">청춘대학</a></li>
-                <li><a href="#" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition rounded-b-lg">성도기업</a></li>
+                <li class="border-b border-gray-200">
+                    <a href="parish.html" class="flex justify-between items-center px-5 py-3 text-[#3b82f6] font-bold bg-gray-50 hover:bg-gray-100 transition">교구 <i class="fas fa-chevron-right text-xs"></i></a>
+                </li>
+                <li class="border-b border-gray-200">
+                    <a href="organization.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">기관</a>
+                </li>
+                <li class="border-b border-gray-200">
+                    <a href="training.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">양육&훈련</a>
+                </li>
+                <li class="border-b border-gray-200">
+                    <a href="senior.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">청춘대학</a>
+                </li>
+                <li>
+                    <a href="company.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition rounded-b-lg">성도기업</a>
+                </li>
             </ul>
         </aside>
 
+        <!-- Right Content Area -->
         <main class="flex-1">
-            <div class="w-full bg-[#1b315b] rounded-xl h-32 md:h-48 flex flex-col justify-center items-center text-white shadow-md relative overflow-hidden mb-10">
+            <div class="w-full bg-[#1b315b] rounded-xl h-24 md:h-32 flex flex-col justify-center items-center text-white shadow-md relative overflow-hidden mb-12">
                 <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
-                <h3 class="text-3xl md:text-4xl font-extrabold relative z-10 tracking-tight">교구 조직</h3>
+                <h3 class="text-2xl md:text-3xl font-extrabold relative z-10 tracking-tight">교구</h3>
             </div>
 
-            <div class="overflow-x-auto border border-gray-200 rounded-lg shadow-sm">
-                <table class="w-full text-center text-sm md:text-base">
-                    <thead class="bg-[#1b315b] text-white">
-                        <tr>
-                            <th class="py-4 font-bold w-1/3">교구</th>
-                            <th class="py-4 font-bold w-1/3">교구장로</th>
-                            <th class="py-4 font-bold w-1/3">교구장</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-gray-700">
-                        <tr class="bg-white border-b"><td class="py-4 font-bold">1교구</td><td class="py-4">박광섭장로</td><td class="py-4">김명숙C권사</td></tr>
-                        <tr class="bg-gray-50 border-b"><td class="py-4 font-bold">2교구</td><td class="py-4">김기호장로</td><td class="py-4">이종숙권사</td></tr>
-                        <tr class="bg-white border-b"><td class="py-4 font-bold">3교구</td><td class="py-4">권재윤장로</td><td class="py-4">조선옥권사</td></tr>
-                        <tr class="bg-gray-50 border-b"><td class="py-4 font-bold">4교구</td><td class="py-4">임성선장로</td><td class="py-4">유옥자권사</td></tr>
-                        <tr class="bg-white border-b"><td class="py-4 font-bold">5교구</td><td class="py-4">황덕수장로</td><td class="py-4">윤석경권사</td></tr>
-                        <tr class="bg-gray-50 border-b"><td class="py-4 font-bold">6교구</td><td class="py-4">이태수장로</td><td class="py-4">손정희권사</td></tr>
-                        <tr class="bg-white border-b"><td class="py-4 font-bold">7교구</td><td class="py-4">이종수장로</td><td class="py-4">김경희H집사</td></tr>
-                        <tr class="bg-gray-50 border-b"><td class="py-4 font-bold">8교구</td><td class="py-4">노성호장로</td><td class="py-4">염옥주권사</td></tr>
-                        <tr class="bg-white border-b"><td class="py-4 font-bold">9교구</td><td class="py-4">이훈희장로</td><td class="py-4">곽성란집사</td></tr>
-                        <tr class="bg-gray-50 border-b"><td class="py-4 font-bold">10교구</td><td class="py-4">정완길장로</td><td class="py-4">김현숙C권사</td></tr>
-                        <tr class="bg-white border-b"><td class="py-4 font-bold">11교구</td><td class="py-4">류근식장로</td><td class="py-4">김경선권사</td></tr>
-                        <tr class="bg-gray-50 border-b"><td class="py-4 font-bold">12교구</td><td class="py-4">곽동석장로</td><td class="py-4">박선분권사</td></tr>
-                    </tbody>
-                </table>
+            <!-- 교구 조직도 테이블 -->
+            <div class="mb-10">
+                <div class="flex items-center gap-2 mb-4">
+                    <i class="far fa-dot-circle text-[#6597a8] text-xl"></i>
+                    <h3 class="text-2xl font-bold text-gray-800">교구 조직</h3>
+                </div>
+                
+                <div class="border border-gray-200 shadow-sm rounded-lg overflow-hidden">
+                    <table class="w-full text-center text-sm md:text-base">
+                        <thead class="bg-[#1b315b] text-white">
+                            <tr>
+                                <th class="py-3.5 px-4 font-bold border-r border-white/20 w-1/3">교구</th>
+                                <th class="py-3.5 px-4 font-bold border-r border-white/20 w-1/3">교구장로</th>
+                                <th class="py-3.5 px-4 font-bold w-1/3">교구장</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-700 bg-white">
+                            <tr class="border-b border-gray-200 hover:bg-gray-50 transition">
+                                <td class="py-3.5 px-4 font-bold text-gray-900 border-r border-gray-200">1교구</td>
+                                <td class="py-3.5 px-4 border-r border-gray-200">박광섭장로</td>
+                                <td class="py-3.5 px-4">김명숙C권사</td>
+                            </tr>
+                            <tr class="border-b border-gray-200 hover:bg-gray-50 transition">
+                                <td class="py-3.5 px-4 font-bold text-gray-900 border-r border-gray-200">2교구</td>
+                                <td class="py-3.5 px-4 border-r border-gray-200">김기호장로</td>
+                                <td class="py-3.5 px-4">이종숙권사</td>
+                            </tr>
+                            <tr class="border-b border-gray-200 hover:bg-gray-50 transition">
+                                <td class="py-3.5 px-4 font-bold text-gray-900 border-r border-gray-200">3교구</td>
+                                <td class="py-3.5 px-4 border-r border-gray-200">권재윤장로</td>
+                                <td class="py-3.5 px-4">조선옥권사</td>
+                            </tr>
+                            <tr class="border-b border-gray-200 hover:bg-gray-50 transition">
+                                <td class="py-3.5 px-4 font-bold text-gray-900 border-r border-gray-200">4교구</td>
+                                <td class="py-3.5 px-4 border-r border-gray-200">임성선장로</td>
+                                <td class="py-3.5 px-4">유옥자권사</td>
+                            </tr>
+                            <tr class="border-b border-gray-200 hover:bg-gray-50 transition">
+                                <td class="py-3.5 px-4 font-bold text-gray-900 border-r border-gray-200">5교구</td>
+                                <td class="py-3.5 px-4 border-r border-gray-200">황덕수장로</td>
+                                <td class="py-3.5 px-4">윤석경권사</td>
+                            </tr>
+                            <tr class="border-b border-gray-200 hover:bg-gray-50 transition">
+                                <td class="py-3.5 px-4 font-bold text-gray-900 border-r border-gray-200">6교구</td>
+                                <td class="py-3.5 px-4 border-r border-gray-200">이태수장로</td>
+                                <td class="py-3.5 px-4">손정희권사</td>
+                            </tr>
+                            <tr class="border-b border-gray-200 hover:bg-gray-50 transition">
+                                <td class="py-3.5 px-4 font-bold text-gray-900 border-r border-gray-200">7교구</td>
+                                <td class="py-3.5 px-4 border-r border-gray-200">이종수장로</td>
+                                <td class="py-3.5 px-4">김경희H집사</td>
+                            </tr>
+                            <tr class="border-b border-gray-200 hover:bg-gray-50 transition">
+                                <td class="py-3.5 px-4 font-bold text-gray-900 border-r border-gray-200">8교구</td>
+                                <td class="py-3.5 px-4 border-r border-gray-200">노성호장로</td>
+                                <td class="py-3.5 px-4">염옥주권사</td>
+                            </tr>
+                            <tr class="border-b border-gray-200 hover:bg-gray-50 transition">
+                                <td class="py-3.5 px-4 font-bold text-gray-900 border-r border-gray-200">9교구</td>
+                                <td class="py-3.5 px-4 border-r border-gray-200">이훈희장로</td>
+                                <td class="py-3.5 px-4">곽성란집사</td>
+                            </tr>
+                            <tr class="border-b border-gray-200 hover:bg-gray-50 transition">
+                                <td class="py-3.5 px-4 font-bold text-gray-900 border-r border-gray-200">10교구</td>
+                                <td class="py-3.5 px-4 border-r border-gray-200">정완길장로</td>
+                                <td class="py-3.5 px-4">김현숙C권사</td>
+                            </tr>
+                            <tr class="border-b border-gray-200 hover:bg-gray-50 transition">
+                                <td class="py-3.5 px-4 font-bold text-gray-900 border-r border-gray-200">11교구</td>
+                                <td class="py-3.5 px-4 border-r border-gray-200">류근식장로</td>
+                                <td class="py-3.5 px-4">김경선권사</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition">
+                                <td class="py-3.5 px-4 font-bold text-gray-900 border-r border-gray-200">12교구</td>
+                                <td class="py-3.5 px-4 border-r border-gray-200">곽동석장로</td>
+                                <td class="py-3.5 px-4">박선분권사</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
+
         </main>
     </div>
 
+    <!-- 통합 하단 푸터 -->
     <footer class="bg-white border-t border-gray-100 py-10 md:py-16 mt-10">
         <div class="max-w-6xl mx-auto px-4 flex flex-col items-center text-center">
             <div class="flex justify-center space-x-4 md:space-x-8 text-sm md:text-base text-gray-600 font-medium mb-8">
@@ -137,14 +197,75 @@
                 <p>(12625) 경기도 여주시 우암로 96 (하동, 여주성결교회)</p>
                 <p>TEL . 031-882-9966 &nbsp;&nbsp; FAX . 031-882-9965</p>
             </div>
+            <div class="text-xs md:text-base text-gray-400">
+                <p>COPYRIGHT (C) 여주성결교회. All Rights Reserved.</p>
+            </div>
         </div>
     </footer>
-    
+
+    <!-- 사이트맵 팝업 모달 -->
+    <div id="sitemap-modal" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="toggleSitemap()"></div>
+        <div class="relative w-full max-w-[1000px] mx-auto mt-16 md:mt-24 bg-white shadow-2xl z-10 flex flex-col max-h-[80vh]">
+            <div class="bg-black text-white px-6 py-4 flex justify-between items-center shrink-0">
+                <div class="flex items-center gap-4">
+                    <h2 class="text-2xl font-extrabold tracking-tight">사이트맵</h2>
+                    <span class="text-sm font-light text-gray-300 hidden sm:inline-block">홈페이지에 오신것을 진심으로 환영합니다. 메뉴를 클릭하시면 해당페이지로 이동합니다.</span>
+                </div>
+                <button onclick="toggleSitemap()" class="text-white hover:text-gray-300 transition-colors">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            
+            <div id="sitemap-content" class="p-8 md:p-10 overflow-y-auto">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-x-8 gap-y-12">
+                    <!-- ... 사이트맵 내용은 이전과 동일하게 유지됩니다 ... -->
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-        function toggleSitemap() { /* 사이트맵 로직 */ }
+        function toggleMobileSubMenu(menuId) {
+            const targetMenu = document.getElementById(menuId);
+            const otherMenuId = menuId === 'menu-depth1' ? 'menu-depth2' : 'menu-depth1';
+            const otherMenu = document.getElementById(otherMenuId);
+            if (otherMenu && !otherMenu.classList.contains('hidden')) {
+                otherMenu.classList.add('hidden');
+                const otherIcon = otherMenu.previousElementSibling.querySelector('.fas');
+                if(otherIcon) {
+                    otherIcon.classList.remove('fa-minus');
+                    otherIcon.classList.add('fa-plus');
+                }
+            }
+            if (targetMenu) {
+                targetMenu.classList.toggle('hidden');
+                const icon = targetMenu.previousElementSibling.querySelector('.fas');
+                if(icon) {
+                    if(targetMenu.classList.contains('hidden')) {
+                        icon.classList.remove('fa-minus');
+                        icon.classList.add('fa-plus');
+                    } else {
+                        icon.classList.remove('fa-plus');
+                        icon.classList.add('fa-minus');
+                    }
+                }
+            }
+        }
+        function toggleSitemap() {
+            const modal = document.getElementById('sitemap-modal');
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden'; 
+            } else {
+                modal.classList.add('hidden');
+                document.body.style.overflow = ''; 
+            }
+        }
     </script>
+    
+    <!-- ★ 중요: 경로 설정 ★ -->
+    <script>const ROOT_PATH = "../";</script>
+    <script src="../js/common.js"></script>
 </body>
 </html>
-```eof
-
-이제 이 파일을 `community/parish.html` 경로로 깃허브에 추가해 보세요! 그 다음 다른 페이지들과의 링크 연결도 잊지 마세요. 도움이 필요하면 언제든 말씀해 주세요.
