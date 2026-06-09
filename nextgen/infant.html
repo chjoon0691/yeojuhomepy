@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>영아부 - 여주성결교회</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+        body { font-family: 'Pretendard', sans-serif; background-color: #ffffff; overflow-x: hidden; }
+        #mobile-menu { display: none; }
+        #mobile-menu.open { display: flex; }
+        /* 천막 모양 데코레이션 */
+        .awning { display: flex; width: 100%; height: 24px; overflow: hidden; }
+        .awning-item { flex: 1; border-radius: 0 0 50% 50%; }
+        .bg-color-1 { background-color: #79a184; }
+        .bg-color-2 { background-color: #c97e68; }
+        .bg-color-3 { background-color: #e5b382; }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="bg-[#244177] text-white w-full z-50 relative">
+        <div class="hidden md:block border-b border-white/20 bg-[#1b315b]">
+            <div class="max-w-7xl mx-auto px-4 py-2 flex justify-end items-center space-x-6 text-sm font-light">
+                <a href="https://www.youtube.com/@여주성결교회" target="_blank" class="hover:text-blue-300 flex items-center gap-1.5 transition"><i class="fab fa-youtube text-red-500 text-lg"></i> 유튜브채널</a>
+            </div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="../index.html" class="flex items-center gap-1 cursor-pointer z-50">
+                <img src="../images/교회마크만01.png" alt="여주성결교회 마크" class="h-8 md:h-11 w-auto object-contain">
+                <img src="../images/여주성결교회 로고타입1_3.png" alt="여주성결교회 로고" class="h-6 md:h-8 w-auto object-contain brightness-0 invert">
+            </a>
+            
+            <button class="md:hidden border border-white/40 w-10 h-10 flex items-center justify-center rounded text-white text-xl z-50 hover:bg-white/10 transition" onclick="document.getElementById('mobile-menu').classList.toggle('open')">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Menu (Desktop) -->
+            <nav class="hidden md:flex items-center space-x-8 text-lg font-medium">
+                <div class="relative group py-2">
+                    <a href="../welcome/greeting.html" class="hover:text-blue-300 transition">환영합니다</a>
+                    <!-- 드롭다운 생략 -->
+                </div>
+                <div class="relative group py-2">
+                    <a href="../word/sunday.html" class="hover:text-blue-300 transition">말씀과 찬양</a>
+                </div>
+                <div class="relative group py-2">
+                    <a href="../community/parish.html" class="hover:text-blue-300 transition">공동체</a>
+                </div>
+                
+                <div class="relative group py-2">
+                    <a href="infant.html" class="text-blue-300 font-bold transition">다음세대</a>
+                    <div class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                        <div class="w-48 bg-white text-gray-800 rounded-2xl shadow-xl py-3 border border-gray-100">
+                            <a href="infant.html" class="block px-6 py-2.5 text-base font-medium text-[#3b82f6] bg-gray-50 transition">영아부</a>
+                            <a href="kindergarten.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">유치부</a>
+                            <a href="children.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">유년부</a>
+                            <a href="elementary.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">초등부</a>
+                            <a href="awana.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">어와나</a>
+                            <a href="middle.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">중등부</a>
+                            <a href="high.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">고등부</a>
+                            <a href="youth.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">청년사역위원회</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative group py-2"><a href="#" class="hover:text-blue-300 transition">전도와 선교</a></div>
+                <div class="relative group py-2"><a href="#" class="hover:text-blue-300 transition">교회소식</a></div>
+                <div class="relative group py-2"><a href="#" class="hover:text-blue-300 transition">행정서비스</a></div>
+            </nav>
+        </div>
+
+        <div id="mobile-menu" class="absolute top-full left-0 w-full bg-[#1a3668] flex-col items-center py-4 space-y-4 shadow-xl z-50 text-lg">
+            <a href="../welcome/greeting.html" class="text-white hover:text-blue-300">환영합니다</a>
+            <a href="../word/sunday.html" class="text-white hover:text-blue-300">말씀과 찬양</a>
+            <a href="../community/parish.html" class="text-white hover:text-blue-300">공동체</a>
+            <a href="infant.html" class="text-blue-300 font-bold">다음세대</a>
+            <a href="#" class="text-white hover:text-blue-300">전도와 선교</a>
+            <a href="#" class="text-white hover:text-blue-300">교회소식</a>
+            <a href="#" class="text-white hover:text-blue-300">행정서비스</a>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-4 py-12 md:py-20 flex flex-col md:flex-row gap-10">
+        
+        <!-- 좌측 사이드바 -->
+        <aside class="hidden md:block w-64 flex-shrink-0">
+            <div class="bg-[#6b8cba] text-white text-center py-4 text-xl font-bold rounded-t-lg">다음세대</div>
+            <ul class="border border-t-0 border-gray-200 flex flex-col">
+                <li><a href="infant.html" class="flex justify-between items-center px-5 py-3 text-[#3b82f6] font-bold bg-gray-50 hover:bg-gray-100 transition border-b border-gray-200">영아부 <i class="fas fa-chevron-right text-xs"></i></a></li>
+                <li><a href="kindergarten.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">유치부</a></li>
+                <li><a href="children.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">유년부</a></li>
+                <li><a href="elementary.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">초등부</a></li>
+                <li><a href="awana.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">어와나</a></li>
+                <li><a href="middle.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">중등부</a></li>
+                <li><a href="high.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">고등부</a></li>
+                <li><a href="youth.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition rounded-b-lg">청년사역위원회</a></li>
+            </ul>
+        </aside>
+
+        <!-- 메인 콘텐츠 영역 -->
+        <main class="flex-1">
+            <!-- 영아부 특화 디자인 -->
+            <div class="bg-[#ebd999] rounded-xl overflow-hidden shadow-sm mb-12 border border-[#dfc978]">
+                <!-- 상단 차양 디자인 -->
+                <div class="bg-[#ebd999] h-2"></div>
+                <div class="bg-white">
+                    <div class="awning">
+                        <div class="awning-item bg-color-1"></div><div class="awning-item bg-color-2"></div><div class="awning-item bg-color-3"></div>
+                        <div class="awning-item bg-color-1"></div><div class="awning-item bg-color-2"></div><div class="awning-item bg-color-3"></div>
+                        <div class="awning-item bg-color-1"></div><div class="awning-item bg-color-2"></div><div class="awning-item bg-color-3"></div>
+                        <div class="awning-item bg-color-1 hidden sm:block"></div><div class="awning-item bg-color-2 hidden sm:block"></div><div class="awning-item bg-color-3 hidden sm:block"></div>
+                        <div class="awning-item bg-color-1 hidden md:block"></div><div class="awning-item bg-color-2 hidden md:block"></div><div class="awning-item bg-color-3 hidden md:block"></div>
+                    </div>
+                </div>
+
+                <div class="p-8 md:p-12 text-center bg-[#ebd999]">
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-[#7d563d] mb-8">영아부</h2>
+                    <img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="영아부 사진" class="mx-auto rounded-lg shadow-lg w-full max-w-2xl object-cover h-64 md:h-96 mb-2 border-4 border-white/60">
+                </div>
+                
+                <div class="bg-[#613f28] text-white p-8 md:p-10">
+                    <h3 class="text-2xl md:text-3xl font-bold mb-3 tracking-tight">엄마, 아빠 우리 예배드려요</h3>
+                    <p class="text-sm md:text-base opacity-90 leading-relaxed font-light break-keep">
+                        『하나님이 지으신 그 모든 것을 보시니 보시기에 심히 좋았더라 저녁이 되고 아침이 되니 이는 여섯째 날이니라』 (창 1:31)
+                    </p>
+                </div>
+            </div>
+
+            <!-- 하단 정보 -->
+            <div class="max-w-2xl mx-auto space-y-4 px-2">
+                <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 bg-gray-50/50 p-3 rounded-lg hover:bg-gray-50 transition border border-transparent hover:border-gray-200">
+                    <span class="px-5 py-1.5 border-2 border-[#79a184] rounded-full text-[#5e8c6b] font-bold text-sm w-28 text-center shrink-0">예배안내</span>
+                    <span class="text-gray-700 font-medium text-[15px] sm:text-base pl-1">주일 오전 11시 / 교육관 1층 영아부실</span>
+                </div>
+                <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 bg-gray-50/50 p-3 rounded-lg hover:bg-gray-50 transition border border-transparent hover:border-gray-200">
+                    <span class="px-5 py-1.5 border-2 border-[#79a184] rounded-full text-[#5e8c6b] font-bold text-sm w-28 text-center shrink-0">담당교역자</span>
+                    <span class="text-gray-700 font-medium text-[15px] sm:text-base pl-1">신정수 전도사</span>
+                </div>
+                <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 bg-gray-50/50 p-3 rounded-lg hover:bg-gray-50 transition border border-transparent hover:border-gray-200">
+                    <span class="px-5 py-1.5 border-2 border-[#79a184] rounded-full text-[#5e8c6b] font-bold text-sm w-28 text-center shrink-0">총무</span>
+                    <span class="text-gray-700 font-medium text-[15px] sm:text-base pl-1">조영은 집사</span>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <footer class="bg-white border-t border-gray-100 py-10 mt-10">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h3 class="font-extrabold text-3xl text-[#3b82f6] mb-4">여주성결교회</h3>
+            <p class="text-gray-500 text-sm">(12625) 경기도 여주시 우암로 96</p>
+        </div>
+    </footer>
+</body>
+</html>
