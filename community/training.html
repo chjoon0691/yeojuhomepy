@@ -82,84 +82,120 @@
 
         <!-- 메인 콘텐츠 영역 -->
         <main class="flex-1">
-            <div class="w-full bg-[#1b315b] rounded-xl h-32 md:h-48 flex flex-col justify-center items-center text-white shadow-md relative overflow-hidden mb-12">
+            <div class="w-full bg-[#1b315b] rounded-xl h-24 md:h-32 flex flex-col justify-center items-center text-white shadow-md relative overflow-hidden mb-12">
                 <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
-                <h3 class="text-3xl md:text-4xl font-extrabold relative z-10 tracking-tight">양육&훈련</h3>
+                <h3 class="text-2xl md:text-3xl font-extrabold relative z-10 tracking-tight">양육&훈련</h3>
             </div>
 
-            <!-- 양육 및 훈련 소개 -->
-            <div class="space-y-12">
-                <!-- 1. 새가족 교육 -->
-                <div class="flex flex-col md:flex-row bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-                    <div class="md:w-1/3">
-                        <img src="https://images.unsplash.com/photo-1544640808-32ca72ac7f37?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="새가족 교육" class="w-full h-48 md:h-full object-cover">
+            <div class="space-y-16">
+                <!-- 1. 중보기도팀 -->
+                <div class="flex flex-col lg:flex-row gap-8 items-start">
+                    <!-- 사진 크기 축소 (기존 5/12 -> 1/3, 최대 너비 제한) -->
+                    <div class="w-full lg:w-1/3 flex justify-center lg:justify-start">
+                        <img src="https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/community/%EC%A4%91%EB%B3%B4%EA%B8%B0%EB%8F%84%ED%8C%80.jpg" alt="중보기도팀" class="w-full max-w-[320px] h-auto object-cover rounded-lg shadow-sm border border-gray-100">
                     </div>
-                    <div class="md:w-2/3 p-6 md:p-8 flex flex-col justify-center">
-                        <h4 class="text-2xl font-bold text-gray-800 mb-3 flex items-center gap-2">
-                            <i class="fas fa-seedling text-[#78b394]"></i> 새가족 교육
-                        </h4>
-                        <p class="text-gray-600 mb-4 leading-relaxed break-keep text-sm md:text-base">
-                            여주성결교회에 처음 오신 분들을 환영하며, 교회의 비전과 핵심 가치를 소개하고 신앙 생활의 기초를 다지는 필수 과정입니다. 총 5주간 진행되며, 수료 후 소속 교구와 기관에 편성됩니다.
-                        </p>
-                        <div class="bg-gray-50 p-3 rounded-lg text-sm text-gray-700">
-                            <span class="font-bold mr-2 text-gray-900">기간 :</span> 분기별 5주간 진행 (주일 오전 10시)
+                    <!-- 텍스트 영역 확장 (기존 7/12 -> 2/3) -->
+                    <div class="w-full lg:w-2/3">
+                        <div class="flex items-center mb-4 justify-center lg:justify-start">
+                            <span class="text-5xl text-gray-200 font-serif leading-none mr-2">“</span>
+                            <h3 class="text-3xl font-extrabold text-[#78b394]">중보기도팀</h3>
+                            <span class="text-5xl text-gray-200 font-serif leading-none ml-2">”</span>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg text-gray-700 leading-relaxed border border-gray-200 text-[15px] md:text-base space-y-4">
+                            <p><strong class="text-gray-900 text-lg block mb-1">중보기도팀 소개</strong>
+                            중보기도팀은 훈련을 이수한 약 130명의 중보기도자들이 함께하는 기도 공동체로, 교회와 목회자, 선교지와 선교사, 성도, 지역사회와 나라를 위해 지속적으로 기도하는 사역팀입니다. 하나님의 뜻이 이 땅 가운데 이루어지고, 교회 공동체가 더욱 건강하게 세워질 수 있도록 보이지 않는 자리에서 기도로 헌신하며 영적 동역의 사명을 감당하고 있습니다.</p>
+                            
+                            <hr class="border-gray-200 my-4">
+                            
+                            <!-- 소그룹 중보기도 시각적 강조 및 리스트화 -->
+                            <div>
+                                <strong class="text-gray-900 text-lg block mb-3">중보기도 사역 안내</strong>
+                                <ul class="space-y-3">
+                                    <li class="flex items-start"><span class="font-bold text-[#78b394] mr-2">(1)</span> 매월 연합중보기도회</li>
+                                    <li class="flex items-start"><span class="font-bold text-[#78b394] mr-2">(2)</span> 365 정오기도</li>
+                                    <li class="flex items-start flex-col">
+                                        <div class="flex items-center"><span class="font-bold text-[#78b394] mr-2">(3)</span> <span class="font-extrabold text-[#1b315b] underline decoration-blue-200 decoration-4 underline-offset-2">소그룹 중보기도</span></div>
+                                        <!-- 소그룹 표(그리드) 디자인 -->
+                                        <div class="mt-3 ml-6 grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-4 bg-white p-4 rounded-md border border-[#78b394]/30 shadow-sm w-full text-sm md:text-[15px]">
+                                            <div class="flex"><span class="font-bold text-gray-800 w-16 shrink-0">정병단</span> <span class="text-gray-600">: 주일예배</span></div>
+                                            <div class="flex"><span class="font-bold text-gray-800 w-16 shrink-0">레위</span> <span class="text-gray-600">: 목회자</span></div>
+                                            <div class="flex"><span class="font-bold text-gray-800 w-16 shrink-0">라파</span> <span class="text-gray-600">: 환우</span></div>
+                                            <div class="flex"><span class="font-bold text-gray-800 w-16 shrink-0">닛시</span> <span class="text-gray-600">: 영적전쟁</span></div>
+                                            <div class="flex"><span class="font-bold text-gray-800 w-16 shrink-0">미션</span> <span class="text-gray-600">: 선교</span></div>
+                                            <div class="flex"><span class="font-bold text-gray-800 w-16 shrink-0">에스더</span> <span class="text-gray-600">: 지역·나라</span></div>
+                                            <div class="flex sm:col-span-2"><span class="font-bold text-gray-800 w-16 shrink-0">다니엘</span> <span class="text-gray-600">: 다음세대</span></div>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start mt-2"><span class="font-bold text-[#78b394] mr-2">(4)</span> 119 긴급기도</li>
+                                    <li class="flex items-start"><span class="font-bold text-[#78b394] mr-2">(5)</span> 중보기도학교 (상반기)</li>
+                                    <li class="flex items-start"><span class="font-bold text-[#78b394] mr-2">(6)</span> 중보기도세미나 (하반기)</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- 2. 뉴라이프 훈련 -->
-                <div class="flex flex-col md:flex-row-reverse bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-                    <div class="md:w-1/3">
-                        <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="뉴라이프 훈련" class="w-full h-48 md:h-full object-cover">
+                <!-- 2. 마더와이즈 -->
+                <div class="flex flex-col lg:flex-row gap-8 items-start">
+                    <div class="w-full lg:w-1/3 flex justify-center lg:justify-start">
+                        <img src="https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/community/%EB%A7%88%EB%8D%94%EC%99%80%EC%9D%B4%EC%A6%88.jpg" alt="마더와이즈" class="w-full max-w-[320px] h-auto object-cover rounded-lg shadow-sm border border-gray-100">
                     </div>
-                    <div class="md:w-2/3 p-6 md:p-8 flex flex-col justify-center">
-                        <h4 class="text-2xl font-bold text-gray-800 mb-3 flex items-center gap-2">
-                            <i class="fas fa-street-view text-[#6b8cba]"></i> 뉴라이프(New Life) 훈련
-                        </h4>
-                        <p class="text-gray-600 mb-4 leading-relaxed break-keep text-sm md:text-base">
-                            말씀 안에서 자신의 삶을 돌아보고, 예수 그리스도의 제자로서의 새로운 삶(New Life)을 결단하며 영적 성장을 도모하는 집중 훈련 프로그램입니다.
-                        </p>
-                        <div class="bg-gray-50 p-3 rounded-lg text-sm text-gray-700">
-                            <span class="font-bold mr-2 text-gray-900">기간 :</span> 전반기/하반기 7주 과정 진행
+                    <div class="w-full lg:w-2/3">
+                        <div class="flex items-center mb-4 justify-center lg:justify-start">
+                            <span class="text-5xl text-gray-200 font-serif leading-none mr-2">“</span>
+                            <h3 class="text-3xl font-extrabold text-[#78b394]">마더와이즈</h3>
+                            <span class="text-5xl text-gray-200 font-serif leading-none ml-2">”</span>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg text-gray-700 leading-relaxed border border-gray-200 text-[15px] md:text-base space-y-4">
+                            <p>삶의 다양한 관계(결혼, 출산, 육아) 안에서 어머니들을 가정과 교회에서 성숙하게 세워주는 말씀 양육 프로그램입니다.</p>
+                            <div class="bg-white p-4 rounded-md border border-gray-100 mt-2">
+                                <p class="font-bold text-gray-900 mb-2">- 강좌안내</p>
+                                <ul class="space-y-1 pl-1">
+                                    <li><span class="font-medium text-gray-800">1) 시간:</span> 매주 목요일 오전 10-12시</li>
+                                    <li><span class="font-medium text-gray-800">2) 장소:</span> 교육관 2층 초등부실</li>
+                                    <li><span class="font-medium text-gray-800">3) 대상:</span> 자녀를 둔 어머니</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- 3. 성결 바이블 스쿨 -->
-                <div class="flex flex-col md:flex-row bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-                    <div class="md:w-1/3">
-                        <img src="https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="성결 바이블 스쿨" class="w-full h-48 md:h-full object-cover">
+                <!-- 3. 바이블스쿨 -->
+                <div class="flex flex-col lg:flex-row gap-8 items-start">
+                    <div class="w-full lg:w-1/3 flex justify-center lg:justify-start">
+                        <img src="https://images.unsplash.com/photo-1504052434569-70ad5836ab65?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="바이블스쿨" class="w-full max-w-[320px] h-auto object-cover rounded-lg shadow-sm border border-gray-100">
                     </div>
-                    <div class="md:w-2/3 p-6 md:p-8 flex flex-col justify-center">
-                        <h4 class="text-2xl font-bold text-gray-800 mb-3 flex items-center gap-2">
-                            <i class="fas fa-book-reader text-[#9c775d]"></i> 성결 바이블 스쿨
-                        </h4>
-                        <p class="text-gray-600 mb-4 leading-relaxed break-keep text-sm md:text-base">
-                            성경의 깊이 있는 이해와 성결한 그리스도인의 삶을 살기 위해 체계적으로 말씀을 배우는 과정입니다. 성경의 배경, 교리, 적용 등 다양한 주제를 다룹니다.
-                        </p>
-                        <div class="bg-gray-50 p-3 rounded-lg text-sm text-gray-700">
-                            <span class="font-bold mr-2 text-gray-900">기간 :</span> 10주간 심화 과정
+                    <div class="w-full lg:w-2/3">
+                        <div class="flex items-center mb-4 justify-center lg:justify-start">
+                            <span class="text-5xl text-gray-200 font-serif leading-none mr-2">“</span>
+                            <h3 class="text-3xl font-extrabold text-[#78b394]">바이블스쿨</h3>
+                            <span class="text-5xl text-gray-200 font-serif leading-none ml-2">”</span>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg text-gray-700 leading-relaxed border border-gray-200 text-[15px] md:text-base space-y-4">
+                            <p>"바이블스쿨은 매년 1회 또는 2회 약 8~10주간 진행되는 집중 성경공부 프로그램입니다. 성도가 꼭 알아야 하거나 알기를 원하는 과목을 개설하되, 부교역자들이 각 과목을 맡아 집중 연구하고, 소그룹이 강의와 토론을 통해 성도들은 신앙생활에서 실천에까지 이어질 수 있도록 배우게 됩니다."</p>
+                            <p>- 기간: 매년 봄 또는 가을 8~10주간, 주중 낮 또는 저녁<br>
+                            각 과목마다 주중 낮반과 저녁반을 개설하여 참여도를 높이고 자유롭게 과목과 시간을 정하여 매 학기 50여 명이 이수하고 있습니다.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- 4. 마더와이즈 -->
-                <div class="flex flex-col md:flex-row-reverse bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-                    <div class="md:w-1/3">
-                        <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="마더와이즈" class="w-full h-48 md:h-full object-cover">
+                <!-- 4. 음악문화학교 -->
+                <div class="flex flex-col lg:flex-row gap-8 items-start">
+                    <div class="w-full lg:w-1/3 flex justify-center lg:justify-start">
+                        <img src="https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/community/%EC%9D%8C%EC%95%85%EB%AC%B8%ED%99%94%EA%B5%90%EC%8B%A4.jpg" alt="음악문화학교" class="w-full max-w-[320px] h-auto object-cover rounded-lg shadow-sm border border-gray-100">
                     </div>
-                    <div class="md:w-2/3 p-6 md:p-8 flex flex-col justify-center">
-                        <h4 class="text-2xl font-bold text-gray-800 mb-3 flex items-center gap-2">
-                            <i class="fas fa-hands-holding-child text-[#e09ba5]"></i> 마더와이즈 (MotherWise)
-                        </h4>
-                        <p class="text-gray-600 mb-4 leading-relaxed break-keep text-sm md:text-base">
-                            성경적 원리에 따라 아내와 어머니로서의 올바른 역할을 배우고, 가정을 말씀 위에 든든히 세우도록 돕는 여성 대상의 양육 프로그램입니다.
-                        </p>
-                        <div class="bg-gray-50 p-3 rounded-lg text-sm text-gray-700">
-                            <span class="font-bold mr-2 text-gray-900">기간 :</span> 목요일 오전 (8주 과정)
+                    <div class="w-full lg:w-2/3">
+                        <div class="flex items-center mb-4 justify-center lg:justify-start">
+                            <span class="text-5xl text-gray-200 font-serif leading-none mr-2">“</span>
+                            <h3 class="text-3xl font-extrabold text-[#78b394]">음악문화학교</h3>
+                            <span class="text-5xl text-gray-200 font-serif leading-none ml-2">”</span>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg text-gray-700 leading-relaxed border border-gray-200 text-[15px] md:text-base space-y-4">
+                            <p>음악문화교실은 상반기와 하반기로 나누어 각 학기 16주 과정으로 운영되는 문화·교육 사역 프로그램입니다. 다양한 예술 교육의 기회를 제공함으로써 성도들과 지역 주민들이 문화적 소양을 넓히고, 삶의 풍요로움을 경험할 수 있도록 돕고 있습니다. 또한 단순한 취미 활동을 넘어, 각자의 재능과 가능성을 발견하고 계발하여 교회와 공동체 안에서 선한 영향력을 발휘할 수 있는 다음 세대와 사역 인재를 세우는 것을 목표로 합니다. 음악문화학교실은 팀장을 중심으로 3명의 팀원이 함께 기획 및 운영을 담당하며, 체계적인 커리큘럼과 세심한 준비를 통해 안정적이고 내실 있게 진행되고 있습니다.</p>
                         </div>
                     </div>
                 </div>
+
             </div>
             
         </main>
