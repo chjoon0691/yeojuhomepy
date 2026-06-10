@@ -4,16 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>새가족 안내 - 여주성결교회</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
-        body { 
-            font-family: 'Pretendard', sans-serif; 
-            background-color: #ffffff;
-            overflow-x: hidden;
-        }
+        body { font-family: 'Pretendard', sans-serif; background-color: #ffffff; overflow-x: hidden; }
         #mobile-menu { display: none; }
         #mobile-menu.open { display: flex; }
     </style>
@@ -34,13 +29,10 @@
     <!-- 모바일 전용 2차 메뉴 바 -->
     <div class="md:hidden border-b border-gray-300 bg-white relative z-30 shadow-sm">
         <div class="flex text-sm md:text-base">
-            <a href="../../index.html" class="px-4 py-3 border-r border-gray-300 text-gray-600 flex items-center justify-center hover:bg-gray-50">
-                Home
-            </a>
+            <a href="../../index.html" class="px-4 py-3 border-r border-gray-300 text-gray-600 flex items-center justify-center hover:bg-gray-50">Home</a>
             <div class="flex-1 border-r border-gray-300 relative">
                 <button onclick="toggleMobileSubMenu('menu-depth1')" class="w-full flex justify-between items-center px-4 py-3 text-gray-800 focus:outline-none">
-                    <span>환영합니다</span>
-                    <i class="fas fa-plus text-gray-400 text-xs"></i>
+                    <span>환영합니다</span><i class="fas fa-plus text-gray-400 text-xs"></i>
                 </button>
                 <ul id="menu-depth1" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
                     <li class="border-b border-gray-100"><a href="../greeting.html" class="block px-4 py-3 text-blue-600 font-bold bg-gray-50">환영합니다</a></li>
@@ -54,8 +46,7 @@
             </div>
             <div class="flex-1 relative">
                 <button onclick="toggleMobileSubMenu('menu-depth2')" class="w-full flex justify-between items-center px-4 py-3 text-gray-800 focus:outline-none">
-                    <span>새가족안내</span>
-                    <i class="fas fa-plus text-gray-400 text-xs"></i>
+                    <span>새가족안내</span><i class="fas fa-plus text-gray-400 text-xs"></i>
                 </button>
                 <ul id="menu-depth2" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
                     <li class="border-b border-gray-100"><a href="../greeting.html" class="block px-4 py-3 hover:bg-gray-50">인사말</a></li>
@@ -75,9 +66,7 @@
         
         <!-- 좌측 사이드바 -->
         <aside class="hidden md:block w-64 flex-shrink-0">
-            <div class="bg-[#6b8cba] text-white text-center py-4 text-xl font-bold rounded-t-lg">
-                환영합니다
-            </div>
+            <div class="bg-[#6b8cba] text-white text-center py-4 text-xl font-bold rounded-t-lg">환영합니다</div>
             <ul class="border border-t-0 border-gray-200 flex flex-col">
                 <li class="border-b border-gray-200"><a href="../greeting.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">인사말</a></li>
                 <li class="border-b border-gray-200"><a href="../history/history.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">교회연혁</a></li>
@@ -91,9 +80,8 @@
 
         <!-- 메인 콘텐츠 영역 -->
         <main class="flex-1 space-y-12">
-            
             <div class="w-full bg-[#1b315b] rounded-xl h-32 md:h-48 flex flex-col justify-center items-center text-white shadow-md relative overflow-hidden">
-                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1529070538774-1843cb3265df?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
+                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1529070538774-1843cb3265df?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
                 <h3 class="text-3xl md:text-4xl font-extrabold relative z-10 tracking-tight">새가족 안내</h3>
             </div>
 
@@ -148,8 +136,6 @@
             <div>
                 <h3 class="text-2xl font-extrabold text-gray-900 mb-6 border-l-4 border-[#1b315b] pl-4">등록절차</h3>
                 <div class="flex flex-col md:flex-row items-center justify-center gap-y-4 md:gap-y-0 md:gap-x-2 w-full">
-                    
-                    <!-- 1~4번 박스 그룹 (모바일 1행 / PC 좌측) -->
                     <div class="flex items-center justify-center gap-x-1 sm:gap-x-2 w-full md:w-auto md:flex-[4]">
                         <div class="flex flex-col items-center justify-center w-[21%] sm:w-[22%] md:w-full md:flex-1 h-24 sm:h-28 md:h-32 bg-white border-2 border-[#6b8cba] rounded-xl shadow-sm p-1">
                             <span class="text-sm sm:text-base md:text-xl font-extrabold text-gray-800 whitespace-nowrap">안내</span>
@@ -169,14 +155,9 @@
                             <span class="text-[9px] sm:text-[11px] md:text-sm text-gray-500 font-medium mt-1 md:mt-1.5 leading-tight tracking-tighter text-center whitespace-nowrap">(영접실)</span>
                         </div>
                     </div>
-
-                    <!-- PC에서만 보이는 그룹 간 연결 화살표 -->
                     <i class="fas fa-chevron-right text-[#6b8cba] text-sm hidden md:block mx-1 lg:mx-2 flex-shrink-0"></i>
-
-                    <!-- 5~7번 박스 그룹 (모바일 2행 / PC 우측) -->
                     <div class="flex items-center justify-center gap-x-1 sm:gap-x-2 w-full md:w-auto md:flex-[3]">
                         <i class="fas fa-chevron-right text-[#6b8cba] text-[10px] sm:text-xs block md:hidden mr-1 flex-shrink-0"></i>
-
                         <div class="flex flex-col items-center justify-center w-[21%] sm:w-[22%] md:w-full md:flex-1 h-24 sm:h-28 md:h-32 bg-white border-2 border-[#6b8cba] rounded-xl shadow-sm p-1">
                             <span class="text-[11px] sm:text-sm md:text-[17px] lg:text-lg font-extrabold text-gray-800 leading-tight tracking-tighter text-center whitespace-nowrap">기념사진<br class="md:hidden">촬영</span>
                         </div>
@@ -190,7 +171,6 @@
                             <span class="text-sm sm:text-base md:text-xl font-extrabold text-gray-800 whitespace-nowrap">귀가</span>
                         </div>
                     </div>
-
                 </div>
             </div>
         </main>
@@ -207,27 +187,13 @@
             const otherMenu = document.getElementById(otherMenuId);
             if (otherMenu && !otherMenu.classList.contains('hidden')) {
                 otherMenu.classList.add('hidden');
-                const otherIcon = otherMenu.previousElementSibling.querySelector('.fas');
-                if(otherIcon) {
-                    otherIcon.classList.remove('fa-minus');
-                    otherIcon.classList.add('fa-plus');
-                }
             }
             if (targetMenu) {
                 targetMenu.classList.toggle('hidden');
-                const icon = targetMenu.previousElementSibling.querySelector('.fas');
-                if(icon) {
-                    if(targetMenu.classList.contains('hidden')) {
-                        icon.classList.remove('fa-minus');
-                        icon.classList.add('fa-plus');
-                    } else {
-                        icon.classList.remove('fa-plus');
-                        icon.classList.add('fa-minus');
-                    }
-                }
             }
         }
     </script>
+    
     <!-- ★ 중요: 서브페이지는 js 파일을 불러오기 위해 밖으로 두 번 나가야 합니다 ★ -->
     <script>const ROOT_PATH = "../../";</script>
     <script src="../../js/common.js"></script>
