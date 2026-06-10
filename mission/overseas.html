@@ -136,6 +136,7 @@
             </nav>
         </div>
 
+        <!-- 모바일 메뉴 -->
         <div id="mobile-menu" class="absolute top-full left-0 w-full bg-[#1a3668] flex-col items-center py-4 space-y-4 shadow-xl z-50 text-lg">
             <a href="../welcome/greeting.html" class="text-white hover:text-blue-300">환영합니다</a>
             <a href="../word/sunday.html" class="text-white hover:text-blue-300">말씀과 찬양</a>
@@ -436,24 +437,9 @@
             const otherMenu = document.getElementById(otherMenuId);
             if (otherMenu && !otherMenu.classList.contains('hidden')) {
                 otherMenu.classList.add('hidden');
-                const otherIcon = otherMenu.previousElementSibling.querySelector('.fas');
-                if(otherIcon) {
-                    otherIcon.classList.remove('fa-minus');
-                    otherIcon.classList.add('fa-plus');
-                }
             }
             if (targetMenu) {
                 targetMenu.classList.toggle('hidden');
-                const icon = targetMenu.previousElementSibling.querySelector('.fas');
-                if(icon) {
-                    if(targetMenu.classList.contains('hidden')) {
-                        icon.classList.remove('fa-minus');
-                        icon.classList.add('fa-plus');
-                    } else {
-                        icon.classList.remove('fa-plus');
-                        icon.classList.add('fa-minus');
-                    }
-                }
             }
         }
         function toggleSitemap() {
@@ -467,5 +453,7 @@
             }
         }
     </script>
+    <script>const ROOT_PATH = "../";</script>
+    <script src="../js/common.js"></script>
 </body>
 </html>
