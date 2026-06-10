@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>양육&훈련 - 여주성결교회</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -15,136 +16,166 @@
 </head>
 <body class="text-gray-800">
 
-    <header class="bg-[#244177] text-white w-full z-50 relative">
-        <div class="hidden md:block border-b border-white/20 bg-[#1b315b]">
-            <div class="max-w-7xl mx-auto px-4 py-2 flex justify-end items-center space-x-6 text-sm font-light">
-                <a href="https://www.youtube.com/@여주성결교회" target="_blank" class="hover:text-blue-300 flex items-center gap-1.5 transition"><i class="fab fa-youtube text-red-500 text-lg"></i> 유튜브채널</a>
+    <!-- 마법의 파일 연결 1: 공통 상단 헤더 -->
+    <div id="common-header"></div>
+
+    <!-- 상단 배너 -->
+    <section class="bg-[#102242] py-12 md:py-20 text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-luminosity"></div>
+        <div class="relative z-10">
+            <h2 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-2">공동체</h2>
+            <p class="text-blue-200 text-sm md:text-base">Community</p>
+        </div>
+    </section>
+
+    <!-- 모바일 전용 2차 메뉴 바 -->
+    <div class="md:hidden border-b border-gray-300 bg-white relative z-30 shadow-sm">
+        <div class="flex text-sm md:text-base">
+            <a href="../index.html" class="px-4 py-3 border-r border-gray-300 text-gray-600 flex items-center justify-center hover:bg-gray-50">
+                Home
+            </a>
+            <div class="flex-1 border-r border-gray-300 relative">
+                <button onclick="toggleMobileSubMenu('menu-depth1')" class="w-full flex justify-between items-center px-4 py-3 text-gray-800 focus:outline-none">
+                    <span>공동체</span>
+                    <i class="fas fa-plus text-gray-400 text-xs"></i>
+                </button>
+                <ul id="menu-depth1" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
+                    <li class="border-b border-gray-100"><a href="../welcome/greeting.html" class="block px-4 py-3 hover:bg-gray-50">환영합니다</a></li>
+                    <li class="border-b border-gray-100"><a href="../word/sunday.html" class="block px-4 py-3 hover:bg-gray-50">말씀과 찬양</a></li>
+                    <li class="border-b border-gray-100"><a href="parish.html" class="block px-4 py-3 text-blue-600 font-bold bg-gray-50">공동체</a></li>
+                    <li class="border-b border-gray-100"><a href="../nextgen/infant.html" class="block px-4 py-3 hover:bg-gray-50">다음세대</a></li>
+                    <li class="border-b border-gray-100"><a href="../mission/evangelism.html" class="block px-4 py-3 hover:bg-gray-50">전도와 선교</a></li>
+                    <li class="border-b border-gray-100"><a href="../news/weekly.html" class="block px-4 py-3 hover:bg-gray-50">교회소식</a></li>
+                    <li><a href="../service/application.html" class="block px-4 py-3 hover:bg-gray-50">행정서비스</a></li>
+                </ul>
+            </div>
+            <div class="flex-1 relative">
+                <button onclick="toggleMobileSubMenu('menu-depth2')" class="w-full flex justify-between items-center px-4 py-3 text-gray-800 focus:outline-none">
+                    <span>양육&훈련</span>
+                    <i class="fas fa-plus text-gray-400 text-xs"></i>
+                </button>
+                <ul id="menu-depth2" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
+                    <li class="border-b border-gray-100"><a href="parish.html" class="block px-4 py-3 hover:bg-gray-50">교구</a></li>
+                    <li class="border-b border-gray-100"><a href="organization.html" class="block px-4 py-3 hover:bg-gray-50">기관</a></li>
+                    <li class="border-b border-gray-100"><a href="training.html" class="block px-4 py-3 text-blue-600 font-bold bg-gray-50">양육&훈련</a></li>
+                    <li class="border-b border-gray-100"><a href="senior.html" class="block px-4 py-3 hover:bg-gray-50">청춘대학</a></li>
+                    <li><a href="company.html" class="block px-4 py-3 hover:bg-gray-50">성도기업</a></li>
+                </ul>
             </div>
         </div>
-        
-        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="../index.html" class="flex items-center gap-1 cursor-pointer z-50">
-                <img src="../images/교회마크만01.png" alt="여주성결교회 마크" class="h-8 md:h-11 w-auto object-contain">
-                <img src="../images/여주성결교회 로고타입1_3.png" alt="여주성결교회 로고" class="h-6 md:h-8 w-auto object-contain brightness-0 invert">
-            </a>
-            
-            <button class="md:hidden border border-white/40 w-10 h-10 flex items-center justify-center rounded text-white text-xl z-50 hover:bg-white/10 transition" onclick="document.getElementById('mobile-menu').classList.toggle('open')">
-                <i class="fas fa-bars"></i>
-            </button>
+    </div>
 
-            <nav class="hidden md:flex items-center space-x-8 text-lg font-medium">
-                <a href="../welcome/greeting.html" class="hover:text-blue-300 transition">환영합니다</a>
-                <a href="../word/sunday.html" class="hover:text-blue-300 transition">말씀과 찬양</a>
-                <a href="parish.html" class="text-blue-300 font-bold transition">공동체</a>
-                <a href="#" class="hover:text-blue-300 transition">다음세대</a>
-                <a href="#" class="hover:text-blue-300 transition">전도와 선교</a>
-                <a href="#" class="hover:text-blue-300 transition">교회소식</a>
-                <a href="#" class="hover:text-blue-300 transition">행정서비스</a>
-            </nav>
-        </div>
-
-        <div id="mobile-menu" class="absolute top-full left-0 w-full bg-[#1a3668] flex-col items-center py-4 space-y-4 shadow-xl z-50 text-lg">
-            <a href="../welcome/greeting.html" class="text-white hover:text-blue-300">환영합니다</a>
-            <a href="../word/sunday.html" class="text-white hover:text-blue-300">말씀과 찬양</a>
-            <a href="parish.html" class="text-blue-300 font-bold">공동체</a>
-            <a href="#" class="text-white hover:text-blue-300">다음세대</a>
-            <a href="#" class="text-white hover:text-blue-300">전도와 선교</a>
-            <a href="#" class="text-white hover:text-blue-300">교회소식</a>
-            <a href="#" class="text-white hover:text-blue-300">행정서비스</a>
-        </div>
-    </header>
-
+    <!-- Main Content Layout -->
     <div class="max-w-7xl mx-auto px-4 py-12 md:py-20 flex flex-col md:flex-row gap-10">
+        
+        <!-- 좌측 사이드바 -->
         <aside class="hidden md:block w-64 flex-shrink-0">
             <div class="bg-[#6b8cba] text-white text-center py-4 text-xl font-bold rounded-t-lg">공동체</div>
             <ul class="border border-t-0 border-gray-200 flex flex-col">
                 <li><a href="parish.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">교구</a></li>
                 <li><a href="organization.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">기관</a></li>
                 <li><a href="training.html" class="flex justify-between items-center px-5 py-3 text-[#3b82f6] font-bold bg-gray-50 hover:bg-gray-100 transition border-b border-gray-200">양육&훈련 <i class="fas fa-chevron-right text-xs"></i></a></li>
-                <li><a href="#" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">청춘대학</a></li>
-                <li><a href="#" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition rounded-b-lg">성도기업</a></li>
+                <li><a href="senior.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">청춘대학</a></li>
+                <li><a href="company.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition rounded-b-lg">성도기업</a></li>
             </ul>
         </aside>
 
+        <!-- 메인 콘텐츠 영역 -->
         <main class="flex-1">
-            <div class="w-full bg-[#1b315b] rounded-xl h-32 md:h-48 flex flex-col justify-center items-center text-white shadow-md relative overflow-hidden mb-10">
-                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
-                <h3 class="text-3xl md:text-4xl font-extrabold relative z-10 tracking-tight">양육 & 훈련</h3>
+            <div class="w-full bg-[#1b315b] rounded-xl h-32 md:h-48 flex flex-col justify-center items-center text-white shadow-md relative overflow-hidden mb-12">
+                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
+                <h3 class="text-3xl md:text-4xl font-extrabold relative z-10 tracking-tight">양육&훈련</h3>
             </div>
 
-            <!-- 중보기도팀 -->
-            <div class="flex flex-col md:flex-row gap-6 mb-12 items-start">
-                <img src="중보기도학교.jpg" alt="중보기도팀" class="w-full md:w-1/3 rounded-2xl shadow-sm border">
-                <div class="flex-1">
-                    <h4 class="text-2xl font-bold text-[#5c85b5] mb-3">중보기도팀</h4>
-                    <p class="text-gray-700 leading-relaxed text-lg mb-4">중보기도팀은 훈련을 이수한 약 130명의 중보기도자들이 함께하는 기도 공동체로, 교회와 목회자, 선교지와 선교사, 성도, 지역사회와 나라를 위해 지속적으로 기도하는 사역팀입니다.</p>
-                    <div class="text-gray-600 text-sm md:text-base font-medium bg-gray-50 p-4 rounded-lg">
-                        <strong>중보기도 사역 안내</strong><br>
-                        (1) 매월 연합중보기도회 (2) 365 정오기도 (3) 소그룹 중보기도 (4) 119 긴급기 (5) 중보기도학교 (6) 중보기도세미나
+            <!-- 양육 및 훈련 소개 -->
+            <div class="space-y-12">
+                <!-- 1. 새가족 교육 -->
+                <div class="flex flex-col md:flex-row bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                    <div class="md:w-1/3">
+                        <img src="https://images.unsplash.com/photo-1544640808-32ca72ac7f37?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="새가족 교육" class="w-full h-48 md:h-full object-cover">
+                    </div>
+                    <div class="md:w-2/3 p-6 md:p-8 flex flex-col justify-center">
+                        <h4 class="text-2xl font-bold text-gray-800 mb-3 flex items-center gap-2">
+                            <i class="fas fa-seedling text-[#78b394]"></i> 새가족 교육
+                        </h4>
+                        <p class="text-gray-600 mb-4 leading-relaxed break-keep text-sm md:text-base">
+                            여주성결교회에 처음 오신 분들을 환영하며, 교회의 비전과 핵심 가치를 소개하고 신앙 생활의 기초를 다지는 필수 과정입니다. 총 5주간 진행되며, 수료 후 소속 교구와 기관에 편성됩니다.
+                        </p>
+                        <div class="bg-gray-50 p-3 rounded-lg text-sm text-gray-700">
+                            <span class="font-bold mr-2 text-gray-900">기간 :</span> 분기별 5주간 진행 (주일 오전 10시)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. 뉴라이프 훈련 -->
+                <div class="flex flex-col md:flex-row-reverse bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                    <div class="md:w-1/3">
+                        <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="뉴라이프 훈련" class="w-full h-48 md:h-full object-cover">
+                    </div>
+                    <div class="md:w-2/3 p-6 md:p-8 flex flex-col justify-center">
+                        <h4 class="text-2xl font-bold text-gray-800 mb-3 flex items-center gap-2">
+                            <i class="fas fa-street-view text-[#6b8cba]"></i> 뉴라이프(New Life) 훈련
+                        </h4>
+                        <p class="text-gray-600 mb-4 leading-relaxed break-keep text-sm md:text-base">
+                            말씀 안에서 자신의 삶을 돌아보고, 예수 그리스도의 제자로서의 새로운 삶(New Life)을 결단하며 영적 성장을 도모하는 집중 훈련 프로그램입니다.
+                        </p>
+                        <div class="bg-gray-50 p-3 rounded-lg text-sm text-gray-700">
+                            <span class="font-bold mr-2 text-gray-900">기간 :</span> 전반기/하반기 7주 과정 진행
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. 성결 바이블 스쿨 -->
+                <div class="flex flex-col md:flex-row bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                    <div class="md:w-1/3">
+                        <img src="https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="성결 바이블 스쿨" class="w-full h-48 md:h-full object-cover">
+                    </div>
+                    <div class="md:w-2/3 p-6 md:p-8 flex flex-col justify-center">
+                        <h4 class="text-2xl font-bold text-gray-800 mb-3 flex items-center gap-2">
+                            <i class="fas fa-book-reader text-[#9c775d]"></i> 성결 바이블 스쿨
+                        </h4>
+                        <p class="text-gray-600 mb-4 leading-relaxed break-keep text-sm md:text-base">
+                            성경의 깊이 있는 이해와 성결한 그리스도인의 삶을 살기 위해 체계적으로 말씀을 배우는 과정입니다. 성경의 배경, 교리, 적용 등 다양한 주제를 다룹니다.
+                        </p>
+                        <div class="bg-gray-50 p-3 rounded-lg text-sm text-gray-700">
+                            <span class="font-bold mr-2 text-gray-900">기간 :</span> 10주간 심화 과정
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. 마더와이즈 -->
+                <div class="flex flex-col md:flex-row-reverse bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                    <div class="md:w-1/3">
+                        <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="마더와이즈" class="w-full h-48 md:h-full object-cover">
+                    </div>
+                    <div class="md:w-2/3 p-6 md:p-8 flex flex-col justify-center">
+                        <h4 class="text-2xl font-bold text-gray-800 mb-3 flex items-center gap-2">
+                            <i class="fas fa-hands-holding-child text-[#e09ba5]"></i> 마더와이즈 (MotherWise)
+                        </h4>
+                        <p class="text-gray-600 mb-4 leading-relaxed break-keep text-sm md:text-base">
+                            성경적 원리에 따라 아내와 어머니로서의 올바른 역할을 배우고, 가정을 말씀 위에 든든히 세우도록 돕는 여성 대상의 양육 프로그램입니다.
+                        </p>
+                        <div class="bg-gray-50 p-3 rounded-lg text-sm text-gray-700">
+                            <span class="font-bold mr-2 text-gray-900">기간 :</span> 목요일 오전 (8주 과정)
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <!-- 마더와이즈 -->
-            <div class="flex flex-col md:flex-row gap-6 mb-12 items-start">
-                <img src="마더와이즈.jpg" alt="마더와이즈" class="w-full md:w-1/3 rounded-2xl shadow-sm border">
-                <div class="flex-1">
-                    <h4 class="text-2xl font-bold text-[#5c85b5] mb-3">마더와이즈</h4>
-                    <p class="text-gray-700 leading-relaxed text-lg mb-4">삶의 다양한 관계(결혼, 출산, 육아) 안에서 어머니들을 가정과 교회에서 성숙하게 세워주는 말씀 양육 프로그램입니다.</p>
-                    <div class="text-gray-600 text-sm md:text-base font-medium bg-gray-50 p-4 rounded-lg">
-                        <strong>좌안내</strong><br>
-                        1) 시간: 매주 목요일 오전 10~12시<br>
-                        2) 장소: 교육관 2층 초등부실<br>
-                        3) 대상: 자녀를 둔 어머니
-                    </div>
-                </div>
-            </div>
-
-            <!-- 바이블스쿨 -->
-            <div class="flex flex-col md:flex-row gap-6 mb-12 items-start">
-                <img src="바이블스쿨.jpg" alt="바이블스쿨" class="w-full md:w-1/3 rounded-2xl shadow-sm border">
-                <div class="flex-1">
-                    <h4 class="text-2xl font-bold text-[#5c85b5] mb-3">바이블스쿨</h4>
-                    <p class="text-gray-700 leading-relaxed text-lg mb-4">"바이블스쿨은 매년 1회 또는 2회 약 8~10주간 진행되는 집중 성경공부 프로그램입니다. 성도가 꼭 알아야 하거나 알기를 원하는 과목을 개설합니다."</p>
-                    <div class="text-gray-600 text-sm md:text-base font-medium bg-gray-50 p-4 rounded-lg">
-                        - 기간: 매년 봄 또는 가을 8~10주간, 주중 낮 또는 저녁<br>
-                        각 과목마다 주중 낮반과 저녁반을 개설하여 참여도를 높이고 있습니다.
-                    </div>
-                </div>
-            </div>
-
-            <!-- 음악문화교실 -->
-            <div class="flex flex-col md:flex-row gap-6 mb-12 items-start">
-                <img src="음악문화교실.jpg" alt="음악문화교실" class="w-full md:w-1/3 rounded-2xl shadow-sm border">
-                <div class="flex-1">
-                    <h4 class="text-2xl font-bold text-[#5c85b5] mb-3">음악문화교실</h4>
-                    <p class="text-gray-700 leading-relaxed text-lg mb-4">음악문화교실은 상반기와 하반기로 나누어 각 학기 16주 과정으로 운영되는 문화·교육 사역 프로그램입니다.</p>
-                    <div class="text-gray-600 text-sm md:text-base font-medium bg-gray-50 p-4 rounded-lg">
-                        - 음악교실 (클래식/실용음악): 첼로/플롯/성악/피아노/바이올린/클라리넷/신디/기타/드럼/우쿨렐레<br>
-                        - 문화교실: 독서교실 / 연필스케치
-                    </div>
-                </div>
-            </div>
-
+            
         </main>
     </div>
 
-    <footer class="bg-white border-t border-gray-100 py-10 md:py-16 mt-10">
-        <div class="max-w-6xl mx-auto px-4 flex flex-col items-center text-center">
-            <div class="flex justify-center space-x-4 md:space-x-8 text-sm md:text-base text-gray-600 font-medium mb-8">
-                <a href="#" class="hover:text-[#1a3668]">사이트맵</a>
-                <span class="text-gray-300">|</span>
-                <a href="#" class="hover:text-[#1a3668]">개인정보처리방침</a>
-                <span class="text-gray-300">|</span>
-                <a href="#" class="hover:text-[#1a3668]">이메일무단수집거부</a>
-            </div>
-            <h3 class="font-extrabold text-3xl md:text-5xl text-[#3b82f6] mb-4 md:mb-6 tracking-tight">여주성결교회</h3>
-            <div class="text-sm md:text-lg text-gray-500 space-y-1 md:space-y-2 mb-8">
-                <p>(12625) 경기도 여주시 우암로 96 (하동, 여주성결교회)</p>
-                <p>TEL . 031-882-9966 &nbsp;&nbsp; FAX . 031-882-9965</p>
-            </div>
-        </div>
-    </footer>
+    <!-- 통합 하단 푸터 -->
+    <div id="common-footer"></div>
+    <div id="common-sitemap"></div>
+
+    <script>
+        function toggleMobileSubMenu(menuId) {
+            const targetMenu = document.getElementById(menuId);
+            if (targetMenu) targetMenu.classList.toggle('hidden');
+        }
+    </script>
+    <script>const ROOT_PATH = "../";</script>
+    <script src="../js/common.js"></script>
 </body>
 </html>
-```eof
