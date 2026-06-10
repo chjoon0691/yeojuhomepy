@@ -11,7 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const headerHTML = `
     <header class="bg-[#244177] text-white w-full z-50 relative">
         <div class="hidden md:block border-b border-white/20 bg-[#1b315b]">
-            <div class="max-w-7xl mx-auto px-4 py-2 flex justify-end items-center space-x-6 text-sm font-light">
+            <div class="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center text-sm font-light">
+                <span class="text-blue-200 tracking-wide">교회창립일: 1932. 5. 17.</span>
                 <a href="https://www.youtube.com/@여주성결교회" target="_blank" class="hover:text-blue-300 flex items-center gap-1.5 transition"><i class="fab fa-youtube text-red-500 text-lg"></i> 유튜브채널</a>
             </div>
         </div>
@@ -277,38 +278,37 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
         </div>
-    </div>
-    `;
+        `;
 
-    // 4. 각 페이지의 빈 공간(div)에 생성한 HTML을 밀어 넣습니다.
-    const headerEl = document.getElementById('common-header');
-    const footerEl = document.getElementById('common-footer');
-    const sitemapEl = document.getElementById('common-sitemap');
+        // 4. 각 페이지의 빈 공간(div)에 생성한 HTML을 밀어 넣습니다.
+        const headerEl = document.getElementById('common-header');
+        const footerEl = document.getElementById('common-footer');
+        const sitemapEl = document.getElementById('common-sitemap');
 
-    if (headerEl) headerEl.innerHTML = headerHTML;
-    if (footerEl) footerEl.innerHTML = footerHTML;
-    if (sitemapEl) sitemapEl.innerHTML = sitemapHTML;
-});
+        if (headerEl) headerEl.innerHTML = headerHTML;
+        if (footerEl) footerEl.innerHTML = footerHTML;
+        if (sitemapEl) sitemapEl.innerHTML = sitemapHTML;
+    });
 
-// 전역 함수: 상단 모바일 메뉴바 토글 (공통 적용)
-window.toggleMobileMenu = function() {
-    const menu = document.getElementById('global-mobile-menu');
-    if (menu) {
-        menu.classList.toggle('hidden');
-        menu.classList.toggle('flex');
-    }
-};
-
-// 전역 함수: 사이트맵 모달 토글 (공통 적용)
-window.toggleGlobalSitemap = function() {
-    const modal = document.getElementById('global-sitemap-modal');
-    if (modal) {
-        if (modal.classList.contains('hidden')) {
-            modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; 
-        } else {
-            modal.classList.add('hidden');
-            document.body.style.overflow = ''; 
+    // 전역 함수: 상단 모바일 메뉴바 토글 (공통 적용)
+    window.toggleMobileMenu = function() {
+        const menu = document.getElementById('global-mobile-menu');
+        if (menu) {
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
         }
-    }
-};
+    };
+
+    // 전역 함수: 사이트맵 모달 토글 (공통 적용)
+    window.toggleGlobalSitemap = function() {
+        const modal = document.getElementById('global-sitemap-modal');
+        if (modal) {
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden'; 
+            } else {
+                modal.classList.add('hidden');
+                document.body.style.overflow = ''; 
+            }
+        }
+    };
