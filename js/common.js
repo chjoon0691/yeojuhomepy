@@ -142,17 +142,10 @@ document.addEventListener('DOMContentLoaded', () => {
     </header>
     `;
 
-    // 2. 공통 푸터(하단 정보) HTML
+    // 2. 공통 푸터(하단 정보) HTML - (수정: 사이트맵, 개인정보처리방침 등 삭제)
     const footerHTML = `
     <footer class="bg-white border-t border-gray-100 py-10 md:py-16 mt-10 w-full">
         <div class="max-w-6xl mx-auto px-4 flex flex-col items-center text-center">
-            <div class="flex justify-center space-x-4 md:space-x-8 text-sm md:text-base text-gray-600 font-medium mb-8">
-                <a href="#" onclick="toggleGlobalSitemap(); return false;" class="hover:text-[#1a3668]">사이트맵</a>
-                <span class="text-gray-300">|</span>
-                <a href="#" class="hover:text-[#1a3668]">개인정보처리방침</a>
-                <span class="text-gray-300">|</span>
-                <a href="#" class="hover:text-[#1a3668]">이메일무단수집거부</a>
-            </div>
             <h3 class="font-extrabold text-3xl md:text-5xl text-[#3b82f6] mb-4 md:mb-6 tracking-tight">여주성결교회</h3>
             <div class="text-sm md:text-lg text-gray-500 space-y-1 md:space-y-2 mb-8">
                 <p>(12625) 경기도 여주시 우암로 96 (하동, 여주성결교회)</p>
@@ -278,37 +271,38 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
         </div>
-        `;
+    </div>
+    `;
 
-        // 4. 각 페이지의 빈 공간(div)에 생성한 HTML을 밀어 넣습니다.
-        const headerEl = document.getElementById('common-header');
-        const footerEl = document.getElementById('common-footer');
-        const sitemapEl = document.getElementById('common-sitemap');
+    // 4. 각 페이지의 빈 공간(div)에 생성한 HTML을 밀어 넣습니다.
+    const headerEl = document.getElementById('common-header');
+    const footerEl = document.getElementById('common-footer');
+    const sitemapEl = document.getElementById('common-sitemap');
 
-        if (headerEl) headerEl.innerHTML = headerHTML;
-        if (footerEl) footerEl.innerHTML = footerHTML;
-        if (sitemapEl) sitemapEl.innerHTML = sitemapHTML;
-    });
+    if (headerEl) headerEl.innerHTML = headerHTML;
+    if (footerEl) footerEl.innerHTML = footerHTML;
+    if (sitemapEl) sitemapEl.innerHTML = sitemapHTML;
+});
 
-    // 전역 함수: 상단 모바일 메뉴바 토글 (공통 적용)
-    window.toggleMobileMenu = function() {
-        const menu = document.getElementById('global-mobile-menu');
-        if (menu) {
-            menu.classList.toggle('hidden');
-            menu.classList.toggle('flex');
+// 전역 함수: 상단 모바일 메뉴바 토글 (공통 적용)
+window.toggleMobileMenu = function() {
+    const menu = document.getElementById('global-mobile-menu');
+    if (menu) {
+        menu.classList.toggle('hidden');
+        menu.classList.toggle('flex');
+    }
+};
+
+// 전역 함수: 사이트맵 모달 토글 (공통 적용)
+window.toggleGlobalSitemap = function() {
+    const modal = document.getElementById('global-sitemap-modal');
+    if (modal) {
+        if (modal.classList.contains('hidden')) {
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; 
+        } else {
+            modal.classList.add('hidden');
+            document.body.style.overflow = ''; 
         }
-    };
-
-    // 전역 함수: 사이트맵 모달 토글 (공통 적용)
-    window.toggleGlobalSitemap = function() {
-        const modal = document.getElementById('global-sitemap-modal');
-        if (modal) {
-            if (modal.classList.contains('hidden')) {
-                modal.classList.remove('hidden');
-                document.body.style.overflow = 'hidden'; 
-            } else {
-                modal.classList.add('hidden');
-                document.body.style.overflow = ''; 
-            }
-        }
-    };
+    }
+};
