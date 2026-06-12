@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <a href="#" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">주일오후예배</a>
                             <a href="#" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">수요예배</a>
                             <a href="#" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">특별집회</a>
-                            <a href="${root}word/praise.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">찬양대/중창단</a>
+                            <a href="${root}word/praise.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">찬양</a>
                             <a href="${root}word/media.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">여주미디어</a>
                         </div>
                     </div>
@@ -211,7 +211,14 @@ document.addEventListener('DOMContentLoaded', () => {
                                     <a href="#" class="block hover:text-blue-600">- 수요예배</a>
                                     <a href="#" class="block hover:text-blue-600">- 특별집회</a>
                                 </li>
-                                <li class="py-2.5 text-gray-800 font-medium">찬양대/중창단</li>
+                                <li class="py-2.5 text-gray-800 font-medium">찬양</li>
+                                <li class="bg-gray-50 p-3 space-y-2 text-[13px] text-gray-500 mb-2">
+                                    <a href="${root}word/praise.html" class="block hover:text-blue-600">- 시온성가대</a>
+                                    <a href="#" class="block hover:text-blue-600">- 할렐루야찬양대</a>
+                                    <a href="#" class="block hover:text-blue-600">- 꿈과사랑의찬양대</a>
+                                    <a href="#" class="block hover:text-blue-600">- 은빛찬양대</a>
+                                    <a href="#" class="block hover:text-blue-600">- 주일봉헌찬양</a>
+                                    <a href="#" class="block hover:text-blue-600">- 특별찬양</a>
                                 </li>
                                 <li class="border-b border-dashed border-gray-300 py-2.5 hover:text-blue-600 transition"><a href="${root}word/media.html" class="block w-full">여주미디어</a></li>
                             </ul>
