@@ -35,7 +35,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                         <div class="w-48 bg-white text-gray-800 rounded-2xl shadow-xl py-3 border border-gray-100 flex flex-col">
                             <a href="${root}welcome/greeting.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">인사말</a>
-                            <a href="${root}welcome/history/history.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">교회연혁</a>
+                            
+                            <!-- 교회연혁 2단 드롭다운 -->
+                            <div class="relative group/sub">
+                                <a href="${root}welcome/history/history.html" class="flex justify-between items-center px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">
+                                    교회연혁 <i class="fas fa-chevron-right text-[0.6rem] text-gray-400"></i>
+                                </a>
+                                <div class="absolute top-0 left-full ml-1 opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-300">
+                                    <div class="w-48 bg-white text-gray-800 rounded-2xl shadow-xl py-3 border border-gray-100 flex flex-col">
+                                        <a href="#" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">성전건축이야기</a>
+                                        <a href="#" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">교육관건축사진</a>
+                                        <a href="#" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">이전홈피사진</a>
+                                    </div>
+                                </div>
+                            </div>
+
                             <a href="${root}welcome/serve/serve.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">섬기는 분들</a>
                             <a href="${root}welcome/worship/worship.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">예배안내</a>
                             <a href="${root}welcome/bus/bus.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">차량운행안내</a>
@@ -49,11 +63,38 @@ document.addEventListener('DOMContentLoaded', () => {
                     <a href="${root}word/sunday.html" class="hover:text-blue-300 transition">말씀과 찬양</a>
                     <div class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                         <div class="w-48 bg-white text-gray-800 rounded-2xl shadow-xl py-3 border border-gray-100 flex flex-col">
-                            <a href="${root}word/sunday.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">주일예배</a>
-                            <a href="#" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">주일오후예배</a>
-                            <a href="#" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">수요예배</a>
-                            <a href="#" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">특별집회</a>
-                            <a href="${root}word/praise.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">찬양</a>
+                            <!-- 말씀 2단 드롭다운 -->
+                            <div class="relative group/sub">
+                                <a href="#" class="flex justify-between items-center px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">
+                                    말씀 <i class="fas fa-chevron-right text-[0.6rem] text-gray-400"></i>
+                                </a>
+                                <div class="absolute top-0 left-full ml-1 opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-300">
+                                    <div class="w-48 bg-white text-gray-800 rounded-2xl shadow-xl py-3 border border-gray-100 flex flex-col">
+                                        <a href="${root}word/sunday.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">주일예배</a>
+                                        <a href="#" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">주일오후예배</a>
+                                        <a href="#" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">수요예배</a>
+                                        <a href="#" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">특별집회</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 찬양 2단 드롭다운 -->
+                            <div class="relative group/sub">
+                                <a href="#" class="flex justify-between items-center px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">
+                                    찬양 <i class="fas fa-chevron-right text-[0.6rem] text-gray-400"></i>
+                                </a>
+                                <div class="absolute top-0 left-full ml-1 opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-300">
+                                    <div class="w-48 bg-white text-gray-800 rounded-2xl shadow-xl py-3 border border-gray-100 flex flex-col">
+                                        <a href="${root}word/praise.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">시온찬양대</a>
+                                        <a href="${root}word/hallelujah.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">할렐루야찬양대</a>
+                                        <a href="${root}word/dreamnlove.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">꿈과사랑의찬양대</a>
+                                        <a href="${root}word/silver.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">은빛찬양대</a>
+                                        <a href="${root}word/sundayoffering.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">주일봉헌찬양</a>
+                                        <a href="${root}word/special.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">특별찬양</a>
+                                    </div>
+                                </div>
+                            </div>
+
                             <a href="${root}word/media.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">여주미디어</a>
                         </div>
                     </div>
@@ -95,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <a href="${root}mission/evangelism.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">전도대</a>
                             <a href="${root}mission/domestic.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">국내선교</a>
                             <a href="${root}mission/overseas.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">해외선교</a>
-                            <a href="${root}mission/news.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">선교지 소식</a>
+                            <a href="${root}mission/news.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">선교지소식</a>
                             <a href="${root}mission/club.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">동호인선교회</a>
                         </div>
                     </div>
@@ -181,6 +222,11 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <li class="border-b border-dashed border-gray-300 py-2.5 hover:text-blue-600 transition"><a href="${root}welcome/greeting.html" class="block w-full">인사말</a></li>
                                 <li class="border-b border-dashed border-gray-300 py-2.5 hover:text-blue-600 transition">
                                     <a href="${root}welcome/history/history.html" class="block w-full">교회연혁</a>
+                                    <ul class="pl-3 mt-2 space-y-2 text-[13px] text-gray-500">
+                                        <li>- <a href="#" class="hover:text-blue-500">성전건축이야기</a></li>
+                                        <li>- <a href="#" class="hover:text-blue-500">교육관건축사진</a></li>
+                                        <li>- <a href="#" class="hover:text-blue-500">이전홈피사진</a></li>
+                                    </ul>
                                 </li>
                                 <li class="border-b border-dashed border-gray-300 py-2.5 hover:text-blue-600 transition"><a href="${root}welcome/serve/serve.html" class="block w-full">섬기는 분들</a></li>
                                 <li class="border-b border-dashed border-gray-300 py-2.5 hover:text-blue-600 transition"><a href="${root}welcome/worship/worship.html" class="block w-full">예배안내</a></li>
@@ -195,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <li class="border-b border-dashed border-gray-300 py-2.5 hover:text-blue-600 transition"><a href="${root}mission/evangelism.html" class="block w-full">전도대</a></li>
                                 <li class="border-b border-dashed border-gray-300 py-2.5 hover:text-blue-600 transition"><a href="${root}mission/domestic.html" class="block w-full">국내선교</a></li>
                                 <li class="border-b border-dashed border-gray-300 py-2.5 hover:text-blue-600 transition"><a href="${root}mission/overseas.html" class="block w-full">해외선교</a></li>
-                                <li class="border-b border-dashed border-gray-300 py-2.5 hover:text-blue-600 transition"><a href="${root}mission/news.html" class="block w-full">선교지 소식</a></li>
+                                <li class="border-b border-dashed border-gray-300 py-2.5 hover:text-blue-600 transition"><a href="${root}mission/news.html" class="block w-full">선교지소식</a></li>
                                 <li class="border-b border-dashed border-gray-300 py-2.5 hover:text-blue-600 transition"><a href="${root}mission/club.html" class="block w-full">동호인선교회</a></li>
                             </ul>
                         </div>
@@ -213,12 +259,12 @@ document.addEventListener('DOMContentLoaded', () => {
                                 </li>
                                 <li class="py-2.5 text-gray-800 font-medium">찬양</li>
                                 <li class="bg-gray-50 p-3 space-y-2 text-[13px] text-gray-500 mb-2">
-                                    <a href="${root}word/praise.html" class="block hover:text-blue-600">- 시온성가대</a>
-                                    <a href="#" class="block hover:text-blue-600">- 할렐루야찬양대</a>
-                                    <a href="#" class="block hover:text-blue-600">- 꿈과사랑의찬양대</a>
-                                    <a href="#" class="block hover:text-blue-600">- 은빛찬양대</a>
-                                    <a href="#" class="block hover:text-blue-600">- 주일봉헌찬양</a>
-                                    <a href="#" class="block hover:text-blue-600">- 특별찬양</a>
+                                    <a href="${root}word/praise.html" class="block hover:text-blue-600">- 시온찬양대</a>
+                                    <a href="${root}word/hallelujah.html" class="block hover:text-blue-600">- 할렐루야찬양대</a>
+                                    <a href="${root}word/dreamnlove.html" class="block hover:text-blue-600">- 꿈과사랑의찬양대</a>
+                                    <a href="${root}word/silver.html" class="block hover:text-blue-600">- 은빛찬양대</a>
+                                    <a href="${root}word/sundayoffering.html" class="block hover:text-blue-600">- 주일봉헌찬양</a>
+                                    <a href="${root}word/special.html" class="block hover:text-blue-600">- 특별찬양</a>
                                 </li>
                                 <li class="border-b border-dashed border-gray-300 py-2.5 hover:text-blue-600 transition"><a href="${root}word/media.html" class="block w-full">여주미디어</a></li>
                             </ul>
