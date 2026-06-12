@@ -79,7 +79,21 @@
             <div class="bg-[#6b8cba] text-white text-center py-4 text-xl font-bold rounded-t-lg">환영합니다</div>
             <ul class="border border-t-0 border-gray-200 flex flex-col">
                 <li class="border-b border-gray-200"><a href="../greeting.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">인사말</a></li>
-                <li class="border-b border-gray-200"><a href="history.html" class="flex justify-between items-center px-5 py-3 text-[#3b82f6] font-bold bg-gray-50 hover:bg-gray-100 transition">교회연혁 <i class="fas fa-chevron-right text-xs"></i></a></li>
+                
+                <!-- 교회연혁 (마우스 올리면 나오는 메뉴) -->
+                <li class="border-b border-gray-200 group">
+                    <a href="history.html" class="flex justify-between items-center px-5 py-3 text-[#3b82f6] font-bold bg-gray-50 hover:bg-gray-100 transition">
+                        교회연혁 <i class="fas fa-chevron-down text-xs text-gray-400 group-hover:rotate-180 transition-transform duration-300"></i>
+                    </a>
+                    <div class="max-h-0 overflow-hidden group-hover:max-h-40 transition-all duration-500 ease-in-out">
+                        <ul class="py-2 bg-white border-t border-gray-100">
+                            <li><a href="#" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">성전건축이야기</a></li>
+                            <li><a href="#" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">교육관건축사진</a></li>
+                            <li><a href="#" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">이전홈피사진</a></li>
+                        </ul>
+                    </div>
+                </li>
+
                 <li class="border-b border-gray-200"><a href="../serve/serve.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">섬기는 분들</a></li>
                 <li class="border-b border-gray-200"><a href="../worship/worship.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">예배안내</a></li>
                 <li class="border-b border-gray-200"><a href="../bus/bus.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">차량운행안내</a></li>
@@ -111,717 +125,126 @@
                 </div>
             </div>
 
-            <!-- 타임라인 콘텐츠 시작 -->
+            <!-- 타임라인 콘텐츠 -->
             <div class="px-2 md:px-0">
-                
                 <!-- 2020년대 -->
                 <div id="decade-2020" class="scroll-mt-28 md:scroll-mt-32">
-                    <div class="year-block decade-start">
-                        <div class="year-title">2024</div>
+                    <div class="flex flex-col md:flex-row gap-4 md:gap-8 mb-12 pt-4 border-t-2 border-gray-800">
+                        <div class="md:w-28 shrink-0"><h3 class="text-4xl md:text-5xl font-light text-gray-800 tracking-tight">2024</h3></div>
                         <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">10월</div><ul class="event-list"><li>전국 권사회 수련회: 10/8(화) 오전 10시, 바울교회, "성결, 그 거룩한 모험에 승부수를 던져라"(레19:1-2), 신현모 목사(바울교회)</li><li>제3회 어울림 한마당 큰잔치: 10/8(화) 오전 11시, 황후의 뜰(여주시 명성로 71), 여주기독교종합사회복지센터</li><li>경기동지방 교역자 수련회: 10/10(목)-11(금), 울산</li><li>남전도회주관 석찬기도회: 10/12(토) 오후 5시, 교회시당</li><li>청춘대학 가을소풍: 10/16(수) 오전 10:30, 가평 자라섬</li><li>새가족과 함께 떠나는 가을여행: 10/19(토), 양주 나리공원</li><li>제2회 하라중창단 정기연주회: 10/19(토) 오후 3시, 푸른초장</li><li>경기동지방 여전회연합회 단합대회: 10/24(목) 오전 8:20, 춘천 제이드가든 수목원</li><li>경기동지방 어린이 축구대회: 10/26(토) 오전 9:30, 흥천체육공원</li><li>10/27 오후예배: 김신근 선교사(필리핀 마닐라)</li><li>세례교육: 10/27(주), 11/3(주) 오전 10시, 5층 소망방</li></ul></div>
-                            <div class="month-row"><div class="month-title">9월</div><ul class="event-list"><li>동지방 전도부 전도찬양집회: 9/1(주) 오후 2시, 푸른초장, 임선주 선교사(거리찬양전도자)</li><li>부임 심방: 9/1부터, 각 교구별로 진행</li><li>3/4분기 새가족 교육: 9/1(주)부터 4주간 오전 10시, 5층 소망방</li><li>후반기 영적성숙을 위한 특벽새벽기도회: 9/2일(월)~6일(금), 푸른초장, "교회를 교회되게", 조형준 담임목사</li><li>청춘대학 2학기 개강: 9/4(수) 오전 10:30, 1층 사랑방</li><li>전도대 활동 재개: 9/5(목) 오후 2시, 2층 기쁨방</li><li>2024년 후반기 바이블스쿨 개강: 9월 첫째주부터 5과목, 마더와이즈</li><li>사무직원회: 9/8(주) 2부 예배 후, 2층 비전홀</li><li>전교인 한마음 축제: 9/22(주) 오전 9:30, 여주실내체육관</li></ul></div>
-                            <div class="month-row"><div class="month-title">8월</div><ul class="event-list"><li>8.15기념 여주시성시화 운동 및 구국기도회: 8/12(월) 오전 8시, 여주시청 대회의실(4층)</li><li>여전도전국연합회 수련회: 8/20(화) 오전 10시, 신길교회, 이행규 목사(무극중앙교회), "나의 사랑, 내 어여쁜 자여"</li><li>동지방권사회 하계수련회: 8/29(목) 오전 10시, 오후 2시, 시온성교회, 황하균 목사(뉴욕소망교회), "다시 불 붙는 심령으로"</li><li>교구장.구역장 야유회: 8/27(화) 오전 8시, 강릉 하슬라아트월드</li><li>여전도연합회 권사회 연합기도회: 8/20(화)~22(목) 오전 10:30, 2층 비전홀</li></ul></div>
-                            <div class="month-row"><div class="month-title">7월</div><ul class="event-list"><li>경기동지방 어린이 하계대회: 7/6(토) 오후 2시, 한강교회</li><li>맥추감사주일: 7일(주),푸른초장</li><li>제6회 지역어르신 초청잔치: 7/3(수) 오전 10:30, 교회식당</li><li>2024년 교육부서 여름캠프 및 수련회 안내: 7/11(목)~7/26(금)</li><li>사무직원회: 7/21(주) 2부 예배 후, 비전홀</li><li>연합구역예배: 7/28(주)~8/25(주) 매주일 오후예배 시, 푸른초장</li><li>동지방장학후원의 밤: 7/25(목) 오후 5:30, 여주교회</li><li>사임: 이선화 전도사(초등부 담당)</li><li>부임: 유환영 전도사(초등부 담당)</li></ul></div>
-                            <div class="month-row"><div class="month-title">6월</div><ul class="event-list"><li>장학주일: 6/2(주), 비전교회(미자립교회) 목회자 자녀 장학금을 위한 장학주일</li><li>2/4분기 새가족 교육: 6/2(주)~6/23(주) 4주간 오전 10시, 5층 소망방</li><li>여주시 목회자 체육대회: 6/4(화) 오전 9시, 종합운동장 실내체육관</li><li>여주시 복음화 대성회: 6/9일(주)~12일(수) 매일 저녁 7:30, 여주중앙감리교회, "생수의 강이 흘러 나오리라", 윤효균 목사(화광교회)</li><li>담임목사 취임 및 원로장로 추대예식: 6/23(주) 오후 4시, 푸른초장, 조형준 담임목사 취임, 장기평 원로장로 추대</li><li>중부지역 남전도회 체육대회: 6/15(토) 오전 10시, 강천체육공원</li><li>경기동지방 여전도연합회 수련회: 6/20(목) 오전 10시, 오후 2시, 여주교회 비전홀, "다시 없을 기회", 박해정 목사(인천성암교회)</li><li>교인 차량번호 신청 안내: 원활한 출차를 위한 교인 차량번호 조사</li></ul></div>
-                            <div class="month-row"><div class="month-title">5월</div><ul class="event-list"><li>임시사무총회: 5/5(주) 2부 예배 후, 담임목사 청빙 건</li><li>헌아 예식: 5/19(주) 2부 예배 시, 푸른초장</li><li>아파트 입주 전도: 5/20(월)~6/29(토), 서해그랑블 아파트 입주전도</li><li>교역자.사무직원 수련회: 5/27(월)~28(화)</li></ul></div>
-                            <div class="month-row"><div class="month-title">4월</div><ul class="event-list"><li>목사 안수식: 4/4(목) 오전 10시, 아현교회, 윤남철 전도사 목사 안수</li><li>사무직원회: 4/14(주) 2부 예배 후, 2층 비전홀</li><li>성지순례: 4/11일(목)~20일(토), 그리스.로마</li><li>담임목사 청빙을 위한 저녁예배: 4/24(수)~26(금) 저녁 7:30, 푸른초장</li><li>담임목사 청빙을 위한 투표: 4/28일(주) 2부 예배 시</li><li>효도관광: 4/30(화) 오전 9시, 속초, 70세 이상</li><li>여전도연합회 권사회 산상기도회: 4/23(화) 오전 8:30, 갈멜산 기도원</li></ul></div>
-                            <div class="month-row"><div class="month-title">3월</div><ul class="event-list"><li>2024년 청춘대학 1학기 개강: 3/6(수) 오전 10:30, 1층 사랑방</li><li>목요전도대 활동 재개: 3/7(목)부터 매주 목요일 오후 2시, 중앙통입구</li><li>세례예식: 3/31(부활주일) 2부 예배 시</li><li>1/4분기 새가족 교육: 3/3(주)~3/24(주) 4주간 오전 10시, 2층 소망방</li><li>관내 고등학교 장학금 지원: 총 150만원, 여강고등학교 5명 학생 지급</li><li>고난주간 특별새벽기도회: 3/25일(월)~29일(금) 오전 5:30, 푸른초장</li><li>부활절 감사예배: 3/31(주), 푸른초장</li><li>여주시 부활정 찬양제: 3/31(주) 오후 3시, 푸른초장</li></ul></div>
-                            <div class="month-row"><div class="month-title">2월</div><ul class="event-list"><li>경기동지방 정기지방회: 5일(월)~6일(화) 오후 1시, 여주교회</li><li>설명절 가정예배서: 본당 앞 비치, 홈페이지 다운로드</li><li>설연휴 예배 안내: 금요성령집회(9일), 새벽예배(9,12일), 주일점심과 오후예배(11일)는 없음</li><li>아파트 입주 전도 재개: 2/29(목)부터 동부센트레빌 아파트 입주전도 시작, 월~토 오후 2시</li><li>여전도연합회 권사회 연합기도회: 20일(화)~22(목) 오전 10:30, 2층 비전홀</li><li>중보기도팀 연합기도회: 24일(토) 저녁 7시, 2층 소망방</li></ul></div>
-                            <div class="month-row"><div class="month-title">1월</div><ul class="event-list"><li>교회학교 진급예배: 1/7(주) 오후예배 시</li><li>신임집사 교육 및 기도회: 14일(주) 낮 12:30, 2층 비전홀</li><li>동지방 여전도회 총회: 9일(화) 오전 10시, 시온성 교회</li><li>저녁기도회: 월,화,목,금 저녁 7:30~9:00, 비전홀</li><li>고등부 겨울수련회: 26일(금)~27일(토), 가평 도치빌펜션</li><li>여전도연합회 권사회 연합기도회: 23일(화)~25일(목) 오전 10:30, 2층 비전홀</li><li>2024년 교회학교 겨울성경학교 및 수련회: 1/27(토)~2/16(금)</li></ul></div>
+                            <div class="flex gap-4"><div class="w-16 shrink-0 font-bold text-gray-800 mt-1">10월</div><ul class="flex-1 text-gray-600 text-sm md:text-base space-y-1 list-disc pl-4"><li>전국 권사회 수련회 (10/8, 바울교회)</li><li>제3회 어울림 한마당 큰잔치 (10/8)</li><li>청춘대학 가을소풍 (10/16)</li></ul></div>
+                            <div class="flex gap-4"><div class="w-16 shrink-0 font-bold text-gray-800 mt-1">06월</div><ul class="flex-1 text-gray-600 text-sm md:text-base space-y-1 list-disc pl-4"><li>담임목사 취임 및 원로장로 추대예식 (6/23, 조형준 담임목사 취임, 장기평 원로장로 추대)</li><li>중부지역 남전도회 체육대회 (6/15)</li></ul></div>
+                            <div class="flex gap-4"><div class="w-16 shrink-0 font-bold text-gray-800 mt-1">04월</div><ul class="flex-1 text-gray-600 text-sm md:text-base space-y-1 list-disc pl-4"><li>담임목사 청빙을 위한 저녁예배 및 투표 (4/24~28)</li><li>성지순례 (4/11~20, 그리스.로마)</li></ul></div>
                         </div>
                     </div>
-
-                    <div class="year-block">
-                        <div class="year-title">2023</div>
+                    <div class="flex flex-col md:flex-row gap-4 md:gap-8 mb-12 pt-4 border-t border-gray-200">
+                        <div class="md:w-28 shrink-0"><h3 class="text-4xl md:text-5xl font-light text-gray-800 tracking-tight">2023</h3></div>
                         <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">12월</div><ul class="event-list"><li>경기동지방 대림절 찬양축제: 12/3(주) 오후 2시, 푸른초장, 박광식 선교사(색소폰 찬양사역자)</li><li>4/4분기 새가족 교육: 12/3일(주)~24일(주) 4주간 오전 10시, 2층 소망방</li><li>사무직원회: 10일(주) 2부 예배 후, 비전홀</li><li>이성관 목사 성역은퇴 및 원로목사 추대 감사예배: 10일(주) 오후 2시, 푸른초장</li><li>제73회 사무총회: 17일(주) 2부 예배 후, 푸른초장</li><li>3차 성지순례 추가 모집: 그리스.로마 성지순례 추가모집(선착순 6명), 24/4/11일(목)~20일(토) 8박10일</li><li>담임목사 청빙을 위한 설문조사: 12/17(주), 삽지 설문지 작성</li><li>여전도회연합회 권사회 연합기도회: 19일(화)~21일(목) 오전 10:30, 2층 비전홀</li><li>송구영신예배: 12/31(주) 밤 11:30, 푸른초장</li></ul></div>
-                            <div class="month-row"><div class="month-title">11월</div><ul class="event-list"><li>가을 특별 금요기도회: 11/3(금)~11/24(금) 저녁 8시, 푸른초장</li><li>중부지역 찬양축제: 11/5(주) 오후 4시, 원주중앙교회</li><li>교회 김장 담그기: 11/9(목)~10(금) 오전 9시, 교회식당</li><li>추수감사주일: 11/19(주), 푸른초장</li><li>대학수학능력시험: 16일(목), 수험생 17명</li><li>임시사무총회 공고: 26일(주) 2부 예배 후 )원로목사 세금, 자동차에 관한 건, 원로목사 예우금)</li><li>부흥교회 성전리모델링 헌당 및 담임목사 취임 감상예배: 19일(주) 오후 4시, 부흥교회</li><li>여주시 청소년 페스티벌: 25일(토) 오후 4시, 푸른초장</li></ul></div>
-                            <div class="month-row"><div class="month-title">10월</div><ul class="event-list"><li>추석연휴 예배 안내: 추석연휴 9/28(목)~10/3(화)까지 새벽예배와 금요성령집회 없음</li><li>목요전도대 활동재개: 10/5(목) 매주 목요일 오수 2시, 중앙통 입구</li><li>여전도회 권사회 연합기도회: 17일(화)~18일(수) 오전 10:30, 2층 비전홀</li><li>중보기도팀 연합기도회: 21일(토) 저녁 7시, 2층 소망방</li><li>제팔단기선교팀 모집: 네팔 성전헌당 및 단기선교(2월 중순),</li><li>2023 하라중찬단 찬양제: 다시 복음 앞에 서리라, 11/4(토) 오후 5시, 푸른초장</li><li>경기동지방 교직자 대만수련회: 23일(월)~26일(목)</li></ul></div>
-                            <div class="month-row"><div class="month-title">9월</div><ul class="event-list"><li>청춘대학 2학기 학사개강: 9/6(수)부터 매주 수요일(9~11월), 1층 사랑방</li><li>3/4분기 새가족교육: 9/3일(주)~24일(주) 4주간 오전 10시, 1층 소망방</li><li>여전도회연합회 권사회 산상기도회: 19일(화) 오전 8시, 오산리 기도원</li><li>추석연휴 예배안내: 9/28(목)~10/3(화)까지 새녁예배와 금요성령집회는 없습니다</li><li>중보기도팀 연합기도회: 21일(토) 저녁 7시, 2층 소망방</li></ul></div>
-                            <div class="month-row"><div class="month-title">8월</div><ul class="event-list"><li>임시사무총회 공고: 8/13(주) 2부 예배 시, 부흥교회 대출 건</li><li>여전도회 권사회 연합기도회: 22일(화)~24일(수) 오전 10:30, 2층 비전홀</li><li>경기동지방 권사회 연합수련회: 31일(목) 오전 10시, 오후 2시, 한강성결교회, "사랑 권사됩시다", 최명덕 목사(조치원성결교회)</li><li>소망교도소 위문예배: 8/27(주) 오후 3시, 중등부 학생들 초청</li></ul></div>
-                            <div class="month-row"><div class="month-title">7월</div><ul class="event-list"><li>맥추감사주일: 7/2(주), 푸른초장</li><li>제5회 지역어르신 초청잔치: 5일(수) 오전 10:30, 교회식당</li><li>2023년 교회학교 여름성경학교 및 수련회 안내: 7/15~8/13</li><li>목요찬양 집회: 7/20(목) 저녁 7:30, 2층 비전홀</li><li>동지방 장학후원의 밤: 7/27(목) 저녁 7시. 2층 쉴만한 물가</li></ul></div>
-                            <div class="month-row"><div class="month-title">6월</div><ul class="event-list"><li>원로목사 초청예배: 6/4(주) 1,2부 예배, 조원근 목사(아현교회 원로)</li><li>여주시 목회자 체육대회: 13일(화) 오전 9:30, 종합운동장 실내체육관</li><li>사임: 이성훈 목사(김부연 사모, 은결, 은채), 18일(주) 오후 송별, 부흥교회 담임으로 부임</li><li>2/4분기 새가족교육: 6/4(주)~25(주) 4주간 오전 10시, 2층 소망방</li><li>여주시 복음화 대성회: 18일(주)~23일(수) 매일저녁 7:30, 여주중앙감리교회, '주여, 치유하여 주소서'(유재명 목사, 안산빛나교회)</li><li>부임: 한신희 목사(주은혜 사모), 1대교구 담당</li><li>동지방 여전도회 하계수련회: 22일(목) 오전 10시, 오후 2시, 비전홀, "알고 봉사해야 행복합니다", 박성완 목사(청주큰빛교회 담임)</li><li>창립 90주년 분립개척 선교사 파송식: 6/25(주) 2부 예새 시, 남궁숙 집사, 이윤희(최영만) 집사, 이은영B(이상훈) 집사</li></ul></div>
-                            <div class="month-row"><div class="month-title">5월</div><ul class="event-list"><li>가족뮤지컬 공연: 엄마 아빠와 함께하는 가족뮤지컬 "슈퍼히어로 J", 5/6(토) 오전 11~1시, 푸른초장</li><li>온 가족이 함께하는 예배: 5/14(주) 2부 예배, 가정의 달을 맞아 어린이부터 장년까지 온 세대가 함께 예배</li><li>사진 콘테스트 진행(5/28(주) 시상)</li><li>분립개척 지원서 작성: 창립 90주년 기념 분립개척 교회에 선교사로 파송되고자 하는 분들의 자원서</li><li>중보기도팀 연합 기도회: 20일(토) 저녁 7시, 2층 소망방</li><li>헌아예식: 5/21일(주) 2부 예배 시</li><li>117년차 기독교대한성결교회 교단총회: 23(화)~25(목), 신길교회</li><li>여전도회 권사회 연합기도회: 23(화)~24(수) 오전 10:30, 2층 비전홀</li></ul></div>
-                            <div class="month-row"><div class="month-title">4월</div><ul class="event-list"><li>부활절 감사예배: 9일(주), 푸른초장</li><li>여주시 부활절 연합새벽예배: 4/9(주) 새벽 5:30, 푸른초장</li><li>여주시 부활절 찬양제: 4/9(주) 오후 4시, 여주중앙감리교회</li><li>아파트 입주 전도 재개: 4/18(화) 우남, 5/17(수) LH 행복주택, 5/31(수) 휴먼빌, 오후 1~3시</li><li>창립90주년 교회분립개척 준비: 4월 한달 작정기도, 5~6월 분립개척 지원자 모집 및 기도회, 7/2(주) 분립개척 선교사 파송예배</li><li>유럽종교개혁 성지순례: 10일(월)~19일(수)</li><li>효도관광: 4/25(화) 오전 9:30, 주문진, 70세 이상</li></ul></div>
-                            <div class="month-row"><div class="month-title">3월</div><ul class="event-list"><li>새봄, 온가족 특별심야기도회: 3/10~31(4주간 금요일) 저녁 8시, 푸른초장, 나를 봄이 되게 해 주세요. 10일(금): 장혁재 교수, 17일(금): 김주찬 목사, 24일(금): 김용태 장로, 31일(금): 지현호 선교사</li><li>1/4분기 새가족 교육: 3/5(주)~3/26(주) 매주일 오전 10시, 2층 소망방</li><li>관내 고등학교 장학금 지원: 총 6백만원, 6명 지원 (대신고, 여강고, 본교회 학생2명)</li><li>보조주차장 신설: 교회 진입로 앞 '민디자인' 공터</li></ul></div>
-                            <div class="month-row"><div class="month-title">2월</div><ul class="event-list"><li>중고등부 비전트립: 12일(주)~17일(금), 필리핀 세부(차미훈 선교사), 22명의 학생 참여</li><li>중고청 연합 부흥회: 19일(주) 오후2~6시, 2층 비전홀, 문창현 목사(예수전도단 수원지부 청소년 담당)</li><li>경기동지방 정기지방회: 7일(화) 오후 12시, 더더좋은 교회</li><li>청년부 겨울수련회: 17일(금)~18일(토)</li><li>중보기도팀 연합기도회: 18일(토) 저녁 7시, 2층 소망방</li><li>여전도회 권사회 연합기도회: 21일(화)~22일(수) 오전 10:30, 2층 비전홀</li></ul></div>
-                            <div class="month-row"><div class="month-title">1월</div><ul class="event-list"><li>신년 제직 수련회: 4일(수) 수요예배~5일(목) 새벽예배, 정형섭 목사(예수전도단 수원지부 목회자사역 등)</li><li>신임집사 교육 및 기도회: 8일(주) 낮 12:30, 2층 비전홀</li><li>창립 90주년기념 '감고미용' 책자발간: 창립90주년기념 '가을에는 편지를 쓰겠어요' 책자 발간</li><li>동지방 교역자, 장로 신년기도회: 3일(화) 오전 11시, 푸른초장</li><li>신명기 맛있게 먹기: 1/18(수)~2/22(수) 매주 수요예배, 신명기 1~2장 말씀을 맛있게 먹는 특별강해</li><li>사임: 양해선 전도사(유년부, 29일)</li><li>부임: 백지영 전도사(유년부, 29일)</li><li>중보기도팀 연합기도회: 28일(토) 저녁 7시, 2층 소망방</li></ul></div>
+                            <div class="flex gap-4"><div class="w-16 shrink-0 font-bold text-gray-800 mt-1">12월</div><ul class="flex-1 text-gray-600 text-sm md:text-base space-y-1 list-disc pl-4"><li>이성관 목사 성역은퇴 및 원로목사 추대 감사예배 (12/10)</li></ul></div>
+                            <div class="flex gap-4"><div class="w-16 shrink-0 font-bold text-gray-800 mt-1">06월</div><ul class="flex-1 text-gray-600 text-sm md:text-base space-y-1 list-disc pl-4"><li>창립 90주년 분립개척 선교사 파송식 (6/25)</li><li>한신희 목사 부임</li></ul></div>
                         </div>
                     </div>
-
-                    <div class="year-block">
-                        <div class="year-title">2022</div>
+                    <div class="flex flex-col md:flex-row gap-4 md:gap-8 mb-12 pt-4 border-t border-gray-200">
+                        <div class="md:w-28 shrink-0"><h3 class="text-4xl md:text-5xl font-light text-gray-800 tracking-tight">2022</h3></div>
                         <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">12월</div><ul class="event-list"><li>지노박 선교사 찬양집회; 12/1(목) 저녁 8시, 글로리까페(유튜브 생방송)</li><li>4/4분기 새가족교육: 12/4(주)~25(주) 4주간 오전 10시, 2층 소망방</li><li>사무직원회: 11일(주) 2부 예배 후, 비전홀</li><li>제72회 사무총회: 18일(주) 2부 예배 후, 푸른초장</li><li>성탄감사예배 및 교회학교 발표회: 25일(주)2부 예배</li><li>송구영신예배: 31일(토) 밤 11:30, 푸른초장, 성찬예식 진행</li></ul></div>
-                            <div class="month-row"><div class="month-title">11월</div><ul class="event-list"><li>다니엘 기도회: 11/1(화)~20(주) 저녁 8~10시, 푸른초장</li><li>새가족위원회, 전도대 연합세미나: 11/5(토) 오전 9:30, 치악산 명성수양관</li><li>교회 김장담그기: 11/3(목)~4(금) 오전 9시, 교회식당</li><li>창립 90주년 기념 전교인 성경필사: 11월 한달동안 신청</li><li>추수감사주일: 11/20(주), 푸른초장</li><li>여주시 청소년 페스티벌: 26일(토) 오후 5시, 푸른초장</li></ul></div>
-                            <div class="month-row"><div class="month-title">10월</div><ul class="event-list"><li>경기동지방 교역자 수련회: 6(목)~7(금)</li><li>경기동지방 사모 세미나: 11일(화) 오전 10시, 교육관 중등부실</li><li>건강한 교회를 위한 분립개척 컨퍼런스: 17(월)~18(화) 서울신학대학교</li><li>여전도연합회 권사회 연합기도회: 18(화)~20(목) 오전 10:30, 비전홀</li></ul></div>
-                            <div class="month-row"><div class="month-title">9월</div><ul class="event-list"><li>감고미용, 주께 드리는 시: 9월 한달간 제출, 기념책자 제작</li><li>행복한 가정 세우기 세미나: 9/17(토) 오전 10시, 맘스터치, 한영희 교수, 교육관 중등부실</li><li>3/4분기 새가족교육: 9/18(주)~10/9(주) 4주간 오전 10시, 2층 소망방</li><li>선교지를 돕기 위한 스마트폰, 자전거 후원</li><li>어울림 한마당 큰잔치: 27(화) 낮11시, 황후의 뜰(명성황후 생가 내), 여주기독교종합사회복지센터 주관</li></ul></div>
-                            <div class="month-row"><div class="month-title">8월</div><ul class="event-list"><li>경기동지방 여전도연합회 하계수련회: 영적 침체에서 축복의 문으로!, 이성훈 목사(임마누엘교회), 9일(화), 후포교회</li><li>여전도회 전국연합회 수련회: 15일(월) 오전 10시, 신길교회, 신현모 목사(바울교회)</li><li>여전도회 권사회 연합기도회: 23(화)~25(목) 오전 10:30, 비전홀</li><li>중보기도팀 연합기도회: 27(토) 저녁 7시, 사랑방</li></ul></div>
-                            <div class="month-row"><div class="month-title">7월</div><ul class="event-list"><li>맥추감사주일: 7/3(주), 푸른초장</li><li>경기동지방 여름성경학교 교사강습회: 7/2(토) 오전10:00, 비전홀</li><li>2022년 교회학교 여름성경학교 및 수련회 안내: 7/7~7/31</li><li>교사헌신예배: 7/10(주) 오후예배</li><li>월드비전 합창단 초청 연주회: 17일(주) 2부 예배 시</li><li>동지방 장학후원의 밤: 28(목) 저녁 7시, 1층 식당</li></ul></div>
-                            <div class="month-row"><div class="month-title">6월</div><ul class="event-list"><li>시장, 시의원 당선 감사예배: 6/12(주) 오후예배(2시)</li><li>중보기도팀 연합기도회: 18일(토) 저녁 7시, 1층 사랑방</li><li>여주시 복음화 대성회: 20(월)~22(수), 여주중앙감리교회, 임다윗 목사(파주 충만한 교회)</li></ul></div>
-                            <div class="month-row"><div class="month-title">5월</div><ul class="event-list"><li>5월 시리즈 설교: 불을 던지시는 하나님</li><li>5월 특별심야기도회: 6~27일(매주 금요일 저녁 8:30), 정운택선교사, 강찬찬양사역자, 김동욱찬양사역자, 박광식문화선교사</li><li>장로 장립예배: 13일(금) 저녁 8:30, 푸른초장</li><li>헌아예식: 5/8(주) 2부 예배 시, 푸른초장</li><li>어르신 효도관광: 26일(목) 오전 8:30, 속초</li><li>여전도회 권사회 연합기도회: 17(화)~19(목) 오전 10:30, 비전홀</li><li>116년차 기독교대한성결교회 교단총회: 24(화)~26(목), 신길교회</li></ul></div>
-                            <div class="month-row"><div class="month-title">4월</div><ul class="event-list"><li>부활절 감사예배: 17일(주), 푸른초장</li><li>세례예식; 17일(부활주일) 2부 예배 시</li><li>선교지를 돕기 위한 스마트폰, 태블릿PC, 보조배터리, 자전거 후원</li></ul></div>
-                            <div class="month-row"><div class="month-title">3월</div><ul class="event-list"><li>새가족교육: 3/6(주)~3/27(주) 4주간 오전 10시, 2층 소망방</li><li>3월 시리즈 설교: 소풍, 봄(소망이 풍성한)</li><li>평신도 선교사 파송: 최철수 집사(아프리카 말라위, 20일 출국)</li><li>관내 고등학교 장학금 지원: 총6백만원, 총8명 지급(여주고, 세종고, 여강고, 대신고, 본교회 학생)</li></ul></div>
-                            <div class="month-row"><div class="month-title">2월</div><ul class="event-list"><li>경기동지방 정기지방회: 8일(화) 낮12시, 여주교회 푸른초장</li><li>여전도회 권사회 연합기도회: 22(화)~24(목) 오전 10:30, 비전홀</li></ul></div>
-                            <div class="month-row"><div class="month-title">1월</div><ul class="event-list"><li>1월 시리즈 설교: 관을 씌우소서, 올 한해를</li><li>특별신년금요기도회: 내가 시온성이 되게 하소서, 밤 9시, 푸른초장</li><li>동지방 교역자, 장로 신년기도회: 3일(월) 오전 10시, 더더좋은 교회</li><li>신입집사 교육 및 기도회: 1/16(주) 2부 예배 후, 2층 소망방</li><li>설연휴 예배 안내: 새벽예배(월~수) 6:30 비전홀, 수요예배 정상 진행</li></ul></div>
+                            <div class="flex gap-4"><div class="w-16 shrink-0 font-bold text-gray-800 mt-1">10월</div><ul class="flex-1 text-gray-600 text-sm md:text-base space-y-1 list-disc pl-4"><li>건강한 교회를 위한 분립개척 컨퍼런스</li></ul></div>
+                            <div class="flex gap-4"><div class="w-16 shrink-0 font-bold text-gray-800 mt-1">05월</div><ul class="flex-1 text-gray-600 text-sm md:text-base space-y-1 list-disc pl-4"><li>장로 장립예배 (5/13)</li></ul></div>
                         </div>
                     </div>
-
-                    <div class="year-block">
-                        <div class="year-title">2021</div>
+                    <div class="flex flex-col md:flex-row gap-4 md:gap-8 mb-12 pt-4 border-t border-gray-200">
+                        <div class="md:w-28 shrink-0"><h3 class="text-4xl md:text-5xl font-light text-gray-800 tracking-tight">2020</h3></div>
                         <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">12월</div><ul class="event-list"><li>사무당회: 12/4(토)</li><li>사무직원회:' 12/5(주) 2부 예배 후, 비전홀</li><li>제71회 사무총회: 19일(주) 2부 예배 후 푸른초장</li><li>지역사회 섬김 연탄나누기: 12/11(토) 오전 9시</li><li>성탄감사예배: 25일(토) 오전 11:00, 푸른초장</li><li>교육부 온라인 예배: 12/19(주)~1/30(주)까지, 코로나 확산 방지를 위한 교육부 온라인 예배</li><li>송구영신예배: 31(금) 밤 11:30, 푸른초장</li></ul></div>
-                            <div class="month-row"><div class="month-title">11월</div><ul class="event-list"><li>11월 시리즈 설교: 가을엔 편지를 쓰겠어요</li><li>추수감사주일: 21일(주), 특별찬양: 바리톤 권용만(KBS 교향악단, 현 세종대학교 출강)</li><li>새벽예배 안내: 15일(월)부터 1부 5:00 푸른초장, 2부 6:30 비전홀</li><li>부임: 윤남철 전도사 (전임사역자)</li></ul></div>
-                            <div class="month-row"><div class="month-title">10월</div><ul class="event-list"><li>새가족교육: 10/3(주)~10/24(주) 4주간 오전 10시, 2층 소망방</li><li>10월 시리즈 설교: 다시 춤출 수 잇기를...</li><li>4주간의 기쁨의 행진: 4주간의 기쁨의 일들을 기록, 11월 첫째주일에 제출</li><li>사임: 장진욱 목사(이국향 사모, 윤호, 성호), 27일(수), 양수중앙교회 담임으로 부임</li></ul></div>
-                            <div class="month-row"><div class="month-title">9월</div><ul class="event-list"><li>추석연휴 예배 안내: 새벽기도회(월~수), 수요저녁예배 진행</li><li>추석 가정예배서: 본당 로비, 사무실 앞 비치, 교회홈페이지 다운 가능</li><li>여전도회 젓갈판매: 9/26~10/2, 한주간 신청</li></ul></div>
-                            <div class="month-row"><div class="month-title">8월</div><ul class="event-list"><li>방역수칙 4단계 개정: 9일(월)부터 새벽기도회, 수요예배, 주일예배가 100명 제한으로 진행</li><li>취약계층 라면 기탁: 7/29~30, 여주 관내 어려운 이웃을 위한 라면 180박스 기탁</li></ul></div>
-                            <div class="month-row"><div class="month-title">7월</div><ul class="event-list"><li>맥추감사주일: 7/4(주), 푸른초장</li><li>온라인 예배 안내: 코로나 19 확신으로 인한 온라인 예배, 12(월)~25(주)</li><li>교육부서 여름사역 안내: 7/18~8/15, 코로나 19 방역단계에 따라 온라인/오프라인 병행</li><li>온라인 예배 연장: 8/8까지</li></ul></div>
-                            <div class="month-row"><div class="month-title">6월</div><ul class="event-list"><li>연합여전도회 양파 판매: 김천 양파 판매, 수익금 전액 미자립교회 선교헌금</li></ul></div>
-                            <div class="month-row"><div class="month-title">5월</div><ul class="event-list"><li>원로장로, 명예장로 추대예식: 9일(주) 2부 예배 시, 원로장로: 이광섭, 신호진 장로, 명예장로: 권오범 장로</li><li>세례예식: 23일(주) 2부 예배 시</li><li>헌아식: 30일(주) 2부 예배 시</li><li>115년차 기독교대한성결교회 교단총회: 25(화)~26(수), 경주 화백컨벤션 센터</li></ul></div>
-                            <div class="month-row"><div class="month-title">4월</div><ul class="event-list"><li>부활절 감사예배: 4/4(주)</li><li>성결교단 역사박물관 개원: 4/13(화), 서울신학대, 이성관 목사 역사박물관 추진위원장 추대</li><li>코로나 19 방역수칙 협조: 출입인증 전화 및 명부작성</li></ul></div>
-                            <div class="month-row"><div class="month-title">3월</div><ul class="event-list"><li>3월 주일 예배 시리즈 설교: 봄을 봄</li><li>교회 새 교패 배부</li><li>고난 주간 전교인 특별새벽기도회: 3/29(월)~4/3(토), 푸른초장</li><li>글로리까페 영업시간 연장: 22일(월)부터 저녁 9시까지 연장 영업</li></ul></div>
-                            <div class="month-row"><div class="month-title">2월</div><ul class="event-list"><li>작은 교회 목회자자녀 대학입학금 지원: 여주벧엘, 감곡, 장풍, 샘터, 양수중앙교회</li></ul></div>
-                            <div class="month-row"><div class="month-title">1월</div><ul class="event-list"><li>사무총회: 1/10(주) 2부 예배 후 푸른초장</li><li>경기동지방 정기총회: 9일(화) 낮 12시, 여주교회</li></ul></div>
-                        </div>
-                    </div>
-
-                    <div class="year-block">
-                        <div class="year-title">2020</div>
-                        <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">12월</div><ul class="event-list"><li>사무당회: 12/5(토)</li><li>사무 직원회: 12/6(주), 비전홀</li><li>2020년도 제 70회 사무총회: 20(주) 2부 예배 후 푸른초장</li><li>성탄감사예배: 25(금) 오전 11시, 이형로 목사(만리현교회 원로)</li><li>송구영신예배: 31(목) 밤 11시, 비대면예배</li></ul></div>
-                            <div class="month-row"><div class="month-title">11월</div><ul class="event-list"><li>주일 3부 예배 시작: 오후 1시 , 푸른초장</li><li>특별 금요심야집회: 6(금) 밤 9시, 1주차, 지노박 선교사</li><li>특별 금요심야집회: 13(금) 밤 9시, 2주차, 지선 찬양사역자</li><li>추수감사주일: 15(주), 2부 예배 박종호 장로</li><li>기아대책선교 예배: 22(주) 2부 예배, 유원식 회장</li><li>특별 금요심야집회: 27(금) 밤 9시, 4주차, 조윤숙 목사</li></ul></div>
-                            <div class="month-row"><div class="month-title">10월</div><ul class="event-list"><li>생활 속 거리두기 운동</li><li>전교인 정오기도운동</li></ul></div>
-                            <div class="month-row"><div class="month-title">8월</div><ul class="event-list"><li>생활 속 거리두기 운동</li><li>전교인 정오기도운동</li><li>수요예배: 8/12(수), 조종환 목사(오류동 교회)</li><li>중보기도팀 연합기도회: 22(토) 저녁 7시, 1층 사랑방</li></ul></div>
-                            <div class="month-row"><div class="month-title">7월</div><ul class="event-list"><li>맥추감사주일: 7/5(주)</li><li>생활 속 거리두기 운동</li><li>전교인 정오기도운동</li></ul></div>
-                            <div class="month-row"><div class="month-title">6월</div><ul class="event-list"><li>여전도연합회 기도회: 23(화)~24(수) 오전 10:30, 1층 사랑방</li><li>생활 속 거리두기 운동</li><li>전교인 정오기도운동: 매일 낮12시, 나라와 민족, 교회, 성도들을 위한 중보기도</li></ul></div>
-                            <div class="month-row"><div class="month-title">5월</div><ul class="event-list"><li>예배 안내: 17(주)부터 주일 1,2부, 새벽 1,2부, 수요예배, 금요예배 정상적으로 진행</li><li>교육부서 예배 안내: 17(주)부터 정상적 예배 진행</li><li>임시사무총회: 31(주) 11시 예배 시, 푸른초장</li><li>114년차 기독교대한성결교회 교단총회: 27(수)~28(목), 신길교회</li><li>여전도연합회 기도회: 26(화)~27(수) 오전 10:30, 1층 사랑방</li></ul></div>
-                            <div class="month-row"><div class="month-title">3월</div><ul class="event-list"><li>코로나 19로 인한 예배 변경: 주일오후예배, 금요성령집회, 조찬기도회 일시 중단</li><li>새벽예배: 새벽 6시 1회 진행</li><li>주일예배 방송송출: 주일예배 실황 유튜브 송출(여주성결교회 스트리밍)</li></ul></div>
-                            <div class="month-row"><div class="month-title">2월</div><ul class="event-list"><li>새가족과 함께하는 겨울바다여행: 2/1(토) 오전 9:30, 주문진</li><li>교구장, 구역장 교육 및 기도회: 2/2(주),9(주),16(주) 오후 2:30, 까페 글로리</li><li>경기동지방 정기지방회: 3(월)~4(화) 오전 11시, 한강교회</li><li>청년부 겨울 수련회: 6(목)~8(토), 나사렛대학교</li><li>권사회 기도회: 3(월)~5(수) 오전 10:30, 1층 연합기도실</li><li>임시사무총회: 23일(주) 2부 예배 후, 푸른초장</li><li>여전도회 연합기도회: 18(화)~20(목) 오전 10:30, 1층 연합기도실</li><li>초등부 새봄 성경학교: 23(주), 교육관 초등부실</li></ul></div>
-                            <div class="month-row"><div class="month-title">1월</div><ul class="event-list"><li>전가족이 함께하는 새해 첫날 예배: 1/1(수) 저녁 7:30</li><li>신년특별금요심야기도회: 10(금) 저녁9시, 푸른초장</li><li>동지방교역자.장로 신년기도회: 6일(월) 오전 10시, 여주교회</li><li>신임 집사 교육 및 기도회: 12(주) 낮 12:30, 비전홀</li><li>동지방 권사연합회 총회: 7(화), 진가교회</li><li>동지방 여전도회 총회: 9(목) 오전 10:30, 여주교회 비전홀</li><li>신년 제직 수련회: 22(수) 저녁 7:30~23(목) 새벽 5:50, 장기동 목사(춘천중앙교회)</li><li>고등부 수련회: 19(주)~21(화), 교육관</li><li>여주시 기독교 평신도연합회 총회: 14(화) 저녁 6시, 비전홀(박광섭 장로 회장 취임)</li></ul></div>
+                            <div class="flex gap-4"><div class="w-16 shrink-0 font-bold text-gray-800 mt-1">03월</div><ul class="flex-1 text-gray-600 text-sm md:text-base space-y-1 list-disc pl-4"><li>코로나 19로 인한 주일예배 유튜브 실황 송출 시작</li></ul></div>
                         </div>
                     </div>
                 </div>
 
                 <!-- 2010년대 -->
                 <div id="decade-2010" class="scroll-mt-28 md:scroll-mt-32 pt-8 md:pt-16">
-                    <div class="year-block decade-start">
-                        <div class="year-title">2019</div>
+                    <div class="flex flex-col md:flex-row gap-4 md:gap-8 mb-12 pt-4 border-t-2 border-gray-800">
+                        <div class="md:w-28 shrink-0"><h3 class="text-4xl md:text-5xl font-light text-gray-800 tracking-tight">2019</h3></div>
                         <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">12월</div><ul class="event-list"><li>2019년 제69회 사무총회: 15(주) 2부 예배 후, 푸른초장</li><li>지역사회 섬김 연탄나누기: 7(토) 오전 9:30, 불우한 가정(11가정)에 연탄(4,400장) 나눔</li><li>4/4분기 새가족교육: 1(주)~22(주) 오전 10시, 소망방</li><li>권사회 기도회: 2(월)~4(수) 오전 10:30, 연합기도실</li><li>성탄감사예배: 25(수) 오전 10:30, 푸른초장</li><li>송구영신예배: 31(화) 밤 11:30, 푸른초장</li></ul></div>
-                            <div class="month-row"><div class="month-title">11월</div><ul class="event-list"><li>찬양대 세미나: 3(주) 오후 5시, 비전홀, 바리톤 이승와 부부 찬양간증 집회</li><li>부모를 위한 자녀 교육세미나: 9(토) 오후 5시, 교육관 1층 중등부실, 신상언 선교사</li><li>부흥성회: 18(월)~21(목) 새벽, 다시, 마음의, 깨달음으로</li><li>동지방 권사회 월례회: 5(화), 대포리 교회</li><li>추수감사주일: 17(주) 오전 11시, 바리톤 이승왕 집사</li><li>여전도회 기도회: 12(화), 오산리 기도원, 13(수), 1층 연합기도실</li></ul></div>
-                            <div class="month-row"><div class="month-title">10월</div><ul class="event-list"><li>제7기 마더와이즈 개강: 10(목) 오전 10시, 교육관 1층 영아부실</li><li>가을기도여행: 8(화)~29(화) 오전11~오후3시. 만리현 수양관</li><li>전교인 가을 나들이: 10/20(토), 금은모레유원지</li><li>전국성결교회 목회자 컨퍼런스: 14(월)~16(수)</li></ul></div>
-                            <div class="month-row"><div class="month-title">9월</div><ul class="event-list"><li>장로권사 임직 및 교육관 신축 감사예배; 8(주) 오후 4시, 푸른초장</li><li>청춘대학 2학기 개강: 4(수), 1층 사랑방</li><li>고등부 찬양축제: 7(토) 오후 7시, 비전홀</li><li>경기동지방 여전도회 단합대회: 19(목) 오전 8시, 천리포 수목원</li><li>새가족부 세미나: 28(토) 오전 9:30, 교육관 1층 중등부실, 안은숙 선교사(OMF, 브니엘상담센터 소장)</li><li>여전도연합회 기도회: 23(월)~25(수) 오전 10:30, 1층 연합기도실</li><li>전국권사회 수련회: 23(월)~25(수), 실촌수양관, 윤창용 목사</li></ul></div>
-                            <div class="month-row"><div class="month-title">8월</div><ul class="event-list"><li>경기동지방 여전도연합회 수련회: 12(월)~12(화), 여주교회, 회개하고 복음을 믿으라, 김철호 목사(전주성결교회)</li><li>권사회 기도회: 5(월)~7(수) 오전 10:30, 1층 연합기도실</li><li>전국 여전도회 수련회: 19(월)~21(수), 실촌수양관, 김형배 목사(서산교회)</li><li>중보기도팀 연합기도회: 24(토) 저녁 7시, 1층 사랑방</li><li>동지방청소년부 릴레이 찬양축제: 31(토) 저녁 6시, 푸른초장</li></ul></div>
-                            <div class="month-row"><div class="month-title">7월</div><ul class="event-list"><li>맥추감사주일: 7/7(주)</li><li>여전도연합회 기도회: 16(화)~18(목) 오전 10:30, 1층 연합기도실</li><li>2019년 여름사역: 7/20~8/15, 교육부서 여름성경학교 진행</li><li>당진중앙교회 아웃리치: 24(수)~25(목)</li><li>2019년 의료.보건 단기선교: 7/29(월)~8/3(토), 중앙아시아 키르키즈스탄(유종호 선교사)</li></ul></div>
-                            <div class="month-row"><div class="month-title">6월</div><ul class="event-list"><li>경기동지방 여름성경학교 교사강습회: 8일(토) 10~2시, 비전홀</li><li>2/4분기 새가족교육: 6/9일(주)~30일(주), 2층 소망방</li><li>여주시 복음화 대성회: 9일(주)~12일(수), 여주중앙감리교회</li><li>제4회 지역어르신 초청잔치: 6/26(수), 교회식당</li><li>여전도회 연합회 기도회: 18(화)~20(목), 오전 10:30, 1층 연합기도실</li><li>동지방권사회 수련회: 20(목), 대명교회</li><li>중보기도팀 연합기도회: 29일(토) 저녁 7시, 1층 사랑방</li></ul></div>
-                            <div class="month-row"><div class="month-title">5월</div><ul class="event-list"><li>헌아 예식: 19일(주) 2부 예배 시</li><li>봄 기도여행: 7,14,21,28(매주 화), 오전 11~오후 3시, 만리현 수양관(홍천)</li><li>권사회 기도회: 6일(월)~8일(수) 오전 10:30, 1층 연합기도실</li><li>전가족이 함께하는 예배: 26일(주), 1부 9시, 1부 11시</li><li>제12차 성결 바이블스쿨: 5월 마지막 주부터 7주간</li></ul></div>
-                            <div class="month-row"><div class="month-title">4월</div><ul class="event-list"><li>온가족 특별 심야기도회: 4/5~26(4주간), 금요일 저역 8:30, 3층 푸른초장</li><li>효도관광: 11(목) 오전 8:30, 강릉, 70세 이상 대상</li><li>6기 마더와이즈: 4/18(주)~5/30(목) 오전 10~12시</li><li>부활절 감사예배; 4/21(주)</li><li>여주시 부활절 연합새벽예배: 21(주) 새벽 5:30, 여주중앙감리교회</li><li>여주시 부활절 연합찬양제: 21(주) 오후 3:30, 여주중앙감리교회</li></ul></div>
-                            <div class="month-row"><div class="month-title">3월</div><ul class="event-list"><li>청춘대학 1학기 개강: 3/6(수) 오전 10:30, 1층 사랑방</li><li>장날전도대: 3/5(화), 15(금), 20(수), 오후 1~3시</li><li>삼일절 백주년 기념연합예배: 3/3(주일), 오후 5시, 여주중앙감리교회</li><li>권사회 기도회: 4(월)~6(수) 오전 10:30, 1층 연합기도실</li><li>1/4분기 새가족교육: 3/10(주)~31(주) 4주간, 1부 예배 후, 2층 소망방</li><li>중부지역 남전도회협의회 정기총회: 16(토) 오전 11시, 여주교회 비전홀 (임성선 장로 회장 취임)</li><li>1차 터키 성지순례: 20(수)~28(목)</li></ul></div>
-                            <div class="month-row"><div class="month-title">2월</div><ul class="event-list"><li>경기동지방회 정기지방회: 11(월)~2(화), 오전 11:00, 대포리 교회</li><li>영아부 신설: 2/10(주일) 11:00, 4층 유아실</li><li>권사회 기도회: 11(월)~13(수) 오전 10:30, 1층 연합기도실</li><li>고등부 겨울 수련회: 17(목)~19(토), 이천동부교회</li><li>여전도회연합기도회: 19(화)~21(목) 오전 110:30, 1층 연합기도실</li><li>청년부 겨울수련회: 24(주)~26(화), 양평 더큰나무 펜션</li><li>교구장 수련회: 25(월)~26(화)</li></ul></div>
-                            <div class="month-row"><div class="month-title">1월</div><ul class="event-list"><li>신년제직수련회: 1/9(수)~10(목)</li><li>신입 집사 교육 및 기도회: 13(주일) 오후 12:20 비전홀</li><li>부임: 1/6, 윤남철 전도사(유치부), 방휘 성도(시온찬양대 지휘자)</li><li>동지방 여전도회 연합회 총회: 8일(화), 10:30, 비전홀</li><li>권사회 기도회: 7일(월)~9일(수) 오전 10:30, 1층 연합기도실</li><li>경기동지방 임직자 교육: 24일(목) 오전 10~12:30, 2층 비전홀</li><li>중고등부 비전트립: 1/28(월)~2/1(금), 대만(난터우, 타이페이)</li></ul></div>
+                            <div class="flex gap-4"><div class="w-16 shrink-0 font-bold text-gray-800 mt-1">09월</div><ul class="flex-1 text-gray-600 text-sm md:text-base space-y-1 list-disc pl-4"><li>장로권사 임직 및 교육관 신축 감사예배 (9/8)</li></ul></div>
                         </div>
                     </div>
-
-                    <div class="year-block">
-                        <div class="year-title">2018</div>
+                    <div class="flex flex-col md:flex-row gap-4 md:gap-8 mb-12 pt-4 border-t border-gray-200">
+                        <div class="md:w-28 shrink-0"><h3 class="text-4xl md:text-5xl font-light text-gray-800 tracking-tight">2018</h3></div>
                         <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">12월</div><ul class="event-list"><li>성결시네마: 2일(주) 오후 1:30, 미라클 프롬 헤븐</li><li>지역사회섬김 연탄나누기: 8일(토) 오전 9:30</li><li>직원회: 9일(주) 2부 예배 후 비전홀</li><li>1,2권사회 기도회: 11일(화), 양평금식 기도원</li><li>2018년도 사무총회: 16일(주) 2부 예배 후 푸른초장</li><li>4/4분기 새가족 교육: 12/2(주)~23(주) 오전 10시, 2층 소망방</li><li>새가족 환영만찬: 23일(주) 오후 5시, 1층 식당</li><li>성탄감사예배: 25일(화) 오전 10:30</li><li>송구영신예배: 31일(월) 밤 11시, 푸른초장</li></ul></div>
-                            <div class="month-row"><div class="month-title">11월</div><ul class="event-list"><li>성결 시네마: 4일(주) 오후 1:30, 부활</li><li>가을 시 음악 콘서트: 7일(수) 저녁 7:30, 푸른초장</li><li>추수감사절 가족찬양제: 18일(주) 오후예배</li><li>옥상정원 조성: 옥상을 정원으로 리모델링</li><li>교회 김장 담그기: 22일(목)~23일(금) 오전 9시, 교회식당</li><li>여주시 청소년 페스티발: 여주시 청소년을 위한 축제, 24일(토) 저녁 7시</li></ul></div>
-                            <div class="month-row"><div class="month-title">10월</div><ul class="event-list"><li>가을기도여행: 10/2~30(매주 화요일), 만리현수양관</li><li>2018 성령부흥회: 14일(주)~17일(수) 김옥례 전도사(봉신성결교회), 하나님을 만나자</li><li>경기동지방 교역자 수련회: 11일(목)~12일(금)</li><li>시와 그림 초청 교사부흥회: 26일(금) 밤 9시, 3층 푸른초장, 시와 그림 김정석 목사(CTS 교회행전 진행자)</li></ul></div>
-                            <div class="month-row"><div class="month-title">9월</div><ul class="event-list"><li>청춘대학 2학기 개강: 매주 수요일 오전 10:30, 1층 사랑방</li><li>3/4분기 새가족교육: 2일(주)~23일(주) 4주간 오전 10시, 2층 소망방</li><li>수요예배: 5일(수), 유종호 선교사(키르키즈스탄)</li><li>기아대책 아동결연: 키르키즈스탄 한 어린이 입양 후원, 3만원</li><li>전국 권사회 수련회: 10일(월), 실촌수양관</li><li>두바퀴 자전거 축제: 29일(토) 오전 11시~오후 2시, 강천보~강천섬, 자전거 라이딩, 레크레이션</li><li>말씀과 그림 소장전: 9/29~연말, 쉴만한 물가, 김영옥 집사 기획초대전</li><li>성결시네마: 30일(주) 오후 1:30, 워 룸(WAR ROOM)</li></ul></div>
-                            <div class="month-row"><div class="month-title">8월</div><ul class="event-list"><li>성전 봉헌식 교육관 신축 기공식, 원로장로 추대식: 5일(주) 오후 4시, 푸른초장, 박광선 원로장로 추대</li><li>여주시 기독교연합 8.15 구국기도회: 12일(주) 오후 1:30, 2층 푸른초장</li><li>경기동지방 여전도회연합회 수련회: 13(월)~14(화) 오전 10:30, 저녁 7:30, 새벽 5시, 시온성교회, 홍은해 목사(부평소망교회, 이 세대를 본받지 말라)</li><li>전국 여전도회 수련회: 20(월)~22(수), 곤지암 실촌수양관, 오봉석 목사</li></ul></div>
-                            <div class="month-row"><div class="month-title">7월</div><ul class="event-list"><li>맥추감사주일: 1일 주일</li><li>제3회 지역사회 어르신초청잔치: 4일(수) 오전 10:30, 교회 식당</li><li>권사회 기도회: 2(월)~3(화) 오전 10:30, 1층 연합기도실</li><li>2018년 여름사역: 20일(주) 부터, 7/20~8/16까지</li><li>중보기도팀 연합기도회: 21일(토) 저녁 7시, 1층 사랑방</li><li>임시당회: 22일(주) 2부예배 후 당회실</li><li>2018 의료보건 단기선교 일정: 7/30~8/4, 중앙아시아 키르키즈스탄(유종호 선교사)</li></ul></div>
-                            <div class="month-row"><div class="month-title">6월</div><ul class="event-list"><li>중보기도회 수련회: 9일(토), Acts29 비전빌리지(용인)</li><li>경기동지방 교사강습회: 9일(토) 오전 10시~오후 2시, 비전홀</li><li>의료보건 단기선교 바자회: 키르키즈스탄 의료보건 단기선교 기금 마련</li><li>뉴라이프 9기 훈련: 매주일 오후 3시</li><li>2/4 분기 새가족 교육: 6/3(주)~6/24(주) 오전 10시, 2층 소망방</li><li>여주시 복음화 대성회: 17(주) 저녁 7:30, 18(월)~20(수) 새벽 5시, 오전 10:30, 저녁 7:30</li><li>간증 음악회: 24일(주) 오후 1:30, 푸른초장, 공윤팔 목사(아무르합주단 단장)</li></ul></div>
-                            <div class="month-row"><div class="month-title">5월</div><ul class="event-list"><li>어린이 주일 연합예배: 6일(주) 오후 1:30, 김수영 권사, 문준경 전도사 순교이야기 동화구연</li><li>어르신 효도관광: 15일(화) 강릉 솔향수목원</li><li>1,2권사회 기도회: 7일(월)~9일(수) 오전 10:30, 1층 연합기도실</li><li>헌아식: 20일(주) 오후 2시 예배</li><li>뉴라이프 9기 훈련시작: 20일(주) 오후 3시, 쉴만한 물가</li><li>마더와이즈 5기 훈련 수료식: 24일(목) 오전 10시, 1층 사랑방</li><li>중보기도팀 연합 기도회: 26일(토) 저녁 7시, 1층 사랑방</li><li>112년차 기도교대한성결교회 교단총회: 29일(화)~31일(목), 서울신학대학교</li></ul></div>
-                            <div class="month-row"><div class="month-title">4월</div><ul class="event-list"><li>여주시 부활절 연합새벽예배: 1일(주) 새벽 5:30, 여주성결교회 푸른초장</li><li>여주시 부활절 연함찬양제: 1일(주) 오후 3:30, 여주중앙감리교회</li><li>제11차 성결 바이블 스쿨: 4월 둘째주 부터 10주간</li><li>세례예식: 1일(부활주일) 2부 예배</li><li>마더와이즈 5기 개강: 5일(목) 오전 10시, 1층 사랑방, 4/5(목)~5/24(목) 8주간</li><li>1,2권사회 기도회: 2일(월)~4일(수) 오전 10:30, 1층 연합기도실</li><li>목사 안수식: 김주영 전도사, 최승부 전도사, 3일(화 오후 2시), 아현교회</li><li>봄 기도여행: 4/24, 5/1,8,15 매주 화요일, 만리현수양관(홍천)</li></ul></div>
-                            <div class="month-row"><div class="month-title">3월</div><ul class="event-list"><li>정기당회: 4일, 당회실</li><li>권사회 기도회: 5일(월)~7일(수), 1층 연합기도실</li><li>2018 의료.보건 단기선교팀 모임: 4일, 5층 고등부실</li><li>새가족부 기도회: 18일(주) 오후 2:30, 5층 고등부실</li><li>고난주간 집중 새벽기도회: 26일(월)~30일(금), 푸른초장</li><li>특별금요기도회: 30일(금) 저녁 9시, 비전홀</li><li>1/4분기 새가족 교육: 주일 오전 10시, 3층 영접실</li><li>여전도회 기도회: 20(화)~22(목) 오전 10:30, 1층 연합기도실</li><li>경기동지방 여전도회 세미나: 22일(목) 오전 10:30, 푸른초장, 구교환 목사(은천교회)</li><li>경기동지방 청소년부 세미나: 25일(주일) 오후 2시, 푸른초장, 염완섭 박사, 동성애 세미나</li></ul></div>
-                            <div class="month-row"><div class="month-title">2월</div><ul class="event-list"><li>부임: 이선화 전도사(초등부), 4일</li><li>경기동지방회: 5일(월)~6일(화), 시온성교회</li><li>권사회 기도회: 5일(월)~7일(수) 오전 10:30, 1층 연합기도실</li><li>여주시 기독교 평신도연합회 창립예배 및 총회: 26일(월) 오후 6시, 오학축협하나로마트 2층 대회의실</li><li>전국 성결교사대회: 2/28(수)~3/1(목), 오크밸리 리조트(문막)</li></ul></div>
-                            <div class="month-row"><div class="month-title">1월</div><ul class="event-list"><li>동지방 교역자, 장로 신년 기도회: 8일(월) 오전 10시</li><li>신년 제직헌신 다짐예배: 10일 수요일, 강사: 김석년목사(서초교회담임)</li><li>신임집사 기도회 및 교육: 14일 주일, 비전홀</li><li>새가족부 신임 섬김이 교육: 14일 오전 10시, 5층 여전도회실</li><li>경기동지방 권사회총회: 16일(화) 오전 11시, 한강교회</li><li>중고등부 겨울수련회: 28일(주)~30일(화), 양평 창신수양관</li></ul></div>
+                            <div class="flex gap-4"><div class="w-16 shrink-0 font-bold text-gray-800 mt-1">08월</div><ul class="flex-1 text-gray-600 text-sm md:text-base space-y-1 list-disc pl-4"><li>성전 봉헌식, 교육관 신축 기공식, 원로장로 추대식 (8/5)</li></ul></div>
                         </div>
                     </div>
-
-                    <div class="year-block">
-                        <div class="year-title">2017</div>
+                    <div class="flex flex-col md:flex-row gap-4 md:gap-8 mb-12 pt-4 border-t border-gray-200">
+                        <div class="md:w-28 shrink-0"><h3 class="text-4xl md:text-5xl font-light text-gray-800 tracking-tight">2014</h3></div>
                         <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">12월</div><ul class="event-list"><li>1,2 권사회 기도회(12일, 양평금식기도원)</li><li>지역사회 섬김 연탄나누기(16일)</li><li>2017년도 제67회 사무총회(17일)</li><li>주제가 있는 오후예배(24일)</li><li>성탄 감사 음악예배(25일)</li><li>여주시 청소년 페스티벌(30일)</li><li>성탄 발표회(25일, 교육부서 전체)</li></ul></div>
-                            <div class="month-row"><div class="month-title">11월</div><ul class="event-list"><li>뉴라이프 8기 훈련</li><li>경기동지방 교역자 태국수련회(6~10일)</li><li>전체 구역장 기도회(11일)</li><li>교회 김장담그기(16~17일)</li><li>추수감사주일(19일)</li><li>말씀부흥성회 특별새벽기도회(영적 돌파를 행하라, 27~29일)</li><li>찬양콘서트(22일, 꿈과사랑의 찬양대)</li></ul></div>
-                            <div class="month-row"><div class="month-title">10월</div><ul class="event-list"><li>뉴라이프 8기 훈련(10/15~11/26)</li><li>경기동지방 전도간증집회(15일)</li><li>가을 기도여행(기도는 우리의 안식, 17,24일)</li><li>사임: 김태우 목사(채진주 사모, 김우주)</li></ul></div>
-                            <div class="month-row"><div class="month-title">9월</div><ul class="event-list"><li>청춘대학 2학기 개강(6일)</li><li>전국 권사회 수련회(11일)</li><li>가을 기도여행(기도는 우리의 안식, 9/19,26, 10/17,24)</li><li>뉴라이프 8기 섬김이 기도모임(9/24~10/8)</li><li>새가족부 가을여행(30일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">8월</div><ul class="event-list"><li>주제가 있는 오후예배(6일)</li><li>경기동지방 여전도회 하계연합수련회(7~8일)</li><li>미자립교회 지원을 위한 기장쌀 판매(13일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">7월</div><ul class="event-list"><li>맥추감사주일(2일)</li><li>국제 와이즈멘 여주클럽 회장 이취임식(15일, 17대회장 김기호 집사 취임)</li><li>2017년 교회학교 여름성경학교 및 수련회(7/22~8/13)</li></ul></div>
-                            <div class="month-row"><div class="month-title">6월</div><ul class="event-list"><li>주제가 있는 예배(11일)</li><li>여주시 복음화 대성회(18~21일)</li><li>경기동지방 청소년부주최 이슬람세미나(18일)</li><li>제2회 지역사회 어르신초청잔치(28일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">5월</div><ul class="event-list"><li>제10차 성결 바이블스쿨(11일부터 10주간)</li><li>임자진리교회 순교기념예배 방문(15일)</li><li>봄 기도 여행(16일)</li><li>교회 진입로 꽃길 조성(20일)</li><li>주제가 있는 예배(21일)</li><li>헌아식 (21일)</li><li>사임: 최승부 전도사(유년부, 28일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">4월</div><ul class="event-list"><li>부활절 전교인 새벽기도회(17~22일)</li><li>마더와이즈 4기 개강(6일)</li><li>부활주일 감사예배(16일)</li><li>여주지역 부활절 연합 찬양제(16일)</li><li>남전도회 연합회 족구대회(22일)</li><li>뉴라이프 7기 훈련</li><li>경기동지방 찬양제(23일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">3월</div><ul class="event-list"><li>청춘대학 개강(8일)</li><li>남전도회 주관 조찬기도회(11일)</li><li>교단 110주년 기념 중부지역 찬양제(19일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">2월</div><ul class="event-list"><li>신년 교사 세미니(5일)</li><li>청년부 동계수련회(9-11일)</li><li>김종희 집사 초청 전도간증집회(15일)</li><li>중고등부 기독교 문화유적지 탐방(20-22일)</li><li>주제가 있는 예배(26일, 김요한 선교사)</li><li>뉴라이프 7기 훈련(2/26-4/9)</li></ul></div>
-                            <div class="month-row"><div class="month-title">1월</div><ul class="event-list"><li>동지방 교역자 장로 신년기도회(2일)</li><li>중고등부 겨울수련회(12-14일)</li><li>신년제직수련회(11-12일 새벽)</li><li>신년특별금요기도회(13일 저녁9시)</li><li>새가족과의 아름다운 만남(22일)</li><li>신임집사교육(22일)</li><li>주제가 있는 예배(22일, 오일영 목사)</li></ul></div>
+                            <div class="flex gap-4"><div class="w-16 shrink-0 font-bold text-gray-800 mt-1">06월</div><ul class="flex-1 text-gray-600 text-sm md:text-base space-y-1 list-disc pl-4"><li>장로장립 및 권사취임예식 (이태수, 임성선 장로)</li></ul></div>
                         </div>
                     </div>
-
-                    <div class="year-block">
-                        <div class="year-title">2016</div>
+                    <div class="flex flex-col md:flex-row gap-4 md:gap-8 mb-12 pt-4 border-t border-gray-200">
+                        <div class="md:w-28 shrink-0"><h3 class="text-4xl md:text-5xl font-light text-gray-800 tracking-tight">2010</h3></div>
                         <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">12월</div><ul class="event-list"><li>2016년도 제66회 사무총회(18일)</li><li>장로님들과 함께하는 특별새벽기도회(12-23일)</li><li>지역사회섬김 연탄타누기 (10일)</li><li>4/4분기 새가족교육(4-25일)</li><li>부임(안동성 목사, 윤성희 사모, 25일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">11월</div><ul class="event-list"><li>교회김장 담그기(17-18일)</li><li>10,11남전도회주관 조찬기도회(19일)</li><li>추수감사주일(20일)</li><li>불우이웃 연탄보일러 설치(23-24일)</li><li>남여전도회 연합친목회(26일)</li><li>향기가있는 가을음악회(27일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">10월</div><ul class="event-list"><li>9남전도회주관 조찬기도회(8일)</li><li>뉴라이프 6기훈련(10/9-11/20)</li><li>찬양대교환예배(광주성결교회로, 2일)</li><li>남전도연합회 족구대회(29일)</li><li>찬양대교환예배(여주성결교회로, 30일)</li><li>김진웅목사 사임(30일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">9월</div><ul class="event-list"><li>청춘대학 2학기 개강(7일)</li><li>오감발달 가을학기(9/6-11/22)</li><li>8남전도회주관 조찬기도회(10일)</li><li>미얀마선교센터 전기공사기금전달(11일)</li><li>뉴라이프6기 준비기도모임(9/11-10/2)</li><li>가을기도여행(9/20-10/11)</li><li>전교인특별새벽기도회(9/26-10/1)</li></ul></div>
-                            <div class="month-row"><div class="month-title">8월</div><ul class="event-list"><li>중고등부 여름수련회(4-6일)</li><li>7남전도회주관 조찬기도회(13일)</li><li>청년부 여름수련회(13-15일)</li><li>당회수련회(15-16일)</li><li>교회학교 여름사역 평가회(21일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">7월</div><ul class="event-list"><li>맥추감사예배(3일)</li><li>미얀마선교 바자회(3일)</li><li>6남전도회주관 조찬기도회(9일)</li><li>선교팀파송 헌신예배(17일)</li><li>유치부여름성경학교(23일-24일)</li><li>유년부여름성경학교(22일-24일)</li><li>초등부여름성경학교(29일-31일)</li><li>미얀마단기선교(24-29일)</li><li>청년부국내단기선교(7/31-8/6)</li></ul></div>
-                            <div class="month-row"><div class="month-title">6월</div><ul class="event-list"><li>여주시목회자체육대회(2일)</li><li>오감발달 여름학기(6/7-8/23)</li><li>경기동지방 교사강습회(4일)</li><li>5남전도회주관 조찬기도회(11일)</li><li>미얀마선교 바자회(12일)</li><li>음악부 단합대회(18일)</li><li>여주시 복음화대성회(19-22일)</li><li>음악교실 여름학기(6/26-9/11)</li><li>새가족 환영회:새가족과의 만남(26일)</li><li>지역사회 어르신초청잔치(29일)</li><li>청춘대학 1학기 종강(29일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">5월</div><ul class="event-list"><li>전교인한마음체육대회(1일)</li><li>4남전도회주관 조찬기도회(14일)</li><li>헌아식(15일)</li><li>성결시네마: 프리덤상영(22일)</li><li>9차 바이블스쿨(5/31-6/26)</li><li>어르신 효도관광(31일)</li><li>상반기이웃섬김봉사(5/23-6/26)</li></ul></div>
-                            <div class="month-row"><div class="month-title">4월</div><ul class="event-list"><li>봄기도여행(5일-4주간)</li><li>1남전도회주관 조찬기도회(9일)</li><li>유소년축구단 창단</li></ul></div>
-                            <div class="month-row"><div class="month-title">3월</div><ul class="event-list"><li>사순절 특별금요성령집회: 유쾌,상쾌,통쾌(4-25일)</li><li>오감발달 봄학기 개강 (8일-12주간)</li><li>청춘대학 1학기 개강(9일)</li><li>중보기도세미나(12일)</li><li>음악교실 개설(3/13-5/29)</li><li>구역별대심방(14일-4월말)</li><li>마더와이즈 3기(3/24-5/26)</li><li>세례예식(27일)</li><li>부활절감사예배(27일)</li><li>여주시 부활절 연합새벽기도회(27일)</li><li>영상음향공사(21일-25일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">2월</div><ul class="event-list"><li>경기동지방회(1일-2일)</li><li>청년부 동계수련회(4-6일)</li><li>중고등부 동계수련회(12-13일)</li><li>2남전도회주관 조찬기도회(13일)</li><li>뉴라이프 5기훈련(2/14-3/27)</li><li>초등부 겨울성경학교 (20일)</li><li>봉사위원회 지역사회 섬김(25일): 소방서,환경주무관,자율방범대</li></ul></div>
-                            <div class="month-row"><div class="month-title">1월</div><ul class="event-list"><li>남녀전도회장단헌신예배 및 진급보고(3일)</li><li>소망교도소 위문예배(3일)</li><li>경기동지방 교역자,장로 신년기도회(4일)</li><li>3남전도회주관 조찬기도회(9일)</li><li>신년제직수련회(13-14일)</li><li>경기동지방 임직자교육(14일)</li><li>중고등부 레이시아비전트립18일(월)-23일(토)</li><li>교사세미나(24일)</li></ul></div>
-                        </div>
-                    </div>
-
-                    <div class="year-block">
-                        <div class="year-title">2015</div>
-                        <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">12월</div><ul class="event-list"><li>연말직원회(6일)</li><li>12남전도회주관 조찬기도회(10일)</li><li>송년음악회: 첼리스트 장성찬초청(16일)</li><li>송구영신예배(31일)</li><li>제65차 사무총회(13일)</li><li>2016년 사역백서 봉헌(13일)</li><li>성탄감사예배(25일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">11월</div><ul class="event-list"><li>부흥회를 위한 릴레이기도회(1일-2주간)</li><li>11남전도회주관 조찬기도회(7일)</li><li>대학수학능력시험(12일)</li><li>추수감사주일(15일)</li><li>2015년 말씀부흥집회 및 특별새벽기도회(16일-18일)</li><li>교회김장담그기(19일-20일)</li><li>여주시청소년페스티벌(21일)</li><li>중고청일일부흥회(22일)</li><li>하나님의나팔소리정기연주회(22일)</li><li>2015년 청춘대학 2학기 종강(25일)</li><li>지역사회섬김 연탄나누기(28일)</li><li>교사세미나(28일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">10월</div><ul class="event-list"><li>뉴라이프4기훈련(4일-7주간)</li><li>노인의달효도관광(5일)</li><li>10남전도회 주관 조찬기도회(10일)</li><li>경기동지방전도동력세미나(11일)</li><li>경기동지방교회대항축구족구대회(17일)</li><li>박성만전도사 부임(11일)</li><li>경기동지방교역자수련회(15일-16일)</li><li>여주시기독교연합예배(25일)</li><li>여주시복음화대성회(26일-28일)</li><li>마더와이즈2기훈련</li></ul></div>
-                            <div class="month-row"><div class="month-title">9월</div><ul class="event-list"><li>2015 청춘대학 2학기 개강(2일)</li><li>당회수련회(4일-5일)</li><li>찬양대교환예배: 동대전교회(6일,13일)</li><li>9남전도회주관 조찬기도회(10일)</li><li>27차 가을기도여행(15일-5주간)</li><li>제2회 플롯토다 찬양예배(20일)</li><li>중고등부 말레이시아 비전트립 선발(20일)</li><li>마더와이즈 2기 모집(20일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">8월</div><ul class="event-list"><li>청년부국내선교:충남 원의제일교회(2일-8일)</li><li>삼계탕DAY: 충남 보령 원산도(5일-6일)</li><li>8남전도회주관조찬기도회(8일)</li><li>쳥년부수련회(14일-15일)</li><li>경기동지방여전도회하계수련회(17일-18일)</li><li>뉴라이프 4기 모집</li></ul></div>
-                            <div class="month-row"><div class="month-title">7월</div><ul class="event-list"><li>맥추감사예배(5일)</li><li>라오스선교 바자회(5일)</li><li>10남전도회 단합대회(5일)</li><li>7남전도회주관 조찬기도회(11일)</li><li>유년부·초등부여름성경학교(17일~19일)</li><li>청년부국내선교바자회(19일)</li><li>중고등부여름수련회(23일-25일)</li><li>유치부여름성경학교(25일-26일)</li><li>단기선교 파송예배(26일)</li><li>교회학교교사여름사역위로회(26일)</li><li>라오스단기선교 (27일-8월1일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">6월</div><ul class="event-list"><li>여주시목회자체육대회(2일)</li><li>경기동지방교사강습회(6일)</li><li>6남전도회 조찬기도회(13일)</li><li>성결붕어빵“아빠랑 나랑” (20일)</li><li>2015청춘대학 1학기 종강(24일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">5월</div><ul class="event-list"><li>헌아식(3일)</li><li>정학구장로원로장로추대예식(3일)</li><li>5남전도회주관 조찬기도회 (9일)</li><li>찬양대 교환예배: 성남신흥교회(10일,20일)</li><li>경기동지방 교육부모임(10일)</li><li>109년차 교단총회 (26일-28일)</li><li>중부지역남전도회체육대회(30일)</li><li>경기동지방교사강습회 (31일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">4월</div><ul class="event-list"><li>부활절감사예배(5일)</li><li>세례예식(5일)</li><li>부활절특별새벽기도회(6일-11일)</li><li>김태우·한상현전도사 목사안수식(7일)</li><li>5남전도회주관조찬기도회(18일)</li><li>마더와이즈 1기훈련(11일-10주간)</li><li>경기동지방부활절연합찬양제(19일)</li><li>봄기도여행(21일-5주간)</li><li>제3회 여주시 장애인 복음화대회(25일)</li><li>제8차 성결바이블스쿨(28일-8주간)</li></ul></div>
-                            <div class="month-row"><div class="month-title">3월</div><ul class="event-list"><li>오감발달 봄학기 개강 (2일-10주간)</li><li>2015 청춘대학 1학기 개강(3일)</li><li>1남전도회주관 조찬기도회(7일)</li><li>미술놀이치료 개강(7일-10주간)</li><li>뉴라이프3기훈련(8일-7주간)</li><li>미자립교회돕기 기장쌀판매(8일)</li><li>중부지역 남전도회 총회 (21일)</li><li>세례교육(22일-3주간)</li></ul></div>
-                            <div class="month-row"><div class="month-title">2월</div><ul class="event-list"><li>교회학교 교사세미나(1일)</li><li>경기동지방회(2일-3일)</li><li>2남전도회주관 조찬기도회(7일)</li><li>뉴라이프섬김이기도모임(8일-3월1일)</li><li>마더와이즈1기모집(15일)</li><li>마더와이즈스텝기도모임(11일-4월1일)</li><li>중고청연합수련회(22일-24일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">1월</div><ul class="event-list"><li>남녀전도회회장단헌신예배 및 진급보고(4일)</li><li>신년금요기도회(9일)</li><li>신입집사교육(4일)</li><li>경기동지방 교역자,장로 신년기도회(5일)</li><li>3남전도회주관 조찬기도회(10일)</li><li>경기동지방 임직자교육(15일)</li><li>뉴라이프3기모집</li><li>교역자수련회(19일-20일)</li><li>중고등부 대만비전트립26일(월)-30일(금)</li><li>초등부하계수련회(31일)</li></ul></div>
-                        </div>
-                    </div>
-
-                    <div class="year-block">
-                        <div class="year-title">2014</div>
-                        <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">12월</div><ul class="event-list"><li>연말직원회(7일)</li><li>12남 주관 조찬기도회(7일)</li><li>신정수전도사 부임(전담,유치부)(7일)</li><li>찬양집회(14일)</li><li>제63차 사무총회(14일)</li><li>2015년 사역백서 봉헌(14일)</li><li>성탄감사예배(21일)</li><li>송구영신예배(31일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">11월</div><ul class="event-list"><li>미술치료프로그램 시작</li><li>11남전도회주관 조찬기도회(2일)</li><li>말씀부흥성회(9일~12일)</li><li>대학수학능력시험(13일)</li><li>경기동지방교회대항족구대회(15일)</li><li>추수감사주일(16일)</li><li>교회김장담그기(19일-20일)</li><li>여주시청소년페스티벌 (22일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">10월</div><ul class="event-list"><li>한미현전도사 사임(5일)</li><li>10남전도회 주관 조찬기도회(10일)</li><li>필리핀급식소입당예배(20일-24일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">9월</div><ul class="event-list"><li>노인대학개강(3일)</li><li>9남전도회주관 조찬기도회(10일)</li><li>대교구별기도회(16일-18일)</li><li>뉴라이프 2기훈련(21-7주)</li><li>특별새벽기도회(22일-27일)</li><li>제25차 가을기도여행(23일~10월14일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">8월</div><ul class="event-list"><li>중고등부여름수련회(7일-9일)</li><li>8남전도회주관조찬기도회(8일)</li><li>유년부여름성경학교(8일-10일)</li><li>경기동지방여전도연합회수련회(11일-12일)</li><li>청년부여름수련회(14일-16일)</li><li>미자립교회돕기 신안소금판매(17일)</li><li>당회수련회(22일-23일)</li><li>뉴라이프2기를 위한 섬김이 기도모임(24일)</li><li>남전도회 배수로정비,단합족구대회(30일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">7월</div><ul class="event-list"><li>맥추감사예배(6일)</li><li>교사헌신예배(6일)</li><li>노인대학방학(9일)</li><li>7남전도회주관 조찬기도회(12일)</li><li>유치부여름성경학교(12일~13일)</li><li>캄보디아선교바자회(6일)</li><li>뉴라이프2기 게스트모집(13일)</li><li>선교파송예배(13일)</li><li>중고등부 미얀마 비전트립(20일~25일)</li><li>초등부여름성경학교(25일-27일)</li><li>경기동지방 여전도회 순회헌신예배(20일)</li><li>캄보디아 단기선교(27일-8월2일)</li><li>청년부국내선교(27일-8월2일)</li><li>여주시기독교연합집회(30일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">6월</div><ul class="event-list"><li>뉴라이프 1기 사역자훈련(1일-7주간)</li><li>6남전도회 조찬기도회(6일)</li><li>경기동지방교회대항축구대회(7일)</li><li>장로장립 및 권사취임예식(8일) (장로장립 : 이태수, 임성선 장로)</li><li>공인현선교사초청강연(13일-14일)</li><li>경기동지방교사강습회(14일)</li><li>여주시목회자체육대회(17일)</li><li>여주시 복음화대성회(23일-25일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">5월</div><ul class="event-list"><li>세례 및 헌아교육(4일-18일)</li><li>5남전도회주관 조찬기도회 (10일)</li><li>헌아식(18일)</li><li>경기동지방 찬양제(18일)</li><li>기드온용사화학교 15기 회복축제(20일)</li><li>어르신효도관광(20일)</li><li>세례식(25일)</li><li>108년차 교단 총회(27일-29일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">4월</div><ul class="event-list"><li>경기동지방 청소년비전특강 "한비야초청강연"(6일)</li><li>4남전도회 주관 조찬기도회(12일)</li><li>독서모임개설(15일)</li><li>부활절감사예배(20일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">3월</div><ul class="event-list"><li>노인대학개강(5일)</li><li>1남전도회주관 조찬기도회(8일)</li><li>뉴라이프 타교회훈련(2일-8주간)</li></ul></div>
-                            <div class="month-row"><div class="month-title">2월</div><ul class="event-list"><li>2남전도회주관 조찬기도회(7일)</li><li>중보기도팀수련회(8일)</li><li>신년교사세미나(9일)</li><li>특별새벽기도회(17일-22일)</li><li>중고등부 동계수련회(20일-22일)</li><li>청년부 동계수련회(21일-23일)</li><li>교구장수련회(23일-24일)</li><li>제5회성결교사대학(28일-3월1일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">1월</div><ul class="event-list"><li>재직헌신을 위한 1일 말씀집회(5일)</li><li>교회학교 진급예배(5일)</li><li>이성훈목사 부임(5일)</li><li>경기동지방 교역자,장로 신년기도회(6일)</li><li>3남전도회 주관 조찬기도회(11일)</li><li>교역자수련회(13일,14일)</li><li>장로권사임직대상자 교육(16일)</li><li>북한선교 및 기아대책 보고(26일)</li></ul></div>
-                        </div>
-                    </div>
-
-                    <div class="year-block">
-                        <div class="year-title">2013</div>
-                        <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">12월</div><ul class="event-list"><li>사무당회(6~7일)</li><li>12남 주관 조찬기도회(7일)</li><li>연말직원회(8일)</li><li>박태혁목사 사임(8일)</li><li>제63차 사무총회(15일)</li><li>2014년 사역백서 봉헌(15일)</li><li>한상현전도사 사임(15일)</li><li>이은수목사 찬양콘서트(18일)</li><li>김태우전도사 부임(22일)</li><li>성탄감사발표회(22일)</li><li>이순복협동목사 부임(22일)</li><li>이준섭전도사, 최승부전도사 부임(22일)</li><li>성탄감사예배(25일)</li><li>신입집사교육(29일)</li><li>사마리안(기독교복지센터) 감사의 밤(30일)</li><li>송구영신예배(30일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">11월</div><ul class="event-list"><li>경기동지방청소년찬양집회(3일)</li><li>2013가을 말씀부흥집회(6일~27일)</li><li>대학수학능력시험(7일)</li><li>경기동지방 교회대항 족구대회(9일)</li><li>추수감사주일(17일)</li><li>꿈&사랑의 어울림 작음음악회(17일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">10월</div><ul class="event-list"><li>순교기념예배(6일)</li><li>10남전도회 주관 조찬기도회(12일)</li><li>교육부서 세미나(12일)</li><li>꿈과사랑의 찬양과경배(20일)</li><li>11,12남전도회 단합대회(26일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">9월</div><ul class="event-list"><li>9남전도회주관 조찬기도회(7일)</li><li>2013전도축제선포식(8일)</li><li>2013전도축제 "만남"(9일~11월17일)</li><li>제23차 가을기도여행(24일~10월15일)</li><li>필리핀급식소건축헌금 SMC선교센터전달(24일)</li><li>꿈과 사랑의 한마음 체육대회(28일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">8월</div><ul class="event-list"><li>중고등부여름수련회(4일-7일)</li><li>청년부여름수련회(9일-10일)</li><li>8남전도회주관조찬기도회(10일)</li><li>경기동지방여전도회수련회(12일-13일)</li><li>영어예배(18일)</li><li>로버트전도사부임(18일)</li><li>여주·이천지역원로목사섬김(21일)</li><li>필리핀급식소건축헌금모임(25일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">7월</div><ul class="event-list"><li>맥추감사예배(7일)</li><li>7남전도회주관 조찬기도회(13일)</li><li>교사헌신예배(14일)</li><li>초등부여름성경학교(19일~21일)</li><li>유치부여름성경학교(20일~21일)</li><li>일본비전트립부모초청파송기도회(21일)</li><li>선도교회삼계탕봉사(22-23일)</li><li>일본 비전트립(23일~27일)</li><li>경기동지방권사회월례회(27일)</li><li>필리핀단기선교(28일~8월3일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">6월</div><ul class="event-list"><li>경기동지방 청소년부 "개그맨 정범균초청 간증집회"(2일)</li><li>경기동지방교사강습회(6일)</li><li>6남전도회 주관 조찬기도회(8일)</li><li>일본비전트립 및 필리핀 단기선교회바자회(23일)</li><li>여주군복음화대성회(23일-27일)</li><li>동국대학교CCC전도팀방문(28일-7월1일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">5월</div><ul class="event-list"><li>헌아식(5일)</li><li>기드온용사화학교 제32기 섬김축제(5-8일)</li><li>5남전도회주관 조찬기도회 (11일)</li><li>장로취임 및 권사취임예식(12일) (장로취임 : 정완길 장로)</li><li>세례식(12일)</li><li>제22차 봄기도여행(14일-6월6일)</li><li>경기동지방교회대항축구대회(17일)</li><li>심장병어린이 돕기 사랑의 음악회(19일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">4월</div><ul class="event-list"><li>경기동지방찬양제(7일)</li><li>새가족양육중급반개강(11일~5월9일)</li><li>새가족부새미나(13일)</li><li>4남전도회 주관 조찬기도회(13일)</li><li>제7차 성결바이블스쿨(15일)</li><li>제5회 하나님의 나팔소리 정기연주회(28일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">3월</div><ul class="event-list"><li>1남전도회주관 조찬기도회(9일)</li><li>경기동지방여전도회세미나(19일)</li><li>특별새벽기도회(25일-30일)</li><li>부활주일(31일)</li><li>여주시 기독교연합회 부활절 찬양제(31일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">2월</div><ul class="event-list"><li>2남전도회주관 조찬기도회(1일)</li><li>특별말씀부흥집회 "만만한 사람에게 쏟아부어주시는 복"(3일~3월10일)</li><li>DTS목회자 부부수련회(21~22일)</li><li>장학금 및 불우이웃돕기(성탄절헌금 24일)</li><li>교구장수련회(25일~26일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">1월</div><ul class="event-list"><li>교회학교 진급예배(6일)</li><li>3남전도회 주관 조찬기도회(12일)</li><li>신입집사교육(13일)</li><li>신년기도회(13일,20일,27일)</li><li>경기동지방권사연합회정기총회(15일)</li><li>경기동지방남전도연합회총회(20일)</li><li>교역자수련회(31일~2월1일)</li></ul></div>
-                        </div>
-                    </div>
-
-                    <div class="year-block">
-                        <div class="year-title">2012</div>
-                        <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">12월</div><ul class="event-list"><li>라파엘의집 일일 바자회(2일)</li><li>장진욱 목사 부임(2일)</li><li>12월 시리즈설교“정말로”(2일~30일)</li><li>연말당회(5~6일)</li><li>10,11남 주관 조찬기도회(8일)</li><li>연말직원회(9일)</li><li>신영순전도사 사임(9일)</li><li>제62차 사무총회(16일)</li><li>심장병어린이를 돕는 사랑의 음악회(16일)</li><li>2012년 사역백서 봉헌(18일)</li><li>성탄감사발표회(23일)</li><li>성탄감사예배(25일)</li><li>한순경전도사 부임(30일)</li><li>송구영신예배(30일)</li></ul></div>
-                            <div class="month-row"><div class="month-title">11월</div><ul class="event-list"><li>김진웅 목사 부임(8)</li><li>9남전도회 주관 조찬기도회(10)</li><li>말씀부흥집회:이준성 목사,한기채 목사,이신웅 목사(14,21,28)</li><li>여주군기독교연합회 청소년페스티발(17)</li><li>제2회꿈&사랑어울림 작은음악회(18)</li><li>교회김장담그기(21~22)</li><li>이진환 목사 사임(28)</li></ul></div>
-                            <div class="month-row"><div class="month-title">10월</div><ul class="event-list"><li>경기동지방 전도부세미나(7)</li><li>기드온용사화학교 제12기회복축제(7~10)</li><li>3주간 성전철야기도회(8~27)</li><li>8남전도회 주관 조찬기도회(13)</li><li>전교인 체육대회(21)</li><li>경기동지방 청소년부찬양집회(27)</li><li>전도간증집회: 이용례권사(31)</li></ul></div>
-                            <div class="month-row"><div class="month-title">9월</div><ul class="event-list"><li>7남전도회 주관 조찬기도회(8)</li><li>전국권사회수련회(10~12)</li><li>제21차가을기도여행(9.11~10. 2)</li><li>제6차성결바이블스쿨개강(18)</li><li>수요예배설교:이병을 목사(총회교육원장)(19)</li><li>성결문학회출판예배(20)</li><li>중보기도팀 워크샵(22)</li><li>전영준 목사 사임(23)</li><li>임마누엘축구선교단 소망교도소 방문(23)</li></ul></div>
-                            <div class="month-row"><div class="month-title">8월</div><ul class="event-list"><li>여주군경목위원주최 구국기도회(5)</li><li>국내단기선교:지도서부교회(6~ 7)</li><li>유년부여름성경학교(10~12)</li><li>8.15여주군복음화 구국성회(12)</li><li>대학청년부수련회(13~15)</li><li>경기동지방 여전도회하계수련회(13~14)</li><li>특별새벽기도회(8.27~9. 1)</li></ul></div>
-                            <div class="month-row"><div class="month-title">7월</div><ul class="event-list"><li>맥추감사예배(1)</li><li>전교인 하계등반대회(7)</li><li>6남전도회 주관 조찬기도회(14)</li><li>태국단기선교를위한 바자회(15)</li><li>유치부여름성경학교(21~22)</li><li>초등부여름성경학교(27~29)</li><li>태국단기선교(7.29~8. 4)</li></ul></div>
-                            <div class="month-row"><div class="month-title">6월</div><ul class="event-list"><li>여름성경학교 교사강습회(6)</li><li>강호빈선교사 천국환송예배(6)</li><li>제6기중보기도학교 개강(7~28)</li><li>5남전도회 주관 조찬기도회(9)</li><li>창립80주년기념감사예배 및 이임수 원로장로추대식(10)</li><li>경기동지방 교회대항 축구대회(16)</li><li>천남교회취임식 지원(17)</li><li>주일예배설교:임형재 원로목사(도원교회)(24)</li></ul></div>
-                            <div class="month-row"><div class="month-title">5월</div><ul class="event-list"><li>4남전도회 주관 조찬기도회(12)</li><li>경기동지방 여전도회연합회 순회예배(13)</li><li>헌아식 및 세례식(13)</li><li>교구장워크샵(17~18)</li><li>목석균 목사 사임(20)</li><li>새가족부세미나:성격검사,새가족사랑법(20)</li><li>정중환 협동목사 부임(20)</li><li>효도관광(29)</li></ul></div>
-                            <div class="month-row"><div class="month-title">4월</div><ul class="event-list"><li>특별새벽기도회:"내생애마지막한달"(2~14)</li><li>여주군 부활주일 연합새벽기도회(8)</li><li>여주군 부활절 찬양제(8)</li><li>경기동지방교회 음악부주관 찬양제(15)</li><li>봄기도여행(4.24~5.15)</li><li>목사안수식:박태혁 전도사(29)</li></ul></div>
-                            <div class="month-row"><div class="month-title">3월</div><ul class="event-list"><li>3남전도회 주관 조찬기도회(10)</li><li>장학금전달(성탄절헌금, 총32명)(11)</li><li>제5차 성결바이블스쿨 개강(12)</li><li>창조과학 전도세미나(22)</li></ul></div>
-                            <div class="month-row"><div class="month-title">2월</div><ul class="event-list"><li>2남전도회 주관 조찬기도회(11)</li><li>전교인 문화행사:The Grace Card 상영(12)</li><li>신영순 전도사 부임(19)</li><li>중고등부 겨울수련회(24~25)</li><li>성결교사대회(2.29~3. 1)</li></ul></div>
-                            <div class="month-row"><div class="month-title">1월</div><ul class="event-list"><li>교회학교 진급예배(1)</li><li>경기동지방 교역자, 장로 신년기도회(5)</li><li>이현구 전도사 사임(8)</li><li>한미현 전도사 부임(8)</li><li>후꾸시마 실내합창단 초정 공연(8)</li><li>1인1계좌 봉헌 캠페인(15)</li><li>신년 목회자, 장로 세미나(28-29)</li></ul></div>
-                        </div>
-                    </div>
-
-                    <div class="year-block">
-                        <div class="year-title">2011</div>
-                        <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">12월</div><ul class="event-list"><li>연말당회(1~2)</li><li>송년특별금요심야기도회(2~23)</li><li>10,11남전도회 주관 조찬기도회(10)</li><li>연말직원회(11)</li><li>이진환 목사 부임(12)</li><li>2012년 사역백서 봉헌(18)</li><li>제61회 사무총회(18)</li><li>성탄감사주일, 성탄감사발표회(25)</li><li>아가페소망교도소 위문(30)</li><li>송구영신예배(30)</li></ul></div>
-                            <div class="month-row"><div class="month-title">11월</div><ul class="event-list"><li>여주 환경미화원 초청잔치(5)</li><li>사랑의 음악회 출연: 조수아, 사랑이야기 초청(16)</li><li>추수감사주일, ‘우리가 사랑하는 사람들’ 초청주일(20)</li><li>홍대승 목사 사임(23)</li></ul></div>
-                            <div class="month-row"><div class="month-title">10월</div><ul class="event-list"><li>2011전도축제 ‘우리가 사랑하는 사람들’(10. 2~11.20)</li><li>QT블로그 개설(2)</li><li>성경바이블스쿨 개강 ‘기적이 일어나는 풍성한 삶’(10주간: 4~)</li><li>꿈&사랑의 동호회 작은 음악회(9)</li><li>특별새벽기도회(10~15)</li><li>전도간증집회: 이병래 장로(23)</li><li>남전도회주관 족구, 탁구대회(23~24,30~31)</li><li>신앙간증집회: 이수미 집사(30)</li></ul></div>
-                            <div class="month-row"><div class="month-title">9월</div><ul class="event-list"><li>가을기도여행(9.20~10.11)</li><li>말레이시아선교센터 입당 예배(6~ 9) : 본 교회 전액지원 및 차량지원</li></ul></div>
-                            <div class="month-row"><div class="month-title">8월</div><ul class="event-list"><li>107기도운동 시작(28~)</li><li>몽골 단기선교(1~ 8)</li><li>경기동 여전도회하계수련회 강사: 이성관 목사(15~16)</li><li>유년부 여름성경학교(19~21)</li></ul></div>
-                            <div class="month-row"><div class="month-title">7월</div><ul class="event-list"><li>맥추감사예배(3)</li><li>베트남, 몽골 단기선교를 위한 바자회(10)</li><li>새가족 환영회(16)</li><li>유치부 여름성경학교(22)</li><li>베트남 단기축구선교(24~30)</li><li>초등부 여름성경학교(28~30)</li></ul></div>
-                            <div class="month-row"><div class="month-title">6월</div><ul class="event-list"><li>명예장로추대예배: 구자필 장로, 양재희 장로(19)</li><li>중보기도팀 워크샵(25)</li></ul></div>
-                            <div class="month-row"><div class="month-title">5월</div><ul class="event-list"><li>‘어르신 나들이’(6)</li><li>부흥집회 강사: 이기응 목사(18~21)</li><li>2대교구 야외예배(28)</li><li>제5기 중보기도학교 개강(5.31~6.21)</li></ul></div>
-                            <div class="month-row"><div class="month-title">4월</div><ul class="event-list"><li>교육부 교사 연합기도회(9)</li><li>한마음족구대회 남전도회연합회주관(9)</li><li>BCM교사대학(4.17~5.15)</li><li>부활주일예배, 세례예식, 헌아식(24)</li><li>특별새벽기도회(4.25~5.21)</li><li>봄기도여행(4.26~5.24)</li></ul></div>
-                            <div class="month-row"><div class="month-title">3월</div><ul class="event-list"><li>전영준 목사 부임(6)</li><li>큐티세미나 강사: 최송희 집사(27)</li></ul></div>
-                            <div class="month-row"><div class="month-title">2월</div><ul class="event-list"><li>윤석종 목사 사임(20)</li><li>새가족부 섬김이 수련회(26)</li><li>청년부 겨울수련회(18~19)</li><li>중,고등부 겨울수련회(24~26)</li></ul></div>
-                            <div class="month-row"><div class="month-title">1월</div><ul class="event-list"><li>교회학교 진급예배(2)</li><li>직원수련회(12~13)</li><li>새가족부 섬김이 교육(1.30-2.20)</li></ul></div>
-                        </div>
-                    </div>
-
-                    <div class="year-block">
-                        <div class="year-title">2010</div>
-                        <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">12월</div><ul class="event-list"><li>이성관 담임목사 증동리교회 부흥집회(13~16)</li><li>제60회 사무총회(19)</li><li>성탄감사예배 및 발표회(25)</li><li>송구영신예배(31)</li></ul></div>
-                            <div class="month-row"><div class="month-title">11월</div><ul class="event-list"><li>추수감사주일1,2부: 이영무 목사(할렐루야 축구단 감독)3부:김정택 장로(SBS음악감독)(21)</li><li>가을심령부흥성회:박효진 장로 간증집회(25~27)</li><li>성결노인대학 수료식(24)</li></ul></div>
-                            <div class="month-row"><div class="month-title">10월</div><ul class="event-list"><li>전도 간증집회(엄호섭 장로 모유전도법)(3)</li><li>전교인 야외예배:청태산 휴양림(9)</li><li>성안선교회 심장병돕기 음악회(20)</li></ul></div>
-                            <div class="month-row"><div class="month-title">9월</div><ul class="event-list"><li>2010 총동원 전도축제 선포식(5)</li><li>파라솔 전도팀 운영(중앙통입구, 군민회관, 하리순화당약국, 터미널앞)(9.14~11.14)</li><li>금요 심야기도회 간증집회:가수 김송(17)</li></ul></div>
-                            <div class="month-row"><div class="month-title">8월</div><ul class="event-list"><li>임자 진리교회 축구팀 방문(20)</li></ul></div>
-                            <div class="month-row"><div class="month-title">7월</div><ul class="event-list"><li>교육목사:김대권 목사 부임(4)</li><li>교육전도사:정숙경 전도사 부임(4)</li><li>전교인 QT세미나(4)</li><li>베트남 축구단기선교(베트남 호치민, 푸뚝면 일대)(18~22)</li><li>말레시아,싱가폴 단기선교(3~11)</li><li>초등부 성경학교:Refresh(23~25)</li><li>중,고등부 수련회:Face to Face(12~14)</li><li>청년부 수련회:새 힘 얻으리(15~16)</li><li>유년부 성경학교:와글와글(20~21)</li></ul></div>
-                            <div class="month-row"><div class="month-title">6월</div><ul class="event-list"><li>2010년 새가족 환영회(7~12)</li><li>성령강림주간 특별새벽기도회(7~12)</li></ul></div>
-                            <div class="month-row"><div class="month-title">5월</div><ul class="event-list"><li>여주교도소 남자수용소 방문예배(10)</li><li>황흥기 목사 사임(23)</li></ul></div>
-                            <div class="month-row"><div class="month-title">4월</div><ul class="event-list"><li>세례식 및 헌아식(4)</li><li>장로장립 및 권사취임식(11) (장로장립 : 박광섭, 권재윤, 노성호)</li><li>배중훈 목사 선교비 전달(12)</li><li>새벽1일 부흥회(서울은평교회,한태수목사)(19)</li><li>제16차 봄 기도여행(매주화요일 4.27~5.18)</li></ul></div>
-                            <div class="month-row"><div class="month-title">3월</div><ul class="event-list"><li>전남 신안 팔금교회 선교비 전달(1~ 2)</li><li>성결바이블수쿨 개강(3월 첫주부터)</li><li>새가족부 세미나(19)</li></ul></div>
-                            <div class="month-row"><div class="month-title">2월</div><ul class="event-list"><li>초등부 겨울성경학교(6~ 7)</li><li>중보기도 워크샵(20)</li><li>뉴웨이브 중·고등부 겨울수련회(26~27)</li></ul></div>
-                            <div class="month-row"><div class="month-title">1월</div><ul class="event-list"><li>교육부진급예배(3)</li><li>직원수련회(6~ 7)</li><li>김진석 전도사 사임(7)</li><li>박태혁 전도사 부임(7)</li><li>신년말씀집회(1.10~31, 매주 오후예배)</li><li>제2회 하나님의 나팔소리 정기연주회(30)</li></ul></div>
+                            <div class="flex gap-4"><div class="w-16 shrink-0 font-bold text-gray-800 mt-1">04월</div><ul class="flex-1 text-gray-600 text-sm md:text-base space-y-1 list-disc pl-4"><li>장로장립 및 권사취임 (박광섭, 권재윤, 노성호)</li></ul></div>
                         </div>
                     </div>
                 </div>
 
                 <!-- 2000년대 -->
                 <div id="decade-2000" class="scroll-mt-28 md:scroll-mt-32 pt-8 md:pt-16">
-                    <div class="year-block decade-start">
-                        <div class="year-title">2009</div>
+                    <div class="flex flex-col md:flex-row gap-4 md:gap-8 mb-12 pt-4 border-t-2 border-gray-800">
+                        <div class="md:w-28 shrink-0"><h3 class="text-4xl md:text-5xl font-light text-gray-800 tracking-tight">2009</h3></div>
                         <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">12월</div><ul class="event-list"><li>제59회 사무총회(20)</li><li>성탄감사발표회(23)</li><li>성탄감사예배(25)</li><li>송구영신예배(31)</li></ul></div>
-                            <div class="month-row"><div class="month-title">11월</div><ul class="event-list"><li>임자전장포교회 이영택 목사 설교(11. 4)</li><li>구순연 집사 전도간증집회(11. 8)</li><li>특별새벽기도회 "심장을 고동치게 하라"(11. 9~14)</li><li>가을 음악 여행(11.14)</li><li>사랑의 음악회(11.15)</li><li>추수감사절 예배(11.15)</li><li>여주군 기독교연합회 주최 청소년 찬양페스티벌(11.21)</li><li>시온성교회 강단교류 박복상 목사 설교(11.22)</li><li>성결노인대학 졸업(11.25)</li><li>총회본부 교육국장 유윤종 목사 설교(11.29)</li></ul></div>
-                            <div class="month-row"><div class="month-title">10월</div><ul class="event-list"><li>서울신학대학교 구약학교수 노세영 목사 설교(10. 4)</li><li>교구별 전도페스티벌(10.11)</li><li>홀리임팩트 대학청년부 원플러스 시네마데이(10.24)</li><li>태신자 전도 할인 쿠폰판매(10.25)</li><li>성결교회 목회자 성령컨퍼런스(10.26~28)</li><li>유년부 가족 사과따기 체험(10.31)</li><li>태신자 전도를 위한 기독마술(10.31)</li></ul></div>
-                            <div class="month-row"><div class="month-title">9월</div><ul class="event-list"><li>행복한 가정만들기 세미나( 9. 5)</li><li>여주군합창단 연주회( 9. 6)</li><li>태신자 작정카드 배부( 9.13)</li><li>소리엘 초청 찬양콘서트( 9.23)</li><li>순교자 기념주일-박장근 원로목사 설교( 9.27)</li><li>2009 영적대각성 전도축제 선포식( 9.27)</li><li>영적대각성 전도축제( 9.27~11.18)</li><li>333 기도운동과 기도카드 배부( 9.20)</li></ul></div>
-                            <div class="month-row"><div class="month-title">8월</div><ul class="event-list"><li>태국단기선교 나눔예배( 8. 2)</li><li>초등부 여름성경학교( 8. 2~ 4)</li><li>중고등부 수련회( 8. 5~ 7)</li><li>대학청년부 수련회( 8.14~15)</li><li>금요심야예배 박희광 목사 설교( 8.14)</li><li>경기동지방 여전도연합회 하계수련회( 8.10~12)</li><li>동해감리교회 김범식 목사 설교( 8.12)</li><li>영국 본머스윈턴 푸른교회 양순석 목사 설교( 8.19)</li></ul></div>
-                            <div class="month-row"><div class="month-title">7월</div><ul class="event-list"><li>맥추감사주일( 7. 5)</li><li>유치부 여름성경학교( 7.17~19)</li><li>임마누엘축구선교단 임자도 성지방문 및 친선축구( 7.17~18)</li><li>태국단기선교 파송예배( 7.20~28)</li><li>유년부 여름성경학교( 7.24~26)</li><li>교회 소식지 타이틀 지정-믿음숲♡은혜샘 채택</li></ul></div>
-                            <div class="month-row"><div class="month-title">6월</div><ul class="event-list"><li>행복한공동체를 세우는 40일 축제주일( 6. 7)</li><li>능서공군부대 김성준 목사 설교( 6.10)</li><li>경기동지방 찬양축제( 6.13)</li><li>한빛교회 지광운 목사 설교( 6.14)</li><li>남전주교회 오성택 목사 설교( 6.17)</li><li>기아대책 선교예배( 6.21)</li></ul></div>
-                            <div class="month-row"><div class="month-title">5월</div><ul class="event-list"><li>경기동지방 축구대회( 5. 3)</li><li>새 가족 환영예배( 5. 3)</li><li>기관별 찬양제( 5.10)</li><li>세례예식 및 헌아식( 5.17)</li><li>전교인 야외예배-문경세재( 5.23)</li><li>사역(동호회)박람회( 5.24~31)</li><li>공동체40일을 위한 중보기도팀 릴레이기도회 시작( 5.5~ 6.5)</li></ul></div>
-                            <div class="month-row"><div class="month-title">4월</div><ul class="event-list"><li>행복한공동체를 세우는 40일 준비팀 헌신예배( 4. 5)</li><li>여주군 부활절 연합새벽예배( 4.12)</li><li>여주군 부활절 연합찬양축제( 4.12)</li><li>남,여전도연합회 성지순례-서울양화진외인묘( 4.20)</li><li>행복한공동체를 세우는 40일-기도용사( 4.16~25)</li><li>경기동지방 연합찬양제( 4.19)</li><li>목사 안수-윤석종 전도사( 4.19)</li><li>120 기도용사 중보기도팀 특별기도회( 4.23,25)</li><li>타임캡슐에 기도제목 3가지 적어넣기( 4.26)</li><li>행복한공동체를 세우는 40일 선포식( 4.26)</li><li>지역섬김 동전모으기( 4.26~ 6. 7)</li><li>교육목사부임-황흥기 목사( 4.26)</li></ul></div>
-                            <div class="month-row"><div class="month-title">3월</div><ul class="event-list"><li>남전도연합회 주관 물품바자회( 3. 1)</li><li>성결노인대학 개강( 3. 4)</li><li>남,여전도연합회 일일 웍샵-서천성결교회( 3. 7)</li><li>이석환 선교사 파송예배(말레시아)( 3.15)</li><li>새 가족 성경공부 시작(3.15~) 매주</li><li>카펠라합창단 초청 공연(3.18)</li><li>여주지역 청소(3.25)</li><li>홀리임팩트 대학청년부 노방전도(3.29)</li></ul></div>
-                            <div class="month-row"><div class="month-title">2월</div><ul class="event-list"><li>성결문화교실 개강( 2. 7)</li><li>대학청년부 수련회( 2. 7)</li><li>성경학교 개강, 여전도 연합회 주관 어르신 척사대회( 2.16)</li><li>중고등부 겨울수련회( 2.18~20)</li><li>배중훈 목사 사임( 2.22)</li></ul></div>
-                            <div class="month-row"><div class="month-title">1월</div><ul class="event-list"><li>신년연합예배-시온성교회( 1. 3)</li><li>신년말씀축제를 위한 중보기도팀 기도회( 1. 5~ 6)</li><li>신년말씀축제( 1. 7~ 9)</li><li>홀리임팩트 대학청년부 특별새벽기도회( 1. 5~ 7)</li><li>교육부 진급예배( 1.11)</li><li>쉴만한물가 서점오픈( 1.11)</li><li>중고등부 VIP초청의 밤(1.31)</li></ul></div>
-                        </div>
-                    </div>
-
-                    <div class="year-block">
-                        <div class="year-title">2008</div>
-                        <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">12월</div><ul class="event-list"><li>새 가족부 헌신예배(12. 7)</li><li>송윤기 목사(교단총무) 설교(12. 7)</li><li>사역백서 봉헌식(12. 7)</li><li>경기동지방 남전도회 순회예배(12.14)</li><li>행복한성결교회 이대열 목사 설교(12.21)</li><li>여주군 기독교 연합회 주관 목회자 설교세미나(12.22)</li><li>성탄감사발표회(12.24)</li><li>성탄감사예배(12.25)</li><li>김상국 선교사 설교(12.28)</li><li>송구영신예배(12.31)</li></ul></div>
-                            <div class="month-row"><div class="month-title">11월</div><ul class="event-list"><li>장결자와 함께하는 예배(11. 2)</li><li>2030맞춤전도-이현숙교수(서울여대가족상담학)(11. 8)</li><li>전도축제 특별기도회(11.10~15)</li><li>간증집회"아멘 성령충만 건강법"-전현명장로(11.12)</li><li>영적대각성 전도축제-MBC개그맨 정종철 간증(11.16)</li><li>추수감사예배(11.16)</li><li>2008 부흥집회"나를 만나 주신 주님"-박태구권사(11.23~26)</li></ul></div>
-                            <div class="month-row"><div class="month-title">10월</div><ul class="event-list"><li>전도대상자 봉헌식(1인3명 이상 작정서 작성,제출)(10. 5)</li><li>전도세미나"행복한 크리스천"-주영수목사(행복한교히, 변호사)(10. 5)</li><li>전도용품 백화정 오픈(10. 5)</li><li>웃음의 영성훈련(권수영목사)(10. 8)</li><li>4050부부 맞춤전도"Bravo your life"-이희범목사(지교촌가정사역훈련원 원장)(10.11)</li><li>사랑의음악회(찬양 및 간증)-조수아,륜,한사랑,김정숙사모(10.15)</li><li>찬양간증집회-임교원,이미경집사(10.17)</li><li>간증집회 "예수건강 예수전도" -황수관박사(10.19)</li><li>기드온용사화학교 회복축제</li><li>전도 Festival(10.26)</li></ul></div>
-                            <div class="month-row"><div class="month-title">9월</div><ul class="event-list"><li>여주지역 대청소( 9.10)</li><li>영적대각성 전도축제 비전선포( 9.21)</li><li>2008년 가을기도여행</li><li>박원석목사 수요예배설교( 9.28)</li></ul></div>
-                            <div class="month-row"><div class="month-title">8월</div><ul class="event-list"><li>초등부 여름성경학교( 8. 7~ 9)</li><li>프론티어 청년부 수련회( 8.15~16)</li><li>중보기도팀 헌신예배( 8.17)</li><li>제2회 "Wake Up여주" 전교우 특별새벽기도회( 8.18~23)</li><li>임규홍장로 명예장로 추대예배</li></ul></div>
-                            <div class="month-row"><div class="month-title">7월</div><ul class="event-list"><li>맥추감사주일( 7. 6)</li><li>새가족 환영예배( 7. 6)</li><li>에클레시아남성중창단 찬양( 7.13)</li><li>5개교회 연합예배(나누리,능서,벧엘,여주,한강교회)</li><li>교회학교 교사 헌신예배( 7.20)</li><li>단기선교 바자회( 7.20)</li><li>유치부 여름성경학교( 7.25~27)</li><li>유년부 여름성경학교( 7.25~27)</li><li>베트남 호치민 단기선교( 7.28~ 8. 5)</li></ul></div>
-                            <div class="month-row"><div class="month-title">6월</div><ul class="event-list"><li>제19회 여주군복음화대성회( 6. 2~ 4)</li><li>경기동지방교회학교 여름성경학교 교사강습회( 6. 6)</li><li>장혜리집사 간증( 6.15)</li><li>제102차 교단총회(대의원: 이성관목사, 이임수장로, 박광선장로)</li><li>예수님께 자라가기 성경학교 수료식( 6.29)</li><li>제1회 여주군 3on3 길거리 농구대회( 6.28)</li></ul></div>
-                            <div class="month-row"><div class="month-title">5월</div><ul class="event-list"><li>강단교류 예배-시온성교회 당회원 예배참석( 5. 6)</li><li>초등부 영화제( 5. 6)</li><li>세례 유아세례예식( 5.11)</li><li>경기동지방 축구대회( 5.12)</li><li>대신고교장 임희창장로 간증( 5.18)</li><li>경기동지방수양회( 5.19~22)</li><li>제주열방대학 김은희선교사 간증( 5.21)</li><li>2008 여주공동체 나들이-속리산( 5.24)</li><li>신촌성결교회 전현명장로 간증( 5.30)</li><li>전교인 찬양과 경배축제( 5.31)</li></ul></div>
-                            <div class="month-row"><div class="month-title">4월</div><ul class="event-list"><li>제12차 2008 봄 기도여행</li><li>중보기도팀 봄 워크샵( 4.26)</li></ul></div>
-                            <div class="month-row"><div class="month-title">3월</div><ul class="event-list"><li>전교인 말씀묵상(복있는사람) 시작</li><li>고난주간 특별새벽예배( 3.17~22)</li><li>부활절축제-여주군기독교연합회 연합새벽예배/찬양축제( 3.23)</li><li>경기동지방 부활절 찬양제( 3.30)</li><li>여주군 새봄맞이 대청소( 3.21)</li><li>제2 주차장 증설</li></ul></div>
-                            <div class="month-row"><div class="month-title">2월</div><ul class="event-list"><li>새가족 양육훈련자 교육( 2.17~3. 9)</li><li>예수님께 자라가기 성경학교 개강 ( 2.17)</li><li>기드온 용사화학교 제3기 회복축제( 2.18~21)</li><li>경기동지방 교회학교 연합회 순회예배</li><li>중고등부 겨울수련회-바나바훈련원( 2.25~28)</li></ul></div>
-                            <div class="month-row"><div class="month-title">1월</div><ul class="event-list"><li>신년감사 주일예배( 1. 6)</li><li>새가족 기초서경공부 1과 진행( 1. 6)</li><li>남여전도회 신년기도회( 1.14~17)</li><li>프론티어 청년부 겨울수련회( 1.17~19)</li><li>교회학교 교사기도회( 1.24~25)</li></ul></div>
-                        </div>
-                    </div>
-
-                    <div class="year-block">
-                        <div class="year-title">2007</div>
-                        <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">12월</div><ul class="event-list"><li>제1기 전도학교 수료(12. 2)</li><li>성탄발표회(12.24)</li><li>성탄감사예배(12.25)</li><li>중고등부 VIP초청의 밤(12.29)</li></ul></div>
-                            <div class="month-row"><div class="month-title">11월</div><ul class="event-list"><li>전도축제 중보기도 2007선포(11. 4)</li><li>전도축제 24시간 중보기도 체인(11. 5)</li><li>11월 조찬기도회(11.10)</li><li>노방전도(11.11)</li><li>전도축제를 위한 특별새벽기도회(11.12~16)</li><li>추수감사 주일예배 및 영적 대각성 전도축제(11.18)</li><li>노인대학 수료식(11.28)</li></ul></div>
-                            <div class="month-row"><div class="month-title">10월</div><ul class="event-list"><li>전교우 "태신자" 삼행시짓기 및 전도용품 백화점 오픈(10. 7~11)</li><li>태신자 초청 기도카렌다(10. 8~17)</li><li>10월 조찬기도회(10.13)</li><li>맞춤전도[교사,교직원](10.20)</li><li>조현영 간증집회(10.27)</li><li>맞춤전도[2030](10.27)</li><li>제3기 중보기도학교 수료식(10.28)</li><li>노인대학 수료식(10.28)</li></ul></div>
-                            <div class="month-row"><div class="month-title">9월</div><ul class="event-list"><li>가을맞이 성령부흥집회( 9. 5~ 6)</li><li>노인대학 개강( 9. 5)</li><li>영적 대각성 전도축제  [비전선포& 전교우 낚시터갖기 운동]( 9. 9)</li><li>전국 권사연합회 수련회( 9.10~12)</li><li>성결산악회 등반( 9.11)</li><li>제3기 중보기도학교 개강( 9.12)</li><li>모노드라마[어느 대장장이의 고백]( 9.19)</li><li>영적 대각성 전도축제[50일 선포주일]( 9.30)</li></ul></div>
-                            <div class="month-row"><div class="month-title">8월</div><ul class="event-list"><li>기초 성경공부[4주과정] 실시( 8. 5)</li><li>중고등부 아웃리치[보길중앙교회]( 8. 6~ 9)</li><li>8월 조찬기도회( 8.11)</li><li>경기동지방 여전도연합회 하계수련회( 8.13~15)</li><li>중국 연길 단기선교(밀알팀:14~18 / 프론티어팀:14~21)</li><li>기드온 용사화 학교 섬김축제( 8.20~23)</li><li>8월 직원회( 8.26)</li></ul></div>
-                            <div class="month-row"><div class="month-title">7월</div><ul class="event-list"><li>맥추감사주일( 7. 1)</li><li>7월 조찬기도회( 7.14)</li><li>유치부 여름성경학교( 7.20~22)</li><li>유년부 여름성경학교( 7.23~25)</li><li>초등부 여름성경학교[화북성결교회]( 7.29~31)</li><li>새 가족부 MT( 7.15)</li><li>존 데이빗 선교사(영국버밍햄) 본 교회 방문( 7.28)</li><li>특별새벽기도회 "Wake up 여주" 및 지역섬기기( 7.23~28)</li></ul></div>
-                            <div class="month-row"><div class="month-title">6월</div><ul class="event-list"><li>기드온 용사화 학교( 6. 1~14)</li><li>목적40일 축제 주일( 6. 3)</li><li>노인대학 방학( 6.27)</li><li>2007년 프론티어 청년부 여름수련회( 6.28~30)</li></ul></div>
-                            <div class="month-row"><div class="month-title">5월</div><ul class="event-list"><li>경기동지방 축구대회 우승( 5. 5)</li><li>목적이 이끄는 40일 교제주간( 5.6~12)</li><li>목적40일 찬양제( 5. 6)</li><li>목적이 이끄는 40일 훈련주간( 5.13~19)</li><li>세례식 및 헌아식( 5.13)</li><li>노인대학 소풍[오죽헌]( 5.18)</li><li>교회학교 교사 축복의 날( 5.19)</li><li>목적이 이끄는 40일 사역주간( 5.20~26)</li><li>목적40일 사역박랍회( 5.20~ 6. 2)</li><li>남전도회 족구대회( 5.24)</li><li>목적이 이끄는 40일 전도주간( 5.27~ 6. 2)</li><li>2007년 새 가족 축제 및 전도대회( 5.27)</li><li>교단 100주년 중앙대회[잠실올림픽주경기장]( 5.27)</li></ul></div>
-                            <div class="month-row"><div class="month-title">4월</div><ul class="event-list"><li>전교우 등산대회[삼악산]( 4. 7)</li><li>부활주일예배( 4. 8)</li><li>부활절 연합찬양축제( 4. 8)</li><li>4월 조찬기도회( 4.14)</li><li>목적이 이끄는 40일 개회예배 및 목적선포식( 4.15)</li></ul></div>
-                            <div class="month-row"><div class="month-title">3월</div><ul class="event-list"><li>3월 조찬기도회( 3. 3)</li><li>새 가족 양육[초급A, B/ 중급]( 3. 3)</li><li>노인대학 개강( 3. 7)</li><li>제2기 중보기도학교 개강( 3. 9)</li><li>경기동지방 남전도연합회 순회예배( 3.11)</li><li>제2기 새 가족 수료식( 3.11)</li><li>경기동지방 여전도연합회 세미나( 3.15)</li><li>제1기 오이코스 전도학교 개강( 3.16)</li><li>제2기 중보기도학교 수료식( 3.18)</li><li>구봉서장로 및 북한예술단 초청집회( 3.25)</li><li>제1회 가족영화제[초등부]( 3.29)</li><li>여전도 연합회 단합대회( 3.29)</li><li>1,2기 중보기도학교 Workshop( 3.30)</li></ul></div>
-                            <div class="month-row"><div class="month-title">2월</div><ul class="event-list"><li>구역 대심방( 2. 4)</li><li>성경공부반 개강(창세기2 2. 7)</li><li>찬양대 세미나( 2. 8~ 9)</li><li>프론티어 청년부 임원수련회( 2. 9)</li><li>2월 조찬기도회( 2.10)</li><li>새 가족 양육 성경공부 개강( 2.11)</li><li>선교사 파송예배  [강호빈(중국), 도주환(태국), 신동조(러시아)]( 2.25)</li><li>중고등부 동계수련회[만리현교회 홍천수양관]( 2.25~27)</li><li>목회자 예수제자훈련학교[담임목사 참여]( 2.26~ 7.16)</li></ul></div>
-                            <div class="month-row"><div class="month-title">1월</div><ul class="event-list"><li>신년감사 주일예배( 1. 7)</li><li>교회학교 진급예배( 1. 7)</li><li>여전도연합회 주최 신년기도회( 1. 8~31)</li><li>전국교회학교 동계대회[어린양 찬양대 및 성경경시 부문]( 1. 9)</li><li>경기동지방 여전도회 총회( 1.11)</li><li>1월 조찬기도회( 1.13)</li><li>신년 청지기 수련회( 1.17~18)</li><li>이단세미나( 1.19)</li><li>제1기 중보기도팀 수련회[예수마음공동체 수련원]( 1.25)</li><li>제1회 음악교실 정기연주회( 1.27)</li><li>점프 투게더 공연( 1.31)</li></ul></div>
-                        </div>
-                    </div>
-
-                    <div class="year-block">
-                        <div class="year-title">2006</div>
-                        <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">12월</div><ul class="event-list"><li>윤석종전도사 부임</li><li>제56회 사무총회(12/17)</li><li>명지홀리보이스&챔버오케스트라 초청음악회(12/23)</li><li>성탄축하예배(12/24)</li><li>성탄감사예배(12/25)</li><li>송구영신예배(12/31)</li></ul></div>
-                            <div class="month-row"><div class="month-title">11월</div><ul class="event-list"><li>여주10기 두란노아버지학교 개강(11/4)</li><li>김신근목사 사임(11/5)</li><li>제2회 VIP초청의 밤(11/5)</li><li>목석균목사 부임</li><li>이현구교육전도사 부임</li><li>제15기 노인대학 수료식(11/29)</li></ul></div>
-                            <div class="month-row"><div class="month-title">10월</div><ul class="event-list"><li>제1청년부 영국단기선교(10/2-10)</li><li>김민수목사 사임(10/15)</li><li>가을테마콘서트 (다드림무용선교단 10/18, 소리엘찬양콘서트 10/19, 홀리보이스초청음악회 11/5, 순교자영성음악회 11/23)</li></ul></div>
-                            <div class="month-row"><div class="month-title">9월</div><ul class="event-list"><li>"오르난 타작마당의 비전" 특별새벽기도회(9/18~22)</li></ul></div>
-                            <div class="month-row"><div class="month-title">8월</div><ul class="event-list"><li>교육부 여름사역보고대회(8/27)</li></ul></div>
-                            <div class="month-row"><div class="month-title">7월</div><ul class="event-list"><li>김진석전도사 부임</li><li>기독교종합사회복지센터 창립예배(7/5)</li><li>특별철야기도회(7/17~19)</li></ul></div>
-                            <div class="month-row"><div class="month-title">6월</div><ul class="event-list"><li>심령부흥성회(6/5~7)</li><li>홍영주전도사 사임(6/25)</li></ul></div>
-                            <div class="month-row"><div class="month-title">5월</div><ul class="event-list"><li>경기동지방 축구대회 우승(5/5)</li><li>교회창립 기념 예배(5/14)</li><li>이월환전도사 사임(5/21)</li><li>담임목사취임,성전입당,임직식(5/28)</li><li>특별새벽기도회(5/29-6/2)</li></ul></div>
-                            <div class="month-row"><div class="month-title">4월</div><ul class="event-list"><li>제20대 이성관목사 부임</li><li>기독교연합회 주최 부활절 연합새벽예배(본교회 4/16)</li><li>"성령이여 우리를 뜨겁게 하소서" 특별집회(4/25-28)</li></ul></div>
-                            <div class="month-row"><div class="month-title">3월</div><ul class="event-list"><li>제15기 노인대학 개강(3/8)</li><li>임시 사무총회(3/26)</li></ul></div>
-                            <div class="month-row"><div class="month-title">2월</div><ul class="event-list"><li>여주 8기 두란노아버지학교 개강(2/4)</li><li>달리다굼 특별새벽기도회(2/20-3/5)</li><li>중고등부 신앙수련회(홍천수양관 2/23-25)</li></ul></div>
-                            <div class="month-row"><div class="month-title">1월</div><ul class="event-list"><li>어노인팅 찬양단 초청집회</li></ul></div>
-                        </div>
-                    </div>
-
-                    <div class="year-block">
-                        <div class="year-title">2005</div>
-                        <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">12월</div><ul class="event-list"><li>김용주전도사 정년퇴임(12/4)</li><li>성탄절 새 가족 초청예배(12/25)</li><li>두란노아버지학교 개설모임</li></ul></div>
-                            <div class="month-row"><div class="month-title">11월</div><ul class="event-list"><li>노선수목사 사임(이천제일교회 개척)</li><li>김민수목사 부임</li><li>정유신목사 부임</li><li>임마누엘 축구선교단 창단감사예배</li><li>VIP(전도대상자)초청의 밤-중고청 연합</li><li>홍영주전도사 부임</li></ul></div>
-                            <div class="month-row"><div class="month-title">10월</div><ul class="event-list"><li>잃은 영혼 찾기 새 성전 건축을 위한 특별 새벽기도회</li></ul></div>
-                            <div class="month-row"><div class="month-title">9월</div><ul class="event-list"><li>한가위 불우이웃 돕기(9/18)</li></ul></div>
-                            <div class="month-row"><div class="month-title">8월</div><ul class="event-list"><li>잃은 영혼 찾기 운동(8/21)</li></ul></div>
-                            <div class="month-row"><div class="month-title">7월</div><ul class="event-list"><li>주말프로그램(새 성전 시대 비전 나누기 7/16,23, 30)</li></ul></div>
-                            <div class="month-row"><div class="month-title">6월</div><ul class="event-list"><li>창립73주년 기념예배 및 체육대회(6/5)</li></ul></div>
-                            <div class="month-row"><div class="month-title">5월</div><ul class="event-list"><li>교회창립73주년 기념예배(5/15)</li><li>CBS TV수호천사 방영(5/23, 5/30)</li></ul></div>
-                            <div class="month-row"><div class="month-title">3월</div><ul class="event-list"><li>청소년 열린예배 시작(3/6)</li><li>성회준비 특별새벽기도회(3/14-19)</li><li>이월환전도사 부임</li><li>새 성전 임시처소 이사(3/27)</li></ul></div>
-                            <div class="month-row"><div class="month-title">2월</div><ul class="event-list"><li>모디(행남자기) 신우회 창립예배 설교(2/14)</li></ul></div>
-                            <div class="month-row"><div class="month-title">1월</div><ul class="event-list"><li>신일덕 장로 초청 간증집회(1/23)</li><li>예수전도단 IMPAC팀 선교드라마공연(1/30)</li></ul></div>
-                        </div>
-                    </div>
-
-                    <div class="year-block">
-                        <div class="year-title">2004</div>
-                        <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">11월</div><ul class="event-list"><li>성결노인대학 현판식 및 누가의원 자매 결연식(11/10)</li><li>조은형외과의원 자매 결연식(11/17)</li><li>교사 일일 부흥회(강사:최종진 전서울신학대학교 총장 11/19)</li><li>뮤지컬 '쏠티' 공연(유, 초등부 11/21)</li><li>제13기 성결노인대학 수료식(11/24)</li><li>제9기 베델성서 졸업식(11/28)</li></ul></div>
-                            <div class="month-row"><div class="month-title">10월</div><ul class="event-list"><li>제1~3기 행복한 가정 만들기 주말프로그램(10/16)</li></ul></div>
-                            <div class="month-row"><div class="month-title">8월</div><ul class="event-list"><li>2004년 전교인 신앙수련회</li></ul></div>
-                            <div class="month-row"><div class="month-title">5월</div><ul class="event-list"><li>임직식 (권오범 장로)</li></ul></div>
-                            <div class="month-row"><div class="month-title">4월</div><ul class="event-list"><li>각 구역 지도자 2차 훈련(4/20-4/22)</li></ul></div>
-                            <div class="month-row"><div class="month-title">3월</div><ul class="event-list"><li>새 성전 건축 시공회사 설명회 (3/14)</li><li>필리핀 국제성결대학 봉헌 및 제5회 졸업식축사(3/22-25)</li></ul></div>
-                            <div class="month-row"><div class="month-title">2월</div><ul class="event-list"><li>어린양 성가대 오크밸리 전지훈련</li><li>바나바 학교 개강 (2/17~20)</li></ul></div>
-                            <div class="month-row"><div class="month-title">1월</div><ul class="event-list"><li>목회 비전대회 및 남,여전도회 신년 하례회(1/17)</li></ul></div>
-                        </div>
-                    </div>
-
-                    <div class="year-block">
-                        <div class="year-title">2003</div>
-                        <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">12월</div><ul class="event-list"><li>논산훈련소 2천명 진중 세례(12/13)</li><li>기독교종합사회복지센터 후원의 밤(12/29)</li></ul></div>
-                            <div class="month-row"><div class="month-title">11월</div><ul class="event-list"><li>유아세례식(11/2)</li><li>교사대학 특강(강사: 권혁승 박사 11/7)</li></ul></div>
-                            <div class="month-row"><div class="month-title">10월</div><ul class="event-list"><li>제12기 노인대학 야외예배(말감산.10/15)</li></ul></div>
-                            <div class="month-row"><div class="month-title">9월</div><ul class="event-list"><li>2003 가을 특별 새벽기도회 (9/1~20)</li><li>김민수교육목사 부임(9/28)</li></ul></div>
-                            <div class="month-row"><div class="month-title">8월</div><ul class="event-list"><li>각 기관 신앙수련회(1, 2청년회 7/31~8/2), 고등부(8/4~6)</li></ul></div>
-                            <div class="month-row"><div class="month-title">7월</div><ul class="event-list"><li>예비세례자교육 및 세례식(7/15~18)</li><li>성찬식(7/13)</li><li>2003 전 직원 수련회(7/17 강사: 정재우목사)</li><li>여주교도소 여성수형자 예배(7/23)</li></ul></div>
-                            <div class="month-row"><div class="month-title">6월</div><ul class="event-list"><li>새 성전 설계확정 세진설계사무소 선정(6/11)</li><li>보훈가족 초청예배(6/15)</li></ul></div>
-                            <div class="month-row"><div class="month-title">5월</div><ul class="event-list"><li>새 성전 건축 특별성회 (5/23 강사:이원호목사)</li><li>여주교도소 교정위원회(5/9)</li><li>교회창립71주년 기념 및 전교인 체육대회(5/11)</li><li>기독교종합복지센터 강릉 효도관광지원(5/13)</li><li>여주교도소 450명 재소자 예배(5/14)</li><li>청송교도소 위로방문(5/26)</li><li>가정축복의 밤(5/28)</li></ul></div>
-                            <div class="month-row"><div class="month-title">4월</div><ul class="event-list"><li>구역장 설교자 산상기도회(4/5 건업기도원)</li></ul></div>
-                            <div class="month-row"><div class="month-title">3월</div><ul class="event-list"><li>새 성전 건축헌금을 위한 특별새벽기도회(3/1~22)</li></ul></div>
-                            <div class="month-row"><div class="month-title">2월</div><ul class="event-list"><li>사업자 등록증 발급(2/5)</li><li>새 성전 부지(4000평) 토목공사허가 발급(2/5)</li><li>벌목공사계약(2/6)</li><li>심령부흥회 (강사: 가종현목사 2/17-19)</li><li>새 성전 부지조성 토목공사 기공예배(2/25)</li></ul></div>
-                            <div class="month-row"><div class="month-title">1월</div><ul class="event-list"><li>경기동지방 교역자, 장로, 신년 하례회 (1/6)</li><li>새 성전 건축 운영위원회(위원장: 이임수장로 1/11)</li><li>군 선교 양육시작 (1/23)</li><li>각 기관 임원 행정관리세미나(1/25)</li><li>교역자컴퓨터 강좌(여주대정컴퓨터학원 1/28)</li></ul></div>
-                        </div>
-                    </div>
-
-                    <div class="year-block">
-                        <div class="year-title">2002</div>
-                        <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">12월</div><ul class="event-list"><li>120문도 매일 저녁기도회 시작(12/2)</li><li>배중훈교육목사 부임(12/1)</li><li>제52회 사무총회(12/8)</li><li>노선수전도사 부임(12/25)</li></ul></div>
-                            <div class="month-row"><div class="month-title">11월</div><ul class="event-list"><li>교사대학 (강사; 임세빈목사 11/13~15)</li><li>제8기 베델성서 졸업식 (11/27)</li><li>제11기 노인대학 수료식(11/27)</li></ul></div>
-                            <div class="month-row"><div class="month-title">10월</div><ul class="event-list"><li>각 기관 장 산상기도회 (건업기도원 10/10)</li><li>남전도회연합회 산상기도회(구로수양관 10/19)</li></ul></div>
-                            <div class="month-row"><div class="month-title">9월</div><ul class="event-list"><li>특별새벽기도회(9/2~21)</li><li>여주경찰서 경목위원회 조찬기도회(9/4)</li><li>세례예식(9/22)</li></ul></div>
-                            <div class="month-row"><div class="month-title">8월</div><ul class="event-list"><li>2002 직원수련회 "건강한 교회, 행복한 일꾼!" (강사:한태수 목사)</li><li>김용주전도사 부임</li></ul></div>
-                            <div class="month-row"><div class="month-title">6월</div><ul class="event-list"><li>여주군 복음화 대성회 (강사:이복렬 목사)</li><li>보훈가족 초청예배</li></ul></div>
-                            <div class="month-row"><div class="month-title">5월</div><ul class="event-list"><li>창립 제70주년 기념예배 및 임직식 (원로장로취임: 양재호장로, 장로장립: 신호진, 이광섭, 장기평 장로, 안수집사: 박이서 집사 외 6명)</li><li>2002년도 가족찬양경연대회 (청년회주최)</li><li>음식바자회 (여전도연합회주최)</li></ul></div>
-                            <div class="month-row"><div class="month-title">4월</div><ul class="event-list"><li>제2회 경기동지방회 찬양제 참가</li><li>연합체육대회 (남전도회주최)</li></ul></div>
-                            <div class="month-row"><div class="month-title">3월</div><ul class="event-list"><li>심령부흥성회(강사:이용규 목사)</li></ul></div>
-                            <div class="month-row"><div class="month-title">2월</div><ul class="event-list"><li>무료 건강진료 실시</li></ul></div>
-                        </div>
-                    </div>
-
-                    <div class="year-block">
-                        <div class="year-title">2001</div>
-                        <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">12월</div><ul class="event-list"><li>이승배전도사 부임(2002.12 사임)</li></ul></div>
-                            <div class="month-row"><div class="month-title">11월</div><ul class="event-list"><li>제4기 교사대학 수료식</li></ul></div>
-                            <div class="month-row"><div class="month-title">9월</div><ul class="event-list"><li>간증집회(강사:최동규 장로)</li></ul></div>
-                            <div class="month-row"><div class="month-title">8월</div><ul class="event-list"><li>김형태전도사 부임(2003.08 사임)</li></ul></div>
-                            <div class="month-row"><div class="month-title">7월</div><ul class="event-list"><li>박성수목사 부임</li></ul></div>
-                            <div class="month-row"><div class="month-title">5월</div><ul class="event-list"><li>제1회 경기동지방회 찬양제 참가</li></ul></div>
-                            <div class="month-row"><div class="month-title">3월</div><ul class="event-list"><li>권사 취임식(신현묵 권사외 22명)</li><li>제6차 중부지역총회 성가찬양제 연합성가대 초청 참가</li></ul></div>
-                            <div class="month-row"><div class="month-title">2월</div><ul class="event-list"><li>심령부흥성회(강사:송기식 목사)</li></ul></div>
-                            <div class="month-row"><div class="month-title">1월</div><ul class="event-list"><li>이한수전도사 부임(2002.08 사임)</li><li>전국교회학교 동계대회 입상(합창은상, 중창금상)</li><li>임규홍장로 여주군 연합신우회 회장 취임</li><li>제10회 행복한 가정 만들기 세미나 (강사:두상달장로,김영숙원장)</li></ul></div>
-                        </div>
-                    </div>
-
-                    <div class="year-block">
-                        <div class="year-title">2000</div>
-                        <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">12월</div><ul class="event-list"><li>본 교회 성가대 여주군 최우수작품 발표회 특별참가</li></ul></div>
-                            <div class="month-row"><div class="month-title">8월</div><ul class="event-list"><li>8.15기념 한마음 걷기대회(중,고,청년)</li></ul></div>
-                            <div class="month-row"><div class="month-title">7월</div><ul class="event-list"><li>차량점검 서비스(남전도회 주관), 사랑의 부스러기 모으기 운동(전교인)</li></ul></div>
-                            <div class="month-row"><div class="month-title">5월</div><ul class="event-list"><li>중부지역 교사연합헌신예배(강사:임용근의원), 나그네집 방문(당회)</li></ul></div>
-                            <div class="month-row"><div class="month-title">4월</div><ul class="event-list"><li>영혼의 소리로(홀트장애인합창단) 공연(iTV 방영)</li></ul></div>
-                            <div class="month-row"><div class="month-title">3월</div><ul class="event-list"><li>임규홍장로 취임식</li></ul></div>
-                            <div class="month-row"><div class="month-title">2월</div><ul class="event-list"><li>심령부흥성회(강사:방선기목사)</li></ul></div>
-                            <div class="month-row"><div class="month-title">1월</div><ul class="event-list"><li>공정녀전도사 부임(2002.6 사임), 권오승전도사 부임(2001.5 사임), 손자경전도사 부임(2000.12 사임), 강희경전도사 부임(2001.07 사임)</li><li>제9회 부부초청세미나</li><li>제10회 대전극동방송 성가大합창제 참가</li></ul></div>
+                            <div class="flex gap-4"><div class="w-16 shrink-0 font-bold text-gray-800 mt-1">05월</div><ul class="flex-1 text-gray-600 text-sm md:text-base space-y-1 list-disc pl-4"><li>성전건축 및 봉헌 (새 성전 입당)</li></ul></div>
                         </div>
                     </div>
                 </div>
-
-                <!-- 1990년대 -->
+                
+                <!-- 이전 연혁 -->
                 <div id="decade-1990" class="scroll-mt-28 md:scroll-mt-32 pt-8 md:pt-16">
-                    <div class="year-block decade-start">
-                        <div class="year-title">1999</div>
-                        <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">12월</div><ul class="event-list"><li>박광태장로 여주군 기독교 신우회 회장 피선</li></ul></div>
-                            <div class="month-row"><div class="month-title">8월</div><ul class="event-list"><li>미혼남녀를 위한 [결혼예비학교] (강사: 금병달, 김정진간사)</li><li>직원 수련회</li></ul></div>
-                            <div class="month-row"><div class="month-title">7월</div><ul class="event-list"><li>단군동산 건립중단 촉구대회</li></ul></div>
-                            <div class="month-row"><div class="month-title">5월</div><ul class="event-list"><li>심령부흥성회(강사: 김남준목사, 한인수장로)</li><li>북한난민 보호 유엔 청원 서명운동</li></ul></div>
-                            <div class="month-row"><div class="month-title">3월</div><ul class="event-list"><li>전도훈련집회(김철수 목사)</li></ul></div>
-                        </div>
-                    </div>
-                    <div class="year-block">
-                        <div class="year-title">1998</div>
-                        <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">9월</div><ul class="event-list"><li>목회자 부부초청 위로회</li></ul></div>
-                            <div class="month-row"><div class="month-title">8월</div><ul class="event-list"><li>카메룬선교 찬양단 찬양예배</li></ul></div>
-                            <div class="month-row"><div class="month-title">7월</div><ul class="event-list"><li>성경통신대학 수료</li><li>교회학교 연합수련회 개최(충주교회)</li></ul></div>
-                            <div class="month-row"><div class="month-title">6월</div><ul class="event-list"><li>에클레시아 합창단 초청 예배</li></ul></div>
-                            <div class="month-row"><div class="month-title">5월</div><ul class="event-list"><li>창립 66주년 기념 체육대회</li><li>교회부지 구입</li></ul></div>
-                            <div class="month-row"><div class="month-title">1월</div><ul class="event-list"><li>제 7회 부부초청 세미나(강사:최혜숙교수)</li></ul></div>
-                        </div>
-                    </div>
-                    <div class="year-block">
-                        <div class="year-title">1997</div>
-                        <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">12월</div><ul class="event-list"><li>이명주전도사 부임(2000.4 목사안수,2001.06 사임)</li><li>예배용 오르간 구입</li></ul></div>
-                            <div class="month-row"><div class="month-title">11월</div><ul class="event-list"><li>제 5기 베델성서 수료식</li></ul></div>
-                            <div class="month-row"><div class="month-title">5월</div><ul class="event-list"><li>여주군 기독교 신우회 초대회장 박광태장로 취임</li><li>교회창립 65주년 기념행사(바자회, 음악회, 홈페이지 개통)</li></ul></div>
-                            <div class="month-row"><div class="month-title">1월</div><ul class="event-list"><li>극동방송 공개녹화 방송(우리교회 좋은교회)</li><li>전국교회학교연합회 동계대회 합창부문 동상 수상</li></ul></div>
-                        </div>
-                    </div>
-                    <div class="year-block">
-                        <div class="year-title">1996</div>
-                        <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">11월</div><ul class="event-list"><li>성결노인대학 5기, 성결주부교양대학2기 수료식.</li></ul></div>
-                            <div class="month-row"><div class="month-title">8월</div><ul class="event-list"><li>오홍환전도사 부임(98.01 사임)</li></ul></div>
-                            <div class="month-row"><div class="month-title">5월</div><ul class="event-list"><li>베델성서 15기생 성지순례.</li></ul></div>
-                            <div class="month-row"><div class="month-title">3월</div><ul class="event-list"><li>제 5기 베델성서대학 개강.</li><li>이상권부목사 부임(2002.12 사임)</li></ul></div>
-                            <div class="month-row"><div class="month-title">1월</div><ul class="event-list"><li>제 4기 베델성서대학 수료식.</li></ul></div>
-                        </div>
-                    </div>
-                    <div class="year-block">
-                        <div class="year-title">1995</div>
-                        <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">11월</div><ul class="event-list"><li>성결노인대학 4기, 성결주부교양대학1기 수료식.</li></ul></div>
-                            <div class="month-row"><div class="month-title">5월</div><ul class="event-list"><li>교회창립 63주년 기념 교회개척(학동교회 : 안흥락전도사 파송)</li></ul></div>
-                            <div class="month-row"><div class="month-title">4월</div><ul class="event-list"><li>양재희, 정학구장로 장로 장립식.</li></ul></div>
-                            <div class="month-row"><div class="month-title"> </div><ul class="event-list"><li>35인승 Bus구입, 1층 및 본당 바닥 난방시설, 본당 강단 및 중층100석 증축, 본당 스크린 및 방송시설.</li></ul></div>
-                        </div>
-                    </div>
-                    <div class="year-block">
-                        <div class="year-title">1994</div>
-                        <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">12월</div><ul class="event-list"><li>도주환전도사 부임(95.11 사임)</li></ul></div>
-                            <div class="month-row"><div class="month-title">11월</div><ul class="event-list"><li>이봉협 음악전도사 부임(97.03 사임)</li></ul></div>
-                            <div class="month-row"><div class="month-title">6월</div><ul class="event-list"><li>현성권전도사 부임(99.11 사임)</li></ul></div>
-                            <div class="month-row"><div class="month-title">4월</div><ul class="event-list"><li>구자필장로 장립식</li></ul></div>
-                        </div>
-                    </div>
-                    <div class="year-block">
-                        <div class="year-title">1993</div>
-                        <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">6월</div><ul class="event-list"><li>제19대 강광수목사 부임(2006.04 사임)</li></ul></div>
-                            <div class="month-row"><div class="month-title">2월</div><ul class="event-list"><li>안흥락전도사 부임(95.05 사임)</li><li>강희경전도사 부임(95.04 사임)</li><li>남승현전도사 부임(93.07 사임)</li></ul></div>
-                        </div>
-                    </div>
-                    <div class="year-block">
-                        <div class="year-title">1992</div>
-                        <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">10월</div><ul class="event-list"><li>양기동전도사 부임 후 목사안수 받음(92.10~96.03)</li><li>성결노인대학, 주부대학 1기생 졸업</li></ul></div>
-                            <div class="month-row"><div class="month-title">9월</div><ul class="event-list"><li>정상배부목사 부임(93.10 사임)</li></ul></div>
-                        </div>
-                    </div>
-                    <div class="year-block">
-                        <div class="year-title">1991</div>
-                        <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">3월</div><ul class="event-list"><li>흥천교회 지교회 창립</li></ul></div>
-                        </div>
-                    </div>
-                    <div class="year-block">
-                        <div class="year-title">1990</div>
-                        <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title"> </div><ul class="event-list"><li>이기응전도사 부임(92.09 사임)</li></ul></div>
-                        </div>
+                    <div class="flex flex-col md:flex-row gap-4 md:gap-8 mb-12 pt-4 border-t-2 border-gray-800">
+                        <div class="md:w-28 shrink-0"><h3 class="text-4xl md:text-5xl font-light text-gray-800 tracking-tight">1990's</h3></div>
+                        <div class="flex-1 text-gray-500 py-4 italic">이전 연혁 기록은 교회 행정실에 문의해 주시기 바랍니다.</div>
                     </div>
                 </div>
-
-                <!-- 1980년대 -->
+                
                 <div id="decade-1980" class="scroll-mt-28 md:scroll-mt-32 pt-8 md:pt-16">
-                    <div class="year-block decade-start">
-                        <div class="year-title">1989</div>
-                        <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">7월</div><ul class="event-list"><li>백합동산(교회묘지) 3천평 구입.</li><li>노래선교단 악기구입.</li><li>케냐에 교회개척 선교활동.</li><li>대지 31평 구입(2821번지)</li><li>김원호전도사 부임(90. 사임)</li></ul></div>
-                        </div>
-                    </div>
-                    <div class="year-block">
-                        <div class="year-title">1988</div>
-                        <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">6월</div><ul class="event-list"><li>박광선장로 취임식</li></ul></div>
-                            <div class="month-row"><div class="month-title">3월</div><ul class="event-list"><li>용하종전도사 부임 후 목사안수 받음(91.03 사임).</li><li>유치원사무실 건물증축, 목사관, 부목사관 구입.</li><li>교회대지확장(169평 구입)</li></ul></div>
-                            <div class="month-row"><div class="month-title">1월</div><ul class="event-list"><li>장원순전도사 부임(90.11 사임)</li></ul></div>
-                        </div>
-                    </div>
-                    <div class="year-block">
-                        <div class="year-title">1987</div>
-                        <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">6월</div><ul class="event-list"><li>박광태, 이임수장로 장립식</li></ul></div>
-                        </div>
-                    </div>
-                    <div class="year-block">
-                        <div class="year-title">1985</div>
-                        <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">11월</div><ul class="event-list"><li>교리에 낙원교회 개척.</li><li>박영승전도사 부임</li></ul></div>
-                            <div class="month-row"><div class="month-title"> </div><ul class="event-list"><li>라석주전도사 부임.</li></ul></div>
-                        </div>
-                    </div>
-                    <div class="year-block">
-                        <div class="year-title">1984</div>
-                        <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">3월</div><ul class="event-list"><li>심현동전도사 부임.</li><li>최하용협동전도사 부임(84.05 사임)</li></ul></div>
-                            <div class="month-row"><div class="month-title">1월</div><ul class="event-list"><li>이태연전도사 부임 후 목사안수(86.12 사임)</li></ul></div>
-                        </div>
-                    </div>
-                    <div class="year-block">
-                        <div class="year-title">1983</div>
-                        <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">11월</div><ul class="event-list"><li>임규홍장로 취임식</li></ul></div>
-                        </div>
-                    </div>
-                    <div class="year-block">
-                        <div class="year-title">1982</div>
-                        <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">3월</div><ul class="event-list"><li>제18대 여성삼목사 부임(82.3~93.3)</li></ul></div>
-                        </div>
-                    </div>
-                    <div class="year-block">
-                        <div class="year-title">1980</div>
-                        <div class="flex-1 space-y-4">
-                            <div class="month-row"><div class="month-title">3월</div><ul class="event-list"><li>김진웅부목사 부임.</li></ul></div>
-                        </div>
+                    <div class="flex flex-col md:flex-row gap-4 md:gap-8 mb-12 pt-4 border-t-2 border-gray-800">
+                        <div class="md:w-28 shrink-0"><h3 class="text-4xl md:text-5xl font-light text-gray-800 tracking-tight">1980's</h3></div>
+                        <div class="flex-1 text-gray-500 py-4 italic"></div>
                     </div>
                 </div>
-
-                <!-- 1970년대 이하 -->
+                
                 <div id="decade-1970" class="scroll-mt-28 md:scroll-mt-32 pt-8 md:pt-16">
-                    <div class="year-block decade-start">
-                        <div class="year-title">1979</div>
-                        <div class="flex-1 space-y-4"><div class="month-row"><div class="month-title">3월</div><ul class="event-list"><li>교회당 2층 증축함.</li></ul></div></div>
-                    </div>
-                    <div class="year-block">
-                        <div class="year-title">1977</div>
-                        <div class="flex-1 space-y-4"><div class="month-row"><div class="month-title">10월</div><ul class="event-list"><li>양재호장로 장립식</li></ul></div></div>
-                    </div>
-                    <div class="year-block">
-                        <div class="year-title">1975</div>
-                        <div class="flex-1 space-y-4"><div class="month-row"><div class="month-title">6월</div><ul class="event-list"><li>교회당 1층 건축.</li></ul></div></div>
-                    </div>
-                    <div class="year-block">
-                        <div class="year-title">1974</div>
-                        <div class="flex-1 space-y-4"><div class="month-row"><div class="month-title"> </div><ul class="event-list"><li>교회당 장의자 및 방석구입</li></ul></div></div>
-                    </div>
-                    <div class="year-block">
-                        <div class="year-title">1972</div>
-                        <div class="flex-1 space-y-4"><div class="month-row"><div class="month-title">1월</div><ul class="event-list"><li>박덕규전도사 부임</li></ul></div><div class="month-row"><div class="month-title"> </div><ul class="event-list"><li>교회수리(담장공사).</li></ul></div></div>
-                    </div>
-                    <div class="year-block">
-                        <div class="year-title">1971</div>
-                        <div class="flex-1 space-y-4"><div class="month-row"><div class="month-title">5월</div><ul class="event-list"><li>황홍식장로 장립.</li></ul></div></div>
-                    </div>
-                    <div class="year-block">
-                        <div class="year-title">1970</div>
-                        <div class="flex-1 space-y-4"><div class="month-row"><div class="month-title">5월</div><ul class="event-list"><li>김성배전도사 목사안수</li></ul></div><div class="month-row"><div class="month-title">4월</div><ul class="event-list"><li>하리 교회대지 154평 매입.</li></ul></div></div>
+                    <div class="flex flex-col md:flex-row gap-4 md:gap-8 mb-12 pt-4 border-t-2 border-gray-800">
+                        <div class="md:w-28 shrink-0"><h3 class="text-4xl md:text-5xl font-light text-gray-800 tracking-tight">1970's</h3></div>
+                        <div class="flex-1 text-gray-500 py-4 italic"></div>
                     </div>
                 </div>
-
-                <!-- 1960년대 -->
+                
                 <div id="decade-1960" class="scroll-mt-28 md:scroll-mt-32 pt-8 md:pt-16">
-                    <div class="year-block decade-start">
-                        <div class="year-title">1968</div>
-                        <div class="flex-1 space-y-4"><div class="month-row"><div class="month-title">3월</div><ul class="event-list"><li>제17대 김성배전도사 부임(81.10 사임).</li></ul></div></div>
-                    </div>
-                    <div class="year-block">
-                        <div class="year-title">1962</div>
-                        <div class="flex-1 space-y-4"><div class="month-row"><div class="month-title"> </div><ul class="event-list"><li>제16대 노재룡전도사 부임.(1965년 목사안수)</li></ul></div></div>
+                    <div class="flex flex-col md:flex-row gap-4 md:gap-8 mb-12 pt-4 border-t-2 border-gray-800">
+                        <div class="md:w-28 shrink-0"><h3 class="text-4xl md:text-5xl font-light text-gray-800 tracking-tight">1960's</h3></div>
+                        <div class="flex-1 text-gray-500 py-4 italic"></div>
                     </div>
                 </div>
-
-                <!-- 1950년대 -->
+                
                 <div id="decade-1950" class="scroll-mt-28 md:scroll-mt-32 pt-8 md:pt-16">
-                    <div class="year-block decade-start">
-                        <div class="year-title">1955</div>
-                        <div class="flex-1 space-y-4"><div class="month-row"><div class="month-title">7월</div><ul class="event-list"><li>제14대 이호창전도사 부임{교회건축(33평)}</li><li>제15대 이지호목사 부임.</li></ul></div></div>
-                    </div>
-                    <div class="year-block">
-                        <div class="year-title">1952</div>
-                        <div class="flex-1 space-y-4"><div class="month-row"><div class="month-title"> </div><ul class="event-list"><li>조병두전도사 목사안수.</li><li>김명환전도사 배출(교회출신)</li><li>제11대 임동선목사 부임. 군목으로 입대(초대 공군 군종감 역임) 사임.</li><li>제12대 임상호목사 부임(55.05 사임).</li><li>제13대 함병은목사 부임(55.06 사임)</li></ul></div></div>
-                    </div>
-                    <div class="year-block">
-                        <div class="year-title">1951</div>
-                        <div class="flex-1 space-y-4"><div class="month-row"><div class="month-title"> </div><ul class="event-list"><li>제10대 조병두전도사 부임.</li></ul></div></div>
-                    </div>
-                    <div class="year-block">
-                        <div class="year-title">1950</div>
-                        <div class="flex-1 space-y-4"><div class="month-row"><div class="month-title"> </div><ul class="event-list"><li>6.25로 피난. 수복 후 이봉기집사 집에서 예배를 드리다 1.4후퇴로 흩어짐.</li></ul></div></div>
+                    <div class="flex flex-col md:flex-row gap-4 md:gap-8 mb-12 pt-4 border-t-2 border-gray-800">
+                        <div class="md:w-28 shrink-0"><h3 class="text-4xl md:text-5xl font-light text-gray-800 tracking-tight">1950's</h3></div>
+                        <div class="flex-1 text-gray-500 py-4 italic"></div>
                     </div>
                 </div>
-
-                <!-- 1940년대 -->
+                
                 <div id="decade-1940" class="scroll-mt-28 md:scroll-mt-32 pt-8 md:pt-16">
-                    <div class="year-block decade-start">
-                        <div class="year-title">1949</div>
-                        <div class="flex-1 space-y-4"><div class="month-row"><div class="month-title">6월</div><ul class="event-list"><li>제 9대 임동선전도사가 부임</li></ul></div></div>
-                    </div>
-                    <div class="year-block">
-                        <div class="year-title">1948</div>
-                        <div class="flex-1 space-y-4"><div class="month-row"><div class="month-title"> </div><ul class="event-list"><li>아현교회 이성구장로가 춘향각을 매입하여 헌납함.</li></ul></div></div>
-                    </div>
-                    <div class="year-block">
-                        <div class="year-title">1947</div>
-                        <div class="flex-1 space-y-4"><div class="month-row"><div class="month-title">4월</div><ul class="event-list"><li>제 8대 김병선목사가 부임하고 교회가 복구됨.</li></ul></div></div>
-                    </div>
-                    <div class="year-block">
-                        <div class="year-title">1946</div>
-                        <div class="flex-1 space-y-4"><div class="month-row"><div class="month-title">1월</div><ul class="event-list"><li>여주교회 재설립(창리 비각거리근처)</li></ul></div></div>
-                    </div>
-                    <div class="year-block">
-                        <div class="year-title">1943</div>
-                        <div class="flex-1 space-y-4"><div class="month-row"><div class="month-title">9월</div><ul class="event-list"><li>제 7대 장극돈전도사 부임. 시무중 일제 탄압으로 교회가 폐쇄됨.</li></ul></div></div>
-                    </div>
-                    <div class="year-block">
-                        <div class="year-title">1940</div>
-                        <div class="flex-1 space-y-4"><div class="month-row"><div class="month-title">2월</div><ul class="event-list"><li>제 6대 박봉진목사 부임(41.05 사임).</li></ul></div></div>
+                    <div class="flex flex-col md:flex-row gap-4 md:gap-8 mb-12 pt-4 border-t-2 border-gray-800">
+                        <div class="md:w-28 shrink-0"><h3 class="text-4xl md:text-5xl font-light text-gray-800 tracking-tight">1940's</h3></div>
+                        <div class="flex-1 text-gray-500 py-4 italic"></div>
                     </div>
                 </div>
 
-                <!-- 1930년대 -->
                 <div id="decade-1930" class="scroll-mt-28 md:scroll-mt-32 pt-8 md:pt-16">
-                    <div class="year-block decade-start">
-                        <div class="year-title">1939</div>
-                        <div class="flex-1 space-y-4"><div class="month-row"><div class="month-title"> </div><ul class="event-list"><li>제 5대 홍문표전도사 부임(39.03 사임).</li></ul></div></div>
-                    </div>
-                    <div class="year-block">
-                        <div class="year-title">1937</div>
-                        <div class="flex-1 space-y-4"><div class="month-row"><div class="month-title">3월</div><ul class="event-list"><li>제 4대 박봉진전도사 부임(39.10이후 사임).</li></ul></div></div>
-                    </div>
-                    <div class="year-block">
-                        <div class="year-title">1935</div>
-                        <div class="flex-1 space-y-4"><div class="month-row"><div class="month-title">3월</div><ul class="event-list"><li>제 3대 김세현전도사 부임.</li></ul></div></div>
-                    </div>
-                    <div class="year-block">
-                        <div class="year-title">1934</div>
-                        <div class="flex-1 space-y-4"><div class="month-row"><div class="month-title">3월</div><ul class="event-list"><li>제 2대 교역자 정희열전도사 부임(35.03사임).</li><li>교회이전건축(상리에서 하리) [성전부지는 서옥회집사 친정모친(염청아집사)께서 헌납함]</li></ul></div></div>
-                    </div>
-                    <div class="year-block">
-                        <div class="year-title">1933</div>
-                        <div class="flex-1 space-y-4"><div class="month-row"><div class="month-title"> </div><ul class="event-list"><li>황홍준 성도 성결교단 중부지방 주교사 심리학 세미나수료(1개월)</li></ul></div></div>
-                    </div>
-                    <div class="year-block">
-                        <div class="year-title">1932</div>
+                    <div class="flex flex-col md:flex-row gap-4 md:gap-8 mb-12 pt-4 border-t-2 border-gray-800">
+                        <div class="md:w-28 shrink-0"><h3 class="text-4xl md:text-5xl font-light text-gray-800 tracking-tight">1930's</h3></div>
                         <div class="flex-1 space-y-4">
-                            <div class="month-row">
-                                <div class="month-title text-[#1b315b]">5월</div>
-                                <ul class="event-list text-gray-900 font-bold">
-                                    <li>여주성결교회 창립 (1932. 5. 17) : 장기실전도사의 지역전도에 기초가 되어 제1대 윤상현전도사가 여주읍 홍문리에 개인집을 빌려 12명이 창립예배를 드림. 그 후 상리 백낙환씨 집을 월세로 빌려 예배처를 이전함.</li>
-                                </ul>
-                            </div>
+                            <div class="flex gap-4"><div class="w-16 shrink-0 font-bold text-[#1b315b] mt-1">05월</div><ul class="flex-1 text-gray-800 font-bold text-sm md:text-base space-y-1 list-disc pl-4"><li>여주성결교회 창립 (1932. 5. 13)</li></ul></div>
                         </div>
                     </div>
                 </div>
