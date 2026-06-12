@@ -71,9 +71,10 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <div class="absolute top-0 left-full ml-1 opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-300">
                                     <div class="w-48 bg-white text-gray-800 rounded-2xl shadow-xl py-3 border border-gray-100 flex flex-col">
                                         <a href="${root}word/sunday.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">주일예배</a>
-                                        <a href="#" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">주일오후예배</a>
-                                        <a href="#" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">수요예배</a>
-                                        <a href="#" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">특별집회</a>
+                                        <a href="${root}word/afternoon.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">주일오후예배</a>
+                                        <a href="${root}word/wednesday.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">수요예배</a>
+                                        <!-- 특별집회 링크 수정됨 -->
+                                        <a href="${root}word/special_worship.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">특별집회</a>
                                     </div>
                                 </div>
                             </div>
@@ -81,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <!-- 찬양 2단 드롭다운 -->
                             <div class="relative group/sub">
                                 <a href="#" class="flex justify-between items-center px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">
-                                    찬양 <i class="fas fa-chevron-right text-[0.6rem] text-gray-400"></i>
+                                    찬양대/중창단 <i class="fas fa-chevron-right text-[0.6rem] text-gray-400"></i>
                                 </a>
                                 <div class="absolute top-0 left-full ml-1 opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-300">
                                     <div class="w-48 bg-white text-gray-800 rounded-2xl shadow-xl py-3 border border-gray-100 flex flex-col">
@@ -182,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </header>
     `;
 
-    // 2. 공통 푸터(하단 정보) HTML - (수정: 사이트맵, 개인정보처리방침 등 삭제)
+    // 2. 공통 푸터(하단 정보) HTML
     const footerHTML = `
     <footer class="bg-white border-t border-gray-100 py-10 md:py-16 mt-10 w-full">
         <div class="max-w-6xl mx-auto px-4 flex flex-col items-center text-center">
@@ -253,11 +254,11 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <li class="py-2.5 text-gray-800 font-medium">말씀</li>
                                 <li class="bg-gray-50 p-3 space-y-2 text-[13px] text-gray-500 mb-2">
                                     <a href="${root}word/sunday.html" class="block hover:text-blue-600">- 주일예배</a>
-                                    <a href="#" class="block hover:text-blue-600">- 주일오후예배</a>
-                                    <a href="#" class="block hover:text-blue-600">- 수요예배</a>
-                                    <a href="#" class="block hover:text-blue-600">- 특별집회</a>
+                                    <a href="${root}word/afternoon.html" class="block hover:text-blue-600">- 주일오후예배</a>
+                                    <a href="${root}word/wednesday.html" class="block hover:text-blue-600">- 수요예배</a>
+                                    <a href="${root}word/special_worship.html" class="block hover:text-blue-600">- 특별집회</a>
                                 </li>
-                                <li class="py-2.5 text-gray-800 font-medium">찬양</li>
+                                <li class="py-2.5 text-gray-800 font-medium">찬양대/중창단</li>
                                 <li class="bg-gray-50 p-3 space-y-2 text-[13px] text-gray-500 mb-2">
                                     <a href="${root}word/praise.html" class="block hover:text-blue-600">- 시온찬양대</a>
                                     <a href="${root}word/hallelujah.html" class="block hover:text-blue-600">- 할렐루야찬양대</a>
