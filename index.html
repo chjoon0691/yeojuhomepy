@@ -36,15 +36,18 @@
         #sitemap-content::-webkit-scrollbar-track { background: #f1f1f1; }
         #sitemap-content::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
         
-        /* 메인 슬라이더 페이드 효과 CSS */
+        /* 메인 슬라이더 페이드 효과 및 서브페이지와 동일한 배경 효과 적용 */
         .slide {
             opacity: 0;
             transition: opacity 1s ease-in-out;
             position: absolute;
             inset: 0;
+            background-size: cover;
+            background-position: center;
+            mix-blend-mode: luminosity; /* 흑백 톤으로 배경색에 스며드는 효과 */
         }
         .slide.active {
-            opacity: 1;
+            opacity: 0.3; /* 파란 배경이 보이도록 투명도 30% 설정 (서브페이지와 동일) */
         }
     </style>
 </head>
@@ -53,26 +56,24 @@
     <!-- 마법의 파일 연결 1: 여기서 상단 메뉴가 자동으로 나옵니다 -->
     <div id="common-header"></div>
 
-    <!-- Hero Section (슬라이더 적용) -->
-    <section class="text-white pt-16 pb-48 md:pb-64 relative flex items-center justify-center text-center overflow-hidden curved-bottom shadow-[0_10px_30px_rgba(0,0,0,0.2)]" style="background-color: #244177;">
+    <!-- Hero Section (슬라이더 적용 및 배경색 지정) -->
+    <section class="text-white pt-16 pb-48 md:pb-64 relative flex items-center justify-center text-center overflow-hidden curved-bottom shadow-[0_10px_30px_rgba(0,0,0,0.2)] bg-[#102242]">
         
         <!-- 이미지 슬라이더 영역 -->
         <div id="hero-slider" class="absolute inset-0 z-0">
-            <!-- 1. 십자가 사진 교체 -->
-            <div class="slide active bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1508688432371-2be33f5d5071?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');"></div>
-            <!-- 2. 모여서 기도하는 사진 교체 (손 모아 기도하는 모습) -->
-            <div class="slide bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1518605368461-1e1b5fce720a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');"></div>
+            <!-- 1. 은혜로운 십자가 -->
+            <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1560566373-c39719391af1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');"></div>
+            <!-- 2. 손 모아 기도하는 사진 -->
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');"></div>
             <!-- 3. 교회전경 (올려주신 파일) -->
-            <div class="slide bg-cover bg-center" style="background-image: url('https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/images/%EA%B5%90%ED%9A%8C%EC%A0%84%EA%B2%BD.jfif');"></div>
+            <div class="slide" style="background-image: url('https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/images/%EA%B5%90%ED%9A%8C%EC%A0%84%EA%B2%BD.jfif');"></div>
             <!-- 4. 여주교회예배 (올려주신 파일) -->
-            <div class="slide bg-cover bg-center" style="background-image: url('https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/images/%EC%97%AC%EC%A3%BC%EA%B5%90%ED%9A%8C%EC%98%88%EB%B0%B0.png');"></div>
+            <div class="slide" style="background-image: url('https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/images/%EC%97%AC%EC%A3%BC%EA%B5%90%ED%9A%8C%EC%98%88%EB%B0%B0.png');"></div>
         </div>
-        
-        <!-- 어두운 오버레이 (글씨가 잘 보이도록) -->
-        <div class="absolute inset-0 bg-gradient-to-b from-[#102242]/50 to-[#102242]/90 opacity-80 z-0"></div>
 
+        <!-- 텍스트 영역 -->
         <div class="relative z-10 max-w-5xl mx-auto px-4 flex flex-col items-center w-full">
-            <button onclick="prevSlide()" class="absolute left-2 md:-left-10 top-1/2 transform -translate-y-1/2 text-white/50 hover:text-white text-4xl md:text-5xl focus:outline-none z-20">
+            <button onclick="prevSlide()" class="absolute left-2 md:-left-10 top-1/2 transform -translate-y-1/2 text-white/50 hover:text-white text-4xl md:text-5xl focus:outline-none z-20 transition">
                 <i class="fas fa-angle-left"></i>
             </button>
 
@@ -82,12 +83,12 @@
                 그들이 사도의 가르침을 받아 서로 교제하고 떡을 떼며 오로지 기도하기를 힘쓰니라<br>
                 (사도행전 2:42)
             </p>
-            <!-- 주일예배 버튼 (말씀과 찬양 페이지로 이동) -->
+            <!-- 주일예배 버튼 -->
             <button onclick="location.href='word/sunday.html'" class="border border-white px-6 md:px-10 py-2 md:py-3 rounded-md hover:bg-white hover:text-[#1a3668] transition duration-300 text-sm md:text-lg font-bold">
                 주일예배 바로가기
             </button>
 
-            <button onclick="nextSlide()" class="absolute right-2 md:-right-10 top-1/2 transform -translate-y-1/2 text-white/50 hover:text-white text-4xl md:text-5xl focus:outline-none z-20">
+            <button onclick="nextSlide()" class="absolute right-2 md:-right-10 top-1/2 transform -translate-y-1/2 text-white/50 hover:text-white text-4xl md:text-5xl focus:outline-none z-20 transition">
                 <i class="fas fa-angle-right"></i>
             </button>
         </div>
@@ -206,20 +207,80 @@
     <!-- Background transition image -->
     <div class="h-32 md:h-56 bg-[#3b4b66] w-full" style="background-image: url('https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center;"></div>
 
-    <!-- Gallery & Quick Links (성도소식을 지우고 이 섹션이 위로 올라옵니다) -->
-    <section class="bg-white curved-top -mt-16 md:-mt-24 pt-16 md:pt-24 pb-24 md:pb-40 relative z-10 shadow-[0_-10px_30px_rgba(0,0,0,0.1)]">
+    <!-- News & Event -->
+    <section class="bg-[#f8fafc] curved-top -mt-16 md:-mt-24 pt-16 md:pt-24 pb-16 md:pb-20 relative z-10 shadow-[0_-10px_30px_rgba(0,0,0,0.1)]">
+        <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
+            <div class="bg-white rounded-3xl p-6 md:p-8 shadow-sm">
+                <!-- 새소식을 성도소식으로 수정 -->
+                <div class="flex justify-between items-end border-b-2 border-[#5c85b5] pb-3 mb-5">
+                    <h2 class="text-lg md:text-2xl font-extrabold text-gray-900">여주성결교회 <span class="text-[#5c85b5]">성도소식</span></h2>
+                    <a href="news/member.html" class="text-xs md:text-base text-blue-500 font-bold uppercase hover:underline">more</a>
+                </div>
+                <!-- 소식 리스트 -->
+                <ul class="space-y-4">
+                    <li onclick="location.href='news/member.html'" class="flex justify-between text-sm md:text-lg py-2 border-b border-gray-50 hover:text-blue-600 cursor-pointer transition">
+                        <span class="truncate pr-4 font-medium">장례 - 고대성성도(고미선권사 부친, 온...</span>
+                        <span class="text-gray-400 flex-shrink-0 text-xs md:text-base">26.05.26</span>
+                    </li>
+                    <li onclick="location.href='news/member.html'" class="flex justify-between text-sm md:text-lg py-2 border-b border-gray-50 hover:text-blue-600 cursor-pointer transition">
+                        <span class="truncate pr-4 font-medium">손성필성도(9남)안영하권사(18여) 손율...</span>
+                        <span class="text-gray-400 flex-shrink-0 text-xs md:text-base">26.05.17</span>
+                    </li>
+                    <li onclick="location.href='news/member.html'" class="flex justify-between text-sm md:text-lg py-2 border-b border-gray-50 hover:text-blue-600 cursor-pointer transition">
+                        <span class="truncate pr-4 font-medium">김현석집사(8남) 한주은집사(17여) / 4...</span>
+                        <span class="text-gray-400 flex-shrink-0 text-xs md:text-base">26.05.17</span>
+                    </li>
+                    <li onclick="location.href='news/member.html'" class="flex justify-between text-sm md:text-lg py-2 border-b border-gray-50 hover:text-blue-600 cursor-pointer transition">
+                        <span class="truncate pr-4 font-medium">정하연성도(22여) 방승리청년 / 5교구 ...</span>
+                        <span class="text-gray-400 flex-shrink-0 text-xs md:text-base">26.05.17</span>
+                    </li>
+                    <li onclick="location.href='news/member.html'" class="flex justify-between text-sm md:text-lg py-2 border-b border-gray-50 hover:text-blue-600 cursor-pointer transition">
+                        <span class="truncate pr-4 font-medium">김옥분성도(14여) / 11교구 능서구역</span>
+                        <span class="text-gray-400 flex-shrink-0 text-xs md:text-base">26.05.17</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="flex items-center justify-center">
+                <img src="https://images.unsplash.com/photo-1596422846543-75c6fc197f0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="말레이시아 단기선교 포스터" class="w-full h-auto rounded-3xl shadow-md border border-gray-100 hover:opacity-90 transition cursor-pointer">
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery & Quick Links -->
+    <section class="bg-white pb-24 md:pb-40">
         <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
             <div>
+                <!-- 갤러리 섹션 헤더 -->
                 <div class="flex justify-between items-end pb-3 mb-5">
                     <h2 class="text-lg md:text-2xl font-extrabold text-gray-900">여주성결교회 <span class="text-[#5c85b5]">갤러리</span></h2>
                     <a href="news/gallery.html" class="text-xs md:text-base text-blue-500 font-bold uppercase hover:underline">more</a>
                 </div>
-                <!-- 갤러리 이미지 교체 (은혜로운 사진들로 변경) -->
-                <div class="grid grid-cols-2 gap-1 md:gap-2">
-                    <img onclick="location.href='news/gallery.html'" src="https://images.unsplash.com/photo-1438283173091-5dbf5c5a3206?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="갤러리1" class="w-full h-32 md:h-48 object-cover shadow-sm hover:opacity-80 cursor-pointer transition">
-                    <img onclick="location.href='news/gallery.html'" src="https://images.unsplash.com/photo-1510590337019-5ef8d3d32116?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="갤러리2" class="w-full h-32 md:h-48 object-cover shadow-sm hover:opacity-80 cursor-pointer transition">
-                    <img onclick="location.href='news/gallery.html'" src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="갤러리3" class="w-full h-32 md:h-48 object-cover shadow-sm hover:opacity-80 cursor-pointer transition">
-                    <img onclick="location.href='news/gallery.html'" src="https://images.unsplash.com/photo-1494887205043-c5f291293cf6?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="갤러리4" class="w-full h-32 md:h-48 object-cover shadow-sm hover:opacity-80 cursor-pointer transition">
+                <!-- 갤러리 최신 행사사진 4개로 교체 및 마우스 오버 시 제목 노출 -->
+                <div class="grid grid-cols-2 gap-2 md:gap-3">
+                    <div onclick="location.href='news/gallery.html'" class="relative group cursor-pointer overflow-hidden rounded-lg shadow-sm h-32 md:h-48">
+                        <img src="https://images.unsplash.com/photo-1544640808-32ca72ac7f37?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="20260531 어와나 야외예배" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition duration-300 flex items-end p-3">
+                            <span class="text-white font-bold text-sm opacity-0 group-hover:opacity-100 transition duration-300 truncate">20260531 어와나 야외예배...</span>
+                        </div>
+                    </div>
+                    <div onclick="location.href='news/gallery.html'" class="relative group cursor-pointer overflow-hidden rounded-lg shadow-sm h-32 md:h-48">
+                        <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="20260531 청년부친구초청" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition duration-300 flex items-end p-3">
+                            <span class="text-white font-bold text-sm opacity-0 group-hover:opacity-100 transition duration-300 truncate">20260531 청년부친구초청...</span>
+                        </div>
+                    </div>
+                    <div onclick="location.href='news/gallery.html'" class="relative group cursor-pointer overflow-hidden rounded-lg shadow-sm h-32 md:h-48">
+                        <img src="https://images.unsplash.com/photo-1526976663112-00508a8f7c9e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="20260524 고등부 야외예배" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition duration-300 flex items-end p-3">
+                            <span class="text-white font-bold text-sm opacity-0 group-hover:opacity-100 transition duration-300 truncate">20260524 고등부 야외예배</span>
+                        </div>
+                    </div>
+                    <div onclick="location.href='news/gallery.html'" class="relative group cursor-pointer overflow-hidden rounded-lg shadow-sm h-32 md:h-48">
+                        <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="20260523 11,12교구 산상기도회" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition duration-300 flex items-end p-3">
+                            <span class="text-white font-bold text-sm opacity-0 group-hover:opacity-100 transition duration-300 truncate">20260523 11,12교구 산상...</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -319,7 +380,7 @@
             resetInterval(); // 버튼 클릭 시 타이머 초기화
         }
 
-        // 자동 슬라이드 시작 (5초로 변경)
+        // 자동 슬라이드 시작 (정확히 5초 설정)
         function startInterval() {
             slideInterval = setInterval(nextSlide, 5000);
         }
