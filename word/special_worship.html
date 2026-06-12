@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>특별집회 - 여주성결교회</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+        body { 
+            font-family: 'Pretendard', sans-serif; 
+            background-color: #ffffff;
+            overflow-x: hidden;
+        }
+        /* 게시판 하단 페이지네이션 스타일 */
+        .page-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border: 1px solid #e5e7eb;
+            color: #4b5563;
+            font-size: 14px;
+            transition: all 0.2s;
+            margin: 0 2px;
+        }
+        .page-link:hover {
+            background-color: #f3f4f6;
+            color: #1b315b;
+        }
+        .page-link.active {
+            border-color: #1b315b;
+            color: #1b315b;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- 마법의 파일 연결 1: 공통 상단 헤더 -->
+    <div id="common-header"></div>
+
+    <section class="bg-[#102242] py-12 md:py-20 text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-luminosity"></div>
+        <div class="relative z-10">
+            <h2 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-2">말씀과 찬양</h2>
+            <p class="text-blue-200 text-sm md:text-base">Worship & Praise</p>
+        </div>
+    </section>
+
+    <!-- 모바일 전용 2차 메뉴 바 -->
+    <div class="md:hidden border-b border-gray-300 bg-white relative z-30 shadow-sm">
+        <div class="flex text-sm md:text-base">
+            <a href="../index.html" class="px-4 py-3 border-r border-gray-300 text-gray-600 flex items-center justify-center hover:bg-gray-50">
+                Home
+            </a>
+            <div class="flex-1 border-r border-gray-300 relative">
+                <button onclick="toggleMobileSubMenu('menu-depth1')" class="w-full flex justify-between items-center px-4 py-3 text-gray-800 focus:outline-none">
+                    <span>말씀과 찬양</span>
+                    <i class="fas fa-plus text-gray-400 text-xs"></i>
+                </button>
+                <ul id="menu-depth1" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
+                    <li class="border-b border-gray-100"><a href="../welcome/greeting.html" class="block px-4 py-3 hover:bg-gray-50">환영합니다</a></li>
+                    <li class="border-b border-gray-100"><a href="sunday.html" class="block px-4 py-3 text-blue-600 font-bold bg-gray-50">말씀과 찬양</a></li>
+                    <li class="border-b border-gray-100"><a href="../community/parish.html" class="block px-4 py-3 hover:bg-gray-50">공동체</a></li>
+                    <li class="border-b border-gray-100"><a href="../nextgen/infant.html" class="block px-4 py-3 hover:bg-gray-50">다음세대</a></li>
+                    <li class="border-b border-gray-100"><a href="../mission/evangelism.html" class="block px-4 py-3 hover:bg-gray-50">전도와 선교</a></li>
+                    <li class="border-b border-gray-100"><a href="../news/weekly.html" class="block px-4 py-3 hover:bg-gray-50">교회소식</a></li>
+                    <li><a href="../service/application.html" class="block px-4 py-3 hover:bg-gray-50">행정서비스</a></li>
+                </ul>
+            </div>
+            <div class="flex-1 relative">
+                <button onclick="toggleMobileSubMenu('menu-depth2')" class="w-full flex justify-between items-center px-4 py-3 text-gray-800 focus:outline-none">
+                    <span>특별집회</span>
+                    <i class="fas fa-plus text-gray-400 text-xs"></i>
+                </button>
+                <ul id="menu-depth2" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
+                    <li class="bg-gray-50 border-b border-gray-100 py-2">
+                        <span class="block px-4 py-1 text-gray-800 font-bold text-xs">말씀</span>
+                        <a href="sunday.html" class="block px-6 py-2 hover:bg-gray-100 text-gray-600">- 주일 예배</a>
+                        <a href="afternoon.html" class="block px-6 py-2 hover:bg-gray-100 text-gray-600">- 주일 오후 예배</a>
+                        <a href="wednesday.html" class="block px-6 py-2 hover:bg-gray-100 text-gray-600">- 수요 예배</a>
+                        <a href="special_worship.html" class="block px-6 py-2 text-blue-600 font-bold">- 특별집회</a>
+                    </li>
+                    <li class="bg-gray-50 border-b border-gray-100 py-2">
+                        <span class="block px-4 py-1 text-gray-800 font-bold text-xs">찬양대/중창단</span>
+                        <a href="praise.html" class="block px-6 py-2 hover:bg-gray-100 text-gray-600">- 시온찬양대</a>
+                        <a href="hallelujah.html" class="block px-6 py-2 hover:bg-gray-100 text-gray-600">- 할렐루야찬양대</a>
+                        <a href="dreamnlove.html" class="block px-6 py-2 hover:bg-gray-100 text-gray-600">- 꿈과사랑의찬양대</a>
+                        <a href="silver.html" class="block px-6 py-2 hover:bg-gray-100 text-gray-600">- 은빛찬양대</a>
+                        <a href="sundayoffering.html" class="block px-6 py-2 hover:bg-gray-100 text-gray-600">- 주일봉헌찬양</a>
+                        <a href="special.html" class="block px-6 py-2 hover:bg-gray-100 text-gray-600">- 특별찬양</a>
+                    </li>
+                    <li><a href="media.html" class="block px-4 py-3 hover:bg-gray-50 font-bold text-gray-800">여주미디어</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 py-12 md:py-20 flex flex-col md:flex-row gap-10">
+        
+        <!-- Left Sidebar (아코디언 마우스 오버 효과 적용) -->
+        <aside class="hidden md:block w-64 flex-shrink-0">
+            <div class="bg-[#6b8cba] text-white text-center py-4 text-xl font-bold rounded-t-lg">
+                말씀과 찬양
+            </div>
+            <ul class="border border-t-0 border-gray-200 flex flex-col">
+                <!-- 말씀 (Collapsed, expands on hover. 특별집회 is highlighted) -->
+                <li class="border-b border-gray-200 group">
+                    <a href="sunday.html" class="flex justify-between items-center px-5 py-3 text-[#3b82f6] font-bold bg-gray-50 transition">
+                        말씀 <i class="fas fa-chevron-down text-xs text-[#3b82f6] group-hover:rotate-180 transition-transform duration-300"></i>
+                    </a>
+                    <div class="max-h-0 overflow-hidden group-hover:max-h-48 transition-all duration-500 ease-in-out">
+                        <ul class="py-2 bg-white border-t border-gray-100">
+                            <li><a href="sunday.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">주일 예배</a></li>
+                            <li><a href="afternoon.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">주일 오후 예배</a></li>
+                            <li><a href="wednesday.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">수요 예배</a></li>
+                            <li><a href="special_worship.html" class="block px-8 py-1.5 text-sm text-[#3b82f6] font-bold bg-gray-50 transition">특별집회</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <!-- 찬양대/중창단 (Collapsed by default, expands on hover) -->
+                <li class="border-b border-gray-200 group">
+                    <a href="praise.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">
+                        찬양대/중창단 <i class="fas fa-chevron-down text-xs text-gray-400 group-hover:rotate-180 transition-transform duration-300"></i>
+                    </a>
+                    <div class="max-h-0 overflow-hidden group-hover:max-h-64 transition-all duration-500 ease-in-out">
+                        <ul class="py-2 bg-white border-t border-gray-100">
+                            <li><a href="praise.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">시온찬양대</a></li>
+                            <li><a href="hallelujah.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">할렐루야찬양대</a></li>
+                            <li><a href="dreamnlove.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">꿈과사랑의찬양대</a></li>
+                            <li><a href="silver.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">은빛찬양대</a></li>
+                            <li><a href="sundayoffering.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">주일봉헌찬양</a></li>
+                            <li><a href="special.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">특별찬양</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <!-- 여주미디어 -->
+                <li>
+                    <a href="media.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition rounded-b-lg">
+                        여주미디어 <i class="fas fa-chevron-right text-xs"></i>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Right Content Area -->
+        <main class="flex-1">
+            
+            <div class="w-full bg-[#1b315b] rounded-xl h-24 md:h-32 flex flex-col justify-center items-center text-white shadow-md relative overflow-hidden mb-8">
+                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
+                <h3 class="text-2xl md:text-3xl font-extrabold relative z-10 tracking-tight">특별집회</h3>
+            </div>
+
+            <div class="flex justify-end mb-6 border-b border-gray-200 pb-4">
+                <div class="flex border border-gray-300 rounded shadow-sm overflow-hidden bg-white">
+                    <select class="px-3 py-1.5 text-sm md:text-base border-r border-gray-300 text-gray-700 focus:outline-none bg-gray-50 cursor-pointer">
+                        <option>최신순</option>
+                    </select>
+                    <select class="px-3 py-1.5 text-sm md:text-base border-r border-gray-300 text-gray-700 focus:outline-none bg-gray-50 cursor-pointer">
+                        <option>제목</option>
+                        <option>설교자</option>
+                    </select>
+                    <input type="text" class="px-3 py-1.5 text-sm md:text-base w-32 md:w-48 focus:outline-none" placeholder="검색어 입력">
+                    <button class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-1.5 text-sm md:text-base border-l border-gray-600 transition font-bold">
+                        검색
+                    </button>
+                </div>
+            </div>
+
+            <!-- 그리드 형태의 집회 목록 -->
+            <div id="event-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <!-- JS가 데이터를 밀어넣을 공간 -->
+            </div>
+
+            <!-- 페이지네이션 -->
+            <div id="pagination" class="flex justify-center items-center mt-10 mb-6 flex-wrap gap-y-2">
+            </div>
+
+        </main>
+    </div>
+
+    <!-- 마법의 파일 연결 2: 공통 하단 푸터 & 사이트맵 -->
+    <div id="common-footer"></div>
+    <div id="common-sitemap"></div>
+
+    <script>
+        // 목사님께서 올려주신 30개의 특별집회 데이터
+        const eventData = [
+            { date: "2026-04-05", title: "일으키신 하나님", desc: "이용혁 목사 / 골로새서 2:12", img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+            { date: "2025-11-30", title: "2025 대림절 찬양축제", desc: " / ", img: "https://images.unsplash.com/photo-1512138664757-360e0aad5132?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+            { date: "2025-11-16", title: "꿈&사랑 어울림 작은 ...", desc: "조형준 목사 / 시편 150:1-6", img: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+            { date: "2025-09-21", title: "주여! 부흥을 주시옵소서", desc: "김우곤 목사 / 다니엘 12:3", img: "https://images.unsplash.com/photo-1438283173091-5dbf5c5a3206?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+            { date: "2025-08-22", title: "2025 다음세대를 위한...", desc: "최현목사(달빛교회) / 에베소서 4:1...", img: "https://images.unsplash.com/photo-1529390079861-591de354faf5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+            { date: "2025-07-02", title: "2025 여주시부흥대성...", desc: "임학순 목사(대원교회) / 로마서 12...", img: "https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+            { date: "2025-07-01", title: "2025 여주시부흥대성...", desc: "임학순 목사(대원교회) / 이사야 11...", img: "https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+            { date: "2025-06-30", title: "2025 여주시부흥대성...", desc: "임학순 목사(대원교회) / 에베소서 ...", img: "https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+            { date: "2025-06-29", title: "2025 여주시부흥대성...", desc: "임학순 목사(대원교회) / 시편 90:1...", img: "https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+            { date: "2025-05-07", title: "2025 수요전도집회4 ...", desc: "오세헌 목사(대명교회) / 고린도전...", img: "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+            { date: "2025-04-30", title: "2025 수요전도집회3 ...", desc: "정경원 목사(송정교회) / 마태복음 ...", img: "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+            { date: "2025-04-23", title: "2025 수요전도집회2 ...", desc: "주상운 목사(진가교회) / 요한복음 ...", img: "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+            
+            { date: "2025-04-20", title: "2025 부활절 연합새벽...", desc: "유영설 목사 / 마가복음 16:1-4, 누...", img: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+            { date: "2025-04-18", title: "다 이루었다", desc: "조형준 담임목사 / 요한복음 19:30", img: "https://images.unsplash.com/photo-1560566373-c39719391af1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+            { date: "2025-04-17", title: "내가 목마르다", desc: "조형준 담임목사 / 요한복음 19:28...", img: "https://images.unsplash.com/photo-1560566373-c39719391af1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+            
+            { date: "2025-04-16", title: "여자여 보소서 아들이...", desc: "조형준 담임목사 / 요한복음 19:25...", img: "https://images.unsplash.com/photo-1560566373-c39719391af1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+            { date: "2025-04-15", title: "나와 함께 낙원에 있으...", desc: "조형준 담임목사 / 누가복음 23:39-43", img: "https://images.unsplash.com/photo-1560566373-c39719391af1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+            { date: "2025-04-14", title: "2025 고난주간 특별새...", desc: "조형준 담임목사 / 누가복음 23:34...", img: "https://images.unsplash.com/photo-1560566373-c39719391af1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+            { date: "2025-04-09", title: "전도를 잘하는 교회", desc: "이정재목사(대포리교회) / 사도행...", img: "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+            { date: "2025-02-28", title: "2025 다음세대 비전기...", desc: "오준혁 목사(콜링교회) / 여호수아 ...", img: "https://images.unsplash.com/photo-1529390079861-591de354faf5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+            { date: "2025-01-10", title: "성전에서의 은혜를 경...", desc: "조형준 담임목사 / 이사야 6:1-8", img: "https://images.unsplash.com/photo-1438283173091-5dbf5c5a3206?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+            { date: "2025-01-09", title: "가정을 살리는 예배를 ...", desc: "조형준 담임목사 / 사도행전 1:12-14", img: "https://images.unsplash.com/photo-1438283173091-5dbf5c5a3206?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+            { date: "2025-01-08", title: "가정을 살리는 예배를 ...", desc: "조형준 담임목사 / 창세기 35:1-8", img: "https://images.unsplash.com/photo-1438283173091-5dbf5c5a3206?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+            { date: "2025-01-07", title: "\"나를 살리는 예배를 ...", desc: "조형준 담임목사 / 요한복음 4:21-24", img: "https://images.unsplash.com/photo-1438283173091-5dbf5c5a3206?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+            
+            { date: "2025-01-06", title: "2025신년특별새벽기...", desc: "조형준 담임목사 / 사야 43:18-21", img: "https://images.unsplash.com/photo-1438283173091-5dbf5c5a3206?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+            { date: "2022-05-27", title: "특별금요집회", desc: "박광식 문화선교사 / ", img: "https://images.unsplash.com/photo-1510590337019-5ef8d3d32116?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+            { date: "2022-05-20", title: "김동욱 찬양콘서트", desc: "김동욱 전도사 / ", img: "https://images.unsplash.com/photo-1510590337019-5ef8d3d32116?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+            { date: "2022-05-13", title: "강찬 목사 찬양 콘서트", desc: "강찬 목사 / ", img: "https://images.unsplash.com/photo-1510590337019-5ef8d3d32116?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+            { date: "2022-05-06", title: "나의 유익을 위하여 떠...", desc: "정운택 선교사 / 창세기 12장 1~2절", img: "https://images.unsplash.com/photo-1510590337019-5ef8d3d32116?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+            { date: "2022-01-28", title: "승리의 찬양", desc: "지노박 선교사 / 요한일서 5장 4절", img: "https://images.unsplash.com/photo-1510590337019-5ef8d3d32116?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" }
+        ];
+
+        const itemsPerPage = 12; 
+        let currentPage = 1;
+
+        function renderGrid(page) {
+            const startIndex = (page - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const pageData = eventData.slice(startIndex, endIndex);
+
+            const gridContainer = document.getElementById('event-grid');
+            gridContainer.innerHTML = '';
+
+            pageData.forEach(item => {
+                const card = document.createElement('div');
+                // 카드 디자인 구성 (목사님께서 올려주신 디자인과 동일하게)
+                card.className = 'bg-white border border-gray-200 rounded-lg p-5 shadow-sm hover:shadow-md transition cursor-pointer flex flex-col h-full';
+                card.innerHTML = `
+                    <div class="text-[13px] text-gray-500 font-medium mb-3">${item.date}</div>
+                    <h4 class="text-xl md:text-2xl font-extrabold text-gray-900 mb-2 truncate">${item.title}</h4>
+                    <p class="text-[13px] md:text-sm text-gray-600 mb-6 truncate">${item.desc}</p>
+                    
+                    <div class="mt-auto flex justify-center">
+                        <!-- 영상 썸네일 영역 -->
+                        <div class="relative w-36 h-20 bg-gray-800 rounded flex items-center justify-center overflow-hidden group">
+                            <img src="${item.img}" alt="썸네일" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-110 transition duration-500">
+                            <!-- 재생 아이콘 -->
+                            <i class="fas fa-play text-white text-xl relative z-10 opacity-90 group-hover:text-blue-300 transition"></i>
+                        </div>
+                    </div>
+                `;
+                gridContainer.appendChild(card);
+            });
+            
+            renderPagination();
+        }
+
+        function renderPagination() {
+            const totalPages = Math.ceil(eventData.length / itemsPerPage);
+            const paginationContainer = document.getElementById('pagination');
+            paginationContainer.innerHTML = '';
+
+            for (let i = 1; i <= totalPages; i++) {
+                const a = document.createElement('a');
+                a.href = '#';
+                a.className = `page-link ${i === currentPage ? 'active' : ''} rounded`;
+                a.textContent = i;
+                a.onclick = (e) => {
+                    e.preventDefault();
+                    currentPage = i;
+                    renderGrid(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                };
+                paginationContainer.appendChild(a);
+            }
+            
+            // 화살표 추가 (>, >>)
+            if (totalPages > 1) {
+                const nextBtn = document.createElement('a');
+                nextBtn.href = '#';
+                nextBtn.className = 'page-link rounded';
+                nextBtn.innerHTML = '<i class="fas fa-angle-right"></i>';
+                nextBtn.onclick = (e) => {
+                    e.preventDefault();
+                    if(currentPage < totalPages) {
+                        currentPage++;
+                        renderGrid(currentPage);
+                        window.scrollTo({top: 300, behavior: 'smooth'}); 
+                    }
+                };
+                paginationContainer.appendChild(nextBtn);
+            }
+        }
+
+        function toggleMobileSubMenu(menuId) {
+            const targetMenu = document.getElementById(menuId);
+            const otherMenuId = menuId === 'menu-depth1' ? 'menu-depth2' : 'menu-depth1';
+            const otherMenu = document.getElementById(otherMenuId);
+            if (otherMenu && !otherMenu.classList.contains('hidden')) {
+                otherMenu.classList.add('hidden');
+                const otherIcon = otherMenu.previousElementSibling.querySelector('.fas');
+                if(otherIcon) {
+                    otherIcon.classList.remove('fa-minus');
+                    otherIcon.classList.add('fa-plus');
+                }
+            }
+            if (targetMenu) {
+                targetMenu.classList.toggle('hidden');
+                const icon = targetMenu.previousElementSibling.querySelector('.fas');
+                if(icon) {
+                    if(targetMenu.classList.contains('hidden')) {
+                        icon.classList.remove('fa-minus');
+                        icon.classList.add('fa-plus');
+                    } else {
+                        icon.classList.remove('fa-plus');
+                        icon.classList.add('fa-minus');
+                    }
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderGrid(currentPage);
+        });
+    </script>
+    <script>const ROOT_PATH = "../";</script>
+    <script src="../js/common.js"></script>
+</body>
+</html>
