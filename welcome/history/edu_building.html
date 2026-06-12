@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>교육관건축사진 - 여주성결교회</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+        body { font-family: 'Pretendard', sans-serif; background-color: #ffffff; overflow-x: hidden; }
+        
+        /* 페이지네이션 및 스크롤바 스타일 */
+        .page-link {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 32px; height: 32px; border: 1px solid #e5e7eb; color: #4b5563;
+            font-size: 14px; transition: all 0.2s; margin: 0 2px;
+        }
+        .page-link:hover { background-color: #f3f4f6; color: #1b315b; }
+        .page-link.active { border-color: #1b315b; color: #1b315b; font-weight: bold; }
+        
+        /* 모달 세로 스크롤바 디자인 */
+        .modal-scroll::-webkit-scrollbar { width: 8px; }
+        .modal-scroll::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
+        .modal-scroll::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 4px; }
+        .modal-scroll::-webkit-scrollbar-thumb:hover { background: #a8a8a8; }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- 마법의 파일 연결 1: 공통 상단 헤더 -->
+    <div id="common-header"></div>
+
+    <section class="bg-[#102242] py-12 md:py-20 text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1504052434569-70ad5836ab65?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-luminosity"></div>
+        <div class="relative z-10">
+            <h2 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-2">환영합니다</h2>
+            <p class="text-blue-200 text-sm md:text-base">Welcome to Yeoju Evangelical Holiness Church</p>
+        </div>
+    </section>
+
+    <!-- 모바일 전용 2차 메뉴 바 -->
+    <div class="md:hidden border-b border-gray-300 bg-white relative z-30 shadow-sm">
+        <div class="flex text-sm md:text-base">
+            <a href="../../index.html" class="px-4 py-3 border-r border-gray-300 text-gray-600 flex items-center justify-center hover:bg-gray-50">Home</a>
+            <div class="flex-1 border-r border-gray-300 relative">
+                <button onclick="toggleMobileSubMenu('menu-depth1')" class="w-full flex justify-between items-center px-4 py-3 text-gray-800 focus:outline-none">
+                    <span>환영합니다</span><i class="fas fa-plus text-gray-400 text-xs"></i>
+                </button>
+                <ul id="menu-depth1" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
+                    <li class="border-b border-gray-100"><a href="../greeting.html" class="block px-4 py-3 hover:bg-gray-50">인사말</a></li>
+                    <li class="border-b border-gray-100"><a href="history.html" class="block px-4 py-3 text-blue-600 font-bold bg-gray-50">교회연혁</a></li>
+                    <li class="border-b border-gray-100"><a href="../serve/serve.html" class="block px-4 py-3 hover:bg-gray-50">섬기는 분들</a></li>
+                    <li class="border-b border-gray-100"><a href="../worship/worship.html" class="block px-4 py-3 hover:bg-gray-50">예배안내</a></li>
+                    <li class="border-b border-gray-100"><a href="../bus/bus.html" class="block px-4 py-3 hover:bg-gray-50">차량운행안내</a></li>
+                    <li class="border-b border-gray-100"><a href="../map/map.html" class="block px-4 py-3 hover:bg-gray-50">오시는길</a></li>
+                    <li><a href="../newcomer/newcomer.html" class="block px-4 py-3 hover:bg-gray-50">새가족안내</a></li>
+                </ul>
+            </div>
+            <div class="flex-1 relative">
+                <button onclick="toggleMobileSubMenu('menu-depth2')" class="w-full flex justify-between items-center px-4 py-3 text-gray-800 focus:outline-none">
+                    <span>교육관건축사진</span><i class="fas fa-plus text-gray-400 text-xs"></i>
+                </button>
+                <ul id="menu-depth2" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
+                    <li class="border-b border-gray-100"><a href="building.html" class="block px-4 py-3 hover:bg-gray-50">성전건축이야기</a></li>
+                    <li class="border-b border-gray-100"><a href="edu_building.html" class="block px-4 py-3 text-blue-600 font-bold bg-gray-50">교육관건축사진</a></li>
+                    <li><a href="#" class="block px-4 py-3 hover:bg-gray-50">이전홈피사진</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Layout -->
+    <div class="max-w-7xl mx-auto px-4 py-12 md:py-20 flex flex-col md:flex-row gap-10">
+        
+        <!-- Left Sidebar -->
+        <aside class="hidden md:block w-64 flex-shrink-0">
+            <div class="bg-[#6b8cba] text-white text-center py-4 text-xl font-bold rounded-t-lg">환영합니다</div>
+            <ul class="border border-t-0 border-gray-200 flex flex-col">
+                <li class="border-b border-gray-200"><a href="../greeting.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">인사말</a></li>
+                
+                <!-- 교회연혁 (하위 메뉴 오픈 상태) -->
+                <li class="border-b border-gray-200 group">
+                    <a href="history.html" class="flex justify-between items-center px-5 py-3 text-[#3b82f6] font-bold bg-gray-50 transition">
+                        교회연혁 <i class="fas fa-chevron-down text-xs text-[#3b82f6]"></i>
+                    </a>
+                    <div class="overflow-hidden">
+                        <ul class="py-2 bg-white border-t border-gray-100">
+                            <li><a href="building.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">성전건축이야기</a></li>
+                            <li><a href="edu_building.html" class="block px-8 py-1.5 text-sm text-blue-600 font-bold bg-gray-50 transition">교육관건축사진</a></li>
+                            <li><a href="#" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">이전 홈페이지 사진들</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="border-b border-gray-200"><a href="../serve/serve.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">섬기는 분들</a></li>
+                <li class="border-b border-gray-200"><a href="../worship/worship.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">예배안내</a></li>
+                <li class="border-b border-gray-200"><a href="../bus/bus.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">차량운행안내</a></li>
+                <li class="border-b border-gray-200"><a href="../map/map.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">오시는길</a></li>
+                <li><a href="../newcomer/newcomer.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition rounded-b-lg">새가족안내</a></li>
+            </ul>
+        </aside>
+
+        <!-- Right Content Area -->
+        <main class="flex-1 relative">
+            
+            <div class="w-full bg-[#1b315b] rounded-xl h-24 md:h-32 flex flex-col justify-center items-center text-white shadow-md relative overflow-hidden mb-8">
+                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
+                <h3 class="text-2xl md:text-3xl font-extrabold relative z-10 tracking-tight">교육관건축사진</h3>
+            </div>
+
+            <!-- 검색바 및 상태 표시 -->
+            <div class="flex flex-col sm:flex-row justify-between items-center mb-4 border-b border-gray-200 pb-4 gap-4">
+                <div class="text-gray-500 text-sm font-medium w-full sm:w-auto text-left">
+                    <i class="fas fa-list text-gray-400 mr-1"></i> 총 <span id="total-count" class="text-blue-600 font-bold">4</span>건의 글
+                </div>
+                <div class="flex border border-gray-300 rounded shadow-sm overflow-hidden bg-white w-full sm:w-auto">
+                    <select class="px-3 py-1.5 text-sm md:text-base border-r border-gray-300 text-gray-700 focus:outline-none bg-gray-50 cursor-pointer">
+                        <option>제목</option>
+                    </select>
+                    <input type="text" class="px-3 py-1.5 text-sm md:text-base w-full sm:w-32 md:w-48 focus:outline-none" placeholder="검색어 입력">
+                    <button class="bg-gray-100 hover:bg-gray-200 text-gray-600 px-4 py-1.5 text-sm md:text-base border-l border-gray-300 transition">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- PC Version Table -->
+            <table class="hidden md:table w-full text-center text-sm md:text-base border-t-2 border-gray-800 table-fixed">
+                <colgroup>
+                    <col class="w-[15%]">
+                    <col class="w-[65%]">
+                    <col class="w-[20%]">
+                </colgroup>
+                <thead class="bg-gray-50 text-gray-700 font-bold border-b border-gray-300">
+                    <tr>
+                        <th class="py-3 px-2">번호</th>
+                        <th class="py-3 px-4 text-left">제목</th>
+                        <th class="py-3 px-2 text-gray-500">등록일</th>
+                    </tr>
+                </thead>
+                <tbody id="building-list-pc" class="text-gray-600">
+                    <!-- JS로 데이터 삽입 -->
+                </tbody>
+            </table>
+
+            <!-- Mobile Version List -->
+            <div class="md:hidden block w-full border-t-2 border-gray-800">
+                <div class="flex bg-gray-50 text-gray-700 font-bold border-b border-gray-300 py-3 text-sm">
+                    <div class="w-16 text-center">번호</div>
+                    <div class="flex-1 text-center">제목</div>
+                </div>
+                <div id="building-list-mobile-body">
+                    <!-- JS로 데이터 삽입 -->
+                </div>
+            </div>
+
+            <!-- 페이지네이션 -->
+            <div id="pagination" class="flex justify-center items-center mt-8 mb-6 flex-wrap gap-y-2"></div>
+
+        </main>
+    </div>
+
+    <!-- ★ 다중 사진 팝업 모달창 ★ -->
+    <div id="building-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="closeModal()"></div>
+        
+        <div class="relative w-full max-w-4xl bg-white shadow-2xl z-10 flex flex-col max-h-[90vh] rounded-xl overflow-hidden border-t-[6px] border-[#3b82f6]">
+            <!-- 모달 헤더 -->
+            <div class="bg-white text-gray-800 px-6 py-5 border-b border-gray-200 flex justify-between items-start shrink-0">
+                <div class="pr-6">
+                    <h2 id="modal-title" class="text-xl md:text-2xl font-extrabold tracking-tight mb-1">제목</h2>
+                    <p id="modal-date" class="text-sm text-gray-500 font-medium"><i class="far fa-calendar-alt mr-1"></i> 등록일 : </p>
+                </div>
+                <div class="flex items-center gap-2 shrink-0">
+                    <button onclick="closeModal()" class="text-gray-400 hover:text-red-500 transition-colors focus:outline-none p-2">
+                        <i class="fas fa-times text-3xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 모달 콘텐츠 (이미지가 여러 장 스크롤 가능하도록 설정) -->
+            <div class="p-6 md:p-8 overflow-y-auto flex-1 bg-gray-100 modal-scroll flex flex-col items-center gap-6" id="modal-image-container">
+                <!-- JS로 여러 장의 사진이 삽입됩니다 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 마법의 파일 연결 2: 공통 하단 푸터 & 사이트맵 -->
+    <div id="common-footer"></div>
+    <div id="common-sitemap"></div>
+
+    <script>
+        // 보조 메뉴 여닫기
+        function toggleMobileSubMenu(menuId) {
+            const targetMenu = document.getElementById(menuId);
+            const otherMenuId = menuId === 'menu-depth1' ? 'menu-depth2' : 'menu-depth1';
+            const otherMenu = document.getElementById(otherMenuId);
+            if (otherMenu && !otherMenu.classList.contains('hidden')) {
+                otherMenu.classList.add('hidden');
+                const otherIcon = otherMenu.previousElementSibling.querySelector('.fas');
+                if(otherIcon) {
+                    otherIcon.classList.remove('fa-minus');
+                    otherIcon.classList.add('fa-plus');
+                }
+            }
+            if (targetMenu) {
+                targetMenu.classList.toggle('hidden');
+                const icon = targetMenu.previousElementSibling.querySelector('.fas');
+                if(icon) {
+                    if(targetMenu.classList.contains('hidden')) {
+                        icon.classList.remove('fa-minus');
+                        icon.classList.add('fa-plus');
+                    } else {
+                        icon.classList.remove('fa-plus');
+                        icon.classList.add('fa-minus');
+                    }
+                }
+            }
+        }
+
+        /* 
+         * 목사님께서 올려주신 깃허브 이미지 주소를 조합하여 데이터를 생성합니다. 
+         */
+        const baseURL = "https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/welcome/history/images/%EA%B5%90%EC%9C%A1%EA%B4%80"; // '교육관'을 URL 인코딩함
+
+        const buildingData = [
+            { id: 4, title: "교육관 완공사진04", date: "2019.09.20", start: 25, end: 32 },
+            { id: 3, title: "교육관 완공사진03", date: "2019.09.20", start: 17, end: 24 },
+            { id: 2, title: "교육관 완공사진02", date: "2019.09.20", start: 9, end: 16 },
+            { id: 1, title: "교육관 완공사진01", date: "2019.09.20", start: 1, end: 8 }
+        ].map(item => {
+            let imgs = [];
+            for(let i = item.start; i <= item.end; i++) {
+                let numStr = i < 10 ? '0' + i : i;
+                imgs.push(`${baseURL}${numStr}.jpg`);
+            }
+            return { ...item, images: imgs };
+        });
+
+        const itemsPerPage = 15; 
+        let currentPage = 1;
+
+        function renderTable(page) {
+            const startIndex = (page - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const pageData = buildingData.slice(startIndex, endIndex);
+
+            const pcTbody = document.getElementById('building-list-pc');
+            const mobileContainer = document.getElementById('building-list-mobile-body');
+
+            pcTbody.innerHTML = '';
+            mobileContainer.innerHTML = '';
+
+            pageData.forEach(item => {
+                // PC Version
+                const tr = document.createElement('tr');
+                tr.className = 'border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer group';
+                tr.onclick = () => openModal(item.id);
+                
+                tr.innerHTML = `
+                    <td class="py-4 text-gray-400">${item.id}</td>
+                    <td class="py-4 px-4 text-left font-bold text-gray-800 group-hover:text-[#3b82f6] transition flex items-center gap-2">
+                        <span class="truncate max-w-[85%]">${item.title}</span>
+                        <i class="far fa-save text-gray-400 text-sm"></i>
+                        <i class="far fa-image text-gray-400 text-sm"></i>
+                    </td>
+                    <td class="py-4 text-sm font-medium text-gray-500">${item.date}</td>
+                `;
+                pcTbody.appendChild(tr);
+
+                // Mobile Version
+                const mDiv = document.createElement('div');
+                mDiv.className = 'flex border-b border-gray-200 py-3.5 hover:bg-gray-50 transition cursor-pointer items-center';
+                mDiv.onclick = () => openModal(item.id);
+                mDiv.innerHTML = `
+                    <div class="w-16 text-center text-gray-400 text-sm font-medium shrink-0">${item.id}</div>
+                    <div class="flex-1 pl-2 pr-4 relative">
+                        <div class="text-gray-800 text-[15px] font-bold mb-0.5 truncate flex items-center gap-1.5">
+                            <span class="truncate">${item.title}</span>
+                            <i class="far fa-save text-gray-400 text-[11px]"></i>
+                            <i class="far fa-image text-gray-400 text-[11px]"></i>
+                        </div>
+                        <div class="text-gray-500 text-[12px] font-medium">${item.date}</div>
+                    </div>
+                `;
+                mobileContainer.appendChild(mDiv);
+            });
+            
+            renderPagination();
+        }
+
+        function renderPagination() {
+            const totalPages = Math.ceil(buildingData.length / itemsPerPage);
+            const paginationContainer = document.getElementById('pagination');
+            paginationContainer.innerHTML = '';
+
+            for (let i = 1; i <= totalPages; i++) {
+                const a = document.createElement('a');
+                a.href = '#';
+                a.className = `page-link ${i === currentPage ? 'active' : ''} rounded`;
+                a.textContent = i;
+                a.onclick = (e) => {
+                    e.preventDefault();
+                    currentPage = i;
+                    renderTable(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                };
+                paginationContainer.appendChild(a);
+            }
+        }
+
+        // 다중 이미지 팝업 열기
+        function openModal(id) {
+            const data = buildingData.find(n => n.id === id);
+            if(!data) return;
+
+            document.getElementById('modal-title').textContent = data.title;
+            document.getElementById('modal-date').innerHTML = `<i class="far fa-calendar-alt mr-1"></i> 등록일 : ${data.date}`;
+            
+            // 사진 영역 비우고 새로 채우기
+            const container = document.getElementById('modal-image-container');
+            container.innerHTML = '';
+
+            data.images.forEach(imgUrl => {
+                const imgWrap = document.createElement('div');
+                imgWrap.className = "rounded-lg shadow-md bg-white overflow-hidden max-w-full inline-block border border-gray-200 p-2 w-full mb-4";
+                imgWrap.innerHTML = `<img src="${imgUrl}" alt="교육관 건축사진" class="w-full h-auto object-contain rounded" onerror="this.onerror=null; this.src='https://placehold.co/800x600/f0f0f0/999999?text=Image+Not+Found';">`;
+                container.appendChild(imgWrap);
+            });
+
+            const modal = document.getElementById('building-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('building-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = ''; 
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderTable(currentPage);
+        });
+    </script>
+
+    <!-- ★ 중요: 서브페이지는 js 파일을 불러오기 위해 경로를 알려줘야 합니다 ★ -->
+    <script>const ROOT_PATH = "../../";</script>
+    <script src="../../js/common.js"></script>
+
+</body>
+</html>
