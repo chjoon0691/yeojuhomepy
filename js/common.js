@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <header class="bg-[#244177] text-white w-full z-50 relative">
         <div class="hidden md:block border-b border-white/20 bg-[#1b315b]">
             <div class="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center text-sm font-light">
-                <span class="text-blue-200 tracking-wide">교회창립일: 1932. 5. 17.</span>
+                <span class="text-blue-200 tracking-wide">교회창립일: 1932. 5. 13.</span>
                 <a href="https://www.youtube.com/@여주성결교회" target="_blank" class="hover:text-blue-300 flex items-center gap-1.5 transition"><i class="fab fa-youtube text-red-500 text-lg"></i> 유튜브채널</a>
             </div>
         </div>
@@ -50,7 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                         <div class="w-48 bg-white text-gray-800 rounded-2xl shadow-xl py-3 border border-gray-100 flex flex-col">
                             <a href="${root}word/sunday.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">주일 예배</a>
-                            <a href="#" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">주일설교요약</a>
                             <a href="#" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">주일 오후 예배</a>
                             <a href="#" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">수요 예배</a>
                             <a href="#" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">특별집회</a>
@@ -208,7 +207,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <li class="py-2.5 text-gray-800 font-medium">말씀</li>
                                 <li class="bg-gray-50 p-3 space-y-2 text-[13px] text-gray-500 mb-2">
                                     <a href="${root}word/sunday.html" class="block hover:text-blue-600">- 주일 예배</a>
-                                    <a href="#" class="block hover:text-blue-600">- 주일설교요약</a>
                                     <a href="#" class="block hover:text-blue-600">- 주일 오후 예배</a>
                                     <a href="#" class="block hover:text-blue-600">- 수요 예배</a>
                                     <a href="#" class="block hover:text-blue-600">- 특별집회</a>
