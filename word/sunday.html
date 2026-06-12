@@ -211,7 +211,6 @@
                 </button>
                 <ul id="menu-depth2" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
                     <li class="border-b border-gray-100"><a href="sunday.html" class="block px-4 py-3 text-blue-600 font-bold bg-gray-50">주일 예배</a></li>
-                    <li class="border-b border-gray-100"><a href="#" class="block px-4 py-3 hover:bg-gray-50">주일설교요약</a></li>
                     <li class="border-b border-gray-100"><a href="#" class="block px-4 py-3 hover:bg-gray-50">주일 오후 예배</a></li>
                     <li class="border-b border-gray-100"><a href="#" class="block px-4 py-3 hover:bg-gray-50">수요 예배</a></li>
                     <li class="border-b border-gray-100"><a href="#" class="block px-4 py-3 hover:bg-gray-50">특별집회</a></li>
@@ -236,7 +235,6 @@
                     </a>
                     <ul class="py-2 bg-white border-b border-gray-100">
                         <li><a href="sunday.html" class="block px-8 py-1.5 text-sm text-[#3b82f6] font-bold bg-gray-50 transition">주일 예배</a></li>
-                        <li><a href="#" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">주일설교요약</a></li>
                         <li><a href="#" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">주일 오후 예배</a></li>
                         <li><a href="#" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">수요 예배</a></li>
                         <li><a href="#" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">특별집회</a></li>
@@ -244,7 +242,7 @@
                 </li>
                 <li class="border-b border-gray-200">
                     <a href="#" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">
-                        찬양
+                        찬양대/중창단
                     </a>
                 </li>
                 <li>
@@ -301,8 +299,14 @@
             </table>
 
             <!-- Mobile Version List (hidden on PC) -->
-            <div id="sermon-list-mobile" class="md:hidden block w-full border-t-2 border-gray-800">
-                <!-- JS가 데이터를 밀어넣을 공간 -->
+            <div class="md:hidden block w-full border-t-2 border-gray-800">
+                <div class="flex bg-gray-50 text-gray-700 font-bold border-b border-gray-300 py-3 text-sm">
+                    <div class="w-16 text-center">번호</div>
+                    <div class="flex-1 text-center">제목</div>
+                </div>
+                <div id="sermon-list-mobile-body">
+                    <!-- JS가 데이터를 밀어넣을 공간 -->
+                </div>
             </div>
 
             <!-- 페이지네이션 (Pagination) - JS에서 자동 생성 -->
@@ -478,7 +482,10 @@
 
         // 2. 가장 최신 글(맨 윗글)의 시작 번호를 설정합니다.
         // 현재 데이터 갯수가 17개이므로, 393이 되도록 설정 (새글 추가시 이 번호만 올려주면 됩니다)
-        let startNumber = 393; 
+        // [업데이트] 데이터가 추가될 때마다 번호가 자동으로 올라가도록 계산 식을 개선했습니다.
+        const baseCount = 17; // 기준 데이터 갯수
+        const baseStartNumber = 393; // 기준 데이터일 때의 최신글 번호
+        let startNumber = baseStartNumber + (sermonData.length - baseCount);
         
         // 데이터 배열에 자동으로 번호를 1씩 깎으면서 부여합니다.
         const formattedData = sermonData.map((item, index) => {
@@ -498,7 +505,7 @@
             const pageData = formattedData.slice(startIndex, endIndex);
 
             const pcTbody = document.getElementById('sermon-list-pc');
-            const mobileContainer = document.getElementById('sermon-list-mobile');
+            const mobileContainer = document.getElementById('sermon-list-mobile-body');
 
             // 기존 내용 비우기
             pcTbody.innerHTML = '';
@@ -524,21 +531,23 @@
 
                 // 모바일 버전 렌더링 (리스트 형태)
                 const mDiv = document.createElement('div');
-                mDiv.className = 'border-b border-gray-200 py-4 flex items-start';
+                mDiv.className = 'flex border-b border-gray-200 py-3 hover:bg-gray-50 transition cursor-pointer';
+                if(item.link !== '#') {
+                    mDiv.onclick = () => window.open(item.link, '_blank');
+                }
+                
                 mDiv.innerHTML = `
-                    <div class="w-12 text-gray-400 font-medium text-center pt-1 shrink-0">${item.id}</div>
-                    <div class="flex-1 pr-2 relative">
-                        <h4 class="text-gray-800 font-bold text-base mb-1.5 pr-8 leading-snug">${item.title}</h4>
-                        <div class="flex flex-wrap items-center text-[13px] text-gray-500 gap-x-3 gap-y-1">
-                            <span>${item.text}</span>
-                            <span class="text-gray-300">|</span>
+                    <div class="w-16 text-center text-gray-400 text-sm pt-0.5">${item.id}</div>
+                    <div class="flex-1 pl-2 pr-4 relative">
+                        <div class="text-gray-800 text-[15px] font-bold mb-1 pr-8 truncate">${item.title}</div>
+                        <div class="text-gray-500 text-[13px] flex gap-3 mb-0.5">
+                            <span class="truncate max-w-[120px]">${item.text}</span>
                             <span>${item.preacher}</span>
-                            <span class="text-gray-300">|</span>
-                            <span>${item.date}</span>
                         </div>
+                        <div class="text-gray-400 text-[13px]">${item.date}</div>
                         ${item.link !== '#' 
-                            ? `<a href="${item.link}" target="_blank" class="absolute top-0 right-0 text-gray-400 hover:text-[#1b315b] transition p-1"><i class="fas fa-tv text-xl"></i></a>` 
-                            : `<button class="absolute top-0 right-0 text-gray-300 cursor-not-allowed p-1"><i class="fas fa-tv text-xl"></i></button>`}
+                            ? `<div class="absolute top-1/2 right-2 -translate-y-1/2 text-gray-400"><i class="fas fa-tv text-lg"></i></div>` 
+                            : `<div class="absolute top-1/2 right-2 -translate-y-1/2 text-gray-200"><i class="fas fa-tv text-lg"></i></div>`}
                     </div>
                 `;
                 mobileContainer.appendChild(mDiv);
