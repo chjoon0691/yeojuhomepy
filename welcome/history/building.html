@@ -64,7 +64,7 @@
                 </button>
                 <ul id="menu-depth2" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
                     <li class="border-b border-gray-100"><a href="building.html" class="block px-4 py-3 text-blue-600 font-bold bg-gray-50">성전건축이야기</a></li>
-                    <li class="border-b border-gray-100"><a href="#" class="block px-4 py-3 hover:bg-gray-50">교육관건축사진</a></li>
+                    <li class="border-b border-gray-100"><a href="edu_building.html" class="block px-4 py-3 hover:bg-gray-50">교육관건축사진</a></li>
                     <li><a href="#" class="block px-4 py-3 hover:bg-gray-50">이전홈피사진</a></li>
                 </ul>
             </div>
@@ -88,7 +88,7 @@
                     <div class="overflow-hidden">
                         <ul class="py-2 bg-white border-t border-gray-100">
                             <li><a href="building.html" class="block px-8 py-1.5 text-sm text-blue-600 font-bold bg-gray-50 transition">성전건축이야기</a></li>
-                            <li><a href="#" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">교육관건축사진</a></li>
+                            <li><a href="edu_building.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">교육관건축사진</a></li>
                             <li><a href="#" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">이전 홈페이지 사진들</a></li>
                         </ul>
                     </div>
@@ -180,8 +180,13 @@
                 </div>
             </div>
             
-            <!-- 모달 콘텐츠 (이미지가 여러 장 스크롤 가능하도록 설정) -->
-            <div class="p-6 md:p-8 overflow-y-auto flex-1 bg-gray-100 modal-scroll flex flex-col items-center gap-6" id="modal-image-container">
+            <!-- 모달 콘텐츠 (스크롤 되면서 여러 사진이 나오는 영역) -->
+            <div class="p-6 md:p-8 overflow-y-auto flex-1 bg-gray-100 modal-scroll flex flex-col items-center gap-6 relative" id="modal-image-container">
+                <!-- 로딩 중 메시지 -->
+                <div id="loading-msg" class="text-gray-500 font-bold py-10 flex flex-col items-center gap-3">
+                    <i class="fas fa-spinner fa-spin text-3xl text-blue-500"></i>
+                    <span>사진을 불러오는 중입니다...</span>
+                </div>
                 <!-- JS로 여러 장의 사진이 삽입됩니다 -->
             </div>
         </div>
@@ -221,7 +226,7 @@
         }
 
         /* 
-         * 118개의 전체 데이터 파싱을 위한 문자열 (코드 길이를 대폭 압축하기 위한 방식입니다) 
+         * 118개의 전체 데이터 파싱
          */
         const rawText = `
 118|새성전건축 1층내부모습|2018.11.02
@@ -343,25 +348,12 @@
 2|그 때 그 시절 (하리 284번지) 본당 1층을 공사하던 장면|2018.09.13
 1|그 때 그 시절 (하리284 번지) 본당1층 신축위한 옛 예배당 철거장면|2018.09.13`;
 
-        // 팝업에 보일 임시 건축 사진들 
-        const dummyImages = [
-            "https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1541888086053-524c55ec2136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1513694203232-719a280e022f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-        ];
-
-        // 텍스트를 파싱하여 118개의 데이터 배열 만들기
         const buildingData = rawText.trim().split('\n').map(line => {
             const parts = line.split('|');
-            const id = parseInt(parts[0]);
-            // 게시글 번호에 따라 사진 장수 다르게 설정 (1장~3장)
-            const imgCount = (id % 3) + 1; 
             return {
-                id: id,
+                id: parseInt(parts[0]),
                 title: parts[1],
-                date: parts[2],
-                images: dummyImages.slice(0, imgCount)
+                date: parts[2]
             };
         });
 
@@ -437,7 +429,10 @@
             }
         }
 
-        // 다중 이미지 팝업 열기
+        /* 
+         * ★ 핵심: 동적 이미지 로딩 시스템 ★ 
+         * -1번부터 최대 -30번까지 사진이 깃허브에 존재하는지 자동으로 확인합니다.
+         */
         function openModal(id) {
             const data = buildingData.find(n => n.id === id);
             if(!data) return;
@@ -445,16 +440,53 @@
             document.getElementById('modal-title').textContent = data.title;
             document.getElementById('modal-date').innerHTML = `<i class="far fa-calendar-alt mr-1"></i> 등록일 : ${data.date}`;
             
-            // 사진 영역 비우고 새로 채우기
             const container = document.getElementById('modal-image-container');
-            container.innerHTML = '';
-
-            data.images.forEach(imgUrl => {
-                const imgWrap = document.createElement('div');
-                imgWrap.className = "rounded-lg shadow-md bg-white overflow-hidden max-w-full inline-block border border-gray-200 p-2 w-full";
-                imgWrap.innerHTML = `<img src="${imgUrl}" alt="건축현장" class="w-full h-auto object-contain rounded">`;
-                container.appendChild(imgWrap);
+            
+            // 기존 사진을 싹 지우고 로딩 메시지를 띄웁니다.
+            Array.from(container.children).forEach(child => {
+                if(child.id !== 'loading-msg') child.remove();
             });
+            document.getElementById('loading-msg').style.display = 'flex';
+            document.getElementById('loading-msg').innerHTML = '<i class="fas fa-spinner fa-spin text-3xl text-blue-500"></i><span>사진을 불러오는 중입니다...</span>';
+
+            // 깃허브 Raw 이미지 경로
+            const baseURL = "https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/welcome/history/images/";
+            const maxImages = 30; // 글 한 개당 최대 30장까지 자동으로 확인
+            let loadedCount = 0;
+            let errorCount = 0;
+
+            for(let i = 1; i <= maxImages; i++) {
+                let numStr = i < 10 ? '0' + i : i;
+                let imgUrl = `${baseURL}${id}-${numStr}.jpg`;
+
+                let imgWrap = document.createElement('div');
+                // 처음에는 안 보이게 (hidden) 처리해 둡니다.
+                imgWrap.className = "bg-white p-2 md:p-3 rounded-lg shadow-sm border border-gray-200 w-full mb-4 hidden"; 
+                
+                let img = document.createElement('img');
+                img.className = "w-full h-auto object-contain rounded";
+                
+                // 사진이 성공적으로 불러와지면 화면에 짠! 하고 나타납니다.
+                img.onload = function() {
+                    imgWrap.classList.remove('hidden'); 
+                    document.getElementById('loading-msg').style.display = 'none'; 
+                    loadedCount++;
+                };
+                
+                // 만약 깃허브에 해당 번호의 사진이 없으면, 에러를 내지 않고 조용히 삭제합니다.
+                img.onerror = function() {
+                    imgWrap.remove(); 
+                    errorCount++;
+                    // 만약 사진이 단 한 장도 없다면 안내 메시지를 띄워줍니다.
+                    if(loadedCount === 0 && errorCount === maxImages) {
+                         document.getElementById('loading-msg').innerHTML = '<i class="fas fa-exclamation-circle text-2xl text-gray-400"></i><span>등록된 사진이 없습니다.</span>';
+                    }
+                };
+                
+                img.src = imgUrl; 
+                imgWrap.appendChild(img);
+                container.appendChild(imgWrap);
+            }
 
             const modal = document.getElementById('building-modal');
             modal.classList.remove('hidden');
