@@ -111,9 +111,9 @@
             </div>
 
             <!-- 검색바 및 상태 표시 -->
-            <div class="flex flex-col sm:flex-row justify-between items-center mb-4 border-b border-gray-200 pb-4 gap-4">
+            <div class="flex flex-col sm:flex-row justify-between items-center mb-8 border-b border-gray-200 pb-4 gap-4">
                 <div class="text-gray-500 text-sm font-medium w-full sm:w-auto text-left">
-                    <i class="fas fa-list text-gray-400 mr-1"></i> 총 <span id="total-count" class="text-blue-600 font-bold">4</span>건의 글
+                    <i class="fas fa-camera-retro text-gray-400 mr-1"></i> 총 <span id="total-count" class="text-blue-600 font-bold">4</span>건의 앨범
                 </div>
                 <div class="flex border border-gray-300 rounded shadow-sm overflow-hidden bg-white w-full sm:w-auto">
                     <select class="px-3 py-1.5 text-sm md:text-base border-r border-gray-300 text-gray-700 focus:outline-none bg-gray-50 cursor-pointer">
@@ -126,38 +126,13 @@
                 </div>
             </div>
 
-            <!-- PC Version Table -->
-            <table class="hidden md:table w-full text-center text-sm md:text-base border-t-2 border-gray-800 table-fixed">
-                <colgroup>
-                    <col class="w-[15%]">
-                    <col class="w-[65%]">
-                    <col class="w-[20%]">
-                </colgroup>
-                <thead class="bg-gray-50 text-gray-700 font-bold border-b border-gray-300">
-                    <tr>
-                        <th class="py-3 px-2">번호</th>
-                        <th class="py-3 px-4 text-left">제목</th>
-                        <th class="py-3 px-2 text-gray-500">등록일</th>
-                    </tr>
-                </thead>
-                <tbody id="building-list-pc" class="text-gray-600">
-                    <!-- JS로 데이터 삽입 -->
-                </tbody>
-            </table>
-
-            <!-- Mobile Version List -->
-            <div class="md:hidden block w-full border-t-2 border-gray-800">
-                <div class="flex bg-gray-50 text-gray-700 font-bold border-b border-gray-300 py-3 text-sm">
-                    <div class="w-16 text-center">번호</div>
-                    <div class="flex-1 text-center">제목</div>
-                </div>
-                <div id="building-list-mobile-body">
-                    <!-- JS로 데이터 삽입 -->
-                </div>
+            <!-- 그리드(바둑판) 형태로 변경 -->
+            <div id="building-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+                <!-- JS로 그리드 카드 삽입 -->
             </div>
 
             <!-- 페이지네이션 -->
-            <div id="pagination" class="flex justify-center items-center mt-8 mb-6 flex-wrap gap-y-2"></div>
+            <div id="pagination" class="flex justify-center items-center mt-12 mb-6 flex-wrap gap-y-2"></div>
 
         </main>
     </div>
@@ -180,8 +155,13 @@
                 </div>
             </div>
             
-            <!-- 모달 콘텐츠 (이미지가 찌그러지지 않고 정상적으로 세로 나열되며 스크롤되도록 수정) -->
-            <div class="p-6 md:p-8 overflow-y-auto flex-1 bg-gray-100 modal-scroll space-y-6" id="modal-image-container">
+            <!-- 모달 콘텐츠 -->
+            <div class="p-6 md:p-8 overflow-y-auto flex-1 bg-gray-100 modal-scroll flex flex-col items-center gap-6 relative" id="modal-image-container">
+                <!-- 로딩 중 메시지 -->
+                <div id="loading-msg" class="text-gray-500 font-bold py-10 flex flex-col items-center gap-3">
+                    <i class="fas fa-spinner fa-spin text-3xl text-blue-500"></i>
+                    <span>사진을 불러오는 중입니다...</span>
+                </div>
                 <!-- JS로 여러 장의 사진이 삽입됩니다 -->
             </div>
         </div>
@@ -220,8 +200,7 @@
             }
         }
 
-        /* 
-         * 목사님께서 올려주신 깃허브 이미지 주소를 조합하여 데이터를 생성합니다. 
+        /* * 교육관 건축사진 데이터 (총 4개)
          */
         const baseURL = "https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/welcome/history/images/%EA%B5%90%EC%9C%A1%EA%B4%80"; // '교육관'을 URL 인코딩함
 
@@ -234,58 +213,50 @@
             let imgs = [];
             for(let i = item.start; i <= item.end; i++) {
                 let numStr = i < 10 ? '0' + i : i;
-                imgs.push(`${baseURL}${numStr}.jpg`);
+                imgs.push(`${baseURL}${numStr}.jpg`); // 모든 사진을 배열에 저장
             }
             return { ...item, images: imgs };
         });
 
-        const itemsPerPage = 15; 
+        const itemsPerPage = 12; // 갤러리 그리드용
         let currentPage = 1;
 
-        function renderTable(page) {
+        function renderGrid(page) {
             const startIndex = (page - 1) * itemsPerPage;
             const endIndex = startIndex + itemsPerPage;
             const pageData = buildingData.slice(startIndex, endIndex);
 
-            const pcTbody = document.getElementById('building-list-pc');
-            const mobileContainer = document.getElementById('building-list-mobile-body');
-
-            pcTbody.innerHTML = '';
-            mobileContainer.innerHTML = '';
+            const gridContainer = document.getElementById('building-grid');
+            gridContainer.innerHTML = '';
 
             pageData.forEach(item => {
-                // PC Version
-                const tr = document.createElement('tr');
-                tr.className = 'border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer group';
-                tr.onclick = () => openModal(item.id);
-                
-                tr.innerHTML = `
-                    <td class="py-4 text-gray-400">${item.id}</td>
-                    <td class="py-4 px-4 text-left font-bold text-gray-800 group-hover:text-[#3b82f6] transition flex items-center gap-2">
-                        <span class="truncate max-w-[85%]">${item.title}</span>
-                        <i class="far fa-save text-gray-400 text-sm"></i>
-                        <i class="far fa-image text-gray-400 text-sm"></i>
-                    </td>
-                    <td class="py-4 text-sm font-medium text-gray-500">${item.date}</td>
-                `;
-                pcTbody.appendChild(tr);
+                const card = document.createElement('div');
+                card.className = 'flex flex-col cursor-pointer group';
+                card.onclick = () => openModal(item.id);
 
-                // Mobile Version
-                const mDiv = document.createElement('div');
-                mDiv.className = 'flex border-b border-gray-200 py-3.5 hover:bg-gray-50 transition cursor-pointer items-center';
-                mDiv.onclick = () => openModal(item.id);
-                mDiv.innerHTML = `
-                    <div class="w-16 text-center text-gray-400 text-sm font-medium shrink-0">${item.id}</div>
-                    <div class="flex-1 pl-2 pr-4 relative">
-                        <div class="text-gray-800 text-[15px] font-bold mb-0.5 truncate flex items-center gap-1.5">
-                            <span class="truncate">${item.title}</span>
-                            <i class="far fa-save text-gray-400 text-[11px]"></i>
-                            <i class="far fa-image text-gray-400 text-[11px]"></i>
+                // 썸네일은 각 앨범의 첫 번째 이미지(item.images[0]) 사용
+                const thumbUrl = item.images[0];
+                
+                card.innerHTML = `
+                    <div class="w-full aspect-[4/3] rounded-lg overflow-hidden shadow-sm border border-gray-200 mb-2 relative bg-gray-50">
+                        <img src="${thumbUrl}" alt="${item.title}" onerror="this.src='https://placehold.co/800x600/f3f4f6/9ca3af?text=No+Image'" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition duration-300"></div>
+                        
+                        <!-- ★ 마우스 호버 시 왼쪽 위에 나타나는 제목 ★ -->
+                        <div class="absolute top-2 left-2 bg-[#1b315b]/90 text-white text-xs font-bold px-2 py-1.5 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm z-10 shadow text-left max-w-[90%] leading-snug">
+                            ${item.title}
                         </div>
-                        <div class="text-gray-500 text-[12px] font-medium">${item.date}</div>
+
+                        <!-- 하단 갤러리 아이콘 -->
+                        <div class="absolute bottom-2 right-2 bg-black/60 text-white text-[10px] px-2 py-0.5 rounded flex items-center gap-1">
+                            <i class="far fa-images"></i>
+                        </div>
                     </div>
+                    <!-- 기본 제목 (하단 표시) -->
+                    <p class="text-sm font-bold text-gray-800 text-center truncate px-1 group-hover:text-[#3b82f6] transition">${item.title}</p>
+                    <p class="text-[11px] text-gray-500 text-center mt-0.5">${item.date}</p>
                 `;
-                mobileContainer.appendChild(mDiv);
+                gridContainer.appendChild(card);
             });
             
             renderPagination();
@@ -304,14 +275,16 @@
                 a.onclick = (e) => {
                     e.preventDefault();
                     currentPage = i;
-                    renderTable(currentPage);
+                    renderGrid(currentPage);
                     window.scrollTo({top: 300, behavior: 'smooth'}); 
                 };
                 paginationContainer.appendChild(a);
             }
         }
 
-        // 다중 이미지 팝업 열기
+        /* * ★ 모달(팝업)에서 다중 이미지 불러오는 함수 ★
+         * 교육관 사진은 확장자 탐색 불필요 (.jpg 고정)
+         */
         function openModal(id) {
             const data = buildingData.find(n => n.id === id);
             if(!data) return;
@@ -319,16 +292,49 @@
             document.getElementById('modal-title').textContent = data.title;
             document.getElementById('modal-date').innerHTML = `<i class="far fa-calendar-alt mr-1"></i> 등록일 : ${data.date}`;
             
-            // 사진 영역 비우고 새로 채우기
             const container = document.getElementById('modal-image-container');
-            container.innerHTML = '';
+            
+            // 이전 사진 삭제
+            Array.from(container.children).forEach(child => {
+                if(child.id !== 'loading-msg') child.remove();
+            });
+            
+            document.getElementById('loading-msg').style.display = 'flex';
+            document.getElementById('loading-msg').innerHTML = '<i class="fas fa-spinner fa-spin text-3xl text-blue-500"></i><span>사진을 불러오는 중입니다...</span>';
 
+            let loadedCount = 0;
+            const totalImages = data.images.length;
+            
             data.images.forEach(imgUrl => {
-                const imgWrap = document.createElement('div');
-                // 사진이 납작해지지 않도록 불필요한 높이 제한을 제거하고, 세로 나열에 최적화된 클래스 적용
-                imgWrap.className = "bg-white p-2 md:p-3 rounded-lg shadow-sm border border-gray-200 w-full";
-                imgWrap.innerHTML = `<img src="${imgUrl}" alt="교육관 건축사진" class="w-full h-auto object-contain rounded" onerror="this.onerror=null; this.src='https://placehold.co/800x600/f0f0f0/999999?text=Image+Not+Found';">`;
+                let imgWrap = document.createElement('div');
+                // 사진이 세로로 찌그러지지 않고 잘 나오도록 패딩과 디자인 적용
+                imgWrap.className = "bg-white p-2 md:p-3 rounded-lg shadow-sm border border-gray-200 w-full mb-4 hidden"; 
                 container.appendChild(imgWrap);
+                
+                let img = document.createElement('img');
+                img.className = "w-full h-auto object-contain rounded";
+                
+                img.onload = function() {
+                    imgWrap.classList.remove('hidden');
+                    loadedCount++;
+                    // 첫 번째 이미지만 로드되어도 로딩 메시지 숨김
+                    if (loadedCount === 1) { 
+                        document.getElementById('loading-msg').style.display = 'none';
+                    }
+                };
+                
+                img.onerror = function() {
+                    imgWrap.remove();
+                    loadedCount++;
+                    // 모든 이미지 로드 시도 후, 로드된 이미지가 없으면 오류 메시지 표시
+                    if (loadedCount === totalImages && container.children.length <= 1) {
+                        document.getElementById('loading-msg').innerHTML = '<i class="fas fa-exclamation-circle text-2xl text-gray-400"></i><span>등록된 사진이 없습니다.</span>';
+                        document.getElementById('loading-msg').style.display = 'flex';
+                    }
+                };
+                
+                img.src = imgUrl;
+                imgWrap.appendChild(img);
             });
 
             const modal = document.getElementById('building-modal');
@@ -345,7 +351,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            renderTable(currentPage);
+            renderGrid(currentPage);
         });
     </script>
 
