@@ -43,9 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
                                 </a>
                                 <div class="absolute top-0 left-full ml-1 opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-300">
                                     <div class="w-48 bg-white text-gray-800 rounded-2xl shadow-xl py-3 border border-gray-100 flex flex-col">
-                                        <a href="#" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">성전건축이야기</a>
-                                        <a href="#" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">교육관건축사진</a>
-                                        <a href="#" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">이전홈피사진</a>
+                                        <a href="${root}welcome/history/building.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">성전건축이야기</a>
+                                        <a href="${root}welcome/history/edu_building.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">교육관건축사진</a>
+                                        <a href="${root}welcome/history/old_photos.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">이전 홈피 사진들</a>
                                     </div>
                                 </div>
                             </div>
@@ -224,9 +224,9 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <li class="border-b border-dashed border-gray-300 py-2.5 hover:text-blue-600 transition">
                                     <a href="${root}welcome/history/history.html" class="block w-full">교회연혁</a>
                                     <ul class="pl-3 mt-2 space-y-2 text-[13px] text-gray-500">
-                                        <li>- <a href="#" class="hover:text-blue-500">성전건축이야기</a></li>
-                                        <li>- <a href="#" class="hover:text-blue-500">교육관건축사진</a></li>
-                                        <li>- <a href="#" class="hover:text-blue-500">이전홈피사진</a></li>
+                                        <li>- <a href="${root}welcome/history/building.html" class="hover:text-blue-500">성전건축이야기</a></li>
+                                        <li>- <a href="${root}welcome/history/edu_building.html" class="hover:text-blue-500">교육관건축사진</a></li>
+                                        <li>- <a href="${root}welcome/history/old_photos.html" class="hover:text-blue-500">이전 홈피 사진들</a></li>
                                     </ul>
                                 </li>
                                 <li class="border-b border-dashed border-gray-300 py-2.5 hover:text-blue-600 transition"><a href="${root}welcome/serve/serve.html" class="block w-full">섬기는 분들</a></li>
