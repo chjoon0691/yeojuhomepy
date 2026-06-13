@@ -18,6 +18,7 @@
         }
         .page-link:hover { background-color: #f3f4f6; color: #1b315b; }
         .page-link.active { border-color: #1b315b; color: #1b315b; font-weight: bold; }
+        
         .modal-scroll::-webkit-scrollbar { width: 8px; }
         .modal-scroll::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
         .modal-scroll::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 4px; }
@@ -85,13 +86,16 @@
                 <h3 class="text-2xl md:text-3xl font-extrabold relative z-10 tracking-tight">행사사진</h3>
             </div>
 
-            <!-- 검색바 -->
-            <div class="flex justify-end mb-8 border-b border-gray-200 pb-4">
-                <div class="flex border border-gray-300 rounded shadow-sm overflow-hidden bg-white">
+            <!-- 검색바 및 카운트 -->
+            <div class="flex flex-col sm:flex-row justify-between items-center mb-8 border-b border-gray-200 pb-4 gap-4">
+                <div class="text-gray-500 text-sm font-medium w-full sm:w-auto text-left">
+                    <i class="fas fa-camera-retro text-gray-400 mr-1"></i> 총 <span id="total-count" class="text-blue-600 font-bold">0</span>건의 앨범
+                </div>
+                <div class="flex border border-gray-300 rounded shadow-sm overflow-hidden bg-white w-full sm:w-auto">
                     <select class="px-3 py-1.5 text-sm md:text-base border-r border-gray-300 text-gray-700 focus:outline-none bg-gray-50 cursor-pointer">
                         <option>제목</option>
                     </select>
-                    <input type="text" class="px-3 py-1.5 text-sm md:text-base w-32 md:w-48 focus:outline-none" placeholder="검색어 입력">
+                    <input type="text" class="px-3 py-1.5 text-sm md:text-base w-full sm:w-32 md:w-48 focus:outline-none" placeholder="검색어 입력">
                     <button class="bg-gray-100 hover:bg-gray-200 text-gray-600 px-4 py-1.5 text-sm md:text-base border-l border-gray-300 transition">
                         <i class="fas fa-search"></i>
                     </button>
@@ -109,32 +113,29 @@
         </main>
     </div>
 
-    <!-- ★ 갤러리 사진 팝업 모달창 ★ -->
+    <!-- ★ 다중 사진 팝업 모달창 ★ -->
     <div id="gallery-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6">
-        <!-- 반투명 배경 -->
         <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="closeModal()"></div>
         
-        <!-- 모달 본문 -->
         <div class="relative w-full max-w-4xl bg-white shadow-2xl z-10 flex flex-col max-h-[90vh] rounded-xl overflow-hidden border-t-[6px] border-[#3b82f6]">
             <!-- 모달 헤더 -->
             <div class="bg-white text-gray-800 px-6 py-5 border-b border-gray-200 flex justify-between items-start shrink-0">
                 <div class="pr-6">
                     <h2 id="modal-title" class="text-xl md:text-2xl font-extrabold tracking-tight mb-1">제목</h2>
+                    <p id="modal-date" class="text-sm text-gray-500 font-medium"><i class="far fa-calendar-alt mr-1"></i> 등록일 : </p>
                 </div>
                 <div class="flex items-center gap-2 shrink-0">
-                    <a id="modal-download-btn" href="#" download class="bg-[#3b82f6] text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-blue-700 transition flex items-center gap-2">
-                        <i class="fas fa-download"></i> <span class="hidden md:inline">다운로드</span>
-                    </a>
                     <button onclick="closeModal()" class="text-gray-400 hover:text-red-500 transition-colors focus:outline-none p-2">
-                        <i class="fas fa-times text-2xl"></i>
+                        <i class="fas fa-times text-3xl"></i>
                     </button>
                 </div>
             </div>
             
-            <!-- 모달 콘텐츠 (이미지 삽입) -->
-            <div class="p-6 md:p-8 overflow-y-auto flex-1 bg-gray-100 modal-scroll flex justify-center">
-                <div id="modal-image-container" class="rounded-lg shadow-md bg-white overflow-hidden max-w-full inline-block">
-                    <img id="modal-image" src="" alt="갤러리 상세" class="max-w-full h-auto object-contain">
+            <!-- 모달 콘텐츠 -->
+            <div class="p-6 md:p-8 overflow-y-auto flex-1 bg-gray-100 modal-scroll flex flex-col items-center gap-6 relative" id="modal-image-container">
+                <div id="loading-msg" class="text-gray-500 font-bold py-10 flex flex-col items-center gap-3">
+                    <i class="fas fa-spinner fa-spin text-3xl text-blue-500"></i>
+                    <span>사진을 불러오는 중입니다...</span>
                 </div>
             </div>
         </div>
@@ -145,27 +146,200 @@
     <div id="common-sitemap"></div>
 
     <script>
-        // 갤러리 데이터
-        const galleryData = [
-            { id: 251, title: "20260531 어와나 야외예배 ...", imageUrl: "https://images.unsplash.com/photo-1544640808-32ca72ac7f37?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-            { id: 250, title: "20260531 청년부친구초청...", imageUrl: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-            { id: 249, title: "20260524 고등부 야외예배", imageUrl: "https://images.unsplash.com/photo-1526976663112-00508a8f7c9e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-            { id: 248, title: "20260523 11,12교구 산상...", imageUrl: "https://images.unsplash.com/photo-1529070538774-1843cb3265df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-            { id: 247, title: "20260523 부모교육세미나", imageUrl: "https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-            { id: 246, title: "20260517 청년부 야외예배", imageUrl: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-            { id: 245, title: "20260517 교사헌신예배", imageUrl: "https://images.unsplash.com/photo-1438283173091-5dbf5c5a3206?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-            { id: 244, title: "20260510 온가족초청예배 (2)", imageUrl: "https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-            { id: 243, title: "20260510 온가족초청예배 (1)", imageUrl: "https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-            { id: 242, title: "20260509 5,6교구 산상기...", imageUrl: "https://images.unsplash.com/photo-1529070538774-1843cb3265df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-            { id: 241, title: "20260503 유아세례식", imageUrl: "https://images.unsplash.com/photo-1555252333-9f8e92e65df9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-            { id: 240, title: "20260502 7,8교구 산상기...", imageUrl: "https://images.unsplash.com/photo-1529070538774-1843cb3265df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-            { id: 239, title: "20260426 소망교도소 예배", imageUrl: "https://images.unsplash.com/photo-1438283173091-5dbf5c5a3206?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-            { id: 238, title: "20260423 남여전도회 주관 ...", imageUrl: "https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-            { id: 237, title: "20260422 마더와이즈 수료식", imageUrl: "https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" }
-        ];
+        // 1. 담당자가 여기에 한 줄씩 글을 추가하면 됩니다! (150개 데이터 입력 완료)
+        const rawText = `
+254|20260613 남전도회 건강 걷기대회|2026.06.13
+253|20260610 전도대 아웃리치|2026.06.10
+252|20260530 중보기도팀과 '부흥'시네마&기도회|2026.06.10
+251|20260531 청년부친구초청데이 '환승, 주님께로'|2026.05.31
+250|20260531 어와나 야외예배|2026.05.31
+249|20260524 고등부 야외예배|2026.05.24
+248|20260523 11,12교구 산상기도회|2026.05.23
+247|20260523 부모교육세미나|2026.05.23
+246|20260517 청년부 야외예배|2026.05.17
+245|20260517 교사헌신예배|2026.05.17
+244|20260510 온가족초청예배 (2)|2026.05.10
+243|20260510 온가족초청예배 (1)|2026.05.10
+242|20260509 5,6교구 산상기도회|2026.05.09
+241|20260503 유아세례식|2026.05.03
+240|20260502 7,8교구 산상기도회|2026.05.02
+239|20260426 소망교도소 예배|2026.04.26
+238|20260423 남여전도회 주관 어르신 봄 나들이(포천)|2026.04.23
+237|20260422 마더와이즈 수료식|2026.04.22
+236|20260418 3,4교구 산상기도회|2026.04.18
+235|20260415 수요전도집회|2026.04.15
+234|20260411 1,2교구 산상기도회|2026.04.11
+233|20260405 여주시 기독교연합찬양제|2026.04.05
+232|20260405 부활절 감사예배 및 세례 입회식|2026.04.05
+231|20260403 성금요예배 & 칸타타|2026.04.03
+230|20260330 고난주간 특별새벽기도회|2026.03.30
+229|20260329 1/4분기 새가족교육|2026.03.29
+228|20260301 성결산악회|2026.03.01
+227|20260220 초등부 겨울성경학교|2026.02.20
+226|20260212 청년부 수련회|2026.02.12
+225|20260206 중등부 수련회|2026.02.06
+224|20260206 고등부 수련회|2026.02.06
+223|20260201 유년부 겨울성경학교|2026.02.01
+222|20260125 장년부 비전트립|2026.01.25
+221|20260118 유치부 겨울성경학교|2026.01.18
+220|20260118 중고등부 비전트립|2026.01.18
+219|20251225 성탄감사예배|2025.12.25
+218|20251210 마더와이즈"자유"수료|2025.12.10
+217|20251116 추수감사주일 & 새생명전도축제|2025.11.16
+216|20251101 중보기도세미나|2025.11.12
+215|20251109 세례식|2025.11.09
+214|2025 장로장립 및 권사취임 감사예배(3)|2025.10.04
+213|2025 장로장립 및 권사취임 감사예배(2)|2025.10.04
+212|2025 장로장립 및 권사취임 감사예배(1)|2025.10.04
+211|20250907 소망교도소 예배|2025.09.07
+210|20250830 교구장 구역장 야유회|2025.09.07
+209|20250815 청년부 여름수련회|2025.08.22
+208|20250822 비전기도회3|2025.08.22
+207|20250822 비전기도회2|2025.08.22
+206|20250822 비전기도회1|2025.08.22
+205|20250817 하반기 장학증서수여식 2|2025.08.17
+204|20250817 하반기 장학증서수여식 1|2025.08.17
+203|250805 고등부 여름수련회|2025.08.05
+202|250729 중등부 여름수련회|2025.07.29
+201|250727 초등부 여름성경학교|2025.07.27
+200|250720 유년부 여름성경학교|2025.07.20
+199|250720 유치부 여름성경학교|2025.07.20
+198|250720 영아부 여름성경학교|2025.07.20
+197|20250714 청년부 단기선교|2025.07.19
+196|20250628 중보기도학교|2025.07.08
+195|20250705 기관별 탁구대회 2|2025.07.05
+194|20250705 기관별 탁구대회1|2025.07.05
+193|20250629 2분기새가족교육수료식|2025.06.29
+192|250528 마더와이즈 지혜 10기|2025.06.11
+191|20250608 기관별 족구대회|2025.06.08
+190|20250518 교사헌신예배|2025.05.21
+189|250511 온가족초청주일 포토존2|2025.05.14
+188|250511 온가족초청주일 포토존1|2025.05.14
+187|20250511 온가족초청주일|2025.05.11
+186|20250510 교회대청소|2025.05.10
+185|2025 온가족초청주일을 위한 수요전도집회(4/6-5/7)|2025.05.09
+184|[여주성결교회] 2025 남, 여전도회 주관 어르신 봄 나들이 영상|2025.04.27
+183|20250420 세례입회식|2025.04.23
+182|20250418 성금요예배&칸타타|2025.04.23
+181|20250414-18 고난주간 특별새벽기도회|2025.04.23
+180|20250305 청춘대학개강(상반기)|2025.03.30
+179|20250329 구역장 수련회|2025.03.30
+178|20250309 상반기 장학금 수여식|2025.03.13
+177|20250228 다음세대 비전기도회|2025.03.13
+176|2권사회 헌신예배|2025.02.18
+175|250207 고등부 겨울수련회|2025.02.12
+174|250201 중고등부비전트립|2025.02.01
+173|250104, 250111 교사세미나|2025.01.11
+172|2025 신년특별새벽기도회|2025.01.04
+171|250102 전도대헌신예배 및 야유회|2025.01.02
+170|241225 성탄감사예배|2024.12.31
+169|241207 경기동지방회 교회학교 동계대회|2024.12.31
+168|241229 진급예배|2024.12.29
+167|24년도 마더와이즈 지혜|2024.12.25
+166|241129 금요성령집회-르우엘중창단|2024.11.30
+165|집사교육(11/17)|2024.11.21
+164|241114~15 교회 김장|2024.11.16
+163|241110 세례입회식|2024.11.12
+162|241106~08 가을부흥회|2024.11.09
+161|241019 새가족여행(양주 나리농원)|2024.10.22
+160|241006.3/4분기 새가족 수료식|2024.10.22
+159|241016 청춘대학 가을 소풍 (가평 자라섬)|2024.10.17
+158|241005 성결산악회(설악산 백담사)|2024.10.11
+157|240922 전교인 한마음 축제|2024.09.25
+156|240902~06 영적성숙을 위한 특별새벽기도회|2024.09.06
+155|240728~0825 연합구역예배|2024.09.05
+154|2024년 청춘대학 2학기 개강 예배|2024.09.05
+153|240711~28 교육부서 여름행사|2024.08.21
+152|240707 교사헌신예배|2024.07.10
+151|240707 경기동지방 어린이 하계대회 시상|2024.07.10
+150|240703 제6회 지역어르신 초청잔치|2024.07.03
+149|240623 담임목사 취임 및 원로장로 추대 예식|2024.06.26
+148|240508 청춘대학 봄 소풍|2024.05.29
+147|240430 효도관광|2024.05.01
+146|240411 3차성지순례-로마,그리스|2024.04.25
+145|240325~29 고난주간 특별새벽기도회|2024.03.29
+144|240103 신년제직수련회|2024.01.10
+143|231225 성탄감사예배|2023.12.26
+142|231210 성역 은퇴 및 원로목사 추대 감사예식|2023.12.12
+141|2023.11.3~11.24 가을 특별금요집회|2023.11.25
+140|231109~10 교회 김장|2023.11.10
+139|231012 전도대 활동재개|2023.10.18
+138|230922 가을 목요찬양집회|2023.09.22
+137|230705 지역어르신 초청잔치|2023.07.06
+136|230701 성결산악회-정선 아우라지|2023.07.04
+135|230625 90주년기념분립개척파송식|2023.06.25
+134|230521 헌아식|2023.06.14
+133|230610 남전도회조찬기도회-강천섬|2023.06.10
+132|230514 전가족이 함께하는 예배|2023.05.14
+131|230513 남성조찬기도회-황학산등반|2023.05.13
+130|230506 슈퍼히어로J 뮤지컬 초청|2023.05.06
+129|230429 성결산악회-속초 외옹치길|2023.05.05
+128|230422 세례예식|2023.04.22
+127|230408 여전도회,남전도회연합꽃길가꾸기|2023.04.08
+126|230408 남전도회조찬기도회|2023.04.08
+125|230330 새봄, 특별금요심야기도회|2023.04.01
+124|230310 여강고, 대신고 장학금수여식|2023.03.11
+123|20230219 Who am I? (중고청 부흥회)|2023.02.22
+122|230212 2023년 중고등부 비전트립 - 필리핀|2023.02.20
+121|230203 고등부 동계수련회|2023.02.03
+120|230114 남전도회조찬기도회|2023.01.18
+119|230108 신임집사 교육 및 기도회|2023.01.13
+118|230104 신년제직수련회|2023.01.05
+117|221225 성탄감사예배|2022.12.28
+116|221210 조찬기도회-9,10,11남전도회|2022.12.10
+115|사랑의헌금흘려보내기|2022.12.07
+114|221103 교회 김장|2022.11.04
+113|221103 다니엘기도회|2022.11.04
+112|221029 새가족위원회,전도대연합세미나|2022.10.30
+111|221015 성결산악회-설악산|2022.10.26
+110|221011 사모님을 위한 행복세미나|2022.10.12
+109|221008 남전도회조찬기도회-황학산등반|2022.10.08
+108|220917 맘스터치 세미나|2022.09.20
+107|2022 여주성결교회 교회학교 여름행사-단체사진|2022.08.30
+106|220827 성결산악회-동해해랑전망대|2022.08.30
+105|220825 아파트전도대 사전준비모임|2022.08.26
+        `;
 
-        const itemsPerPage = 12; // 갤러리는 그리드 형태라 12개로 맞춤
+        // 데이터 변환 및 날짜 축약 규칙 적용 (2026 -> 26)
+        const galleryData = rawText.trim().split('\n').filter(line => line.trim() !== '').map(line => {
+            const parts = line.split('|');
+            let originalTitle = parts[1].trim();
+            // 제목이 202X로 시작하면 2X로 변경하는 마법의 규칙
+            let shortTitle = originalTitle.replace(/^20([2-9][0-9])/, '$1');
+            
+            return {
+                id: parseInt(parts[0].trim()),
+                title: shortTitle,
+                date: parts[2].trim()
+            };
+        });
+
+        // 총 앨범 수 자동 표시
+        document.getElementById('total-count').textContent = galleryData.length;
+
+        // 2. 깃허브 사진 저장소 기본 주소 (이 폴더에 올리시면 됩니다)
+        const baseURL = "https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/news/images/gallery/";
+
+        const itemsPerPage = 12; 
         let currentPage = 1;
+
+        // ★ 확장자 자동 탐색하여 썸네일 로딩하는 함수 ★
+        function loadThumbnail(imgElement, id) {
+            const exts = ['jpg', 'png', 'jpeg', 'JPG', 'PNG'];
+            let extIndex = 0;
+
+            function tryNext() {
+                if (extIndex >= exts.length) {
+                    imgElement.src = `https://placehold.co/800x600/f3f4f6/9ca3af?text=${id}`; // 모두 실패시 기본 회색 이미지
+                    return;
+                }
+                imgElement.src = `${baseURL}${id}-01.${exts[extIndex]}`;
+                extIndex++;
+            }
+
+            imgElement.onerror = tryNext;
+            tryNext(); // 첫 번째 시도 시작
+        }
 
         function renderGallery(page) {
             const startIndex = (page - 1) * itemsPerPage;
@@ -179,15 +353,23 @@
                 const card = document.createElement('div');
                 card.className = 'flex flex-col cursor-pointer group';
                 card.onclick = () => openModal(item.id);
+
+                let imgId = `thumb-${item.id}`;
                 
                 card.innerHTML = `
-                    <div class="w-full aspect-[4/3] rounded-lg overflow-hidden shadow-sm border border-gray-200 mb-2 relative">
-                        <img src="${item.imageUrl}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    <div class="w-full aspect-[4/3] rounded-lg overflow-hidden shadow-sm border border-gray-200 mb-2 relative bg-gray-50">
+                        <img id="${imgId}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
                         <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition duration-300"></div>
+                        <div class="absolute bottom-2 right-2 bg-black/60 text-white text-[10px] px-2 py-0.5 rounded flex items-center gap-1">
+                            <i class="far fa-images"></i>
+                        </div>
                     </div>
                     <p class="text-sm font-bold text-gray-800 text-center truncate px-1 group-hover:text-[#3b82f6] transition">${item.title}</p>
                 `;
                 gridContainer.appendChild(card);
+                
+                // 생성 직후 썸네일 로딩 시도
+                loadThumbnail(document.getElementById(imgId), item.id);
             });
             
             renderPagination();
@@ -213,16 +395,69 @@
             }
         }
 
+        /* 
+         * ★ 팝업창 확장자 자동 탐색 로딩 시스템 ★ 
+         */
         function openModal(id) {
-            const item = galleryData.find(n => n.id === id);
-            if(!item) return;
+            const data = galleryData.find(n => n.id === id);
+            if(!data) return;
 
-            document.getElementById('modal-title').textContent = item.title;
-            const imageEl = document.getElementById('modal-image');
-            imageEl.src = item.imageUrl;
+            document.getElementById('modal-title').textContent = data.title;
+            document.getElementById('modal-date').innerHTML = `<i class="far fa-calendar-alt mr-1"></i> 등록일 : ${data.date}`;
+            
+            const container = document.getElementById('modal-image-container');
+            
+            Array.from(container.children).forEach(child => {
+                if(child.id !== 'loading-msg') child.remove();
+            });
+            document.getElementById('loading-msg').style.display = 'flex';
+            document.getElementById('loading-msg').innerHTML = '<i class="fas fa-spinner fa-spin text-3xl text-blue-500"></i><span>사진을 불러오는 중입니다...</span>';
 
-            const downloadBtn = document.getElementById('modal-download-btn');
-            downloadBtn.href = item.imageUrl;
+            const maxImages = 30; // 앨범당 최대 30장 검사
+            let loadedCount = 0;
+            let errorCount = 0;
+
+            // 순차적으로 이미지 존재 여부를 확인하고 로드하는 재귀 함수
+            function tryLoadModalImage(index, extsArray, wrapElement) {
+                if (extsArray.length === 0) {
+                    wrapElement.remove(); // 모든 확장자 실패 시 요소 삭제
+                    errorCount++;
+                    if(loadedCount === 0 && errorCount === maxImages) {
+                         document.getElementById('loading-msg').innerHTML = '<i class="fas fa-exclamation-circle text-2xl text-gray-400"></i><span>등록된 사진이 없습니다.</span>';
+                    }
+                    return;
+                }
+
+                const currentExt = extsArray.shift();
+                let numStr = index < 10 ? '0' + index : index;
+                let imgUrl = `${baseURL}${id}-${numStr}.${currentExt}`;
+
+                let img = document.createElement('img');
+                img.className = "w-full h-auto object-contain rounded";
+                
+                img.onload = function() {
+                    wrapElement.classList.remove('hidden'); 
+                    document.getElementById('loading-msg').style.display = 'none'; 
+                    loadedCount++;
+                    wrapElement.appendChild(img);
+                };
+                
+                img.onerror = function() {
+                    // 실패 시 다음 확장자 시도
+                    tryLoadModalImage(index, extsArray, wrapElement);
+                };
+                
+                img.src = imgUrl; 
+            }
+
+            for(let i = 1; i <= maxImages; i++) {
+                let imgWrap = document.createElement('div');
+                imgWrap.className = "bg-white p-2 md:p-3 rounded-lg shadow-sm border border-gray-200 w-full mb-4 hidden"; 
+                container.appendChild(imgWrap);
+                
+                // jpg, png, jpeg 순서로 시도하도록 배열 복사
+                tryLoadModalImage(i, ['jpg', 'png', 'jpeg', 'JPG', 'PNG'], imgWrap);
+            }
 
             const modal = document.getElementById('gallery-modal');
             modal.classList.remove('hidden');
@@ -268,8 +503,6 @@
             renderGallery(currentPage);
         });
     </script>
-
-    <!-- ★ 중요: 서브페이지는 js 파일을 불러오기 위해 경로를 알려줘야 합니다 ★ -->
     <script>const ROOT_PATH = "../";</script>
     <script src="../js/common.js"></script>
 
