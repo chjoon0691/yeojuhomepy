@@ -14,6 +14,8 @@
             background-color: #ffffff;
             overflow-x: hidden;
         }
+        #mobile-menu { display: none; }
+        #mobile-menu.open { display: flex; }
     </style>
 </head>
 <body class="text-gray-800">
@@ -41,7 +43,7 @@
                     <i class="fas fa-plus text-gray-400 text-xs"></i>
                 </button>
                 <ul id="menu-depth1" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
-                    <li class="border-b border-gray-100"><a href="../greeting.html" class="block px-4 py-3 hover:bg-gray-50">환영합니다</a></li>
+                    <li class="border-b border-gray-100"><a href="../greeting.html" class="block px-4 py-3 text-blue-600 font-bold bg-gray-50">환영합니다</a></li>
                     <li class="border-b border-gray-100"><a href="../../word/sunday.html" class="block px-4 py-3 hover:bg-gray-50">말씀과 찬양</a></li>
                     <li class="border-b border-gray-100"><a href="../../community/parish.html" class="block px-4 py-3 hover:bg-gray-50">공동체</a></li>
                     <li class="border-b border-gray-100"><a href="../../nextgen/infant.html" class="block px-4 py-3 hover:bg-gray-50">다음세대</a></li>
@@ -73,33 +75,17 @@
         
         <!-- Left Sidebar -->
         <aside class="hidden md:block w-64 flex-shrink-0">
-            <div class="bg-[#6b8cba] text-white text-center py-4 text-xl font-bold rounded-t-lg">
-                환영합니다
-            </div>
+            <div class="bg-[#6b8cba] text-white text-center py-4 text-xl font-bold rounded-t-lg">환영합니다</div>
             <ul class="border border-t-0 border-gray-200 flex flex-col">
-                <li class="border-b border-gray-200">
-                    <a href="../greeting.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">인사말</a>
-                </li>
+                <li class="border-b border-gray-200"><a href="../greeting.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">인사말</a></li>
                 <li class="border-b border-gray-200">
                     <a href="../history/history.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">교회연혁</a>
                 </li>
-                <li class="border-b border-gray-200">
-                    <a href="../serve/serve.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">섬기는 분들</a>
-                </li>
-                <li class="border-b border-gray-200">
-                    <a href="../worship/worship.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">예배안내</a>
-                </li>
-                <li class="border-b border-gray-200">
-                    <a href="bus.html" class="flex justify-between items-center px-5 py-3 text-[#3b82f6] font-bold bg-gray-50 hover:bg-gray-100 transition">
-                        차량운행안내 <i class="fas fa-chevron-right text-xs"></i>
-                    </a>
-                </li>
-                <li class="border-b border-gray-200">
-                    <a href="../map/map.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">오시는길</a>
-                </li>
-                <li>
-                    <a href="../newcomer/newcomer.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition rounded-b-lg">새가족안내</a>
-                </li>
+                <li class="border-b border-gray-200"><a href="../serve/serve.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">섬기는 분들</a></li>
+                <li class="border-b border-gray-200"><a href="../worship/worship.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">예배안내</a></li>
+                <li class="border-b border-gray-200"><a href="bus.html" class="flex justify-between items-center px-5 py-3 text-[#3b82f6] font-bold bg-gray-50 hover:bg-gray-100 transition">차량운행안내 <i class="fas fa-chevron-right text-xs"></i></a></li>
+                <li class="border-b border-gray-200"><a href="../map/map.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">오시는길</a></li>
+                <li><a href="../newcomer/newcomer.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition rounded-b-lg">새가족안내</a></li>
             </ul>
         </aside>
 
@@ -111,23 +97,25 @@
                 <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
                 <div class="relative z-10 flex flex-col items-center">
                     <i class="fas fa-bus text-3xl md:text-4xl mb-2 text-blue-200"></i>
-                    <h3 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-2">차량운행안내</h3>
+                    <h3 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-2">교회 차량운행 시간표</h3>
                     <p class="text-sm md:text-base text-blue-100 font-light px-4 text-center">차량을 이용하시는 성도님은 5분전까지 미리 대기하시기 바랍니다.</p>
                 </div>
             </div>
 
             <!-- 1. 주일예배 1부 예배 -->
             <div class="border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
+                <!-- 뱃지 헤더 -->
                 <div class="bg-[#78b394] text-white py-4 md:py-5 px-6 flex flex-col md:flex-row md:items-center justify-between">
                     <div>
-                        <span class="text-xs md:text-sm font-medium opacity-90 block mb-1">주일예배 (9시)</span>
+                        <span class="text-xs md:text-sm font-medium opacity-90 block mb-1">주일예배 (오전 9시)</span>
                         <h3 class="text-2xl md:text-3xl font-extrabold tracking-tight">1부 예배</h3>
                     </div>
                 </div>
                 
-                <div class="p-4 md:p-6 bg-white space-y-6">
+                <div class="p-4 md:p-6 bg-white">
+                    <!-- 32인승 버스 -->
                     <div>
-                        <h4 class="text-lg md:text-xl font-bold text-gray-800 mb-3 flex items-center gap-2"><i class="fas fa-bus-alt text-[#78b394]"></i> 47인승 버스</h4>
+                        <h4 class="text-lg md:text-xl font-bold text-gray-800 mb-3 flex items-center gap-2"><i class="fas fa-bus-alt text-[#78b394]"></i> 1부 / 32인승</h4>
                         <div class="overflow-x-auto rounded-lg border border-gray-200">
                             <table class="w-full text-center text-sm md:text-base">
                                 <thead class="bg-gray-50 border-b border-gray-200 text-gray-700">
@@ -137,17 +125,20 @@
                                     </tr>
                                 </thead>
                                 <tbody class="text-gray-600">
-                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">삼성A 육교</td><td class="py-2.5 px-4 border-l border-gray-100">8:25</td></tr>
-                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">상우A</td><td class="py-2.5 px-4 border-l border-gray-100">8:30</td></tr>
-                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">삼한A 입구</td><td class="py-2.5 px-4 border-l border-gray-100">8:33</td></tr>
-                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">보람이네 떡집</td><td class="py-2.5 px-4 border-l border-gray-100">8:35</td></tr>
-                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">시민회관</td><td class="py-2.5 px-4 border-l border-gray-100">8:36</td></tr>
-                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">전화국</td><td class="py-2.5 px-4 border-l border-gray-100">8:40</td></tr>
-                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">여주초등학교</td><td class="py-2.5 px-4 border-l border-gray-100">8:41</td></tr>
-                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">하리현대A</td><td class="py-2.5 px-4 border-l border-gray-100">8:43</td></tr>
-                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">한강주택</td><td class="py-2.5 px-4 border-l border-gray-100">8:44</td></tr>
-                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">송강 한우방</td><td class="py-2.5 px-4 border-l border-gray-100">8:45</td></tr>
-                                    <tr><td class="py-2.5 px-4 font-medium text-gray-800">현대자동차 옆 버스정류장</td><td class="py-2.5 px-4 border-l border-gray-100">8:46</td></tr>
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">LH행복주택아파트</td><td class="py-2.5 px-4 border-l border-gray-100">8:10</td></tr>
+                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">푸르지오아파트(건너편)</td><td class="py-2.5 px-4 border-l border-gray-100">8:15</td></tr>
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">상우아파트</td><td class="py-2.5 px-4 border-l border-gray-100">8:20</td></tr>
+                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">삼한아파트</td><td class="py-2.5 px-4 border-l border-gray-100">8:22</td></tr>
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">보람이네 떡세상</td><td class="py-2.5 px-4 border-l border-gray-100">8:24</td></tr>
+                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">국민은행</td><td class="py-2.5 px-4 border-l border-gray-100">8:25</td></tr>
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">KT(건너편)</td><td class="py-2.5 px-4 border-l border-gray-100">8:27</td></tr>
+                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">여주검도관</td><td class="py-2.5 px-4 border-l border-gray-100">8:28</td></tr>
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">부림주택(건너편)</td><td class="py-2.5 px-4 border-l border-gray-100">8:29</td></tr>
+                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">백산동물병원</td><td class="py-2.5 px-4 border-l border-gray-100">8:32</td></tr>
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">하동 현대APT</td><td class="py-2.5 px-4 border-l border-gray-100">8:33</td></tr>
+                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">OK마트</td><td class="py-2.5 px-4 border-l border-gray-100">8:34</td></tr>
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">삼성정육점</td><td class="py-2.5 px-4 border-l border-gray-100">8:35</td></tr>
+                                    <tr><td class="py-2.5 px-4 font-medium text-gray-800">하동 현대 블루핸즈</td><td class="py-2.5 px-4 border-l border-gray-100">8:37</td></tr>
                                 </tbody>
                             </table>
                         </div>
@@ -157,18 +148,20 @@
 
             <!-- 2. 주일예배 2부 예배 -->
             <div class="border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
+                <!-- 뱃지 헤더 -->
                 <div class="bg-[#85b597] text-white py-4 md:py-5 px-6 flex flex-col md:flex-row md:items-center justify-between">
                     <div>
-                        <span class="text-xs md:text-sm font-medium opacity-90 block mb-1">주일예배 (11시)</span>
+                        <span class="text-xs md:text-sm font-medium opacity-90 block mb-1">주일예배 (오전 11시)</span>
                         <h3 class="text-2xl md:text-3xl font-extrabold tracking-tight">2부 예배</h3>
                     </div>
                 </div>
                 
-                <div class="p-4 md:p-6 bg-white space-y-8">
+                <div class="p-4 md:p-6 bg-white grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    
                     <!-- 47인승 버스 -->
                     <div>
-                        <h4 class="text-lg md:text-xl font-bold text-gray-800 mb-3 flex items-center gap-2"><i class="fas fa-bus-alt text-[#85b597]"></i> 47인승 버스</h4>
-                        <div class="overflow-x-auto rounded-lg border border-gray-200">
+                        <h4 class="text-lg md:text-xl font-bold text-gray-800 mb-3 flex items-center gap-2"><i class="fas fa-bus-alt text-[#85b597]"></i> 2부 / 47인승</h4>
+                        <div class="overflow-x-auto rounded-lg border border-gray-200 h-full">
                             <table class="w-full text-center text-sm md:text-base">
                                 <thead class="bg-gray-50 border-b border-gray-200 text-gray-700">
                                     <tr>
@@ -177,22 +170,22 @@
                                     </tr>
                                 </thead>
                                 <tbody class="text-gray-600">
-                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">부영A 정류장</td><td class="py-2.5 px-4 border-l border-gray-100">10:30</td></tr>
-                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">삼성A 육교</td><td class="py-2.5 px-4 border-l border-gray-100">10:33</td></tr>
-                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">상우A 굽다리</td><td class="py-2.5 px-4 border-l border-gray-100">10:35</td></tr>
-                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">삼한A 입구</td><td class="py-2.5 px-4 border-l border-gray-100">10:37</td></tr>
-                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">보람이네 떡집</td><td class="py-2.5 px-4 border-l border-gray-100">10:40</td></tr>
-                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">시민회관</td><td class="py-2.5 px-4 border-l border-gray-100">10:42</td></tr>
-                                    <tr><td class="py-2.5 px-4 font-medium text-gray-800">현대자동차 옆 버스정류장</td><td class="py-2.5 px-4 border-l border-gray-100">10:45</td></tr>
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">부영아파트</td><td class="py-2.5 px-4 border-l border-gray-100">10:25</td></tr>
+                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">삼성아파트</td><td class="py-2.5 px-4 border-l border-gray-100">10:28</td></tr>
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">상우아파트</td><td class="py-2.5 px-4 border-l border-gray-100">10:30</td></tr>
+                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">삼한아파트</td><td class="py-2.5 px-4 border-l border-gray-100">10:32</td></tr>
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">보람이네 떡세상</td><td class="py-2.5 px-4 border-l border-gray-100">10:35</td></tr>
+                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">국민은행</td><td class="py-2.5 px-4 border-l border-gray-100">10:37</td></tr>
+                                    <tr><td class="py-2.5 px-4 font-medium text-gray-800">하동 현대 블루핸즈</td><td class="py-2.5 px-4 border-l border-gray-100">10:40</td></tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
 
-                    <!-- 34인승 버스 -->
+                    <!-- 32인승 버스 -->
                     <div>
-                        <h4 class="text-lg md:text-xl font-bold text-gray-800 mb-3 flex items-center gap-2"><i class="fas fa-bus-alt text-[#85b597]"></i> 34인승 버스</h4>
-                        <div class="overflow-x-auto rounded-lg border border-gray-200">
+                        <h4 class="text-lg md:text-xl font-bold text-gray-800 mb-3 flex items-center gap-2"><i class="fas fa-bus-alt text-[#85b597]"></i> 2부 / 32인승</h4>
+                        <div class="overflow-x-auto rounded-lg border border-gray-200 h-full">
                             <table class="w-full text-center text-sm md:text-base">
                                 <thead class="bg-gray-50 border-b border-gray-200 text-gray-700">
                                     <tr>
@@ -201,19 +194,15 @@
                                     </tr>
                                 </thead>
                                 <tbody class="text-gray-600">
-                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">가정리</td><td class="py-2.5 px-4 border-l border-gray-100">10:20</td></tr>
-                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">신륵사 앞 버스정류장</td><td class="py-2.5 px-4 border-l border-gray-100">10:25</td></tr>
-                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">오학사거리</td><td class="py-2.5 px-4 border-l border-gray-100">10:28</td></tr>
-                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">오디카운티 (이편한세상)</td><td class="py-2.5 px-4 border-l border-gray-100">10:30</td></tr>
-                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">이안A 앞 정류장</td><td class="py-2.5 px-4 border-l border-gray-100">10:35</td></tr>
-                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">축협 앞 정류장</td><td class="py-2.5 px-4 border-l border-gray-100">10:38</td></tr>
-                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">전화국 앞</td><td class="py-2.5 px-4 border-l border-gray-100">10:41</td></tr>
-                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">제일병원</td><td class="py-2.5 px-4 border-l border-gray-100">10:43</td></tr>
-                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">영일카센터</td><td class="py-2.5 px-4 border-l border-gray-100">10:45</td></tr>
-                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">백산동물병원</td><td class="py-2.5 px-4 border-l border-gray-100">10:47</td></tr>
-                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">하리 현대A</td><td class="py-2.5 px-4 border-l border-gray-100">10:49</td></tr>
-                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">OK 마트</td><td class="py-2.5 px-4 border-l border-gray-100">10:51</td></tr>
-                                    <tr><td class="py-2.5 px-4 font-medium text-gray-800">송강 한우방</td><td class="py-2.5 px-4 border-l border-gray-100">10:52</td></tr>
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">가정리1</td><td class="py-2.5 px-4 border-l border-gray-100">10:20</td></tr>
+                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">청송리</td><td class="py-2.5 px-4 border-l border-gray-100">10:25</td></tr>
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">오학자동차정비공장</td><td class="py-2.5 px-4 border-l border-gray-100">10:30</td></tr>
+                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">이안아파트</td><td class="py-2.5 px-4 border-l border-gray-100">10:35</td></tr>
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">오학 스타벅스</td><td class="py-2.5 px-4 border-l border-gray-100">10:38</td></tr>
+                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">상동 검도관</td><td class="py-2.5 px-4 border-l border-gray-100">10:42</td></tr>
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">제일병원</td><td class="py-2.5 px-4 border-l border-gray-100">10:43</td></tr>
+                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">하동 현대아파트</td><td class="py-2.5 px-4 border-l border-gray-100">10:46</td></tr>
+                                    <tr><td class="py-2.5 px-4 font-medium text-gray-800">OK마트</td><td class="py-2.5 px-4 border-l border-gray-100">10:48</td></tr>
                                 </tbody>
                             </table>
                         </div>
@@ -221,8 +210,8 @@
 
                     <!-- 스타렉스 -->
                     <div>
-                        <h4 class="text-lg md:text-xl font-bold text-gray-800 mb-3 flex items-center gap-2"><i class="fas fa-shuttle-van text-[#85b597]"></i> 스타렉스</h4>
-                        <div class="overflow-x-auto rounded-lg border border-gray-200">
+                        <h4 class="text-lg md:text-xl font-bold text-gray-800 mb-3 flex items-center gap-2"><i class="fas fa-shuttle-van text-[#85b597]"></i> 2부 / 스타렉스</h4>
+                        <div class="overflow-x-auto rounded-lg border border-gray-200 h-full">
                             <table class="w-full text-center text-sm md:text-base">
                                 <thead class="bg-gray-50 border-b border-gray-200 text-gray-700">
                                     <tr>
@@ -231,32 +220,33 @@
                                     </tr>
                                 </thead>
                                 <tbody class="text-gray-600">
-                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">보광A</td><td class="py-2.5 px-4 border-l border-gray-100">10:20</td></tr>
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">양거리</td><td class="py-2.5 px-4 border-l border-gray-100">10:10</td></tr>
                                     <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">연라리</td><td class="py-2.5 px-4 border-l border-gray-100">10:30</td></tr>
-                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">두풍A</td><td class="py-2.5 px-4 border-l border-gray-100">10:35</td></tr>
-                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">한성A</td><td class="py-2.5 px-4 border-l border-gray-100">10:37</td></tr>
-                                    <tr><td class="py-2.5 px-4 font-medium text-gray-800">월송리</td><td class="py-2.5 px-4 border-l border-gray-100">10:40</td></tr>
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">보광아파트</td><td class="py-2.5 px-4 border-l border-gray-100">10:40</td></tr>
+                                    <tr><td class="py-2.5 px-4 font-medium text-gray-800">한성아파트</td><td class="py-2.5 px-4 border-l border-gray-100">10:45</td></tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
+
                 </div>
             </div>
 
-            <!-- 3. 수요저녁예배 -->
+            <!-- 3. 수요예배 -->
             <div class="border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
+                <!-- 뱃지 헤더 -->
                 <div class="bg-[#9476ab] text-white py-4 md:py-5 px-6 flex flex-col md:flex-row md:items-center justify-between">
                     <div>
-                        <span class="text-xs md:text-sm font-medium opacity-90 block mb-1">수요예배</span>
-                        <h3 class="text-2xl md:text-3xl font-extrabold tracking-tight">수요저녁예배</h3>
+                        <span class="text-xs md:text-sm font-medium opacity-90 block mb-1">수요예배 (오후 7:30)</span>
+                        <h3 class="text-2xl md:text-3xl font-extrabold tracking-tight">수요예배</h3>
                     </div>
                 </div>
                 
-                <div class="p-4 md:p-6 bg-white space-y-8">
-                    <!-- 34인승 버스 -->
+                <div class="p-4 md:p-6 bg-white grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- 32인승 버스 -->
                     <div>
-                        <h4 class="text-lg md:text-xl font-bold text-gray-800 mb-3 flex items-center gap-2"><i class="fas fa-bus-alt text-[#9476ab]"></i> 34인승 버스</h4>
-                        <div class="overflow-x-auto rounded-lg border border-gray-200">
+                        <h4 class="text-lg md:text-xl font-bold text-gray-800 mb-3 flex items-center gap-2"><i class="fas fa-bus-alt text-[#9476ab]"></i> 32인승</h4>
+                        <div class="overflow-x-auto rounded-lg border border-gray-200 h-full">
                             <table class="w-full text-center text-sm md:text-base">
                                 <thead class="bg-gray-50 border-b border-gray-200 text-gray-700">
                                     <tr>
@@ -265,17 +255,17 @@
                                     </tr>
                                 </thead>
                                 <tbody class="text-gray-600">
-                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">삼성A 버스정류장</td><td class="py-2.5 px-4 border-l border-gray-100">8:30</td></tr>
-                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">상우A</td><td class="py-2.5 px-4 border-l border-gray-100">8:33</td></tr>
-                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">삼한A 입구</td><td class="py-2.5 px-4 border-l border-gray-100">8:35</td></tr>
-                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">보람이네 떡집</td><td class="py-2.5 px-4 border-l border-gray-100">8:37</td></tr>
-                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">국민은행</td><td class="py-2.5 px-4 border-l border-gray-100">8:35</td></tr>
-                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">전화국</td><td class="py-2.5 px-4 border-l border-gray-100">8:40</td></tr>
-                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">제일병원</td><td class="py-2.5 px-4 border-l border-gray-100">8:42</td></tr>
-                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">여주초등학교</td><td class="py-2.5 px-4 border-l border-gray-100">8:43</td></tr>
-                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">하리현대A</td><td class="py-2.5 px-4 border-l border-gray-100">8:45</td></tr>
-                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">한강주택</td><td class="py-2.5 px-4 border-l border-gray-100">8:46</td></tr>
-                                    <tr><td class="py-2.5 px-4 font-medium text-gray-800">현대자동차 옆 버스정류장</td><td class="py-2.5 px-4 border-l border-gray-100">8:47</td></tr>
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">푸르지오아파트</td><td class="py-2.5 px-4 border-l border-gray-100">18:45</td></tr>
+                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">상우아파트</td><td class="py-2.5 px-4 border-l border-gray-100">18:50</td></tr>
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">삼한아파트</td><td class="py-2.5 px-4 border-l border-gray-100">18:52</td></tr>
+                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">보람이네 떡세상</td><td class="py-2.5 px-4 border-l border-gray-100">18:54</td></tr>
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">국민은행</td><td class="py-2.5 px-4 border-l border-gray-100">18:55</td></tr>
+                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">전신전화국(건너편)</td><td class="py-2.5 px-4 border-l border-gray-100">18:58</td></tr>
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">백산동물병원</td><td class="py-2.5 px-4 border-l border-gray-100">19:02</td></tr>
+                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">하동 현대아파트</td><td class="py-2.5 px-4 border-l border-gray-100">19:03</td></tr>
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">OK마트</td><td class="py-2.5 px-4 border-l border-gray-100">19:05</td></tr>
+                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">삼성정육점</td><td class="py-2.5 px-4 border-l border-gray-100">19:07</td></tr>
+                                    <tr><td class="py-2.5 px-4 font-medium text-gray-800">하동 현대 블루핸즈</td><td class="py-2.5 px-4 border-l border-gray-100">19:08</td></tr>
                                 </tbody>
                             </table>
                         </div>
@@ -284,7 +274,7 @@
                     <!-- 스타렉스 -->
                     <div>
                         <h4 class="text-lg md:text-xl font-bold text-gray-800 mb-3 flex items-center gap-2"><i class="fas fa-shuttle-van text-[#9476ab]"></i> 스타렉스</h4>
-                        <div class="overflow-x-auto rounded-lg border border-gray-200">
+                        <div class="overflow-x-auto rounded-lg border border-gray-200 h-full">
                             <table class="w-full text-center text-sm md:text-base">
                                 <thead class="bg-gray-50 border-b border-gray-200 text-gray-700">
                                     <tr>
@@ -293,7 +283,12 @@
                                     </tr>
                                 </thead>
                                 <tbody class="text-gray-600">
-                                    <tr><td class="py-2.5 px-4 font-medium text-gray-800">한성A</td><td class="py-2.5 px-4 border-l border-gray-100">7:10</td></tr>
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">천송 소나무카페</td><td class="py-2.5 px-4 border-l border-gray-100">18:48</td></tr>
+                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">축협 하나로마트</td><td class="py-2.5 px-4 border-l border-gray-100">18:50</td></tr>
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">이안아파트</td><td class="py-2.5 px-4 border-l border-gray-100">18:52</td></tr>
+                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">오드카운티아파트</td><td class="py-2.5 px-4 border-l border-gray-100">18:54</td></tr>
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">개성집</td><td class="py-2.5 px-4 border-l border-gray-100">18:56</td></tr>
+                                    <tr><td class="py-2.5 px-4 font-medium text-gray-800">한성아파트</td><td class="py-2.5 px-4 border-l border-gray-100">19:02</td></tr>
                                 </tbody>
                             </table>
                         </div>
@@ -301,20 +296,21 @@
                 </div>
             </div>
 
-            <!-- 4. 금요심야기도회 -->
+            <!-- 4. 금요성령집회 -->
             <div class="border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
+                <!-- 뱃지 헤더 -->
                 <div class="bg-[#7885b5] text-white py-4 md:py-5 px-6 flex flex-col md:flex-row md:items-center justify-between">
                     <div>
-                        <span class="text-xs md:text-sm font-medium opacity-90 block mb-1">금요예배</span>
-                        <h3 class="text-2xl md:text-3xl font-extrabold tracking-tight">금요심야기도회</h3>
+                        <span class="text-xs md:text-sm font-medium opacity-90 block mb-1">금요예배 (오후 9시)</span>
+                        <h3 class="text-2xl md:text-3xl font-extrabold tracking-tight">금요성령집회</h3>
                     </div>
                 </div>
                 
-                <div class="p-4 md:p-6 bg-white space-y-6">
-                    <!-- 34인승 버스 -->
+                <div class="p-4 md:p-6 bg-white grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- 32인승 버스 -->
                     <div>
-                        <h4 class="text-lg md:text-xl font-bold text-gray-800 mb-3 flex items-center gap-2"><i class="fas fa-bus-alt text-[#7885b5]"></i> 34인승 버스</h4>
-                        <div class="overflow-x-auto rounded-lg border border-gray-200">
+                        <h4 class="text-lg md:text-xl font-bold text-gray-800 mb-3 flex items-center gap-2"><i class="fas fa-bus-alt text-[#7885b5]"></i> 32인승</h4>
+                        <div class="overflow-x-auto rounded-lg border border-gray-200 h-full">
                             <table class="w-full text-center text-sm md:text-base">
                                 <thead class="bg-gray-50 border-b border-gray-200 text-gray-700">
                                     <tr>
@@ -323,17 +319,41 @@
                                     </tr>
                                 </thead>
                                 <tbody class="text-gray-600">
-                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">삼성A 버스정류장</td><td class="py-2.5 px-4 border-l border-gray-100">8:30</td></tr>
-                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">상우A</td><td class="py-2.5 px-4 border-l border-gray-100">8:33</td></tr>
-                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">삼한A 입구</td><td class="py-2.5 px-4 border-l border-gray-100">8:35</td></tr>
-                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">보람이네 떡집</td><td class="py-2.5 px-4 border-l border-gray-100">8:37</td></tr>
-                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">국민은행</td><td class="py-2.5 px-4 border-l border-gray-100">8:35</td></tr>
-                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">전화국</td><td class="py-2.5 px-4 border-l border-gray-100">8:40</td></tr>
-                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">제일병원</td><td class="py-2.5 px-4 border-l border-gray-100">8:42</td></tr>
-                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">여주초등학교</td><td class="py-2.5 px-4 border-l border-gray-100">8:43</td></tr>
-                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">하리현대A</td><td class="py-2.5 px-4 border-l border-gray-100">8:45</td></tr>
-                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">한강주택</td><td class="py-2.5 px-4 border-l border-gray-100">8:46</td></tr>
-                                    <tr><td class="py-2.5 px-4 font-medium text-gray-800">현대자동차 옆 버스정류장</td><td class="py-2.5 px-4 border-l border-gray-100">8:47</td></tr>
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">상우아파트</td><td class="py-2.5 px-4 border-l border-gray-100">20:25</td></tr>
+                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">삼한아파트</td><td class="py-2.5 px-4 border-l border-gray-100">20:27</td></tr>
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">보람이네 떡세상</td><td class="py-2.5 px-4 border-l border-gray-100">20:28</td></tr>
+                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">국민은행</td><td class="py-2.5 px-4 border-l border-gray-100">20:30</td></tr>
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">전신전화국(건너편)</td><td class="py-2.5 px-4 border-l border-gray-100">20:32</td></tr>
+                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">여주검도관</td><td class="py-2.5 px-4 border-l border-gray-100">20:32</td></tr>
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">부림주택(건너편)</td><td class="py-2.5 px-4 border-l border-gray-100">20:33</td></tr>
+                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">백산동물병원</td><td class="py-2.5 px-4 border-l border-gray-100">20:35</td></tr>
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">하동 현대아파트</td><td class="py-2.5 px-4 border-l border-gray-100">20:36</td></tr>
+                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">OK마트</td><td class="py-2.5 px-4 border-l border-gray-100">20:37</td></tr>
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">삼성정육점</td><td class="py-2.5 px-4 border-l border-gray-100">20:38</td></tr>
+                                    <tr><td class="py-2.5 px-4 font-medium text-gray-800">하동 현대 블루핸즈</td><td class="py-2.5 px-4 border-l border-gray-100">20:39</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- 스타렉스 -->
+                    <div>
+                        <h4 class="text-lg md:text-xl font-bold text-gray-800 mb-3 flex items-center gap-2"><i class="fas fa-shuttle-van text-[#7885b5]"></i> 스타렉스</h4>
+                        <div class="overflow-x-auto rounded-lg border border-gray-200 h-full">
+                            <table class="w-full text-center text-sm md:text-base">
+                                <thead class="bg-gray-50 border-b border-gray-200 text-gray-700">
+                                    <tr>
+                                        <th class="py-3 px-4 font-bold w-1/2">장소</th>
+                                        <th class="py-3 px-4 font-bold w-1/2 border-l border-gray-200">시간</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-gray-600">
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">천송 소나무카페</td><td class="py-2.5 px-4 border-l border-gray-100">20:28</td></tr>
+                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">축협 하나로마트</td><td class="py-2.5 px-4 border-l border-gray-100">20:30</td></tr>
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">이안아파트</td><td class="py-2.5 px-4 border-l border-gray-100">20:32</td></tr>
+                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">오드카운티아파트</td><td class="py-2.5 px-4 border-l border-gray-100">20:34</td></tr>
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">개성집</td><td class="py-2.5 px-4 border-l border-gray-100">20:36</td></tr>
+                                    <tr><td class="py-2.5 px-4 font-medium text-gray-800">한성아파트</td><td class="py-2.5 px-4 border-l border-gray-100">20:42</td></tr>
                                 </tbody>
                             </table>
                         </div>
@@ -341,19 +361,24 @@
                 </div>
             </div>
 
-            <!-- 5. 새벽기도회 -->
+            <!-- 5. 새벽예배 -->
             <div class="border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
+                <!-- 뱃지 헤더 -->
                 <div class="bg-[#5c85b5] text-white py-4 md:py-5 px-6 flex flex-col md:flex-row md:items-center justify-between">
                     <div>
-                        <h3 class="text-2xl md:text-3xl font-extrabold tracking-tight">새벽기도회</h3>
+                        <span class="text-xs md:text-sm font-medium opacity-90 block mb-1">새벽예배 (오전 5:00, 6:30)</span>
+                        <div class="flex items-center gap-3">
+                            <h3 class="text-2xl md:text-3xl font-extrabold tracking-tight">새벽예배</h3>
+                            <span class="bg-white/20 px-3 py-1 rounded-full text-sm font-medium">※ 2부는 차량운행 없음</span>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="p-4 md:p-6 bg-white space-y-8">
-                    <!-- 34인승 버스 -->
+                <div class="p-4 md:p-6 bg-white grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- 32인승 버스 -->
                     <div>
-                        <h4 class="text-lg md:text-xl font-bold text-gray-800 mb-3 flex items-center gap-2"><i class="fas fa-bus-alt text-[#5c85b5]"></i> 34인승 버스</h4>
-                        <div class="overflow-x-auto rounded-lg border border-gray-200">
+                        <h4 class="text-lg md:text-xl font-bold text-gray-800 mb-3 flex items-center gap-2"><i class="fas fa-bus-alt text-[#5c85b5]"></i> 32인승</h4>
+                        <div class="overflow-x-auto rounded-lg border border-gray-200 h-full">
                             <table class="w-full text-center text-sm md:text-base">
                                 <thead class="bg-gray-50 border-b border-gray-200 text-gray-700">
                                     <tr>
@@ -362,16 +387,19 @@
                                     </tr>
                                 </thead>
                                 <tbody class="text-gray-600">
-                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">삼성A 육교</td><td class="py-2.5 px-4 border-l border-gray-100">4:30</td></tr>
-                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">상우A</td><td class="py-2.5 px-4 border-l border-gray-100">4:34</td></tr>
-                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">삼한A 입구</td><td class="py-2.5 px-4 border-l border-gray-100">4:35</td></tr>
-                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">보람이네 떡집</td><td class="py-2.5 px-4 border-l border-gray-100">4:37</td></tr>
-                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">국민은행</td><td class="py-2.5 px-4 border-l border-gray-100">4:38</td></tr>
-                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">전화국</td><td class="py-2.5 px-4 border-l border-gray-100">4:40</td></tr>
-                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">제일병원</td><td class="py-2.5 px-4 border-l border-gray-100">4:42</td></tr>
-                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">여주초등학교</td><td class="py-2.5 px-4 border-l border-gray-100">4:43</td></tr>
-                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">하리현대A</td><td class="py-2.5 px-4 border-l border-gray-100">4:45</td></tr>
-                                    <tr><td class="py-2.5 px-4 font-medium text-gray-800">현대자동차 옆 버스정류장</td><td class="py-2.5 px-4 border-l border-gray-100">4:47</td></tr>
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">푸르지오아파트(건너편)</td><td class="py-2.5 px-4 border-l border-gray-100">4:20</td></tr>
+                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">상우아파트</td><td class="py-2.5 px-4 border-l border-gray-100">4:23</td></tr>
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">삼한아파트</td><td class="py-2.5 px-4 border-l border-gray-100">4:24</td></tr>
+                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">보람이네 떡세상</td><td class="py-2.5 px-4 border-l border-gray-100">4:25</td></tr>
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">국민은행</td><td class="py-2.5 px-4 border-l border-gray-100">4:26</td></tr>
+                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">KT(건너편)</td><td class="py-2.5 px-4 border-l border-gray-100">4:30</td></tr>
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">여주검도관</td><td class="py-2.5 px-4 border-l border-gray-100">4:30</td></tr>
+                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">부림주택(건너편)</td><td class="py-2.5 px-4 border-l border-gray-100">4:31</td></tr>
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">백산동물병원</td><td class="py-2.5 px-4 border-l border-gray-100">4:33</td></tr>
+                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">하동 현대APT</td><td class="py-2.5 px-4 border-l border-gray-100">4:35</td></tr>
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">OK마트</td><td class="py-2.5 px-4 border-l border-gray-100">4:36</td></tr>
+                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">삼성정육점</td><td class="py-2.5 px-4 border-l border-gray-100">4:37</td></tr>
+                                    <tr><td class="py-2.5 px-4 font-medium text-gray-800">하동 현대 블루핸즈</td><td class="py-2.5 px-4 border-l border-gray-100">4:38</td></tr>
                                 </tbody>
                             </table>
                         </div>
@@ -380,7 +408,7 @@
                     <!-- 스타렉스 -->
                     <div>
                         <h4 class="text-lg md:text-xl font-bold text-gray-800 mb-3 flex items-center gap-2"><i class="fas fa-shuttle-van text-[#5c85b5]"></i> 스타렉스</h4>
-                        <div class="overflow-x-auto rounded-lg border border-gray-200">
+                        <div class="overflow-x-auto rounded-lg border border-gray-200 h-full">
                             <table class="w-full text-center text-sm md:text-base">
                                 <thead class="bg-gray-50 border-b border-gray-200 text-gray-700">
                                     <tr>
@@ -389,9 +417,8 @@
                                     </tr>
                                 </thead>
                                 <tbody class="text-gray-600">
-                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">신도A 후문</td><td class="py-2.5 px-4 border-l border-gray-100">4:31</td></tr>
-                                    <tr class="bg-gray-50/50 border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">이안A 정문</td><td class="py-2.5 px-4 border-l border-gray-100">4:33</td></tr>
-                                    <tr><td class="py-2.5 px-4 font-medium text-gray-800">한성A</td><td class="py-2.5 px-4 border-l border-gray-100">4:40</td></tr>
+                                    <tr class="border-b border-gray-100"><td class="py-2.5 px-4 font-medium text-gray-800">두풍아파트</td><td class="py-2.5 px-4 border-l border-gray-100">4:35</td></tr>
+                                    <tr><td class="py-2.5 px-4 font-medium text-gray-800">한성아파트</td><td class="py-2.5 px-4 border-l border-gray-100">4:38</td></tr>
                                 </tbody>
                             </table>
                         </div>
@@ -402,9 +429,30 @@
         </main>
     </div>
 
-    <!-- 마법의 파일 연결 2: 공통 하단 푸터 & 사이트맵 -->
-    <div id="common-footer"></div>
-    <div id="common-sitemap"></div>
+    <!-- Footer -->
+    <footer class="bg-gray-50 border-t border-gray-200 py-10 md:py-16 mt-10">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col items-center text-center">
+            
+            <div class="flex justify-center space-x-4 md:space-x-8 text-sm md:text-base text-gray-600 font-medium mb-8">
+                <a href="#" class="hover:text-[#1a3668]">사이트맵</a>
+                <span class="text-gray-300">|</span>
+                <a href="#" class="hover:text-[#1a3668]">개인정보처리방침</a>
+                <span class="text-gray-300">|</span>
+                <a href="#" class="hover:text-[#1a3668]">이메일무단수집거부</a>
+            </div>
+
+            <h3 class="font-bold text-3xl md:text-5xl text-[#3b82f6] mb-4 md:mb-6 tracking-tight">여주성결교회</h3>
+            <div class="text-sm md:text-lg text-gray-500 space-y-1 md:space-y-2 mb-8">
+                <p>(12625) 경기도 여주시 우암로 96 (하동, 여주성결교회)</p>
+                <p>TEL . 031-882-9966 &nbsp;&nbsp; FAX . 031-882-9965</p>
+            </div>
+
+            <div class="text-xs md:text-base text-gray-400 mb-8">
+                <p>COPYRIGHT (C) 여주성결교회. All Rights Reserved.</p>
+            </div>
+            
+        </div>
+    </footer>
 
     <script>
         function toggleMobileSubMenu(menuId) {
@@ -420,6 +468,7 @@
                     otherIcon.classList.add('fa-plus');
                 }
             }
+            
             if (targetMenu) {
                 targetMenu.classList.toggle('hidden');
                 const icon = targetMenu.previousElementSibling.querySelector('.fas');
@@ -435,7 +484,6 @@
             }
         }
     </script>
-    <!-- 루트 패스 설정 -->
     <script>const ROOT_PATH = "../../";</script>
     <script src="../../js/common.js"></script>
 </body>
