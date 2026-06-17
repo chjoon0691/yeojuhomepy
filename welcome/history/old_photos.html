@@ -168,9 +168,13 @@
     <div id="common-sitemap"></div>
 
     <script>
-        // 괄호 안의 내용만 추출하여 데이터를 깔끔하게 정리했습니다.
+        /* 
+         * ★ 중요: 20번 데이터에 테스트용 설명(캡션)을 추가해 두었습니다. ★
+         * 설명 추가 방법: 날짜 뒤에 | 기호를 넣고 "1번사진설명|2번사진설명|3번사진설명" 순서대로 적어주세요.
+         * 만약 특정 사진만 설명을 비우고 싶다면 띄어쓰기 한 칸( )을 넣어주시면 됩니다.
+         */
         const rawText = `
-20|어떤 사진인지 댓글을 달아주세요.|2020.11.13
+20|어떤 사진인지 댓글을 달아주세요.|2020.11.13|첫번째 사진에 대한 멋진 설명입니다.|두번째 사진은 행사가 즐겁게 진행되는 모습입니다.
 19|어떤 사진인지 댓글을 달아주세요.|2020.11.13
 18|어떤 사진인지 댓글을 달아주세요.|2020.11.13
 17|청춘대학03|2020.11.13
@@ -192,16 +196,24 @@
 1|어떤 사진인지 댓글을 달아주세요.|2020.11.13
         `;
 
+        // 캡션(설명글) 추출을 위해 로직 업데이트! (parts.slice(3) 추가)
         const galleryData = rawText.trim().split('\n').filter(line => line.trim() !== '').map(line => {
             const parts = line.split('|');
+            let originalTitle = parts[1].trim();
+            let shortTitle = originalTitle.replace(/^20([2-9][0-9])/, '$1');
+            
             return {
                 id: parseInt(parts[0].trim()),
-                title: parts[1].trim(),
-                date: parts[2].trim()
+                title: shortTitle,
+                date: parts[2].trim(),
+                captions: parts.slice(3) // 4번째 항목부터는 설명글 배열로 저장
             };
         });
 
-        // 깃허브 이미지 불러올 주소 (welcome/history/images/old/ 폴더 이용)
+        // 총 앨범 수 자동 표시
+        document.getElementById('total-count').textContent = galleryData.length;
+
+        // 깃허브 이미지 불러올 주소
         const baseURL = "https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/welcome/history/images/old/";
         
         const itemsPerPage = 12; 
@@ -215,10 +227,10 @@
 
             function tryNext() {
                 if (extIndex >= exts.length) {
-                    imgElement.src = `https://placehold.co/800x600/f3f4f6/9ca3af?text=No.${id}`;
+                    imgElement.src = \`https://placehold.co/800x600/f3f4f6/9ca3af?text=No.\${id}\`;
                     return;
                 }
-                imgElement.src = `${baseURL}${id}-${numStr}.${exts[extIndex]}`;
+                imgElement.src = \`\${baseURL}\${id}-\${numStr}.\${exts[extIndex]}\`;
                 extIndex++;
             }
 
@@ -239,30 +251,26 @@
                 card.className = 'flex flex-col cursor-pointer group';
                 card.onclick = () => openModal(item.id);
 
-                let imgId = `thumb-o-${item.id}`;
+                let imgId = \`thumb-o-\${item.id}\`;
                 
-                card.innerHTML = `
+                card.innerHTML = \`
                     <div class="w-full aspect-[4/3] rounded-lg overflow-hidden shadow-sm border border-gray-200 mb-2 relative bg-gray-50">
-                        <img id="${imgId}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        <img id="\${imgId}" alt="\${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
                         <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition duration-300"></div>
                         
-                        <!-- ★ 마우스 호버 시 왼쪽 위에 나타나는 번호와 제목 ★ -->
                         <div class="absolute top-2 left-2 bg-[#1b315b]/90 text-white text-xs font-bold px-2 py-1.5 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm z-10 shadow text-left max-w-[90%] leading-snug">
-                            No.${item.id} ${item.title}
+                            No.\${item.id} \${item.title}
                         </div>
 
-                        <!-- 하단 갤러리 아이콘 -->
                         <div class="absolute bottom-2 right-2 bg-black/60 text-white text-[10px] px-2 py-0.5 rounded flex items-center gap-1">
                             <i class="far fa-images"></i>
                         </div>
                     </div>
-                    <!-- 기본 제목 (하단 표시) -->
-                    <p class="text-sm font-bold text-gray-800 text-center truncate px-1 group-hover:text-[#3b82f6] transition">${item.title}</p>
-                    <p class="text-[11px] text-gray-500 text-center mt-0.5">${item.date}</p>
-                `;
+                    <p class="text-sm font-bold text-gray-800 text-center truncate px-1 group-hover:text-[#3b82f6] transition">\${item.title}</p>
+                    <p class="text-[11px] text-gray-500 text-center mt-0.5">\${item.date}</p>
+                \`;
                 gridContainer.appendChild(card);
                 
-                // 생성 직후 썸네일 로딩 시도
                 loadThumbnail(document.getElementById(imgId), item.id);
             });
             
@@ -277,7 +285,7 @@
             for (let i = 1; i <= totalPages; i++) {
                 const a = document.createElement('a');
                 a.href = '#';
-                a.className = `page-link ${i === currentPage ? 'active' : ''} rounded`;
+                a.className = \`page-link \${i === currentPage ? 'active' : ''} rounded\`;
                 a.textContent = i;
                 a.onclick = (e) => {
                     e.preventDefault();
@@ -290,14 +298,14 @@
         }
 
         /* 
-         * 팝업창 확장자 자동 탐색 로딩 시스템
+         * ★ 팝업창 확장자 자동 탐색 로딩 시스템 (설명 캡션 추가 기능 포함) ★
          */
         function openModal(id) {
             const data = galleryData.find(n => n.id === id);
             if(!data) return;
 
             document.getElementById('modal-title').textContent = data.title;
-            document.getElementById('modal-date').innerHTML = `<i class="far fa-calendar-alt mr-1"></i> 등록일 : ${data.date}`;
+            document.getElementById('modal-date').innerHTML = \`<i class="far fa-calendar-alt mr-1"></i> 등록일 : \${data.date}\`;
             
             const container = document.getElementById('modal-image-container');
             
@@ -323,7 +331,7 @@
 
                 const currentExt = extsArray.shift();
                 let numStr = index < 10 ? '0' + index : index;
-                let imgUrl = `${baseURL}${id}-${numStr}.${currentExt}`;
+                let imgUrl = \`\${baseURL}\${id}-\${numStr}.\${currentExt}\`;
 
                 let img = document.createElement('img');
                 img.className = "w-full h-auto object-contain rounded";
@@ -333,6 +341,17 @@
                     document.getElementById('loading-msg').style.display = 'none'; 
                     loadedCount++;
                     wrapElement.appendChild(img);
+
+                    // ==========================================
+                    // ★ 사진 설명(캡션) 추가 로직 작동 부분 ★
+                    // ==========================================
+                    if (data.captions && data.captions[index - 1] && data.captions[index - 1].trim() !== '') {
+                        let captionText = data.captions[index - 1].trim();
+                        let p = document.createElement('p');
+                        p.className = "text-center text-sm md:text-base text-gray-800 mt-3 font-medium bg-gray-100 py-2.5 rounded-md";
+                        p.textContent = captionText;
+                        wrapElement.appendChild(p);
+                    }
                 };
                 
                 img.onerror = function() {
@@ -344,7 +363,8 @@
 
             for(let i = 1; i <= maxImages; i++) {
                 let imgWrap = document.createElement('div');
-                imgWrap.className = "bg-white p-2 md:p-3 rounded-lg shadow-sm border border-gray-200 w-full mb-4 hidden"; 
+                // flex flex-col을 추가하여 사진과 글씨가 세로로 예쁘게 정렬되도록 했습니다.
+                imgWrap.className = "bg-white p-2 md:p-3 rounded-lg shadow-sm border border-gray-200 w-full mb-4 hidden flex flex-col"; 
                 container.appendChild(imgWrap);
                 
                 tryLoadModalImage(i, ['jpg', 'png', 'jpeg', 'JPG', 'PNG'], imgWrap);
@@ -369,9 +389,24 @@
             const otherMenu = document.getElementById(otherMenuId);
             if (otherMenu && !otherMenu.classList.contains('hidden')) {
                 otherMenu.classList.add('hidden');
+                const otherIcon = otherMenu.previousElementSibling.querySelector('.fas');
+                if(otherIcon) {
+                    otherIcon.classList.remove('fa-minus');
+                    otherIcon.classList.add('fa-plus');
+                }
             }
             if (targetMenu) {
                 targetMenu.classList.toggle('hidden');
+                const icon = targetMenu.previousElementSibling.querySelector('.fas');
+                if(icon) {
+                    if(targetMenu.classList.contains('hidden')) {
+                        icon.classList.remove('fa-minus');
+                        icon.classList.add('fa-plus');
+                    } else {
+                        icon.classList.remove('fa-plus');
+                        icon.classList.add('fa-minus');
+                    }
+                }
             }
         }
 
