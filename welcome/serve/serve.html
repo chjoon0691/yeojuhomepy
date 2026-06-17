@@ -114,15 +114,45 @@
                 </div>
             </div>
 
-            <!-- 1. 담임목사 -->
+            <!-- 1. 담임목사 (프로필 추가된 디자인) -->
             <section id="cate-1" class="scroll-mt-10">
                 <h4 class="text-xl font-bold text-gray-800 border-b border-gray-200 pb-2 mb-8"><i class="far fa-circle text-gray-500 mr-2 text-lg"></i>담임목사</h4>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8">
-                    <div class="person-card">
+                <div class="flex flex-col md:flex-row gap-8 items-center md:items-start bg-gray-50 p-6 md:p-8 rounded-xl border border-gray-200 shadow-sm">
+                    <!-- Left: Photo -->
+                    <div class="person-card shrink-0">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/조형준담임목사.jpg" alt="조형준 담임목사" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
                         <div class="mt-2">
                             <span class="text-lg font-bold text-gray-900">조형준</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">담임목사</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Right: Profile -->
+                    <div class="flex-1 text-left w-full mt-4 md:mt-0 md:pl-6 md:border-l border-gray-200">
+                        <!-- 학력 -->
+                        <div class="mb-6">
+                            <h5 class="text-[#1b315b] font-bold text-lg mb-3 flex items-center gap-2">
+                                <i class="fas fa-graduation-cap text-[#6b8cba]"></i> 학력
+                            </h5>
+                            <ul class="text-gray-700 leading-relaxed space-y-2 text-[15px] md:text-base">
+                                <li class="flex items-start gap-2"><i class="fas fa-check text-[#78b394] mt-1.5 text-[10px]"></i> <span>서울신학대학교 신학과 (B.A.)</span></li>
+                                <li class="flex items-start gap-2"><i class="fas fa-check text-[#78b394] mt-1.5 text-[10px]"></i> <span>서울신학대학교 신학대학원 (M.Div.2)</span></li>
+                                <li class="flex items-start gap-2"><i class="fas fa-check text-[#78b394] mt-1.5 text-[10px]"></i> <span>미국 Fuller Theological Seminary 선교학 (D.Min-G.M.) 수료</span></li>
+                            </ul>
+                        </div>
+                        
+                        <!-- 목회경력 -->
+                        <div>
+                            <h5 class="text-[#1b315b] font-bold text-lg mb-3 flex items-center gap-2">
+                                <i class="fas fa-church text-[#6b8cba]"></i> 목회경력
+                            </h5>
+                            <ul class="text-gray-700 leading-relaxed space-y-2 text-[15px] md:text-base">
+                                <li class="flex items-start gap-2"><i class="fas fa-check text-[#78b394] mt-1.5 text-[10px]"></i> <span>만리현성결교회 부목사</span></li>
+                                <li class="flex items-start gap-2"><i class="fas fa-check text-[#78b394] mt-1.5 text-[10px]"></i> <span>조치원성결교회 부목사</span></li>
+                                <li class="flex items-start gap-2"><i class="fas fa-check text-[#78b394] mt-1.5 text-[10px]"></i> <span>신촌성결교회 부목사</span></li>
+                                <li class="flex items-start gap-2"><i class="fas fa-check text-[#78b394] mt-1.5 text-[10px]"></i> <span>동산성결교회 담임목사</span></li>
+                                <li class="flex items-start gap-2"><i class="fas fa-check text-[#78b394] mt-1.5 text-[10px]"></i> <span class="font-bold text-[#1b315b]">現, 여주성결교회 담임목사</span></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
