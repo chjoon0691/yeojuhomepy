@@ -65,7 +65,7 @@
                 <ul id="menu-depth2" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
                     <li class="border-b border-gray-100"><a href="building.html" class="block px-4 py-3 text-blue-600 font-bold bg-gray-50">성전건축이야기</a></li>
                     <li class="border-b border-gray-100"><a href="edu_building.html" class="block px-4 py-3 hover:bg-gray-50">교육관건축사진</a></li>
-                    <li><a href="#" class="block px-4 py-3 hover:bg-gray-50">이전홈피사진</a></li>
+                    <li><a href="old_photos.html" class="block px-4 py-3 hover:bg-gray-50">이전 홈피 사진들</a></li>
                 </ul>
             </div>
         </div>
@@ -89,7 +89,7 @@
                         <ul class="py-2 bg-white border-t border-gray-100">
                             <li><a href="building.html" class="block px-8 py-1.5 text-sm text-blue-600 font-bold bg-gray-50 transition">성전건축이야기</a></li>
                             <li><a href="edu_building.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">교육관건축사진</a></li>
-                            <li><a href="#" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">이전 홈페이지 사진들</a></li>
+                            <li><a href="old_photos.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">이전 홈피 사진들</a></li>
                         </ul>
                     </div>
                 </li>
@@ -162,7 +162,7 @@
                     <i class="fas fa-spinner fa-spin text-3xl text-blue-500"></i>
                     <span>사진을 불러오는 중입니다...</span>
                 </div>
-                <!-- JS로 여러 장의 사진이 삽입됩니다 -->
+                <!-- JS로 여러 장의 사진과 설명(캡션)이 삽입됩니다 -->
             </div>
         </div>
     </div>
@@ -201,7 +201,7 @@
         }
 
         /* 
-         * 118개의 전체 데이터 (기존과 동일)
+         * 118개의 전체 데이터 + 9번 게시물 사진 설명(캡션) 추가 완료
          */
         const rawText = `
 118|새성전건축 1층내부모습|2018.11.02
@@ -313,7 +313,7 @@
 12|새 성전건축(지하실공사(2부)(8)|2018.09.19
 11|새 성전건축: 지하실공사(1부)(7)|2018.09.19
 10|새 성전건축(지하실 터파기)(6)|2018.09.19
-9|새 성전 건축 (새성전 기공예배)(5)|2018.09.19
+9|새 성전 건축 (새성전 기공예배)(5)|2018.09.19|세진 건축설계회사 백 사장님께서 조감도 내용을 설명하시다|임창선 여주 군수님께서 축사를...|기독교 연합 회장 최하용 목사님께서 축사
 8|새 성전건축(건설회사 선정)(4)|2018.09.19
 7|새 성전건축(부지 토목공사)(3)|2018.09.19
 6|새 성전건축(토목공사 기공예배)(2)|2018.09.19
@@ -323,12 +323,14 @@
 2|그 때 그 시절 (하리 284번지) 본당 1층을 공사하던 장면|2018.09.13
 1|그 때 그 시절 (하리284 번지) 본당1층 신축위한 옛 예배당 철거장면|2018.09.13`;
 
+        // | 파이프 기호를 기준으로 4번째 항목부터는 캡션(설명)으로 분리하여 저장합니다.
         const buildingData = rawText.trim().split('\n').map(line => {
             const parts = line.split('|');
             return {
                 id: parseInt(parts[0]),
                 title: parts[1],
-                date: parts[2]
+                date: parts[2],
+                captions: parts.slice(3) // 4번째 이후 항목들은 설명 배열로 묶임
             };
         });
 
@@ -420,7 +422,7 @@
         }
 
         /* 
-         * ★ 모달(팝업)에서 다중 이미지 불러오는 함수 (확장자 자동 검색 적용) ★
+         * ★ 모달(팝업)에서 다중 이미지 불러오는 함수 (캡션 추가 기능 탑재) ★
          */
         function openModal(id) {
             const data = buildingData.find(n => n.id === id);
@@ -464,6 +466,17 @@
                     document.getElementById('loading-msg').style.display = 'none'; 
                     loadedCount++;
                     wrapElement.appendChild(img);
+
+                    // ==========================================
+                    // ★ 사진 설명(캡션) 추가 로직 작동 부분 ★
+                    // ==========================================
+                    if (data.captions && data.captions[index - 1] && data.captions[index - 1].trim() !== '') {
+                        let captionText = data.captions[index - 1].trim();
+                        let p = document.createElement('p');
+                        p.className = "text-center text-sm md:text-base text-gray-800 mt-3 font-medium bg-gray-100 py-2.5 rounded-md";
+                        p.textContent = captionText;
+                        wrapElement.appendChild(p);
+                    }
                 };
                 
                 img.onerror = function() {
@@ -477,7 +490,7 @@
             for(let i = 1; i <= maxImages; i++) {
                 let imgWrap = document.createElement('div');
                 // 사진이 세로로 찌그러지지 않고 잘 나오도록 패딩과 디자인 적용
-                imgWrap.className = "bg-white p-2 md:p-3 rounded-lg shadow-sm border border-gray-200 w-full mb-4 hidden"; 
+                imgWrap.className = "bg-white p-2 md:p-3 rounded-lg shadow-sm border border-gray-200 w-full mb-4 hidden flex flex-col"; 
                 container.appendChild(imgWrap);
                 
                 // jpg, png, jpeg 순서로 시도하도록 배열 전송
