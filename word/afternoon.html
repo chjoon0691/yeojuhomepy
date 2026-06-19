@@ -75,7 +75,7 @@
             <ul class="border border-t-0 border-gray-200 flex flex-col">
                 <li class="border-b border-gray-200 group">
                     <a href="sunday.html" class="flex justify-between items-center px-5 py-3 text-[#3b82f6] font-bold bg-gray-50 hover:bg-gray-100 transition">
-                        말씀 <i class="fas fa-chevron-down text-xs text-[#3b82f6] group-hover:rotate-180 transition-transform duration-300"></i>
+                        말씀 <i class="fas fa-chevron-down text-xs text-gray-400 group-hover:rotate-180 transition-transform duration-300"></i>
                     </a>
                     <div class="max-h-0 overflow-hidden group-hover:max-h-48 transition-all duration-500 ease-in-out">
                         <ul class="py-2 bg-white border-t border-gray-100">
@@ -119,15 +119,16 @@
                 </div>
             </div>
 
-            <!-- PC Version Table (사진 영역 추가됨) -->
-            <table class="hidden md:table w-full text-center text-sm md:text-base border-t-2 border-gray-500 table-fixed mt-4">
+            <!-- PC Version Table (유튜브 링크 아이콘인 '보기' 영역 추가) -->
+            <table class="hidden md:table w-full text-center text-sm md:text-base border-t-2 border-gray-800 table-fixed mt-4">
                 <colgroup>
-                    <col class="w-[8%]">
-                    <col class="w-[18%]">
+                    <col class="w-[6%]">
+                    <col class="w-[14%]">
                     <col class="w-[30%]">
                     <col class="w-[20%]">
                     <col class="w-[12%]">
-                    <col class="w-[12%]">
+                    <col class="w-[10%]">
+                    <col class="w-[8%]">
                 </colgroup>
                 <thead class="bg-gray-700 text-white font-bold border-b border-gray-300">
                     <tr>
@@ -136,11 +137,12 @@
                         <th class="py-3 px-4 text-left">제목</th>
                         <th class="py-3 px-2">본문</th>
                         <th class="py-3 px-2">설교자</th>
-                        <th class="py-3 px-2 text-gray-300 hover:text-white cursor-pointer transition">날짜 <i class="fas fa-sort text-[10px]"></i></th>
+                        <th class="py-3 px-2">날짜</th>
+                        <th class="py-3 px-2">보기</th>
                     </tr>
                 </thead>
                 <tbody id="sermon-list-pc" class="text-gray-600">
-                    <!-- JS로 데이터 삽입 -->
+                    <!-- 구글 시트 데이터가 로딩됩니다 -->
                 </tbody>
             </table>
 
@@ -151,7 +153,7 @@
                     <div class="flex-1 text-center">설교 영상 목록</div>
                 </div>
                 <div id="sermon-list-mobile-body">
-                    <!-- JS로 데이터 삽입 -->
+                    <!-- 구글 시트 데이터가 로딩됩니다 -->
                 </div>
             </div>
 
@@ -167,103 +169,72 @@
     <div id="common-sitemap"></div>
 
     <script>
-        // 목사님께서 올려주신 86개의 완벽한 데이터입니다!
-        const sermonData = [
-            { id: 86, title: "[2권사회 헌신예배] 주님의 행하심대로", text: "요한1서 2:1-6", preacher: "김대희 목사", date: "2026.06.14" },
-            { id: 85, title: "[1권사회 헌신예배] CHRISTIAN-Holy, 거룩의 사람(2)", text: "베드로전서 1:15-16", preacher: "이정욱 목사", date: "2026.06.07" },
-            { id: 84, title: "[연합구역예배] 혼자인 시대, 함께 살아가는 사랑 공동체", text: "에베소서 4:13-16", preacher: "한신희 목사", date: "2026.05.31" },
-            { id: 83, title: "[2남전도회 헌신예배] 살아있는 믿음, 큰 믿음으로", text: "마태복음 17:14-20", preacher: "한신희 목사", date: "2026.05.24" },
-            { id: 82, title: "[교사헌신예배] 하나님은 잊지 않으십니다.", text: "히브리서 6:10", preacher: "김대희 목사", date: "2026.05.17" },
-            { id: 81, title: "[ON가족찬양제] 함께 찬양하라", text: "골로새서 3:16-17", preacher: "조형준 목사", date: "2026.05.10" },
-            { id: 80, title: "[1남전도회 헌신예배] 빛 속에 사는 삶", text: "요한1서 1:5-10", preacher: "김대희 목사", date: "2026.05.03" },
-            { id: 79, title: "[22여전도회 헌신예배] CHRISTIAN-holy 거룩의 사람", text: "베드로전서 1:15-16", preacher: "이정욱 목사", date: "2026.04.19" },
-            { id: 78, title: "[21여전도회 헌신예배] 하나님의 뜻을 힘써 좇는 삶", text: "요한복음 6:1-15", preacher: "한신희 목사", date: "2026.04.12" },
-            { id: 77, title: "[연합구역예배] 기도로 변화 됩니다", text: "야고보서 5:15-16", preacher: "김대희 전도사", date: "2026.03.29" },
-            { id: 76, title: "[새가족위원회 헌신예배] 바라 \"봄\"", text: "마가복음 2:14-17", preacher: "강희경 전도사", date: "2026.03.22" },
-            { id: 75, title: "[전도대헌신예배] 증인이어야 합니다", text: "사도행전 1:8", preacher: "이정욱 목사", date: "2026.03.15" },
-            { id: 74, title: "[20여전도회 헌신예배] 때가 되면 거둡니다", text: "갈라디아서 6:8-10", preacher: "김대희 전도사", date: "2026.03.08" },
-            { id: 73, title: "[10,11 남전도회 헌신예배] CHRISTIAN-change 변화된사람(2)", text: "사도행전 11:26, 베드로전서 2:10", preacher: "이정욱 목사", date: "2026.03.01" },
-            { id: 72, title: "[남·여전도회장단 헌신예배] CHRISTIAN-change 변화된 사람", text: "사도행전 11:26, 베드로전서 2:10", preacher: "이정욱 목사", date: "2026.02.01" },
-            { id: 71, title: "[연합구역예배] 돌봄과 치유가 있는 사랑 공동체", text: "에베소서 4:13", preacher: "한신희 목사", date: "2026.01.25" },
-            { id: 70, title: "[비전트립 파송예배] 그런 교회가 되게 하소서", text: "사도행전 13:1-3", preacher: "조형준 목사", date: "2026.01.18" },
-            { id: 69, title: "[교구장·구역장 헌신예배] 네 자신같이 사랑하라", text: "누가복음 10:30-37", preacher: "이강섭 목사", date: "2026.01.11" },
-            { id: 68, title: "[임직자 헌신예배] 새해에도 주님과 함께", text: "창세기 39:19-23", preacher: "강광수 목사", date: "2026.01.04" },
-            { id: 67, title: "[진급예배] 하나님의 자녀들이 있어야 할 곳", text: "시편 16:6", preacher: "이정욱 목사", date: "2025.12.28" },
-            { id: 66, title: "[연합구역예배] 영원히 다스리시는 하나님", text: "시편 146:1-10", preacher: "조형준 목사", date: "2025.12.21" },
-            { id: 65, title: "[대한성서공회 선교예배] 복음의 능력", text: "로마서 1:14-17", preacher: "박창백 목사", date: "2025.12.14" },
-            { id: 64, title: "[연합구역예배] 좋은 일을 행하는 손들", text: "느헤미야 2:1-20", preacher: "조형준 목사", date: "2025.11.23" },
-            { id: 63, title: "[기도원협회장캠프 순회헌신예배] 흩어진 복음, 살아나는 생명", text: "사도행전 8:4-6", preacher: "조형준 목사", date: "2025.11.09" },
-            { id: 62, title: "[17여전도회 헌신예배] 한 해, 승리의 비책(6)", text: "역대하 20:31-37", preacher: "한신희 목사", date: "2025.11.02" },
-            { id: 61, title: "[연합구역예배] 유월절을 지키라", text: "역대하 30:1-12", preacher: "조형준 목사", date: "2025.10.26" },
-            { id: 60, title: "[16여전도회 헌신예배] 최선의 거룩", text: "레위기 22:31-33", preacher: "김대희 전도사", date: "2025.10.19" },
-            { id: 59, title: "[15여전도회 헌신예배] 하나님이 도우신 사람, 아브라함", text: "창세기 15:1-7", preacher: "이정욱 목사", date: "2025.10.12" },
-            { id: 58, title: "[8·9 남전도회 헌신예배] 거룩을 이루는 삶", text: "레위기 19:2", preacher: "김대희 전도사", date: "2025.09.14" },
-            { id: 57, title: "[14 여전도회 헌신예배] 날마다 개혁하는 신앙", text: "느헤미야 13:4-9", preacher: "이정욱 목사", date: "2025.09.07" },
-            { id: 56, title: "[13여전도회 헌신예배] 한해, 승리의 비책 5", text: "역대하 20:24-30", preacher: "한신희 목사", date: "2025.08.31" },
-            { id: 55, title: "[여름연합구역예배] 여호와께 성결", text: "스가랴 14:12-21", preacher: "조형준 목사", date: "2025.08.24" },
-            { id: 54, title: "[여름연합구역예배] 은혜를 작정하신 하나님", text: "스가랴 8:14-23", preacher: "조형준 목사", date: "2025.08.17" },
-            { id: 53, title: "[여름연합구역예배] 내가 속히 오리라", text: "요한계시록 22:6-21", preacher: "조형준 목사", date: "2025.08.10" },
-            { id: 52, title: "[여름연합구역예배] 새 하늘과 새 땅", text: "요한계시록 21:1-8", preacher: "조형준 목사", date: "2025.08.03" },
-            { id: 51, title: "[여름연합구역예배] 세상과 타협하지 않는 사람들", text: "요한계시록 14:1-13", preacher: "조형준 목사", date: "2025.07.27" },
-            { id: 50, title: "[12 여전도회 헌신예배] 거룩한 보혈", text: "레위기 17:11", preacher: "김대희 전도사", date: "2025.07.20" },
-            { id: 49, title: "[교육부서 헌신예배 청년부 파송예배] 여호수아처럼", text: "여호수아 1:1-6", preacher: "조형준 목사", date: "2025.07.13" },
-            { id: 48, title: "[7 남전도회 헌신예배] 즐거워하는 예배자", text: "느헤미야 12:43", preacher: "이정욱 목사", date: "2025.07.06" },
-            { id: 47, title: "[연합구역예배] 영원한 언약", text: "역대상 17:1-15", preacher: "조형준 목사", date: "2025.06.22" },
-            { id: 46, title: "[11 여전도회 헌신예배] 한해 승리의 비책4", text: "역대하 20:20-23", preacher: "한신희 목사", date: "2025.06.15" },
-            { id: 45, title: "[10 여전도회 헌신예배] 거룩함을 위한 거리", text: "레위기 13:1-8", preacher: "김대희 전도사", date: "2025.06.08" },
-            { id: 44, title: "[6 남전도회 헌신예배] 부르심을 아는 사람들", text: "느헤미야 11:1-2", preacher: "이정욱 목사", date: "2025.06.01" },
-            { id: 43, title: "[연합구역예배] 생명을 구하는 조서", text: "에스더 8:1-17", preacher: "조형준 목사", date: "2025.05.25" },
-            { id: 42, title: "[교사헌신예배] 너는 결코 타지 않는다", text: "출애굽기 3:1-4", preacher: "유환영 전도사", date: "2025.05.18" },
-            { id: 41, title: "[8,9 여전도회 헌신예배] 행복을 주는 교회", text: "사도행전 2:46-47", preacher: "한신희 목사", date: "2025.05.11" },
-            { id: 40, title: "[5남전도회 헌신예배] 하나님의 거룩을 나타내는 삶", text: "레위기 11:44-45", preacher: "김대희 전도사", date: "2025.05.04" },
-            { id: 39, title: "[연합구역예배] 더디 믿는 자들이여", text: "누가복음 24:13-35", preacher: "조형준 목사", date: "2025.04.27" },
-            { id: 38, title: "[6,7여전도회 헌신예배] 스스로 정한 약속들", text: "느헤미야 10:28-29", preacher: "이정욱 목사", date: "2025.04.13" },
-            { id: 37, title: "[4남전도회 헌신예배] 한해, 승리의 비책 3", text: "역대하 20:14-19", preacher: "한신희 목사", date: "2025.04.06" },
-            { id: 36, title: "[연합구역예배] 은혜가 못마땅한가?", text: "누가복음 15:11-32", preacher: "조형준 목사", date: "2025.03.30" },
-            { id: 35, title: "[4,5여전도회 헌신예배] 속죄와 속건의 예배", text: "레위기 5:14-18", preacher: "김대희 전도사", date: "2025.03.23" },
-            { id: 34, title: "[2여전도회 헌신예배] 부흥을 경험한 사람들", text: "느헤미야 9:1-5", preacher: "이정욱 목사", date: "2025.03.16" },
-            { id: 33, title: "[1,3여전도회 헌신예배] 한해, 승리의 비책(2)", text: "역대하 20:5-13", preacher: "한신희 목사", date: "2025.03.09" },
-            { id: 32, title: "[3남전도회 헌신예배] 화목을 이루는 예배", text: "레위기 3:1-5", preacher: "김대희 전도사", date: "2025.03.02" },
-            { id: 31, title: "[연합구역예배] 새 포도주는 새 부대에", text: "누가복음 5:27-39", preacher: "조형준 목사", date: "2025.02.23" },
-            { id: 30, title: "[2권사회 헌신예배] 절실한 부흥", text: "느헤미야 8:1-6", preacher: "이정욱 목사", date: "2025.02.16" },
-            { id: 29, title: "[1권사회 헌신예배] 한해, 승리의 비책(1)", text: "역대하 20:1-4", preacher: "한신희 목사", date: "2025.02.09" },
-            { id: 28, title: "[1,2남전도회 헌신예배] 온전한 순종의 제사", text: "레위기 1:1-9", preacher: "김대희 전도사", date: "2025.02.02" },
-            { id: 27, title: "[남여전도회 헌신예배] 지금이 힘입니다", text: "느헤미야 8:9-10", preacher: "박문일 목사(매곡교회, 지방회장)", date: "2025.01.19" },
-            { id: 26, title: "[교구장 구역장 헌신예배] 손가락으로 쓴 글씨", text: "요한복음 8:4-11", preacher: "여성삼 목사(천호동교회 원로)", date: "2025.01.12" },
-            { id: 25, title: "[임직자 헌신예배] 영광입니다", text: "에베소서 3:13", preacher: "최상희 목사(조치원 원로)", date: "2025.01.05" },
-            { id: 24, title: "[교회학교 진급예배] 아름다운 성장", text: "누가복음 2:52", preacher: "조형준 목사", date: "2024.12.29" },
-            { id: 23, title: "[주일오후예배] 핑계대는 사람들", text: "마태복음 6:33", preacher: "이정욱 목사", date: "2024.12.15" },
-            { id: 22, title: "[주일오후예배] 건강한 먹거리", text: "시편 37:1-3", preacher: "강희경 전도사", date: "2024.12.08" },
-            { id: 21, title: "[대림절 찬양 축제] 대림절 찬양 축제", text: "-", preacher: "바이올리니스트 박지혜 자매", date: "2024.12.01" },
-            { id: 20, title: "[주일오후예배] 신앙을 유지시키는 힘", text: "느헤미야 7:1-4", preacher: "이정욱 목사", date: "2024.11.24" },
-            { id: 19, title: "[주일오후예배] 하나님께서 역전 시키십니다", text: "로마서 12:14-21", preacher: "윤남철 목사", date: "2024.11.17" },
-            { id: 18, title: "[주일오후예배] 믿음을 통해 도약하라", text: "야고보서 1:2-8", preacher: "한신희 목사", date: "2024.11.03" },
-            { id: 17, title: "[주일오후예배] 주님 말씀하시면", text: "요나 1:1-4", preacher: "김신근 선교사(필리핀)", date: "2024.10.27" },
-            { id: 16, title: "[주일오후예배] 그리스도로 옷 입은 우리", text: "갈라디아서 3:23-29", preacher: "윤남철 목사", date: "2024.10.20" },
-            { id: 15, title: "[주일오후예배] 내 손을 힘있게 하옵소서", text: "느헤미야 6:1-11", preacher: "이정욱 목사", date: "2024.10.13" },
-            { id: 14, title: "[주일오후예배] 가치 회복", text: "창세기 25:27-34", preacher: "한신희 목사", date: "2024.10.06" },
-            { id: 13, title: "[주일오후예배] 하나되는 기쁨", text: "요한복음 17:9-14", preacher: "윤남철 목사", date: "2024.09.29" },
-            { id: 12, title: "[주일오후예배] 영적 싸움의 원리", text: "느헤미야 4:7-14", preacher: "이정욱 목사", date: "2024.09.08" },
-            { id: 11, title: "[주일오후예배] 바벨론, 영원한 폐허가 되리라", text: "예레미야 51:54-64", preacher: "조형준 목사", date: "2024.08.25" },
-            { id: 10, title: "[주일오후예배] 다시 돌아가게 하리라", text: "예레미야 50:11-20", preacher: "조형준 목사", date: "2024.08.18" },
-            { id: 9, title: "[주일오후예배] 애굽이여, 망하였도다", text: "예레미야 46:13-28", preacher: "조형준 목사", date: "2024.08.11" },
-            { id: 8, title: "[주일오후예배] 애굽으로 내려가지 말라", text: "예레미야 42:15-22", preacher: "조형준 목사", date: "2024.08.04" },
-            { id: 7, title: "[주일오후예배] 순종으로 그려야 할 미래", text: "예레미야 37:1-10", preacher: "조형준 목사", date: "2024.07.28" },
-            { id: 6, title: "[주일오후예배] 여호와께서 네 고통을 들으셨음이니라", text: "창세기 16:7-16", preacher: "한신희 목사", date: "2024.07.21" },
-            { id: 5, title: "[주일오후예배] 예수님이 주시는 완벽한 힐링", text: "사도행전 4:5-10", preacher: "윤남철 목사", date: "2024.07.14" },
-            { id: 4, title: "[주일오후예배] 후원자가 되어 주세요", text: "누가복음 23:28", preacher: "조형준 목사", date: "2024.07.07" },
-            { id: 3, title: "[주일오후예배] 비난을 뛰어넘는 용기", text: "느헤미야 4:1-6", preacher: "이정욱 목사", date: "2024.06.30" },
-            { id: 2, title: "[주일오후예배] 합리적인 생각", text: "창세기 16:1-4", preacher: "한신희 목사", date: "2024.06.16" },
-            { id: 1, title: "[주일오후예배] 함께 일어나 건축하여", text: "느헤미야 3:1-4", preacher: "이정욱 목사", date: "2024.06.09" }
-        ];
+        // 목사님께서 올려주신 '주일오후예배' 엑셀 연동 링크입니다!
+        const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTmNPl7QMOdRz4v6O0kYga96lCTM8t2xeDwVepsmdUtBfiXyTz4jVmJ_meq0fP0ENusdnKxfHpPjTrJ/pub?gid=0&single=true&output=csv";
 
+        let formattedData = [];
         const itemsPerPage = 12; // 사진이 포함되어 세로로 길어지므로 12개씩 보여줍니다.
         let currentPage = 1;
+
+        // CSV 글씨 분리 함수
+        function parseCSV(str) {
+            const arr = [];
+            let quote = false;
+            let col, c;
+            for (let row = col = c = 0; c < str.length; c++) {
+                let cc = str[c], nc = str[c+1];
+                arr[row] = arr[row] || [];
+                arr[row][col] = arr[row][col] || '';
+                if (cc == '"' && quote && nc == '"') { arr[row][col] += cc; ++c; continue; }
+                if (cc == '"') { quote = !quote; continue; }
+                if (cc == ',' && !quote) { ++col; continue; }
+                if (cc == '\r' && nc == '\n' && !quote) { ++row; col = 0; ++c; continue; }
+                if (cc == '\n' && !quote) { ++row; col = 0; continue; }
+                if (cc == '\r' && !quote) { ++row; col = 0; continue; }
+                arr[row][col] += cc;
+            }
+            return arr;
+        }
+
+        // 구글 엑셀 실시간 읽어오기
+        async function loadData() {
+            try {
+                document.getElementById('sermon-list-pc').innerHTML = '<tr><td colspan="7" class="py-10 text-center text-gray-500"><i class="fas fa-spinner fa-spin mr-2"></i>데이터를 불러오는 중입니다...</td></tr>';
+                document.getElementById('sermon-list-mobile-body').innerHTML = '<div class="py-10 text-center text-gray-500"><i class="fas fa-spinner fa-spin mr-2"></i>불러오는 중...</div>';
+
+                const response = await fetch(csvUrl);
+                const csvText = await response.text();
+                
+                const rows = parseCSV(csvText);
+                rows.shift(); // 첫 번째 줄(제목) 제거
+
+                formattedData = rows.map(row => {
+                    let rawLink = (row[5] || '').trim();
+                    return {
+                        id: parseInt(row[0] || 0),
+                        title: (row[1] || '').trim(),
+                        text: (row[2] || '').trim(),
+                        preacher: (row[3] || '').trim(),
+                        date: (row[4] || '').trim(),
+                        link: rawLink.length > 5 ? rawLink : '#'
+                    };
+                }).filter(item => item.title !== '' && !isNaN(item.id));
+
+                // 번호가 가장 큰(최신) 순서대로 정렬
+                formattedData.sort((a, b) => b.id - a.id);
+
+                renderTable(currentPage);
+
+            } catch (error) {
+                console.error("데이터 로딩 에러:", error);
+                document.getElementById('sermon-list-pc').innerHTML = '<tr><td colspan="7" class="py-10 text-center text-red-500">데이터를 불러올 수 없습니다.</td></tr>';
+            }
+        }
 
         function renderTable(page) {
             const startIndex = (page - 1) * itemsPerPage;
             const endIndex = startIndex + itemsPerPage;
-            const pageData = sermonData.slice(startIndex, endIndex);
+            const pageData = formattedData.slice(startIndex, endIndex);
 
             const pcTbody = document.getElementById('sermon-list-pc');
             const mobileContainer = document.getElementById('sermon-list-mobile-body');
@@ -288,12 +259,18 @@
                 // 1. PC 테이블 렌더링
                 const tr = document.createElement('tr');
                 tr.className = 'border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer group h-24';
-                tr.onclick = () => { if(item.link !== '#') window.open(item.link, '_blank'); };
+                if(item.link !== '#') {
+                    tr.onclick = (e) => {
+                        if(!e.target.closest('a') && !e.target.closest('button')) {
+                            window.open(item.link, '_blank');
+                        }
+                    };
+                }
                 
                 tr.innerHTML = `
                     <td class="py-3 text-gray-400 font-medium">${item.id}</td>
                     <td class="py-3 px-2">
-                        <!-- 마법의 썸네일 박스 (그림 없이 CSS로 그림 느낌 내기) -->
+                        <!-- 마법의 썸네일 박스 -->
                         <div class="thumb-bg w-full h-16 rounded overflow-hidden flex flex-col justify-center items-center shadow-sm">
                             <i class="fas fa-cross text-white/80 text-xs mb-0.5 relative z-10"></i>
                             <span class="text-white font-extrabold text-[10px] sm:text-xs relative z-10 px-1 truncate w-full text-center tracking-tight">${tag}</span>
@@ -306,13 +283,20 @@
                     <td class="py-3 text-[13px] md:text-sm text-gray-600">${item.text}</td>
                     <td class="py-3 text-gray-800 font-medium text-[13px] md:text-sm">${item.preacher}</td>
                     <td class="py-3 text-[13px] md:text-sm text-gray-500">${item.date}</td>
+                    <td class="py-3">
+                        ${item.link !== '#' 
+                            ? `<a href="${item.link}" target="_blank" class="bg-[#5c5c5c] hover:bg-[#1b315b] text-white rounded w-8 h-6 flex items-center justify-center mx-auto transition"><i class="fas fa-tv text-xs"></i></a>` 
+                            : `<button class="bg-[#e5e7eb] text-gray-400 cursor-not-allowed rounded w-8 h-6 flex items-center justify-center mx-auto"><i class="fas fa-tv text-xs"></i></button>`}
+                    </td>
                 `;
                 pcTbody.appendChild(tr);
 
                 // 2. 모바일 리스트 렌더링
                 const mDiv = document.createElement('div');
                 mDiv.className = 'flex border-b border-gray-200 py-3 hover:bg-gray-50 transition cursor-pointer items-center px-2';
-                mDiv.onclick = () => { if(item.link !== '#') window.open(item.link, '_blank'); };
+                if(item.link !== '#') {
+                    mDiv.onclick = () => window.open(item.link, '_blank');
+                }
                 
                 mDiv.innerHTML = `
                     <div class="w-10 text-center text-gray-400 text-sm shrink-0">${item.id}</div>
@@ -323,12 +307,15 @@
                         </div>
                     </div>
                     <div class="flex-1 pr-2 relative overflow-hidden">
-                        <div class="text-gray-900 text-[14px] font-bold mb-1 truncate leading-snug">${mainTitle}</div>
+                        <div class="text-gray-900 text-[14px] font-bold mb-1 truncate leading-snug pr-6">${mainTitle}</div>
                         <div class="text-gray-500 text-[12px] flex flex-wrap gap-x-2 gap-y-0.5 mb-0.5 leading-tight">
                             <span class="truncate max-w-full">${item.text}</span>
                             <span class="text-gray-700 font-medium">${item.preacher}</span>
                         </div>
                         <div class="text-gray-400 text-[11px]">${item.date}</div>
+                        ${item.link !== '#' 
+                            ? `<div class="absolute top-1/2 right-1 -translate-y-1/2 text-gray-400"><i class="fas fa-tv text-lg"></i></div>` 
+                            : `<div class="absolute top-1/2 right-1 -translate-y-1/2 text-gray-200"><i class="fas fa-tv text-lg"></i></div>`}
                     </div>
                 `;
                 mobileContainer.appendChild(mDiv);
@@ -338,7 +325,7 @@
         }
 
         function renderPagination() {
-            const totalPages = Math.ceil(sermonData.length / itemsPerPage);
+            const totalPages = Math.ceil(formattedData.length / itemsPerPage);
             const paginationContainer = document.getElementById('pagination');
             paginationContainer.innerHTML = '';
 
@@ -358,7 +345,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            renderTable(currentPage);
+            loadData();
         });
     </script>
     <script>const ROOT_PATH = "../";</script>
