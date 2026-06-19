@@ -14,6 +14,8 @@
             background-color: #ffffff;
             overflow-x: hidden;
         }
+        #mobile-menu { display: none; }
+        #mobile-menu.open { display: flex; }
         /* 게시판 하단 페이지네이션 스타일 */
         .page-link {
             display: inline-flex;
@@ -102,13 +104,13 @@
 
     <div class="max-w-7xl mx-auto px-4 py-12 md:py-20 flex flex-col md:flex-row gap-10">
         
-        <!-- Left Sidebar (아코디언 마우스 오버 효과 적용) -->
+        <!-- Left Sidebar -->
         <aside class="hidden md:block w-64 flex-shrink-0">
             <div class="bg-[#6b8cba] text-white text-center py-4 text-xl font-bold rounded-t-lg">
                 말씀과 찬양
             </div>
             <ul class="border border-t-0 border-gray-200 flex flex-col">
-                <!-- 말씀 (Collapsed, expands on hover. 특별집회 is highlighted) -->
+                <!-- 말씀 -->
                 <li class="border-b border-gray-200 group">
                     <a href="sunday.html" class="flex justify-between items-center px-5 py-3 text-[#3b82f6] font-bold bg-gray-50 transition">
                         말씀 <i class="fas fa-chevron-down text-xs text-[#3b82f6] group-hover:rotate-180 transition-transform duration-300"></i>
@@ -122,21 +124,11 @@
                         </ul>
                     </div>
                 </li>
-                <!-- 찬양대/중창단 (Collapsed by default, expands on hover) -->
+                <!-- 찬양대/중창단 -->
                 <li class="border-b border-gray-200 group">
                     <a href="praise.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">
                         찬양대/중창단 <i class="fas fa-chevron-down text-xs text-gray-400 group-hover:rotate-180 transition-transform duration-300"></i>
                     </a>
-                    <div class="max-h-0 overflow-hidden group-hover:max-h-64 transition-all duration-500 ease-in-out">
-                        <ul class="py-2 bg-white border-t border-gray-100">
-                            <li><a href="praise.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">시온찬양대</a></li>
-                            <li><a href="hallelujah.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">할렐루야찬양대</a></li>
-                            <li><a href="dreamnlove.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">꿈과사랑의찬양대</a></li>
-                            <li><a href="silver.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">은빛찬양대</a></li>
-                            <li><a href="sundayoffering.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">주일봉헌찬양</a></li>
-                            <li><a href="special.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">특별찬양</a></li>
-                        </ul>
-                    </div>
                 </li>
                 <!-- 여주미디어 -->
                 <li>
@@ -155,25 +147,54 @@
                 <h3 class="text-2xl md:text-3xl font-extrabold relative z-10 tracking-tight">특별집회</h3>
             </div>
 
-            <div class="flex justify-end mb-6 border-b border-gray-200 pb-4">
+            <div class="flex justify-end mb-4 border-b border-gray-200 pb-4">
                 <div class="flex border border-gray-300 rounded shadow-sm overflow-hidden bg-white">
-                    <select class="px-3 py-1.5 text-sm md:text-base border-r border-gray-300 text-gray-700 focus:outline-none bg-gray-50 cursor-pointer">
-                        <option>최신순</option>
-                    </select>
                     <select class="px-3 py-1.5 text-sm md:text-base border-r border-gray-300 text-gray-700 focus:outline-none bg-gray-50 cursor-pointer">
                         <option>제목</option>
                         <option>설교자</option>
+                        <option>본문</option>
                     </select>
                     <input type="text" class="px-3 py-1.5 text-sm md:text-base w-32 md:w-48 focus:outline-none" placeholder="검색어 입력">
-                    <button class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-1.5 text-sm md:text-base border-l border-gray-600 transition font-bold">
-                        검색
+                    <button class="bg-gray-100 hover:bg-gray-200 text-gray-600 px-4 py-1.5 text-sm md:text-base border-l border-gray-300 transition">
+                        <i class="fas fa-search"></i>
                     </button>
                 </div>
             </div>
 
-            <!-- 그리드 형태의 집회 목록 -->
-            <div id="event-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                <!-- JS가 데이터를 밀어넣을 공간 -->
+            <!-- PC Version Table -->
+            <table class="hidden md:table w-full text-center text-sm md:text-base border-t-2 border-gray-800 table-fixed">
+                <colgroup>
+                    <col class="w-[8%]">
+                    <col class="w-[36%]">
+                    <col class="w-[24%]">
+                    <col class="w-[12%]">
+                    <col class="w-[12%]">
+                    <col class="w-[8%]">
+                </colgroup>
+                <thead class="bg-gray-50 text-gray-700 font-bold border-b border-gray-300">
+                    <tr>
+                        <th class="py-3 px-2">번호</th>
+                        <th class="py-3 px-4 text-left">제목</th>
+                        <th class="py-3 px-2">본문</th>
+                        <th class="py-3 px-2">설교자</th>
+                        <th class="py-3 px-2 text-gray-500">날짜 <i class="fas fa-sort text-[10px]"></i></th>
+                        <th class="py-3 px-2">보기</th>
+                    </tr>
+                </thead>
+                <tbody id="sermon-list-pc" class="text-gray-600">
+                    <!-- 구글 시트 데이터가 로딩됩니다 -->
+                </tbody>
+            </table>
+
+            <!-- Mobile Version List -->
+            <div class="md:hidden block w-full border-t-2 border-gray-800">
+                <div class="flex bg-gray-50 text-gray-700 font-bold border-b border-gray-300 py-3 text-sm">
+                    <div class="w-16 text-center">번호</div>
+                    <div class="flex-1 text-center">제목</div>
+                </div>
+                <div id="sermon-list-mobile-body">
+                    <!-- 구글 시트 데이터가 로딩됩니다 -->
+                </div>
             </div>
 
             <!-- 페이지네이션 -->
@@ -188,80 +209,139 @@
     <div id="common-sitemap"></div>
 
     <script>
-        // 목사님께서 올려주신 30개의 특별집회 데이터
-        const eventData = [
-            { date: "2026-04-05", title: "일으키신 하나님", desc: "이용혁 목사 / 골로새서 2:12", img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-            { date: "2025-11-30", title: "2025 대림절 찬양축제", desc: " / ", img: "https://images.unsplash.com/photo-1512138664757-360e0aad5132?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-            { date: "2025-11-16", title: "꿈&사랑 어울림 작은 ...", desc: "조형준 목사 / 시편 150:1-6", img: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-            { date: "2025-09-21", title: "주여! 부흥을 주시옵소서", desc: "김우곤 목사 / 다니엘 12:3", img: "https://images.unsplash.com/photo-1438283173091-5dbf5c5a3206?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-            { date: "2025-08-22", title: "2025 다음세대를 위한...", desc: "최현목사(달빛교회) / 에베소서 4:1...", img: "https://images.unsplash.com/photo-1529390079861-591de354faf5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-            { date: "2025-07-02", title: "2025 여주시부흥대성...", desc: "임학순 목사(대원교회) / 로마서 12...", img: "https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-            { date: "2025-07-01", title: "2025 여주시부흥대성...", desc: "임학순 목사(대원교회) / 이사야 11...", img: "https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-            { date: "2025-06-30", title: "2025 여주시부흥대성...", desc: "임학순 목사(대원교회) / 에베소서 ...", img: "https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-            { date: "2025-06-29", title: "2025 여주시부흥대성...", desc: "임학순 목사(대원교회) / 시편 90:1...", img: "https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-            { date: "2025-05-07", title: "2025 수요전도집회4 ...", desc: "오세헌 목사(대명교회) / 고린도전...", img: "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-            { date: "2025-04-30", title: "2025 수요전도집회3 ...", desc: "정경원 목사(송정교회) / 마태복음 ...", img: "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-            { date: "2025-04-23", title: "2025 수요전도집회2 ...", desc: "주상운 목사(진가교회) / 요한복음 ...", img: "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-            
-            { date: "2025-04-20", title: "2025 부활절 연합새벽...", desc: "유영설 목사 / 마가복음 16:1-4, 누...", img: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-            { date: "2025-04-18", title: "다 이루었다", desc: "조형준 담임목사 / 요한복음 19:30", img: "https://images.unsplash.com/photo-1560566373-c39719391af1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-            { date: "2025-04-17", title: "내가 목마르다", desc: "조형준 담임목사 / 요한복음 19:28...", img: "https://images.unsplash.com/photo-1560566373-c39719391af1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-            
-            { date: "2025-04-16", title: "여자여 보소서 아들이...", desc: "조형준 담임목사 / 요한복음 19:25...", img: "https://images.unsplash.com/photo-1560566373-c39719391af1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-            { date: "2025-04-15", title: "나와 함께 낙원에 있으...", desc: "조형준 담임목사 / 누가복음 23:39-43", img: "https://images.unsplash.com/photo-1560566373-c39719391af1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-            { date: "2025-04-14", title: "2025 고난주간 특별새...", desc: "조형준 담임목사 / 누가복음 23:34...", img: "https://images.unsplash.com/photo-1560566373-c39719391af1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-            { date: "2025-04-09", title: "전도를 잘하는 교회", desc: "이정재목사(대포리교회) / 사도행...", img: "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-            { date: "2025-02-28", title: "2025 다음세대 비전기...", desc: "오준혁 목사(콜링교회) / 여호수아 ...", img: "https://images.unsplash.com/photo-1529390079861-591de354faf5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-            { date: "2025-01-10", title: "성전에서의 은혜를 경...", desc: "조형준 담임목사 / 이사야 6:1-8", img: "https://images.unsplash.com/photo-1438283173091-5dbf5c5a3206?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-            { date: "2025-01-09", title: "가정을 살리는 예배를 ...", desc: "조형준 담임목사 / 사도행전 1:12-14", img: "https://images.unsplash.com/photo-1438283173091-5dbf5c5a3206?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-            { date: "2025-01-08", title: "가정을 살리는 예배를 ...", desc: "조형준 담임목사 / 창세기 35:1-8", img: "https://images.unsplash.com/photo-1438283173091-5dbf5c5a3206?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-            { date: "2025-01-07", title: "\"나를 살리는 예배를 ...", desc: "조형준 담임목사 / 요한복음 4:21-24", img: "https://images.unsplash.com/photo-1438283173091-5dbf5c5a3206?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-            
-            { date: "2025-01-06", title: "2025신년특별새벽기...", desc: "조형준 담임목사 / 사야 43:18-21", img: "https://images.unsplash.com/photo-1438283173091-5dbf5c5a3206?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-            { date: "2022-05-27", title: "특별금요집회", desc: "박광식 문화선교사 / ", img: "https://images.unsplash.com/photo-1510590337019-5ef8d3d32116?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-            { date: "2022-05-20", title: "김동욱 찬양콘서트", desc: "김동욱 전도사 / ", img: "https://images.unsplash.com/photo-1510590337019-5ef8d3d32116?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-            { date: "2022-05-13", title: "강찬 목사 찬양 콘서트", desc: "강찬 목사 / ", img: "https://images.unsplash.com/photo-1510590337019-5ef8d3d32116?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-            { date: "2022-05-06", title: "나의 유익을 위하여 떠...", desc: "정운택 선교사 / 창세기 12장 1~2절", img: "https://images.unsplash.com/photo-1510590337019-5ef8d3d32116?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-            { date: "2022-01-28", title: "승리의 찬양", desc: "지노박 선교사 / 요한일서 5장 4절", img: "https://images.unsplash.com/photo-1510590337019-5ef8d3d32116?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" }
-        ];
+        // ★ 특별집회 구글 스프레드시트 링크 연동 준비 완료! ★
+        // 웹에 게시 후 나온 새로운 링크를 아래 따옴표 안에 넣어주세요.
+        const csvUrl = "여기에_특별집회_CSV_링크를_넣어주세요";
 
-        const itemsPerPage = 12; 
+        let formattedData = [];
+        const itemsPerPage = 15;
         let currentPage = 1;
 
-        function renderGrid(page) {
+        function parseCSV(str) {
+            const arr = [];
+            let quote = false;
+            let col, c;
+            for (let row = col = c = 0; c < str.length; c++) {
+                let cc = str[c], nc = str[c+1];
+                arr[row] = arr[row] || [];
+                arr[row][col] = arr[row][col] || '';
+                if (cc == '"' && quote && nc == '"') { arr[row][col] += cc; ++c; continue; }
+                if (cc == '"') { quote = !quote; continue; }
+                if (cc == ',' && !quote) { ++col; continue; }
+                if (cc == '\r' && nc == '\n' && !quote) { ++row; col = 0; ++c; continue; }
+                if (cc == '\n' && !quote) { ++row; col = 0; continue; }
+                if (cc == '\r' && !quote) { ++row; col = 0; continue; }
+                arr[row][col] += cc;
+            }
+            return arr;
+        }
+
+        async function loadData() {
+            // 링크가 아직 등록되지 않은 경우의 안내 메시지
+            if (!csvUrl || csvUrl.includes("여기에_특별집회_CSV_링크를_넣어주세요")) {
+                document.getElementById('sermon-list-pc').innerHTML = '<tr><td colspan="6" class="py-10 text-center text-red-500 font-bold"><i class="fas fa-exclamation-triangle mr-2"></i>웹 관리자에게 특별집회 엑셀 링크(CSV) 연결을 요청해주세요.</td></tr>';
+                document.getElementById('sermon-list-mobile-body').innerHTML = '<div class="py-10 text-center text-red-500 font-bold text-sm">엑셀 링크(CSV) 연결이 필요합니다.</div>';
+                return;
+            }
+
+            try {
+                document.getElementById('sermon-list-pc').innerHTML = '<tr><td colspan="6" class="py-10 text-center text-gray-500"><i class="fas fa-spinner fa-spin mr-2"></i>데이터를 불러오는 중입니다...</td></tr>';
+                document.getElementById('sermon-list-mobile-body').innerHTML = '<div class="py-10 text-center text-gray-500"><i class="fas fa-spinner fa-spin mr-2"></i>불러오는 중...</div>';
+
+                const response = await fetch(csvUrl);
+                const csvText = await response.text();
+                
+                const rows = parseCSV(csvText);
+                rows.shift(); 
+
+                formattedData = rows.map(row => {
+                    let rawLink = (row[5] || '').trim();
+                    return {
+                        id: parseInt(row[0] || 0),
+                        title: (row[1] || '').trim(),
+                        text: (row[2] || '').trim(),
+                        preacher: (row[3] || '').trim(),
+                        date: (row[4] || '').trim(),
+                        link: rawLink.length > 5 ? rawLink : '#'
+                    };
+                }).filter(item => item.title !== '' && !isNaN(item.id));
+
+                formattedData.sort((a, b) => b.id - a.id);
+
+                renderTable(currentPage);
+
+            } catch (error) {
+                console.error("데이터 로딩 에러:", error);
+                document.getElementById('sermon-list-pc').innerHTML = '<tr><td colspan="6" class="py-10 text-center text-red-500">데이터를 불러올 수 없습니다. 인터넷 연결을 확인해주세요.</td></tr>';
+            }
+        }
+
+        function renderTable(page) {
             const startIndex = (page - 1) * itemsPerPage;
             const endIndex = startIndex + itemsPerPage;
-            const pageData = eventData.slice(startIndex, endIndex);
+            const pageData = formattedData.slice(startIndex, endIndex);
 
-            const gridContainer = document.getElementById('event-grid');
-            gridContainer.innerHTML = '';
+            const pcTbody = document.getElementById('sermon-list-pc');
+            const mobileContainer = document.getElementById('sermon-list-mobile-body');
+
+            pcTbody.innerHTML = '';
+            mobileContainer.innerHTML = '';
 
             pageData.forEach(item => {
-                const card = document.createElement('div');
-                // 카드 디자인 구성 (목사님께서 올려주신 디자인과 동일하게)
-                card.className = 'bg-white border border-gray-200 rounded-lg p-5 shadow-sm hover:shadow-md transition cursor-pointer flex flex-col h-full';
-                card.innerHTML = `
-                    <div class="text-[13px] text-gray-500 font-medium mb-3">${item.date}</div>
-                    <h4 class="text-xl md:text-2xl font-extrabold text-gray-900 mb-2 truncate">${item.title}</h4>
-                    <p class="text-[13px] md:text-sm text-gray-600 mb-6 truncate">${item.desc}</p>
-                    
-                    <div class="mt-auto flex justify-center">
-                        <!-- 영상 썸네일 영역 -->
-                        <div class="relative w-36 h-20 bg-gray-800 rounded flex items-center justify-center overflow-hidden group">
-                            <img src="${item.img}" alt="썸네일" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-110 transition duration-500">
-                            <!-- 재생 아이콘 -->
-                            <i class="fas fa-play text-white text-xl relative z-10 opacity-90 group-hover:text-blue-300 transition"></i>
+                // 1. PC 테이블 렌더링
+                const tr = document.createElement('tr');
+                tr.className = 'border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer';
+                if(item.link !== '#') {
+                    tr.onclick = (e) => {
+                        if(!e.target.closest('a') && !e.target.closest('button')) {
+                            window.open(item.link, '_blank');
+                        }
+                    };
+                }
+                
+                tr.innerHTML = `
+                    <td class="py-4 text-gray-400">${item.id}</td>
+                    <td class="py-4 px-4 text-left font-medium text-gray-800 truncate">${item.title}</td>
+                    <td class="py-4 text-[13px] md:text-sm truncate">${item.text}</td>
+                    <td class="py-4">${item.preacher}</td>
+                    <td class="py-4 text-[13px] md:text-sm">${item.date}</td>
+                    <td class="py-4">
+                        ${item.link !== '#' 
+                            ? `<a href="${item.link}" target="_blank" class="bg-[#5c5c5c] hover:bg-[#1b315b] text-white rounded w-8 h-6 flex items-center justify-center mx-auto transition"><i class="fas fa-tv text-xs"></i></a>` 
+                            : `<button class="bg-[#e5e7eb] text-gray-400 cursor-not-allowed rounded w-8 h-6 flex items-center justify-center mx-auto"><i class="fas fa-tv text-xs"></i></button>`}
+                    </td>
+                `;
+                pcTbody.appendChild(tr);
+
+                // 2. 모바일 리스트 렌더링
+                const mDiv = document.createElement('div');
+                mDiv.className = 'flex border-b border-gray-200 py-3 hover:bg-gray-50 transition cursor-pointer';
+                if(item.link !== '#') {
+                    mDiv.onclick = () => window.open(item.link, '_blank');
+                }
+                
+                mDiv.innerHTML = `
+                    <div class="w-16 text-center text-gray-400 text-sm pt-0.5">${item.id}</div>
+                    <div class="flex-1 pl-2 pr-4 relative">
+                        <div class="text-gray-800 text-[15px] font-bold mb-1 pr-8 truncate">${item.title}</div>
+                        <div class="text-gray-500 text-[13px] flex gap-3 mb-0.5">
+                            <span class="truncate max-w-[120px]">${item.text}</span>
+                            <span>${item.preacher}</span>
                         </div>
+                        <div class="text-gray-400 text-[13px]">${item.date}</div>
+                        ${item.link !== '#' 
+                            ? `<div class="absolute top-1/2 right-2 -translate-y-1/2 text-gray-400"><i class="fas fa-tv text-lg"></i></div>` 
+                            : `<div class="absolute top-1/2 right-2 -translate-y-1/2 text-gray-200"><i class="fas fa-tv text-lg"></i></div>`}
                     </div>
                 `;
-                gridContainer.appendChild(card);
+                mobileContainer.appendChild(mDiv);
             });
             
             renderPagination();
         }
 
         function renderPagination() {
-            const totalPages = Math.ceil(eventData.length / itemsPerPage);
+            const totalPages = Math.ceil(formattedData.length / itemsPerPage);
             const paginationContainer = document.getElementById('pagination');
             paginationContainer.innerHTML = '';
 
@@ -273,27 +353,10 @@
                 a.onclick = (e) => {
                     e.preventDefault();
                     currentPage = i;
-                    renderGrid(currentPage);
-                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                    renderTable(currentPage);
+                    window.scrollTo({top: 400, behavior: 'smooth'}); 
                 };
                 paginationContainer.appendChild(a);
-            }
-            
-            // 화살표 추가 (>, >>)
-            if (totalPages > 1) {
-                const nextBtn = document.createElement('a');
-                nextBtn.href = '#';
-                nextBtn.className = 'page-link rounded';
-                nextBtn.innerHTML = '<i class="fas fa-angle-right"></i>';
-                nextBtn.onclick = (e) => {
-                    e.preventDefault();
-                    if(currentPage < totalPages) {
-                        currentPage++;
-                        renderGrid(currentPage);
-                        window.scrollTo({top: 300, behavior: 'smooth'}); 
-                    }
-                };
-                paginationContainer.appendChild(nextBtn);
             }
         }
 
@@ -325,7 +388,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            renderGrid(currentPage);
+            loadData();
         });
     </script>
     <script>const ROOT_PATH = "../";</script>
