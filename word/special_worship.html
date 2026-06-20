@@ -276,6 +276,14 @@
             mobileContainer.innerHTML = '';
 
             pageData.forEach(item => {
+                let preacherPc = item.preacher;
+                if (item.preacher.includes('(')) {
+                    let namePart = item.preacher.substring(0, item.preacher.indexOf('(')).trim();
+                    let churchPart = item.preacher.substring(item.preacher.indexOf('(')).trim();
+                    // PC 화면에서만 소속 교회를 아래줄로 내리고 글씨를 작고 연하게 만듭니다.
+                    preacherPc = `${namePart}<br><span class="text-[12px] text-gray-500 font-normal mt-0.5 inline-block tracking-tight">${churchPart}</span>`;
+                }
+
                 // 1. PC 테이블 렌더링
                 const tr = document.createElement('tr');
                 tr.className = 'border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer group h-[60px]';
@@ -291,7 +299,7 @@
                     <td class="py-3 text-gray-400 font-medium">${item.id}</td>
                     <td class="py-3 px-4 text-left font-bold text-gray-800 group-hover:text-blue-600 transition truncate">${item.title}</td>
                     <td class="py-3 text-[13px] md:text-sm text-gray-600 truncate">${item.text}</td>
-                    <td class="py-3 text-[13px] md:text-sm font-medium text-gray-800">${item.preacher}</td>
+                    <td class="py-3 text-[13px] md:text-sm font-medium text-gray-800 leading-tight">${preacherPc}</td>
                     <td class="py-3 text-[13px] md:text-sm text-gray-500">${item.date}</td>
                     <td class="py-3">
                         ${item.link !== '#' 
