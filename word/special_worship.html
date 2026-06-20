@@ -110,10 +110,9 @@
                 말씀과 찬양
             </div>
             <ul class="border border-t-0 border-gray-200 flex flex-col">
-                <!-- 말씀 -->
                 <li class="border-b border-gray-200 group">
-                    <a href="sunday.html" class="flex justify-between items-center px-5 py-3 text-[#3b82f6] font-bold bg-gray-50 transition">
-                        말씀 <i class="fas fa-chevron-down text-xs text-[#3b82f6] group-hover:rotate-180 transition-transform duration-300"></i>
+                    <a href="sunday.html" class="flex justify-between items-center px-5 py-3 text-[#3b82f6] font-bold bg-gray-50 hover:bg-gray-100 transition">
+                        말씀 <i class="fas fa-chevron-down text-xs text-gray-400 group-hover:rotate-180 transition-transform duration-300"></i>
                     </a>
                     <div class="max-h-0 overflow-hidden group-hover:max-h-48 transition-all duration-500 ease-in-out">
                         <ul class="py-2 bg-white border-t border-gray-100">
@@ -124,17 +123,13 @@
                         </ul>
                     </div>
                 </li>
-                <!-- 찬양대/중창단 -->
                 <li class="border-b border-gray-200 group">
                     <a href="praise.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">
                         찬양대/중창단 <i class="fas fa-chevron-down text-xs text-gray-400 group-hover:rotate-180 transition-transform duration-300"></i>
                     </a>
                 </li>
-                <!-- 여주미디어 -->
                 <li>
-                    <a href="media.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition rounded-b-lg">
-                        여주미디어 <i class="fas fa-chevron-right text-xs"></i>
-                    </a>
+                    <a href="media.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition rounded-b-lg">여주미디어</a>
                 </li>
             </ul>
         </aside>
@@ -162,7 +157,7 @@
             </div>
 
             <!-- PC Version Table -->
-            <table class="hidden md:table w-full text-center text-sm md:text-base border-t-2 border-gray-800 table-fixed">
+            <table class="hidden md:table w-full text-center text-sm md:text-base border-t-2 border-gray-800 table-fixed mt-4">
                 <colgroup>
                     <col class="w-[8%]">
                     <col class="w-[36%]">
@@ -187,9 +182,9 @@
             </table>
 
             <!-- Mobile Version List -->
-            <div class="md:hidden block w-full border-t-2 border-gray-800">
-                <div class="flex bg-gray-50 text-gray-700 font-bold border-b border-gray-300 py-3 text-sm">
-                    <div class="w-16 text-center">번호</div>
+            <div class="md:hidden block w-full border-t-2 border-gray-800 mt-4">
+                <div class="flex bg-gray-50 text-gray-700 font-bold border-b border-gray-300 py-3 text-sm px-2">
+                    <div class="w-12 text-center">번호</div>
                     <div class="flex-1 text-center">제목</div>
                 </div>
                 <div id="sermon-list-mobile-body">
@@ -211,7 +206,7 @@
     <script>
         // ★ 특별집회 구글 스프레드시트 링크 연동 준비 완료! ★
         // 웹에 게시 후 나온 새로운 링크를 아래 따옴표 안에 넣어주세요.
-        const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTmNPl7QMOdRz4v6O0kYga96lCTM8t2xeDwVepsmdUtBfiXyTz4jVmJ_meq0fP0ENusdnKxfHpPjTrJ/pub?gid=57592894&single=true&output=csv";
+        const csvUrl = "여기에_특별집회_CSV_링크를_넣어주세요";
 
         let formattedData = [];
         const itemsPerPage = 15;
@@ -266,6 +261,7 @@
                     };
                 }).filter(item => item.title !== '' && !isNaN(item.id));
 
+                // 번호가 가장 큰(최신) 순서대로 정렬
                 formattedData.sort((a, b) => b.id - a.id);
 
                 renderTable(currentPage);
@@ -290,7 +286,7 @@
             pageData.forEach(item => {
                 // 1. PC 테이블 렌더링
                 const tr = document.createElement('tr');
-                tr.className = 'border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer';
+                tr.className = 'border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer group h-[60px]';
                 if(item.link !== '#') {
                     tr.onclick = (e) => {
                         if(!e.target.closest('a') && !e.target.closest('button')) {
@@ -300,12 +296,12 @@
                 }
                 
                 tr.innerHTML = `
-                    <td class="py-4 text-gray-400">${item.id}</td>
-                    <td class="py-4 px-4 text-left font-medium text-gray-800 truncate">${item.title}</td>
-                    <td class="py-4 text-[13px] md:text-sm truncate">${item.text}</td>
-                    <td class="py-4">${item.preacher}</td>
-                    <td class="py-4 text-[13px] md:text-sm">${item.date}</td>
-                    <td class="py-4">
+                    <td class="py-3 text-gray-400 font-medium">${item.id}</td>
+                    <td class="py-3 px-4 text-left font-bold text-gray-800 group-hover:text-blue-600 transition truncate">${item.title}</td>
+                    <td class="py-3 text-[13px] md:text-sm text-gray-600 truncate">${item.text}</td>
+                    <td class="py-3 text-[13px] md:text-sm font-medium text-gray-800">${item.preacher}</td>
+                    <td class="py-3 text-[13px] md:text-sm text-gray-500">${item.date}</td>
+                    <td class="py-3">
                         ${item.link !== '#' 
                             ? `<a href="${item.link}" target="_blank" class="bg-[#5c5c5c] hover:bg-[#1b315b] text-white rounded w-8 h-6 flex items-center justify-center mx-auto transition"><i class="fas fa-tv text-xs"></i></a>` 
                             : `<button class="bg-[#e5e7eb] text-gray-400 cursor-not-allowed rounded w-8 h-6 flex items-center justify-center mx-auto"><i class="fas fa-tv text-xs"></i></button>`}
@@ -315,23 +311,23 @@
 
                 // 2. 모바일 리스트 렌더링
                 const mDiv = document.createElement('div');
-                mDiv.className = 'flex border-b border-gray-200 py-3 hover:bg-gray-50 transition cursor-pointer';
+                mDiv.className = 'flex border-b border-gray-200 py-3 hover:bg-gray-50 transition cursor-pointer px-2 items-center';
                 if(item.link !== '#') {
                     mDiv.onclick = () => window.open(item.link, '_blank');
                 }
                 
                 mDiv.innerHTML = `
-                    <div class="w-16 text-center text-gray-400 text-sm pt-0.5">${item.id}</div>
-                    <div class="flex-1 pl-2 pr-4 relative">
-                        <div class="text-gray-800 text-[15px] font-bold mb-1 pr-8 truncate">${item.title}</div>
-                        <div class="text-gray-500 text-[13px] flex gap-3 mb-0.5">
-                            <span class="truncate max-w-[120px]">${item.text}</span>
-                            <span>${item.preacher}</span>
+                    <div class="w-12 text-center text-gray-400 text-sm shrink-0 font-medium">${item.id}</div>
+                    <div class="flex-1 pl-2 pr-8 relative overflow-hidden">
+                        <div class="text-gray-900 text-[14px] font-bold mb-1 truncate leading-snug">${item.title}</div>
+                        <div class="text-gray-500 text-[12px] flex flex-wrap gap-x-2 gap-y-0.5 mb-0.5 leading-tight">
+                            <span class="truncate max-w-full">${item.text}</span>
+                            <span class="text-gray-700 font-medium">${item.preacher}</span>
                         </div>
-                        <div class="text-gray-400 text-[13px]">${item.date}</div>
+                        <div class="text-gray-400 text-[11px]">${item.date}</div>
                         ${item.link !== '#' 
-                            ? `<div class="absolute top-1/2 right-2 -translate-y-1/2 text-gray-400"><i class="fas fa-tv text-lg"></i></div>` 
-                            : `<div class="absolute top-1/2 right-2 -translate-y-1/2 text-gray-200"><i class="fas fa-tv text-lg"></i></div>`}
+                            ? `<div class="absolute top-1/2 right-1 -translate-y-1/2 text-gray-400"><i class="fas fa-tv text-lg"></i></div>` 
+                            : `<div class="absolute top-1/2 right-1 -translate-y-1/2 text-gray-200"><i class="fas fa-tv text-lg"></i></div>`}
                     </div>
                 `;
                 mobileContainer.appendChild(mDiv);
