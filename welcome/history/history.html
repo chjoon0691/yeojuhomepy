@@ -9,6 +9,9 @@
     <style>
         @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
         body { font-family: 'Pretendard', sans-serif; background-color: #ffffff; overflow-x: hidden; }
+        
+        /* 부드러운 스크롤 이동을 위한 설정 */
+        html { scroll-behavior: smooth; }
     </style>
 </head>
 <body class="text-gray-800">
@@ -94,13 +97,16 @@
                 <h3 class="text-2xl md:text-3xl font-extrabold relative z-10 tracking-tight">교회연혁</h3>
             </div>
 
-            <!-- ★ 연대별 탭 버튼 영역 ★ -->
-            <div id="decade-tabs" class="flex flex-wrap justify-center gap-2 md:gap-3 mb-12">
+            <!-- ★ 시대별(년대) 3D 탭 버튼 영역 ★ -->
+            <div id="decade-tabs" class="flex flex-wrap justify-center gap-x-2 gap-y-3 md:gap-3 mb-12 sticky top-4 z-40 bg-white/90 backdrop-blur-sm py-4 rounded-xl shadow-sm border border-gray-100">
                 <!-- JS로 자동 생성됨 -->
             </div>
 
-            <!-- ★ 타임라인이 들어갈 영역 ★ -->
-            <div id="timeline-container" class="relative border-l-2 border-[#6b8cba] ml-4 md:ml-6 mt-8 mb-20">
+            <!-- ★ 타임라인 전체가 출력될 영역 ★ -->
+            <div id="timeline-container" class="relative ml-4 md:ml-6 mt-8 mb-20">
+                <!-- 메인 타임라인 세로선 -->
+                <div class="absolute top-0 bottom-0 left-[21px] md:left-[23px] w-1 bg-[#6b8cba]"></div>
+
                 <div id="loading-msg" class="py-10 text-center text-gray-500 font-bold ml-4">
                     <i class="fas fa-spinner fa-spin mr-2"></i>연혁을 불러오는 중입니다...
                 </div>
@@ -114,7 +120,6 @@
     <div id="common-sitemap"></div>
 
     <script>
-        // 보조 메뉴 여닫기
         function toggleMobileSubMenu(menuId) {
             const targetMenu = document.getElementById(menuId);
             const otherMenuId = menuId === 'menu-depth1' ? 'menu-depth2' : 'menu-depth1';
@@ -142,7 +147,6 @@
             }
         }
 
-        // CSV 글씨 분리 함수
         function parseCSV(str) {
             const arr = [];
             let quote = false;
@@ -162,41 +166,31 @@
             return arr;
         }
 
-        // ★★★ 목사님께서 만드신 '교회연혁' 탭의 CSV 링크! ★★★
         const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTmNPl7QMOdRz4v6O0kYga96lCTM8t2xeDwVepsmdUtBfiXyTz4jVmJ_meq0fP0ENusdnKxfHpPjTrJ/pub?gid=995100903&single=true&output=csv";
 
         async function loadData() {
-            if (!csvUrl || csvUrl.includes("여기에_교회연혁_CSV_링크를_넣어주세요")) {
-                document.getElementById('loading-msg').innerHTML = '<span class="text-red-500 font-bold"><i class="fas fa-exclamation-triangle mr-2"></i>웹 관리자에게 교회연혁 엑셀 링크(CSV) 연결을 요청해주세요.</span>';
-                return;
-            }
-
             try {
                 const response = await fetch(csvUrl);
                 const csvText = await response.text();
                 
                 const rows = parseCSV(csvText);
-                rows.shift(); // 첫 번째 제목 줄 제거
+                rows.shift();
 
                 let parsed = rows.map(row => {
                     return {
                         year: parseInt(row[0]) || 0,
-                        month: (row[1] || '').trim() || '기타', // 월이 비어있으면 '기타'로 처리
+                        month: (row[1] || '').trim() || '기타', 
                         content: (row[2] || '').trim()
                     };
                 }).filter(item => item.year > 0 && item.content);
                 
-                // 1차 정렬: 연도 내림차순(최신순)
-                // 2차 정렬: 월 숫자 내림차순(12월 -> 1월)
                 parsed.sort((a, b) => {
                     if (a.year !== b.year) return b.year - a.year;
-                    
                     let monthA = parseInt(a.month.replace(/[^0-9]/g, '')) || 0;
                     let monthB = parseInt(b.month.replace(/[^0-9]/g, '')) || 0;
                     return monthB - monthA;
                 });
 
-                // 연대별(Decade) 그룹화
                 const decadesMap = {};
                 parsed.forEach(item => {
                     const decade = Math.floor(item.year / 10) * 10;
@@ -205,7 +199,10 @@
                 });
 
                 document.getElementById('loading-msg').style.display = 'none';
-                renderTabs(decadesMap);
+                const sortedDecades = Object.keys(decadesMap).sort((a,b) => b - a); 
+                
+                renderTabs(sortedDecades);
+                renderAllTimeline(decadesMap, sortedDecades);
 
             } catch (error) {
                 console.error("데이터 로딩 에러:", error);
@@ -213,97 +210,115 @@
             }
         }
 
-        // 탭 버튼 생성
-        function renderTabs(decadesMap) {
+        // 3D 둥근 네모 형태의 작은 버튼 렌더링
+        function renderTabs(sortedDecades) {
             const tabsContainer = document.getElementById('decade-tabs');
             tabsContainer.innerHTML = '';
             
-            // 연대를 내림차순으로 정렬 (예: 2020년대 -> 2010년대)
-            const sortedDecades = Object.keys(decadesMap).sort((a,b) => b - a); 
+            // 공통 기반 디자인: 패딩 축소, 모서리 약간 둥글게, 3D 그림자, 누르면 쏙 들어가는 효과
+            const baseClass = "mb-1 px-3 py-1.5 md:px-4 md:py-2 rounded-lg text-xs md:text-sm font-bold transition-all border cursor-pointer select-none active:translate-y-1";
             
             sortedDecades.forEach((dec, index) => {
-                const btn = document.createElement('button');
-                // 버튼 스타일
-                btn.className = `px-4 py-2 md:px-6 md:py-2.5 rounded-full text-sm md:text-base font-bold transition shadow-sm border 
-                                 ${index === 0 ? 'bg-[#1b315b] text-white border-[#1b315b]' : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-50'}`;
+                const btn = document.createElement('a');
+                btn.href = `#decade-${dec}`;
+                
+                // 선택되었을 때의 스타일
+                const activeStyle = "bg-[#1b315b] text-white border-[#102242] shadow-[0_4px_0_0_#102242] active:shadow-[0_0px_0_0_#102242]";
+                // 평상시 스타일
+                const inactiveStyle = "bg-white text-gray-600 border-gray-300 shadow-[0_4px_0_0_#d1d5db] active:shadow-[0_0px_0_0_#d1d5db] hover:bg-gray-50 hover:text-[#1b315b]";
+                
+                btn.className = `${baseClass} ${index === 0 ? activeStyle : inactiveStyle}`;
                 btn.textContent = `${dec}년대`;
                 
-                btn.onclick = () => {
-                    // 모든 버튼 스타일 초기화
-                    Array.from(tabsContainer.children).forEach(c => {
-                        c.className = 'px-4 py-2 md:px-6 md:py-2.5 rounded-full text-sm md:text-base font-bold transition shadow-sm border bg-white text-gray-600 border-gray-300 hover:bg-gray-50';
-                    });
-                    // 클릭한 버튼만 활성화 스타일 적용
-                    btn.className = 'px-4 py-2 md:px-6 md:py-2.5 rounded-full text-sm md:text-base font-bold transition shadow-sm border bg-[#1b315b] text-white border-[#1b315b]';
+                btn.onclick = (e) => {
+                    e.preventDefault();
                     
-                    renderTimeline(decadesMap[dec]);
+                    // 다른 버튼들 모두 비활성 상태로 리셋
+                    Array.from(tabsContainer.children).forEach(c => {
+                        c.className = `${baseClass} ${inactiveStyle}`;
+                    });
+                    // 현재 버튼 활성화 상태로 변경
+                    btn.className = `${baseClass} ${activeStyle}`;
+                    
+                    const targetElement = document.getElementById(`decade-${dec}`);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
                 };
                 tabsContainer.appendChild(btn);
             });
-            
-            // 처음 켰을 때 가장 최신 연대(2020년대)의 타임라인을 먼저 보여줌
-            if(sortedDecades.length > 0) {
-                renderTimeline(decadesMap[sortedDecades[0]]);
-            }
         }
 
-        // 타임라인 그리기
-        function renderTimeline(decadeData) {
+        // 압축된 디자인(월/행사 좌우 배치)의 타임라인 렌더링
+        function renderAllTimeline(decadesMap, sortedDecades) {
             const container = document.getElementById('timeline-container');
-            container.innerHTML = '';
+            const lineHtml = '<div class="absolute top-0 bottom-0 left-[21px] md:left-[23px] w-1 bg-[#6b8cba]"></div>';
+            container.innerHTML = lineHtml;
             
-            // 연대 데이터 안에서 다시 '연도'와 '월'별로 묶어줌
-            const yearsMap = {};
-            decadeData.forEach(item => {
-                if(!yearsMap[item.year]) yearsMap[item.year] = {};
-                if(!yearsMap[item.year][item.month]) yearsMap[item.year][item.month] = [];
-                yearsMap[item.year][item.month].push(item.content);
-            });
+            sortedDecades.forEach(dec => {
+                const decadeSection = document.createElement('div');
+                decadeSection.id = `decade-${dec}`;
+                decadeSection.className = 'scroll-mt-36'; 
+                
+                const decadeData = decadesMap[dec];
 
-            // 연도 내림차순 정렬
-            const sortedYears = Object.keys(yearsMap).sort((a,b) => b - a);
-            
-            sortedYears.forEach(year => {
-                const yearBlock = document.createElement('div');
-                yearBlock.className = 'mb-12 relative';
-                
-                // 파란색 동그라미 연도 마커
-                let html = `
-                    <div class="absolute -left-[27px] md:-left-[29px] bg-[#3b82f6] text-white w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center font-extrabold border-4 border-white shadow-md text-lg md:text-xl z-10">
-                        ${year}
-                    </div>
-                    <div class="pl-10 md:pl-16 pt-3 pb-2">
-                `;
-                
-                // 월 내림차순 정렬 (숫자 파싱)
-                const sortedMonths = Object.keys(yearsMap[year]).sort((a, b) => {
-                    let mA = parseInt(a.replace(/[^0-9]/g, '')) || 0;
-                    let mB = parseInt(b.replace(/[^0-9]/g, '')) || 0;
-                    return mB - mA;
+                const yearsMap = {};
+                decadeData.forEach(item => {
+                    if(!yearsMap[item.year]) yearsMap[item.year] = {};
+                    if(!yearsMap[item.year][item.month]) yearsMap[item.year][item.month] = [];
+                    yearsMap[item.year][item.month].push(item.content);
                 });
 
-                // 월별 내용 그리기
-                sortedMonths.forEach(month => {
-                    // '기타'인 경우는 월 표시를 생략
-                    let monthDisplay = (month === '기타' || month === '') ? '' : `<h4 class="text-lg md:text-xl font-bold text-[#1b315b] mb-3 mt-4 inline-block border-b-2 border-[#6b8cba]">${month}</h4>`;
+                const sortedYears = Object.keys(yearsMap).sort((a,b) => b - a);
+                
+                sortedYears.forEach(year => {
+                    const yearBlock = document.createElement('div');
+                    yearBlock.className = 'mb-10 relative z-10'; // 간격 약간 축소
                     
-                    let contentsHtml = yearsMap[year][month].map(content => {
-                        return `<li class="relative before:absolute before:-left-[21px] before:top-2 before:w-2.5 before:h-2.5 before:bg-[#6b8cba] before:rounded-full pl-2 hover:text-[#1b315b] transition-colors">${content}</li>`;
-                    }).join('');
-                    
-                    html += `
-                        <div class="mb-6 relative">
-                            ${monthDisplay}
-                            <ul class="space-y-4 relative border-l border-gray-200 pl-4 ml-1 text-gray-700 md:text-lg leading-relaxed break-keep">
-                                ${contentsHtml}
-                            </ul>
+                    // 년도 동그라미를 '둥근 네모(rounded-xl)'로 변경
+                    let html = `
+                        <div class="absolute -left-1 md:left-0 bg-[#3b82f6] text-white w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center font-extrabold border-4 border-white shadow-md text-base md:text-lg z-20">
+                            ${year}
                         </div>
+                        <div class="pl-14 md:pl-20 pt-1 pb-1">
                     `;
+                    
+                    const sortedMonths = Object.keys(yearsMap[year]).sort((a, b) => {
+                        let mA = parseInt(a.replace(/[^0-9]/g, '')) || 0;
+                        let mB = parseInt(b.replace(/[^0-9]/g, '')) || 0;
+                        return mB - mA;
+                    });
+
+                    // 월별 항목 렌더링
+                    sortedMonths.forEach(month => {
+                        let monthDisplay = (month === '기타' || month === '') ? '' : `<h4 class="text-base md:text-lg font-extrabold text-[#1b315b] whitespace-nowrap">${month}</h4>`;
+                        
+                        let contentsHtml = yearsMap[year][month].map(content => {
+                            // 항목 스타일 변경 (줄간격 축소, 동그라미 마커를 작은 네모로 변경)
+                            return `<li class="relative pl-3 text-gray-700 text-sm md:text-[15px] leading-snug break-keep before:absolute before:left-0 before:top-1.5 before:w-1.5 before:h-1.5 before:bg-[#6b8cba] before:rounded-sm hover:text-[#1b315b] transition-colors py-0.5">${content}</li>`;
+                        }).join('');
+                        
+                        // ★ 변경된 핵심 레이아웃: 월과 내용을 좌-우(flex-row)로 카드 형태 배치
+                        html += `
+                            <div class="mb-3 flex flex-col md:flex-row md:items-start gap-2 md:gap-6 bg-white p-3 md:p-4 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition">
+                                <div class="w-full md:w-16 shrink-0 text-left border-b md:border-b-0 md:border-r border-gray-200/60 pb-2 md:pb-0 md:pr-4 flex md:block items-center">
+                                    ${monthDisplay}
+                                </div>
+                                <div class="flex-1 pt-1 md:pt-0">
+                                    <ul class="space-y-1.5">
+                                        ${contentsHtml}
+                                    </ul>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    
+                    html += `</div>`;
+                    yearBlock.innerHTML = html;
+                    decadeSection.appendChild(yearBlock);
                 });
-                
-                html += `</div>`;
-                yearBlock.innerHTML = html;
-                container.appendChild(yearBlock);
+
+                container.appendChild(decadeSection);
             });
         }
 
