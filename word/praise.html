@@ -36,20 +36,6 @@
             color: #1b315b;
             font-weight: bold;
         }
-        
-        /* 마법의 썸네일 이미지 배경 */
-        .thumb-bg {
-            background-image: url('https://images.unsplash.com/photo-1510590337019-5ef8d3d32116?auto=format&fit=crop&w=300&q=80');
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-        .thumb-bg::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-color: rgba(27, 49, 91, 0.65); /* 파란색 반투명 오버레이 */
-        }
     </style>
 </head>
 <body class="text-gray-800">
@@ -116,13 +102,13 @@
 
     <div class="max-w-7xl mx-auto px-4 py-12 md:py-20 flex flex-col md:flex-row gap-10">
         
-        <!-- Left Sidebar (아코디언 마우스 오버 효과 적용) -->
+        <!-- Left Sidebar -->
         <aside class="hidden md:block w-64 flex-shrink-0">
             <div class="bg-[#6b8cba] text-white text-center py-4 text-xl font-bold rounded-t-lg">
                 말씀과 찬양
             </div>
             <ul class="border border-t-0 border-gray-200 flex flex-col">
-                <!-- 말씀 (Collapsed, expands on hover) -->
+                <!-- 말씀 -->
                 <li class="border-b border-gray-200 group">
                     <a href="sunday.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">
                         말씀 <i class="fas fa-chevron-down text-xs text-gray-400 group-hover:rotate-180 transition-transform duration-300"></i>
@@ -183,45 +169,42 @@
                 </div>
             </div>
 
-            <!-- PC Version Table -->
+            <!-- PC Version Table (사진 열 삭제) -->
             <table class="hidden md:table w-full text-center text-sm md:text-base border-t-2 border-gray-800 table-fixed">
                 <colgroup>
-                    <col class="w-[8%]">
-                    <col class="w-[14%]">
-                    <col class="w-[40%]">
+                    <col class="w-[10%]">
+                    <col class="w-[45%]">
+                    <col class="w-[20%]">
                     <col class="w-[15%]">
-                    <col class="w-[15%]">
-                    <col class="w-[8%]">
+                    <col class="w-[10%]">
                 </colgroup>
                 <thead class="bg-gray-700 text-white font-bold border-b border-gray-300">
                     <tr>
                         <th class="py-3 px-2">번호</th>
-                        <th class="py-3 px-2">사진</th>
                         <th class="py-3 px-4 text-left">제목(곡명)</th>
                         <th class="py-3 px-2">담당</th>
                         <th class="py-3 px-2 text-gray-300">날짜 <i class="fas fa-sort text-[10px]"></i></th>
                         <th class="py-3 px-2">보기</th>
                     </tr>
                 </thead>
-                <!-- JS가 데이터를 밀어넣을 공간 -->
                 <tbody id="praise-list-pc" class="text-gray-600">
+                    <!-- 구글 시트 데이터가 로딩됩니다 -->
                 </tbody>
             </table>
 
-            <!-- Mobile Version List -->
+            <!-- Mobile Version List (사진 영역 삭제) -->
             <div class="md:hidden block w-full border-t-2 border-gray-800 mt-4">
                 <div class="flex bg-gray-50 text-gray-700 font-bold border-b border-gray-300 py-3 text-sm px-2">
-                    <div class="w-10 text-center">번호</div>
-                    <div class="flex-1 text-center">찬양 영상 목록</div>
+                    <div class="w-14 text-center">번호</div>
+                    <div class="flex-1 pl-2">제목(곡명)</div>
                 </div>
                 <div id="praise-list-mobile-body">
-                    <!-- JS가 데이터를 밀어넣을 공간 -->
+                    <!-- 구글 시트 데이터가 로딩됩니다 -->
                 </div>
             </div>
 
-            <!-- 페이지네이션 (Pagination) -->
+            <!-- 페이지네이션 -->
             <div id="pagination" class="flex justify-center items-center mt-10 mb-6 flex-wrap gap-y-2">
-                <!-- 자동 생성 영역 -->
             </div>
 
         </main>
@@ -232,7 +215,6 @@
     <div id="common-sitemap"></div>
 
     <script>
-        // 모바일 보조 메뉴 토글 기능
         function toggleMobileSubMenu(menuId) {
             const targetMenu = document.getElementById(menuId);
             const otherMenuId = menuId === 'menu-depth1' ? 'menu-depth2' : 'menu-depth1';
@@ -260,8 +242,7 @@
             }
         }
 
-        // ★ 시온찬양대 구글 스프레드시트 링크 연동 준비 완료! ★
-        // 엑셀을 웹에 게시 후 나온 새로운 링크를 아래 따옴표 안에 넣어주세요.
+        // ★ 시온찬양대 구글 스프레드시트 링크 연동 ★
         const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSNA9Z3CEaLyG7yNQdDB0nX8GsgqfMGLU391NdqFm-FwzFrJoDhnJPxh6m6lKkOwCkmvKW_PdF6gz8G/pub?gid=603697563&single=true&output=csv";
 
         let formattedData = [];
@@ -288,15 +269,8 @@
         }
 
         async function loadData() {
-            // 링크가 아직 등록되지 않은 경우의 안내 메시지
-            if (!csvUrl || csvUrl.includes("https://docs.google.com/spreadsheets/d/e/2PACX-1vSNA9Z3CEaLyG7yNQdDB0nX8GsgqfMGLU391NdqFm-FwzFrJoDhnJPxh6m6lKkOwCkmvKW_PdF6gz8G/pub?gid=603697563&single=true&output=csv")) {
-                document.getElementById('praise-list-pc').innerHTML = '<tr><td colspan="6" class="py-10 text-center text-red-500 font-bold"><i class="fas fa-exclamation-triangle mr-2"></i>웹 관리자에게 시온찬양대 엑셀 링크(CSV) 연결을 요청해주세요.</td></tr>';
-                document.getElementById('praise-list-mobile-body').innerHTML = '<div class="py-10 text-center text-red-500 font-bold text-sm">엑셀 링크(CSV) 연결이 필요합니다.</div>';
-                return;
-            }
-
             try {
-                document.getElementById('praise-list-pc').innerHTML = '<tr><td colspan="6" class="py-10 text-center text-gray-500"><i class="fas fa-spinner fa-spin mr-2"></i>데이터를 불러오는 중입니다...</td></tr>';
+                document.getElementById('praise-list-pc').innerHTML = '<tr><td colspan="5" class="py-10 text-center text-gray-500"><i class="fas fa-spinner fa-spin mr-2"></i>데이터를 불러오는 중입니다...</td></tr>';
                 document.getElementById('praise-list-mobile-body').innerHTML = '<div class="py-10 text-center text-gray-500"><i class="fas fa-spinner fa-spin mr-2"></i>불러오는 중...</div>';
 
                 const response = await fetch(csvUrl);
@@ -306,11 +280,11 @@
                 rows.shift(); 
 
                 formattedData = rows.map(row => {
-                    let rawLink = (row[4] || '').trim(); // 링크가 5번째 열(인덱스 4)에 있음
+                    let rawLink = (row[4] || '').trim(); // 링크
                     return {
                         id: parseInt(row[0] || 0),
-                        title: (row[1] || '').trim(),
-                        assignee: (row[2] || '시온찬양대').trim(),
+                        title: (row[1] || '').trim(), // 곡명
+                        assignee: (row[2] || '시온찬양대').trim(), // 담당
                         date: (row[3] || '').trim(),
                         link: rawLink.length > 5 ? rawLink : '#'
                     };
@@ -323,7 +297,7 @@
 
             } catch (error) {
                 console.error("데이터 로딩 에러:", error);
-                document.getElementById('praise-list-pc').innerHTML = '<tr><td colspan="6" class="py-10 text-center text-red-500">데이터를 불러올 수 없습니다. 인터넷 연결을 확인해주세요.</td></tr>';
+                document.getElementById('praise-list-pc').innerHTML = '<tr><td colspan="5" class="py-10 text-center text-red-500">데이터를 불러올 수 없습니다. 인터넷 연결을 확인해주세요.</td></tr>';
             }
         }
 
@@ -339,9 +313,9 @@
             mobileContainer.innerHTML = '';
 
             pageData.forEach(item => {
-                // 1. PC 테이블 렌더링
+                // PC Version (사진 제거)
                 const tr = document.createElement('tr');
-                tr.className = 'border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer group h-[60px]';
+                tr.className = 'border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer group h-[50px]';
                 if(item.link !== '#') {
                     tr.onclick = (e) => {
                         if(!e.target.closest('a') && !e.target.closest('button')) {
@@ -352,13 +326,7 @@
                 
                 tr.innerHTML = `
                     <td class="py-3 text-gray-400 font-medium">${item.id}</td>
-                    <td class="py-3 px-2">
-                        <div class="thumb-bg w-full h-16 rounded overflow-hidden flex flex-col justify-center items-center shadow-sm">
-                            <i class="fas fa-music text-white/80 text-xs mb-0.5 relative z-10"></i>
-                            <span class="text-white font-extrabold text-[10px] sm:text-xs relative z-10 px-1 truncate w-full text-center tracking-tight">찬양</span>
-                        </div>
-                    </td>
-                    <td class="py-3 px-4 text-left font-bold text-gray-800 group-hover:text-blue-600 transition truncate block max-w-full">${item.title}</td>
+                    <td class="py-3 px-4 text-left font-bold text-gray-800 group-hover:text-blue-600 transition truncate">${item.title}</td>
                     <td class="py-3 text-[13px] md:text-sm font-medium text-gray-800">${item.assignee}</td>
                     <td class="py-3 text-[13px] md:text-sm text-gray-500">${item.date}</td>
                     <td class="py-3">
@@ -369,23 +337,17 @@
                 `;
                 pcTbody.appendChild(tr);
 
-                // 2. 모바일 리스트 렌더링
+                // Mobile Version (사진 제거)
                 const mDiv = document.createElement('div');
-                mDiv.className = 'flex border-b border-gray-200 py-3 hover:bg-gray-50 transition cursor-pointer px-2 items-center';
+                mDiv.className = 'flex border-b border-gray-200 py-3.5 hover:bg-gray-50 transition cursor-pointer px-2 items-center';
                 if(item.link !== '#') {
                     mDiv.onclick = () => window.open(item.link, '_blank');
                 }
                 
                 mDiv.innerHTML = `
-                    <div class="w-10 text-center text-gray-400 text-sm shrink-0 font-medium">${item.id}</div>
-                    <div class="w-24 shrink-0 mx-2">
-                        <div class="thumb-bg w-full h-16 rounded overflow-hidden flex flex-col justify-center items-center shadow-sm">
-                            <i class="fas fa-music text-white/80 text-[10px] mb-0.5 relative z-10"></i>
-                            <span class="text-white font-extrabold text-[10px] relative z-10 px-1 truncate w-full text-center leading-tight">찬양</span>
-                        </div>
-                    </div>
-                    <div class="flex-1 pr-2 relative overflow-hidden">
-                        <div class="text-gray-900 text-[14px] font-bold mb-1 truncate leading-snug pr-6">${item.title}</div>
+                    <div class="w-14 text-center text-gray-400 text-sm shrink-0 font-medium">${item.id}</div>
+                    <div class="flex-1 pl-2 pr-10 relative overflow-hidden">
+                        <div class="text-gray-900 text-[15px] font-bold mb-1 truncate leading-snug">${item.title}</div>
                         <div class="text-gray-500 text-[12px] flex flex-wrap gap-x-2 gap-y-0.5 mb-0.5 leading-tight">
                             <span class="text-gray-700 font-medium">${item.assignee}</span>
                         </div>
