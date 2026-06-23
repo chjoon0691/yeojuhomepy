@@ -62,25 +62,53 @@
                     <span>말씀과 찬양</span>
                     <i class="fas fa-plus text-gray-400 text-xs"></i>
                 </button>
+                <ul id="menu-depth1" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
+                    <li class="border-b border-gray-100"><a href="../welcome/greeting.html" class="block px-4 py-3 hover:bg-gray-50">환영합니다</a></li>
+                    <li class="border-b border-gray-100"><a href="sunday.html" class="block px-4 py-3 text-blue-600 font-bold bg-gray-50">말씀과 찬양</a></li>
+                    <li class="border-b border-gray-100"><a href="../community/parish.html" class="block px-4 py-3 hover:bg-gray-50">공동체</a></li>
+                    <li class="border-b border-gray-100"><a href="../nextgen/infant.html" class="block px-4 py-3 hover:bg-gray-50">다음세대</a></li>
+                    <li class="border-b border-gray-100"><a href="../mission/evangelism.html" class="block px-4 py-3 hover:bg-gray-50">전도와 선교</a></li>
+                    <li class="border-b border-gray-100"><a href="../news/weekly.html" class="block px-4 py-3 hover:bg-gray-50">교회소식</a></li>
+                    <li><a href="../service/application.html" class="block px-4 py-3 hover:bg-gray-50">행정서비스</a></li>
+                </ul>
             </div>
             <div class="flex-1 relative">
                 <button onclick="toggleMobileSubMenu('menu-depth2')" class="w-full flex justify-between items-center px-4 py-3 text-gray-800 focus:outline-none">
                     <span>여주미디어</span>
                     <i class="fas fa-plus text-gray-400 text-xs"></i>
                 </button>
+                <ul id="menu-depth2" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
+                    <li class="bg-gray-50 border-b border-gray-100 py-2">
+                        <span class="block px-4 py-1 text-gray-800 font-bold text-xs">말씀</span>
+                        <a href="sunday.html" class="block px-6 py-2 hover:bg-gray-100 text-gray-600">- 주일 예배</a>
+                        <a href="afternoon.html" class="block px-6 py-2 hover:bg-gray-100 text-gray-600">- 주일 오후 예배</a>
+                        <a href="wednesday.html" class="block px-6 py-2 hover:bg-gray-100 text-gray-600">- 수요 예배</a>
+                        <a href="special_worship.html" class="block px-6 py-2 hover:bg-gray-100 text-gray-600">- 특별집회</a>
+                    </li>
+                    <li class="bg-gray-50 border-b border-gray-100 py-2">
+                        <span class="block px-4 py-1 text-gray-800 font-bold text-xs">찬양대/중창단</span>
+                        <a href="praise.html" class="block px-6 py-2 hover:bg-gray-100 text-gray-600">- 시온찬양대</a>
+                        <a href="hallelujah.html" class="block px-6 py-2 hover:bg-gray-100 text-gray-600">- 할렐루야찬양대</a>
+                        <a href="dreamnlove.html" class="block px-6 py-2 hover:bg-gray-100 text-gray-600">- 꿈과사랑의찬양대</a>
+                        <a href="silver.html" class="block px-6 py-2 hover:bg-gray-100 text-gray-600">- 은빛찬양대</a>
+                        <a href="sundayoffering.html" class="block px-6 py-2 hover:bg-gray-100 text-gray-600">- 주일봉헌찬양</a>
+                        <a href="special.html" class="block px-6 py-2 hover:bg-gray-100 text-gray-600">- 특별찬양</a>
+                    </li>
+                    <li><a href="media.html" class="block px-4 py-3 text-blue-600 font-bold bg-gray-50">여주미디어</a></li>
+                </ul>
             </div>
         </div>
     </div>
 
     <div class="max-w-7xl mx-auto px-4 py-12 md:py-20 flex flex-col md:flex-row gap-10">
         
-        <!-- Left Sidebar (아코디언 마우스 오버 효과 적용) -->
+        <!-- Left Sidebar (아코디언) -->
         <aside class="hidden md:block w-64 flex-shrink-0">
             <div class="bg-[#6b8cba] text-white text-center py-4 text-xl font-bold rounded-t-lg">
                 말씀과 찬양
             </div>
             <ul class="border border-t-0 border-gray-200 flex flex-col">
-                <!-- 말씀 (Collapsed, expands on hover) -->
+                <!-- 말씀 (Collapsed) -->
                 <li class="border-b border-gray-200 group">
                     <a href="sunday.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">
                         말씀 <i class="fas fa-chevron-down text-xs text-gray-400 group-hover:rotate-180 transition-transform duration-300"></i>
@@ -88,13 +116,13 @@
                     <div class="max-h-0 overflow-hidden group-hover:max-h-48 transition-all duration-500 ease-in-out">
                         <ul class="py-2 bg-white border-t border-gray-100">
                             <li><a href="sunday.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">주일 예배</a></li>
-                            <li><a href="#" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">주일 오후 예배</a></li>
-                            <li><a href="#" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">수요 예배</a></li>
-                            <li><a href="#" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">특별집회</a></li>
+                            <li><a href="afternoon.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">주일 오후 예배</a></li>
+                            <li><a href="wednesday.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">수요 예배</a></li>
+                            <li><a href="special_worship.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">특별집회</a></li>
                         </ul>
                     </div>
                 </li>
-                <!-- 찬양대/중창단 (Collapsed, expands on hover) -->
+                <!-- 찬양대/중창단 (Collapsed) -->
                 <li class="border-b border-gray-200 group">
                     <a href="praise.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">
                         찬양대/중창단 <i class="fas fa-chevron-down text-xs text-gray-400 group-hover:rotate-180 transition-transform duration-300"></i>
@@ -126,38 +154,26 @@
                 <h3 class="text-2xl md:text-3xl font-extrabold relative z-10 tracking-tight">여주미디어</h3>
             </div>
 
-            <div class="flex justify-end mb-4 border-b border-gray-200 pb-4">
-                <div class="flex border border-gray-300 rounded shadow-sm overflow-hidden bg-white">
-                    <select class="px-3 py-1.5 text-sm md:text-base border-r border-gray-300 text-gray-700 focus:outline-none bg-gray-50 cursor-pointer">
-                        <option>제목</option>
-                    </select>
-                    <input type="text" class="px-3 py-1.5 text-sm md:text-base w-32 md:w-48 focus:outline-none" placeholder="검색어 입력">
-                    <button class="bg-gray-100 hover:bg-gray-200 text-gray-600 px-4 py-1.5 text-sm md:text-base border-l border-gray-300 transition">
-                        <i class="fas fa-search"></i>
-                    </button>
+            <!-- 상태 표시줄 (건수) -->
+            <div class="flex flex-col sm:flex-row justify-between items-center mb-8 border-b border-gray-200 pb-4 gap-4">
+                <div class="text-gray-500 text-sm font-medium w-full sm:w-auto text-left pl-1">
+                    <i class="fas fa-video text-gray-400 mr-1"></i> 총 <span id="total-count" class="text-blue-600 font-bold">0</span>건의 영상
                 </div>
             </div>
 
-            <table class="hidden md:table w-full text-center text-sm md:text-base border-t-2 border-gray-800 table-fixed">
-                <colgroup>
-                    <col class="w-[10%]">
-                    <col class="w-[60%]">
-                    <col class="w-[20%]">
-                    <col class="w-[10%]">
-                </colgroup>
-                <thead class="bg-gray-50 text-gray-700 font-bold border-b border-gray-300">
-                    <tr>
-                        <th class="py-3 px-2">번호</th>
-                        <th class="py-3 px-4 text-left">제목</th>
-                        <th class="py-3 px-2 text-gray-500">날짜</th>
-                        <th class="py-3 px-2">보기</th>
-                    </tr>
-                </thead>
-                <tbody id="media-list-pc" class="text-gray-600"></tbody>
-            </table>
+            <!-- ★ 갤러리 바둑판(Grid) 영역 ★ -->
+            <!-- 1줄에 모바일 1개, 작은패드 2개, 테블릿 3개, PC 4개씩 반응형으로 꽉 차게 들어갑니다 -->
+            <div id="media-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+                <!-- 자바스크립트로 영상 카드들이 이곳에 생성됩니다. -->
+            </div>
 
-            <div id="media-list-mobile" class="md:hidden block w-full border-t-2 border-gray-800"></div>
-            <div id="pagination" class="flex justify-center items-center mt-8 mb-6 flex-wrap gap-y-2"></div>
+            <!-- 페이지네이션 -->
+            <div id="pagination" class="flex justify-center items-center mt-12 mb-6 flex-wrap gap-y-2"></div>
+            
+            <!-- 로딩 메시지 -->
+            <div id="loading-msg" class="py-10 text-center text-gray-500 font-bold hidden">
+                <i class="fas fa-spinner fa-spin mr-2"></i>영상을 불러오는 중입니다...
+            </div>
         </main>
     </div>
 
@@ -194,91 +210,154 @@
             }
         }
 
-        const mediaData = [
-            { id: 17, title: "2024 그리스. 로마 성지순례", date: "2024-05-02", link: "#" },
-            { id: 16, title: "월드비전 합창단 초청 공연", date: "2022-07-17", link: "#" },
-            { id: 15, title: "7월 17일 월드비전 초청 예배", date: "2022-07-08", link: "#" },
-            { id: 14, title: "7월 17일 월드비전 초청 예배", date: "2022-07-08", link: "#" },
-            { id: 13, title: "여주 푸르지오 아파트 입주", date: "2022-01-02", link: "#" },
-            { id: 12, title: "키르키즈스탄(기아대책) 선교", date: "2020-10-13", link: "#" },
-            { id: 11, title: "2020년도 중등부 동계수련회", date: "2020-02-21", link: "#" },
-            { id: 10, title: "2020 고등부동계수련회", date: "2020-02-13", link: "#" },
-            { id: 9, title: "2019교육부서 여름성경학교", date: "2019-08-04", link: "#" },
-            { id: 8, title: "2019 키르키즈스탄 단기선교", date: "2019-08-04", link: "#" },
-            { id: 7, title: "온가족예배 신앙의계승 영상", date: "2019-05-26", link: "#" },
-            { id: 6, title: "주님 나라 이루소서", date: "2019-04-21", link: "#" },
-            { id: 5, title: "대만 2019 중고등부 비전트립", date: "2019-02-03", link: "#" },
-            { id: 4, title: "2018년 여주교회 발자취 영상", date: "2019-01-20", link: "#" },
-            { id: 3, title: "말씀과 그림 소장전", date: "2018-11-21", link: "#" }
-        ];
+        // CSV 글씨 분리 함수
+        function parseCSV(str) {
+            const arr = [];
+            let quote = false;
+            let col, c;
+            for (let row = col = c = 0; c < str.length; c++) {
+                let cc = str[c], nc = str[c+1];
+                arr[row] = arr[row] || [];
+                arr[row][col] = arr[row][col] || '';
+                if (cc == '"' && quote && nc == '"') { arr[row][col] += cc; ++c; continue; }
+                if (cc == '"') { quote = !quote; continue; }
+                if (cc == ',' && !quote) { ++col; continue; }
+                if (cc == '\r' && nc == '\n' && !quote) { ++row; col = 0; ++c; continue; }
+                if (cc == '\n' && !quote) { ++row; col = 0; continue; }
+                if (cc == '\r' && !quote) { ++row; col = 0; continue; }
+                arr[row][col] += cc;
+            }
+            return arr;
+        }
 
-        const itemsPerPage = 15;
+        // ★★★ 여주미디어 구글 스프레드시트 링크 ★★★
+        const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSNA9Z3CEaLyG7yNQdDB0nX8GsgqfMGLU391NdqFm-FwzFrJoDhnJPxh6m6lKkOwCkmvKW_PdF6gz8G/pub?gid=473331547&single=true&output=csv";
+
+        let formattedData = [];
+        const itemsPerPage = 12; // 1페이지당 12개씩 (가로 4칸 * 세로 3줄)
         let currentPage = 1;
 
-        function renderTable(page) {
+        // ★ 마법의 유튜브 썸네일 자동 추출 함수 ★
+        function getYouTubeThumbnail(url) {
+            if (!url || url.length < 5) return 'https://placehold.co/600x400/eeeeee/999999?text=No+Video';
+            
+            // 유튜브 주소에서 영상의 고유 ID (11자리 영어/숫자)를 찾아냅니다.
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            const match = url.match(regExp);
+            
+            if (match && match[2].length === 11) {
+                // 고유 ID를 이용해 유튜브 서버에서 고화질 썸네일 사진을 바로 가져옵니다.
+                return `https://img.youtube.com/vi/${match[2]}/hqdefault.jpg`;
+            } else {
+                return 'https://placehold.co/600x400/eeeeee/999999?text=Invalid+URL';
+            }
+        }
+
+        async function loadData() {
+            try {
+                document.getElementById('loading-msg').classList.remove('hidden');
+
+                const response = await fetch(csvUrl);
+                const csvText = await response.text();
+                
+                const rows = parseCSV(csvText);
+                rows.shift(); // 첫 번째 제목 줄 제거
+
+                formattedData = rows.map(row => {
+                    let rawLink = (row[3] || '').trim(); // 4번째 칸이 링크 (0, 1, 2, 3)
+                    return {
+                        id: parseInt(row[0] || 0),
+                        title: (row[1] || '').trim(), 
+                        date: (row[2] || '').trim(),
+                        link: rawLink.length > 5 ? rawLink : '#'
+                    };
+                }).filter(item => item.title !== '' && !isNaN(item.id));
+
+                // 번호가 가장 큰(최신) 순서대로 정렬
+                formattedData.sort((a, b) => b.id - a.id);
+                
+                // 총 갯수 표시
+                document.getElementById('total-count').textContent = formattedData.length;
+                document.getElementById('loading-msg').classList.add('hidden');
+
+                renderGrid(currentPage);
+
+            } catch (error) {
+                console.error("데이터 로딩 에러:", error);
+                document.getElementById('loading-msg').innerHTML = '<span class="text-red-500">데이터를 불러올 수 없습니다. 인터넷 연결을 확인해주세요.</span>';
+            }
+        }
+
+        function renderGrid(page) {
             const startIndex = (page - 1) * itemsPerPage;
             const endIndex = startIndex + itemsPerPage;
-            const pageData = mediaData.slice(startIndex, endIndex);
+            const pageData = formattedData.slice(startIndex, endIndex);
 
-            const pcTbody = document.getElementById('media-list-pc');
-            const mobileContainer = document.getElementById('media-list-mobile');
-
-            pcTbody.innerHTML = '';
-            mobileContainer.innerHTML = '';
+            const gridContainer = document.getElementById('media-grid');
+            gridContainer.innerHTML = '';
 
             pageData.forEach(item => {
-                const tr = document.createElement('tr');
-                tr.className = 'border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer';
+                const card = document.createElement('div');
+                card.className = 'flex flex-col cursor-pointer group';
+                
                 if(item.link !== '#') {
-                    tr.onclick = () => window.open(item.link, '_blank');
+                    card.onclick = () => window.open(item.link, '_blank');
                 }
-                tr.innerHTML = `
-                    <td class="py-4 text-gray-400">${item.id}</td>
-                    <td class="py-4 px-4 text-left font-bold text-gray-800">${item.title}</td>
-                    <td class="py-4 text-sm text-gray-500">${item.date}</td>
-                    <td class="py-4">
-                        ${item.link !== '#' 
-                            ? `<a href="${item.link}" target="_blank" class="bg-[#5c5c5c] hover:bg-[#1b315b] text-white rounded w-8 h-6 flex items-center justify-center mx-auto transition"><i class="fas fa-tv text-xs"></i></a>` 
-                            : `<button class="bg-[#e5e7eb] text-gray-400 cursor-not-allowed rounded w-8 h-6 flex items-center justify-center mx-auto"><i class="fas fa-tv text-xs"></i></button>`}
-                    </td>
-                `;
-                pcTbody.appendChild(tr);
 
-                const mDiv = document.createElement('div');
-                mDiv.className = 'flex border-b border-gray-200 py-3 items-center hover:bg-gray-50 transition cursor-pointer';
-                if(item.link !== '#') {
-                    mDiv.onclick = () => window.open(item.link, '_blank');
-                }
-                mDiv.innerHTML = `
-                    <div class="w-16 text-center text-gray-400 text-sm shrink-0">${item.id}</div>
-                    <div class="flex-1 pl-2 pr-4 relative">
-                        <div class="text-gray-800 text-[15px] font-bold mb-0.5 truncate">${item.title}</div>
-                        <div class="text-gray-400 text-[13px]">${item.date}</div>
-                        ${item.link !== '#' 
-                            ? `<div class="absolute top-1/2 right-2 -translate-y-1/2 text-gray-400"><i class="fas fa-tv text-lg"></i></div>` 
-                            : `<div class="absolute top-1/2 right-2 -translate-y-1/2 text-gray-200"><i class="fas fa-tv text-lg"></i></div>`}
+                // 유튜브 썸네일 이미지 주소 가져오기
+                const thumbUrl = getYouTubeThumbnail(item.link);
+
+                card.innerHTML = `
+                    <!-- 16:9 비율의 썸네일 영역 -->
+                    <div class="w-full aspect-video rounded-xl overflow-hidden shadow-sm border border-gray-200 mb-3 relative bg-gray-100">
+                        <img src="${thumbUrl}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        
+                        <!-- 마우스 올렸을 때 나타나는 어두운 배경과 플레이 버튼 -->
+                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                            <i class="fas fa-play-circle text-5xl text-white/90 shadow-sm"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- 제목 및 날짜 영역 -->
+                    <div class="px-1 text-center">
+                        <h4 class="font-bold text-gray-800 text-[15px] md:text-base leading-snug group-hover:text-blue-600 transition truncate w-full mb-1">
+                            ${item.title}
+                        </h4>
+                        <p class="text-[12px] md:text-sm text-gray-500 font-medium">
+                            <i class="far fa-calendar-alt mr-1"></i>${item.date}
+                        </p>
                     </div>
                 `;
-                mobileContainer.appendChild(mDiv);
+                
+                gridContainer.appendChild(card);
             });
+            
             renderPagination();
         }
 
         function renderPagination() {
-            const totalPages = Math.ceil(mediaData.length / itemsPerPage);
+            const totalPages = Math.ceil(formattedData.length / itemsPerPage);
             const paginationContainer = document.getElementById('pagination');
             paginationContainer.innerHTML = '';
+
             for (let i = 1; i <= totalPages; i++) {
                 const a = document.createElement('a');
                 a.href = '#';
                 a.className = `page-link ${i === currentPage ? 'active' : ''} rounded`;
                 a.textContent = i;
-                a.onclick = (e) => { e.preventDefault(); currentPage = i; renderTable(currentPage); window.scrollTo({top: 400, behavior: 'smooth'}); };
+                a.onclick = (e) => {
+                    e.preventDefault();
+                    currentPage = i;
+                    renderGrid(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                };
                 paginationContainer.appendChild(a);
             }
         }
 
-        document.addEventListener('DOMContentLoaded', () => renderTable(currentPage));
+        document.addEventListener('DOMContentLoaded', () => {
+            loadData();
+        });
     </script>
     <script>const ROOT_PATH = "../";</script>
     <script src="../js/common.js"></script>
