@@ -81,9 +81,9 @@
                     <li class="bg-gray-50 border-b border-gray-100 py-2">
                         <span class="block px-4 py-1 text-gray-800 font-bold text-xs">말씀</span>
                         <a href="sunday.html" class="block px-6 py-2 hover:bg-gray-100 text-gray-600">- 주일 예배</a>
-                        <a href="#" class="block px-6 py-2 hover:bg-gray-100 text-gray-600">- 주일 오후 예배</a>
-                        <a href="#" class="block px-6 py-2 hover:bg-gray-100 text-gray-600">- 수요 예배</a>
-                        <a href="#" class="block px-6 py-2 hover:bg-gray-100 text-gray-600">- 특별집회</a>
+                        <a href="afternoon.html" class="block px-6 py-2 hover:bg-gray-100 text-gray-600">- 주일 오후 예배</a>
+                        <a href="wednesday.html" class="block px-6 py-2 hover:bg-gray-100 text-gray-600">- 수요 예배</a>
+                        <a href="special_worship.html" class="block px-6 py-2 hover:bg-gray-100 text-gray-600">- 특별집회</a>
                     </li>
                     <li class="bg-gray-50 border-b border-gray-100 py-2">
                         <span class="block px-4 py-1 text-gray-800 font-bold text-xs">찬양대/중창단</span>
@@ -102,13 +102,12 @@
 
     <div class="max-w-7xl mx-auto px-4 py-12 md:py-20 flex flex-col md:flex-row gap-10">
         
-        <!-- Left Sidebar (아코디언 마우스 오버 효과 적용) -->
+        <!-- Left Sidebar -->
         <aside class="hidden md:block w-64 flex-shrink-0">
             <div class="bg-[#6b8cba] text-white text-center py-4 text-xl font-bold rounded-t-lg">
                 말씀과 찬양
             </div>
             <ul class="border border-t-0 border-gray-200 flex flex-col">
-                <!-- 말씀 (Collapsed, expands on hover) -->
                 <li class="border-b border-gray-200 group">
                     <a href="sunday.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">
                         말씀 <i class="fas fa-chevron-down text-xs text-gray-400 group-hover:rotate-180 transition-transform duration-300"></i>
@@ -116,13 +115,13 @@
                     <div class="max-h-0 overflow-hidden group-hover:max-h-48 transition-all duration-500 ease-in-out">
                         <ul class="py-2 bg-white border-t border-gray-100">
                             <li><a href="sunday.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">주일 예배</a></li>
-                            <li><a href="#" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">주일 오후 예배</a></li>
-                            <li><a href="#" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">수요 예배</a></li>
-                            <li><a href="#" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">특별집회</a></li>
+                            <li><a href="afternoon.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">주일 오후 예배</a></li>
+                            <li><a href="wednesday.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">수요 예배</a></li>
+                            <li><a href="special_worship.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">특별집회</a></li>
                         </ul>
                     </div>
                 </li>
-                <!-- 찬양대/중창단 (Collapsed by default, expands on hover. 특별찬양 is highlighted) -->
+                <!-- 찬양대/중창단 (Expanded) -->
                 <li class="border-b border-gray-200 group">
                     <a href="praise.html" class="flex justify-between items-center px-5 py-3 text-[#3b82f6] font-bold bg-gray-50 transition">
                         찬양대/중창단 <i class="fas fa-chevron-down text-xs text-[#3b82f6] group-hover:rotate-180 transition-transform duration-300"></i>
@@ -138,7 +137,6 @@
                         </ul>
                     </div>
                 </li>
-                <!-- 여주미디어 -->
                 <li>
                     <a href="media.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition rounded-b-lg">
                         여주미디어 <i class="fas fa-chevron-right text-xs"></i>
@@ -150,60 +148,49 @@
         <!-- Right Content Area -->
         <main class="flex-1">
             
-            <!-- 상단 배너 타이틀 -->
             <div class="w-full bg-[#1b315b] rounded-xl h-24 md:h-32 flex flex-col justify-center items-center text-white shadow-md relative overflow-hidden mb-8">
                 <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1510590337019-5ef8d3d32116?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
                 <h3 class="text-2xl md:text-3xl font-extrabold relative z-10 tracking-tight">특별찬양</h3>
             </div>
 
-            <!-- 검색바 -->
-            <div class="flex justify-end mb-4 border-b border-gray-200 pb-4">
-                <div class="flex border border-gray-300 rounded shadow-sm overflow-hidden bg-white">
-                    <select class="px-3 py-1.5 text-sm md:text-base border-r border-gray-300 text-gray-700 focus:outline-none bg-gray-50 cursor-pointer">
-                        <option>제목</option>
-                    </select>
-                    <input type="text" class="px-3 py-1.5 text-sm md:text-base w-32 md:w-48 focus:outline-none" placeholder="검색어 입력">
-                    <button class="bg-gray-100 hover:bg-gray-200 text-gray-600 px-4 py-1.5 text-sm md:text-base border-l border-gray-300 transition">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-            </div>
+            <!-- 검색바 삭제 완료 -->
 
-            <!-- PC Version Table -->
-            <table class="hidden md:table w-full text-center text-sm md:text-base border-t-2 border-gray-800 table-fixed">
+            <!-- PC Version Table (사진 열 삭제, 5컬럼 구조) -->
+            <table class="hidden md:table w-full text-center text-sm md:text-base border-t-2 border-gray-800 table-fixed mt-4">
                 <colgroup>
                     <col class="w-[10%]">
-                    <col class="w-[60%]">
+                    <col class="w-[45%]">
                     <col class="w-[20%]">
+                    <col class="w-[15%]">
                     <col class="w-[10%]">
                 </colgroup>
-                <thead class="bg-gray-50 text-gray-700 font-bold border-b border-gray-300">
+                <thead class="bg-gray-700 text-white font-bold border-b border-gray-300">
                     <tr>
                         <th class="py-3 px-2">번호</th>
-                        <th class="py-3 px-4 text-left">제목</th>
-                        <th class="py-3 px-2 text-gray-500">날짜 <i class="fas fa-sort text-[10px]"></i></th>
+                        <th class="py-3 px-4 text-left">제목(곡명)</th>
+                        <th class="py-3 px-2">담당</th>
+                        <th class="py-3 px-2 text-gray-300">날짜 <i class="fas fa-sort text-[10px]"></i></th>
                         <th class="py-3 px-2">보기</th>
                     </tr>
                 </thead>
-                <!-- JS가 데이터를 밀어넣을 공간 -->
                 <tbody id="praise-list-pc" class="text-gray-600">
+                    <!-- 구글 시트 데이터 로딩 -->
                 </tbody>
             </table>
 
             <!-- Mobile Version List -->
-            <div class="md:hidden block w-full border-t-2 border-gray-800">
-                <div class="flex bg-gray-50 text-gray-700 font-bold border-b border-gray-300 py-3 text-sm">
-                    <div class="w-16 text-center">번호</div>
-                    <div class="flex-1 text-center">제목</div>
+            <div class="md:hidden block w-full border-t-2 border-gray-800 mt-4">
+                <div class="flex bg-gray-50 text-gray-700 font-bold border-b border-gray-300 py-3 text-sm px-2">
+                    <div class="w-14 text-center">번호</div>
+                    <div class="flex-1 pl-2">제목(곡명)</div>
                 </div>
                 <div id="praise-list-mobile-body">
-                    <!-- JS가 데이터를 밀어넣을 공간 -->
+                    <!-- 구글 시트 데이터 로딩 -->
                 </div>
             </div>
 
-            <!-- 페이지네이션 (Pagination) -->
-            <div id="pagination" class="flex justify-center items-center mt-8 mb-6 flex-wrap gap-y-2">
-                <!-- 자동 생성 영역 -->
+            <!-- 페이지네이션 -->
+            <div id="pagination" class="flex justify-center items-center mt-10 mb-6 flex-wrap gap-y-2">
             </div>
 
         </main>
@@ -214,7 +201,6 @@
     <div id="common-sitemap"></div>
 
     <script>
-        // 모바일 보조 메뉴 토글 기능
         function toggleMobileSubMenu(menuId) {
             const targetMenu = document.getElementById(menuId);
             const otherMenuId = menuId === 'menu-depth1' ? 'menu-depth2' : 'menu-depth1';
@@ -242,38 +228,64 @@
             }
         }
 
-        // 1. 여기에 매주 새로운 특별찬양 데이터를 계속 추가하시면 됩니다. 
-        const praiseData = [
-            { title: "오직 예수 뿐이네 (청년부 특송)", date: "2025-08-24", link: "#" },
-            { title: "하나님의 은혜 (이ㅇㅇ 집사 특송)", date: "2025-08-17", link: "#" },
-            { title: "주를 향한 나의 사랑을 (여전도회 특송)", date: "2025-08-10", link: "#" },
-            { title: "내 영혼이 은총 입어 (남전도회 특송)", date: "2025-08-03", link: "#" },
-            { title: "창립기념주일 특별 찬양", date: "2025-07-27", link: "#" },
-            { title: "맥추감사주일 특별 찬양 (연합 찬양대)", date: "2025-07-06", link: "#" },
-            { title: "은혜 아니면 (김ㅇㅇ 청년 특송)", date: "2025-06-29", link: "#" },
-            { title: "주님 다시 오실 때까지 (중고등부 특송)", date: "2025-06-22", link: "#" },
-            { title: "사명 (박ㅇㅇ 장로 특송)", date: "2025-06-18", link: "#" },
-            { title: "십자가의 전달자 (최ㅇㅇ 권사 특송)", date: "2025-06-08", link: "#" },
-            { title: "어린이주일 특별 찬양 (유초등부)", date: "2025-05-04", link: "#" },
-            { title: "부활절 칸타타 (할렐루야 찬양대)", date: "2025-04-20", link: "#" },
-            { title: "고난주간 특별 찬양", date: "2025-04-13", link: "#" },
-            { title: "사명 (이ㅇㅇ 권사 특송)", date: "2025-04-06", link: "#" },
-            { title: "주 예수 내 맘에 들어와 (초등부)", date: "2025-03-30", link: "#" },
-            // 페이징 테스트용 데이터
-            { title: "이전 특별찬양 1", date: "2025-03-23", link: "#" },
-            { title: "이전 특별찬양 2", date: "2025-03-16", link: "#" }
-        ];
+        // ★ 특별찬양 구글 스프레드시트 링크 연동 ★
+        const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSNA9Z3CEaLyG7yNQdDB0nX8GsgqfMGLU391NdqFm-FwzFrJoDhnJPxh6m6lKkOwCkmvKW_PdF6gz8G/pub?gid=880516803&single=true&output=csv";
 
-        const baseCount = 15; 
-        const baseStartNumber = 135; // 임의의 시작 번호 
-        let startNumber = baseStartNumber + (praiseData.length - baseCount);
-        
-        const formattedData = praiseData.map((item, index) => {
-            return { id: startNumber - index, ...item };
-        });
-
-        const itemsPerPage = 15; 
+        let formattedData = [];
+        const itemsPerPage = 12; 
         let currentPage = 1;
+
+        function parseCSV(str) {
+            const arr = [];
+            let quote = false;
+            let col, c;
+            for (let row = col = c = 0; c < str.length; c++) {
+                let cc = str[c], nc = str[c+1];
+                arr[row] = arr[row] || [];
+                arr[row][col] = arr[row][col] || '';
+                if (cc == '"' && quote && nc == '"') { arr[row][col] += cc; ++c; continue; }
+                if (cc == '"') { quote = !quote; continue; }
+                if (cc == ',' && !quote) { ++col; continue; }
+                if (cc == '\r' && nc == '\n' && !quote) { ++row; col = 0; ++c; continue; }
+                if (cc == '\n' && !quote) { ++row; col = 0; continue; }
+                if (cc == '\r' && !quote) { ++row; col = 0; continue; }
+                arr[row][col] += cc;
+            }
+            return arr;
+        }
+
+        async function loadData() {
+            try {
+                document.getElementById('praise-list-pc').innerHTML = '<tr><td colspan="5" class="py-10 text-center text-gray-500"><i class="fas fa-spinner fa-spin mr-2"></i>데이터를 불러오는 중입니다...</td></tr>';
+                document.getElementById('praise-list-mobile-body').innerHTML = '<div class="py-10 text-center text-gray-500"><i class="fas fa-spinner fa-spin mr-2"></i>불러오는 중...</div>';
+
+                const response = await fetch(csvUrl);
+                const csvText = await response.text();
+                
+                const rows = parseCSV(csvText);
+                rows.shift(); 
+
+                formattedData = rows.map(row => {
+                    let rawLink = (row[4] || '').trim(); // 링크
+                    return {
+                        id: parseInt(row[0] || 0),
+                        title: (row[1] || '').trim(), // 곡명
+                        assignee: (row[2] || '').trim(), // 담당 (엑셀 데이터 그대로 사용)
+                        date: (row[3] || '').trim(),
+                        link: rawLink.length > 5 ? rawLink : '#'
+                    };
+                }).filter(item => item.title !== '' && !isNaN(item.id));
+
+                // 번호가 가장 큰(최신) 순서대로 정렬
+                formattedData.sort((a, b) => b.id - a.id);
+
+                renderTable(currentPage);
+
+            } catch (error) {
+                console.error("데이터 로딩 에러:", error);
+                document.getElementById('praise-list-pc').innerHTML = '<tr><td colspan="5" class="py-10 text-center text-red-500">데이터를 불러올 수 없습니다. 인터넷 연결을 확인해주세요.</td></tr>';
+            }
+        }
 
         function renderTable(page) {
             const startIndex = (page - 1) * itemsPerPage;
@@ -289,12 +301,21 @@
             pageData.forEach(item => {
                 // PC Version
                 const tr = document.createElement('tr');
-                tr.className = 'border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer';
+                tr.className = 'border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer group h-[50px]';
+                if(item.link !== '#') {
+                    tr.onclick = (e) => {
+                        if(!e.target.closest('a') && !e.target.closest('button')) {
+                            window.open(item.link, '_blank');
+                        }
+                    };
+                }
+                
                 tr.innerHTML = `
-                    <td class="py-4 text-gray-400">${item.id}</td>
-                    <td class="py-4 px-4 text-left font-bold text-gray-800 truncate">${item.title}</td>
-                    <td class="py-4 text-[13px] md:text-sm text-gray-500">${item.date}</td>
-                    <td class="py-4">
+                    <td class="py-3 text-gray-400 font-medium">${item.id}</td>
+                    <td class="py-3 px-4 text-left font-bold text-gray-800 group-hover:text-blue-600 transition truncate">${item.title}</td>
+                    <td class="py-3 text-[13px] md:text-sm font-medium text-gray-800">${item.assignee}</td>
+                    <td class="py-3 text-[13px] md:text-sm text-gray-500">${item.date}</td>
+                    <td class="py-3">
                         ${item.link !== '#' 
                             ? `<a href="${item.link}" target="_blank" class="bg-[#5c5c5c] hover:bg-[#1b315b] text-white rounded w-8 h-6 flex items-center justify-center mx-auto transition"><i class="fas fa-tv text-xs"></i></a>` 
                             : `<button class="bg-[#e5e7eb] text-gray-400 cursor-not-allowed rounded w-8 h-6 flex items-center justify-center mx-auto"><i class="fas fa-tv text-xs"></i></button>`}
@@ -304,19 +325,22 @@
 
                 // Mobile Version
                 const mDiv = document.createElement('div');
-                mDiv.className = 'flex border-b border-gray-200 py-3 hover:bg-gray-50 transition cursor-pointer items-center';
+                mDiv.className = 'flex border-b border-gray-200 py-3.5 hover:bg-gray-50 transition cursor-pointer px-2 items-center';
                 if(item.link !== '#') {
                     mDiv.onclick = () => window.open(item.link, '_blank');
                 }
                 
                 mDiv.innerHTML = `
-                    <div class="w-16 text-center text-gray-400 text-sm shrink-0">${item.id}</div>
-                    <div class="flex-1 pl-2 pr-12 relative">
-                        <h4 class="text-gray-800 font-bold text-[15px] mb-0.5 truncate">${item.title}</h4>
-                        <div class="text-gray-400 text-[13px]">${item.date}</div>
+                    <div class="w-14 text-center text-gray-400 text-sm shrink-0 font-medium">${item.id}</div>
+                    <div class="flex-1 pl-2 pr-10 relative overflow-hidden">
+                        <div class="text-gray-900 text-[15px] font-bold mb-1 truncate leading-snug">${item.title}</div>
+                        <div class="text-gray-500 text-[12px] flex flex-wrap gap-x-2 gap-y-0.5 mb-0.5 leading-tight">
+                            <span class="text-gray-700 font-medium">${item.assignee}</span>
+                        </div>
+                        <div class="text-gray-400 text-[11px]">${item.date}</div>
                         ${item.link !== '#' 
-                            ? `<div class="absolute top-1/2 right-2 -translate-y-1/2 text-gray-400"><i class="fas fa-tv text-lg"></i></div>` 
-                            : `<div class="absolute top-1/2 right-2 -translate-y-1/2 text-gray-200"><i class="fas fa-tv text-lg"></i></div>`}
+                            ? `<div class="absolute top-1/2 right-1 -translate-y-1/2 text-gray-400"><i class="fas fa-tv text-lg"></i></div>` 
+                            : `<div class="absolute top-1/2 right-1 -translate-y-1/2 text-gray-200"><i class="fas fa-tv text-lg"></i></div>`}
                     </div>
                 `;
                 mobileContainer.appendChild(mDiv);
@@ -339,14 +363,14 @@
                     e.preventDefault();
                     currentPage = i;
                     renderTable(currentPage);
-                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                    window.scrollTo({top: 400, behavior: 'smooth'}); 
                 };
                 paginationContainer.appendChild(a);
             }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            renderTable(currentPage);
+            loadData();
         });
     </script>
     <script>const ROOT_PATH = "../";</script>
