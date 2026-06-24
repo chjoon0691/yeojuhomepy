@@ -11,8 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const headerHTML = `
     <header class="bg-[#244177] text-white w-full z-50 relative">
         <div class="hidden md:block border-b border-white/20 bg-[#1b315b]">
-            <div class="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center text-sm font-light">
-                <span class="text-blue-200 tracking-wide">교회창립일: 1932. 5. 13.</span>
+            <div class="max-w-7xl mx-auto px-4 py-2 flex justify-end items-center space-x-6 text-sm font-light">
                 <a href="https://www.youtube.com/@여주성결교회" target="_blank" class="hover:text-blue-300 flex items-center gap-1.5 transition"><i class="fab fa-youtube text-red-500 text-lg"></i> 유튜브채널</a>
             </div>
         </div>
@@ -73,7 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                         <a href="${root}word/sunday.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">주일예배</a>
                                         <a href="${root}word/afternoon.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">주일오후예배</a>
                                         <a href="${root}word/wednesday.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">수요예배</a>
-                                        <!-- 특별집회 링크 수정됨 -->
                                         <a href="${root}word/special_worship.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">특별집회</a>
                                     </div>
                                 </div>
@@ -170,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </nav>
         </div>
 
-        <!-- 모바일 전체 메뉴 -->
+        <!-- 모바일 전체 메뉴 (햄버거 버튼 누를 때 나옴) -->
         <div id="global-mobile-menu" class="absolute top-full left-0 w-full bg-[#1a3668] flex-col items-center py-4 space-y-4 shadow-xl z-50 text-lg hidden">
             <a href="${root}welcome/greeting.html" class="text-white hover:text-blue-300">환영합니다</a>
             <a href="${root}word/sunday.html" class="text-white hover:text-blue-300">말씀과 찬양</a>
@@ -348,6 +346,38 @@ window.toggleGlobalSitemap = function() {
         } else {
             modal.classList.add('hidden');
             document.body.style.overflow = ''; 
+        }
+    }
+};
+
+// ★ 이번에 새로 추가된 마법의 코드: 모바일 서브 메뉴 토글 (모든 페이지 공통 적용) ★
+window.toggleMobileSubMenu = function(menuId) {
+    const targetMenu = document.getElementById(menuId);
+    const otherMenuId = menuId === 'menu-depth1' ? 'menu-depth2' : 'menu-depth1';
+    const otherMenu = document.getElementById(otherMenuId);
+    
+    // 다른 쪽 메뉴가 열려있으면 닫고 아이콘을 +로 변경
+    if (otherMenu && !otherMenu.classList.contains('hidden')) {
+        otherMenu.classList.add('hidden');
+        const otherIcon = otherMenu.previousElementSibling.querySelector('.fas');
+        if(otherIcon) {
+            otherIcon.classList.remove('fa-minus');
+            otherIcon.classList.add('fa-plus');
+        }
+    }
+    
+    // 선택한 메뉴 토글 및 아이콘 변경 (+/-)
+    if (targetMenu) {
+        targetMenu.classList.toggle('hidden');
+        const icon = targetMenu.previousElementSibling.querySelector('.fas');
+        if(icon) {
+            if(targetMenu.classList.contains('hidden')) {
+                icon.classList.remove('fa-minus');
+                icon.classList.add('fa-plus');
+            } else {
+                icon.classList.remove('fa-plus');
+                icon.classList.add('fa-minus');
+            }
         }
     }
 };
