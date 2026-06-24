@@ -36,20 +36,6 @@
             color: #1b315b;
             font-weight: bold;
         }
-        
-        /* 마법의 썸네일 이미지 배경 */
-        .thumb-bg {
-            background-image: url('https://images.unsplash.com/photo-1438283173091-5dbf5c5a3206?auto=format&fit=crop&w=300&q=80');
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-        .thumb-bg::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-color: rgba(27, 49, 91, 0.65); /* 파란색 반투명 오버레이 */
-        }
     </style>
 </head>
 <body class="text-gray-800">
@@ -119,21 +105,19 @@
                 </div>
             </div>
 
-            <!-- PC Version Table (유튜브 링크 아이콘인 '보기' 영역 추가) -->
+            <!-- PC Version Table -->
             <table class="hidden md:table w-full text-center text-sm md:text-base border-t-2 border-gray-800 table-fixed mt-4">
                 <colgroup>
-                    <col class="w-[6%]">
-                    <col class="w-[14%]">
-                    <col class="w-[30%]">
-                    <col class="w-[20%]">
+                    <col class="w-[8%]">
+                    <col class="w-[36%]">
+                    <col class="w-[24%]">
                     <col class="w-[12%]">
-                    <col class="w-[10%]">
+                    <col class="w-[12%]">
                     <col class="w-[8%]">
                 </colgroup>
                 <thead class="bg-gray-700 text-white font-bold border-b border-gray-300">
                     <tr>
                         <th class="py-3 px-2">번호</th>
-                        <th class="py-3 px-2">사진</th>
                         <th class="py-3 px-4 text-left">제목</th>
                         <th class="py-3 px-2">본문</th>
                         <th class="py-3 px-2">설교자</th>
@@ -149,8 +133,8 @@
             <!-- Mobile Version List -->
             <div class="md:hidden block w-full border-t-2 border-gray-800 mt-4">
                 <div class="flex bg-gray-50 text-gray-700 font-bold border-b border-gray-300 py-3 text-sm px-2">
-                    <div class="w-10 text-center">번호</div>
-                    <div class="flex-1 text-center">설교 영상 목록</div>
+                    <div class="w-14 text-center">번호</div>
+                    <div class="flex-1 text-center pr-8">제목</div>
                 </div>
                 <div id="sermon-list-mobile-body">
                     <!-- 구글 시트 데이터가 로딩됩니다 -->
@@ -169,11 +153,10 @@
     <div id="common-sitemap"></div>
 
     <script>
-        // 목사님께서 올려주신 '주일오후예배' 엑셀 연동 링크입니다!
         const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTmNPl7QMOdRz4v6O0kYga96lCTM8t2xeDwVepsmdUtBfiXyTz4jVmJ_meq0fP0ENusdnKxfHpPjTrJ/pub?gid=0&single=true&output=csv";
 
         let formattedData = [];
-        const itemsPerPage = 12; // 사진이 포함되어 세로로 길어지므로 12개씩 보여줍니다.
+        const itemsPerPage = 15; // 다른 게시판과 동일하게 15개로 변경
         let currentPage = 1;
 
         // CSV 글씨 분리 함수
@@ -199,14 +182,14 @@
         // 구글 엑셀 실시간 읽어오기
         async function loadData() {
             try {
-                document.getElementById('sermon-list-pc').innerHTML = '<tr><td colspan="7" class="py-10 text-center text-gray-500"><i class="fas fa-spinner fa-spin mr-2"></i>데이터를 불러오는 중입니다...</td></tr>';
+                document.getElementById('sermon-list-pc').innerHTML = '<tr><td colspan="6" class="py-10 text-center text-gray-500"><i class="fas fa-spinner fa-spin mr-2"></i>데이터를 불러오는 중입니다...</td></tr>';
                 document.getElementById('sermon-list-mobile-body').innerHTML = '<div class="py-10 text-center text-gray-500"><i class="fas fa-spinner fa-spin mr-2"></i>불러오는 중...</div>';
 
                 const response = await fetch(csvUrl);
                 const csvText = await response.text();
                 
                 const rows = parseCSV(csvText);
-                rows.shift(); // 첫 번째 줄(제목) 제거
+                rows.shift(); 
 
                 formattedData = rows.map(row => {
                     let rawLink = (row[5] || '').trim();
@@ -220,14 +203,13 @@
                     };
                 }).filter(item => item.title !== '' && !isNaN(item.id));
 
-                // 번호가 가장 큰(최신) 순서대로 정렬
                 formattedData.sort((a, b) => b.id - a.id);
 
                 renderTable(currentPage);
 
             } catch (error) {
                 console.error("데이터 로딩 에러:", error);
-                document.getElementById('sermon-list-pc').innerHTML = '<tr><td colspan="7" class="py-10 text-center text-red-500">데이터를 불러올 수 없습니다.</td></tr>';
+                document.getElementById('sermon-list-pc').innerHTML = '<tr><td colspan="6" class="py-10 text-center text-red-500">데이터를 불러올 수 없습니다.</td></tr>';
             }
         }
 
@@ -252,13 +234,11 @@
                 if (tagMatch) {
                     tag = tagMatch[1];
                     mainTitle = item.title.replace(/^\[.*?\]\s*/, '');
-                } else {
-                    tag = "주일오후예배"; // 기본 태그
                 }
 
                 // 1. PC 테이블 렌더링
                 const tr = document.createElement('tr');
-                tr.className = 'border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer group h-24';
+                tr.className = 'border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer group h-[60px]';
                 if(item.link !== '#') {
                     tr.onclick = (e) => {
                         if(!e.target.closest('a') && !e.target.closest('button')) {
@@ -269,18 +249,11 @@
                 
                 tr.innerHTML = `
                     <td class="py-3 text-gray-400 font-medium">${item.id}</td>
-                    <td class="py-3 px-2">
-                        <!-- 마법의 썸네일 박스 -->
-                        <div class="thumb-bg w-full h-16 rounded overflow-hidden flex flex-col justify-center items-center shadow-sm">
-                            <i class="fas fa-cross text-white/80 text-xs mb-0.5 relative z-10"></i>
-                            <span class="text-white font-extrabold text-[10px] sm:text-xs relative z-10 px-1 truncate w-full text-center tracking-tight">${tag}</span>
-                        </div>
-                    </td>
                     <td class="py-3 px-4 text-left">
                         ${tagMatch ? `<span class="text-[#3b82f6] font-bold text-[13px] block mb-0.5">[${tag}]</span>` : ''}
                         <span class="font-bold text-gray-800 text-[15px] group-hover:text-blue-600 transition truncate block max-w-full">${mainTitle}</span>
                     </td>
-                    <td class="py-3 text-[13px] md:text-sm text-gray-600">${item.text}</td>
+                    <td class="py-3 text-[13px] md:text-sm text-gray-600 truncate">${item.text}</td>
                     <td class="py-3 text-gray-800 font-medium text-[13px] md:text-sm">${item.preacher}</td>
                     <td class="py-3 text-[13px] md:text-sm text-gray-500">${item.date}</td>
                     <td class="py-3">
@@ -299,15 +272,10 @@
                 }
                 
                 mDiv.innerHTML = `
-                    <div class="w-10 text-center text-gray-400 text-sm shrink-0">${item.id}</div>
-                    <div class="w-24 shrink-0 mx-2">
-                        <div class="thumb-bg w-full h-16 rounded overflow-hidden flex flex-col justify-center items-center shadow-sm">
-                            <i class="fas fa-cross text-white/80 text-[10px] mb-0.5 relative z-10"></i>
-                            <span class="text-white font-extrabold text-[10px] relative z-10 px-1 truncate w-full text-center leading-tight">${tag}</span>
-                        </div>
-                    </div>
-                    <div class="flex-1 pr-2 relative overflow-hidden">
-                        <div class="text-gray-900 text-[14px] font-bold mb-1 truncate leading-snug pr-6">${mainTitle}</div>
+                    <div class="w-12 text-center text-gray-400 text-sm shrink-0 font-medium">${item.id}</div>
+                    <div class="flex-1 pl-2 pr-8 relative overflow-hidden">
+                        ${tagMatch ? `<div class="text-[#3b82f6] font-bold text-[11px] mb-0.5 truncate">[${tag}]</div>` : ''}
+                        <div class="text-gray-900 text-[14px] font-bold mb-1 truncate leading-snug">${mainTitle}</div>
                         <div class="text-gray-500 text-[12px] flex flex-wrap gap-x-2 gap-y-0.5 mb-0.5 leading-tight">
                             <span class="truncate max-w-full">${item.text}</span>
                             <span class="text-gray-700 font-medium">${item.preacher}</span>
