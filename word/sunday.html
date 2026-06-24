@@ -11,8 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const headerHTML = `
     <header class="bg-[#244177] text-white w-full z-50 relative">
         <div class="hidden md:block border-b border-white/20 bg-[#1b315b]">
-            <div class="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center text-sm font-light">
-                <span class="text-blue-200 tracking-wide">교회창립일: 1932. 5. 13.</span>
+            <div class="max-w-7xl mx-auto px-4 py-2 flex justify-end items-center space-x-6 text-sm font-light">
                 <a href="https://www.youtube.com/@여주성결교회" target="_blank" class="hover:text-blue-300 flex items-center gap-1.5 transition"><i class="fab fa-youtube text-red-500 text-lg"></i> 유튜브채널</a>
             </div>
         </div>
@@ -169,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </nav>
         </div>
 
-        <!-- 모바일 전체 메뉴 -->
+        <!-- 모바일 전체 메뉴 (햄버거 버튼 누를 때 나옴) -->
         <div id="global-mobile-menu" class="absolute top-full left-0 w-full bg-[#1a3668] flex-col items-center py-4 space-y-4 shadow-xl z-50 text-lg hidden">
             <a href="${root}welcome/greeting.html" class="text-white hover:text-blue-300">환영합니다</a>
             <a href="${root}word/sunday.html" class="text-white hover:text-blue-300">말씀과 찬양</a>
