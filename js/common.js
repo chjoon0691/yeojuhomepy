@@ -11,8 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const headerHTML = `
     <header class="bg-[#244177] text-white w-full z-50 relative">
         <div class="hidden md:block border-b border-white/20 bg-[#1b315b]">
-            <div class="max-w-7xl mx-auto px-4 py-2 flex justify-end items-center space-x-6 text-sm font-light">
-                <a href="https://www.youtube.com/@여주성결교회" target="_blank" class="hover:text-blue-300 flex items-center gap-1.5 transition"><i class="fab fa-youtube text-red-500 text-lg"></i> 유튜브채널</a>
+            <div class="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center text-sm font-light">
+                <span class="text-blue-200 tracking-wide">교회창립일: 1932. 5. 13.</span>
+                <div class="flex items-center space-x-6">
+                    <a href="https://www.youtube.com/@여주성결교회" target="_blank" class="hover:text-blue-300 flex items-center gap-1.5 transition"><i class="fab fa-youtube text-red-500 text-lg"></i> 유튜브채널</a>
+                </div>
             </div>
         </div>
         
