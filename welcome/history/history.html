@@ -98,14 +98,14 @@
             </div>
 
             <!-- ★ 시대별(년대) 3D 탭 버튼 영역 ★ -->
-            <div id="decade-tabs" class="flex flex-wrap justify-center gap-x-2 gap-y-3 md:gap-3 mb-12 sticky top-4 z-40 bg-white/90 backdrop-blur-sm py-4 rounded-xl shadow-sm border border-gray-100">
+            <div id="decade-tabs" class="grid grid-cols-2 sm:grid-cols-5 lg:grid-cols-10 gap-2 md:gap-3 mb-12 sticky top-4 z-40 bg-white/90 backdrop-blur-sm py-4 px-2 md:px-4 rounded-xl shadow-sm border border-gray-100">
                 <!-- JS로 자동 생성됨 -->
             </div>
 
             <!-- ★ 타임라인 전체가 출력될 영역 ★ -->
-            <div id="timeline-container" class="relative ml-4 md:ml-6 mt-8 mb-20">
+            <div id="timeline-container" class="relative ml-2 md:ml-6 mt-8 mb-20">
                 <!-- 메인 타임라인 세로선 -->
-                <div class="absolute top-0 bottom-0 left-[21px] md:left-[23px] w-1 bg-[#6b8cba]"></div>
+                <div class="absolute top-0 bottom-0 left-[30px] md:left-[40px] w-1 bg-[#6b8cba]"></div>
 
                 <div id="loading-msg" class="py-10 text-center text-gray-500 font-bold ml-4">
                     <i class="fas fa-spinner fa-spin mr-2"></i>연혁을 불러오는 중입니다...
@@ -215,8 +215,8 @@
             const tabsContainer = document.getElementById('decade-tabs');
             tabsContainer.innerHTML = '';
             
-            // 공통 기반 디자인: 패딩 축소, 모서리 약간 둥글게, 3D 그림자, 누르면 쏙 들어가는 효과
-            const baseClass = "mb-1 px-3 py-1.5 md:px-4 md:py-2 rounded-lg text-xs md:text-sm font-bold transition-all border cursor-pointer select-none active:translate-y-1";
+            // 공통 기반 디자인: 넓이 자동 꽉참(flex), 모서리 둥글게, 3D 그림자, 누르면 쏙 들어가는 효과
+            const baseClass = "w-full h-full flex items-center justify-center py-2 md:py-2.5 rounded-lg text-[13px] md:text-sm font-bold transition-all border cursor-pointer select-none active:translate-y-1";
             
             sortedDecades.forEach((dec, index) => {
                 const btn = document.createElement('a');
@@ -252,7 +252,7 @@
         // 압축된 디자인(월/행사 좌우 배치)의 타임라인 렌더링
         function renderAllTimeline(decadesMap, sortedDecades) {
             const container = document.getElementById('timeline-container');
-            const lineHtml = '<div class="absolute top-0 bottom-0 left-[21px] md:left-[23px] w-1 bg-[#6b8cba]"></div>';
+            const lineHtml = '<div class="absolute top-0 bottom-0 left-[30px] md:left-[40px] w-1 bg-[#6b8cba]"></div>';
             container.innerHTML = lineHtml;
             
             sortedDecades.forEach(dec => {
@@ -275,12 +275,12 @@
                     const yearBlock = document.createElement('div');
                     yearBlock.className = 'mb-10 relative z-10'; // 간격 약간 축소
                     
-                    // 년도 동그라미를 '둥근 네모(rounded-xl)'로 변경
+                    // 년도 동그라미를 '둥근 네모(rounded-xl)'로 변경하고 크기를 넉넉하게 확대
                     let html = `
-                        <div class="absolute -left-1 md:left-0 bg-[#3b82f6] text-white w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center font-extrabold border-4 border-white shadow-md text-base md:text-lg z-20">
+                        <div class="absolute left-0 bg-[#3b82f6] text-white w-16 h-12 md:w-[84px] md:h-[52px] rounded-xl flex items-center justify-center font-extrabold border-4 border-white shadow-md text-lg md:text-xl z-20">
                             ${year}
                         </div>
-                        <div class="pl-14 md:pl-20 pt-1 pb-1">
+                        <div class="pl-20 md:pl-[110px] pt-1 pb-1">
                     `;
                     
                     const sortedMonths = Object.keys(yearsMap[year]).sort((a, b) => {
