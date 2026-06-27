@@ -11,7 +11,6 @@
         @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
         body { font-family: 'Pretendard', sans-serif; background-color: #ffffff; overflow-x: hidden; }
         
-        /* 페이지네이션 및 스크롤바 스타일 */
         .page-link {
             display: inline-flex; align-items: center; justify-content: center;
             width: 32px; height: 32px; border: 1px solid #e5e7eb; color: #4b5563;
@@ -31,18 +30,12 @@
     <!-- 마법의 파일 연결 1: 공통 상단 헤더 -->
     <div id="common-header"></div>
 
-    <section class="bg-[#102242] py-12 md:py-20 text-center relative overflow-hidden">
-        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-luminosity"></div>
-        <div class="relative z-10">
-            <h2 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-2">교회소식</h2>
-            <p class="text-blue-200 text-sm md:text-base">Church News</p>
-        </div>
-    </section>
-
     <!-- 모바일 전용 2차 메뉴 바 -->
     <div class="md:hidden border-b border-gray-300 bg-white relative z-30 shadow-sm">
         <div class="flex text-sm md:text-base">
-            <a href="../index.html" class="px-4 py-3 border-r border-gray-300 text-gray-600 flex items-center justify-center hover:bg-gray-50">Home</a>
+            <a href="../index.html" class="px-4 py-3 border-r border-gray-300 text-gray-600 flex items-center justify-center hover:bg-gray-50">
+                Home
+            </a>
             <div class="flex-1 border-r border-gray-300 relative">
                 <button onclick="toggleMobileSubMenu('menu-depth1')" class="w-full flex justify-between items-center px-4 py-3 text-gray-800 focus:outline-none">
                     <span>교회소식</span><i class="fas fa-plus text-gray-400 text-xs"></i>
@@ -87,8 +80,9 @@
 
         <!-- Right Content Area -->
         <main class="flex-1 relative">
+            
             <div class="w-full bg-[#1b315b] rounded-xl h-24 md:h-32 flex flex-col justify-center items-center text-white shadow-md relative overflow-hidden mb-8">
-                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
+                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
                 <h3 class="text-2xl md:text-3xl font-extrabold relative z-10 tracking-tight">교회주보</h3>
             </div>
 
@@ -109,9 +103,9 @@
             <table class="hidden md:table w-full text-center text-sm md:text-base border-t-2 border-gray-800 table-fixed">
                 <colgroup>
                     <col class="w-[10%]">
-                    <col class="w-[50%]">
-                    <col class="w-[25%]">
-                    <col class="w-[15%]">
+                    <col class="w-[60%]">
+                    <col class="w-[20%]">
+                    <col class="w-[10%]">
                 </colgroup>
                 <thead class="bg-gray-50 text-gray-700 font-bold border-b border-gray-300">
                     <tr>
@@ -121,7 +115,7 @@
                         <th class="py-3 px-2">보기</th>
                     </tr>
                 </thead>
-                <tbody id="bulletin-list-pc" class="text-gray-600">
+                <tbody id="jubo-list-pc" class="text-gray-600">
                     <!-- JS로 데이터 삽입 -->
                 </tbody>
             </table>
@@ -131,9 +125,8 @@
                 <div class="flex bg-gray-50 text-gray-700 font-bold border-b border-gray-300 py-3 text-sm">
                     <div class="w-16 text-center">번호</div>
                     <div class="flex-1 text-center">제목</div>
-                    <div class="w-16 text-center">보기</div>
                 </div>
-                <div id="bulletin-list-mobile-body">
+                <div id="jubo-list-mobile-body">
                     <!-- JS로 데이터 삽입 -->
                 </div>
             </div>
@@ -144,36 +137,35 @@
         </main>
     </div>
 
-    <!-- ★ 교회주보 팝업 모달창 ★ -->
-    <div id="bulletin-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6">
+    <!-- ★ 교회주보 팝업 모달창 (다중 이미지 및 다운로드 지원) ★ -->
+    <div id="jubo-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6">
         <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="closeModal()"></div>
         
         <div class="relative w-full max-w-4xl bg-white shadow-2xl z-10 flex flex-col max-h-[90vh] rounded-xl overflow-hidden border-t-[6px] border-[#3b82f6]">
-            <div class="bg-white text-gray-800 px-6 py-5 border-b border-gray-200 flex justify-between items-start shrink-0">
-                <div class="pr-6">
-                    <h2 id="modal-title" class="text-xl md:text-2xl font-extrabold tracking-tight mb-1">주보 제목</h2>
-                    <p id="modal-date" class="text-sm text-gray-500 font-medium"><i class="far fa-calendar-alt mr-1"></i> 등록일 : </p>
+            <!-- 모달 헤더 -->
+            <div class="bg-white text-gray-800 px-6 py-4 border-b border-gray-200 flex justify-between items-center shrink-0">
+                <div class="pr-4">
+                    <h2 id="modal-title" class="text-lg md:text-2xl font-extrabold tracking-tight mb-1">제목</h2>
+                    <p id="modal-date" class="text-xs md:text-sm text-gray-500 font-medium"><i class="far fa-calendar-alt mr-1"></i> 등록일 : </p>
                 </div>
-                <div class="flex items-center gap-2 shrink-0">
-                    <a id="modal-download-btn" href="#" target="_blank" class="bg-[#3b82f6] text-white px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-bold hover:bg-blue-700 transition flex items-center gap-2">
-                        <i class="fas fa-download"></i> <span class="hidden sm:inline">다운로드</span>
+                <div class="flex items-center gap-1 sm:gap-3 shrink-0">
+                    <!-- 다운로드 버튼 -->
+                    <a id="download-btn" href="#" download class="hidden items-center gap-1.5 bg-[#eff5f4] text-[#1a5b48] border border-[#d1e5df] px-3 py-1.5 rounded-md text-xs sm:text-sm font-bold hover:bg-[#d1e5df] transition">
+                        <i class="fas fa-download"></i> <span class="hidden sm:inline-block">다운로드</span>
                     </a>
-                    <button onclick="closeModal()" class="text-gray-400 hover:text-red-500 transition-colors focus:outline-none p-1 md:p-2 ml-1">
+                    <button onclick="closeModal()" class="text-gray-400 hover:text-red-500 transition-colors focus:outline-none p-2">
                         <i class="fas fa-times text-2xl md:text-3xl"></i>
                     </button>
                 </div>
             </div>
             
-            <div class="p-4 md:p-8 overflow-y-auto flex-1 bg-gray-100 modal-scroll flex flex-col items-center">
-                <!-- 로딩 메시지 -->
+            <!-- 모달 콘텐츠 (이미지 삽입) -->
+            <div class="p-4 md:p-8 overflow-y-auto flex-1 bg-gray-100 modal-scroll flex flex-col items-center" id="modal-image-container">
                 <div id="loading-msg" class="text-gray-500 font-bold py-10 flex flex-col items-center gap-3">
                     <i class="fas fa-spinner fa-spin text-3xl text-blue-500"></i>
                     <span>주보를 불러오는 중입니다...</span>
                 </div>
-                <!-- 이미지가 들어갈 컨테이너 -->
-                <div id="modal-image-container" class="w-full flex flex-col items-center gap-4">
-                    <!-- JS에서 이미지가 추가됩니다. -->
-                </div>
+                <!-- 여기에 동적으로 이미지가 추가됩니다 -->
             </div>
         </div>
     </div>
@@ -183,32 +175,14 @@
     <div id="common-sitemap"></div>
 
     <script>
-        
-        // 보조 메뉴 여닫기
-        function toggleMobileSubMenu(menuId) {
-            const targetMenu = document.getElementById(menuId);
-            const otherMenuId = menuId === 'menu-depth1' ? 'menu-depth2' : 'menu-depth1';
-            const otherMenu = document.getElementById(otherMenuId);
-            if (otherMenu && !otherMenu.classList.contains('hidden')) {
-                otherMenu.classList.add('hidden');
-            }
-            if (targetMenu) {
-                targetMenu.classList.toggle('hidden');
-            }
-        }
-
-        // ==========================================
-        // ★★★ 구글 스프레드시트 링크 입력 ★★★
-        // ==========================================
-        const csvUrl = "여기에_링크를_붙여넣으세요"; 
+        // ★ 목사님께서 올려주신 교회주보 CSV 링크 연결 완료! ★
+        const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTmNPl7QMOdRz4v6O0kYga96lCTM8t2xeDwVepsmdUtBfiXyTz4jVmJ_meq0fP0ENusdnKxfHpPjTrJ/pub?gid=1075037635&single=true&output=csv";
         
         let formattedData = [];
         const itemsPerPage = 15; 
         let currentPage = 1;
 
-        // 깃허브 이미지 주소 기본 경로
-        const baseURL = "https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/news/images/jubo/";
-
+        // CSV 글씨 분리 함수
         function parseCSV(str) {
             const arr = [];
             let quote = false;
@@ -229,37 +203,32 @@
         }
 
         async function loadData() {
-            if (csvUrl === "여기에_링크를_붙여넣으세요" || csvUrl === "") {
-                document.getElementById('bulletin-list-pc').innerHTML = '<tr><td colspan="4" class="py-10 text-center text-red-500 font-bold"><i class="fas fa-exclamation-triangle mr-2"></i>웹 관리자에게 주보 엑셀 링크(CSV) 연결을 요청해주세요.</td></tr>';
-                document.getElementById('bulletin-list-mobile-body').innerHTML = '<div class="py-10 text-center text-red-500 font-bold text-sm">엑셀 링크(CSV) 연결이 필요합니다.</div>';
-                return;
-            }
-
             try {
-                document.getElementById('bulletin-list-pc').innerHTML = '<tr><td colspan="4" class="py-10 text-center text-gray-500"><i class="fas fa-spinner fa-spin mr-2"></i>데이터를 불러오는 중입니다...</td></tr>';
-                document.getElementById('bulletin-list-mobile-body').innerHTML = '<div class="py-10 text-center text-gray-500"><i class="fas fa-spinner fa-spin mr-2"></i>불러오는 중...</div>';
+                document.getElementById('jubo-list-pc').innerHTML = '<tr><td colspan="4" class="py-10 text-center text-gray-500"><i class="fas fa-spinner fa-spin mr-2"></i>데이터를 불러오는 중입니다...</td></tr>';
+                document.getElementById('jubo-list-mobile-body').innerHTML = '<div class="py-10 text-center text-gray-500"><i class="fas fa-spinner fa-spin mr-2"></i>불러오는 중...</div>';
 
                 const response = await fetch(csvUrl);
                 const csvText = await response.text();
                 
                 const rows = parseCSV(csvText);
-                rows.shift(); // 제목 줄 제거
+                rows.shift(); // 첫 번째 제목 줄 제거
 
                 formattedData = rows.map(row => {
                     return {
                         id: parseInt(row[0] || 0),
-                        title: (row[1] || '').trim(), 
+                        title: (row[1] || '').trim(),
                         date: (row[2] || '').trim()
                     };
                 }).filter(item => item.title !== '' && !isNaN(item.id));
 
+                // 번호가 가장 큰(최신) 순서대로 정렬
                 formattedData.sort((a, b) => b.id - a.id);
 
                 renderTable(currentPage);
 
             } catch (error) {
                 console.error("데이터 로딩 에러:", error);
-                document.getElementById('bulletin-list-pc').innerHTML = '<tr><td colspan="4" class="py-10 text-center text-red-500">데이터를 불러올 수 없습니다. 인터넷 연결을 확인해주세요.</td></tr>';
+                document.getElementById('jubo-list-pc').innerHTML = '<tr><td colspan="4" class="py-10 text-center text-red-500">데이터를 불러올 수 없습니다. 인터넷 연결을 확인해주세요.</td></tr>';
             }
         }
 
@@ -268,8 +237,8 @@
             const endIndex = startIndex + itemsPerPage;
             const pageData = formattedData.slice(startIndex, endIndex);
 
-            const pcTbody = document.getElementById('bulletin-list-pc');
-            const mobileContainer = document.getElementById('bulletin-list-mobile-body');
+            const pcTbody = document.getElementById('jubo-list-pc');
+            const mobileContainer = document.getElementById('jubo-list-mobile-body');
 
             pcTbody.innerHTML = '';
             mobileContainer.innerHTML = '';
@@ -277,18 +246,18 @@
             pageData.forEach(item => {
                 // PC Version
                 const tr = document.createElement('tr');
-                tr.className = 'border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer group';
+                tr.className = 'border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer group h-[60px]';
                 tr.onclick = () => openModal(item.id);
                 
                 tr.innerHTML = `
-                    <td class="py-4 text-gray-400 font-medium">${item.id}</td>
-                    <td class="py-4 px-4 text-left font-bold text-gray-800 group-hover:text-[#3b82f6] transition flex items-center gap-2">
+                    <td class="py-3 text-gray-400 font-medium">${item.id}</td>
+                    <td class="py-3 px-4 text-left font-bold text-gray-800 group-hover:text-[#3b82f6] transition flex items-center">
                         <span class="truncate">${item.title}</span>
                     </td>
-                    <td class="py-4 text-sm text-gray-500">${item.date}</td>
-                    <td class="py-4">
-                        <button class="bg-[#5c5c5c] hover:bg-[#1b315b] text-white rounded px-3 py-1.5 text-xs font-bold transition flex items-center justify-center mx-auto gap-1 shadow-sm">
-                            <i class="far fa-window-restore"></i> 보기
+                    <td class="py-3 text-[13px] md:text-sm font-medium text-gray-500">${item.date}</td>
+                    <td class="py-3">
+                        <button class="bg-[#5c5c5c] group-hover:bg-[#1b315b] text-white rounded w-8 h-6 flex items-center justify-center mx-auto transition shadow-sm">
+                            <i class="far fa-file-alt text-xs"></i>
                         </button>
                     </td>
                 `;
@@ -300,16 +269,17 @@
                 mDiv.onclick = () => openModal(item.id);
                 mDiv.innerHTML = `
                     <div class="w-16 text-center text-gray-400 text-sm font-medium shrink-0">${item.id}</div>
-                    <div class="flex-1 pl-2 pr-2 relative">
-                        <div class="text-gray-800 text-[15px] font-bold mb-0.5 truncate">${item.title}</div>
+                    <div class="flex-1 pl-2 pr-8 relative overflow-hidden">
+                        <div class="text-gray-800 text-[15px] font-bold mb-0.5 truncate flex items-center gap-1.5">
+                            <span class="truncate">${item.title}</span>
+                        </div>
                         <div class="text-gray-500 text-[12px] font-medium">${item.date}</div>
-                    </div>
-                    <div class="w-16 text-center shrink-0">
-                        <button class="bg-gray-100 text-gray-500 rounded px-2 py-1 text-xs border border-gray-300">보기</button>
+                        <div class="absolute top-1/2 right-2 -translate-y-1/2 text-gray-400"><i class="far fa-file-alt text-lg"></i></div>
                     </div>
                 `;
                 mobileContainer.appendChild(mDiv);
             });
+            
             renderPagination();
         }
 
@@ -333,89 +303,122 @@
             }
         }
 
+        // ★ 주보 이미지 동적 로딩 시스템 ★
         function openModal(id) {
             const item = formattedData.find(n => n.id === id);
             if(!item) return;
 
+            // 1. 헤더 세팅
             document.getElementById('modal-title').textContent = item.title;
             document.getElementById('modal-date').innerHTML = `<i class="far fa-calendar-alt mr-1"></i> 등록일 : ${item.date}`;
             
             const container = document.getElementById('modal-image-container');
-            container.innerHTML = ''; // 기존 이미지 초기화
+            const downloadBtn = document.getElementById('download-btn');
+            downloadBtn.classList.add('hidden'); // 일단 다운로드 버튼 숨김
+            downloadBtn.classList.remove('inline-flex');
+
+            // 2. 이전 내용 비우기 및 로딩 표시
+            Array.from(container.children).forEach(child => {
+                if(child.id !== 'loading-msg') child.remove();
+            });
+            const loadingMsg = document.getElementById('loading-msg');
+            loadingMsg.style.display = 'flex';
+            loadingMsg.innerHTML = '<i class="fas fa-spinner fa-spin text-3xl text-blue-500"></i><span class="mt-2">주보를 불러오는 중입니다...</span>';
+
+            // 3. 깃허브 주보 이미지 기본 경로
+            const baseURL = "https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/news/images/jubo/";
             
-            document.getElementById('loading-msg').style.display = 'flex';
-            
-            const downloadBtn = document.getElementById('modal-download-btn');
-            downloadBtn.href = "#";
-            downloadBtn.removeAttribute("download");
-            
-            // 제목에서 숫자만 추출 (예: "180826주보" -> "180826")
-            const fileBaseName = item.title.replace(/[^0-9]/g, '').substring(0, 6);
-            
+            // 제목에서 숫자만 추출 (예: '180826주보' -> '180826')
+            const dateId = item.title.replace(/[^0-9]/g, ''); 
             let loadedCount = 0;
 
-            // 순차적 파일 탐색기 (단일 파일 or 다중 페이지 지원)
-            function tryLoad(suffix, exts, isMulti) {
-                if(exts.length === 0) {
-                    if(!isMulti && suffix === '') {
-                        // 단일 파일이 없으면 다중 파일(-1, -2...) 첫 번째 페이지 시도
-                        tryLoad('-1', ['jpg', 'png', 'jpeg', 'JPG', 'PNG'], true);
-                    } else if (isMulti && loadedCount === 0 && suffix === '-1') {
-                         // -1도 없고 로드된 게 전혀 없으면 에러 메시지 출력
-                         document.getElementById('loading-msg').innerHTML = '<i class="fas fa-exclamation-circle text-2xl text-gray-400"></i><span class="text-sm">등록된 주보 파일이 없습니다.</span>';
+            // 4. 단일 페이지(180826.jpg)를 먼저 시도
+            let imgSingle = new Image();
+            imgSingle.onload = function() {
+                appendImage(imgSingle);
+                loadingMsg.style.display = 'none';
+                setDownload(imgSingle.src, `${dateId}_주보.jpg`);
+            };
+            imgSingle.onerror = function() {
+                // 단일 페이지 실패 시 다중 페이지(180826-1.jpg, 180826-2.jpg...) 시도
+                tryMultiPage(1);
+            };
+            imgSingle.src = `${baseURL}${dateId}.jpg`;
+
+            // 다중 페이지 재귀 로딩 함수
+            function tryMultiPage(index) {
+                let imgMulti = new Image();
+                imgMulti.onload = function() {
+                    appendImage(imgMulti);
+                    if(index === 1) {
+                        loadingMsg.style.display = 'none';
+                        setDownload(imgMulti.src, `${dateId}_주보.jpg`);
                     }
-                    return;
-                }
-                
-                const ext = exts.shift();
-                const imgUrl = `${baseURL}${fileBaseName}${suffix}.${ext}`;
-                const img = new Image();
-                
-                img.onload = () => {
-                    document.getElementById('loading-msg').style.display = 'none';
-                    
-                    const imgEl = document.createElement('img');
-                    imgEl.src = imgUrl;
-                    imgEl.className = "w-full max-w-3xl h-auto object-contain rounded-lg shadow-sm border border-gray-200 bg-white p-1";
-                    container.appendChild(imgEl);
-                    
-                    loadedCount++;
-                    
-                    // 다운로드 버튼 설정 (첫 번째 이미지만 다운로드 링크로 연결)
-                    if(loadedCount === 1) {
-                        downloadBtn.href = imgUrl;
-                        downloadBtn.setAttribute("download", `${item.title}.${ext}`);
-                    }
-                    
-                    // 다중 파일 모드일 경우 다음 페이지(-2, -3...) 계속 시도
-                    if(isMulti) {
-                        const nextNum = parseInt(suffix.replace('-', '')) + 1;
-                        tryLoad('-' + nextNum, ['jpg', 'png', 'jpeg', 'JPG', 'PNG'], true);
+                    tryMultiPage(index + 1); // 다음 페이지 시도
+                };
+                imgMulti.onerror = function() {
+                    // 첫 페이지부터 실패한 경우
+                    if(index === 1 && loadedCount === 0) {
+                        loadingMsg.innerHTML = '<i class="fas fa-exclamation-circle text-2xl text-gray-400"></i><span class="mt-2">등록된 주보 이미지가 없습니다.</span>';
                     }
                 };
-                
-                img.onerror = () => {
-                    // 실패 시 다음 확장자 시도
-                    tryLoad(suffix, exts, isMulti);
-                };
-                
-                img.src = imgUrl;
+                imgMulti.src = `${baseURL}${dateId}-${index}.jpg`;
             }
 
-            // 첫 번째 시도: 단일 파일(예: 180826.jpg)부터 검색 시작
-            tryLoad('', ['jpg', 'png', 'jpeg', 'JPG', 'PNG'], false);
+            // 이미지 추가 헬퍼 함수
+            function appendImage(imgObj) {
+                loadedCount++;
+                imgObj.className = "w-full h-auto object-contain shadow-sm border border-gray-200 mb-4 rounded-lg bg-white";
+                container.appendChild(imgObj);
+            }
 
-            const modal = document.getElementById('bulletin-modal');
+            // 다운로드 버튼 세팅 헬퍼 함수
+            function setDownload(url, filename) {
+                downloadBtn.href = url;
+                downloadBtn.setAttribute('download', filename);
+                downloadBtn.classList.remove('hidden');
+                downloadBtn.classList.add('inline-flex');
+            }
+
+            // 모달 열기
+            const modal = document.getElementById('jubo-modal');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
             document.body.style.overflow = 'hidden'; 
         }
 
         function closeModal() {
-            const modal = document.getElementById('bulletin-modal');
+            const modal = document.getElementById('jubo-modal');
             modal.classList.add('hidden');
             modal.classList.remove('flex');
             document.body.style.overflow = ''; 
+        }
+
+        function toggleMobileSubMenu(menuId) {
+            const targetMenu = document.getElementById(menuId);
+            const otherMenuId = menuId === 'menu-depth1' ? 'menu-depth2' : 'menu-depth1';
+            const otherMenu = document.getElementById(otherMenuId);
+            if (otherMenu && !otherMenu.classList.contains('hidden')) {
+                otherMenu.classList.add('hidden');
+                const otherIcon = otherMenu.previousElementSibling.querySelector('.fas');
+                if(otherIcon) {
+                    otherIcon.classList.remove('fa-minus');
+                    otherIcon.classList.add('fa-plus');
+                }
+            }
+            if (targetMenu) {
+                targetMenu.classList.toggle('hidden');
+                const icon = targetMenu.previousElementSibling.querySelector('.fas');
+                if(icon) {
+                    if(targetMenu.classList.contains('hidden')) {
+                        icon.classList.remove('fa-minus');
+                        icon.classList.add('fa-plus');
+                    } else {
+                        icon.classList.remove('fa-plus');
+                        icon.classList.add('fa-minus');
+                    }
+                }
+            }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
