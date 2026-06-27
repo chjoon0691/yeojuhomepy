@@ -30,6 +30,15 @@
     <!-- 마법의 파일 연결 1: 공통 상단 헤더 -->
     <div id="common-header"></div>
 
+    <!-- 상단 대형 배너 추가 -->
+    <section class="bg-[#102242] py-12 md:py-20 text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1438283173091-5dbf5c5a3206?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-luminosity"></div>
+        <div class="relative z-10">
+            <h2 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-2">교회소식</h2>
+            <p class="text-blue-200 text-sm md:text-base">Church News</p>
+        </div>
+    </section>
+
     <!-- 모바일 전용 2차 메뉴 바 -->
     <div class="md:hidden border-b border-gray-300 bg-white relative z-30 shadow-sm">
         <div class="flex text-sm md:text-base">
@@ -82,21 +91,9 @@
         <main class="flex-1 relative">
             
             <div class="w-full bg-[#1b315b] rounded-xl h-24 md:h-32 flex flex-col justify-center items-center text-white shadow-md relative overflow-hidden mb-8">
-                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
+                <!-- 배경 사진을 기독교 관련 이미지(성경책)로 교체 -->
+                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
                 <h3 class="text-2xl md:text-3xl font-extrabold relative z-10 tracking-tight">교회주보</h3>
-            </div>
-
-            <!-- 검색바 -->
-            <div class="flex justify-end mb-4 border-b border-gray-200 pb-4">
-                <div class="flex border border-gray-300 rounded shadow-sm overflow-hidden bg-white">
-                    <select class="px-3 py-1.5 text-sm md:text-base border-r border-gray-300 text-gray-700 focus:outline-none bg-gray-50 cursor-pointer">
-                        <option>제목</option>
-                    </select>
-                    <input type="text" class="px-3 py-1.5 text-sm md:text-base w-32 md:w-48 focus:outline-none" placeholder="검색어 입력">
-                    <button class="bg-gray-100 hover:bg-gray-200 text-gray-600 px-4 py-1.5 text-sm md:text-base border-l border-gray-300 transition">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
             </div>
 
             <!-- PC Version Table -->
