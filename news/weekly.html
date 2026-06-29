@@ -3,183 +3,335 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>교회주보 - 여주성결교회</title>
-    <!-- Tailwind CSS -->
+    <title>여주성결교회</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
-        body { font-family: 'Pretendard', sans-serif; background-color: #ffffff; overflow-x: hidden; }
-        
-        .page-link {
-            display: inline-flex; align-items: center; justify-content: center;
-            width: 32px; height: 32px; border: 1px solid #e5e7eb; color: #4b5563;
-            font-size: 14px; transition: all 0.2s; margin: 0 2px;
+        body { 
+            font-family: 'Pretendard', sans-serif; 
+            background-color: #ffffff;
+            overflow-x: hidden;
         }
-        .page-link:hover { background-color: #f3f4f6; color: #1b315b; }
-        .page-link.active { border-color: #1b315b; color: #1b315b; font-weight: bold; }
+        .curved-top {
+            border-top-left-radius: 6rem;
+            border-top-right-radius: 6rem;
+        }
+        .curved-bottom {
+            border-bottom-left-radius: 50% 120px;
+            border-bottom-right-radius: 50% 120px;
+        }
+        @media (max-width: 768px) {
+            .curved-top {
+                border-top-left-radius: 3rem;
+                border-top-right-radius: 3rem;
+            }
+            .curved-bottom {
+                border-bottom-left-radius: 50% 40px;
+                border-bottom-right-radius: 50% 40px;
+            }
+        }
+        /* 사이트맵 커스텀 스크롤바 */
+        #sitemap-content::-webkit-scrollbar { width: 6px; }
+        #sitemap-content::-webkit-scrollbar-track { background: #f1f1f1; }
+        #sitemap-content::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
         
-        .modal-scroll::-webkit-scrollbar { width: 8px; }
-        .modal-scroll::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
-        .modal-scroll::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 4px; }
-        .modal-scroll::-webkit-scrollbar-thumb:hover { background: #a8a8a8; }
+        /* 메인 슬라이더 페이드 효과 */
+        .slide {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            mix-blend-mode: luminosity;
+        }
+        .slide.active {
+            opacity: 0.3;
+        }
     </style>
 </head>
 <body class="text-gray-800">
 
-    <!-- 마법의 파일 연결 1: 공통 상단 헤더 -->
+    <!-- ★ 팝업창이 뜨는 공간입니다 ★ -->
+    <div id="popup-container" class="fixed inset-0 pointer-events-none z-[200]"></div>
+
+    <!-- 마법의 파일 연결 1: 여기서 상단 메뉴가 자동으로 나옵니다 -->
     <div id="common-header"></div>
 
-    <!-- 상단 대형 배너 추가 -->
-    <section class="bg-[#102242] py-12 md:py-20 text-center relative overflow-hidden">
-        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1438283173091-5dbf5c5a3206?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-luminosity"></div>
-        <div class="relative z-10">
-            <h2 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-2">교회소식</h2>
-            <p class="text-blue-200 text-sm md:text-base">Church News</p>
+    <!-- Hero Section -->
+    <section class="text-white pt-16 pb-48 md:pb-64 relative flex items-center justify-center text-center overflow-hidden curved-bottom shadow-[0_10px_30px_rgba(0,0,0,0.2)] bg-[#102242]">
+        
+        <!-- 이미지 슬라이더 영역 -->
+        <div id="hero-slider" class="absolute inset-0 z-0">
+            <div class="slide active" style="background-image: url('https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/images/%EB%A9%94%EC%9D%B8%ED%99%94%EB%A9%B401.png');"></div>
+            <div class="slide" style="background-image: url('https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/images/%EB%A9%94%EC%9D%B8%ED%99%94%EB%A9%B402.png');"></div>
+            <div class="slide" style="background-image: url('https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/images/%EA%B5%90%ED%9A%8C%EC%A0%84%EA%B2%BD.jfif');"></div>
+            <div class="slide" style="background-image: url('https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/images/%EC%97%AC%EC%A3%BC%EA%B5%90%ED%9A%8C%EC%98%88%EB%B0%B0.png');"></div>
+        </div>
+        
+        <!-- 어두운 오버레이 -->
+        <div class="absolute inset-0 bg-gradient-to-b from-[#102242]/50 to-[#102242]/90 opacity-80 z-0"></div>
+
+        <div class="relative z-10 max-w-5xl mx-auto px-4 flex flex-col items-center w-full">
+            <button onclick="prevSlide()" class="absolute left-2 md:-left-10 top-1/2 transform -translate-y-1/2 text-white/50 hover:text-white text-4xl md:text-5xl focus:outline-none z-20 transition">
+                <i class="fas fa-angle-left"></i>
+            </button>
+
+            <p class="text-xl md:text-5xl font-bold mb-3 md:mb-4 tracking-wide text-blue-200">Oikos Church</p>
+            <h2 class="text-2xl sm:text-3xl md:text-6xl font-extrabold mb-6 md:mb-8 leading-tight whitespace-nowrap">기도하는 구역, 기대되는 교회</h2>
+            <p class="text-base md:text-xl mb-8 md:mb-12 opacity-90 font-light max-w-2xl leading-relaxed hidden md:block">
+                그들이 사도의 가르침을 받아 서로 교제하고 떡을 떼며 오로지 기도하기를 힘쓰니라<br>
+                (사도행전 2:42)
+            </p>
+            
+            <button onclick="location.href='word/sunday.html'" class="border border-white px-6 md:px-10 py-2 md:py-3 rounded-md hover:bg-white hover:text-[#1a3668] transition duration-300 text-sm md:text-lg font-bold">
+                주일예배 바로가기
+            </button>
+
+            <button onclick="nextSlide()" class="absolute right-2 md:-right-10 top-1/2 transform -translate-y-1/2 text-white/50 hover:text-white text-4xl md:text-5xl focus:outline-none z-20 transition">
+                <i class="fas fa-angle-right"></i>
+            </button>
         </div>
     </section>
 
-    <!-- 모바일 전용 2차 메뉴 바 -->
-    <div class="md:hidden border-b border-gray-300 bg-white relative z-30 shadow-sm">
-        <div class="flex text-sm md:text-base">
-            <a href="../index.html" class="px-4 py-3 border-r border-gray-300 text-gray-600 flex items-center justify-center hover:bg-gray-50">
-                Home
-            </a>
-            <div class="flex-1 border-r border-gray-300 relative">
-                <button onclick="toggleMobileSubMenu('menu-depth1')" class="w-full flex justify-between items-center px-4 py-3 text-gray-800 focus:outline-none">
-                    <span>교회소식</span><i class="fas fa-plus text-gray-400 text-xs"></i>
-                </button>
-                <ul id="menu-depth1" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
-                    <li class="border-b border-gray-100"><a href="../welcome/greeting.html" class="block px-4 py-3 hover:bg-gray-50">환영합니다</a></li>
-                    <li class="border-b border-gray-100"><a href="../word/sunday.html" class="block px-4 py-3 hover:bg-gray-50">말씀과 찬양</a></li>
-                    <li class="border-b border-gray-100"><a href="../community/parish.html" class="block px-4 py-3 hover:bg-gray-50">공동체</a></li>
-                    <li class="border-b border-gray-100"><a href="../nextgen/infant.html" class="block px-4 py-3 hover:bg-gray-50">다음세대</a></li>
-                    <li class="border-b border-gray-100"><a href="../mission/evangelism.html" class="block px-4 py-3 hover:bg-gray-50">전도와 선교</a></li>
-                    <li class="border-b border-gray-100"><a href="weekly.html" class="block px-4 py-3 text-blue-600 font-bold bg-gray-50">교회소식</a></li>
-                    <li><a href="../service/application.html" class="block px-4 py-3 hover:bg-gray-50">행정서비스</a></li>
-                </ul>
+    <!-- 3 Overlapping Cards -->
+    <section class="max-w-6xl mx-auto px-2 md:px-4 -mt-20 md:-mt-32 relative z-20">
+        <div class="grid grid-cols-3 gap-2 md:gap-6">
+            <div onclick="location.href='news/weekly.html'" class="bg-white rounded-xl md:rounded-3xl shadow-xl p-3 md:p-8 text-center flex flex-col items-center justify-center h-28 md:h-56 cursor-pointer hover:-translate-y-2 transition duration-300">
+                <i class="fas fa-book-open text-2xl md:text-5xl text-[#5c85b5] mb-2 md:mb-5"></i>
+                <h3 class="text-sm md:text-3xl font-extrabold text-[#5c85b5]">금주의 주보</h3>
+                <p class="text-[0.65rem] md:text-base text-[#5c85b5] mt-1 md:mt-2 hidden sm:block">Weekly News</p>
             </div>
-            <div class="flex-1 relative">
-                <button onclick="toggleMobileSubMenu('menu-depth2')" class="w-full flex justify-between items-center px-4 py-3 text-gray-800 focus:outline-none">
-                    <span>교회주보</span><i class="fas fa-plus text-gray-400 text-xs"></i>
-                </button>
-                <ul id="menu-depth2" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
-                    <li class="border-b border-gray-100"><a href="weekly.html" class="block px-4 py-3 text-blue-600 font-bold bg-gray-50">교회주보</a></li>
-                    <li class="border-b border-gray-100"><a href="newcomer.html" class="block px-4 py-3 hover:bg-gray-50">새가족소식</a></li>
-                    <li class="border-b border-gray-100"><a href="member.html" class="block px-4 py-3 hover:bg-gray-50">성도소식</a></li>
-                    <li><a href="gallery.html" class="block px-4 py-3 hover:bg-gray-50">행사사진</a></li>
-                </ul>
+            <div onclick="location.href='welcome/worship/worship.html'" class="bg-[#6b8cba] rounded-xl md:rounded-3xl shadow-xl text-white p-3 md:p-8 text-center flex flex-col items-center justify-center h-28 md:h-56 cursor-pointer hover:-translate-y-2 transition duration-300">
+                <i class="fas fa-bible text-2xl md:text-5xl mb-2 md:mb-5"></i>
+                <h3 class="text-sm md:text-3xl font-extrabold">예배시간 안내</h3>
+                <p class="text-[0.65rem] md:text-base text-blue-100 mt-1 md:mt-2 hidden sm:block">Worship Schedule</p>
+            </div>
+            <div onclick="window.open('https://www.youtube.com/@여주성결교회', '_blank')" class="bg-white rounded-xl md:rounded-3xl shadow-xl p-3 md:p-8 text-center flex flex-col items-center justify-center h-28 md:h-56 cursor-pointer hover:-translate-y-2 transition duration-300">
+                <i class="fas fa-laptop text-2xl md:text-5xl text-[#5c85b5] mb-2 md:mb-5"></i>
+                <h3 class="text-sm md:text-3xl font-extrabold text-[#5c85b5]">유튜브 바로가기</h3>
+                <p class="text-[0.65rem] md:text-base text-[#5c85b5] mt-1 md:mt-2 hidden sm:block">Youtube Channel</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Welcome Section (영어 문구 수정 완료) -->
+    <section class="py-16 md:py-32 max-w-7xl mx-auto px-4 text-center">
+        <h2 class="text-2xl md:text-4xl font-extrabold mb-4 md:mb-6 text-gray-900 tracking-tight">여주성결교회에 오신 것을 환영합니다</h2>
+        <p class="block md:hidden text-xs text-gray-500 mb-12 font-medium mt-2 px-2 leading-relaxed">
+            Welcome to Yeoju Evangelical Holiness Church's Homepage.<br>
+            Yeoju Church hopes you have a peaceful<br>
+            and graceful time with Yeoju Church.
+        </p>
+        <div class="relative max-w-6xl mx-auto mt-8 md:mt-20">
+            <div class="absolute inset-0 flex justify-center items-center pointer-events-none z-0">
+                <img src="images/image_8bddfb.png" alt="여주성결교회 성전 이미지" class="w-full max-w-[160px] sm:max-w-[200px] md:max-w-[320px] object-contain opacity-100" onerror="this.src='https://placehold.co/300x400/transparent/transparent'">
+            </div>
+            <div class="grid grid-cols-2 gap-y-24 md:gap-y-32 gap-x-2 md:gap-x-8 relative z-10">
+                <div class="flex flex-col items-start text-left md:pr-40 pl-3 sm:pl-8 md:pl-0">
+                    <h4 class="text-base md:text-3xl font-extrabold mb-3 md:mb-4 text-gray-900 leading-tight">여주성결교회에<br class="md:hidden"> 처음 오셨나요?</h4>
+                    <p class="hidden md:block text-sm md:text-xl text-gray-500 mb-3 md:mb-6 leading-relaxed font-medium">"꿈과 사랑이 있는 여주교회"<br>새가족이 되심을<br>진심으로 축하드립니다.</p>
+                    <button onclick="location.href='welcome/newcomer/newcomer.html'" class="bg-[#6b8cba] text-white text-xs md:text-xl font-bold px-4 py-2 md:px-8 md:py-3 rounded hover:bg-[#1a3668] transition shadow-sm">새가족 안내</button>
+                </div>
+                <div class="flex flex-col items-end text-right md:pl-40 pr-3 sm:pr-8 md:pr-0">
+                    <h4 class="text-base md:text-3xl font-extrabold mb-3 md:mb-4 text-gray-900 leading-tight">다음세대가<br class="md:hidden"> 함께하는 교회</h4>
+                    <p class="hidden md:block text-sm md:text-xl text-gray-500 mb-3 md:mb-6 leading-relaxed font-medium">여주성결교회의 다음세대 교회학교는<br>예수님의 작은 제자들이<br>올바른 그리스도의 자녀로 성장하기 위한<br>훈련과정을 담고 있습니다</p>
+                    <button onclick="location.href='nextgen/infant.html'" class="bg-[#6b8cba] text-white text-xs md:text-xl font-bold px-4 py-2 md:px-8 md:py-3 rounded hover:bg-[#1a3668] transition shadow-sm">다음세대</button>
+                </div>
+                <div class="flex flex-col items-start text-left md:pr-40 pl-3 sm:pl-8 md:pl-0 mt-4 md:mt-0">
+                    <h4 class="text-base md:text-3xl font-extrabold mb-3 md:mb-4 text-gray-900 leading-tight">세계로<br class="md:hidden"> 선교하는 교회</h4>
+                    <p class="hidden md:block text-sm md:text-xl text-gray-500 mb-3 md:mb-6 leading-relaxed font-medium">여주성결교회는 선교에 동참하는 공동체로<br>복음이 필요한 국내,외 지구촌 곳곳에<br>하나님의 복음을 전하는데<br>그 가치를 두고 있습니다</p>
+                    <button onclick="location.href='mission/domestic.html'" class="bg-[#6b8cba] text-white text-xs md:text-xl font-bold px-4 py-2 md:px-8 md:py-3 rounded hover:bg-[#1a3668] transition shadow-sm">국내외 선교</button>
+                </div>
+                <div class="flex flex-col items-end text-right md:pl-40 pr-3 sm:pr-8 md:pr-0 mt-4 md:mt-0">
+                    <h4 class="text-base md:text-3xl font-extrabold mb-3 md:mb-4 text-gray-900 leading-tight">예수 제자를<br class="md:hidden"> 양육하는 교회</h4>
+                    <p class="hidden md:block text-sm md:text-xl text-gray-500 mb-3 md:mb-6 leading-relaxed font-medium">여주성결교회는 성도들이 예수님의 사랑을<br>경험하는 것을 가치있게 여기는 교회로<br>모든 성도들의 신앙성숙을 도와<br>예수 제자를 양육하고 있습니다</p>
+                    <button onclick="location.href='community/training.html'" class="bg-[#6b8cba] text-white text-xs md:text-xl font-bold px-4 py-2 md:px-8 md:py-3 rounded hover:bg-[#1a3668] transition shadow-sm">양육&훈련</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Worship & Praise Section -->
+    <section class="bg-[#e2e8f0] py-16 md:py-24">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-xl md:text-3xl font-extrabold text-center mb-8 md:mb-16 text-gray-900">금주의 예배와 찬양</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
+                
+                <div id="main-sunday-card" onclick="location.href='word/sunday.html'" class="col-span-2 md:col-span-1 order-1 md:order-2 cursor-pointer">
+                    <div class="relative h-48 md:h-72 rounded-2xl md:rounded-3xl overflow-hidden shadow-lg group border-4 md:border-8 border-white">
+                        <img src="https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="주일설교 성경책과 십자가" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-black/40 flex flex-col justify-end items-center text-white pb-6 md:pb-10">
+                            <h3 class="text-lg md:text-3xl font-extrabold mb-1">주일설교</h3>
+                            <p class="text-[0.7rem] md:text-sm opacity-80">Sunday sermon</p>
+                        </div>
+                    </div>
+                    <div class="text-center mt-4 px-1">
+                        <h4 id="main-sunday-title" class="font-extrabold text-base md:text-xl text-gray-900">불러오는 중...</h4>
+                        <p id="main-sunday-info" class="text-xs md:text-sm text-gray-600 mt-1"><i class="fas fa-spinner fa-spin"></i></p>
+                    </div>
+                </div>
+
+                <div id="main-wed-card" onclick="location.href='word/wednesday.html'" class="col-span-1 order-2 md:order-1 cursor-pointer">
+                    <div class="relative h-40 md:h-72 rounded-2xl md:rounded-3xl overflow-hidden shadow-lg group">
+                        <img src="https://images.unsplash.com/photo-1504052434569-70ad5836ab65?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="수요예배 십자가" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-black/40 flex flex-col justify-end items-center text-white pb-6 md:pb-10">
+                            <h3 class="text-lg md:text-3xl font-extrabold mb-1">수요예배</h3>
+                            <p class="text-[0.7rem] md:text-sm opacity-80">Wednesday Worship</p>
+                        </div>
+                    </div>
+                    <div class="text-center mt-4 px-1">
+                        <h4 id="main-wed-title" class="font-extrabold text-base md:text-xl text-gray-900">불러오는 중...</h4>
+                        <p id="main-wed-info" class="text-[0.65rem] md:text-sm text-gray-600 mt-1"><i class="fas fa-spinner fa-spin"></i></p>
+                    </div>
+                </div>
+
+                <div onclick="location.href='word/praise.html'" class="col-span-1 order-3 cursor-pointer">
+                    <div class="relative h-40 md:h-72 rounded-2xl md:rounded-3xl overflow-hidden shadow-lg group">
+                        <img src="https://images.unsplash.com/photo-1510590337019-5ef8d3d32116?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="찬양대 찬양" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-black/40 flex flex-col justify-end items-center text-white pb-6 md:pb-10">
+                            <h3 class="text-lg md:text-3xl font-extrabold mb-1">찬양대 찬양</h3>
+                            <p class="text-[0.7rem] md:text-sm opacity-80">Praise</p>
+                        </div>
+                    </div>
+                    <div class="text-center mt-4 px-1">
+                        <h4 class="font-extrabold text-base md:text-xl text-gray-900">은빛찬양대</h4>
+                        <p class="text-[0.65rem] md:text-sm text-gray-600 mt-1">저 높은 곳을 향하여</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Background transition image -->
+    <div class="h-32 md:h-56 bg-[#3b4b66] w-full" style="background-image: url('https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center;"></div>
+
+    <!-- Gallery & Quick Links -->
+    <section class="bg-[#f8fafc] curved-top -mt-16 md:-mt-24 pt-16 md:pt-24 pb-24 md:pb-40 relative z-10 shadow-[0_-10px_30px_rgba(0,0,0,0.1)]">
+        <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
+            
+            <!-- 갤러리 섹션 -->
+            <div>
+                <div class="flex justify-between items-end pb-3 mb-5">
+                    <h2 class="text-lg md:text-2xl font-extrabold text-gray-900">여주성결교회 <span class="text-[#5c85b5]">갤러리</span></h2>
+                    <a href="news/gallery.html" class="text-xs md:text-base text-blue-500 font-bold uppercase hover:underline">more</a>
+                </div>
+                
+                <!-- 자바스크립트로 행사사진 페이지에서 '몰래' 불러와서 4개를 띄워줍니다. -->
+                <div id="main-gallery-grid" class="grid grid-cols-2 gap-2 md:gap-3">
+                    <div class="col-span-2 py-10 text-center text-gray-400">
+                        <i class="fas fa-spinner fa-spin text-2xl mb-2"></i><br>사진을 불러오는 중입니다...
+                    </div>
+                </div>
+            </div>
+
+            <!-- 우측 Quick Links 영역 (버튼 디자인 수정) -->
+            <div class="flex flex-col justify-center space-y-6 md:space-y-8 bg-white p-6 md:p-10 rounded-3xl shadow-sm border border-gray-100">
+                <div class="flex items-center justify-between border-b border-gray-200 pb-5">
+                    <div class="pr-2">
+                        <h4 class="text-base md:text-xl font-extrabold text-gray-800">섬기는 분들</h4>
+                        <p class="text-[11px] md:text-sm text-gray-500 mt-1">담임목사님과 모든 섬기는 분들을<br>소개합니다</p>
+                    </div>
+                    <button onclick="location.href='welcome/serve/serve.html'" class="bg-[#7896c3] text-white text-[10px] md:text-sm font-bold px-2 py-2 md:px-6 md:py-3 rounded-full hover:bg-[#1a3668] transition shadow-sm w-24 md:w-32 shrink-0 truncate">PASTOR</button>
+                </div>
+                <div class="flex items-center justify-between border-b border-gray-200 pb-5">
+                    <div class="pr-2">
+                        <h4 class="text-base md:text-xl font-extrabold text-gray-800">성도기업 소개</h4>
+                        <p class="text-[11px] md:text-sm text-gray-500 mt-1">여주성결교회 성도님들의<br>성도기업을 소개합니다</p>
+                    </div>
+                    <button onclick="location.href='community/company.html'" class="bg-[#7896c3] text-white text-[10px] md:text-sm font-bold px-2 py-2 md:px-6 md:py-3 rounded-full hover:bg-[#1a3668] transition shadow-sm w-24 md:w-32 shrink-0 truncate">COMPANY</button>
+                </div>
+                <div class="flex items-center justify-between border-b border-gray-200 pb-5">
+                    <div class="pr-2">
+                        <h4 class="text-base md:text-xl font-extrabold text-gray-800">서식자료</h4>
+                        <p class="text-[11px] md:text-sm text-gray-500 mt-1">대관신청 및 차량신청 등을<br>온라인에서 지원하고 있습니다</p>
+                    </div>
+                    <!-- 모바일에서 글씨가 삐져나가지 않도록 padding 조절 및 truncate 적용 -->
+                    <button onclick="location.href='service/application.html'" class="bg-[#7896c3] text-white text-[9px] md:text-sm font-bold px-1 py-2 md:px-6 md:py-3 rounded-full hover:bg-[#1a3668] transition shadow-sm w-24 md:w-32 shrink-0 truncate">APPLICATION</button>
+                </div>
+                <div class="flex items-center justify-between">
+                    <div class="pr-2">
+                        <h4 class="text-base md:text-xl font-extrabold text-gray-800">차량운행 안내</h4>
+                        <p class="text-[11px] md:text-sm text-gray-500 mt-1">여주성결교회의 차량운행 시간을<br>안내해드리고 있습니다</p>
+                    </div>
+                    <button onclick="location.href='welcome/bus/bus.html'" class="bg-[#7896c3] text-white text-[10px] md:text-sm font-bold px-2 py-2 md:px-6 md:py-3 rounded-full hover:bg-[#1a3668] transition shadow-sm w-24 md:w-32 shrink-0 truncate">CONTACT US</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pre-Footer -->
+    <div class="max-w-6xl mx-auto px-4 -mt-10 md:-mt-24 relative z-20 grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-6 mb-8 md:mb-16">
+        <div onclick="location.href='welcome/map/map.html'" class="cursor-pointer bg-[#48566a] text-white p-5 md:p-10 rounded-2xl md:rounded-3xl shadow-lg flex flex-row md:flex-col items-center justify-start md:justify-center text-left md:text-center hover:-translate-y-1 transition duration-300">
+            <i class="fas fa-map-marker-alt text-2xl md:text-4xl text-gray-300 w-12 md:w-auto md:mb-4"></i>
+            <div>
+                <h4 class="text-base md:text-xl font-extrabold mb-1 md:mb-2">오시는길</h4>
+                <p class="text-xs md:text-base text-gray-300">경기도 여주시 우암로 96<br class="hidden md:block"> (하동, 여주성결교회)</p>
+            </div>
+        </div>
+        <div class="bg-[#38455a] text-white p-5 md:p-10 rounded-2xl md:rounded-3xl shadow-lg flex flex-row md:flex-col items-center justify-start md:justify-center text-left md:text-center hover:-translate-y-1 transition duration-300">
+            <i class="fas fa-phone-alt text-2xl md:text-4xl text-gray-300 w-12 md:w-auto md:mb-4"></i>
+            <div>
+                <h4 class="text-base md:text-xl font-extrabold mb-1 md:mb-2">교회전화</h4>
+                <p class="text-xs md:text-base text-gray-300">교회사무실 : (031)882-9966<br>팩스번호 : (031)882-9965</p>
+            </div>
+        </div>
+        <div onclick="location.href='welcome/serve/serve.html'" class="cursor-pointer bg-[#2d3748] text-white p-5 md:p-10 rounded-2xl md:rounded-3xl shadow-lg flex flex-row md:flex-col items-center justify-start md:justify-center text-left md:text-center hover:-translate-y-1 transition duration-300">
+            <i class="fas fa-heart text-2xl md:text-4xl text-gray-300 w-12 md:w-auto md:mb-4"></i>
+            <div>
+                <h4 class="text-base md:text-xl font-extrabold mb-1 md:mb-2">섬기는분들</h4>
+                <p class="text-xs md:text-base text-gray-300">담임목사님과 장로님들을<br>소개합니다</p>
             </div>
         </div>
     </div>
 
-    <!-- Main Content Layout -->
-    <div class="max-w-7xl mx-auto px-4 py-12 md:py-20 flex flex-col md:flex-row gap-10">
-        
-        <!-- Left Sidebar -->
-        <aside class="hidden md:block w-64 flex-shrink-0">
-            <div class="bg-[#6b8cba] text-white text-center py-4 text-xl font-bold rounded-t-lg">교회소식</div>
-            <ul class="border border-t-0 border-gray-200 flex flex-col">
-                <li><a href="weekly.html" class="flex justify-between items-center px-5 py-3 text-[#3b82f6] font-bold bg-gray-50 hover:bg-gray-100 transition border-b border-gray-200">교회주보 <i class="fas fa-chevron-right text-xs"></i></a></li>
-                <li><a href="newcomer.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">새가족소식</a></li>
-                <li><a href="member.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">성도소식</a></li>
-                <li><a href="gallery.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition rounded-b-lg">행사사진</a></li>
-            </ul>
-        </aside>
-
-        <!-- Right Content Area -->
-        <main class="flex-1 relative">
-            
-            <div class="w-full bg-[#1b315b] rounded-xl h-24 md:h-32 flex flex-col justify-center items-center text-white shadow-md relative overflow-hidden mb-8">
-                <!-- 배경 사진을 기독교 관련 이미지(성경책)로 교체 -->
-                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
-                <h3 class="text-2xl md:text-3xl font-extrabold relative z-10 tracking-tight">교회주보</h3>
-            </div>
-
-            <!-- PC Version Table -->
-            <table class="hidden md:table w-full text-center text-sm md:text-base border-t-2 border-gray-800 table-fixed">
-                <colgroup>
-                    <col class="w-[10%]">
-                    <col class="w-[60%]">
-                    <col class="w-[20%]">
-                    <col class="w-[10%]">
-                </colgroup>
-                <thead class="bg-gray-50 text-gray-700 font-bold border-b border-gray-300">
-                    <tr>
-                        <th class="py-3 px-2">번호</th>
-                        <th class="py-3 px-4 text-left">제목</th>
-                        <th class="py-3 px-2 text-gray-500">등록일</th>
-                        <th class="py-3 px-2">보기</th>
-                    </tr>
-                </thead>
-                <tbody id="jubo-list-pc" class="text-gray-600">
-                    <!-- JS로 데이터 삽입 -->
-                </tbody>
-            </table>
-
-            <!-- Mobile Version List -->
-            <div class="md:hidden block w-full border-t-2 border-gray-800">
-                <div class="flex bg-gray-50 text-gray-700 font-bold border-b border-gray-300 py-3 text-sm">
-                    <div class="w-16 text-center">번호</div>
-                    <div class="flex-1 text-center">제목</div>
-                </div>
-                <div id="jubo-list-mobile-body">
-                    <!-- JS로 데이터 삽입 -->
-                </div>
-            </div>
-
-            <!-- 페이지네이션 -->
-            <div id="pagination" class="flex justify-center items-center mt-8 mb-6 flex-wrap gap-y-2"></div>
-
-        </main>
-    </div>
-
-    <!-- ★ 교회주보 팝업 모달창 (다중 이미지 및 다운로드 지원) ★ -->
-    <div id="jubo-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6">
-        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="closeModal()"></div>
-        
-        <div class="relative w-full max-w-4xl bg-white shadow-2xl z-10 flex flex-col max-h-[90vh] rounded-xl overflow-hidden border-t-[6px] border-[#3b82f6]">
-            <!-- 모달 헤더 -->
-            <div class="bg-white text-gray-800 px-6 py-4 border-b border-gray-200 flex justify-between items-center shrink-0">
-                <div class="pr-4">
-                    <h2 id="modal-title" class="text-lg md:text-2xl font-extrabold tracking-tight mb-1">제목</h2>
-                    <p id="modal-date" class="text-xs md:text-sm text-gray-500 font-medium"><i class="far fa-calendar-alt mr-1"></i> 등록일 : </p>
-                </div>
-                <div class="flex items-center gap-1 sm:gap-3 shrink-0">
-                    <!-- 다운로드 버튼 -->
-                    <a id="download-btn" href="#" download class="hidden items-center gap-1.5 bg-[#eff5f4] text-[#1a5b48] border border-[#d1e5df] px-3 py-1.5 rounded-md text-xs sm:text-sm font-bold hover:bg-[#d1e5df] transition">
-                        <i class="fas fa-download"></i> <span class="hidden sm:inline-block">다운로드</span>
-                    </a>
-                    <button onclick="closeModal()" class="text-gray-400 hover:text-red-500 transition-colors focus:outline-none p-2">
-                        <i class="fas fa-times text-2xl md:text-3xl"></i>
-                    </button>
-                </div>
-            </div>
-            
-            <!-- 모달 콘텐츠 (이미지 삽입) -->
-            <div class="p-4 md:p-8 overflow-y-auto flex-1 bg-gray-100 modal-scroll flex flex-col items-center" id="modal-image-container">
-                <div id="loading-msg" class="text-gray-500 font-bold py-10 flex flex-col items-center gap-3">
-                    <i class="fas fa-spinner fa-spin text-3xl text-blue-500"></i>
-                    <span>주보를 불러오는 중입니다...</span>
-                </div>
-                <!-- 여기에 동적으로 이미지가 추가됩니다 -->
-            </div>
-        </div>
-    </div>
-
-    <!-- 마법의 파일 연결 2: 공통 하단 푸터 & 사이트맵 -->
+    <!-- 마법의 파일 연결 2: 여기서 푸터와 사이트맵 팝업이 자동으로 나옵니다 -->
     <div id="common-footer"></div>
     <div id="common-sitemap"></div>
 
-    <script>
-        // ★ 목사님께서 올려주신 교회주보 CSV 링크 연결 완료! ★
-        const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTmNPl7QMOdRz4v6O0kYga96lCTM8t2xeDwVepsmdUtBfiXyTz4jVmJ_meq0fP0ENusdnKxfHpPjTrJ/pub?gid=1075037635&single=true&output=csv";
-        
-        let formattedData = [];
-        const itemsPerPage = 15; 
-        let currentPage = 1;
+    <script>const ROOT_PATH = "";</script>
+    <script src="js/common.js"></script>
 
-        // CSV 글씨 분리 함수
+    <!-- ★ 메인 페이지 전용 자바스크립트 ★ -->
+    <script>
+        // 메인 상단 슬라이더 제어
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        let slideInterval;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                if (i === index) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+            resetInterval();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+            resetInterval();
+        }
+
+        function startInterval() {
+            slideInterval = setInterval(nextSlide, 5000);
+        }
+
+        function resetInterval() {
+            clearInterval(slideInterval);
+            startInterval();
+        }
+
+        // CSV 글씨를 예쁘게 분리해주는 마법의 함수
         function parseCSV(str) {
             const arr = [];
             let quote = false;
@@ -199,233 +351,252 @@
             return arr;
         }
 
-        async function loadData() {
+        // =========================================================================
+        // ★ 1. 팝업창 관리 기능 (여러 개 띄우기, 쿠키 저장) ★
+        // 목사님! 팝업창이 필요하시면 아래 popups 배열 안에 내용을 채워주시면 됩니다.
+        // imageUrl: 팝업창 이미지 주소 / linkUrl: 클릭 시 이동할 주소(신청서 등)
+        // width: PC에서 보일 팝업창의 가로 넓이 (모바일은 자동으로 화면에 맞춰집니다)
+        // =========================================================================
+        const popups = [
+            // 예시 1: 온라인 성경통독 신청서 팝업 (필요 없으면 이 줄을 통째로 지우거나 // 를 맨 앞에 붙이세요)
+            // { id: 'popup1', imageUrl: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=400&q=80', linkUrl: 'https://forms.gle/어쩌고저쩌고', width: 350 },
+            
+            // 예시 2: 가을 부흥성회 안내 팝업 (두 번째 팝업)
+            // { id: 'popup2', imageUrl: 'https://images.unsplash.com/photo-1510590337019-5ef8d3d32116?auto=format&fit=crop&w=400&q=80', linkUrl: 'word/special_worship.html', width: 350 }
+        ];
+
+        // 쿠키(하루 동안 보지 않기 기억 장치) 설정 함수
+        function setCookie(name, value, expiredays) {
+            var todayDate = new Date();
+            todayDate.setDate(todayDate.getDate() + expiredays);
+            document.cookie = name + "=" + escape(value) + "; path=/; expires=" + todayDate.toGMTString() + ";";
+        }
+
+        // 쿠키 확인 함수
+        function getCookie(name) {
+            var nameOfCookie = name + "=";
+            var x = 0;
+            while (x <= document.cookie.length) {
+                var y = (x + nameOfCookie.length);
+                if (document.cookie.substring(x, y) == nameOfCookie) {
+                    if ((endOfCookie = document.cookie.indexOf(";", y)) == -1)
+                        endOfCookie = document.cookie.length;
+                    return unescape(document.cookie.substring(y, endOfCookie));
+                }
+                x = document.cookie.indexOf(" ", x) + 1;
+                if (x == 0) break;
+            }
+            return "";
+        }
+
+        // 팝업 닫기 함수
+        function closePopup(id, isHideForToday) {
+            if (isHideForToday) {
+                setCookie(id, "done", 1); // 1일 동안 쿠키 저장
+            }
+            const popupEl = document.getElementById(id);
+            if(popupEl) popupEl.style.display = 'none';
+        }
+
+        // 팝업창 화면에 그리기
+        function initPopups() {
+            const container = document.getElementById('popup-container');
+            let html = '';
+            popups.forEach((p, index) => {
+                if (getCookie(p.id) !== "done") {
+                    // 모바일에서는 화면 중앙에 겹치도록, PC에서는 좌측 상단부터 약간씩 빗겨서 배치
+                    const offset = index * 30; 
+                    html += `
+                        <div id="${p.id}" class="pointer-events-auto fixed md:absolute shadow-2xl bg-white rounded-lg overflow-hidden border border-gray-200 z-[${100 + index}]" 
+                             style="max-width: 90vw; width: ${p.width || 300}px;">
+                            <a href="${p.linkUrl}" target="${p.linkUrl === '#' ? '_self' : '_blank'}" class="block cursor-pointer">
+                                <img src="${p.imageUrl}" alt="팝업 안내" class="w-full h-auto object-cover">
+                            </a>
+                            <div class="flex justify-between items-center bg-gray-800 text-white px-3 py-2 text-xs">
+                                <label class="flex items-center gap-1.5 cursor-pointer">
+                                    <input type="checkbox" id="chk_${p.id}" class="w-3.5 h-3.5 cursor-pointer">
+                                    <span>오늘 하루 보지 않기</span>
+                                </label>
+                                <button onclick="closePopup('${p.id}', document.getElementById('chk_${p.id}').checked)" class="font-bold hover:text-red-400">닫기 [X]</button>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+            container.innerHTML = html;
+
+            // 반응형 위치 조절
+            popups.forEach((p, index) => {
+                const el = document.getElementById(p.id);
+                if(el) {
+                    if(window.innerWidth < 768) {
+                        // 모바일: 정중앙 배치
+                        el.style.top = '50%';
+                        el.style.left = '50%';
+                        el.style.transform = 'translate(-50%, -50%)';
+                    } else {
+                        // PC: 좌측 상단 계단식 배치
+                        el.style.top = (100 + (index * 40)) + 'px';
+                        el.style.left = (50 + (index * 40)) + 'px';
+                        el.style.transform = 'none';
+                    }
+                }
+            });
+        }
+
+
+        // =========================================================================
+        // ★ 2. 행사사진 갤러리 완전 자동 연동 기능 (news/gallery.html 몰래 읽어오기) ★
+        // =========================================================================
+        async function loadMainGallery() {
+            const container = document.getElementById('main-gallery-grid');
+            const galleryBaseURL = "https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/news/images/gallery/";
+            
             try {
-                document.getElementById('jubo-list-pc').innerHTML = '<tr><td colspan="4" class="py-10 text-center text-gray-500"><i class="fas fa-spinner fa-spin mr-2"></i>데이터를 불러오는 중입니다...</td></tr>';
-                document.getElementById('jubo-list-mobile-body').innerHTML = '<div class="py-10 text-center text-gray-500"><i class="fas fa-spinner fa-spin mr-2"></i>불러오는 중...</div>';
-
-                const response = await fetch(csvUrl);
-                const csvText = await response.text();
+                // 핵심: 행사사진 게시판(news/gallery.html) 파일의 코드를 인터넷으로 몰래 읽어옵니다.
+                const response = await fetch('news/gallery.html');
+                const htmlText = await response.text();
                 
-                const rows = parseCSV(csvText);
-                rows.shift(); // 첫 번째 제목 줄 제거
+                // 읽어온 코드 중에서 'const rawText = `...`;' 부분(사진 데이터 텍스트)만 정규식으로 쏙 뽑아냅니다.
+                const match = htmlText.match(/const rawText = `([\s\S]*?)`;/);
+                if (!match || !match[1]) throw new Error("갤러리 데이터를 찾을 수 없습니다.");
+                
+                const rawGalleryText = match[1];
 
-                formattedData = rows.map(row => {
+                let galleryData = rawGalleryText.trim().split('\n').filter(line => line.trim() !== '').map(line => {
+                    const parts = line.split('|');
+                    let originalTitle = parts[1] ? parts[1].trim() : '';
+                    let shortTitle = originalTitle.replace(/^20([2-9][0-9])/, '$1');
                     return {
+                        id: parseInt(parts[0].trim()),
+                        title: shortTitle
+                    };
+                });
+                
+                // 최신 번호(가장 큰 번호) 순으로 정렬 후 딱 4개만 자르기
+                galleryData.sort((a, b) => b.id - a.id);
+                const top4Gallery = galleryData.slice(0, 4);
+
+                let html = '';
+                top4Gallery.forEach(item => {
+                    let imgId = `main-thumb-${item.id}`;
+                    html += `
+                        <div onclick="location.href='news/gallery.html'" class="relative group cursor-pointer overflow-hidden rounded-lg shadow-sm h-32 md:h-48 border border-gray-200 bg-gray-50">
+                            <img id="${imgId}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition duration-300 flex items-end p-3">
+                                <span class="text-white font-bold text-[11px] md:text-sm opacity-0 group-hover:opacity-100 transition duration-300 truncate w-full leading-tight drop-shadow-md">${item.title}</span>
+                            </div>
+                        </div>
+                    `;
+                });
+                container.innerHTML = html;
+
+                // 썸네일 이미지 로딩 (확장자 탐색)
+                top4Gallery.forEach(item => {
+                    const imgElement = document.getElementById(`main-thumb-${item.id}`);
+                    const exts = ['jpg', 'png', 'jpeg', 'JPG', 'PNG'];
+                    let extIndex = 0;
+
+                    function tryNext() {
+                        if (extIndex >= exts.length) {
+                            imgElement.src = `https://placehold.co/800x600/f3f4f6/9ca3af?text=No.${item.id}`;
+                            return;
+                        }
+                        imgElement.src = `${galleryBaseURL}${item.id}-01.${exts[extIndex]}`;
+                        extIndex++;
+                    }
+                    imgElement.onerror = tryNext;
+                    tryNext();
+                });
+            } catch (error) {
+                console.error("메인 갤러리 로딩 에러:", error);
+                container.innerHTML = '<div class="col-span-2 py-10 text-center text-gray-500 font-bold">갤러리를 불러오지 못했습니다.</div>';
+            }
+        }
+
+        // =========================================================================
+        // 3. 메인페이지 예배 최신 데이터 불러오기
+        // =========================================================================
+        async function loadLatestWorship() {
+            const sundayCsvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTmNPl7QMOdRz4v6O0kYga96lCTM8t2xeDwVepsmdUtBfiXyTz4jVmJ_meq0fP0ENusdnKxfHpPjTrJ/pub?gid=1778090244&single=true&output=csv";
+            
+            try {
+                const res = await fetch(sundayCsvUrl);
+                const text = await res.text();
+                const rows = parseCSV(text);
+                rows.shift(); 
+                
+                let validRows = rows.map(row => ({
+                    id: parseInt(row[0] || 0),
+                    title: (row[1] || '').trim(),
+                    scripture: (row[2] || '').trim(),
+                    date: (row[4] || '').trim(),
+                    link: (row[5] || '').trim()
+                })).filter(item => item.title !== '' && !isNaN(item.id));
+                
+                validRows.sort((a, b) => b.id - a.id);
+                
+                if(validRows.length > 0) {
+                    const latest = validRows[0];
+                    // [태그] 분리해서 없애고 메인제목만 깔끔하게 표시
+                    let mainTitle = latest.title.replace(/^\[.*?\]\s*/, '');
+                    document.getElementById('main-sunday-title').textContent = mainTitle;
+                    document.getElementById('main-sunday-info').textContent = `${latest.date} ${latest.scripture}`;
+                    
+                    if(latest.link && latest.link.length > 5) {
+                        document.getElementById('main-sunday-card').onclick = () => window.open(latest.link, '_blank');
+                    } else {
+                        document.getElementById('main-sunday-card').onclick = () => location.href='word/sunday.html';
+                    }
+                }
+            } catch(error) { 
+                console.error("주일예배 로딩 에러:", error); 
+                document.getElementById('main-sunday-title').textContent = "주일설교";
+                document.getElementById('main-sunday-info').textContent = "말씀을 불러올 수 없습니다.";
+            }
+
+            const wedCsvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTmNPl7QMOdRz4v6O0kYga96lCTM8t2xeDwVepsmdUtBfiXyTz4jVmJ_meq0fP0ENusdnKxfHpPjTrJ/pub?gid=1347943468&single=true&output=csv"; 
+            
+            if(wedCsvUrl !== "") {
+                try {
+                    const res = await fetch(wedCsvUrl);
+                    const text = await res.text();
+                    const rows = parseCSV(text);
+                    rows.shift();
+                    
+                    let validRows = rows.map(row => ({
                         id: parseInt(row[0] || 0),
                         title: (row[1] || '').trim(),
-                        date: (row[2] || '').trim()
-                    };
-                }).filter(item => item.title !== '' && !isNaN(item.id));
-
-                // 번호가 가장 큰(최신) 순서대로 정렬
-                formattedData.sort((a, b) => b.id - a.id);
-
-                renderTable(currentPage);
-
-            } catch (error) {
-                console.error("데이터 로딩 에러:", error);
-                document.getElementById('jubo-list-pc').innerHTML = '<tr><td colspan="4" class="py-10 text-center text-red-500">데이터를 불러올 수 없습니다. 인터넷 연결을 확인해주세요.</td></tr>';
-            }
-        }
-
-        function renderTable(page) {
-            const startIndex = (page - 1) * itemsPerPage;
-            const endIndex = startIndex + itemsPerPage;
-            const pageData = formattedData.slice(startIndex, endIndex);
-
-            const pcTbody = document.getElementById('jubo-list-pc');
-            const mobileContainer = document.getElementById('jubo-list-mobile-body');
-
-            pcTbody.innerHTML = '';
-            mobileContainer.innerHTML = '';
-
-            pageData.forEach(item => {
-                // PC Version
-                const tr = document.createElement('tr');
-                tr.className = 'border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer group h-[60px]';
-                tr.onclick = () => openModal(item.id);
-                
-                tr.innerHTML = `
-                    <td class="py-3 text-gray-400 font-medium">${item.id}</td>
-                    <td class="py-3 px-4 text-left font-bold text-gray-800 group-hover:text-[#3b82f6] transition flex items-center">
-                        <span class="truncate">${item.title}</span>
-                    </td>
-                    <td class="py-3 text-[13px] md:text-sm font-medium text-gray-500">${item.date}</td>
-                    <td class="py-3">
-                        <button class="bg-[#5c5c5c] group-hover:bg-[#1b315b] text-white rounded w-8 h-6 flex items-center justify-center mx-auto transition shadow-sm">
-                            <i class="far fa-file-alt text-xs"></i>
-                        </button>
-                    </td>
-                `;
-                pcTbody.appendChild(tr);
-
-                // Mobile Version
-                const mDiv = document.createElement('div');
-                mDiv.className = 'flex border-b border-gray-200 py-3.5 hover:bg-gray-50 transition cursor-pointer items-center';
-                mDiv.onclick = () => openModal(item.id);
-                mDiv.innerHTML = `
-                    <div class="w-16 text-center text-gray-400 text-sm font-medium shrink-0">${item.id}</div>
-                    <div class="flex-1 pl-2 pr-8 relative overflow-hidden">
-                        <div class="text-gray-800 text-[15px] font-bold mb-0.5 truncate flex items-center gap-1.5">
-                            <span class="truncate">${item.title}</span>
-                        </div>
-                        <div class="text-gray-500 text-[12px] font-medium">${item.date}</div>
-                        <div class="absolute top-1/2 right-2 -translate-y-1/2 text-gray-400"><i class="far fa-file-alt text-lg"></i></div>
-                    </div>
-                `;
-                mobileContainer.appendChild(mDiv);
-            });
-            
-            renderPagination();
-        }
-
-        function renderPagination() {
-            const totalPages = Math.ceil(formattedData.length / itemsPerPage);
-            const paginationContainer = document.getElementById('pagination');
-            paginationContainer.innerHTML = '';
-
-            for (let i = 1; i <= totalPages; i++) {
-                const a = document.createElement('a');
-                a.href = '#';
-                a.className = `page-link ${i === currentPage ? 'active' : ''} rounded`;
-                a.textContent = i;
-                a.onclick = (e) => {
-                    e.preventDefault();
-                    currentPage = i;
-                    renderTable(currentPage);
-                    window.scrollTo({top: 300, behavior: 'smooth'}); 
-                };
-                paginationContainer.appendChild(a);
-            }
-        }
-
-        // ★ 주보 이미지 동적 로딩 시스템 ★
-        function openModal(id) {
-            const item = formattedData.find(n => n.id === id);
-            if(!item) return;
-
-            // 1. 헤더 세팅
-            document.getElementById('modal-title').textContent = item.title;
-            document.getElementById('modal-date').innerHTML = `<i class="far fa-calendar-alt mr-1"></i> 등록일 : ${item.date}`;
-            
-            const container = document.getElementById('modal-image-container');
-            const downloadBtn = document.getElementById('download-btn');
-            downloadBtn.classList.add('hidden'); // 일단 다운로드 버튼 숨김
-            downloadBtn.classList.remove('inline-flex');
-
-            // 2. 이전 내용 비우기 및 로딩 표시
-            Array.from(container.children).forEach(child => {
-                if(child.id !== 'loading-msg') child.remove();
-            });
-            const loadingMsg = document.getElementById('loading-msg');
-            loadingMsg.style.display = 'flex';
-            loadingMsg.innerHTML = '<i class="fas fa-spinner fa-spin text-3xl text-blue-500"></i><span class="mt-2">주보를 불러오는 중입니다...</span>';
-
-            // 3. 깃허브 주보 이미지 기본 경로
-            const baseURL = "https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/news/images/jubo/";
-            
-            // 제목에서 숫자만 추출 (예: '180826주보' -> '180826')
-            const dateId = item.title.replace(/[^0-9]/g, ''); 
-            let loadedCount = 0;
-
-            // 4. 단일 페이지(180826.jpg)를 먼저 시도
-            let imgSingle = new Image();
-            imgSingle.onload = function() {
-                appendImage(imgSingle);
-                loadingMsg.style.display = 'none';
-                setDownload(imgSingle.src, `${dateId}_주보.jpg`);
-            };
-            imgSingle.onerror = function() {
-                // 단일 페이지 실패 시 다중 페이지(180826-1.jpg, 180826-2.jpg...) 시도
-                tryMultiPage(1);
-            };
-            imgSingle.src = `${baseURL}${dateId}.jpg`;
-
-            // 다중 페이지 재귀 로딩 함수
-            function tryMultiPage(index) {
-                let imgMulti = new Image();
-                imgMulti.onload = function() {
-                    appendImage(imgMulti);
-                    if(index === 1) {
-                        loadingMsg.style.display = 'none';
-                        setDownload(imgMulti.src, `${dateId}_주보.jpg`);
+                        scripture: (row[2] || '').trim(),
+                        date: (row[4] || '').trim(),
+                        link: (row[5] || '').trim()
+                    })).filter(item => item.title !== '' && !isNaN(item.id));
+                    
+                    validRows.sort((a, b) => b.id - a.id);
+                    
+                    if(validRows.length > 0) {
+                        const latest = validRows[0];
+                        let mainTitle = latest.title.replace(/^\[.*?\]\s*/, '');
+                        document.getElementById('main-wed-title').textContent = mainTitle;
+                        document.getElementById('main-wed-info').textContent = `${latest.date} ${latest.scripture}`;
+                        
+                        if(latest.link && latest.link.length > 5) {
+                            document.getElementById('main-wed-card').onclick = () => window.open(latest.link, '_blank');
+                        } else {
+                            document.getElementById('main-wed-card').onclick = () => location.href='word/wednesday.html';
+                        }
                     }
-                    tryMultiPage(index + 1); // 다음 페이지 시도
-                };
-                imgMulti.onerror = function() {
-                    // 첫 페이지부터 실패한 경우
-                    if(index === 1 && loadedCount === 0) {
-                        loadingMsg.innerHTML = '<i class="fas fa-exclamation-circle text-2xl text-gray-400"></i><span class="mt-2">등록된 주보 이미지가 없습니다.</span>';
-                    }
-                };
-                imgMulti.src = `${baseURL}${dateId}-${index}.jpg`;
-            }
-
-            // 이미지 추가 헬퍼 함수
-            function appendImage(imgObj) {
-                loadedCount++;
-                imgObj.className = "w-full h-auto object-contain shadow-sm border border-gray-200 mb-4 rounded-lg bg-white";
-                container.appendChild(imgObj);
-            }
-
-            // 다운로드 버튼 세팅 헬퍼 함수
-            function setDownload(url, filename) {
-                downloadBtn.href = url;
-                downloadBtn.setAttribute('download', filename);
-                downloadBtn.classList.remove('hidden');
-                downloadBtn.classList.add('inline-flex');
-            }
-
-            // 모달 열기
-            const modal = document.getElementById('jubo-modal');
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            document.body.style.overflow = 'hidden'; 
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('jubo-modal');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-            document.body.style.overflow = ''; 
-        }
-
-        function toggleMobileSubMenu(menuId) {
-            const targetMenu = document.getElementById(menuId);
-            const otherMenuId = menuId === 'menu-depth1' ? 'menu-depth2' : 'menu-depth1';
-            const otherMenu = document.getElementById(otherMenuId);
-            if (otherMenu && !otherMenu.classList.contains('hidden')) {
-                otherMenu.classList.add('hidden');
-                const otherIcon = otherMenu.previousElementSibling.querySelector('.fas');
-                if(otherIcon) {
-                    otherIcon.classList.remove('fa-minus');
-                    otherIcon.classList.add('fa-plus');
-                }
-            }
-            if (targetMenu) {
-                targetMenu.classList.toggle('hidden');
-                const icon = targetMenu.previousElementSibling.querySelector('.fas');
-                if(icon) {
-                    if(targetMenu.classList.contains('hidden')) {
-                        icon.classList.remove('fa-minus');
-                        icon.classList.add('fa-plus');
-                    } else {
-                        icon.classList.remove('fa-plus');
-                        icon.classList.add('fa-minus');
-                    }
-                }
+                } catch(error) { console.error("수요예배 로딩 에러:", error); }
             }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            loadData();
+            initPopups();        // ★ 추가됨: 팝업창 띄우기 함수 실행
+            loadMainGallery();   // ★ 추가됨: 행사사진 파일 몰래 읽어와서 갤러리 4개 자동 띄우기
+            startInterval();     
+            loadLatestWorship(); 
         });
     </script>
-
-    <!-- ★ 중요: 서브페이지는 js 파일을 불러오기 위해 경로를 알려줘야 합니다 ★ -->
-    <script>const ROOT_PATH = "../";</script>
-    <script src="../js/common.js"></script>
 
 </body>
 </html>
