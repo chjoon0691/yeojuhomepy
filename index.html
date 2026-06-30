@@ -53,6 +53,9 @@
 </head>
 <body class="text-gray-800">
 
+    <!-- ★ 팝업창이 뜨는 공간입니다 ★ -->
+    <div id="popup-container" class="fixed inset-0 pointer-events-none z-[200]"></div>
+
     <!-- 마법의 파일 연결 1: 여기서 상단 메뉴가 자동으로 나옵니다 -->
     <div id="common-header"></div>
 
@@ -113,13 +116,13 @@
         </div>
     </section>
 
-    <!-- Welcome Section -->
+    <!-- Welcome Section (영어 문구 수정 완료) -->
     <section class="py-16 md:py-32 max-w-7xl mx-auto px-4 text-center">
         <h2 class="text-2xl md:text-4xl font-extrabold mb-4 md:mb-6 text-gray-900 tracking-tight">여주성결교회에 오신 것을 환영합니다</h2>
         <p class="block md:hidden text-xs text-gray-500 mb-12 font-medium mt-2 px-2 leading-relaxed">
             Welcome to Yeoju Evangelical Holiness Church's Homepage.<br>
-            Sarang Church hopes you have a peaceful<br>
-            and graceful time with Sarang Church.
+            Yeoju Church hopes you have a peaceful<br>
+            and graceful time with Yeoju Church.
         </p>
         <div class="relative max-w-6xl mx-auto mt-8 md:mt-20">
             <div class="absolute inset-0 flex justify-center items-center pointer-events-none z-0">
@@ -179,8 +182,8 @@
                         </div>
                     </div>
                     <div class="text-center mt-4 px-1">
-                        <h4 id="main-wed-title" class="font-extrabold text-base md:text-xl text-gray-900">마태복음 강해</h4>
-                        <p id="main-wed-info" class="text-[0.65rem] md:text-sm text-gray-600 mt-1">2026.05.13 마태복음 15:29-39</p>
+                        <h4 id="main-wed-title" class="font-extrabold text-base md:text-xl text-gray-900">불러오는 중...</h4>
+                        <p id="main-wed-info" class="text-[0.65rem] md:text-sm text-gray-600 mt-1"><i class="fas fa-spinner fa-spin"></i></p>
                     </div>
                 </div>
 
@@ -215,41 +218,44 @@
                     <a href="news/gallery.html" class="text-xs md:text-base text-blue-500 font-bold uppercase hover:underline">more</a>
                 </div>
                 
-                <!-- 자바스크립트로 최신 행사사진 4개가 자동으로 삽입될 영역 -->
+                <!-- 자바스크립트로 행사사진 페이지에서 '몰래' 불러와서 4개를 띄워줍니다. -->
                 <div id="main-gallery-grid" class="grid grid-cols-2 gap-2 md:gap-3">
-                    <!-- 스크립트가 실행되면 여기에 4개의 최신 사진이 나타납니다 -->
+                    <div class="col-span-2 py-10 text-center text-gray-400">
+                        <i class="fas fa-spinner fa-spin text-2xl mb-2"></i><br>사진을 불러오는 중입니다...
+                    </div>
                 </div>
             </div>
 
-            <!-- 우측 Quick Links 영역 -->
+            <!-- 우측 Quick Links 영역 (버튼 디자인 수정) -->
             <div class="flex flex-col justify-center space-y-6 md:space-y-8 bg-white p-6 md:p-10 rounded-3xl shadow-sm border border-gray-100">
                 <div class="flex items-center justify-between border-b border-gray-200 pb-5">
-                    <div>
-                        <h4 class="text-base md:text-xl font-extrabold text-gray-800">담임목사님을 소개합니다</h4>
-                        <p class="text-xs md:text-sm text-gray-500 mt-1">여주성결교회 조형준 담임목사님의<br>인사말을 소개합니다</p>
+                    <div class="pr-2">
+                        <h4 class="text-base md:text-xl font-extrabold text-gray-800">섬기는 분들</h4>
+                        <p class="text-[11px] md:text-sm text-gray-500 mt-1">담임목사님과 모든 섬기는 분들을<br>소개합니다</p>
                     </div>
-                    <button onclick="location.href='welcome/greeting.html'" class="bg-[#7896c3] text-white text-xs md:text-sm font-bold px-4 py-2 md:px-6 md:py-3 rounded-full hover:bg-[#1a3668] transition shadow-sm w-24 md:w-32">PASTOR</button>
+                    <button onclick="location.href='welcome/serve/serve.html'" class="bg-[#7896c3] text-white text-[10px] md:text-sm font-bold px-2 py-2 md:px-6 md:py-3 rounded-full hover:bg-[#1a3668] transition shadow-sm w-24 md:w-32 shrink-0 truncate">PASTOR</button>
                 </div>
                 <div class="flex items-center justify-between border-b border-gray-200 pb-5">
-                    <div>
+                    <div class="pr-2">
                         <h4 class="text-base md:text-xl font-extrabold text-gray-800">성도기업 소개</h4>
-                        <p class="text-xs md:text-sm text-gray-500 mt-1">여주성결교회 성도님들의<br>성도기업을 소개합니다</p>
+                        <p class="text-[11px] md:text-sm text-gray-500 mt-1">여주성결교회 성도님들의<br>성도기업을 소개합니다</p>
                     </div>
-                    <button onclick="location.href='community/company.html'" class="bg-[#7896c3] text-white text-xs md:text-sm font-bold px-4 py-2 md:px-6 md:py-3 rounded-full hover:bg-[#1a3668] transition shadow-sm w-24 md:w-32">COMPANY</button>
+                    <button onclick="location.href='community/company.html'" class="bg-[#7896c3] text-white text-[10px] md:text-sm font-bold px-2 py-2 md:px-6 md:py-3 rounded-full hover:bg-[#1a3668] transition shadow-sm w-24 md:w-32 shrink-0 truncate">COMPANY</button>
                 </div>
                 <div class="flex items-center justify-between border-b border-gray-200 pb-5">
-                    <div>
+                    <div class="pr-2">
                         <h4 class="text-base md:text-xl font-extrabold text-gray-800">서식자료</h4>
-                        <p class="text-xs md:text-sm text-gray-500 mt-1">대관신청 및 차량신청 등을<br>온라인에서 지원하고 있습니다</p>
+                        <p class="text-[11px] md:text-sm text-gray-500 mt-1">대관신청 및 차량신청 등을<br>온라인에서 지원하고 있습니다</p>
                     </div>
-                    <button onclick="location.href='service/application.html'" class="bg-[#7896c3] text-white text-xs md:text-sm font-bold px-4 py-2 md:px-6 md:py-3 rounded-full hover:bg-[#1a3668] transition shadow-sm w-24 md:w-32">APPLICATION</button>
+                    <!-- 모바일에서 글씨가 삐져나가지 않도록 padding 조절 및 truncate 적용 -->
+                    <button onclick="location.href='service/application.html'" class="bg-[#7896c3] text-white text-[9px] md:text-sm font-bold px-1 py-2 md:px-6 md:py-3 rounded-full hover:bg-[#1a3668] transition shadow-sm w-24 md:w-32 shrink-0 truncate">APPLICATION</button>
                 </div>
                 <div class="flex items-center justify-between">
-                    <div>
+                    <div class="pr-2">
                         <h4 class="text-base md:text-xl font-extrabold text-gray-800">차량운행 안내</h4>
-                        <p class="text-xs md:text-sm text-gray-500 mt-1">여주성결교회의 차량운행 시간을<br>안내해드리고 있습니다</p>
+                        <p class="text-[11px] md:text-sm text-gray-500 mt-1">여주성결교회의 차량운행 시간을<br>안내해드리고 있습니다</p>
                     </div>
-                    <button onclick="location.href='welcome/bus/bus.html'" class="bg-[#7896c3] text-white text-xs md:text-sm font-bold px-4 py-2 md:px-6 md:py-3 rounded-full hover:bg-[#1a3668] transition shadow-sm w-24 md:w-32">CONTACT US</button>
+                    <button onclick="location.href='welcome/bus/bus.html'" class="bg-[#7896c3] text-white text-[10px] md:text-sm font-bold px-2 py-2 md:px-6 md:py-3 rounded-full hover:bg-[#1a3668] transition shadow-sm w-24 md:w-32 shrink-0 truncate">CONTACT US</button>
                 </div>
             </div>
         </div>
@@ -287,65 +293,9 @@
     <script>const ROOT_PATH = "";</script>
     <script src="js/common.js"></script>
 
-    <!-- ★ 메인 페이지 전용 자바스크립트 (갤러리 및 슬라이더) ★ -->
+    <!-- ★ 메인 페이지 전용 자바스크립트 ★ -->
     <script>
-        // 1. 메인 갤러리 최신 데이터 4개 자동 연동
-        // (행사사진 페이지의 최신 데이터 4개를 기반으로 자동 출력)
-        const mainGalleryData = [
-            { id: 254, title: "260613 남전도회 건강 걷기대회" },
-            { id: 253, title: "260610 전도대 아웃리치" },
-            { id: 252, title: "260530 중보기도팀과 '부흥'시네마" },
-            { id: 251, title: "260531 청년부친구초청데이 '환승, 주님께로'" }
-        ];
-
-        // 깃허브 이미지 주소 체계
-        const baseURL = "https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/news/images/gallery/";
-
-        // 갤러리 이미지 확장자 자동 탐색 함수 (jpg -> png -> jpeg)
-        function loadThumbnail(imgElement, id) {
-            const exts = ['jpg', 'png', 'jpeg', 'JPG', 'PNG'];
-            let extIndex = 0;
-
-            function tryNext() {
-                if (extIndex >= exts.length) {
-                    imgElement.src = `https://placehold.co/800x600/f3f4f6/9ca3af?text=No.${id}`;
-                    return;
-                }
-                imgElement.src = `${baseURL}${id}-01.${exts[extIndex]}`;
-                extIndex++;
-            }
-
-            imgElement.onerror = tryNext;
-            tryNext();
-        }
-
-        // 메인 화면 갤러리 렌더링
-        function renderMainGallery() {
-            const container = document.getElementById('main-gallery-grid');
-            if (!container) return;
-            
-            let html = '';
-            mainGalleryData.forEach(item => {
-                let imgId = `main-thumb-${item.id}`;
-                html += `
-                    <div onclick="location.href='news/gallery.html'" class="relative group cursor-pointer overflow-hidden rounded-lg shadow-sm h-32 md:h-48 border border-gray-200 bg-gray-50">
-                        <!-- 이미지 표시 태그 -->
-                        <img id="${imgId}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition duration-300 flex items-end p-3">
-                            <span class="text-white font-bold text-sm opacity-0 group-hover:opacity-100 transition duration-300 truncate">${item.title}</span>
-                        </div>
-                    </div>
-                `;
-            });
-            container.innerHTML = html;
-
-            // HTML이 생성된 후, 각각의 이미지 파일 로딩 시도
-            mainGalleryData.forEach(item => {
-                loadThumbnail(document.getElementById(`main-thumb-${item.id}`), item.id);
-            });
-        }
-
-        // 2. 메인 상단 슬라이더 제어
+        // 메인 상단 슬라이더 제어
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         let slideInterval;
@@ -401,16 +351,180 @@
             return arr;
         }
 
-        // 메인페이지 예배 최신 데이터 불러오기
+        // =========================================================================
+        // ★ 1. 팝업창 관리 기능 (여러 개 띄우기, 쿠키 저장) ★
+        // 목사님! 팝업창이 필요하시면 아래 popups 배열 안에 내용을 채워주시면 됩니다.
+        // imageUrl: 팝업창 이미지 주소 / linkUrl: 클릭 시 이동할 주소(신청서 등)
+        // width: PC에서 보일 팝업창의 가로 넓이 (모바일은 자동으로 화면에 맞춰집니다)
+        // =========================================================================
+        const popups = [
+            // 예시 1: 온라인 성경통독 신청서 팝업 (필요 없으면 이 줄을 통째로 지우거나 // 를 맨 앞에 붙이세요)
+            // { id: 'popup1', imageUrl: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=400&q=80', linkUrl: 'https://forms.gle/어쩌고저쩌고', width: 350 },
+            
+            // 예시 2: 가을 부흥성회 안내 팝업 (두 번째 팝업)
+            // { id: 'popup2', imageUrl: 'https://images.unsplash.com/photo-1510590337019-5ef8d3d32116?auto=format&fit=crop&w=400&q=80', linkUrl: 'word/special_worship.html', width: 350 }
+        ];
+
+        // 쿠키(하루 동안 보지 않기 기억 장치) 설정 함수
+        function setCookie(name, value, expiredays) {
+            var todayDate = new Date();
+            todayDate.setDate(todayDate.getDate() + expiredays);
+            document.cookie = name + "=" + escape(value) + "; path=/; expires=" + todayDate.toGMTString() + ";";
+        }
+
+        // 쿠키 확인 함수
+        function getCookie(name) {
+            var nameOfCookie = name + "=";
+            var x = 0;
+            while (x <= document.cookie.length) {
+                var y = (x + nameOfCookie.length);
+                if (document.cookie.substring(x, y) == nameOfCookie) {
+                    if ((endOfCookie = document.cookie.indexOf(";", y)) == -1)
+                        endOfCookie = document.cookie.length;
+                    return unescape(document.cookie.substring(y, endOfCookie));
+                }
+                x = document.cookie.indexOf(" ", x) + 1;
+                if (x == 0) break;
+            }
+            return "";
+        }
+
+        // 팝업 닫기 함수
+        function closePopup(id, isHideForToday) {
+            if (isHideForToday) {
+                setCookie(id, "done", 1); // 1일 동안 쿠키 저장
+            }
+            const popupEl = document.getElementById(id);
+            if(popupEl) popupEl.style.display = 'none';
+        }
+
+        // 팝업창 화면에 그리기
+        function initPopups() {
+            const container = document.getElementById('popup-container');
+            let html = '';
+            popups.forEach((p, index) => {
+                if (getCookie(p.id) !== "done") {
+                    // 모바일에서는 화면 중앙에 겹치도록, PC에서는 좌측 상단부터 약간씩 빗겨서 배치
+                    const offset = index * 30; 
+                    html += `
+                        <div id="${p.id}" class="pointer-events-auto fixed md:absolute shadow-2xl bg-white rounded-lg overflow-hidden border border-gray-200 z-[${100 + index}]" 
+                             style="max-width: 90vw; width: ${p.width || 300}px;">
+                            <a href="${p.linkUrl}" target="${p.linkUrl === '#' ? '_self' : '_blank'}" class="block cursor-pointer">
+                                <img src="${p.imageUrl}" alt="팝업 안내" class="w-full h-auto object-cover">
+                            </a>
+                            <div class="flex justify-between items-center bg-gray-800 text-white px-3 py-2 text-xs">
+                                <label class="flex items-center gap-1.5 cursor-pointer">
+                                    <input type="checkbox" id="chk_${p.id}" class="w-3.5 h-3.5 cursor-pointer">
+                                    <span>오늘 하루 보지 않기</span>
+                                </label>
+                                <button onclick="closePopup('${p.id}', document.getElementById('chk_${p.id}').checked)" class="font-bold hover:text-red-400">닫기 [X]</button>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+            container.innerHTML = html;
+
+            // 반응형 위치 조절
+            popups.forEach((p, index) => {
+                const el = document.getElementById(p.id);
+                if(el) {
+                    if(window.innerWidth < 768) {
+                        // 모바일: 정중앙 배치
+                        el.style.top = '50%';
+                        el.style.left = '50%';
+                        el.style.transform = 'translate(-50%, -50%)';
+                    } else {
+                        // PC: 좌측 상단 계단식 배치
+                        el.style.top = (100 + (index * 40)) + 'px';
+                        el.style.left = (50 + (index * 40)) + 'px';
+                        el.style.transform = 'none';
+                    }
+                }
+            });
+        }
+
+
+        // =========================================================================
+        // ★ 2. 행사사진 갤러리 완전 자동 연동 기능 (news/gallery.html 몰래 읽어오기) ★
+        // =========================================================================
+        async function loadMainGallery() {
+            const container = document.getElementById('main-gallery-grid');
+            const galleryBaseURL = "https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/news/images/gallery/";
+            
+            try {
+                // 핵심: 행사사진 게시판(news/gallery.html) 파일의 코드를 인터넷으로 몰래 읽어옵니다.
+                const response = await fetch('news/gallery.html');
+                const htmlText = await response.text();
+                
+                // 읽어온 코드 중에서 'const rawText = `...`;' 부분(사진 데이터 텍스트)만 정규식으로 쏙 뽑아냅니다.
+                const match = htmlText.match(/const rawText = `([\s\S]*?)`;/);
+                if (!match || !match[1]) throw new Error("갤러리 데이터를 찾을 수 없습니다.");
+                
+                const rawGalleryText = match[1];
+
+                let galleryData = rawGalleryText.trim().split('\n').filter(line => line.trim() !== '').map(line => {
+                    const parts = line.split('|');
+                    let originalTitle = parts[1] ? parts[1].trim() : '';
+                    let shortTitle = originalTitle.replace(/^20([2-9][0-9])/, '$1');
+                    return {
+                        id: parseInt(parts[0].trim()),
+                        title: shortTitle
+                    };
+                });
+                
+                // 최신 번호(가장 큰 번호) 순으로 정렬 후 딱 4개만 자르기
+                galleryData.sort((a, b) => b.id - a.id);
+                const top4Gallery = galleryData.slice(0, 4);
+
+                let html = '';
+                top4Gallery.forEach(item => {
+                    let imgId = `main-thumb-${item.id}`;
+                    html += `
+                        <div onclick="location.href='news/gallery.html'" class="relative group cursor-pointer overflow-hidden rounded-lg shadow-sm h-32 md:h-48 border border-gray-200 bg-gray-50">
+                            <img id="${imgId}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition duration-300 flex items-end p-3">
+                                <span class="text-white font-bold text-[11px] md:text-sm opacity-0 group-hover:opacity-100 transition duration-300 truncate w-full leading-tight drop-shadow-md">${item.title}</span>
+                            </div>
+                        </div>
+                    `;
+                });
+                container.innerHTML = html;
+
+                // 썸네일 이미지 로딩 (확장자 탐색)
+                top4Gallery.forEach(item => {
+                    const imgElement = document.getElementById(`main-thumb-${item.id}`);
+                    const exts = ['jpg', 'png', 'jpeg', 'JPG', 'PNG'];
+                    let extIndex = 0;
+
+                    function tryNext() {
+                        if (extIndex >= exts.length) {
+                            imgElement.src = `https://placehold.co/800x600/f3f4f6/9ca3af?text=No.${item.id}`;
+                            return;
+                        }
+                        imgElement.src = `${galleryBaseURL}${item.id}-01.${exts[extIndex]}`;
+                        extIndex++;
+                    }
+                    imgElement.onerror = tryNext;
+                    tryNext();
+                });
+            } catch (error) {
+                console.error("메인 갤러리 로딩 에러:", error);
+                container.innerHTML = '<div class="col-span-2 py-10 text-center text-gray-500 font-bold">갤러리를 불러오지 못했습니다.</div>';
+            }
+        }
+
+        // =========================================================================
+        // 3. 메인페이지 예배 최신 데이터 불러오기
+        // =========================================================================
         async function loadLatestWorship() {
-            // 1. 주일예배 (목사님이 알려주신 링크)
             const sundayCsvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTmNPl7QMOdRz4v6O0kYga96lCTM8t2xeDwVepsmdUtBfiXyTz4jVmJ_meq0fP0ENusdnKxfHpPjTrJ/pub?gid=1778090244&single=true&output=csv";
             
             try {
                 const res = await fetch(sundayCsvUrl);
                 const text = await res.text();
                 const rows = parseCSV(text);
-                rows.shift(); // 첫 번째 줄(제목 행) 제거
+                rows.shift(); 
                 
                 let validRows = rows.map(row => ({
                     id: parseInt(row[0] || 0),
@@ -420,15 +534,15 @@
                     link: (row[5] || '').trim()
                 })).filter(item => item.title !== '' && !isNaN(item.id));
                 
-                // 번호가 가장 큰(최신) 순서대로 정렬
                 validRows.sort((a, b) => b.id - a.id);
                 
                 if(validRows.length > 0) {
                     const latest = validRows[0];
-                    document.getElementById('main-sunday-title').textContent = latest.title;
+                    // [태그] 분리해서 없애고 메인제목만 깔끔하게 표시
+                    let mainTitle = latest.title.replace(/^\[.*?\]\s*/, '');
+                    document.getElementById('main-sunday-title').textContent = mainTitle;
                     document.getElementById('main-sunday-info').textContent = `${latest.date} ${latest.scripture}`;
                     
-                    // 유튜브 링크가 있으면 유튜브로 가고, 없으면 주일예배 게시판으로 이동
                     if(latest.link && latest.link.length > 5) {
                         document.getElementById('main-sunday-card').onclick = () => window.open(latest.link, '_blank');
                     } else {
@@ -441,7 +555,6 @@
                 document.getElementById('main-sunday-info').textContent = "말씀을 불러올 수 없습니다.";
             }
 
-            // 2. 수요예배 (수요예배 구글시트 링크 연동 완료!)
             const wedCsvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTmNPl7QMOdRz4v6O0kYga96lCTM8t2xeDwVepsmdUtBfiXyTz4jVmJ_meq0fP0ENusdnKxfHpPjTrJ/pub?gid=1347943468&single=true&output=csv"; 
             
             if(wedCsvUrl !== "") {
@@ -463,7 +576,8 @@
                     
                     if(validRows.length > 0) {
                         const latest = validRows[0];
-                        document.getElementById('main-wed-title').textContent = latest.title;
+                        let mainTitle = latest.title.replace(/^\[.*?\]\s*/, '');
+                        document.getElementById('main-wed-title').textContent = mainTitle;
                         document.getElementById('main-wed-info').textContent = `${latest.date} ${latest.scripture}`;
                         
                         if(latest.link && latest.link.length > 5) {
@@ -477,9 +591,10 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            renderMainGallery(); // 갤러리 불러오기 시작
-            startInterval();     // 슬라이드 시작
-            loadLatestWorship(); // ★ 추가됨: 메인페이지 예배 최신글 불러오기 시작
+            initPopups();        // ★ 추가됨: 팝업창 띄우기 함수 실행
+            loadMainGallery();   // ★ 추가됨: 행사사진 파일 몰래 읽어와서 갤러리 4개 자동 띄우기
+            startInterval();     
+            loadLatestWorship(); 
         });
     </script>
 

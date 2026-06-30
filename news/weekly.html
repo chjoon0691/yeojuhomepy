@@ -30,9 +30,9 @@
     <!-- 마법의 파일 연결 1: 공통 상단 헤더 -->
     <div id="common-header"></div>
 
-    <!-- 상단 대형 배너 추가 -->
+    <!-- 상단 대형 배너 (말 그림 대신 성경책/십자가 그림으로 교체 완료) -->
     <section class="bg-[#102242] py-12 md:py-20 text-center relative overflow-hidden">
-        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1438283173091-5dbf5c5a3206?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-luminosity"></div>
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1504052434569-70ad5836ab65?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-luminosity"></div>
         <div class="relative z-10">
             <h2 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-2">교회소식</h2>
             <p class="text-blue-200 text-sm md:text-base">Church News</p>
@@ -172,7 +172,6 @@
     <div id="common-sitemap"></div>
 
     <script>
-        // ★ 목사님께서 올려주신 교회주보 CSV 링크 연결 완료! ★
         const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTmNPl7QMOdRz4v6O0kYga96lCTM8t2xeDwVepsmdUtBfiXyTz4jVmJ_meq0fP0ENusdnKxfHpPjTrJ/pub?gid=1075037635&single=true&output=csv";
         
         let formattedData = [];
@@ -285,7 +284,33 @@
             const paginationContainer = document.getElementById('pagination');
             paginationContainer.innerHTML = '';
 
-            for (let i = 1; i <= totalPages; i++) {
+            if (totalPages === 0) return;
+
+            // 한 번에 보여줄 페이지 번호 개수 (10개)
+            const pagesPerGroup = 10;
+            const currentGroup = Math.ceil(currentPage / pagesPerGroup);
+            let startPage = (currentGroup - 1) * pagesPerGroup + 1;
+            let endPage = startPage + pagesPerGroup - 1;
+            
+            if (endPage > totalPages) endPage = totalPages;
+
+            // [이전] 화살표 버튼
+            const prevBtn = document.createElement('a');
+            prevBtn.href = '#';
+            prevBtn.className = `page-link rounded ${currentPage === 1 ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            prevBtn.innerHTML = '<i class="fas fa-chevron-left text-xs"></i>';
+            prevBtn.onclick = (e) => {
+                e.preventDefault();
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderTable(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                }
+            };
+            paginationContainer.appendChild(prevBtn);
+
+            // [페이지 번호] 버튼 (10개씩)
+            for (let i = startPage; i <= endPage; i++) {
                 const a = document.createElement('a');
                 a.href = '#';
                 a.className = `page-link ${i === currentPage ? 'active' : ''} rounded`;
@@ -298,9 +323,24 @@
                 };
                 paginationContainer.appendChild(a);
             }
+
+            // [다음] 화살표 버튼
+            const nextBtn = document.createElement('a');
+            nextBtn.href = '#';
+            nextBtn.className = `page-link rounded ${currentPage === totalPages ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            nextBtn.innerHTML = '<i class="fas fa-chevron-right text-xs"></i>';
+            nextBtn.onclick = (e) => {
+                e.preventDefault();
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    renderTable(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                }
+            };
+            paginationContainer.appendChild(nextBtn);
         }
 
-        // ★ 주보 이미지 동적 로딩 시스템 ★
+        // 주보 이미지 동적 로딩 시스템
         function openModal(id) {
             const item = formattedData.find(n => n.id === id);
             if(!item) return;
