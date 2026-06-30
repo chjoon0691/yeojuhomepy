@@ -11,18 +11,22 @@
         @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
         body { font-family: 'Pretendard', sans-serif; background-color: #ffffff; overflow-x: hidden; }
         
+        /* 페이지네이션 디자인 */
         .page-link {
             display: inline-flex; align-items: center; justify-content: center;
             width: 32px; height: 32px; border: 1px solid #e5e7eb; color: #4b5563;
             font-size: 14px; transition: all 0.2s; margin: 0 2px;
         }
         .page-link:hover { background-color: #f3f4f6; color: #1b315b; }
-        .page-link.active { border-color: #1b315b; color: #1b315b; font-weight: bold; }
+        .page-link.active { border-color: #1b315b; color: #ffffff; font-weight: bold; background-color: #1b315b; }
         
         .modal-scroll::-webkit-scrollbar { width: 8px; }
         .modal-scroll::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
         .modal-scroll::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 4px; }
         .modal-scroll::-webkit-scrollbar-thumb:hover { background: #a8a8a8; }
+        
+        /* 확대 이미지 닫기 줌 아웃 */
+        .zoom-active { cursor: zoom-out; }
     </style>
 </head>
 <body class="text-gray-800">
@@ -30,9 +34,9 @@
     <!-- 마법의 파일 연결 1: 공통 상단 헤더 -->
     <div id="common-header"></div>
 
-    <!-- 상단 대형 배너 (말 그림 대신 성경책/십자가 그림으로 교체 완료) -->
+    <!-- 상단 대형 배너 (교회소식) -->
     <section class="bg-[#102242] py-12 md:py-20 text-center relative overflow-hidden">
-        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1504052434569-70ad5836ab65?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-luminosity"></div>
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-luminosity"></div>
         <div class="relative z-10">
             <h2 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-2">교회소식</h2>
             <p class="text-blue-200 text-sm md:text-base">Church News</p>
@@ -91,18 +95,33 @@
         <main class="flex-1 relative">
             
             <div class="w-full bg-[#1b315b] rounded-xl h-24 md:h-32 flex flex-col justify-center items-center text-white shadow-md relative overflow-hidden mb-8">
-                <!-- 배경 사진을 기독교 관련 이미지(성경책)로 교체 -->
-                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
+                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1438283173091-5dbf5c5a3206?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
                 <h3 class="text-2xl md:text-3xl font-extrabold relative z-10 tracking-tight">교회주보</h3>
+            </div>
+
+            <!-- 검색바 -->
+            <div class="flex flex-col sm:flex-row justify-between items-center mb-4 border-b border-gray-200 pb-4 gap-4">
+                <div class="text-gray-500 text-sm font-medium w-full sm:w-auto text-left pl-1">
+                    <i class="far fa-file-alt text-gray-400 mr-1"></i> 총 <span id="total-count" class="text-blue-600 font-bold">0</span>건의 주보
+                </div>
+                <div class="flex border border-gray-300 rounded shadow-sm overflow-hidden bg-white">
+                    <select class="px-3 py-1.5 text-sm md:text-base border-r border-gray-300 text-gray-700 focus:outline-none bg-gray-50 cursor-pointer">
+                        <option>제목</option>
+                    </select>
+                    <input type="text" class="px-3 py-1.5 text-sm md:text-base w-32 md:w-48 focus:outline-none" placeholder="검색어 입력">
+                    <button class="bg-gray-100 hover:bg-gray-200 text-gray-600 px-4 py-1.5 text-sm md:text-base border-l border-gray-300 transition">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
             </div>
 
             <!-- PC Version Table -->
             <table class="hidden md:table w-full text-center text-sm md:text-base border-t-2 border-gray-800 table-fixed">
                 <colgroup>
-                    <col class="w-[10%]">
-                    <col class="w-[60%]">
+                    <col class="w-[15%]">
+                    <col class="w-[50%]">
                     <col class="w-[20%]">
-                    <col class="w-[10%]">
+                    <col class="w-[15%]">
                 </colgroup>
                 <thead class="bg-gray-50 text-gray-700 font-bold border-b border-gray-300">
                     <tr>
@@ -112,7 +131,7 @@
                         <th class="py-3 px-2">보기</th>
                     </tr>
                 </thead>
-                <tbody id="jubo-list-pc" class="text-gray-600">
+                <tbody id="bulletin-list-pc" class="text-gray-600">
                     <!-- JS로 데이터 삽입 -->
                 </tbody>
             </table>
@@ -123,47 +142,51 @@
                     <div class="w-16 text-center">번호</div>
                     <div class="flex-1 text-center">제목</div>
                 </div>
-                <div id="jubo-list-mobile-body">
+                <div id="bulletin-list-mobile-body">
                     <!-- JS로 데이터 삽입 -->
                 </div>
             </div>
 
-            <!-- 페이지네이션 -->
-            <div id="pagination" class="flex justify-center items-center mt-8 mb-6 flex-wrap gap-y-2"></div>
+            <!-- 페이지네이션 (10페이지씩 보이도록 기능 수정됨) -->
+            <div id="pagination" class="flex justify-center items-center mt-8 mb-6 flex-wrap gap-y-2 gap-x-1"></div>
 
         </main>
     </div>
 
-    <!-- ★ 교회주보 팝업 모달창 (다중 이미지 및 다운로드 지원) ★ -->
-    <div id="jubo-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6">
+    <!-- ★ 주보 확인 모달창 ★ -->
+    <div id="bulletin-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6">
         <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="closeModal()"></div>
-        
         <div class="relative w-full max-w-4xl bg-white shadow-2xl z-10 flex flex-col max-h-[90vh] rounded-xl overflow-hidden border-t-[6px] border-[#3b82f6]">
             <!-- 모달 헤더 -->
-            <div class="bg-white text-gray-800 px-6 py-4 border-b border-gray-200 flex justify-between items-center shrink-0">
-                <div class="pr-4">
-                    <h2 id="modal-title" class="text-lg md:text-2xl font-extrabold tracking-tight mb-1">제목</h2>
-                    <p id="modal-date" class="text-xs md:text-sm text-gray-500 font-medium"><i class="far fa-calendar-alt mr-1"></i> 등록일 : </p>
+            <div class="bg-white text-gray-800 px-6 py-5 border-b border-gray-200 flex justify-between items-start shrink-0">
+                <div class="pr-6">
+                    <h2 id="modal-title" class="text-xl md:text-2xl font-extrabold tracking-tight mb-1">제목</h2>
+                    <p id="modal-date" class="text-sm text-gray-500 font-medium"><i class="far fa-calendar-alt mr-1"></i> 등록일 : </p>
                 </div>
-                <div class="flex items-center gap-1 sm:gap-3 shrink-0">
-                    <!-- 다운로드 버튼 -->
-                    <a id="download-btn" href="#" download class="hidden items-center gap-1.5 bg-[#eff5f4] text-[#1a5b48] border border-[#d1e5df] px-3 py-1.5 rounded-md text-xs sm:text-sm font-bold hover:bg-[#d1e5df] transition">
-                        <i class="fas fa-download"></i> <span class="hidden sm:inline-block">다운로드</span>
-                    </a>
+                <div class="flex items-center gap-2 shrink-0">
                     <button onclick="closeModal()" class="text-gray-400 hover:text-red-500 transition-colors focus:outline-none p-2">
-                        <i class="fas fa-times text-2xl md:text-3xl"></i>
+                        <i class="fas fa-times text-3xl"></i>
                     </button>
                 </div>
             </div>
             
-            <!-- 모달 콘텐츠 (이미지 삽입) -->
-            <div class="p-4 md:p-8 overflow-y-auto flex-1 bg-gray-100 modal-scroll flex flex-col items-center" id="modal-image-container">
+            <!-- 모달 콘텐츠 -->
+            <div class="p-6 md:p-8 overflow-y-auto flex-1 bg-gray-100 modal-scroll flex flex-col items-center gap-6 relative" id="modal-image-container">
                 <div id="loading-msg" class="text-gray-500 font-bold py-10 flex flex-col items-center gap-3">
                     <i class="fas fa-spinner fa-spin text-3xl text-blue-500"></i>
                     <span>주보를 불러오는 중입니다...</span>
                 </div>
-                <!-- 여기에 동적으로 이미지가 추가됩니다 -->
             </div>
+        </div>
+    </div>
+
+    <!-- ★ 이미지 전체화면 확대 모달창 ★ -->
+    <div id="zoom-modal" class="fixed inset-0 z-[110] hidden items-center justify-center bg-black/90 backdrop-blur-md" onclick="closeZoom()">
+        <button class="absolute top-6 right-6 text-white/70 hover:text-white transition focus:outline-none z-[120]" onclick="closeZoom()">
+            <i class="fas fa-times text-4xl"></i>
+        </button>
+        <div class="w-full h-full flex items-center justify-center p-2 sm:p-10 overflow-auto modal-scroll zoom-active">
+            <img id="zoom-image" src="" alt="주보 확대" class="max-w-full max-h-none md:max-h-full object-contain shadow-2xl">
         </div>
     </div>
 
@@ -172,69 +195,457 @@
     <div id="common-sitemap"></div>
 
     <script>
-        const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTmNPl7QMOdRz4v6O0kYga96lCTM8t2xeDwVepsmdUtBfiXyTz4jVmJ_meq0fP0ENusdnKxfHpPjTrJ/pub?gid=1075037635&single=true&output=csv";
-        
-        let formattedData = [];
-        const itemsPerPage = 15; 
+        // 1. 주보 전체 데이터 (419번부터 1번까지 모두 통합 완료!)
+        const rawText = `
+419|260628 주보|2026.06.26
+418|260621 주보|2026.06.19
+417|260614 주보(1)|2026.06.12
+416|260607 주보(1)|2026.06.05
+415|260531 주보(1)|2026.05.29
+414|260524 주보|2026.05.22
+413|260517 주보|2026.05.15
+412|260510 주보|2026.05.08
+411|260503 주보|2026.04.30
+410|260426 주보|2026.04.24
+409|260419 주보|2026.04.17
+408|260412 주보|2026.04.10
+407|260405 주보|2026.04.03
+406|260329 주보|2026.03.27
+405|260322 주보|2026.03.20
+404|260315 주보|2026.03.13
+403|260308 주보|2026.03.06
+402|260222 주보|2026.02.20
+401|260215 주보|2026.02.13
+400|260208 주보|2026.02.06
+399|260201 주보|2026.01.30
+398|260125 주보|2026.01.23
+397|260118 주보|2026.01.16
+396|260111 주보|2026.01.09
+395|260104 주보|2026.01.02
+394|251228 주보|2025.12.26
+393|20251221 주보|2025.12.19
+392|251214 주보|2025.12.12
+391|251207 주보|2025.12.05
+390|251130 주보|2025.11.28
+389|251123 주보|2025.11.21
+388|251116 주보|2025.11.14
+387|251109 주보|2025.11.07
+386|251102 주보|2025.10.31
+385|251026 주보|2025.10.24
+384|251019 주보|2025.10.17
+383|251012 주보|2025.10.10
+382|251005 주보|2025.10.02
+381|250928 주보|2025.09.26
+380|250921 주보|2025.09.19
+379|250914 주보|2025.09.12
+378|250907 주보|2025.09.05
+377|250831 주보|2025.08.29
+376|250824 주보|2025.08.22
+375|250817 주보|2025.08.14
+374|250810 주보|2025.08.08
+373|250803 주보|2025.08.01
+372|250727 주보|2025.07.25
+371|250720 주보|2025.07.18
+370|250713 주보|2025.07.12
+369|250706 주보|2025.07.04
+368|250629 주보|2025.06.27
+367|250622 주보|2025.06.20
+366|250615 주보|2025.06.13
+365|250608 주보|2025.06.05
+364|250601 주보|2025.05.30
+363|250525 주보|2025.05.23
+362|250518 주보|2025.05.16
+361|250511 주보|2025.05.09
+360|250504 주보|2025.05.02
+359|250427 주보|2025.04.25
+358|250420 주보|2025.04.18
+357|250413 주보|2025.04.11
+356|250406 주보|2025.04.04
+355|250330 주보|2025.03.28
+354|250323 주보|2025.03.21
+353|250316 주보|2025.03.14
+352|250309 주보|2025.03.07
+351|250302 주보|2025.02.28
+350|250223 주보|2025.02.22
+349|250216 주보|2025.02.15
+348|250209 주보|2025.02.08
+347|250202 주보|2025.02.01
+346|20250126 주보|2025.01.24
+345|250119 주보|2025.01.18
+344|250112 주보|2025.01.11
+343|250105 주보|2025.01.04
+342|241231 송구영신예배 주보|2024.12.31
+341|241229 주보|2024.12.28
+340|241225 성탄절 순서지|2024.12.25
+339|241222 주보|2024.12.22
+338|241215 주보|2024.12.14
+337|241208 주보|2024.12.07
+336|241201 주보|2024.11.30
+335|241124 주보|2024.11.23
+334|241117 주보|2024.11.16
+333|241110 주보|2024.11.09
+332|241103 주보|2024.11.02
+331|241027 주보|2024.10.26
+330|241020 주보|2024.10.19
+329|241013 주보|2024.10.14
+328|241006 주보|2024.10.05
+327|240929 주보|2024.09.28
+326|240922 주보|2024.09.24
+325|240915 주보|2024.09.14
+324|240908 주보|2024.09.06
+323|240901 주보|2024.08.31
+322|240825 주보|2024.08.24
+321|240817 주보|2024.08.16
+320|240811 주보|2024.08.10
+319|240804 주보|2024.08.03
+318|240728 주보|2024.07.27
+317|240721 주보|2024.07.19
+316|240714 주보|2024.07.13
+315|240707 주보|2024.07.06
+314|240630 주보|2024.06.29
+313|240623 주보|2024.06.21
+312|240616 주보|2024.06.15
+311|240609 주보|2024.06.08
+310|240602 주보|2024.06.01
+309|240525 주보|2024.05.25
+308|240519 주보|2024.05.18
+307|240512 주보|2024.05.11
+306|240505 주보|2024.05.04
+305|240428 주보|2024.04.27
+304|240421 주보|2024.04.19
+303|240414 주보|2024.04.12
+302|240407 주보|2024.04.06
+301|240331 주보|2024.03.31
+300|240324 주보|2024.03.23
+299|240317 주보|2024.03.16
+298|240310 주보|2024.03.09
+297|240303 주보|2024.03.02
+296|240225 주보|2024.02.23
+295|240218 주보|2024.02.17
+294|240211 주보|2024.02.08
+293|240204 주보|2024.02.03
+292|240128 주보|2024.01.26
+291|240121 주보|2024.01.23
+290|240114 주보|2024.01.12
+289|240107 주보|2024.01.05
+288|231231 송구영신예배 주보|2023.12.30
+287|231231 주보|2023.12.30
+286|231225 성탄절 주보|2023.12.23
+285|231224 주보|2023.12.23
+284|231217 주보|2023.12.17
+283|231210 주보|2023.12.09
+282|231203 주보|2023.12.01
+281|231126 주보|2023.11.24
+280|231119 주보|2023.11.18
+279|231112 주보|2023.11.10
+278|231105 주보|2023.11.03
+277|231029 주보|2023.10.28
+276|231022 주보|2023.10.21
+275|231015 주보|2023.10.13
+274|231008 주보|2023.10.07
+273|231001 주보|2023.09.27
+272|230924 주보|2023.09.23
+271|230917 주보|2023.09.15
+270|230910 주보|2023.09.09
+269|230903 주보|2023.09.02
+268|230827 주보|2023.08.26
+267|230820 주보|2023.08.18
+266|230813 주보|2023.08.11
+265|230805 주보|2023.08.05
+264|230730 주일주보|2023.07.28
+263|230723 주보|2023.07.22
+262|230716 주보|2023.07.14
+261|230709 주보|2023.07.07
+260|230702 주보|2023.06.30
+259|230625 주보|2023.06.23
+258|230618 주보|2023.06.16
+257|230611 주보|2023.06.09
+256|230604 주보|2023.06.02
+255|230528 주보|2023.05.26
+254|230521 주보|2023.05.19
+253|230514 전 가족이 함께하는 예배|2023.05.11
+252|230507 주보|2023.05.04
+251|230430 주보|2023.04.29
+250|230423 주보|2023.04.21
+249|230416 주보|2023.04.14
+248|230409 주보|2023.04.07
+247|230402 주보|2023.03.31
+246|230326 주보|2023.03.24
+245|230319 주보|2023.03.17
+244|230312 주보|2023.03.10
+243|230305 주보|2023.03.03
+242|20230226 주보|2023.02.24
+241|20230219 주보|2023.02.17
+240|230212 주보|2023.02.10
+239|230205 주보|2023.02.03
+238|230129 주보|2023.01.27
+237|230122 주보|2023.01.20
+236|230115 주보|2023.01.13
+235|230108 주보|2023.01.06
+234|230101 주보|2022.12.30
+233|221231 송구영신예배 순서지|2022.12.30
+232|221225 성탄주일 주보|2022.12.23
+231|221218 주보|2022.12.21
+230|221211 주보|2022.12.10
+229|221204 주보|2022.12.02
+228|221127 주보|2022.11.25
+227|221120 주보|2022.11.18
+226|221113 주보|2022.11.11
+225|221106 주보|2022.11.04
+224|221030 주보|2022.10.28
+223|221023 주보|2022.10.21
+222|221016 주보|2022.10.14
+221|221009 주보|2022.10.07
+220|221002 주보|2022.09.30
+219|220925 주보|2022.09.23
+218|220918 주보|2022.09.16
+217|220911 주보|2022.09.09
+216|220904 주보|2022.09.02
+215|220828 주보|2022.08.26
+214|220821 주보|2022.08.19
+213|220814 주보|2022.08.12
+212|220807 주보|2022.08.05
+211|220731 주보|2022.07.29
+210|220724 주보|2022.07.22
+209|220717 주보|2022.07.15
+208|220710 주보|2022.07.08
+207|220703 주보|2022.07.01
+206|220626 주보|2022.06.24
+205|220619 주보|2022.06.17
+204|220612 주보|2022.06.10
+203|220605 주보|2022.06.03
+202|220529 주보|2022.05.27
+201|220522 주보|2022.05.20
+200|220515 주보|2022.05.13
+199|220508 주보|2022.05.06
+198|220501 주보|2022.04.29
+197|220424 주보|2022.04.22
+196|220417 주보|2022.04.15
+195|220410 주보|2022.04.08
+194|220403 주보|2022.04.02
+193|220327 주보|2022.03.25
+192|220320 주보|2022.03.18
+191|220313 주보|2022.03.11
+190|220306 주보|2022.03.04
+189|220227 주보|2022.02.25
+188|220220 주보|2022.02.18
+187|220213 주보|2022.02.11
+186|220206 주보|2022.02.04
+185|220130 주보|2022.01.28
+184|220123 주보|2022.01.21
+183|220116 주보|2022.01.14
+182|220109 주보|2022.01.08
+181|220102 주보|2021.12.31
+180|211231 송구영신예배|2021.12.30
+179|211226 주보|2021.12.24
+178|211225 성탄절|2021.12.24
+177|211219 주보|2021.12.18
+176|211212 주보|2021.12.10
+175|211205 주보|2021.12.03
+174|211128 주보|2021.11.26
+173|211121 주보|2021.11.23
+172|211114 주보|2021.11.12
+171|211107 주보|2021.11.05
+170|211031 주보|2021.10.29
+169|211024 주보|2021.10.22
+168|211017 주보|2021.10.15
+167|211010 주보|2021.10.08
+166|211003 주보|2021.10.01
+165|210926 주보|2021.09.25
+164|210919 주보|2021.09.17
+163|추석 가정예배서|2021.09.17
+162|210912 주보|2021.09.10
+161|210905 주보|2021.09.03
+160|210829 주보|2021.08.27
+159|210822 주보|2021.08.20
+158|210815 주보|2021.08.14
+157|210808 주보|2021.08.07
+156|210801 주보|2021.07.31
+155|210725 주보|2021.07.24
+154|210718 주보|2021.07.17
+153|210711 주보|2021.07.09
+152|210704 주보|2021.07.02
+151|210627 주보|2021.06.25
+150|210620 주보|2021.06.19
+149|210613 주보|2021.06.11
+148|210606 주보|2021.06.04
+147|210530 주보|2021.05.28
+146|210523 주보|2021.05.21
+145|210516 주보|2021.05.14
+144|210509 주보|2021.05.07
+143|210502 주보|2021.04.30
+142|210425 주보|2021.04.24
+141|210418 주보|2021.04.16
+140|210411 주보|2021.04.09
+139|210404 주보|2021.04.02
+138|210328 주보|2021.03.26
+137|210321 주보|2021.03.19
+136|210314 주보|2021.03.12
+135|210307 주보|2021.03.06
+134|210307 주보|2021.02.27
+133|210221 주보|2021.02.20
+132|210214 주보|2021.02.10
+131|210207 주보|2021.02.06
+130|210131 주보|2021.01.30
+129|210124 주보|2021.01.23
+128|210117 주보|2021.01.16
+127|210110 주보|2021.01.09
+126|210103 주보|2021.01.03
+125|201227 주보|2020.12.26
+124|201220 주보|2020.12.19
+123|201213 주보|2020.12.12
+122|201206 주보|2020.12.05
+121|201129 주보|2020.11.27
+120|201122 주보|2020.11.20
+119|201115 주보(추수감사주일)|2020.11.13
+118|201108 주보|2020.11.06
+117|201101 주보|2020.10.31
+116|201025 주보|2020.10.23
+115|201018 주보|2020.10.17
+114|201011 주보|2020.10.10
+113|201004 주보|2020.10.03
+112|200927 주보|2020.09.26
+111|추석가정예배서|2020.09.26
+110|200920 주보|2020.09.20
+109|200913 주보|2020.09.12
+108|200906 주보|2020.09.05
+107|200830 주보|2020.08.29
+106|200823 주보|2020.08.22
+105|200816 주보|2020.08.14
+104|200809 주보|2020.08.11
+103|200802 주보|2020.07.31
+102|200726 주보|2020.07.26
+101|200719 주보|2020.07.17
+100|200712 주보|2020.07.10
+99|200705 주보|2020.07.03
+98|200628 주보|2020.06.26
+97|200621 주보|2020.06.20
+96|200614 주보|2020.06.12
+95|200607 주보|2020.06.07
+94|200531 주보|2020.05.30
+93|200524 주보|2020.05.23
+92|200517 주보|2020.05.16
+91|200510 주보|2020.05.09
+90|200503 주보|2020.05.02
+89|200426 주보|2020.04.25
+88|200419 주보|2020.04.18
+87|200412 주보(부활주일)|2020.04.12
+86|200405 주보|2020.04.04
+85|200329 주보|2020.04.04
+84|200322 주보|2020.03.21
+83|200315 주보|2020.03.14
+82|200308 주보|2020.03.07
+81|200301 주보|2020.02.28
+80|200223 주보|2020.02.21
+79|200216 주보|2020.02.14
+78|200209 주보|2020.02.07
+77|200202 주보|2020.01.31
+76|200126 주보|2020.01.23
+75|200119 주보|2020.01.18
+74|200112 주보|2020.01.11
+73|200105 주보|2020.01.03
+72|191231 송구영신예배 순서지|2019.12.31
+71|191229 주보|2019.12.27
+70|191225 성탄감사예배 순서지|2019.12.24
+69|191222 주보|2019.12.20
+68|191215 주보|2019.12.13
+67|191208 주보|2019.12.06
+66|191201 주보|2019.11.30
+65|191124 주보|2019.11.22
+64|191117 주보(복음대전도운동 축제)|2019.11.15
+63|191110 주보|2019.11.08
+62|191103 주보|2019.11.01
+61|191027 주보|2019.10.25
+60|191020 주보|2019.10.18
+59|191013 주보|2019.10.11
+58|191006 주보|2019.10.04
+57|190929 주보|2019.09.28
+56|190922 주보|2019.09.20
+55|190915 주보|2019.09.11
+54|190908 주보|2019.09.06
+53|190901 주보|2019.08.30
+52|190818 주보|2019.08.16
+51|190811 주보|2019.08.09
+50|190804 주보|2019.08.02
+49|190728 주보|2019.07.27
+48|190721 주보|2019.07.19
+47|190714 주보|2019.07.13
+46|190707 주보|2019.07.05
+45|190630 주보|2019.06.28
+44|190623 주보|2019.06.20
+43|190616 주보|2019.06.14
+42|190609 주보|2019.06.07
+41|190602 주보|2019.05.31
+40|190526 주보|2019.05.24
+39|190519 주보|2019.05.17
+38|190512 주보|2019.05.10
+37|190505 주보|2019.05.03
+36|190428 주보|2019.04.26
+35|190421 주보|2019.04.19
+34|190414 주보|2019.04.12
+33|190407 주보|2019.04.05
+32|190331 주보|2019.03.29
+31|190324 주보|2019.03.22
+30|190317 주보|2019.03.15
+29|190310 주보|2019.03.09
+28|190303 주보|2019.03.02
+27|190224 주보|2019.02.22
+26|190217 주보|2019.02.16
+25|190210 주보|2019.02.08
+24|190203 주보|2019.02.01
+23|190127 주보|2019.01.25
+22|190120 주보|2019.01.18
+21|190113 주보|2019.01.11
+20|190106 주보|2019.01.04
+19|181230 주보|2018.12.28
+18|181223 주보|2018.12.22
+17|181216 주보|2018.12.15
+16|181209 주보|2018.12.07
+15|181202 주보|2018.11.30
+14|181125 주보|2018.11.25
+13|181118 주일주보|2018.11.18
+12|181118 주보|2018.11.17
+11|181111 주보|2018.11.16
+10|181104 주보|2018.11.03
+9|181028 주보|2018.10.27
+8|181021 주보|2018.10.23
+7|181014 주일주보|2018.10.16
+6|181007 주보|2018.10.11
+5|180930 주일주보|2018.10.02
+4|180923 주일주보|2018.10.02
+3|180916 주보|2018.09.18
+2|180909 주일주보|2018.09.09
+1|180826 주보|2018.08.28
+        `;
+
+        // 데이터 파싱
+        const bulletinData = rawText.trim().split('\n')
+            .filter(line => line.trim() !== '')
+            .map(line => {
+                const parts = line.split('|');
+                return {
+                    id: parseInt(parts[0].trim()),
+                    title: parts[1].trim(),
+                    date: parts[2].trim()
+                };
+            }).filter(item => !isNaN(item.id));
+
+        // 총 주보 수 표시
+        document.getElementById('total-count').textContent = bulletinData.length;
+
+        // 2. 깃허브 사진 저장소 기본 주소
+        const baseURL = "https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/news/images/jubo/";
+
+        const itemsPerPage = 15; // 한 페이지당 15개씩 출력
         let currentPage = 1;
-
-        // CSV 글씨 분리 함수
-        function parseCSV(str) {
-            const arr = [];
-            let quote = false;
-            let col, c;
-            for (let row = col = c = 0; c < str.length; c++) {
-                let cc = str[c], nc = str[c+1];
-                arr[row] = arr[row] || [];
-                arr[row][col] = arr[row][col] || '';
-                if (cc == '"' && quote && nc == '"') { arr[row][col] += cc; ++c; continue; }
-                if (cc == '"') { quote = !quote; continue; }
-                if (cc == ',' && !quote) { ++col; continue; }
-                if (cc == '\r' && nc == '\n' && !quote) { ++row; col = 0; ++c; continue; }
-                if (cc == '\n' && !quote) { ++row; col = 0; continue; }
-                if (cc == '\r' && !quote) { ++row; col = 0; continue; }
-                arr[row][col] += cc;
-            }
-            return arr;
-        }
-
-        async function loadData() {
-            try {
-                document.getElementById('jubo-list-pc').innerHTML = '<tr><td colspan="4" class="py-10 text-center text-gray-500"><i class="fas fa-spinner fa-spin mr-2"></i>데이터를 불러오는 중입니다...</td></tr>';
-                document.getElementById('jubo-list-mobile-body').innerHTML = '<div class="py-10 text-center text-gray-500"><i class="fas fa-spinner fa-spin mr-2"></i>불러오는 중...</div>';
-
-                const response = await fetch(csvUrl);
-                const csvText = await response.text();
-                
-                const rows = parseCSV(csvText);
-                rows.shift(); // 첫 번째 제목 줄 제거
-
-                formattedData = rows.map(row => {
-                    return {
-                        id: parseInt(row[0] || 0),
-                        title: (row[1] || '').trim(),
-                        date: (row[2] || '').trim()
-                    };
-                }).filter(item => item.title !== '' && !isNaN(item.id));
-
-                // 번호가 가장 큰(최신) 순서대로 정렬
-                formattedData.sort((a, b) => b.id - a.id);
-
-                renderTable(currentPage);
-
-            } catch (error) {
-                console.error("데이터 로딩 에러:", error);
-                document.getElementById('jubo-list-pc').innerHTML = '<tr><td colspan="4" class="py-10 text-center text-red-500">데이터를 불러올 수 없습니다. 인터넷 연결을 확인해주세요.</td></tr>';
-            }
-        }
 
         function renderTable(page) {
             const startIndex = (page - 1) * itemsPerPage;
             const endIndex = startIndex + itemsPerPage;
-            const pageData = formattedData.slice(startIndex, endIndex);
+            const pageData = bulletinData.slice(startIndex, endIndex);
 
-            const pcTbody = document.getElementById('jubo-list-pc');
-            const mobileContainer = document.getElementById('jubo-list-mobile-body');
+            const pcTbody = document.getElementById('bulletin-list-pc');
+            const mobileContainer = document.getElementById('bulletin-list-mobile-body');
 
             pcTbody.innerHTML = '';
             mobileContainer.innerHTML = '';
@@ -242,18 +653,18 @@
             pageData.forEach(item => {
                 // PC Version
                 const tr = document.createElement('tr');
-                tr.className = 'border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer group h-[60px]';
+                tr.className = 'border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer group';
                 tr.onclick = () => openModal(item.id);
                 
                 tr.innerHTML = `
-                    <td class="py-3 text-gray-400 font-medium">${item.id}</td>
-                    <td class="py-3 px-4 text-left font-bold text-gray-800 group-hover:text-[#3b82f6] transition flex items-center">
-                        <span class="truncate">${item.title}</span>
+                    <td class="py-4 text-gray-400">${item.id}</td>
+                    <td class="py-4 px-4 text-left font-bold text-gray-800 group-hover:text-[#3b82f6] transition">
+                        <span class="truncate max-w-full">${item.title}</span>
                     </td>
-                    <td class="py-3 text-[13px] md:text-sm font-medium text-gray-500">${item.date}</td>
-                    <td class="py-3">
+                    <td class="py-4 text-sm font-medium text-gray-500">${item.date}</td>
+                    <td class="py-4">
                         <button class="bg-[#5c5c5c] group-hover:bg-[#1b315b] text-white rounded w-8 h-6 flex items-center justify-center mx-auto transition shadow-sm">
-                            <i class="far fa-file-alt text-xs"></i>
+                            <i class="far fa-file-image text-xs"></i>
                         </button>
                     </td>
                 `;
@@ -261,16 +672,16 @@
 
                 // Mobile Version
                 const mDiv = document.createElement('div');
-                mDiv.className = 'flex border-b border-gray-200 py-3.5 hover:bg-gray-50 transition cursor-pointer items-center';
+                mDiv.className = 'flex border-b border-gray-200 py-3.5 hover:bg-gray-50 transition cursor-pointer items-center px-2';
                 mDiv.onclick = () => openModal(item.id);
                 mDiv.innerHTML = `
-                    <div class="w-16 text-center text-gray-400 text-sm font-medium shrink-0">${item.id}</div>
-                    <div class="flex-1 pl-2 pr-8 relative overflow-hidden">
-                        <div class="text-gray-800 text-[15px] font-bold mb-0.5 truncate flex items-center gap-1.5">
-                            <span class="truncate">${item.title}</span>
-                        </div>
+                    <div class="w-14 text-center text-gray-400 text-sm font-medium shrink-0">${item.id}</div>
+                    <div class="flex-1 pl-2 pr-4 relative">
+                        <div class="text-gray-800 text-[15px] font-bold mb-0.5 truncate pr-8">${item.title}</div>
                         <div class="text-gray-500 text-[12px] font-medium">${item.date}</div>
-                        <div class="absolute top-1/2 right-2 -translate-y-1/2 text-gray-400"><i class="far fa-file-alt text-lg"></i></div>
+                        <div class="absolute top-1/2 right-2 -translate-y-1/2 text-gray-400">
+                            <i class="far fa-file-image text-lg"></i>
+                        </div>
                     </div>
                 `;
                 mobileContainer.appendChild(mDiv);
@@ -280,13 +691,13 @@
         }
 
         function renderPagination() {
-            const totalPages = Math.ceil(formattedData.length / itemsPerPage);
+            const totalPages = Math.ceil(bulletinData.length / itemsPerPage);
             const paginationContainer = document.getElementById('pagination');
             paginationContainer.innerHTML = '';
 
             if (totalPages === 0) return;
 
-            // 한 번에 보여줄 페이지 번호 개수 (10개)
+            // 한 번에 보여줄 페이지 번호 개수 (10개씩)
             const pagesPerGroup = 10;
             const currentGroup = Math.ceil(currentPage / pagesPerGroup);
             let startPage = (currentGroup - 1) * pagesPerGroup + 1;
@@ -294,11 +705,26 @@
             
             if (endPage > totalPages) endPage = totalPages;
 
-            // [이전] 화살표 버튼
+            // [이전 10페이지] 버튼 (<<)
+            const prevGroupBtn = document.createElement('a');
+            prevGroupBtn.href = '#';
+            prevGroupBtn.className = `page-link rounded ${startPage === 1 ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            prevGroupBtn.innerHTML = '<i class="fas fa-angle-double-left text-[10px]"></i>';
+            prevGroupBtn.onclick = (e) => {
+                e.preventDefault();
+                if (startPage > 1) {
+                    currentPage = startPage - 1;
+                    renderTable(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                }
+            };
+            paginationContainer.appendChild(prevGroupBtn);
+
+            // [이전 1페이지] 화살표 버튼 (<)
             const prevBtn = document.createElement('a');
             prevBtn.href = '#';
             prevBtn.className = `page-link rounded ${currentPage === 1 ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
-            prevBtn.innerHTML = '<i class="fas fa-chevron-left text-xs"></i>';
+            prevBtn.innerHTML = '<i class="fas fa-chevron-left text-[10px]"></i>';
             prevBtn.onclick = (e) => {
                 e.preventDefault();
                 if (currentPage > 1) {
@@ -324,11 +750,11 @@
                 paginationContainer.appendChild(a);
             }
 
-            // [다음] 화살표 버튼
+            // [다음 1페이지] 화살표 버튼 (>)
             const nextBtn = document.createElement('a');
             nextBtn.href = '#';
             nextBtn.className = `page-link rounded ${currentPage === totalPages ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
-            nextBtn.innerHTML = '<i class="fas fa-chevron-right text-xs"></i>';
+            nextBtn.innerHTML = '<i class="fas fa-chevron-right text-[10px]"></i>';
             nextBtn.onclick = (e) => {
                 e.preventDefault();
                 if (currentPage < totalPages) {
@@ -338,97 +764,125 @@
                 }
             };
             paginationContainer.appendChild(nextBtn);
+
+            // [다음 10페이지] 버튼 (>>)
+            const nextGroupBtn = document.createElement('a');
+            nextGroupBtn.href = '#';
+            nextGroupBtn.className = `page-link rounded ${endPage === totalPages ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            nextGroupBtn.innerHTML = '<i class="fas fa-angle-double-right text-[10px]"></i>';
+            nextGroupBtn.onclick = (e) => {
+                e.preventDefault();
+                if (endPage < totalPages) {
+                    currentPage = endPage + 1;
+                    renderTable(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                }
+            };
+            paginationContainer.appendChild(nextGroupBtn);
         }
 
-        // 주보 이미지 동적 로딩 시스템
+        /* * ★ 팝업창 확장자 자동 탐색 로딩 시스템 ★ 
+         */
         function openModal(id) {
-            const item = formattedData.find(n => n.id === id);
-            if(!item) return;
+            const data = bulletinData.find(n => n.id === id);
+            if(!data) return;
 
-            // 1. 헤더 세팅
-            document.getElementById('modal-title').textContent = item.title;
-            document.getElementById('modal-date').innerHTML = `<i class="far fa-calendar-alt mr-1"></i> 등록일 : ${item.date}`;
+            document.getElementById('modal-title').textContent = data.title;
+            document.getElementById('modal-date').innerHTML = `<i class="far fa-calendar-alt mr-1"></i> 등록일 : ${data.date}`;
             
             const container = document.getElementById('modal-image-container');
-            const downloadBtn = document.getElementById('download-btn');
-            downloadBtn.classList.add('hidden'); // 일단 다운로드 버튼 숨김
-            downloadBtn.classList.remove('inline-flex');
-
-            // 2. 이전 내용 비우기 및 로딩 표시
+            
             Array.from(container.children).forEach(child => {
                 if(child.id !== 'loading-msg') child.remove();
             });
+            
             const loadingMsg = document.getElementById('loading-msg');
             loadingMsg.style.display = 'flex';
             loadingMsg.innerHTML = '<i class="fas fa-spinner fa-spin text-3xl text-blue-500"></i><span class="mt-2">주보를 불러오는 중입니다...</span>';
 
-            // 3. 깃허브 주보 이미지 기본 경로
-            const baseURL = "https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/news/images/jubo/";
-            
-            // 제목에서 숫자만 추출 (예: '180826주보' -> '180826')
-            const dateId = item.title.replace(/[^0-9]/g, ''); 
+            const maxPages = 4; // 보통 주보는 최대 4장까지 검사
             let loadedCount = 0;
+            let errorCount = 0;
 
-            // 4. 단일 페이지(180826.jpg)를 먼저 시도
-            let imgSingle = new Image();
-            imgSingle.onload = function() {
-                appendImage(imgSingle);
-                loadingMsg.style.display = 'none';
-                setDownload(imgSingle.src, `${dateId}_주보.jpg`);
-            };
-            imgSingle.onerror = function() {
-                // 단일 페이지 실패 시 다중 페이지(180826-1.jpg, 180826-2.jpg...) 시도
-                tryMultiPage(1);
-            };
-            imgSingle.src = `${baseURL}${dateId}.jpg`;
-
-            // 다중 페이지 재귀 로딩 함수
-            function tryMultiPage(index) {
-                let imgMulti = new Image();
-                imgMulti.onload = function() {
-                    appendImage(imgMulti);
-                    if(index === 1) {
-                        loadingMsg.style.display = 'none';
-                        setDownload(imgMulti.src, `${dateId}_주보.jpg`);
+            function tryLoadModalImage(index, extsArray, wrapElement) {
+                if (extsArray.length === 0) {
+                    wrapElement.remove(); 
+                    errorCount++;
+                    if(loadedCount === 0 && errorCount === maxPages) {
+                         loadingMsg.innerHTML = '<i class="fas fa-exclamation-circle text-2xl text-gray-400"></i><span class="mt-2">등록된 주보 사진이 없습니다.</span>';
                     }
-                    tryMultiPage(index + 1); // 다음 페이지 시도
+                    return;
+                }
+
+                const currentExt = extsArray.shift();
+                
+                // 목사님 요청 규격: 01-01, 01-02 등 (번호가 10 미만이어도 01처럼 2자리로)
+                let formattedId = id < 10 ? '0' + id : id;
+                let numStr = index < 10 ? '0' + index : index;
+                
+                let imgUrl = `${baseURL}${formattedId}-${numStr}.${currentExt}`;
+
+                let img = document.createElement('img');
+                img.className = "w-full h-auto object-contain rounded shadow-sm border border-gray-200 cursor-pointer hover:opacity-90 transition duration-300";
+                img.title = "클릭하시면 원본 크기로 확대됩니다.";
+                
+                // 클릭 시 줌 모달 띄우기
+                img.onclick = () => openZoom(imgUrl);
+                
+                img.onload = function() {
+                    wrapElement.classList.remove('hidden'); 
+                    loadingMsg.style.display = 'none'; 
+                    loadedCount++;
+                    wrapElement.appendChild(img);
+                    
+                    // 돋보기 아이콘 오버레이
+                    let zoomIcon = document.createElement('div');
+                    zoomIcon.className = "absolute top-4 right-4 bg-black/50 text-white p-2 rounded-full pointer-events-none opacity-70";
+                    zoomIcon.innerHTML = '<i class="fas fa-search-plus"></i>';
+                    wrapElement.appendChild(zoomIcon);
                 };
-                imgMulti.onerror = function() {
-                    // 첫 페이지부터 실패한 경우
-                    if(index === 1 && loadedCount === 0) {
-                        loadingMsg.innerHTML = '<i class="fas fa-exclamation-circle text-2xl text-gray-400"></i><span class="mt-2">등록된 주보 이미지가 없습니다.</span>';
-                    }
+                
+                img.onerror = function() {
+                    tryLoadModalImage(index, extsArray, wrapElement);
                 };
-                imgMulti.src = `${baseURL}${dateId}-${index}.jpg`;
+                
+                img.src = imgUrl; 
             }
 
-            // 이미지 추가 헬퍼 함수
-            function appendImage(imgObj) {
-                loadedCount++;
-                imgObj.className = "w-full h-auto object-contain shadow-sm border border-gray-200 mb-4 rounded-lg bg-white";
-                container.appendChild(imgObj);
+            for(let i = 1; i <= maxPages; i++) {
+                let imgWrap = document.createElement('div');
+                imgWrap.className = "bg-white p-1 rounded-lg w-full mb-4 hidden flex flex-col relative"; 
+                container.appendChild(imgWrap);
+                
+                tryLoadModalImage(i, ['jpg', 'png', 'jpeg', 'JPG', 'PNG'], imgWrap);
             }
 
-            // 다운로드 버튼 세팅 헬퍼 함수
-            function setDownload(url, filename) {
-                downloadBtn.href = url;
-                downloadBtn.setAttribute('download', filename);
-                downloadBtn.classList.remove('hidden');
-                downloadBtn.classList.add('inline-flex');
-            }
-
-            // 모달 열기
-            const modal = document.getElementById('jubo-modal');
+            const modal = document.getElementById('bulletin-modal');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
             document.body.style.overflow = 'hidden'; 
         }
 
         function closeModal() {
-            const modal = document.getElementById('jubo-modal');
+            const modal = document.getElementById('bulletin-modal');
             modal.classList.add('hidden');
             modal.classList.remove('flex');
             document.body.style.overflow = ''; 
+        }
+
+        // 확대 모달창 관련 함수
+        function openZoom(src) {
+            const zoomModal = document.getElementById('zoom-modal');
+            const zoomImg = document.getElementById('zoom-image');
+            zoomImg.src = src;
+            zoomModal.classList.remove('hidden');
+            zoomModal.classList.add('flex');
+        }
+
+        function closeZoom() {
+            const zoomModal = document.getElementById('zoom-modal');
+            zoomModal.classList.add('hidden');
+            zoomModal.classList.remove('flex');
         }
 
         function toggleMobileSubMenu(menuId) {
@@ -459,11 +913,9 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            loadData();
+            renderTable(currentPage);
         });
     </script>
-
-    <!-- ★ 중요: 서브페이지는 js 파일을 불러오기 위해 경로를 알려줘야 합니다 ★ -->
     <script>const ROOT_PATH = "../";</script>
     <script src="../js/common.js"></script>
 
