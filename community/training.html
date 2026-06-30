@@ -10,8 +10,6 @@
     <style>
         @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
         body { font-family: 'Pretendard', sans-serif; background-color: #ffffff; overflow-x: hidden; }
-        #mobile-menu { display: none; }
-        #mobile-menu.open { display: flex; }
     </style>
 </head>
 <body class="text-gray-800">
@@ -31,9 +29,7 @@
     <!-- 모바일 전용 2차 메뉴 바 -->
     <div class="md:hidden border-b border-gray-300 bg-white relative z-30 shadow-sm">
         <div class="flex text-sm md:text-base">
-            <a href="../index.html" class="px-4 py-3 border-r border-gray-300 text-gray-600 flex items-center justify-center hover:bg-gray-50">
-                Home
-            </a>
+            <a href="../index.html" class="px-4 py-3 border-r border-gray-300 text-gray-600 flex items-center justify-center hover:bg-gray-50">Home</a>
             <div class="flex-1 border-r border-gray-300 relative">
                 <button onclick="toggleMobileSubMenu('menu-depth1')" class="w-full flex justify-between items-center px-4 py-3 text-gray-800 focus:outline-none">
                     <span>공동체</span>
@@ -83,18 +79,16 @@
         <!-- 메인 콘텐츠 영역 -->
         <main class="flex-1">
             <div class="w-full bg-[#1b315b] rounded-xl h-24 md:h-32 flex flex-col justify-center items-center text-white shadow-md relative overflow-hidden mb-12">
-                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
+                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
                 <h3 class="text-2xl md:text-3xl font-extrabold relative z-10 tracking-tight">양육&훈련</h3>
             </div>
 
             <div class="space-y-16">
                 <!-- 1. 중보기도팀 -->
                 <div class="flex flex-col lg:flex-row gap-8 items-start">
-                    <!-- 사진 크기 축소 (기존 5/12 -> 1/3, 최대 너비 제한) -->
                     <div class="w-full lg:w-1/3 flex justify-center lg:justify-start">
                         <img src="https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/community/%EC%A4%91%EB%B3%B4%EA%B8%B0%EB%8F%84%ED%95%99%EA%B5%90.jpg" alt="중보기도팀" class="w-full max-w-[320px] h-auto object-cover rounded-lg shadow-sm border border-gray-100">
                     </div>
-                    <!-- 텍스트 영역 확장 (기존 7/12 -> 2/3) -->
                     <div class="w-full lg:w-2/3">
                         <div class="flex items-center mb-4 justify-center lg:justify-start">
                             <span class="text-5xl text-gray-200 font-serif leading-none mr-2">“</span>
@@ -107,7 +101,6 @@
                             
                             <hr class="border-gray-200 my-4">
                             
-                            <!-- 소그룹 중보기도 시각적 강조 및 리스트화 -->
                             <div>
                                 <strong class="text-gray-900 text-lg block mb-3">중보기도 사역 안내</strong>
                                 <ul class="space-y-3">
@@ -115,7 +108,6 @@
                                     <li class="flex items-start"><span class="font-bold text-[#78b394] mr-2">(2)</span> 365 정오기도</li>
                                     <li class="flex items-start flex-col">
                                         <div class="flex items-center"><span class="font-bold text-[#78b394] mr-2">(3)</span> <span class="font-extrabold text-[#1b315b] underline decoration-blue-200 decoration-4 underline-offset-2">소그룹 중보기도</span></div>
-                                        <!-- 소그룹 표(그리드) 디자인 -->
                                         <div class="mt-3 ml-6 grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-4 bg-white p-4 rounded-md border border-[#78b394]/30 shadow-sm w-full text-sm md:text-[15px]">
                                             <div class="flex"><span class="font-bold text-gray-800 w-16 shrink-0">정병단</span> <span class="text-gray-600">: 주일예배</span></div>
                                             <div class="flex"><span class="font-bold text-gray-800 w-16 shrink-0">레위</span> <span class="text-gray-600">: 목회자</span></div>
