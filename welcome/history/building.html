@@ -172,34 +172,6 @@
     <div id="common-sitemap"></div>
 
     <script>
-        // 보조 메뉴 여닫기
-        function toggleMobileSubMenu(menuId) {
-            const targetMenu = document.getElementById(menuId);
-            const otherMenuId = menuId === 'menu-depth1' ? 'menu-depth2' : 'menu-depth1';
-            const otherMenu = document.getElementById(otherMenuId);
-            if (otherMenu && !otherMenu.classList.contains('hidden')) {
-                otherMenu.classList.add('hidden');
-                const otherIcon = otherMenu.previousElementSibling.querySelector('.fas');
-                if(otherIcon) {
-                    otherIcon.classList.remove('fa-minus');
-                    otherIcon.classList.add('fa-plus');
-                }
-            }
-            if (targetMenu) {
-                targetMenu.classList.toggle('hidden');
-                const icon = targetMenu.previousElementSibling.querySelector('.fas');
-                if(icon) {
-                    if(targetMenu.classList.contains('hidden')) {
-                        icon.classList.remove('fa-minus');
-                        icon.classList.add('fa-plus');
-                    } else {
-                        icon.classList.remove('fa-plus');
-                        icon.classList.add('fa-minus');
-                    }
-                }
-            }
-        }
-
         /* 
          * 118개의 전체 데이터 + 9번 게시물 사진 설명(캡션) 추가 완료
          */
@@ -313,7 +285,7 @@
 12|새 성전건축(지하실공사(2부)(8)|2018.09.19
 11|새 성전건축: 지하실공사(1부)(7)|2018.09.19
 10|새 성전건축(지하실 터파기)(6)|2018.09.19
-9|새 성전 건축 (새성전 기공예배)(5)|2018.09.19|새성전 기공예배를 드리기위해서 무더운 일기속에서 준비를 하시는 성도님들의 모습|이날은 특별히 연세 많으신 제1남전도에서 봉사를 해주셨습니다| | | | | |기공예배 설교를 하신 지방회장 박종헌 목사님|기공예배를 인도하시는 강광수 목사님|예배 반주자 박지영 선생님|찬송을 부르는 성도들|지방회 부회장이시며 본 교회 선임장로이신 임규홍 장로님께서 대표 기도를 드리셨습니다|하나님께 영광과 찬양을 드리는 본 교회 찬양대|특별 찬양 피데스 중창단|설교하시는 박종헌 지방회장님|건축 경과 보고하는 건축 운영위원장 이임수 장로|세진 건축설계회사 백 사장님께서 조감도 내용을 설명하시다|임창선 여주 군수님께서 축사를...|기독교 연합 회장 최하용 목사님께서 축사|광고하시는 박광선 장로님|이천교회 시무하시는 박봉상 목사님께서 축도를 하셨습니다|축도 후에 폐회송을 부르는 성도들|제2부순서 테이프 절단과 첫 삽을 뜨기위해서 사회를 하시는 김민수 목사님|2부순서가 시작되는 순간 '축포'와 함께 '오색풍선'이 하늘 높이 올라가고 있다|테이프 절단|테이프 절단|테이프 절단을 마치고|테이프 절단을 마치고|첫 삽을 뜨는 모습| | |기공예배에 참석한 성도들의 모습| | | | | | | | | | | |주차된 차량들|기공예배 축하 화환들|이 날은 새 성전 건축을 기뻐하시는 하나님의 도우심 가운데 구름의 그늘로 날씨가 그렇게 좋을 수가 없었다...^*^
+9|새 성전 건축 (새성전 기공예배)(5)|2018.09.19|세진 건축설계회사 백 사장님께서 조감도 내용을 설명하시다|임창선 여주 군수님께서 축사를...|기독교 연합 회장 최하용 목사님께서 축사
 8|새 성전건축(건설회사 선정)(4)|2018.09.19
 7|새 성전건축(부지 토목공사)(3)|2018.09.19
 6|새 성전건축(토목공사 기공예배)(2)|2018.09.19
@@ -341,7 +313,7 @@
 
         // ★ 확장자 자동 탐색하여 썸네일(첫번째 사진) 로딩하는 함수 ★
         function loadThumbnail(imgElement, id) {
-            const exts = ['jpg', 'png', 'jpeg', 'JPG', 'PNG', 'bmp'];
+            const exts = ['jpg', 'png', 'jpeg', 'JPG', 'PNG'];
             let extIndex = 0;
             let numStr = "01"; // 썸네일은 항상 01번 사진 시도
 
@@ -406,7 +378,48 @@
             const paginationContainer = document.getElementById('pagination');
             paginationContainer.innerHTML = '';
 
-            for (let i = 1; i <= totalPages; i++) {
+            if (totalPages === 0) return;
+
+            // 한 번에 보여줄 페이지 번호 개수 (10개씩)
+            const pagesPerGroup = 10;
+            const currentGroup = Math.ceil(currentPage / pagesPerGroup);
+            let startPage = (currentGroup - 1) * pagesPerGroup + 1;
+            let endPage = startPage + pagesPerGroup - 1;
+            
+            if (endPage > totalPages) endPage = totalPages;
+
+            // [이전 10페이지] 버튼 (<<)
+            const prevGroupBtn = document.createElement('a');
+            prevGroupBtn.href = '#';
+            prevGroupBtn.className = `page-link rounded ${startPage === 1 ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            prevGroupBtn.innerHTML = '<i class="fas fa-angle-double-left text-[10px]"></i>';
+            prevGroupBtn.onclick = (e) => {
+                e.preventDefault();
+                if (startPage > 1) {
+                    currentPage = startPage - 1;
+                    renderGrid(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                }
+            };
+            paginationContainer.appendChild(prevGroupBtn);
+
+            // [이전 1페이지] 화살표 버튼 (<)
+            const prevBtn = document.createElement('a');
+            prevBtn.href = '#';
+            prevBtn.className = `page-link rounded ${currentPage === 1 ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            prevBtn.innerHTML = '<i class="fas fa-chevron-left text-[10px]"></i>';
+            prevBtn.onclick = (e) => {
+                e.preventDefault();
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderGrid(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                }
+            };
+            paginationContainer.appendChild(prevBtn);
+
+            // [페이지 번호] 버튼 (10개씩)
+            for (let i = startPage; i <= endPage; i++) {
                 const a = document.createElement('a');
                 a.href = '#';
                 a.className = `page-link ${i === currentPage ? 'active' : ''} rounded`;
@@ -419,6 +432,36 @@
                 };
                 paginationContainer.appendChild(a);
             }
+
+            // [다음 1페이지] 화살표 버튼 (>)
+            const nextBtn = document.createElement('a');
+            nextBtn.href = '#';
+            nextBtn.className = `page-link rounded ${currentPage === totalPages ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            nextBtn.innerHTML = '<i class="fas fa-chevron-right text-[10px]"></i>';
+            nextBtn.onclick = (e) => {
+                e.preventDefault();
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    renderGrid(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                }
+            };
+            paginationContainer.appendChild(nextBtn);
+
+            // [다음 10페이지] 버튼 (>>)
+            const nextGroupBtn = document.createElement('a');
+            nextGroupBtn.href = '#';
+            nextGroupBtn.className = `page-link rounded ${endPage === totalPages ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            nextGroupBtn.innerHTML = '<i class="fas fa-angle-double-right text-[10px]"></i>';
+            nextGroupBtn.onclick = (e) => {
+                e.preventDefault();
+                if (endPage < totalPages) {
+                    currentPage = endPage + 1;
+                    renderGrid(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                }
+            };
+            paginationContainer.appendChild(nextGroupBtn);
         }
 
         /* 
