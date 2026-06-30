@@ -34,9 +34,7 @@
     <!-- 모바일 전용 2차 메뉴 바 -->
     <div class="md:hidden border-b border-gray-300 bg-white relative z-30 shadow-sm">
         <div class="flex text-sm md:text-base">
-            <a href="../index.html" class="px-4 py-3 border-r border-gray-300 text-gray-600 flex items-center justify-center hover:bg-gray-50">
-                Home
-            </a>
+            <a href="../index.html" class="px-4 py-3 border-r border-gray-300 text-gray-600 flex items-center justify-center hover:bg-gray-50">Home</a>
             <div class="flex-1 border-r border-gray-300 relative">
                 <button onclick="toggleMobileSubMenu('menu-depth1')" class="w-full flex justify-between items-center px-4 py-3 text-gray-800 focus:outline-none">
                     <span>다음세대</span>
@@ -107,7 +105,7 @@
 
                 <div class="p-8 md:p-12 text-center bg-[#ebd999]">
                     <h2 class="text-4xl md:text-5xl font-extrabold text-[#7d563d] mb-8">영아부</h2>
-                    <img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="영아부 사진" class="mx-auto rounded-lg shadow-lg w-full max-w-2xl object-cover h-64 md:h-96 mb-2 border-4 border-white/60">
+                    <img src="https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/nextgen/images/%EC%98%81%EC%95%84%EB%B6%80.jpg" alt="영아부 사진" class="mx-auto rounded-lg shadow-lg w-full max-w-2xl object-cover h-64 md:h-96 mb-2 border-4 border-white/60">
                 </div>
                 
                 <div class="bg-[#613f28] text-white p-8 md:p-10">
@@ -140,7 +138,7 @@
         </main>
     </div>
 
-    <!-- 마법의 파일 연결 2: 공통 하단 푸터 & 사이트맵 -->
+    <!-- 통합 하단 푸터 -->
     <div id="common-footer"></div>
     <div id="common-sitemap"></div>
 
@@ -151,28 +149,12 @@
             const otherMenu = document.getElementById(otherMenuId);
             if (otherMenu && !otherMenu.classList.contains('hidden')) {
                 otherMenu.classList.add('hidden');
-                const otherIcon = otherMenu.previousElementSibling.querySelector('.fas');
-                if(otherIcon) {
-                    otherIcon.classList.remove('fa-minus');
-                    otherIcon.classList.add('fa-plus');
-                }
             }
             if (targetMenu) {
                 targetMenu.classList.toggle('hidden');
-                const icon = targetMenu.previousElementSibling.querySelector('.fas');
-                if(icon) {
-                    if(targetMenu.classList.contains('hidden')) {
-                        icon.classList.remove('fa-minus');
-                        icon.classList.add('fa-plus');
-                    } else {
-                        icon.classList.remove('fa-plus');
-                        icon.classList.add('fa-minus');
-                    }
-                }
             }
         }
     </script>
-    <!-- 루트 패스 설정 -->
     <script>const ROOT_PATH = "../";</script>
     <script src="../js/common.js"></script>
 </body>
