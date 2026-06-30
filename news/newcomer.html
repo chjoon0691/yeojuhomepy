@@ -180,8 +180,9 @@
     <div id="common-sitemap"></div>
 
     <script>
-        // 1. 새가족 전체 데이터 388명 텍스트
+        // 1. 새가족 전체 데이터 389명 텍스트
         const rawText = `
+389|김영균성도(6남) /|2026.06.28
 388|임혜연성도(20여) /|2026.06.21
 387|송태웅장로(3남) 김순옥권사(7여) /|2026.06.21
 386|고미정성도(12여) / 12교구 휴먼빌구역|2026.06.14
@@ -590,19 +591,29 @@
         // 2. 깃허브 사진 저장소 기본 주소
         const baseURL = "https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/news/images/newcomer/";
 
+        // ★ 사진이 없는 성도 번호 리스트 ★
+        const noImageIds = [374, 372, 368, 290, 270, 269, 242, 233, 116];
+
         const itemsPerPage = 15; // 한 페이지당 15명씩 출력
         let currentPage = 1;
 
         // ★ 확장자 자동 탐색하여 썸네일 로딩하는 함수 ★
         function loadThumbnail(imgElement, id) {
+            // 사진이 없는 번호는 아이콘을 띄우지 않음
+            if (noImageIds.includes(id)) {
+                return;
+            }
+
             const exts = ['jpg', 'png', 'jpeg', 'JPG', 'PNG'];
             let extIndex = 0;
+            // 파일명 규칙: 1~9는 01~09, 10 이상은 그대로 10, 11... 389
+            let fileName = id < 10 ? '0' + id : id;
 
             function tryNext() {
                 if (extIndex >= exts.length) {
                     return;
                 }
-                imgElement.src = `${baseURL}${id}-01.${exts[extIndex]}`;
+                imgElement.src = `${baseURL}${fileName}.${exts[extIndex]}`;
                 extIndex++;
             }
 
@@ -775,50 +786,57 @@
             Array.from(container.children).forEach(child => {
                 if(child.id !== 'loading-msg') child.remove();
             });
-            document.getElementById('loading-msg').style.display = 'flex';
-            document.getElementById('loading-msg').innerHTML = '<i class="fas fa-spinner fa-spin text-3xl text-blue-500"></i><span>사진을 불러오는 중입니다...</span>';
+            
+            const loadingMsg = document.getElementById('loading-msg');
 
-            const maxImages = 10; 
-            let loadedCount = 0;
-            let errorCount = 0;
-
-            function tryLoadModalImage(index, extsArray, wrapElement) {
-                if (extsArray.length === 0) {
-                    wrapElement.remove();
-                    errorCount++;
-                    if(loadedCount === 0 && errorCount === maxImages) {
-                         document.getElementById('loading-msg').innerHTML = '<i class="fas fa-exclamation-circle text-2xl text-gray-400"></i><span>등록된 사진이 없습니다.</span>';
-                    }
-                    return;
-                }
-
-                const currentExt = extsArray.shift();
-                let numStr = index < 10 ? '0' + index : index;
-                let imgUrl = `${baseURL}${id}-${numStr}.${currentExt}`;
-
-                let img = document.createElement('img');
-                img.className = "w-full h-auto object-contain rounded";
+            // ★ 사진 없는 번호 처리 로직 ★
+            if (noImageIds.includes(id)) {
+                loadingMsg.style.display = 'none';
                 
-                img.onload = function() {
-                    wrapElement.classList.remove('hidden'); 
-                    document.getElementById('loading-msg').style.display = 'none'; 
-                    loadedCount++;
-                    wrapElement.appendChild(img);
-                };
-                
-                img.onerror = function() {
-                    tryLoadModalImage(index, extsArray, wrapElement);
-                };
-                
-                img.src = imgUrl; 
-            }
+                let noImgWrap = document.createElement('div');
+                noImgWrap.className = "flex flex-col items-center justify-center py-16 w-full";
+                noImgWrap.innerHTML = `
+                    <img src="../images/교회마크만01.png" alt="교회 마크" class="w-24 h-24 object-contain mb-4 opacity-30">
+                    <span class="text-xl font-bold text-gray-400">NO IMAGE</span>
+                `;
+                container.appendChild(noImgWrap);
+            } else {
+                loadingMsg.style.display = 'flex';
+                loadingMsg.innerHTML = '<i class="fas fa-spinner fa-spin text-3xl text-blue-500"></i><span>사진을 불러오는 중입니다...</span>';
 
-            for(let i = 1; i <= maxImages; i++) {
+                let fileName = id < 10 ? '0' + id : id;
                 let imgWrap = document.createElement('div');
                 imgWrap.className = "bg-white p-2 md:p-3 rounded-lg shadow-sm border border-gray-200 w-full mb-4 hidden"; 
                 container.appendChild(imgWrap);
+
+                let exts = ['jpg', 'png', 'jpeg', 'JPG', 'PNG'];
                 
-                tryLoadModalImage(i, ['jpg', 'png', 'jpeg', 'JPG', 'PNG'], imgWrap);
+                function tryLoad(extIndex) {
+                    if(extIndex >= exts.length) {
+                        imgWrap.remove();
+                        loadingMsg.innerHTML = '<i class="fas fa-exclamation-circle text-2xl text-gray-400"></i><span>등록된 사진이 없습니다.</span>';
+                        return;
+                    }
+                    
+                    // 파일명을 리스트 번호와 동일하게 연결
+                    let imgUrl = `${baseURL}${fileName}.${exts[extIndex]}`;
+                    let img = document.createElement('img');
+                    img.className = "w-full h-auto object-contain rounded";
+                    
+                    img.onload = function() {
+                        imgWrap.classList.remove('hidden');
+                        loadingMsg.style.display = 'none';
+                        imgWrap.appendChild(img);
+                    };
+                    
+                    img.onerror = function() {
+                        tryLoad(extIndex + 1);
+                    };
+                    
+                    img.src = imgUrl;
+                }
+                
+                tryLoad(0);
             }
 
             const modal = document.getElementById('newcomer-modal');
