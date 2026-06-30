@@ -49,23 +49,33 @@
                     <span>환영합니다</span><i class="fas fa-plus text-gray-400 text-xs"></i>
                 </button>
                 <ul id="menu-depth1" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
+                    <li class="border-b border-gray-100"><a href="../greeting.html" class="block px-4 py-3 hover:bg-gray-50">환영합니다</a></li>
+                    <li class="border-b border-gray-100"><a href="../../word/sunday.html" class="block px-4 py-3 hover:bg-gray-50">말씀과 찬양</a></li>
+                    <li class="border-b border-gray-100"><a href="../../community/parish.html" class="block px-4 py-3 hover:bg-gray-50">공동체</a></li>
+                    <li class="border-b border-gray-100"><a href="../../nextgen/infant.html" class="block px-4 py-3 hover:bg-gray-50">다음세대</a></li>
+                    <li class="border-b border-gray-100"><a href="../../mission/evangelism.html" class="block px-4 py-3 hover:bg-gray-50">전도와 선교</a></li>
+                    <li class="border-b border-gray-100"><a href="../../news/weekly.html" class="block px-4 py-3 hover:bg-gray-50">교회소식</a></li>
+                    <li><a href="../../service/application.html" class="block px-4 py-3 hover:bg-gray-50">행정서비스</a></li>
+                </ul>
+            </div>
+            <div class="flex-1 relative">
+                <button onclick="toggleMobileSubMenu('menu-depth2')" class="w-full flex justify-between items-center px-4 py-3 text-gray-800 focus:outline-none">
+                    <span>교회연혁</span><i class="fas fa-plus text-gray-400 text-xs"></i>
+                </button>
+                <ul id="menu-depth2" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
                     <li class="border-b border-gray-100"><a href="../greeting.html" class="block px-4 py-3 hover:bg-gray-50">인사말</a></li>
-                    <li class="border-b border-gray-100"><a href="history.html" class="block px-4 py-3 text-blue-600 font-bold bg-gray-50">교회연혁</a></li>
+                    <li class="bg-gray-50 border-b border-gray-100 py-2">
+                        <span class="block px-4 py-1 text-gray-800 font-bold text-xs">교회연혁</span>
+                        <a href="history.html" class="block px-6 py-2 hover:bg-gray-100 text-gray-600">- 교회연혁</a>
+                        <a href="building.html" class="block px-6 py-2 hover:bg-gray-100 text-gray-600">- 성전건축이야기</a>
+                        <a href="edu_building.html" class="block px-6 py-2 text-blue-600 font-bold">- 교육관건축사진</a>
+                        <a href="old_photos.html" class="block px-6 py-2 hover:bg-gray-100 text-gray-600">- 이전 홈피 사진들</a>
+                    </li>
                     <li class="border-b border-gray-100"><a href="../serve/serve.html" class="block px-4 py-3 hover:bg-gray-50">섬기는 분들</a></li>
                     <li class="border-b border-gray-100"><a href="../worship/worship.html" class="block px-4 py-3 hover:bg-gray-50">예배안내</a></li>
                     <li class="border-b border-gray-100"><a href="../bus/bus.html" class="block px-4 py-3 hover:bg-gray-50">차량운행안내</a></li>
                     <li class="border-b border-gray-100"><a href="../map/map.html" class="block px-4 py-3 hover:bg-gray-50">오시는길</a></li>
                     <li><a href="../newcomer/newcomer.html" class="block px-4 py-3 hover:bg-gray-50">새가족안내</a></li>
-                </ul>
-            </div>
-            <div class="flex-1 relative">
-                <button onclick="toggleMobileSubMenu('menu-depth2')" class="w-full flex justify-between items-center px-4 py-3 text-gray-800 focus:outline-none">
-                    <span>교육관건축사진</span><i class="fas fa-plus text-gray-400 text-xs"></i>
-                </button>
-                <ul id="menu-depth2" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
-                    <li class="border-b border-gray-100"><a href="building.html" class="block px-4 py-3 hover:bg-gray-50">성전건축이야기</a></li>
-                    <li class="border-b border-gray-100"><a href="edu_building.html" class="block px-4 py-3 text-blue-600 font-bold bg-gray-50">교육관건축사진</a></li>
-                    <li><a href="#" class="block px-4 py-3 hover:bg-gray-50">이전홈피사진</a></li>
                 </ul>
             </div>
         </div>
@@ -89,7 +99,7 @@
                         <ul class="py-2 bg-white border-t border-gray-100">
                             <li><a href="building.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">성전건축이야기</a></li>
                             <li><a href="edu_building.html" class="block px-8 py-1.5 text-sm text-blue-600 font-bold bg-gray-50 transition">교육관건축사진</a></li>
-                            <li><a href="#" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">이전 홈페이지 사진들</a></li>
+                            <li><a href="old_photos.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">이전 홈페이지 사진들</a></li>
                         </ul>
                     </div>
                 </li>
@@ -172,34 +182,6 @@
     <div id="common-sitemap"></div>
 
     <script>
-        // 보조 메뉴 여닫기
-        function toggleMobileSubMenu(menuId) {
-            const targetMenu = document.getElementById(menuId);
-            const otherMenuId = menuId === 'menu-depth1' ? 'menu-depth2' : 'menu-depth1';
-            const otherMenu = document.getElementById(otherMenuId);
-            if (otherMenu && !otherMenu.classList.contains('hidden')) {
-                otherMenu.classList.add('hidden');
-                const otherIcon = otherMenu.previousElementSibling.querySelector('.fas');
-                if(otherIcon) {
-                    otherIcon.classList.remove('fa-minus');
-                    otherIcon.classList.add('fa-plus');
-                }
-            }
-            if (targetMenu) {
-                targetMenu.classList.toggle('hidden');
-                const icon = targetMenu.previousElementSibling.querySelector('.fas');
-                if(icon) {
-                    if(targetMenu.classList.contains('hidden')) {
-                        icon.classList.remove('fa-minus');
-                        icon.classList.add('fa-plus');
-                    } else {
-                        icon.classList.remove('fa-plus');
-                        icon.classList.add('fa-minus');
-                    }
-                }
-            }
-        }
-
         /* * 교육관 건축사진 데이터 (총 4개)
          */
         const baseURL = "https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/welcome/history/images/%EA%B5%90%EC%9C%A1%EA%B4%80"; // '교육관'을 URL 인코딩함
@@ -267,7 +249,48 @@
             const paginationContainer = document.getElementById('pagination');
             paginationContainer.innerHTML = '';
 
-            for (let i = 1; i <= totalPages; i++) {
+            if (totalPages === 0) return;
+
+            // 한 번에 보여줄 페이지 번호 개수 (10개씩)
+            const pagesPerGroup = 10;
+            const currentGroup = Math.ceil(currentPage / pagesPerGroup);
+            let startPage = (currentGroup - 1) * pagesPerGroup + 1;
+            let endPage = startPage + pagesPerGroup - 1;
+            
+            if (endPage > totalPages) endPage = totalPages;
+
+            // [이전 10페이지] 버튼 (<<)
+            const prevGroupBtn = document.createElement('a');
+            prevGroupBtn.href = '#';
+            prevGroupBtn.className = `page-link rounded ${startPage === 1 ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            prevGroupBtn.innerHTML = '<i class="fas fa-angle-double-left text-[10px]"></i>';
+            prevGroupBtn.onclick = (e) => {
+                e.preventDefault();
+                if (startPage > 1) {
+                    currentPage = startPage - 1;
+                    renderGrid(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                }
+            };
+            paginationContainer.appendChild(prevGroupBtn);
+
+            // [이전 1페이지] 화살표 버튼 (<)
+            const prevBtn = document.createElement('a');
+            prevBtn.href = '#';
+            prevBtn.className = `page-link rounded ${currentPage === 1 ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            prevBtn.innerHTML = '<i class="fas fa-chevron-left text-[10px]"></i>';
+            prevBtn.onclick = (e) => {
+                e.preventDefault();
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderGrid(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                }
+            };
+            paginationContainer.appendChild(prevBtn);
+
+            // [페이지 번호] 버튼 (10개씩)
+            for (let i = startPage; i <= endPage; i++) {
                 const a = document.createElement('a');
                 a.href = '#';
                 a.className = `page-link ${i === currentPage ? 'active' : ''} rounded`;
@@ -280,6 +303,36 @@
                 };
                 paginationContainer.appendChild(a);
             }
+
+            // [다음 1페이지] 화살표 버튼 (>)
+            const nextBtn = document.createElement('a');
+            nextBtn.href = '#';
+            nextBtn.className = `page-link rounded ${currentPage === totalPages ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            nextBtn.innerHTML = '<i class="fas fa-chevron-right text-[10px]"></i>';
+            nextBtn.onclick = (e) => {
+                e.preventDefault();
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    renderGrid(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                }
+            };
+            paginationContainer.appendChild(nextBtn);
+
+            // [다음 10페이지] 버튼 (>>)
+            const nextGroupBtn = document.createElement('a');
+            nextGroupBtn.href = '#';
+            nextGroupBtn.className = `page-link rounded ${endPage === totalPages ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            nextGroupBtn.innerHTML = '<i class="fas fa-angle-double-right text-[10px]"></i>';
+            nextGroupBtn.onclick = (e) => {
+                e.preventDefault();
+                if (endPage < totalPages) {
+                    currentPage = endPage + 1;
+                    renderGrid(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                }
+            };
+            paginationContainer.appendChild(nextGroupBtn);
         }
 
         /* * ★ 모달(팝업)에서 다중 이미지 불러오는 함수 ★
