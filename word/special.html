@@ -153,9 +153,9 @@
                 <h3 class="text-2xl md:text-3xl font-extrabold relative z-10 tracking-tight">특별찬양</h3>
             </div>
 
-            <!-- 검색바 삭제 완료 -->
+            <!-- 검색바 삭제 -->
 
-            <!-- PC Version Table (사진 열 삭제, 5컬럼 구조) -->
+            <!-- PC Version Table -->
             <table class="hidden md:table w-full text-center text-sm md:text-base border-t-2 border-gray-800 table-fixed mt-4">
                 <colgroup>
                     <col class="w-[10%]">
@@ -201,33 +201,6 @@
     <div id="common-sitemap"></div>
 
     <script>
-        function toggleMobileSubMenu(menuId) {
-            const targetMenu = document.getElementById(menuId);
-            const otherMenuId = menuId === 'menu-depth1' ? 'menu-depth2' : 'menu-depth1';
-            const otherMenu = document.getElementById(otherMenuId);
-            if (otherMenu && !otherMenu.classList.contains('hidden')) {
-                otherMenu.classList.add('hidden');
-                const otherIcon = otherMenu.previousElementSibling.querySelector('.fas');
-                if(otherIcon) {
-                    otherIcon.classList.remove('fa-minus');
-                    otherIcon.classList.add('fa-plus');
-                }
-            }
-            if (targetMenu) {
-                targetMenu.classList.toggle('hidden');
-                const icon = targetMenu.previousElementSibling.querySelector('.fas');
-                if(icon) {
-                    if(targetMenu.classList.contains('hidden')) {
-                        icon.classList.remove('fa-minus');
-                        icon.classList.add('fa-plus');
-                    } else {
-                        icon.classList.remove('fa-plus');
-                        icon.classList.add('fa-minus');
-                    }
-                }
-            }
-        }
-
         // ★ 특별찬양 구글 스프레드시트 링크 연동 ★
         const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSNA9Z3CEaLyG7yNQdDB0nX8GsgqfMGLU391NdqFm-FwzFrJoDhnJPxh6m6lKkOwCkmvKW_PdF6gz8G/pub?gid=880516803&single=true&output=csv";
 
@@ -270,7 +243,7 @@
                     return {
                         id: parseInt(row[0] || 0),
                         title: (row[1] || '').trim(), // 곡명
-                        assignee: (row[2] || '').trim(), // 담당 (엑셀 데이터 그대로 사용)
+                        assignee: (row[2] || '').trim(), // 담당
                         date: (row[3] || '').trim(),
                         link: rawLink.length > 5 ? rawLink : '#'
                     };
