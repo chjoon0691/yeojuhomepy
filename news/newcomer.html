@@ -18,7 +18,7 @@
             font-size: 14px; transition: all 0.2s; margin: 0 2px;
         }
         .page-link:hover { background-color: #f3f4f6; color: #1b315b; }
-        .page-link.active { border-color: #1b315b; color: #1b315b; font-weight: bold; }
+        .page-link.active { border-color: #1b315b; color: #ffffff; font-weight: bold; background-color: #1b315b; }
         
         .modal-scroll::-webkit-scrollbar { width: 8px; }
         .modal-scroll::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
@@ -31,9 +31,9 @@
     <!-- 마법의 파일 연결 1: 공통 상단 헤더 -->
     <div id="common-header"></div>
 
-    <!-- 상단 대형 배너 (교회소식 배너로 통일) -->
+    <!-- 상단 대형 배너 (교회소식) -->
     <section class="bg-[#102242] py-12 md:py-20 text-center relative overflow-hidden">
-        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1504052434569-70ad5836ab65?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-luminosity"></div>
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-luminosity"></div>
         <div class="relative z-10">
             <h2 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-2">교회소식</h2>
             <p class="text-blue-200 text-sm md:text-base">Church News</p>
@@ -97,7 +97,10 @@
             </div>
 
             <!-- 검색바 -->
-            <div class="flex justify-end mb-4 border-b border-gray-200 pb-4">
+            <div class="flex flex-col sm:flex-row justify-between items-center mb-4 border-b border-gray-200 pb-4 gap-4">
+                <div class="text-gray-500 text-sm font-medium w-full sm:w-auto text-left pl-1">
+                    <i class="fas fa-user-plus text-gray-400 mr-1"></i> 총 <span id="total-count" class="text-blue-600 font-bold">0</span>건의 새가족 소식
+                </div>
                 <div class="flex border border-gray-300 rounded shadow-sm overflow-hidden bg-white">
                     <select class="px-3 py-1.5 text-sm md:text-base border-r border-gray-300 text-gray-700 focus:outline-none bg-gray-50 cursor-pointer">
                         <option>제목</option>
@@ -112,10 +115,758 @@
             <!-- PC Version Table -->
             <table class="hidden md:table w-full text-center text-sm md:text-base border-t-2 border-gray-800 table-fixed">
                 <colgroup>
-                    <col class="w-[15%]">
-                    <col class="w-[65%]">
+                    <col class="w-[12%]">
+                    <col class="w-[68%]">
                     <col class="w-[20%]">
                 </colgroup>
                 <thead class="bg-gray-50 text-gray-700 font-bold border-b border-gray-300">
                     <tr>
-                        <th class="py-3 px-2">
+                        <th class="py-3 px-2">번호</th>
+                        <th class="py-3 px-4 text-left">제목 / 성도명</th>
+                        <th class="py-3 px-2 text-gray-500">등록일</th>
+                    </tr>
+                </thead>
+                <tbody id="newcomer-list-pc" class="text-gray-600">
+                    <!-- JS로 데이터 삽입 -->
+                </tbody>
+            </table>
+
+            <!-- Mobile Version List -->
+            <div class="md:hidden block w-full border-t-2 border-gray-800">
+                <div class="flex bg-gray-50 text-gray-700 font-bold border-b border-gray-300 py-3 text-sm">
+                    <div class="w-16 text-center">번호</div>
+                    <div class="flex-1 text-center">제목 / 성도명</div>
+                </div>
+                <div id="newcomer-list-mobile-body">
+                    <!-- JS로 데이터 삽입 -->
+                </div>
+            </div>
+
+            <!-- 페이지네이션 (10페이지씩 보이도록 기능 수정됨) -->
+            <div id="pagination" class="flex justify-center items-center mt-8 mb-6 flex-wrap gap-y-2 gap-x-1"></div>
+
+        </main>
+    </div>
+
+    <!-- ★ 사진 팝업 모달창 ★ -->
+    <div id="newcomer-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="closeModal()"></div>
+        <div class="relative w-full max-w-3xl bg-white shadow-2xl z-10 flex flex-col max-h-[90vh] rounded-xl overflow-hidden border-t-[6px] border-[#3b82f6]">
+            <!-- 모달 헤더 -->
+            <div class="bg-white text-gray-800 px-6 py-5 border-b border-gray-200 flex justify-between items-start shrink-0">
+                <div class="pr-6">
+                    <h2 id="modal-title" class="text-xl md:text-2xl font-extrabold tracking-tight mb-1">제목</h2>
+                    <p id="modal-date" class="text-sm text-gray-500 font-medium"><i class="far fa-calendar-alt mr-1"></i> 등록일 : </p>
+                </div>
+                <div class="flex items-center gap-2 shrink-0">
+                    <button onclick="closeModal()" class="text-gray-400 hover:text-red-500 transition-colors focus:outline-none p-2">
+                        <i class="fas fa-times text-3xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 모달 콘텐츠 -->
+            <div class="p-6 md:p-8 overflow-y-auto flex-1 bg-gray-100 modal-scroll flex flex-col items-center gap-6 relative" id="modal-image-container">
+                <div id="loading-msg" class="text-gray-500 font-bold py-10 flex flex-col items-center gap-3">
+                    <i class="fas fa-spinner fa-spin text-3xl text-blue-500"></i>
+                    <span>사진을 불러오는 중입니다...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 마법의 파일 연결 2: 공통 하단 푸터 & 사이트맵 -->
+    <div id="common-footer"></div>
+    <div id="common-sitemap"></div>
+
+    <script>
+        // 1. 새가족 전체 데이터 388명 텍스트
+        const rawText = `
+388|임혜연성도(20여) /|2026.06.21
+387|송태웅장로(3남) 김순옥권사(7여) /|2026.06.21
+386|고미정성도(12여) / 12교구 휴먼빌구역|2026.06.14
+385|이재도성도,곽인숙성도/2교구 세종구역|2026.06.14
+384|권기혁권사(12여) / 2교구 가남구역|2026.05.31
+383|손성필성도(9남)안영하권사(18여) 손을재청년 손다현청년 손가현...|2026.05.17
+382|김현석집사(8남) 한주은집사(17여) / 4교구 현대강변2구역|2026.05.17
+381|정하연성도(22여) 방승리청년 / 5교구 온유구역|2026.05.17
+380|김옥분성도(14여) / 11교구 능서구역|2026.05.17
+379|정숙희집사(2여) / 9교구 법원2구역|2026.05.10
+378|한중수집사(7남) / 9교구 북내강천구역|2026.05.10
+377|한모세장로(5남) 이복자권사(13여) / 6교구 부영2구역|2026.05.10
+376|정영호권사(1남) / 6교구 부영2구역|2026.05.10
+375|박희순B성도(15여) / 11교구 능서구역|2026.05.10
+374|강상숙권사(2여) 김태중성도(7남) / 9교구 문막구역|2026.05.03
+373|김연길성도(10남) 촘용지차야(22여) / 8교구 자비구역|2026.04.26
+372|백현익성도 왕래경성도|2026.04.19
+371|이인숙집사(10여)정해성청년 / 10교구 신도구역|2026.04.12
+370|조성원성도(11남) / 4교구 삼한강변구역|2026.04.12
+369|임찬영청년 / 청년부|2026.04.05
+368|곽예지청년 / 청년부|2026.03.29
+367|서정현성도(18여) / 3교구 충성구역|2026.03.29
+366|성보경집사(6여)/10교구 신도구역|2026.03.22
+365|한주은집사(17여)/ 4교구 현대강변2구역|2026.03.22
+364|김현희성도(22여)/ 2교구 사랑구역|2026.03.15
+363|이욱현집사(3남) 이소윤권사(11여)/10교구 이안구역|2026.03.15
+362|이성원청년/청년부|2026.03.08
+361|김윤자사모 / 6교구 흔암구역|2026.03.08
+360|백의식성도(5여)/ 5교구 호반구역|2026.03.08
+359|박찬숙집사(6여)/ 6교구 부영2구역|2026.03.08
+358|유광열성도(5남)/11교구 능서구역|2026.03.08
+357|김국환집사(8남) 윤현영집사(16여) 김연서청년/ 10교구 천송구역|2026.03.01
+356|최경자집사(11여)/3교구 현대구역|2026.03.01
+355|이혜연성도(13여)/7교구 한성구역|2026.02.22
+354|윤희로성도(6여)/3교구 하동구역|2026.02.22
+353|나지은청년/청년부|2026.02.18
+352|김동연청년/청년부|2026.02.18
+351|이유진성도(22여)/5교구 온유구역|2026.02.15
+350|유광민청년/청년부|2026.02.15
+349|이태호집사(3남) 손애진집사(11여)/12교구 교동1구역|2026.02.01
+348|신정희집사(13여)/2교구 세종구역|2026.01.25
+347|정완영집사(2남)/ 8교구 영진1구역|2026.01.18
+346|김연진성도(15여)/3교구 시민회관구역|2026.01.18
+345|손진섭성도(3남) 한현숙성도(7여)/10교구 천송구역|2026.01.11
+344|여병찬성도(5남)/4교구 상동2구역|2026.01.11
+343|장승호성도(11남) 이희욱성도(10여)/ 10교구 희락2구역|2026.01.04
+342|김수희성도(20여)/ 8교구 자비구역|2026.01.04
+341|박수만집사(2남) 최학규집사(5여)/ 9교구 북내강천구역|2026.01.04
+340|신석제성도(11남) 송은이성도(22여)/ 1교구 화평구역|2026.01.04
+339|류유림청년/청년부|2026.01.04
+338|홍지은성도(21여) / 3교구 충성구역|2026.01.04
+337|김해숙성도(17여)/6교구 점봉구역|2026.01.04
+336|김경섭집사(4남)/7교구 삼성구역|2025.12.28
+335|김종길안수집사(7남) 김미선집사(16여) 김서윤청년(청년부)/5교구...|2025.12.28
+334|김은정b성도(20여)/2교구 사랑구역|2025.12.21
+333|이만순집사(8여)/4교구 현대강변구역|2025.12.14
+332|손재희집사(21여)/9교구 희락구역|2025.11.30
+331|홍라이성도(21여)/5교구 화평구역|2025.11.16
+330|류제훈청년/청년부|2025.11.16
+329|권영선집사(6남) 서영미집사(15여)/10교구 천송구역|2025.11.02
+328|김현천집사(3남) 오미권사(8여)/5교구 웅골구역|2025.10.26
+327|이기선성도(9남)/6교구 부영1구역|2025.10.19
+326|정영숙집사(10여)/1교구 중앙로구역|2025.10.19
+325|백승훈집사(6남)/10교구 천송구역|2025.10.05
+324|최선자집사(5여)/8교구 영진1구역|2025.10.05
+323|정현승성도(16여)/12교구 휴먼빌구역|2025.09.28
+322|김민수청년/청년부|2025.09.14
+321|원정호성도(1남)/12교구 한성1구역|2025.09.14
+320|권애란성도(10여)/1교구 소양로2구역|2025.09.14
+319|최희수성도(3남)신숙란집사(9여)/9교구 북내강천구역|2025.09.14
+318|남하진성도(11남)/5교구 화평구역|2025.09.07
+317|이애진집사(17여)/11교구 두풍보광1구역|2025.09.07
+316|최태훈집사(11남)이수지집사(21여)/4교구 기쁨구역|2025.08.31
+315|윤주란성도(15여)/11교구 하나구역|2025.08.31
+314|김신형성도(16여)/12교구 한성2구역|2025.08.24
+313|한서연성도(21여)/9교구 희락구역|2025.08.24
+312|이정은청년/청년부|2025.08.17
+311|김흥식성도(1남)/2교구 홍문구역|2025.08.17
+310|허예린성도(21여)/5교구 화평구역|2025.08.10
+309|손대락안수집사(4남)윤찬미권사(10여)/10교구 법원1구역|2025.08.10
+308|김주민청년/청년부|2025.08.10
+307|윤경미집사(18여)/4교구 기쁨구역|2025.08.03
+306|권해정성도(8여)김동화성도(5여)/8교구 영진1구역|2025.07.27
+305|이지민성도(11남) 이동은성도(21여)/9교구 희락구역|2025.07.20
+304|임희정집사(13여)/8교구 영진1구역|2025.07.20
+303|이승재성도(7남)/10교구 법원1구역|2025.07.20
+302|김정희집사(3여) 이월출성도(1남)/4교구 창동구역|2025.07.13
+301|최영림집사(6남) 정미자집사(13여)/10교구 법원1구역|2025.06.15
+300|정수복집사(11남) 김동화집사(21여)/5교구 화평구역|2025.06.08
+299|윤미영성도(18여)/9교구 자비구역|2025.06.08
+298|김영자권사(3여)/|2025.06.01
+297|손민우성도(11남)윤오정성도(21여)/|2025.06.01
+296|강현주집사(16여)/10교구 법원2구역|2025.05.25
+295|안미경집사(10여)/3교구 현대구역|2025.05.25
+294|김옥희집사(12여)/6교구 부영2구역|2025.05.18
+293|박미선집사(14여)/12교구 교동 1구역|2025.05.18
+292|정차현성도(청년)/청년부|2025.05.18
+291|이영자성도(6여)/11교구 능서구역|2025.05.18
+290|이용원성도(1남) 김순이성도(3여)|2025.05.11
+289|박창주성도(6남)/11교구 두풍보광2구역|2025.05.11
+288|김봉주집사(1남) 신현도 집사(10여)4교구 창동구역|2025.05.04
+287|김문주성도(4남)8교구 영진1교구|2025.05.04
+286|이나겸집사(10여)/10교구 법원1구역|2025.04.27
+285|한진성도(9남)/5교구 온유구역|2025.04.27
+284|최남술집사(1남)임신지권사(1여)설희집사(16여)최지원청년(청년...|2025.04.20
+283|황인소성도(1여)/11교구 능서구역|2025.04.20
+282|이기혜집사(5여)/10교구 법원1구역|2025.04.13
+281|장영수집사(2남)이정옥권사(8여)/12교구 교동1구역|2025.04.13
+280|임규옥성도(1여)/10교구 천송구역|2025.03.30
+279|이현석집사(10남) 김민진집사(21여)/9교구 희락구역|2025.03.30
+278|이성애집사(16여)/11교구 두풍보광2구역|2025.03.23
+277|이억주목사, 이현숙사모/6교구 흔암구역|2025.03.16
+276|송산여울성도(21여)/4교구 기쁨구역|2025.03.16
+275|허경은권사(13여)/7교구 삼성구역|2025.03.16
+274|최원석청년(청년부)/청년부|2025.03.16
+273|공여원집사(4여)/6교구 부영2구역|2025.03.09
+272|윤정호성도(9남)/11교구 가남구역|2025.03.09
+271|김승현집사(10남) 정한나집사(21여)/5교구 화평구역|2025.03.02
+270|이현문성도(20여)/9교구 희락구역|2025.02.23
+269|선미영성도(19여)/5교구 화평구역|2025.02.23
+268|마원경권사(6여)/7교구 강남구역|2025.02.16
+267|김학준성도(8남) 이은실성도(17여)/11교구 두풍보광2구역|2025.02.09
+266|이형석집사(8남)이금연집사(17여)/10교구 법원2구역|2025.02.02
+265|이수정청년/청년부|2025.02.02
+264|경규천성도(4남)/6교구 흔암구역|2025.01.19
+263|박일구성도(10남) 송여은성도(19여)/4교구 기쁨구역|2025.01.12
+262|김형두성도(4남) /6교구 흔암구역|2025.01.12
+261|최완영권사(1남)박미자B권사(2여)/4교구 현대강변1구역|2025.01.05
+260|김정수성도(11남)이희진성도(21여)/9교구 희락구역|2025.01.05
+259|김명미집사(15여)/2교구 세종2구역|2025.01.05
+258|서연정집사(18여)/5교구 온유구역|2024.12.30
+257|최선영성도(18여)/5교구 온유구역|2024.12.08
+256|신성우집사(4남) 김은옥집사(11여/6교구 흔암구역|2024.12.01
+255|강연옥권사(11여)/5교구 교동구역|2024.11.17
+254|박상원집사(2남)/8교구 영진구역|2024.11.17
+253|남궁윤성도(11남)/12교구 월동구역|2024.11.17
+252|박재범성도(11남)/9교구 자비구역|2024.11.03
+251|김태우성도(11남) 윤신정성도(20여)/사랑구역|2024.10.20
+250|박영희성도(21여)/9교구 희락구역|2024.10.13
+249|황비웅성도(11남)김상아성도(21여)/3교구 충성구역|2024.10.06
+248|이상용집사(6남)/10교구 신도구역|2024.10.06
+247|한정구성도(청년)/청년부|2024.09.29
+246|채현우성도(청년) 이수정성도(청년)/청년부|2024.09.29
+245|장창길성도(11남) 이가영성도(20여)/5교구 온유구역|2024.09.29
+244|방옥자성도(3여)/12교구 한성이천구역|2024.09.29
+243|천용암성도(9남) 강정남성도(18여)/9교구 자비구역|2024.09.29
+242|박종호성도(1남)/10교구 법원1구역|2024.09.29
+241|길정광성도(6남) 김하은성도(21여) /11교구 능서구역|2024.09.01
+240|황진주성도(21여)/5교구 온유구역|2024.09.01
+239|백승보집사(7남) 박현숙집사(15여)/|2024.09.01
+238|이미숙집사(15여)/5교구 호반구역|2024.08.11
+237|조미자집사(11여)/12교구 한성이천구역|2024.08.11
+236|권혁봉집사(5남)이시연권사(14여)/9교구 북내강천구역|2024.08.04
+235|김미영집사(13여)/12교구 월송구역|2024.07.28
+234|김종성성도(3남) 이복희집사(10여)/5교구 교동구역|2024.07.28
+233|김순기성도(1여)6교구 부영1구역|2024.07.21
+232|한만석서동(8남)이근환성도(청년)/2교구 세종2구역|2024.07.21
+231|조경옥집사(13여) 조경숙성도(11여)/3교구 현대구역|2024.07.14
+230|류인형성도(3남)최순영성도(11여)/7교구 삼성구역|2024.06.30
+229|심상진장로(4남),서해숙권사(9여)/10교구 법원1구역|2024.06.23
+228|임승자성도(11여)/4교구 현대강변1 구역|2024.06.16
+227|유완규집사(1남) 모영희권사(2여)/9교구 북내강천구역|2024.06.16
+226|장병환집사(9남) 최경미집사(21여)/3교구 충성구역|2024.06.16
+225|황성덕사모(6여)/7교구 삼성구역|2024.06.09
+224|임용선성도(1남)/4교구 현대강변구역|2024.04.21
+223|이종숙성도(1여)/4교구 하동구역|2024.04.07
+222|이병우집사(5남) 임미경권사(12여)/5교구 교동구역|2024.04.07
+221|김영미B성도(16여)/12교구 한성이천구역|2024.03.24
+220|문순예권사(1여)/6교구 흔암구역|2024.03.24
+219|이영환장로(1남) 조순녀권사(6여)/12교구 한성이천구역|2024.03.17
+218|임승희집사(12여)/3교구 상동1구역|2024.03.10
+217|김윤태성도(11남) 이정인성도(20여)/9교구 희락구|2024.03.03
+216|김정화집사(20여)/5교구 온유구역|2024.02.25
+215|길순섭집사(3남) 박현숙집사(7여)/11교구 능서구역|2024.02.18
+214|김홍숙집사(12여)/11교구 두풍보광구역|2024.02.04
+213|김지성성도(4남)/9교구 북내강천|2024.01.28
+212|정기성성도(1남)/1교구 소양로2구역|2024.01.14
+211|이성열집사(5남) 이성자B권사(11여)/6교구 흔암구역|2024.01.14
+210|김순희성도(11여)/6교구 흔암구|2024.01.07
+209|안영춘성도(10남) 김진경성도(20여)/3교구 충성구역|2023.12.31
+208|박건식, 김후양 선교사|2023.12.26
+207|이숙항성도(16여)/8교구 반석1구역|2023.12.10
+206|강수영성도(12남) 정다운성도(21여)/5교구 화평구역|2023.11.19
+205|송정애권사(2여)/12교구 한성구|2023.10.15
+204|정숙자성도(16여)/12교구 한성이천구역|2023.10.08
+203|한상민집사(6남) 동순남권사(11여)/6교구 흔암구역|2023.09.17
+202|김영율집사(8남)김태윤집사(19여)/(12교구,한성이천구)|2023.09.03
+201|공미영집사(14여)/10교구 천송구역|2023.08.27
+200|윤여훈성도(12남)/5교구 화평구역|2023.08.06
+199|김학자권사(1여)/6교구 부영1구역|2023.08.06
+198|이귀열집사(9남), 강미란집사(15여)/ 5교구 교동구역|2023.07.23
+197|이준희성도(12남) 김은희성도(20여)/2교구 사랑구역|2023.07.23
+196|장연주성도(6남)/6교구 흔암구역|2023.07.02
+195|이진호목사 권영숙사모/5교구 교동구역 , 이병기성도(12남) 장효영...|2023.07.02
+194|이강녕집사(1남)김영희권사(6여)/11교구,두풍보광|2023.06.25
+193|조창선집사(9남)/10교구 천송구역|2023.06.11
+192|이상진b성도(12남), 김보람성도(20여)/3교구,충성구역|2023.06.04
+191|조성진성도(12남)김유빈집사(20여)/9교구 희락구역|2023.05.28
+190|김영애b성도(17여)/1교구 시장구역|2023.05.28
+189|양정순성도(1여)/6교구 부영1구역|2023.05.28
+188|김영미권사(11여)/6교구 흔암구역|2023.05.21
+187|이경호집사(2남) 문정윤집사(7여)/10교구 천송구역|2023.05.14
+186|박용상 권사님(1남), 이금옥 권사님(1여)/4교구 현대강변2구역|2023.05.14
+185|나선희집사(19여)/5교구 화평구역|2023.05.07
+184|김선희집사b(16여)/5교구 교동구역|2023.05.07
+183|신용순집사(14여)/3교구 현대구역|2023.04.30
+182|최경춘집사(11남) 임혜선집사(19여)/9교구 희락구역|2023.04.30
+181|김세환집사(1남), 이완석권사(1여)/11교구 두풍보광구역|2023.04.30
+180|김민구성도(12남) 서수진성도(20여)/3교구 충성구역|2023.04.23
+179|이호연청년/청년부|2023.04.16
+178|이차돌성도(12남)/9교구 희락구역|2023.04.16
+177|황동현성도(12남) 김수진성도(20여)/2교구 사랑구역|2023.04.09
+176|허범선안수집사(8남), 김민옥권사(14여), 허성민, 허성희 청년/|2023.04.02
+175|이성혜성도(18여)/9교구 자비구역|2023.03.29
+174|최금숙집사(11여)/6교구 흔암구역|2023.03.26
+173|최영송집사(4남)/6교구 흔암구역|2023.03.26
+172|서주영성도(15여)/11교구 가남구역|2023.02.19
+171|채희옥성도(17여) 윤정희성도(18여)/6교구 부영2구역|2023.02.12
+170|서명석집사(4남) 박남미집사(13여) / 7교구 상우1구역|2023.02.05
+169|양인석성도(4남)신윤자집사(6여) / 10교구 신도구역|2023.02.05
+168|우제연집사(7남)/12교구 한성구역|2023.01.20
+167|김일래장로(7남) 김완순권사(14여) 김진태청년/11교구 두풍보광, ...|2023.01.20
+166|박상규권사(3남) / 11교구 두풍보광구역|2023.01.01
+165|박성호집사(11남) 김한나집사(18여)/ 5교구 온유구역|2023.01.01
+164|박주선성도(19여)/2교구 사랑구역|2022.12.11
+163|전달금성도(8여)/6교구 부영1구역|2022.12.11
+162|유혜진b성도(19여)/9교구 자비구역|2022.11.20
+161|김용배집사(2남) 김옥주권사(6여)/9교구 북내강천구역|2022.11.13
+160|손태임성도(6여)/6교구 부영1구역|2022.11.06
+159|김순채집사(2여) / 6교구 흔암구역|2022.10.30
+158|이옥권사(14여) / 6교구 부영1구역|2022.10.30
+157|정영길성도(6남) / 6교구 점봉1구역|2022.10.23
+156|이대근성도(11남) 백수현집사(21여) / 5교구 화평구역|2022.10.02
+155|김근태성도(11남) 백수현집사(21여) / 2교구 사랑구역|2022.10.02
+154|신경선성도(11남)/3교구 충성구역|2022.09.11
+153|이은성성도(11남) 김다혜성도(21여)/ 9교구 희락구역|2022.09.11
+152|배원호성도(11남) 손가을성도(19여)/9교구 자비구역|2022.09.04
+151|최광호집사(7남) 최현경집사(15여) 최예승청년/11교구 능서구역|2022.08.14
+150|황필경청년/청년부|2022.08.14
+149|조장연성도(8남)/11교구 가남구역|2022.08.14
+148|나선휘집사(20여) 나선희집사(20여)/5교구 화평구역|2022.08.07
+147|정영민집사(11남)김지혜집사(21여)/3교구 충성구역|2022.07.31
+146|임진성청년 / 청년부|2022.07.17
+145|권현관성도(7남)이인자성도(15여)/ 10교구 천송구역|2022.07.10
+144|구정희성도(7여)/3교구 시민구역|2022.07.03
+143|어원성도(1남)/10교구 법원구역|2022.07.03
+142|박은경집사(8여)/10교구 이안구역|2022.07.03
+141|장용숙성도(2여)/4교구 현대강변2|2022.06.26
+140|이인경목사님.김경희사모님/6교구 흔암구역|2022.06.19
+139|박성수집사(11남)임희정집사(21여)/9교구, 희락구역|2022.06.12
+138|박두이 집사(7여), 윤승진 집사(11남) 한수정 집사(21여) / 5교구, ...|2022.06.05
+137|차승헌 성도(11남) / 2교구, 사랑구역|2022.05.29
+136|이동선 성도(청년) / 청년부|2022.05.29
+135|김칠성 성도(1남) / 3교구, 상동1구역|2022.05.22
+134|윤창희 청년 / 청년부|2022.05.01
+133|정재유성도(11남) 이은선성도(21여) / 5교구, 온유구역|2022.03.06
+132|이재영집사(11남) 김선옥집사(20여)/9교구 자비구역|2022.02.27
+131|권미화집사(13여)/6교구,흔암구역|2022.02.20
+130|최소현성도(21여)/5교구 화평구역|2022.02.13
+129|신봉환집사(11남), 이지은집사(21여)/3교구 충성구역|2022.02.06
+128|정병관성도(6남)/10교구 이안구역|2022.02.06
+127|이복순권사(1여), 이상진성도(9남)/6교구, 부영1구역|2022.02.06
+126|소병학장로(2남), 김경숙권사(10여)/10교구, 신도구역|2022.02.06
+125|정원태집사(10남),최진명권사(18여)/10교구,이안구역|2021.12.12
+124|곽정우안수집사(6남)김숙희권사(16여)/7교구,흔암구역|2021.12.05
+123|홍창희성도(11남), 김찬미성도(21여)/9교구 화평구역|2021.11.28
+122|허용구성도(6남)/6교구 하나구역|2021.11.21
+121|김종진 청년 / 청년부|2021.11.14
+120|허봉재 성도(9남), 김진흥성도(17여) / 6교구 하나구역|2021.11.14
+119|안길자집사(2여)/ 8교구 상우3구역|2021.10.31
+118|최성택집사(10남)/6교구 하동구역|2021.10.03
+117|임서현성도(15여)/6교구 현대강변2구역|2021.09.26
+116|박현수성도(11남)/9교구 희락구역|2021.09.19
+115|조영욱집사(11남)/11교구 보광구역|2021.07.04
+114|윤영희집사(3여)/10교구 천송구역|2021.06.27
+113|안제황성도(6남)/10교구 신도구역|2021.06.20
+112|최승조 성도(10남)/11교구 능서구역|2021.06.13
+111|정여진청년/청년부|2021.05.10
+110|정정숙집사(17여)/10교구 천송구역|2021.05.02
+109|김복녀집사(4여)/12교구월송구역|2021.05.02
+108|노연서성도(6남)/12교구 월송구역|2021.04.25
+107|안순자권사(12여)/5교구삼한구역|2021.04.19
+106|조혜용집사(11남)정한나집사(21여)/9교구,화평구역|2021.04.04
+105|송샘이나성도(21여)/9교구 하동구역|2021.01.31
+104|송혜진집사(15여)/4교구 영진1구역|2020.11.29
+103|윤장미집사(21여)/3교구 상동2구역|2020.11.22
+102|김하정성도(20여)/5교구 호반1구역|2020.11.01
+101|최희경권사(3여)/10교구 신도구역|2020.08.16
+100|이광환청년/청년부|2020.08.02
+99|김윤희B집사(14여)/8교구 북내강천|2020.07.26
+98|이은숙성도(15여)/9교구 하나구역|2020.07.04
+97|신창호권사(5남)/11교구 가남구역|2020.06.21
+96|김현미권사(17여)/12교구 한성2구역|2020.05.24
+95|김은희집사(16여)/6교구 상우1구역|2020.05.17
+94|박선영성도(18여)/10교구 천송구역|2020.02.09
+93|이종복집사(17여)/10교구 이안3구역|2020.02.09
+92|주기덕성도(6남) / 8교구 문막구역|2020.02.02
+91|이하은성도(21여)이동석성도(11남) / 10교구 이안1구역|2020.02.02
+90|박복순집사(5여) / 7교구 부영2구역|2020.01.19
+89|김지희성도(21여)가족 / 10교구 이안1구역|2020.01.17
+88|김성숙권사(4여) / 11교구 보광구역|2020.01.17
+87|최연분성도(12여) / 9교구 현대강변1구역|2020.01.17
+86|김지한집사(7남) 김재희집사(15여) / 10교구 천송구역|2020.01.17
+85|류주희집사(21여) 가정 / 5교구 세띠앙구역|2020.01.17
+84|최유조장로(4남)조원숙권사(11여)/11교구,능서구역|2019.12.22
+83|백남옥성도(11여)/7교구,점봉구역|2019.12.22
+82|허금숙집사(5여)/3교구,상동2구역|2019.12.22
+81|이석근집사(4남)진주은집사(7여)/10교구,신도구역|2019.12.22
+80|김영단권사(12여)/11교구,능서구역|2019.12.08
+79|김재범성도(11남)/12교구,이천구역|2019.12.08
+78|오현숙성도(9여)/4교구,영진1구역|2019.12.01
+77|황지현성도(20여)/4교구,영진2구역|2019.12.01
+76|이군자집사(2여)/9교구,현대강변2구역|2019.12.01
+75|김희숙집사(4여)/12교구,한성1구역|2019.12.01
+74|배상덕청년/청년부|2019.12.01
+73|이만규성도(8남)박혜림성도(17여)/8교구,강남구역|2019.12.01
+72|정창순집사(7남)김규림집사(15여)/7교구,부영2|2019.11.24
+71|홍윤필성도(3남)/8교구삼성구역|2019.11.24
+70|마채환집사(12남)장정은집사(21여)/4교구,영진2구역|2019.11.24
+69|박건주성도(6남)/11교구,능서구역|2019.11.24
+68|조봉행집사(9남)/5교구,호반2|2019.11.24
+67|정숙임성도(4여)/11교구,능서구역|2019.11.24
+66|강경주성도(5남)권숙희성도(12여)/8교구강천구역|2019.11.17
+65|박윤희성도(3여)한지영청년(청년부)/11교구,두풍구역|2019.11.10
+64|한성암성도(1남)/1교구 소양로1구역|2019.11.03
+63|황정환권사(7남)김정순집사(16여)/11교구 능서구역|2019.11.03
+62|김응춘집사(5남)박진순권사(12여)/10교구 이안3구역|2019.11.03
+61|신윤경집사(17여)/2교구홍문구역|2019.11.03
+60|어요한 성도(12남)홍지수성도(21여)/10교구 이안1구역|2019.10.27
+59|방미집사(16여)/5교구 웅골구역|2019.09.22
+58|안병욱성도(8남)서예림집사(15여)/11교구 능서구역|2019.09.22
+57|정소영성도(17여)/5교구 호반1구역|2019.09.22
+56|강언호집사(8남)/10교구신도구역|2019.08.18
+55|이순희집사(9여)/12교구한성1구역|2019.08.11
+54|함광옥성도(12여)/8교구강천구역|2019.08.11
+53|탁성현청년/청년부|2019.08.04
+52|박별성도(12남)조윤주성도(21여)/10교구이안1구역|2019.07.28
+51|김봉자성도(14여)/5교구웅골구역|2019.07.21
+50|방종환성도(12남)/9교구현대강변2구역|2019.07.21
+49|손윤성집사(3남)이창이집사(7여)/10교구이안3구역|2019.07.14
+48|최철수 집사(6남)/ 7교구점봉구역|2019.07.07
+47|허순례성도(1여)/3교구상동1구역|2019.06.09
+46|이호희청년/청년부|2019.06.09
+45|이계수성도(4남)/9교구하동구역|2019.05.19
+44|김명자사모님(3여)신수복목사님(1남)|2019.05.19
+43|오민지성도(21여)/10교구이안2|2019.05.12
+42|고세훈청년/청년부|2019.04.28
+41|정동욱성도(10남)/11교구두풍구역|2019.04.28
+40|강영자권사(3여)/12교구한성1구역|2019.04.21
+39|장금희성도(13여)/3교구상동2구역|2019.04.21
+38|남궁숙집사(9여)/|2019.04.07
+37|박창서안수집사(1남)김순배권사(1여)/12교구월송2구역|2019.04.07
+36|이영순성도 1여/9교구 하동구역|2019.03.31
+35|박희순권사 7여/3교구 상동구역|2019.03.31
+34|류리나성도 21여/7교구 부영2구역|2019.03.31
+33|이상정성도,1남/10교구천송구역|2019.03.31
+32|고영자성도,7여/12교구한성1구역|2019.03.10
+31|김수희성도(18여)아들정승원/11교구,두풍구역|2019.03.03
+30|윤준호청년/청년부|2019.03.03
+29|박다솔청년/청년부|2019.02.10
+28|박수열집사(4남)/4교구반석1|2019.02.03
+27|정성희성도(12남)신유희성도(20여)/4교구영진2|2019.01.27
+26|전광선집사(4남)/7교구 흔암1구역|2019.01.13
+25|최낙정집사(12여)/8교구 삼성구역|2019.01.13
+24|김진애집사(20여)/12교구한성1구역|2019.01.13
+23|임숙자명예권사(2여)윤여송집사(13여)/3교구현대2구역,11교구두...|2019.01.06
+22|이한명안수집사(2남) 최영희집사(6여 ) / 5교구 웅골구역|2019.01.06
+21|김봉식권사(5남) / 4교구 영진1구역|2018.12.30
+20|차창목성도(1남) 장순자권사(3여) / 4교구 영진1구역|2018.12.30
+19|전보배성도(21여) / 10교구 이안2구역|2018.12.16
+18|윤신영청년/청년부|2018.12.09
+17|서성자 집사(7여)/11교구보광구역|2018.12.02
+16|현대희청년/청년부|2018.11.25
+15|김은경성도(21여) / 7교구 부영1구역|2018.11.25
+14|김누리청년/청년부|2018.11.18
+13|홍주현성도(12남)유지연성도(21여)/10교구이안1구역|2018.11.18
+12|김진형성도(12남)/4교구영진2구역|2018.11.11
+11|윤일중성도(4남)엄윤희집사(11여)/7교구점봉구역|2018.11.11
+10|김복희성도(18여)/10교구이안1구역|2018.11.04
+9|이민수집사(4남), 이주란집사(13여) / 7교구 흔암1구역|2018.10.28
+8|황교은청년 / 청년부|2018.10.14
+7|이종호집사(12남), 김지혜집사(21여) / 9교구 하동구역|2018.10.14
+6|김성헌(12남), 김민아성도(21여) / 10교구 이안2구역|2018.10.07
+5|김숙자 성도(7여) / 10교구 법원구역|2018.10.05
+4|정주생 성도(1여) / 10교구 신도구역|2018.10.05
+3|정상호성도(7남) / 12교구 이천구역|2018.09.14
+2|이종삼성도(5남) 신은순성도(14여) / 11교구 능서구역|2018.09.14
+1|김임준장로(7남) 김미순집사(16여) / 12교구 월송1구역|2018.09.14
+        `;
+
+        // 데이터 변환 
+        const galleryData = rawText.trim().split('\n')
+            .filter(line => line.trim() !== '' && line.includes('|'))
+            .map(line => {
+                const parts = line.split('|');
+                return {
+                    id: parseInt(parts[0].trim()),
+                    title: parts[1] ? parts[1].trim() : '',
+                    date: parts[2] ? parts[2].trim() : ''
+                };
+            }).filter(item => !isNaN(item.id));
+
+        // 총 앨범 수 자동 표시
+        document.getElementById('total-count').textContent = galleryData.length;
+
+        // 2. 깃허브 사진 저장소 기본 주소
+        const baseURL = "https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/news/images/newcomer/";
+
+        const itemsPerPage = 15; // 한 페이지당 15명씩 출력
+        let currentPage = 1;
+
+        // ★ 확장자 자동 탐색하여 썸네일 로딩하는 함수 ★
+        function loadThumbnail(imgElement, id) {
+            const exts = ['jpg', 'png', 'jpeg', 'JPG', 'PNG'];
+            let extIndex = 0;
+
+            function tryNext() {
+                if (extIndex >= exts.length) {
+                    return;
+                }
+                imgElement.src = `${baseURL}${id}-01.${exts[extIndex]}`;
+                extIndex++;
+            }
+
+            imgElement.onerror = tryNext;
+            
+            imgElement.onload = function() {
+                const iconId = `icon-${id}`;
+                const iconElement = document.getElementById(iconId);
+                const iconElementMobile = document.getElementById(`icon-m-${id}`);
+                if (iconElement) iconElement.classList.remove('hidden');
+                if (iconElementMobile) iconElementMobile.classList.remove('hidden');
+            };
+            
+            tryNext(); 
+        }
+
+        function renderTable(page) {
+            const startIndex = (page - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const pageData = galleryData.slice(startIndex, endIndex);
+
+            const pcTbody = document.getElementById('newcomer-list-pc');
+            const mobileContainer = document.getElementById('newcomer-list-mobile-body');
+
+            pcTbody.innerHTML = '';
+            mobileContainer.innerHTML = '';
+
+            pageData.forEach(item => {
+                // PC Version
+                const tr = document.createElement('tr');
+                tr.className = 'border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer group';
+                tr.onclick = () => openModal(item.id);
+                
+                tr.innerHTML = `
+                    <td class="py-4 text-gray-400">${item.id}</td>
+                    <td class="py-4 px-4 text-left font-bold text-gray-800 group-hover:text-[#3b82f6] transition flex items-center">
+                        <span class="truncate max-w-[90%]">${item.title}</span>
+                        <i id="icon-${item.id}" class="far fa-image text-gray-400 ml-2 text-sm hidden"></i>
+                    </td>
+                    <td class="py-4 text-sm font-medium text-gray-500">${item.date}</td>
+                `;
+                pcTbody.appendChild(tr);
+
+                // Mobile Version
+                const mDiv = document.createElement('div');
+                mDiv.className = 'flex border-b border-gray-200 py-3.5 hover:bg-gray-50 transition cursor-pointer items-center';
+                mDiv.onclick = () => openModal(item.id);
+                mDiv.innerHTML = `
+                    <div class="w-16 text-center text-gray-400 text-sm font-medium shrink-0">${item.id}</div>
+                    <div class="flex-1 pl-2 pr-4 relative">
+                        <div class="text-gray-800 text-[15px] font-bold mb-0.5 flex items-center gap-1.5">
+                            <span class="truncate">${item.title}</span>
+                            <i id="icon-m-${item.id}" class="far fa-image text-gray-400 text-[10px] hidden shrink-0 mt-0.5"></i>
+                        </div>
+                        <div class="text-gray-500 text-[12px] font-medium">${item.date}</div>
+                    </div>
+                `;
+                mobileContainer.appendChild(mDiv);
+
+                // 이미지 존재 여부 백그라운드 체크
+                const dummyImg = new Image();
+                loadThumbnail(dummyImg, item.id);
+            });
+            
+            renderPagination();
+        }
+
+        function renderPagination() {
+            const totalPages = Math.ceil(galleryData.length / itemsPerPage);
+            const paginationContainer = document.getElementById('pagination');
+            paginationContainer.innerHTML = '';
+
+            if (totalPages === 0) return;
+
+            // 한 번에 보여줄 페이지 번호 개수 (10개)
+            const pagesPerGroup = 10;
+            const currentGroup = Math.ceil(currentPage / pagesPerGroup);
+            let startPage = (currentGroup - 1) * pagesPerGroup + 1;
+            let endPage = startPage + pagesPerGroup - 1;
+            
+            if (endPage > totalPages) endPage = totalPages;
+
+            // [이전 10페이지] 버튼 (<<)
+            const prevGroupBtn = document.createElement('a');
+            prevGroupBtn.href = '#';
+            prevGroupBtn.className = `page-link rounded ${startPage === 1 ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            prevGroupBtn.innerHTML = '<i class="fas fa-angle-double-left text-[10px]"></i>';
+            prevGroupBtn.onclick = (e) => {
+                e.preventDefault();
+                if (startPage > 1) {
+                    currentPage = startPage - 1;
+                    renderTable(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                }
+            };
+            paginationContainer.appendChild(prevGroupBtn);
+
+            // [이전 1페이지] 화살표 버튼 (<)
+            const prevBtn = document.createElement('a');
+            prevBtn.href = '#';
+            prevBtn.className = `page-link rounded ${currentPage === 1 ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            prevBtn.innerHTML = '<i class="fas fa-chevron-left text-[10px]"></i>';
+            prevBtn.onclick = (e) => {
+                e.preventDefault();
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderTable(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                }
+            };
+            paginationContainer.appendChild(prevBtn);
+
+            // [페이지 번호] 버튼 (10개씩)
+            for (let i = startPage; i <= endPage; i++) {
+                const a = document.createElement('a');
+                a.href = '#';
+                a.className = `page-link ${i === currentPage ? 'active' : ''} rounded`;
+                a.textContent = i;
+                a.onclick = (e) => {
+                    e.preventDefault();
+                    currentPage = i;
+                    renderTable(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                };
+                paginationContainer.appendChild(a);
+            }
+
+            // [다음 1페이지] 화살표 버튼 (>)
+            const nextBtn = document.createElement('a');
+            nextBtn.href = '#';
+            nextBtn.className = `page-link rounded ${currentPage === totalPages ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            nextBtn.innerHTML = '<i class="fas fa-chevron-right text-[10px]"></i>';
+            nextBtn.onclick = (e) => {
+                e.preventDefault();
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    renderTable(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                }
+            };
+            paginationContainer.appendChild(nextBtn);
+
+            // [다음 10페이지] 버튼 (>>)
+            const nextGroupBtn = document.createElement('a');
+            nextGroupBtn.href = '#';
+            nextGroupBtn.className = `page-link rounded ${endPage === totalPages ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            nextGroupBtn.innerHTML = '<i class="fas fa-angle-double-right text-[10px]"></i>';
+            nextGroupBtn.onclick = (e) => {
+                e.preventDefault();
+                if (endPage < totalPages) {
+                    currentPage = endPage + 1;
+                    renderTable(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                }
+            };
+            paginationContainer.appendChild(nextGroupBtn);
+        }
+
+        /* * ★ 팝업창 확장자 자동 탐색 로딩 시스템 ★ 
+         */
+        function openModal(id) {
+            const data = galleryData.find(n => n.id === id);
+            if(!data) return;
+
+            document.getElementById('modal-title').textContent = data.title;
+            document.getElementById('modal-date').innerHTML = `<i class="far fa-calendar-alt mr-1"></i> 등록일 : ${data.date}`;
+            
+            const container = document.getElementById('modal-image-container');
+            
+            Array.from(container.children).forEach(child => {
+                if(child.id !== 'loading-msg') child.remove();
+            });
+            document.getElementById('loading-msg').style.display = 'flex';
+            document.getElementById('loading-msg').innerHTML = '<i class="fas fa-spinner fa-spin text-3xl text-blue-500"></i><span>사진을 불러오는 중입니다...</span>';
+
+            const maxImages = 10; 
+            let loadedCount = 0;
+            let errorCount = 0;
+
+            function tryLoadModalImage(index, extsArray, wrapElement) {
+                if (extsArray.length === 0) {
+                    wrapElement.remove();
+                    errorCount++;
+                    if(loadedCount === 0 && errorCount === maxImages) {
+                         document.getElementById('loading-msg').innerHTML = '<i class="fas fa-exclamation-circle text-2xl text-gray-400"></i><span>등록된 사진이 없습니다.</span>';
+                    }
+                    return;
+                }
+
+                const currentExt = extsArray.shift();
+                let numStr = index < 10 ? '0' + index : index;
+                let imgUrl = `${baseURL}${id}-${numStr}.${currentExt}`;
+
+                let img = document.createElement('img');
+                img.className = "w-full h-auto object-contain rounded";
+                
+                img.onload = function() {
+                    wrapElement.classList.remove('hidden'); 
+                    document.getElementById('loading-msg').style.display = 'none'; 
+                    loadedCount++;
+                    wrapElement.appendChild(img);
+                };
+                
+                img.onerror = function() {
+                    tryLoadModalImage(index, extsArray, wrapElement);
+                };
+                
+                img.src = imgUrl; 
+            }
+
+            for(let i = 1; i <= maxImages; i++) {
+                let imgWrap = document.createElement('div');
+                imgWrap.className = "bg-white p-2 md:p-3 rounded-lg shadow-sm border border-gray-200 w-full mb-4 hidden"; 
+                container.appendChild(imgWrap);
+                
+                tryLoadModalImage(i, ['jpg', 'png', 'jpeg', 'JPG', 'PNG'], imgWrap);
+            }
+
+            const modal = document.getElementById('newcomer-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('newcomer-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = ''; 
+        }
+
+        function toggleMobileSubMenu(menuId) {
+            const targetMenu = document.getElementById(menuId);
+            const otherMenuId = menuId === 'menu-depth1' ? 'menu-depth2' : 'menu-depth1';
+            const otherMenu = document.getElementById(otherMenuId);
+            if (otherMenu && !otherMenu.classList.contains('hidden')) {
+                otherMenu.classList.add('hidden');
+                const otherIcon = otherMenu.previousElementSibling.querySelector('.fas');
+                if(otherIcon) {
+                    otherIcon.classList.remove('fa-minus');
+                    otherIcon.classList.add('fa-plus');
+                }
+            }
+            if (targetMenu) {
+                targetMenu.classList.toggle('hidden');
+                const icon = targetMenu.previousElementSibling.querySelector('.fas');
+                if(icon) {
+                    if(targetMenu.classList.contains('hidden')) {
+                        icon.classList.remove('fa-minus');
+                        icon.classList.add('fa-plus');
+                    } else {
+                        icon.classList.remove('fa-plus');
+                        icon.classList.add('fa-minus');
+                    }
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderTable(currentPage);
+        });
+    </script>
+    <script>const ROOT_PATH = "../";</script>
+    <script src="../js/common.js"></script>
+
+</body>
+</html>
