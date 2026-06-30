@@ -14,8 +14,6 @@
             background-color: #ffffff;
             overflow-x: hidden;
         }
-        #mobile-menu { display: none; }
-        #mobile-menu.open { display: flex; }
         /* 게시판 하단 페이지네이션 스타일 */
         .page-link {
             display: inline-flex;
@@ -110,10 +108,9 @@
                 말씀과 찬양
             </div>
             <ul class="border border-t-0 border-gray-200 flex flex-col">
-                <!-- 말씀 -->
                 <li class="border-b border-gray-200 group">
                     <a href="sunday.html" class="flex justify-between items-center px-5 py-3 text-[#3b82f6] font-bold bg-gray-50 hover:bg-gray-100 transition">
-                        말씀 <i class="fas fa-chevron-down text-xs text-gray-400 group-hover:rotate-180 transition-transform duration-300"></i>
+                        말씀 <i class="fas fa-chevron-down text-xs text-[#3b82f6] group-hover:rotate-180 transition-transform duration-300"></i>
                     </a>
                     <div class="max-h-0 overflow-hidden group-hover:max-h-48 transition-all duration-500 ease-in-out">
                         <ul class="py-2 bg-white border-t border-gray-100">
@@ -124,17 +121,13 @@
                         </ul>
                     </div>
                 </li>
-                <!-- 찬양대/중창단 -->
                 <li class="border-b border-gray-200 group">
                     <a href="praise.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">
                         찬양대/중창단 <i class="fas fa-chevron-down text-xs text-gray-400 group-hover:rotate-180 transition-transform duration-300"></i>
                     </a>
                 </li>
-                <!-- 여주미디어 -->
                 <li>
-                    <a href="media.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition rounded-b-lg">
-                        여주미디어 <i class="fas fa-chevron-right text-xs"></i>
-                    </a>
+                    <a href="media.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition rounded-b-lg">여주미디어</a>
                 </li>
             </ul>
         </aside>
@@ -161,8 +154,8 @@
                 </div>
             </div>
 
-            <!-- PC Version Table (주일예배와 동일한 형태) -->
-            <table class="hidden md:table w-full text-center text-sm md:text-base border-t-2 border-gray-800 table-fixed">
+            <!-- PC Version Table -->
+            <table class="hidden md:table w-full text-center text-sm md:text-base border-t-2 border-gray-800 table-fixed mt-4">
                 <colgroup>
                     <col class="w-[8%]">
                     <col class="w-[36%]">
@@ -171,13 +164,13 @@
                     <col class="w-[12%]">
                     <col class="w-[8%]">
                 </colgroup>
-                <thead class="bg-gray-50 text-gray-700 font-bold border-b border-gray-300">
+                <thead class="bg-gray-700 text-white font-bold border-b border-gray-300">
                     <tr>
                         <th class="py-3 px-2">번호</th>
                         <th class="py-3 px-4 text-left">제목</th>
                         <th class="py-3 px-2">본문</th>
                         <th class="py-3 px-2">설교자</th>
-                        <th class="py-3 px-2 text-gray-500">날짜 <i class="fas fa-sort text-[10px]"></i></th>
+                        <th class="py-3 px-2">날짜 <i class="fas fa-sort text-[10px]"></i></th>
                         <th class="py-3 px-2">보기</th>
                     </tr>
                 </thead>
@@ -187,10 +180,10 @@
             </table>
 
             <!-- Mobile Version List -->
-            <div class="md:hidden block w-full border-t-2 border-gray-800">
-                <div class="flex bg-gray-50 text-gray-700 font-bold border-b border-gray-300 py-3 text-sm">
-                    <div class="w-16 text-center">번호</div>
-                    <div class="flex-1 text-center">제목</div>
+            <div class="md:hidden block w-full border-t-2 border-gray-800 mt-4">
+                <div class="flex bg-gray-50 text-gray-700 font-bold border-b border-gray-300 py-3 text-sm px-2">
+                    <div class="w-14 text-center">번호</div>
+                    <div class="flex-1 text-center pr-8">제목</div>
                 </div>
                 <div id="sermon-list-mobile-body">
                     <!-- 구글 시트 데이터가 로딩됩니다 -->
@@ -209,7 +202,6 @@
     <div id="common-sitemap"></div>
 
     <script>
-        // ★ 수요예배 구글 스프레드시트 링크 연동 완료! ★
         const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTmNPl7QMOdRz4v6O0kYga96lCTM8t2xeDwVepsmdUtBfiXyTz4jVmJ_meq0fP0ENusdnKxfHpPjTrJ/pub?gid=1347943468&single=true&output=csv";
 
         let formattedData = [];
@@ -291,9 +283,27 @@
 
             pageData.forEach(item => {
                 
-                // 1. PC 테이블 렌더링 (주일예배와 동일)
+                // [태그] 분리하여 파란색으로 예쁘게 칠하기
+                let tag = "";
+                let mainTitle = item.title;
+                const tagMatch = item.title.match(/^\[(.*?)\]/);
+                
+                if (tagMatch) {
+                    tag = tagMatch[1];
+                    mainTitle = item.title.replace(/^\[.*?\]\s*/, '');
+                }
+
+                // 설교자 이름 처리 (소속 교회는 작게 아래줄에 표시)
+                let preacherPc = item.preacher;
+                if (item.preacher.includes('(')) {
+                    let namePart = item.preacher.substring(0, item.preacher.indexOf('(')).trim();
+                    let churchPart = item.preacher.substring(item.preacher.indexOf('(')).trim();
+                    preacherPc = `${namePart}<br><span class="text-[12px] text-gray-500 font-normal mt-0.5 inline-block tracking-tight">${churchPart}</span>`;
+                }
+
+                // 1. PC 테이블 렌더링
                 const tr = document.createElement('tr');
-                tr.className = 'border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer';
+                tr.className = 'border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer group h-[60px]';
                 if(item.link !== '#') {
                     tr.onclick = (e) => {
                         if(!e.target.closest('a') && !e.target.closest('button')) {
@@ -303,12 +313,15 @@
                 }
                 
                 tr.innerHTML = `
-                    <td class="py-4 text-gray-400">${item.id}</td>
-                    <td class="py-4 px-4 text-left font-medium text-gray-800 truncate">${item.title}</td>
-                    <td class="py-4 text-[13px] md:text-sm truncate">${item.text}</td>
-                    <td class="py-4">${item.preacher}</td>
-                    <td class="py-4 text-[13px] md:text-sm">${item.date}</td>
-                    <td class="py-4">
+                    <td class="py-3 text-gray-400 font-medium">${item.id}</td>
+                    <td class="py-3 px-4 text-left">
+                        ${tagMatch ? `<span class="text-[#3b82f6] font-bold text-[13px] block mb-0.5">[${tag}]</span>` : ''}
+                        <span class="font-bold text-gray-800 text-[15px] group-hover:text-blue-600 transition truncate block max-w-full">${mainTitle}</span>
+                    </td>
+                    <td class="py-3 text-[13px] md:text-sm text-gray-600 truncate">${item.text}</td>
+                    <td class="py-3 text-gray-800 font-medium text-[13px] md:text-sm leading-tight">${preacherPc}</td>
+                    <td class="py-3 text-[13px] md:text-sm text-gray-500">${item.date}</td>
+                    <td class="py-3">
                         ${item.link !== '#' 
                             ? `<a href="${item.link}" target="_blank" class="bg-[#5c5c5c] hover:bg-[#1b315b] text-white rounded w-8 h-6 flex items-center justify-center mx-auto transition"><i class="fas fa-tv text-xs"></i></a>` 
                             : `<button class="bg-[#e5e7eb] text-gray-400 cursor-not-allowed rounded w-8 h-6 flex items-center justify-center mx-auto"><i class="fas fa-tv text-xs"></i></button>`}
@@ -316,25 +329,26 @@
                 `;
                 pcTbody.appendChild(tr);
 
-                // 2. 모바일 리스트 렌더링 (주일예배와 동일)
+                // 2. 모바일 리스트 렌더링
                 const mDiv = document.createElement('div');
-                mDiv.className = 'flex border-b border-gray-200 py-3 hover:bg-gray-50 transition cursor-pointer';
+                mDiv.className = 'flex border-b border-gray-200 py-3 hover:bg-gray-50 transition cursor-pointer items-center px-2';
                 if(item.link !== '#') {
                     mDiv.onclick = () => window.open(item.link, '_blank');
                 }
                 
                 mDiv.innerHTML = `
-                    <div class="w-16 text-center text-gray-400 text-sm pt-0.5">${item.id}</div>
-                    <div class="flex-1 pl-2 pr-4 relative">
-                        <div class="text-gray-800 text-[15px] font-bold mb-1 pr-8 truncate">${item.title}</div>
-                        <div class="text-gray-500 text-[13px] flex gap-3 mb-0.5">
-                            <span class="truncate max-w-[120px]">${item.text}</span>
-                            <span>${item.preacher}</span>
+                    <div class="w-12 text-center text-gray-400 text-sm shrink-0 font-medium">${item.id}</div>
+                    <div class="flex-1 pl-2 pr-8 relative overflow-hidden">
+                        ${tagMatch ? `<div class="text-[#3b82f6] font-bold text-[11px] mb-0.5 truncate">[${tag}]</div>` : ''}
+                        <div class="text-gray-900 text-[14px] font-bold mb-1 truncate leading-snug">${mainTitle}</div>
+                        <div class="text-gray-500 text-[12px] flex flex-wrap gap-x-2 gap-y-0.5 mb-0.5 leading-tight">
+                            <span class="truncate max-w-full">${item.text}</span>
+                            <span class="text-gray-700 font-medium">${item.preacher}</span>
                         </div>
-                        <div class="text-gray-400 text-[13px]">${item.date}</div>
+                        <div class="text-gray-400 text-[11px]">${item.date}</div>
                         ${item.link !== '#' 
-                            ? `<div class="absolute top-1/2 right-2 -translate-y-1/2 text-gray-400"><i class="fas fa-tv text-lg"></i></div>` 
-                            : `<div class="absolute top-1/2 right-2 -translate-y-1/2 text-gray-200"><i class="fas fa-tv text-lg"></i></div>`}
+                            ? `<div class="absolute top-1/2 right-1 -translate-y-1/2 text-gray-400"><i class="fas fa-tv text-lg"></i></div>` 
+                            : `<div class="absolute top-1/2 right-1 -translate-y-1/2 text-gray-200"><i class="fas fa-tv text-lg"></i></div>`}
                     </div>
                 `;
                 mobileContainer.appendChild(mDiv);
@@ -348,7 +362,48 @@
             const paginationContainer = document.getElementById('pagination');
             paginationContainer.innerHTML = '';
 
-            for (let i = 1; i <= totalPages; i++) {
+            if (totalPages === 0) return;
+
+            // 한 번에 보여줄 페이지 번호 개수 (10개씩)
+            const pagesPerGroup = 10;
+            const currentGroup = Math.ceil(currentPage / pagesPerGroup);
+            let startPage = (currentGroup - 1) * pagesPerGroup + 1;
+            let endPage = startPage + pagesPerGroup - 1;
+            
+            if (endPage > totalPages) endPage = totalPages;
+
+            // [이전 10페이지] 버튼 (<<)
+            const prevGroupBtn = document.createElement('a');
+            prevGroupBtn.href = '#';
+            prevGroupBtn.className = `page-link rounded ${startPage === 1 ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            prevGroupBtn.innerHTML = '<i class="fas fa-angle-double-left text-[10px]"></i>';
+            prevGroupBtn.onclick = (e) => {
+                e.preventDefault();
+                if (startPage > 1) {
+                    currentPage = startPage - 1;
+                    renderTable(currentPage);
+                    window.scrollTo({top: 400, behavior: 'smooth'}); 
+                }
+            };
+            paginationContainer.appendChild(prevGroupBtn);
+
+            // [이전 1페이지] 화살표 버튼 (<)
+            const prevBtn = document.createElement('a');
+            prevBtn.href = '#';
+            prevBtn.className = `page-link rounded ${currentPage === 1 ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            prevBtn.innerHTML = '<i class="fas fa-chevron-left text-[10px]"></i>';
+            prevBtn.onclick = (e) => {
+                e.preventDefault();
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderTable(currentPage);
+                    window.scrollTo({top: 400, behavior: 'smooth'}); 
+                }
+            };
+            paginationContainer.appendChild(prevBtn);
+
+            // [페이지 번호] 버튼 (10개씩)
+            for (let i = startPage; i <= endPage; i++) {
                 const a = document.createElement('a');
                 a.href = '#';
                 a.className = `page-link ${i === currentPage ? 'active' : ''} rounded`;
@@ -361,33 +416,36 @@
                 };
                 paginationContainer.appendChild(a);
             }
-        }
 
-        function toggleMobileSubMenu(menuId) {
-            const targetMenu = document.getElementById(menuId);
-            const otherMenuId = menuId === 'menu-depth1' ? 'menu-depth2' : 'menu-depth1';
-            const otherMenu = document.getElementById(otherMenuId);
-            if (otherMenu && !otherMenu.classList.contains('hidden')) {
-                otherMenu.classList.add('hidden');
-                const otherIcon = otherMenu.previousElementSibling.querySelector('.fas');
-                if(otherIcon) {
-                    otherIcon.classList.remove('fa-minus');
-                    otherIcon.classList.add('fa-plus');
+            // [다음 1페이지] 화살표 버튼 (>)
+            const nextBtn = document.createElement('a');
+            nextBtn.href = '#';
+            nextBtn.className = `page-link rounded ${currentPage === totalPages ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            nextBtn.innerHTML = '<i class="fas fa-chevron-right text-[10px]"></i>';
+            nextBtn.onclick = (e) => {
+                e.preventDefault();
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    renderTable(currentPage);
+                    window.scrollTo({top: 400, behavior: 'smooth'}); 
                 }
-            }
-            if (targetMenu) {
-                targetMenu.classList.toggle('hidden');
-                const icon = targetMenu.previousElementSibling.querySelector('.fas');
-                if(icon) {
-                    if(targetMenu.classList.contains('hidden')) {
-                        icon.classList.remove('fa-minus');
-                        icon.classList.add('fa-plus');
-                    } else {
-                        icon.classList.remove('fa-plus');
-                        icon.classList.add('fa-minus');
-                    }
+            };
+            paginationContainer.appendChild(nextBtn);
+
+            // [다음 10페이지] 버튼 (>>)
+            const nextGroupBtn = document.createElement('a');
+            nextGroupBtn.href = '#';
+            nextGroupBtn.className = `page-link rounded ${endPage === totalPages ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            nextGroupBtn.innerHTML = '<i class="fas fa-angle-double-right text-[10px]"></i>';
+            nextGroupBtn.onclick = (e) => {
+                e.preventDefault();
+                if (endPage < totalPages) {
+                    currentPage = endPage + 1;
+                    renderTable(currentPage);
+                    window.scrollTo({top: 400, behavior: 'smooth'}); 
                 }
-            }
+            };
+            paginationContainer.appendChild(nextGroupBtn);
         }
 
         document.addEventListener('DOMContentLoaded', () => {

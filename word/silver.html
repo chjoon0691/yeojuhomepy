@@ -153,8 +153,21 @@
                 <h3 class="text-2xl md:text-3xl font-extrabold relative z-10 tracking-tight">은빛찬양대</h3>
             </div>
 
-            <!-- PC Version Table -->
-            <table class="hidden md:table w-full text-center text-sm md:text-base border-t-2 border-gray-800 table-fixed mt-4">
+            <!-- 검색바 -->
+            <div class="flex justify-end mb-4 border-b border-gray-200 pb-4">
+                <div class="flex border border-gray-300 rounded shadow-sm overflow-hidden bg-white">
+                    <select class="px-3 py-1.5 text-sm md:text-base border-r border-gray-300 text-gray-700 focus:outline-none bg-gray-50 cursor-pointer">
+                        <option>제목(곡명)</option>
+                    </select>
+                    <input type="text" class="px-3 py-1.5 text-sm md:text-base w-32 md:w-48 focus:outline-none" placeholder="검색어 입력">
+                    <button class="bg-gray-100 hover:bg-gray-200 text-gray-600 px-4 py-1.5 text-sm md:text-base border-l border-gray-300 transition">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- PC Version Table (사진 제외, 5항목) -->
+            <table class="hidden md:table w-full text-center text-sm md:text-base border-t-2 border-gray-800 table-fixed">
                 <colgroup>
                     <col class="w-[10%]">
                     <col class="w-[45%]">
@@ -176,7 +189,7 @@
                 </tbody>
             </table>
 
-            <!-- Mobile Version List -->
+            <!-- Mobile Version List (사진 영역 제외) -->
             <div class="md:hidden block w-full border-t-2 border-gray-800 mt-4">
                 <div class="flex bg-gray-50 text-gray-700 font-bold border-b border-gray-300 py-3 text-sm px-2">
                     <div class="w-14 text-center">번호</div>
@@ -199,33 +212,6 @@
     <div id="common-sitemap"></div>
 
     <script>
-        function toggleMobileSubMenu(menuId) {
-            const targetMenu = document.getElementById(menuId);
-            const otherMenuId = menuId === 'menu-depth1' ? 'menu-depth2' : 'menu-depth1';
-            const otherMenu = document.getElementById(otherMenuId);
-            if (otherMenu && !otherMenu.classList.contains('hidden')) {
-                otherMenu.classList.add('hidden');
-                const otherIcon = otherMenu.previousElementSibling.querySelector('.fas');
-                if(otherIcon) {
-                    otherIcon.classList.remove('fa-minus');
-                    otherIcon.classList.add('fa-plus');
-                }
-            }
-            if (targetMenu) {
-                targetMenu.classList.toggle('hidden');
-                const icon = targetMenu.previousElementSibling.querySelector('.fas');
-                if(icon) {
-                    if(targetMenu.classList.contains('hidden')) {
-                        icon.classList.remove('fa-minus');
-                        icon.classList.add('fa-plus');
-                    } else {
-                        icon.classList.remove('fa-plus');
-                        icon.classList.add('fa-minus');
-                    }
-                }
-            }
-        }
-
         // ★ 은빛찬양대 구글 스프레드시트 링크 연동 ★
         const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSNA9Z3CEaLyG7yNQdDB0nX8GsgqfMGLU391NdqFm-FwzFrJoDhnJPxh6m6lKkOwCkmvKW_PdF6gz8G/pub?gid=2146077684&single=true&output=csv";
 

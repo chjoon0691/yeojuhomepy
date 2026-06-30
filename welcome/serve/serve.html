@@ -30,6 +30,14 @@
     <!-- 마법의 파일 연결 1: 공통 상단 헤더 -->
     <div id="common-header"></div>
 
+    <section class="bg-[#102242] py-12 md:py-20 text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1504052434569-70ad5836ab65?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-luminosity"></div>
+        <div class="relative z-10">
+            <h2 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-2">환영합니다</h2>
+            <p class="text-blue-200 text-sm md:text-base">Welcome to Yeoju Evangelical Holiness Church</p>
+        </div>
+    </section>
+
     <!-- 모바일 전용 2차 메뉴 바 -->
     <div class="md:hidden border-b border-gray-300 bg-white relative z-30 shadow-sm">
         <div class="flex text-sm md:text-base">
@@ -58,7 +66,13 @@
                 </button>
                 <ul id="menu-depth2" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
                     <li class="border-b border-gray-100"><a href="../greeting.html" class="block px-4 py-3 hover:bg-gray-50">인사말</a></li>
-                    <li class="border-b border-gray-100"><a href="../history/history.html" class="block px-4 py-3 hover:bg-gray-50">교회연혁</a></li>
+                    <li class="bg-gray-50 border-b border-gray-100 py-2">
+                        <span class="block px-4 py-1 text-gray-800 font-bold text-xs">교회연혁</span>
+                        <a href="../history/history.html" class="block px-6 py-2 hover:bg-gray-100 text-gray-600">- 교회연혁</a>
+                        <a href="../history/building.html" class="block px-6 py-2 hover:bg-gray-100 text-gray-600">- 성전건축이야기</a>
+                        <a href="../history/edu_building.html" class="block px-6 py-2 hover:bg-gray-100 text-gray-600">- 교육관건축사진</a>
+                        <a href="../history/old_photos.html" class="block px-6 py-2 hover:bg-gray-100 text-gray-600">- 이전 홈피 사진들</a>
+                    </li>
                     <li class="border-b border-gray-100"><a href="serve.html" class="block px-4 py-3 text-blue-600 font-bold bg-gray-50">섬기는 분들</a></li>
                     <li class="border-b border-gray-100"><a href="../worship/worship.html" class="block px-4 py-3 hover:bg-gray-50">예배안내</a></li>
                     <li class="border-b border-gray-100"><a href="../bus/bus.html" class="block px-4 py-3 hover:bg-gray-50">차량운행안내</a></li>
@@ -77,7 +91,21 @@
             <div class="bg-[#6b8cba] text-white text-center py-4 text-xl font-bold rounded-t-lg">환영합니다</div>
             <ul class="border border-t-0 border-gray-200 flex flex-col">
                 <li><a href="../greeting.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">인사말</a></li>
-                <li><a href="../history/history.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">교회연혁</a></li>
+                
+                <!-- 교회연혁 (하위 메뉴 오픈 상태) -->
+                <li class="border-b border-gray-200 group">
+                    <a href="../history/history.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">
+                        교회연혁 <i class="fas fa-chevron-down text-xs text-gray-400 group-hover:rotate-180 transition-transform duration-300"></i>
+                    </a>
+                    <div class="max-h-0 overflow-hidden group-hover:max-h-48 transition-all duration-500 ease-in-out">
+                        <ul class="py-2 bg-white border-t border-gray-100">
+                            <li><a href="../history/building.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">성전건축이야기</a></li>
+                            <li><a href="../history/edu_building.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">교육관건축사진</a></li>
+                            <li><a href="../history/old_photos.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">이전 홈피 사진들</a></li>
+                        </ul>
+                    </div>
+                </li>
+
                 <li><a href="serve.html" class="flex justify-between items-center px-5 py-3 text-[#3b82f6] font-bold bg-gray-50 hover:bg-gray-100 transition border-b border-gray-200">섬기는 분들 <i class="fas fa-chevron-right text-xs"></i></a></li>
                 <li><a href="../worship/worship.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">예배안내</a></li>
                 <li><a href="../bus/bus.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">차량운행안내</a></li>
@@ -95,22 +123,23 @@
                 <h3 class="text-3xl md:text-4xl font-extrabold relative z-10 tracking-tight">섬기는 분들</h3>
             </div>
 
-            <!-- 필터 및 검색바 디자인 -->
-            <div class="border-b border-gray-200 pb-6 mb-10" id="serve-top">
-                <div class="flex flex-wrap gap-2 mb-6">
-                    <a href="#serve-top" class="bg-[#6b8cba] text-white px-4 py-1.5 text-sm font-medium border border-[#6b8cba] hover:bg-[#1a3668] transition">전체</a>
-                    <a href="#cate-1" class="bg-white text-gray-600 px-4 py-1.5 text-sm font-medium border border-gray-300 hover:bg-gray-50 transition">담임목사</a>
-                    <a href="#cate-2" class="bg-white text-gray-600 px-4 py-1.5 text-sm font-medium border border-gray-300 hover:bg-gray-50 transition">원로목사</a>
-                    <a href="#cate-3" class="bg-white text-gray-600 px-4 py-1.5 text-sm font-medium border border-gray-300 hover:bg-gray-50 transition">부목사</a>
-                    <a href="#cate-4" class="bg-white text-gray-600 px-4 py-1.5 text-sm font-medium border border-gray-300 hover:bg-gray-50 transition">전도사</a>
-                    <a href="#cate-5" class="bg-white text-gray-600 px-4 py-1.5 text-sm font-medium border border-gray-300 hover:bg-gray-50 transition">협동전도사</a>
-                    <a href="#cate-6" class="bg-white text-gray-600 px-4 py-1.5 text-sm font-medium border border-gray-300 hover:bg-gray-50 transition">교육전도사</a>
-                    <a href="#cate-7" class="bg-white text-gray-600 px-4 py-1.5 text-sm font-medium border border-gray-300 hover:bg-gray-50 transition">원로장로</a>
-                    <a href="#cate-8" class="bg-white text-gray-600 px-4 py-1.5 text-sm font-medium border border-gray-300 hover:bg-gray-50 transition">명예장로</a>
-                    <a href="#cate-9" class="bg-white text-gray-600 px-4 py-1.5 text-sm font-medium border border-gray-300 hover:bg-gray-50 transition">시무장로</a>
-                    <a href="#cate-10" class="bg-white text-gray-600 px-4 py-1.5 text-sm font-medium border border-gray-300 hover:bg-gray-50 transition">은퇴장로</a>
-                    <a href="#cate-11" class="bg-white text-gray-600 px-4 py-1.5 text-sm font-medium border border-gray-300 hover:bg-gray-50 transition">직원</a>
-                    <a href="#cate-12" class="bg-white text-gray-600 px-4 py-1.5 text-sm font-medium border border-gray-300 hover:bg-gray-50 transition">교구장</a>
+            <!-- ★ 필터 및 검색바 디자인 (바둑판 정렬로 완벽 교체) ★ -->
+            <div class="border-b border-gray-200 pb-8 mb-10" id="serve-top">
+                <!-- 1줄에 3칸(모바일), 4칸(작은화면), 5칸(태블릿), 7칸(PC)씩 크기가 일정하게 줄맞춤 됩니다 -->
+                <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-2 md:gap-3">
+                    <a href="#serve-top" class="bg-[#6b8cba] text-white py-2.5 text-[13px] sm:text-sm font-bold text-center border border-[#6b8cba] rounded-lg shadow-sm hover:bg-[#1a3668] transition">전체</a>
+                    <a href="#cate-1" class="bg-white text-gray-700 py-2.5 text-[13px] sm:text-sm font-medium text-center border border-gray-300 rounded-lg shadow-sm hover:bg-gray-50 hover:text-blue-600 transition">담임목사</a>
+                    <a href="#cate-2" class="bg-white text-gray-700 py-2.5 text-[13px] sm:text-sm font-medium text-center border border-gray-300 rounded-lg shadow-sm hover:bg-gray-50 hover:text-blue-600 transition">원로목사</a>
+                    <a href="#cate-3" class="bg-white text-gray-700 py-2.5 text-[13px] sm:text-sm font-medium text-center border border-gray-300 rounded-lg shadow-sm hover:bg-gray-50 hover:text-blue-600 transition">부목사</a>
+                    <a href="#cate-4" class="bg-white text-gray-700 py-2.5 text-[13px] sm:text-sm font-medium text-center border border-gray-300 rounded-lg shadow-sm hover:bg-gray-50 hover:text-blue-600 transition">전도사</a>
+                    <a href="#cate-5" class="bg-white text-gray-700 py-2.5 text-[13px] sm:text-sm font-medium text-center border border-gray-300 rounded-lg shadow-sm hover:bg-gray-50 hover:text-blue-600 transition">협동전도사</a>
+                    <a href="#cate-6" class="bg-white text-gray-700 py-2.5 text-[13px] sm:text-sm font-medium text-center border border-gray-300 rounded-lg shadow-sm hover:bg-gray-50 hover:text-blue-600 transition">교육전도사</a>
+                    <a href="#cate-7" class="bg-white text-gray-700 py-2.5 text-[13px] sm:text-sm font-medium text-center border border-gray-300 rounded-lg shadow-sm hover:bg-gray-50 hover:text-blue-600 transition">원로장로</a>
+                    <a href="#cate-8" class="bg-white text-gray-700 py-2.5 text-[13px] sm:text-sm font-medium text-center border border-gray-300 rounded-lg shadow-sm hover:bg-gray-50 hover:text-blue-600 transition">명예장로</a>
+                    <a href="#cate-9" class="bg-white text-gray-700 py-2.5 text-[13px] sm:text-sm font-medium text-center border border-gray-300 rounded-lg shadow-sm hover:bg-gray-50 hover:text-blue-600 transition">시무장로</a>
+                    <a href="#cate-10" class="bg-white text-gray-700 py-2.5 text-[13px] sm:text-sm font-medium text-center border border-gray-300 rounded-lg shadow-sm hover:bg-gray-50 hover:text-blue-600 transition">은퇴장로</a>
+                    <a href="#cate-11" class="bg-white text-gray-700 py-2.5 text-[13px] sm:text-sm font-medium text-center border border-gray-300 rounded-lg shadow-sm hover:bg-gray-50 hover:text-blue-600 transition">직원</a>
+                    <a href="#cate-12" class="bg-white text-gray-700 py-2.5 text-[13px] sm:text-sm font-medium text-center border border-gray-300 rounded-lg shadow-sm hover:bg-gray-50 hover:text-blue-600 transition">교구장</a>
                 </div>
             </div>
 
@@ -586,36 +615,6 @@
     <div id="common-footer"></div>
     <div id="common-sitemap"></div>
 
-    <script>
-        // 모바일 메뉴용 스크립트만 남김
-        function toggleMobileSubMenu(menuId) {
-            const targetMenu = document.getElementById(menuId);
-            const otherMenuId = menuId === 'menu-depth1' ? 'menu-depth2' : 'menu-depth1';
-            const otherMenu = document.getElementById(otherMenuId);
-            
-            if (otherMenu && !otherMenu.classList.contains('hidden')) {
-                otherMenu.classList.add('hidden');
-                const otherIcon = otherMenu.previousElementSibling.querySelector('.fas');
-                if(otherIcon) {
-                    otherIcon.classList.remove('fa-minus');
-                    otherIcon.classList.add('fa-plus');
-                }
-            }
-            if (targetMenu) {
-                targetMenu.classList.toggle('hidden');
-                const icon = targetMenu.previousElementSibling.querySelector('.fas');
-                if(icon) {
-                    if(targetMenu.classList.contains('hidden')) {
-                        icon.classList.remove('fa-minus');
-                        icon.classList.add('fa-plus');
-                    } else {
-                        icon.classList.remove('fa-plus');
-                        icon.classList.add('fa-minus');
-                    }
-                }
-            }
-        }
-    </script>
     <!-- 루트 패스 설정 -->
     <script>const ROOT_PATH = "../../";</script>
     <script src="../../js/common.js"></script>

@@ -10,8 +10,6 @@
     <style>
         @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
         body { font-family: 'Pretendard', sans-serif; background-color: #ffffff; overflow-x: hidden; }
-        #mobile-menu { display: none; }
-        #mobile-menu.open { display: flex; }
         
         /* 페이지네이션 스타일 */
         .page-link {
@@ -25,104 +23,21 @@
 </head>
 <body class="text-gray-800">
 
-    <header class="bg-[#244177] text-white w-full z-50 relative">
-        <div class="hidden md:block border-b border-white/20 bg-[#1b315b]">
-            <div class="max-w-7xl mx-auto px-4 py-2 flex justify-end items-center space-x-6 text-sm font-light">
-                <a href="https://www.youtube.com/@여주성결교회" target="_blank" class="hover:text-blue-300 flex items-center gap-1.5 transition"><i class="fab fa-youtube text-red-500 text-lg"></i> 유튜브채널</a>
-            </div>
+    <!-- 마법의 파일 연결 1: 공통 상단 헤더 -->
+    <div id="common-header"></div>
+
+    <!-- 상단 배너 -->
+    <section class="bg-[#102242] py-12 md:py-20 text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-luminosity"></div>
+        <div class="relative z-10">
+            <h2 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-2">공동체</h2>
+            <p class="text-blue-200 text-sm md:text-base">Community</p>
         </div>
-        
-        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="../index.html" class="flex items-center gap-1 cursor-pointer z-50">
-                <img src="../images/교회마크만01.png" alt="여주성결교회 마크" class="h-8 md:h-11 w-auto object-contain">
-                <img src="../images/여주성결교회 로고타입1_3.png" alt="여주성결교회 로고" class="h-6 md:h-8 w-auto object-contain brightness-0 invert">
-            </a>
-            
-            <button class="md:hidden border border-white/40 w-10 h-10 flex items-center justify-center rounded text-white text-xl z-50 hover:bg-white/10 transition" onclick="document.getElementById('mobile-menu').classList.toggle('open')">
-                <i class="fas fa-bars"></i>
-            </button>
+    </section>
 
-            <!-- Menu (Desktop) -->
-            <nav class="hidden md:flex items-center space-x-8 text-lg font-medium">
-                <div class="relative group py-2">
-                    <a href="../welcome/greeting.html" class="hover:text-blue-300 transition">환영합니다</a>
-                    <div class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                        <div class="w-48 bg-white text-gray-800 rounded-2xl shadow-xl py-3 border border-gray-100">
-                            <a href="../welcome/greeting.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">인사말</a>
-                            <a href="../welcome/history/history.html" class="flex justify-between items-center px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">교회연혁 <i class="fas fa-plus text-[0.6rem] text-gray-400"></i></a>
-                            <a href="../welcome/serve/serve.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">섬기는 분들</a>
-                            <a href="../welcome/worship/worship.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">예배안내</a>
-                            <a href="../welcome/bus/bus.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">차량운행안내</a>
-                            <a href="../welcome/map/map.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">오시는길</a>
-                            <a href="../welcome/newcomer/newcomer.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">새가족안내</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="relative group py-2">
-                    <a href="../word/sunday.html" class="hover:text-blue-300 transition">말씀과 찬양</a>
-                    <div class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                        <div class="w-48 bg-white text-gray-800 rounded-2xl shadow-xl py-3 border border-gray-100">
-                            <a href="../word/sunday.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">주일 예배</a>
-                            <a href="#" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">주일설교요약</a>
-                            <a href="#" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">주일 오후 예배</a>
-                            <a href="#" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">수요 예배</a>
-                            <a href="#" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">특별집회</a>
-                            <a href="../word/praise.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">찬양대/중창단</a>
-                            <a href="../word/media.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">여주미디어</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="relative group py-2">
-                    <a href="parish.html" class="text-blue-300 font-bold transition">공동체</a>
-                    <div class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                        <div class="w-48 bg-white text-gray-800 rounded-2xl shadow-xl py-3 border border-gray-100">
-                            <a href="parish.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">교구</a>
-                            <a href="organization.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">기관</a>
-                            <a href="training.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">양육&훈련</a>
-                            <a href="senior.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">청춘대학</a>
-                            <a href="company.html" class="block px-6 py-2.5 text-base font-medium text-[#3b82f6] bg-gray-50 transition">성도기업</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="relative group py-2">
-                    <a href="#" class="hover:text-blue-300 transition">다음세대</a>
-                    <!-- 드롭다운 생략 (기존과 동일) -->
-                </div>
-
-                <div class="relative group py-2">
-                    <a href="#" class="hover:text-blue-300 transition">전도와 선교</a>
-                </div>
-
-                <div class="relative group py-2">
-                    <a href="#" class="hover:text-blue-300 transition">교회소식</a>
-                </div>
-
-                <div class="relative group py-2">
-                    <a href="#" class="hover:text-blue-300 transition">행정서비스</a>
-                </div>
-                
-                <!-- PC 전용 햄버거 아이콘 -->
-                <button class="border border-white/40 w-10 h-10 hidden md:flex items-center justify-center rounded text-white text-xl hover:bg-white/10 transition" onclick="toggleSitemap()">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </nav>
-        </div>
-
-        <div id="mobile-menu" class="absolute top-full left-0 w-full bg-[#1a3668] flex-col items-center py-4 space-y-4 shadow-xl z-50 text-lg">
-            <a href="../welcome/greeting.html" class="text-white hover:text-blue-300">환영합니다</a>
-            <a href="../word/sunday.html" class="text-white hover:text-blue-300">말씀과 찬양</a>
-            <a href="parish.html" class="text-blue-300 font-bold">공동체</a>
-            <a href="#" class="text-white hover:text-blue-300">다음세대</a>
-            <a href="#" class="text-white hover:text-blue-300">전도와 선교</a>
-            <a href="#" class="text-white hover:text-blue-300">교회소식</a>
-            <a href="#" class="text-white hover:text-blue-300">행정서비스</a>
-        </div>
-    </header>
-
+    <!-- Main Content Layout -->
     <div class="max-w-7xl mx-auto px-4 py-12 md:py-20 flex flex-col md:flex-row gap-10 relative">
+        
         <!-- 좌측 사이드바 -->
         <aside class="hidden md:block w-64 flex-shrink-0">
             <div class="bg-[#6b8cba] text-white text-center py-4 text-xl font-bold rounded-t-lg">공동체</div>
@@ -137,9 +52,8 @@
 
         <!-- 메인 콘텐츠 영역 -->
         <main class="flex-1">
-            <!-- 배너 -->
-            <div class="w-full bg-[#1b315b] rounded-xl h-32 md:h-48 flex flex-col justify-center items-center text-white shadow-md relative overflow-hidden mb-8">
-                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3')] bg-cover bg-center opacity-20 mix-blend-overlay"></div>
+            <div class="w-full bg-[#1b315b] rounded-xl h-32 md:h-48 flex flex-col justify-center items-center text-white shadow-md relative overflow-hidden mb-10">
+                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
                 <h3 class="text-3xl md:text-4xl font-extrabold relative z-10 tracking-tight">성도기업</h3>
             </div>
 
@@ -170,13 +84,11 @@
                     <tr>
                         <th class="py-3 px-2">번호</th>
                         <th class="py-3 px-2">구분(업종)</th>
-                        <th class="py-3 px-4">상호명(제목)</th>
+                        <th class="py-3 px-4 text-left">상호명(제목)</th>
                         <th class="py-3 px-2">성도</th>
                     </tr>
                 </thead>
-                <!-- JS가 데이터를 밀어넣을 공간 -->
-                <tbody id="company-list-pc" class="text-gray-600">
-                </tbody>
+                <tbody id="company-list-pc" class="text-gray-600"></tbody>
             </table>
 
             <!-- Mobile Version List -->
@@ -185,88 +97,42 @@
                     <div class="w-12 text-center">번호</div>
                     <div class="flex-1 pl-2">상호명 / 성도</div>
                 </div>
-                <div id="company-list-mobile-body">
-                    <!-- JS가 데이터를 밀어넣을 공간 -->
-                </div>
+                <div id="company-list-mobile-body"></div>
             </div>
 
             <!-- 페이지네이션 -->
             <div id="pagination" class="flex justify-center items-center mt-8 mb-6 flex-wrap gap-y-2"></div>
-
         </main>
     </div>
 
-    <footer class="bg-white border-t border-gray-100 py-10 md:py-16 mt-10">
-        <div class="max-w-6xl mx-auto px-4 flex flex-col items-center text-center">
-            <h3 class="font-extrabold text-3xl md:text-5xl text-[#3b82f6] mb-4 md:mb-6 tracking-tight">여주성결교회</h3>
-            <div class="text-sm md:text-lg text-gray-500 space-y-1 md:space-y-2 mb-8">
-                <p>(12625) 경기도 여주시 우암로 96 (하동, 여주성결교회)</p>
-                <p>TEL . 031-882-9966 &nbsp;&nbsp; FAX . 031-882-9965</p>
-            </div>
-        </div>
-    </footer>
+    <div id="common-footer"></div>
+    <div id="common-sitemap"></div>
     
-    <!-- ★ 성도기업 상세정보 모달 팝업 (클릭 시 열림) ★ -->
+    <!-- 모달 -->
     <div id="company-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6">
-        <!-- 반투명 배경 -->
         <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="closeModal()"></div>
-        
-        <!-- 모달 본문 -->
         <div class="relative w-full max-w-3xl bg-white shadow-2xl z-10 flex flex-col max-h-[90vh] rounded-xl overflow-hidden">
-            <!-- 모달 헤더 -->
             <div class="bg-gray-800 text-white px-5 py-4 flex justify-between items-center shrink-0">
                 <h2 id="modal-header-title" class="text-lg md:text-xl font-bold truncate">[업종] 상호명</h2>
-                <button onclick="closeModal()" class="text-gray-300 hover:text-white transition-colors ml-4 focus:outline-none">
-                    <i class="fas fa-times text-2xl"></i>
-                </button>
+                <button onclick="closeModal()" class="text-gray-300 hover:text-white transition-colors ml-4 focus:outline-none"><i class="fas fa-times text-2xl"></i></button>
             </div>
-            
-            <!-- 모달 콘텐츠 (스크롤 가능) -->
             <div class="p-6 md:p-8 overflow-y-auto flex-1 bg-gray-50">
                 <div class="bg-white p-5 md:p-6 rounded-lg border border-gray-200 shadow-sm mb-6">
                     <div class="space-y-3 text-[15px] md:text-base text-gray-700">
-                        <div class="flex items-start">
-                            <span class="font-bold w-20 shrink-0 text-gray-900">상호명:</span>
-                            <span id="modal-name">퓨어벨로 (눈썹 관리, 눈썹 펌 전문)</span>
-                        </div>
-                        <div class="flex items-start">
-                            <span class="font-bold w-20 shrink-0 text-gray-900">위치:</span>
-                            <span id="modal-location">오학초등학교 후문쪽</span>
-                        </div>
-                        <div class="flex items-start">
-                            <span class="font-bold w-20 shrink-0 text-gray-900">전화:</span>
-                            <span id="modal-phone">010-9884-9150</span>
-                        </div>
-                        <div class="flex items-start pt-3 mt-3 border-t border-gray-100">
-                            <span class="font-bold w-20 shrink-0 text-gray-900">성도:</span>
-                            <span id="modal-owner" class="text-blue-700 font-medium">신율 청년 (신현호 집사, 이은은 집사 차녀)</span>
-                        </div>
+                        <div class="flex items-start"><span class="font-bold w-20 shrink-0 text-gray-900">상호명:</span><span id="modal-name"></span></div>
+                        <div class="flex items-start"><span class="font-bold w-20 shrink-0 text-gray-900">위치:</span><span id="modal-location"></span></div>
+                        <div class="flex items-start"><span class="font-bold w-20 shrink-0 text-gray-900">전화:</span><span id="modal-phone"></span></div>
+                        <div class="flex items-start pt-3 mt-3 border-t border-gray-100"><span class="font-bold w-20 shrink-0 text-gray-900">성도:</span><span id="modal-owner" class="text-blue-700 font-medium"></span></div>
                     </div>
                 </div>
-
-                <!-- 이미지 영역 -->
-                <div class="rounded-lg overflow-hidden border border-gray-200 shadow-sm bg-white p-2">
-                    <img id="modal-image" src="" alt="매장 사진" class="w-full h-auto object-cover rounded">
-                </div>
+                <div class="rounded-lg overflow-hidden border border-gray-200 shadow-sm bg-white p-2"><img id="modal-image" src="" alt="매장 사진" class="w-full h-auto object-cover rounded"></div>
             </div>
         </div>
     </div>
-    <!-- 모달 끝 -->
 
     <script>
-        // 1. 성도기업 데이터 (여기에 데이터를 추가하면 됩니다)
         const companyData = [
-            {
-                id: 43,
-                category: "이미용, 건강, 스포츠",
-                name: "퓨어벨로",
-                description: "(눈썹 관리, 눈썹 펌 전문)",
-                owner: "신율 청년",
-                owner_detail: "(신현호 집사, 이은은 집사 차녀)",
-                location: "오학초등학교 후문쪽",
-                phone: "010-9884-9150",
-                image_url: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" // 테스트용 더미 이미지
-            },
+            { id: 43, category: "이미용, 건강, 스포츠", name: "퓨어벨로", description: "(눈썹 관리, 눈썹 펌 전문)", owner: "신율 청년", owner_detail: "(신현호 집사, 이은은 집사 차녀)", location: "오학초등학교 후문쪽", phone: "010-9884-9150", image_url: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
             { id: 42, category: "생산, 제작, 가공", name: "장 봐주는 언니 2호점", description: "", owner: "관리자", owner_detail: "", location: "여주시", phone: "-", image_url: "https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
             { id: 41, category: "음식점, 분식, 커피", name: "던킨 여주 오학점", description: "", owner: "성도", owner_detail: "", location: "오학동", phone: "-", image_url: "https://images.unsplash.com/photo-1551024601-bec78aea704b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
             { id: 40, category: "자동차", name: "하이테크정비센터(자동차)", description: "", owner: "성도", owner_detail: "", location: "여주시", phone: "-", image_url: "https://images.unsplash.com/photo-1613214149922-f1809c99b414?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
@@ -286,7 +152,6 @@
         const itemsPerPage = 15; 
         let currentPage = 1;
 
-        // 테이블 그리기 함수
         function renderTable(page) {
             const startIndex = (page - 1) * itemsPerPage;
             const endIndex = startIndex + itemsPerPage;
@@ -299,7 +164,6 @@
             mobileContainer.innerHTML = '';
 
             pageData.forEach(item => {
-                // PC 버전
                 const tr = document.createElement('tr');
                 tr.className = 'border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer group';
                 tr.onclick = () => openModal(item.id);
@@ -314,7 +178,6 @@
                 `;
                 pcTbody.appendChild(tr);
 
-                // 모바일 버전
                 const mDiv = document.createElement('div');
                 mDiv.className = 'flex border-b border-gray-200 py-3 hover:bg-gray-50 transition cursor-pointer';
                 mDiv.onclick = () => openModal(item.id);
@@ -331,16 +194,13 @@
                 `;
                 mobileContainer.appendChild(mDiv);
             });
-            
             renderPagination();
         }
 
-        // 페이지네이션 
         function renderPagination() {
             const totalPages = Math.ceil(companyData.length / itemsPerPage);
             const paginationContainer = document.getElementById('pagination');
             paginationContainer.innerHTML = '';
-
             for (let i = 1; i <= totalPages; i++) {
                 const a = document.createElement('a');
                 a.href = '#';
@@ -356,30 +216,22 @@
             }
         }
 
-        // ★ 모달 열기 함수 ★
         function openModal(id) {
             const company = companyData.find(c => c.id === id);
             if(!company) return;
-
-            // 데이터 채우기
             document.getElementById('modal-header-title').textContent = `[${company.category}] ${company.name}`;
             document.getElementById('modal-name').textContent = `${company.name} ${company.description}`;
             document.getElementById('modal-location').textContent = company.location;
             document.getElementById('modal-phone').textContent = company.phone;
-            
             const ownerText = company.owner_detail ? `${company.owner} ${company.owner_detail}` : company.owner;
             document.getElementById('modal-owner').textContent = ownerText;
-            
             document.getElementById('modal-image').src = company.image_url;
-
-            // 모달 열기 (화면 보이기 및 배경 스크롤 막기)
             const modal = document.getElementById('company-modal');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
             document.body.style.overflow = 'hidden';
         }
 
-        // ★ 모달 닫기 함수 ★
         function closeModal() {
             const modal = document.getElementById('company-modal');
             modal.classList.add('hidden');
@@ -390,11 +242,8 @@
         document.addEventListener('DOMContentLoaded', () => {
             renderTable(currentPage);
         });
-
-        function toggleMobileSubMenu(menuId) {
-            const targetMenu = document.getElementById(menuId);
-            if (targetMenu) targetMenu.classList.toggle('hidden');
-        }
     </script>
+    <script>const ROOT_PATH = "../";</script>
+    <script src="../js/common.js"></script>
 </body>
 </html>

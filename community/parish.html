@@ -10,8 +10,6 @@
     <style>
         @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
         body { font-family: 'Pretendard', sans-serif; background-color: #ffffff; overflow-x: hidden; }
-        #mobile-menu { display: none; }
-        #mobile-menu.open { display: flex; }
     </style>
 </head>
 <body class="text-gray-800">
@@ -19,6 +17,7 @@
     <!-- 마법의 파일 연결 1: 공통 상단 헤더 -->
     <div id="common-header"></div>
 
+    <!-- 상단 배너 -->
     <section class="bg-[#102242] py-12 md:py-20 text-center relative overflow-hidden">
         <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-luminosity"></div>
         <div class="relative z-10">
@@ -27,70 +26,22 @@
         </div>
     </section>
 
-    <!-- 모바일 전용 2차 메뉴 바 -->
-    <div class="md:hidden border-b border-gray-300 bg-white relative z-30 shadow-sm">
-        <div class="flex text-sm md:text-base">
-            <a href="../index.html" class="px-4 py-3 border-r border-gray-300 text-gray-600 flex items-center justify-center hover:bg-gray-50">
-                Home
-            </a>
-            <div class="flex-1 border-r border-gray-300 relative">
-                <button onclick="toggleMobileSubMenu('menu-depth1')" class="w-full flex justify-between items-center px-4 py-3 text-gray-800 focus:outline-none">
-                    <span>공동체</span>
-                    <i class="fas fa-plus text-gray-400 text-xs"></i>
-                </button>
-                <ul id="menu-depth1" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
-                    <li class="border-b border-gray-100"><a href="../welcome/greeting.html" class="block px-4 py-3 hover:bg-gray-50">환영합니다</a></li>
-                    <li class="border-b border-gray-100"><a href="../word/sunday.html" class="block px-4 py-3 hover:bg-gray-50">말씀과 찬양</a></li>
-                    <li class="border-b border-gray-100"><a href="parish.html" class="block px-4 py-3 text-blue-600 font-bold bg-gray-50">공동체</a></li>
-                    <li class="border-b border-gray-100"><a href="../nextgen/infant.html" class="block px-4 py-3 hover:bg-gray-50">다음세대</a></li>
-                    <li class="border-b border-gray-100"><a href="../mission/evangelism.html" class="block px-4 py-3 hover:bg-gray-50">전도와 선교</a></li>
-                    <li class="border-b border-gray-100"><a href="../news/weekly.html" class="block px-4 py-3 hover:bg-gray-50">교회소식</a></li>
-                    <li><a href="../service/application.html" class="block px-4 py-3 hover:bg-gray-50">행정서비스</a></li>
-                </ul>
-            </div>
-            <div class="flex-1 relative">
-                <button onclick="toggleMobileSubMenu('menu-depth2')" class="w-full flex justify-between items-center px-4 py-3 text-gray-800 focus:outline-none">
-                    <span>교구</span>
-                    <i class="fas fa-plus text-gray-400 text-xs"></i>
-                </button>
-                <ul id="menu-depth2" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
-                    <li class="border-b border-gray-100"><a href="parish.html" class="block px-4 py-3 text-blue-600 font-bold bg-gray-50">교구</a></li>
-                    <li class="border-b border-gray-100"><a href="organization.html" class="block px-4 py-3 hover:bg-gray-50">기관</a></li>
-                    <li class="border-b border-gray-100"><a href="training.html" class="block px-4 py-3 hover:bg-gray-50">양육&훈련</a></li>
-                    <li class="border-b border-gray-100"><a href="senior.html" class="block px-4 py-3 hover:bg-gray-50">청춘대학</a></li>
-                    <li><a href="company.html" class="block px-4 py-3 hover:bg-gray-50">성도기업</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
+    <!-- Main Content Layout -->
     <div class="max-w-7xl mx-auto px-4 py-12 md:py-20 flex flex-col md:flex-row gap-10">
         
-        <!-- Left Sidebar -->
+        <!-- 좌측 사이드바 -->
         <aside class="hidden md:block w-64 flex-shrink-0">
-            <div class="bg-[#6b8cba] text-white text-center py-4 text-xl font-bold rounded-t-lg">
-                공동체
-            </div>
+            <div class="bg-[#6b8cba] text-white text-center py-4 text-xl font-bold rounded-t-lg">공동체</div>
             <ul class="border border-t-0 border-gray-200 flex flex-col">
-                <li class="border-b border-gray-200">
-                    <a href="parish.html" class="flex justify-between items-center px-5 py-3 text-[#3b82f6] font-bold bg-gray-50 hover:bg-gray-100 transition">교구 <i class="fas fa-chevron-right text-xs"></i></a>
-                </li>
-                <li class="border-b border-gray-200">
-                    <a href="organization.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">기관</a>
-                </li>
-                <li class="border-b border-gray-200">
-                    <a href="training.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">양육&훈련</a>
-                </li>
-                <li class="border-b border-gray-200">
-                    <a href="senior.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">청춘대학</a>
-                </li>
-                <li>
-                    <a href="company.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition rounded-b-lg">성도기업</a>
-                </li>
+                <li><a href="parish.html" class="flex justify-between items-center px-5 py-3 text-[#3b82f6] font-bold bg-gray-50 hover:bg-gray-100 transition border-b border-gray-200">교구 <i class="fas fa-chevron-right text-xs"></i></a></li>
+                <li><a href="organization.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">기관</a></li>
+                <li><a href="training.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">양육&훈련</a></li>
+                <li><a href="senior.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">청춘대학</a></li>
+                <li><a href="company.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition rounded-b-lg">성도기업</a></li>
             </ul>
         </aside>
 
-        <!-- Right Content Area -->
+        <!-- 메인 콘텐츠 영역 -->
         <main class="flex-1">
             <div class="w-full bg-[#1b315b] rounded-xl h-24 md:h-32 flex flex-col justify-center items-center text-white shadow-md relative overflow-hidden mb-12">
                 <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
@@ -104,8 +55,9 @@
                     <h3 class="text-2xl font-bold text-gray-800">교구 조직</h3>
                 </div>
                 
-                <div class="border border-gray-200 shadow-sm rounded-lg overflow-hidden">
-                    <table class="w-full text-center text-sm md:text-base">
+                <!-- 모바일에서도 잘 보이게 overflow-x-auto 적용 -->
+                <div class="border border-gray-200 shadow-sm rounded-lg overflow-x-auto bg-white">
+                    <table class="w-full text-center text-sm md:text-base whitespace-nowrap">
                         <thead class="bg-[#1b315b] text-white">
                             <tr>
                                 <th class="py-3.5 px-4 font-bold border-r border-white/20 w-1/3">교구</th>
@@ -113,7 +65,7 @@
                                 <th class="py-3.5 px-4 font-bold w-1/3">교구장</th>
                             </tr>
                         </thead>
-                        <tbody class="text-gray-700 bg-white">
+                        <tbody class="text-gray-700">
                             <tr class="border-b border-gray-200 hover:bg-gray-50 transition">
                                 <td class="py-3.5 px-4 font-bold text-gray-900 border-r border-gray-200">1교구</td>
                                 <td class="py-3.5 px-4 border-r border-gray-200">박광섭장로</td>
@@ -178,93 +130,13 @@
                     </table>
                 </div>
             </div>
-
         </main>
     </div>
 
-    <!-- 통합 하단 푸터 -->
-    <footer class="bg-white border-t border-gray-100 py-10 md:py-16 mt-10">
-        <div class="max-w-6xl mx-auto px-4 flex flex-col items-center text-center">
-            <div class="flex justify-center space-x-4 md:space-x-8 text-sm md:text-base text-gray-600 font-medium mb-8">
-                <a href="#" class="hover:text-[#1a3668]">사이트맵</a>
-                <span class="text-gray-300">|</span>
-                <a href="#" class="hover:text-[#1a3668]">개인정보처리방침</a>
-                <span class="text-gray-300">|</span>
-                <a href="#" class="hover:text-[#1a3668]">이메일무단수집거부</a>
-            </div>
-            <h3 class="font-extrabold text-3xl md:text-5xl text-[#3b82f6] mb-4 md:mb-6 tracking-tight">여주성결교회</h3>
-            <div class="text-sm md:text-lg text-gray-500 space-y-1 md:space-y-2 mb-8">
-                <p>(12625) 경기도 여주시 우암로 96 (하동, 여주성결교회)</p>
-                <p>TEL . 031-882-9966 &nbsp;&nbsp; FAX . 031-882-9965</p>
-            </div>
-            <div class="text-xs md:text-base text-gray-400">
-                <p>COPYRIGHT (C) 여주성결교회. All Rights Reserved.</p>
-            </div>
-        </div>
-    </footer>
+    <!-- 마법의 파일 연결 2: 공통 하단 푸터 & 사이트맵 -->
+    <div id="common-footer"></div>
+    <div id="common-sitemap"></div>
 
-    <!-- 사이트맵 팝업 모달 -->
-    <div id="sitemap-modal" class="fixed inset-0 z-[100] hidden">
-        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="toggleSitemap()"></div>
-        <div class="relative w-full max-w-[1000px] mx-auto mt-16 md:mt-24 bg-white shadow-2xl z-10 flex flex-col max-h-[80vh]">
-            <div class="bg-black text-white px-6 py-4 flex justify-between items-center shrink-0">
-                <div class="flex items-center gap-4">
-                    <h2 class="text-2xl font-extrabold tracking-tight">사이트맵</h2>
-                    <span class="text-sm font-light text-gray-300 hidden sm:inline-block">홈페이지에 오신것을 진심으로 환영합니다. 메뉴를 클릭하시면 해당페이지로 이동합니다.</span>
-                </div>
-                <button onclick="toggleSitemap()" class="text-white hover:text-gray-300 transition-colors">
-                    <i class="fas fa-times text-2xl"></i>
-                </button>
-            </div>
-            
-            <div id="sitemap-content" class="p-8 md:p-10 overflow-y-auto">
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-x-8 gap-y-12">
-                    <!-- ... 사이트맵 내용은 이전과 동일하게 유지됩니다 ... -->
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function toggleMobileSubMenu(menuId) {
-            const targetMenu = document.getElementById(menuId);
-            const otherMenuId = menuId === 'menu-depth1' ? 'menu-depth2' : 'menu-depth1';
-            const otherMenu = document.getElementById(otherMenuId);
-            if (otherMenu && !otherMenu.classList.contains('hidden')) {
-                otherMenu.classList.add('hidden');
-                const otherIcon = otherMenu.previousElementSibling.querySelector('.fas');
-                if(otherIcon) {
-                    otherIcon.classList.remove('fa-minus');
-                    otherIcon.classList.add('fa-plus');
-                }
-            }
-            if (targetMenu) {
-                targetMenu.classList.toggle('hidden');
-                const icon = targetMenu.previousElementSibling.querySelector('.fas');
-                if(icon) {
-                    if(targetMenu.classList.contains('hidden')) {
-                        icon.classList.remove('fa-minus');
-                        icon.classList.add('fa-plus');
-                    } else {
-                        icon.classList.remove('fa-plus');
-                        icon.classList.add('fa-minus');
-                    }
-                }
-            }
-        }
-        function toggleSitemap() {
-            const modal = document.getElementById('sitemap-modal');
-            if (modal.classList.contains('hidden')) {
-                modal.classList.remove('hidden');
-                document.body.style.overflow = 'hidden'; 
-            } else {
-                modal.classList.add('hidden');
-                document.body.style.overflow = ''; 
-            }
-        }
-    </script>
-    
-    <!-- ★ 중요: 경로 설정 ★ -->
     <script>const ROOT_PATH = "../";</script>
     <script src="../js/common.js"></script>
 </body>
