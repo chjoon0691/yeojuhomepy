@@ -10,8 +10,6 @@
     <style>
         @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
         body { font-family: 'Pretendard', sans-serif; background-color: #ffffff; overflow-x: hidden; }
-        #mobile-menu { display: none; }
-        #mobile-menu.open { display: flex; }
     </style>
 </head>
 <body class="text-gray-800">
@@ -27,46 +25,10 @@
         </div>
     </section>
 
-    <!-- 모바일 전용 2차 메뉴 바 -->
-    <div class="md:hidden border-b border-gray-300 bg-white relative z-30 shadow-sm">
-        <div class="flex text-sm md:text-base">
-            <a href="../index.html" class="px-4 py-3 border-r border-gray-300 text-gray-600 flex items-center justify-center hover:bg-gray-50">Home</a>
-            <div class="flex-1 border-r border-gray-300 relative">
-                <button onclick="toggleMobileSubMenu('menu-depth1')" class="w-full flex justify-between items-center px-4 py-3 text-gray-800 focus:outline-none">
-                    <span>다음세대</span>
-                    <i class="fas fa-plus text-gray-400 text-xs"></i>
-                </button>
-                <ul id="menu-depth1" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
-                    <li class="border-b border-gray-100"><a href="../welcome/greeting.html" class="block px-4 py-3 hover:bg-gray-50">환영합니다</a></li>
-                    <li class="border-b border-gray-100"><a href="../word/sunday.html" class="block px-4 py-3 hover:bg-gray-50">말씀과 찬양</a></li>
-                    <li class="border-b border-gray-100"><a href="../community/parish.html" class="block px-4 py-3 hover:bg-gray-50">공동체</a></li>
-                    <li class="border-b border-gray-100"><a href="infant.html" class="block px-4 py-3 text-blue-600 font-bold bg-gray-50">다음세대</a></li>
-                    <li class="border-b border-gray-100"><a href="../mission/evangelism.html" class="block px-4 py-3 hover:bg-gray-50">전도와 선교</a></li>
-                    <li class="border-b border-gray-100"><a href="../news/weekly.html" class="block px-4 py-3 hover:bg-gray-50">교회소식</a></li>
-                    <li><a href="../service/application.html" class="block px-4 py-3 hover:bg-gray-50">행정서비스</a></li>
-                </ul>
-            </div>
-            <div class="flex-1 relative">
-                <button onclick="toggleMobileSubMenu('menu-depth2')" class="w-full flex justify-between items-center px-4 py-3 text-gray-800 focus:outline-none">
-                    <span>청년사역위원회</span>
-                    <i class="fas fa-plus text-gray-400 text-xs"></i>
-                </button>
-                <ul id="menu-depth2" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
-                    <li class="border-b border-gray-100"><a href="infant.html" class="block px-4 py-3 hover:bg-gray-50">영아부</a></li>
-                    <li class="border-b border-gray-100"><a href="kindergarten.html" class="block px-4 py-3 hover:bg-gray-50">유치부</a></li>
-                    <li class="border-b border-gray-100"><a href="children.html" class="block px-4 py-3 hover:bg-gray-50">유년부</a></li>
-                    <li class="border-b border-gray-100"><a href="elementary.html" class="block px-4 py-3 hover:bg-gray-50">초등부</a></li>
-                    <li class="border-b border-gray-100"><a href="awana.html" class="block px-4 py-3 hover:bg-gray-50">어와나</a></li>
-                    <li class="border-b border-gray-100"><a href="middle.html" class="block px-4 py-3 hover:bg-gray-50">중등부</a></li>
-                    <li class="border-b border-gray-100"><a href="high.html" class="block px-4 py-3 hover:bg-gray-50">고등부</a></li>
-                    <li><a href="youth.html" class="block px-4 py-3 text-blue-600 font-bold bg-gray-50">청년사역위원회</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
+    <!-- Main Content Layout -->
     <div class="max-w-7xl mx-auto px-4 py-12 md:py-20 flex flex-col md:flex-row gap-10">
-        <!-- 사이드바 -->
+        
+        <!-- 좌측 사이드바 -->
         <aside class="hidden md:block w-64 flex-shrink-0">
             <div class="bg-[#6b8cba] text-white text-center py-4 text-xl font-bold rounded-t-lg">다음세대</div>
             <ul class="border border-t-0 border-gray-200 flex flex-col">
@@ -100,9 +62,9 @@
                     </p>
                 </div>
 
-                <!-- 사진 영역 -->
+                <!-- 사진 영역 (교체 완료) -->
                 <div class="w-full bg-gray-50">
-                    <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="청년부 모임 사진" class="w-full h-64 md:h-[450px] object-cover border-y-4 border-[#3b82f6]">
+                    <img src="https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/nextgen/images/%EC%B2%AD%EB%85%84%EB%B6%80.jpg" alt="청년부 모임 사진" class="w-full h-64 md:h-[450px] object-cover border-y-4 border-[#3b82f6]">
                 </div>
 
                 <!-- 하단 정보 리스트 영역 -->
@@ -122,7 +84,7 @@
                         </p>
                     </div>
 
-                    <!-- 예배안내 -->
+                    <!-- 예배안내 (장소 변경 완료) -->
                     <div class="bg-gray-50 p-6 rounded-xl border border-gray-100 group hover:shadow-md transition duration-300">
                         <div class="flex items-center gap-3 mb-3">
                             <div class="w-10 h-10 rounded-full bg-[#e0e7ff] flex items-center justify-center text-[#3b82f6] group-hover:bg-[#3b82f6] group-hover:text-white transition duration-300">
@@ -132,7 +94,7 @@
                         </div>
                         <p class="text-gray-700 text-base md:text-lg leading-relaxed pl-13 md:pl-14">
                             주일 오후 1시 30분 <br>
-                            교육관 청년부실 (1층)
+                            비전홀 (본관 2층)
                         </p>
                     </div>
 
@@ -160,34 +122,6 @@
     <div id="common-footer"></div>
     <div id="common-sitemap"></div>
 
-    <script>
-        function toggleMobileSubMenu(menuId) {
-            const targetMenu = document.getElementById(menuId);
-            const otherMenuId = menuId === 'menu-depth1' ? 'menu-depth2' : 'menu-depth1';
-            const otherMenu = document.getElementById(otherMenuId);
-            if (otherMenu && !otherMenu.classList.contains('hidden')) {
-                otherMenu.classList.add('hidden');
-                const otherIcon = otherMenu.previousElementSibling.querySelector('.fas');
-                if(otherIcon) {
-                    otherIcon.classList.remove('fa-minus');
-                    otherIcon.classList.add('fa-plus');
-                }
-            }
-            if (targetMenu) {
-                targetMenu.classList.toggle('hidden');
-                const icon = targetMenu.previousElementSibling.querySelector('.fas');
-                if(icon) {
-                    if(targetMenu.classList.contains('hidden')) {
-                        icon.classList.remove('fa-minus');
-                        icon.classList.add('fa-plus');
-                    } else {
-                        icon.classList.remove('fa-plus');
-                        icon.classList.add('fa-minus');
-                    }
-                }
-            }
-        }
-    </script>
     <script>const ROOT_PATH = "../";</script>
     <script src="../js/common.js"></script>
 </body>
