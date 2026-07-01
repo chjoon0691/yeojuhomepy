@@ -10,8 +10,6 @@
     <style>
         @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
         body { font-family: 'Pretendard', sans-serif; background-color: #ffffff; overflow-x: hidden; }
-        #mobile-menu { display: none; }
-        #mobile-menu.open { display: flex; }
     </style>
 </head>
 <body class="text-gray-800">
@@ -27,41 +25,6 @@
         </div>
     </section>
 
-    <!-- 모바일 전용 2차 메뉴 바 -->
-    <div class="md:hidden border-b border-gray-300 bg-white relative z-30 shadow-sm">
-        <div class="flex text-sm md:text-base">
-            <a href="../index.html" class="px-4 py-3 border-r border-gray-300 text-gray-600 flex items-center justify-center hover:bg-gray-50">Home</a>
-            <div class="flex-1 border-r border-gray-300 relative">
-                <button onclick="toggleMobileSubMenu('menu-depth1')" class="w-full flex justify-between items-center px-4 py-3 text-gray-800 focus:outline-none">
-                    <span>전도와 선교</span>
-                    <i class="fas fa-plus text-gray-400 text-xs"></i>
-                </button>
-                <ul id="menu-depth1" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
-                    <li class="border-b border-gray-100"><a href="../welcome/greeting.html" class="block px-4 py-3 hover:bg-gray-50">환영합니다</a></li>
-                    <li class="border-b border-gray-100"><a href="../word/sunday.html" class="block px-4 py-3 hover:bg-gray-50">말씀과 찬양</a></li>
-                    <li class="border-b border-gray-100"><a href="../community/parish.html" class="block px-4 py-3 hover:bg-gray-50">공동체</a></li>
-                    <li class="border-b border-gray-100"><a href="../nextgen/infant.html" class="block px-4 py-3 hover:bg-gray-50">다음세대</a></li>
-                    <li class="border-b border-gray-100"><a href="evangelism.html" class="block px-4 py-3 text-blue-600 font-bold bg-gray-50">전도와 선교</a></li>
-                    <li class="border-b border-gray-100"><a href="../news/weekly.html" class="block px-4 py-3 hover:bg-gray-50">교회소식</a></li>
-                    <li><a href="../service/application.html" class="block px-4 py-3 hover:bg-gray-50">행정서비스</a></li>
-                </ul>
-            </div>
-            <div class="flex-1 relative">
-                <button onclick="toggleMobileSubMenu('menu-depth2')" class="w-full flex justify-between items-center px-4 py-3 text-gray-800 focus:outline-none">
-                    <span>국내선교</span>
-                    <i class="fas fa-plus text-gray-400 text-xs"></i>
-                </button>
-                <ul id="menu-depth2" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
-                    <li class="border-b border-gray-100"><a href="evangelism.html" class="block px-4 py-3 hover:bg-gray-50">전도대</a></li>
-                    <li class="border-b border-gray-100"><a href="domestic.html" class="block px-4 py-3 text-blue-600 font-bold bg-gray-50">국내선교</a></li>
-                    <li class="border-b border-gray-100"><a href="overseas.html" class="block px-4 py-3 hover:bg-gray-50">해외선교</a></li>
-                    <li class="border-b border-gray-100"><a href="news.html" class="block px-4 py-3 hover:bg-gray-50">선교지 소식</a></li>
-                    <li><a href="club.html" class="block px-4 py-3 hover:bg-gray-50">동호인선교회</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
     <!-- Main Content Layout -->
     <div class="max-w-7xl mx-auto px-4 py-12 md:py-20 flex flex-col md:flex-row gap-10">
         
@@ -70,7 +33,7 @@
             <div class="bg-[#6b8cba] text-white text-center py-4 text-xl font-bold rounded-t-lg">전도와 선교</div>
             <ul class="border border-t-0 border-gray-200 flex flex-col">
                 <li><a href="evangelism.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">전도대</a></li>
-                <li><a href="domestic.html" class="flex justify-between items-center px-5 py-3 text-[#3b82f6] font-bold bg-gray-50 transition border-b border-gray-200">국내선교 <i class="fas fa-chevron-right text-xs"></i></a></li>
+                <li><a href="domestic.html" class="flex justify-between items-center px-5 py-3 text-[#3b82f6] font-bold bg-gray-50 hover:bg-gray-100 transition border-b border-gray-200">국내선교 <i class="fas fa-chevron-right text-xs"></i></a></li>
                 <li><a href="overseas.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">해외선교</a></li>
                 <li><a href="news.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">선교지 소식</a></li>
                 <li><a href="club.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition rounded-b-lg">동호인선교회</a></li>
@@ -111,19 +74,19 @@
                         <tbody class="text-gray-700 bg-white">
                             <tr class="border-b border-gray-200">
                                 <td class="py-3.5 px-4 font-bold text-[#1b315b] border-r border-gray-200">신둔교회</td>
-                                <td class="py-3.5 px-4 border-r border-gray-200">강진용 목사님</td>
+                                <td class="py-3.5 px-4 border-r border-gray-200">강진용 목사</td>
                                 <td class="py-3.5 px-4 font-bold text-[#1b315b] border-r border-gray-200 bg-gray-50">미단시티교회</td>
                                 <td class="py-3.5 px-4 bg-gray-50">박현석 목사</td>
                             </tr>
                             <tr class="border-b border-gray-200">
                                 <td class="py-3.5 px-4 font-bold text-[#1b315b] border-r border-gray-200">아둘람교회</td>
-                                <td class="py-3.5 px-4 border-r border-gray-200">권성우 목사님</td>
+                                <td class="py-3.5 px-4 border-r border-gray-200">권성우 목사</td>
                                 <td class="py-3.5 px-4 font-bold text-[#1b315b] border-r border-gray-200 bg-gray-50">새소망교회</td>
                                 <td class="py-3.5 px-4 bg-gray-50">서범근 목사</td>
                             </tr>
                             <tr class="border-b border-gray-200">
                                 <td class="py-3.5 px-4 font-bold text-[#1b315b] border-r border-gray-200">다이룸센터</td>
-                                <td class="py-3.5 px-4 border-r border-gray-200">김대환 목사님</td>
+                                <td class="py-3.5 px-4 border-r border-gray-200">김대환 목사</td>
                                 <td class="py-3.5 px-4 font-bold text-[#1b315b] border-r border-gray-200 bg-gray-50">생수샘교회</td>
                                 <td class="py-3.5 px-4 bg-gray-50">서영범 목사</td>
                             </tr>
@@ -199,19 +162,6 @@
     <div id="common-footer"></div>
     <div id="common-sitemap"></div>
 
-    <script>
-        function toggleMobileSubMenu(menuId) {
-            const targetMenu = document.getElementById(menuId);
-            const otherMenuId = menuId === 'menu-depth1' ? 'menu-depth2' : 'menu-depth1';
-            const otherMenu = document.getElementById(otherMenuId);
-            if (otherMenu && !otherMenu.classList.contains('hidden')) {
-                otherMenu.classList.add('hidden');
-            }
-            if (targetMenu) {
-                targetMenu.classList.toggle('hidden');
-            }
-        }
-    </script>
     <script>const ROOT_PATH = "../";</script>
     <script src="../js/common.js"></script>
 </body>
