@@ -78,7 +78,6 @@
         </div>
     </div>
 
-    <!-- Main Content Layout -->
     <div class="max-w-7xl mx-auto px-4 py-12 md:py-20 flex flex-col md:flex-row gap-10">
         
         <!-- Left Sidebar -->
@@ -88,7 +87,7 @@
                 <li><a href="evangelism.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">전도대</a></li>
                 <li><a href="domestic.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">국내선교</a></li>
                 <li><a href="overseas.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">해외선교</a></li>
-                <li><a href="news.html" class="flex justify-between items-center px-5 py-3 text-[#3b82f6] font-bold bg-gray-50 transition border-b border-gray-200">선교지 소식 <i class="fas fa-chevron-right text-xs"></i></a></li>
+                <li><a href="news.html" class="flex justify-between items-center px-5 py-3 text-[#3b82f6] font-bold bg-gray-50 hover:bg-gray-100 transition border-b border-gray-200">선교지 소식 <i class="fas fa-chevron-right text-xs"></i></a></li>
                 <li><a href="club.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition rounded-b-lg">동호인선교회</a></li>
             </ul>
         </aside>
@@ -117,20 +116,18 @@
                 </div>
             </div>
 
-            <!-- PC Version Table (주보 게시판과 동일하게 '보기' 추가) -->
+            <!-- PC Version Table -->
             <table class="hidden md:table w-full text-center text-sm md:text-base border-t-2 border-gray-800 table-fixed">
                 <colgroup>
                     <col class="w-[15%]">
-                    <col class="w-[50%]">
-                    <col class="w-[20%]">
-                    <col class="w-[15%]">
+                    <col class="w-[60%]">
+                    <col class="w-[25%]">
                 </colgroup>
                 <thead class="bg-gray-50 text-gray-700 font-bold border-b border-gray-300">
                     <tr>
                         <th class="py-3 px-2">번호</th>
                         <th class="py-3 px-4 text-left">제목</th>
                         <th class="py-3 px-2 text-gray-500">등록일</th>
-                        <th class="py-3 px-2">보기</th>
                     </tr>
                 </thead>
                 <tbody id="news-list-pc" class="text-gray-600">
@@ -276,22 +273,18 @@
             mobileContainer.innerHTML = '';
 
             pageData.forEach(item => {
-                // PC Version (보기 버튼 추가)
+                // PC Version (사진 아이콘 추가)
                 const tr = document.createElement('tr');
                 tr.className = 'border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer group';
                 tr.onclick = () => openModal(item.id);
                 
                 tr.innerHTML = `
                     <td class="py-4 text-gray-400">${item.id}</td>
-                    <td class="py-4 px-4 text-left font-bold text-gray-800 group-hover:text-[#3b82f6] transition flex items-center">
-                        <span class="truncate max-w-full">${item.title}</span>
+                    <td class="py-4 px-4 text-left font-bold text-gray-800 group-hover:text-[#3b82f6] transition flex items-center gap-2">
+                        <span class="truncate max-w-[90%]">${item.title}</span>
+                        <i class="far fa-file-image text-gray-400 text-sm"></i>
                     </td>
                     <td class="py-4 text-sm font-medium text-gray-500">${item.date}</td>
-                    <td class="py-4">
-                        <button class="bg-[#5c5c5c] group-hover:bg-[#1b315b] text-white rounded w-8 h-6 flex items-center justify-center mx-auto transition shadow-sm">
-                            <i class="far fa-file-image text-xs"></i>
-                        </button>
-                    </td>
                 `;
                 pcTbody.appendChild(tr);
 
@@ -302,11 +295,11 @@
                 mDiv.innerHTML = `
                     <div class="w-14 text-center text-gray-400 text-sm font-medium shrink-0">${item.id}</div>
                     <div class="flex-1 pl-2 pr-4 relative">
-                        <div class="text-gray-800 text-[15px] font-bold mb-0.5 truncate pr-8">${item.title}</div>
-                        <div class="text-gray-500 text-[12px] font-medium">${item.date}</div>
-                        <div class="absolute top-1/2 right-2 -translate-y-1/2 text-gray-400">
-                            <i class="far fa-file-image text-lg"></i>
+                        <div class="text-gray-800 text-[15px] font-bold mb-0.5 flex items-center gap-1.5">
+                            <span class="truncate max-w-[90%]">${item.title}</span>
+                            <i class="far fa-file-image text-gray-400 text-[11px] shrink-0 mt-0.5"></i>
                         </div>
+                        <div class="text-gray-500 text-[12px] font-medium">${item.date}</div>
                     </div>
                 `;
                 mobileContainer.appendChild(mDiv);
@@ -400,7 +393,7 @@
             paginationContainer.appendChild(nextGroupBtn);
         }
 
-        /* * ★ 팝업창 확장자 자동 탐색 다중 이미지 로딩 시스템 ★ 
+        /* * ★ 팝업창 다중 이미지 로딩 시스템 ★ 
          */
         function openModal(id) {
             const data = newsData.find(n => n.id === id);
