@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>선교지 소식 - 여주성결교회</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
         body { font-family: 'Pretendard', sans-serif; background-color: #ffffff; overflow-x: hidden; }
-        #mobile-menu { display: none; }
-        #mobile-menu.open { display: flex; }
+        
         /* 페이지네이션 스타일 */
         .page-link {
             display: inline-flex; align-items: center; justify-content: center;
@@ -18,151 +18,39 @@
             font-size: 14px; transition: all 0.2s; margin: 0 2px;
         }
         .page-link:hover { background-color: #f3f4f6; color: #1b315b; }
-        .page-link.active { border-color: #1b315b; color: #1b315b; font-weight: bold; }
+        .page-link.active { border-color: #1b315b; color: #ffffff; font-weight: bold; background-color: #1b315b; }
         
         /* 팝업 모달 스크롤바 디자인 */
         .modal-scroll::-webkit-scrollbar { width: 8px; }
         .modal-scroll::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
         .modal-scroll::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 4px; }
         .modal-scroll::-webkit-scrollbar-thumb:hover { background: #a8a8a8; }
+
+        /* 확대 이미지 닫기 줌 아웃 커서 */
+        .zoom-active { cursor: zoom-out; }
     </style>
 </head>
 <body class="text-gray-800">
 
-    <header class="bg-[#244177] text-white w-full z-50 relative">
-        <div class="hidden md:block border-b border-white/20 bg-[#1b315b]">
-            <div class="max-w-7xl mx-auto px-4 py-2 flex justify-end items-center space-x-6 text-sm font-light">
-                <a href="https://www.youtube.com/@여주성결교회" target="_blank" class="hover:text-blue-300 flex items-center gap-1.5 transition"><i class="fab fa-youtube text-red-500 text-lg"></i> 유튜브채널</a>
-            </div>
+    <!-- 마법의 파일 연결 1: 공통 상단 헤더 -->
+    <div id="common-header"></div>
+
+    <section class="bg-[#102242] py-12 md:py-20 text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-luminosity"></div>
+        <div class="relative z-10">
+            <h2 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-2">전도와 선교</h2>
+            <p class="text-blue-200 text-sm md:text-base">Evangelism & Mission</p>
         </div>
-        
-        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="../index.html" class="flex items-center gap-1 cursor-pointer z-50">
-                <img src="../images/교회마크만01.png" alt="여주성결교회 마크" class="h-8 md:h-11 w-auto object-contain">
-                <img src="../images/여주성결교회 로고타입1_3.png" alt="여주성결교회 로고" class="h-6 md:h-8 w-auto object-contain brightness-0 invert">
-            </a>
-            
-            <button class="md:hidden border border-white/40 w-10 h-10 flex items-center justify-center rounded text-white text-xl z-50 hover:bg-white/10 transition" onclick="document.getElementById('mobile-menu').classList.toggle('open')">
-                <i class="fas fa-bars"></i>
-            </button>
+    </section>
 
-            <nav class="hidden md:flex items-center space-x-8 text-lg font-medium">
-                <div class="relative group py-2">
-                    <a href="../welcome/greeting.html" class="hover:text-blue-300 transition">환영합니다</a>
-                    <div class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                        <div class="w-48 bg-white text-gray-800 rounded-2xl shadow-xl py-3 border border-gray-100">
-                            <a href="../welcome/greeting.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">인사말</a>
-                            <a href="../welcome/history/history.html" class="flex justify-between items-center px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">교회연혁</a>
-                            <a href="../welcome/serve/serve.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">섬기는 분들</a>
-                            <a href="../welcome/worship/worship.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">예배안내</a>
-                            <a href="../welcome/bus/bus.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">차량운행안내</a>
-                            <a href="../welcome/map/map.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">오시는길</a>
-                            <a href="../welcome/newcomer/newcomer.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">새가족안내</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="relative group py-2">
-                    <a href="../word/sunday.html" class="hover:text-blue-300 transition">말씀과 찬양</a>
-                    <div class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                        <div class="w-48 bg-white text-gray-800 rounded-2xl shadow-xl py-3 border border-gray-100">
-                            <a href="../word/sunday.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">주일 예배</a>
-                            <a href="#" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">주일설교요약</a>
-                            <a href="#" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">주일 오후 예배</a>
-                            <a href="#" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">수요 예배</a>
-                            <a href="#" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">특별집회</a>
-                            <a href="../word/praise.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">찬양대/중창단</a>
-                            <a href="../word/media.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">여주미디어</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="relative group py-2">
-                    <a href="../community/parish.html" class="hover:text-blue-300 transition">공동체</a>
-                    <div class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                        <div class="w-48 bg-white text-gray-800 rounded-2xl shadow-xl py-3 border border-gray-100">
-                            <a href="../community/parish.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">교구</a>
-                            <a href="../community/organization.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">기관</a>
-                            <a href="../community/training.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">양육&훈련</a>
-                            <a href="../community/senior.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">청춘대학</a>
-                            <a href="../community/company.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">성도기업</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="relative group py-2">
-                    <a href="../nextgen/infant.html" class="hover:text-blue-300 transition">다음세대</a>
-                    <div class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                        <div class="w-48 bg-white text-gray-800 rounded-2xl shadow-xl py-3 border border-gray-100">
-                            <a href="../nextgen/infant.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">영아부</a>
-                            <a href="../nextgen/kindergarten.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">유치부</a>
-                            <a href="../nextgen/children.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">유년부</a>
-                            <a href="../nextgen/elementary.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">초등부</a>
-                            <a href="../nextgen/awana.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">어와나</a>
-                            <a href="../nextgen/middle.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">중등부</a>
-                            <a href="../nextgen/high.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">고등부</a>
-                            <a href="../nextgen/youth.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">청년사역위원회</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="relative group py-2">
-                    <a href="evangelism.html" class="text-blue-300 font-bold transition">전도와 선교</a>
-                    <div class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                        <div class="w-48 bg-white text-gray-800 rounded-2xl shadow-xl py-3 border border-gray-100">
-                            <a href="evangelism.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">전도대</a>
-                            <a href="domestic.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">국내선교</a>
-                            <a href="overseas.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">해외선교</a>
-                            <a href="news.html" class="block px-6 py-2.5 text-base font-medium text-[#3b82f6] bg-gray-50 transition">선교지 소식</a>
-                            <a href="club.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">동호인선교회</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="relative group py-2">
-                    <a href="#" class="hover:text-blue-300 transition">교회소식</a>
-                    <div class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                        <div class="w-48 bg-white text-gray-800 rounded-2xl shadow-xl py-3 border border-gray-100">
-                            <a href="#" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">교회주보</a>
-                            <a href="#" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">새가족소식</a>
-                            <a href="#" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">성도소식</a>
-                            <a href="#" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">행사사진</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="relative group py-2">
-                    <a href="#" class="hover:text-blue-300 transition">행정서비스</a>
-                    <div class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                        <div class="w-48 bg-white text-gray-800 rounded-2xl shadow-xl py-3 border border-gray-100">
-                            <a href="#" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">신청서류</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <button class="border border-white/40 w-10 h-10 hidden md:flex items-center justify-center rounded text-white text-xl hover:bg-white/10 transition" onclick="toggleSitemap()">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </nav>
-        </div>
-
-        <div id="mobile-menu" class="absolute top-full left-0 w-full bg-[#1a3668] flex-col items-center py-4 space-y-4 shadow-xl z-50 text-lg">
-            <a href="../welcome/greeting.html" class="text-white hover:text-blue-300">환영합니다</a>
-            <a href="../word/sunday.html" class="text-white hover:text-blue-300">말씀과 찬양</a>
-            <a href="../community/parish.html" class="text-white hover:text-blue-300">공동체</a>
-            <a href="../nextgen/infant.html" class="text-white hover:text-blue-300">다음세대</a>
-            <a href="evangelism.html" class="text-blue-300 font-bold">전도와 선교</a>
-            <a href="#" class="text-white hover:text-blue-300">교회소식</a>
-            <a href="#" class="text-white hover:text-blue-300">행정서비스</a>
-        </div>
-    </header>
-
+    <!-- 모바일 전용 2차 메뉴 바 -->
     <div class="md:hidden border-b border-gray-300 bg-white relative z-30 shadow-sm">
         <div class="flex text-sm md:text-base">
             <a href="../index.html" class="px-4 py-3 border-r border-gray-300 text-gray-600 flex items-center justify-center hover:bg-gray-50">Home</a>
             <div class="flex-1 border-r border-gray-300 relative">
                 <button onclick="toggleMobileSubMenu('menu-depth1')" class="w-full flex justify-between items-center px-4 py-3 text-gray-800 focus:outline-none">
-                    <span>전도와 선교</span><i class="fas fa-plus text-gray-400 text-xs"></i>
+                    <span>전도와 선교</span>
+                    <i class="fas fa-plus text-gray-400 text-xs"></i>
                 </button>
                 <ul id="menu-depth1" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
                     <li class="border-b border-gray-100"><a href="../welcome/greeting.html" class="block px-4 py-3 hover:bg-gray-50">환영합니다</a></li>
@@ -170,13 +58,14 @@
                     <li class="border-b border-gray-100"><a href="../community/parish.html" class="block px-4 py-3 hover:bg-gray-50">공동체</a></li>
                     <li class="border-b border-gray-100"><a href="../nextgen/infant.html" class="block px-4 py-3 hover:bg-gray-50">다음세대</a></li>
                     <li class="border-b border-gray-100"><a href="evangelism.html" class="block px-4 py-3 text-blue-600 font-bold bg-gray-50">전도와 선교</a></li>
-                    <li class="border-b border-gray-100"><a href="#" class="block px-4 py-3 hover:bg-gray-50">교회소식</a></li>
-                    <li><a href="#" class="block px-4 py-3 hover:bg-gray-50">행정서비스</a></li>
+                    <li class="border-b border-gray-100"><a href="../news/weekly.html" class="block px-4 py-3 hover:bg-gray-50">교회소식</a></li>
+                    <li><a href="../service/application.html" class="block px-4 py-3 hover:bg-gray-50">행정서비스</a></li>
                 </ul>
             </div>
             <div class="flex-1 relative">
                 <button onclick="toggleMobileSubMenu('menu-depth2')" class="w-full flex justify-between items-center px-4 py-3 text-gray-800 focus:outline-none">
-                    <span>선교지 소식</span><i class="fas fa-plus text-gray-400 text-xs"></i>
+                    <span>선교지 소식</span>
+                    <i class="fas fa-plus text-gray-400 text-xs"></i>
                 </button>
                 <ul id="menu-depth2" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
                     <li class="border-b border-gray-100"><a href="evangelism.html" class="block px-4 py-3 hover:bg-gray-50">전도대</a></li>
@@ -189,8 +78,10 @@
         </div>
     </div>
 
+    <!-- Main Content Layout -->
     <div class="max-w-7xl mx-auto px-4 py-12 md:py-20 flex flex-col md:flex-row gap-10">
         
+        <!-- Left Sidebar -->
         <aside class="hidden md:block w-64 flex-shrink-0">
             <div class="bg-[#6b8cba] text-white text-center py-4 text-xl font-bold rounded-t-lg">전도와 선교</div>
             <ul class="border border-t-0 border-gray-200 flex flex-col">
@@ -202,6 +93,7 @@
             </ul>
         </aside>
 
+        <!-- Right Content Area -->
         <main class="flex-1 relative">
             
             <div class="w-full bg-[#1b315b] rounded-xl h-24 md:h-32 flex flex-col justify-center items-center text-white shadow-md relative overflow-hidden mb-8">
@@ -209,7 +101,11 @@
                 <h3 class="text-2xl md:text-3xl font-extrabold relative z-10 tracking-tight">선교지 소식</h3>
             </div>
 
-            <div class="flex justify-end mb-4 border-b border-gray-200 pb-4">
+            <!-- 검색바 -->
+            <div class="flex flex-col sm:flex-row justify-between items-center mb-4 border-b border-gray-200 pb-4 gap-4">
+                <div class="text-gray-500 text-sm font-medium w-full sm:w-auto text-left pl-1">
+                    <i class="far fa-file-alt text-gray-400 mr-1"></i> 총 <span id="total-count" class="text-blue-600 font-bold">0</span>건의 선교소식
+                </div>
                 <div class="flex border border-gray-300 rounded shadow-sm overflow-hidden bg-white">
                     <select class="px-3 py-1.5 text-sm md:text-base border-r border-gray-300 text-gray-700 focus:outline-none bg-gray-50 cursor-pointer">
                         <option>제목</option>
@@ -221,142 +117,149 @@
                 </div>
             </div>
 
+            <!-- PC Version Table (주보 게시판과 동일하게 '보기' 추가) -->
             <table class="hidden md:table w-full text-center text-sm md:text-base border-t-2 border-gray-800 table-fixed">
                 <colgroup>
                     <col class="w-[15%]">
-                    <col class="w-[65%]">
+                    <col class="w-[50%]">
                     <col class="w-[20%]">
+                    <col class="w-[15%]">
                 </colgroup>
                 <thead class="bg-gray-50 text-gray-700 font-bold border-b border-gray-300">
                     <tr>
                         <th class="py-3 px-2">번호</th>
                         <th class="py-3 px-4 text-left">제목</th>
                         <th class="py-3 px-2 text-gray-500">등록일</th>
+                        <th class="py-3 px-2">보기</th>
                     </tr>
                 </thead>
                 <tbody id="news-list-pc" class="text-gray-600">
-                    </tbody>
+                    <!-- JS 데이터 삽입 -->
+                </tbody>
             </table>
 
-            <div class="md:hidden block w-full border-t-2 border-gray-800">
+            <!-- Mobile Version List -->
+            <div class="md:hidden block w-full border-t-2 border-gray-800 mt-4">
                 <div class="flex bg-gray-50 text-gray-700 font-bold border-b border-gray-300 py-3 text-sm">
                     <div class="w-16 text-center">번호</div>
                     <div class="flex-1 text-center">제목</div>
                 </div>
                 <div id="news-list-mobile-body">
-                    </div>
+                    <!-- JS 데이터 삽입 -->
+                </div>
             </div>
 
-            <div id="pagination" class="flex justify-center items-center mt-8 mb-6 flex-wrap gap-y-2"></div>
+            <!-- 페이지네이션 -->
+            <div id="pagination" class="flex justify-center items-center mt-8 mb-6 flex-wrap gap-y-2 gap-x-1"></div>
 
         </main>
     </div>
 
-    <footer class="bg-white border-t border-gray-100 py-10 md:py-16 mt-10">
-        <div class="max-w-6xl mx-auto px-4 flex flex-col items-center text-center">
-            <div class="flex justify-center space-x-4 md:space-x-8 text-sm md:text-base text-gray-600 font-medium mb-8">
-                <a href="#" class="hover:text-[#1a3668]">사이트맵</a>
-                <span class="text-gray-300">|</span>
-                <a href="#" class="hover:text-[#1a3668]">개인정보처리방침</a>
-                <span class="text-gray-300">|</span>
-                <a href="#" class="hover:text-[#1a3668]">이메일무단수집거부</a>
-            </div>
-            <h3 class="font-extrabold text-3xl md:text-5xl text-[#3b82f6] mb-4 md:mb-6 tracking-tight">여주성결교회</h3>
-            <div class="text-sm md:text-lg text-gray-500 space-y-1 md:space-y-2 mb-8">
-                <p>(12625) 경기도 여주시 우암로 96 (하동, 여주성결교회)</p>
-                <p>TEL . 031-882-9966 &nbsp;&nbsp; FAX . 031-882-9965</p>
-            </div>
-            <div class="text-xs md:text-base text-gray-400">
-                <p>COPYRIGHT (C) 여주성결교회. All Rights Reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <div id="sitemap-modal" class="fixed inset-0 z-[100] hidden">
-        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="toggleSitemap()"></div>
-        <div class="relative w-full max-w-[1000px] mx-auto mt-16 md:mt-24 bg-white shadow-2xl z-10 flex flex-col max-h-[80vh]">
-            <div class="bg-black text-white px-6 py-4 flex justify-between items-center shrink-0">
-                <div class="flex items-center gap-4">
-                    <h2 class="text-2xl font-extrabold tracking-tight">사이트맵</h2>
-                    <span class="text-sm font-light text-gray-300 hidden sm:inline-block">홈페이지에 오신것을 진심으로 환영합니다. 메뉴를 클릭하시면 해당페이지로 이동합니다.</span>
-                </div>
-                <button onclick="toggleSitemap()" class="text-white hover:text-gray-300 transition-colors">
-                    <i class="fas fa-times text-2xl"></i>
-                </button>
-            </div>
-            
-            <div id="sitemap-content" class="p-8 md:p-10 overflow-y-auto">
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-x-8 gap-y-12">
-                    <!-- 사이트맵 컨텐츠 동일 -->
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <!-- ★ 다중 사진 팝업 모달창 ★ -->
     <div id="news-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6">
         <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="closeModal()"></div>
-        
-        <div class="relative w-full max-w-3xl bg-white shadow-2xl z-10 flex flex-col max-h-[90vh] rounded-xl overflow-hidden border-t-[6px] border-[#3b82f6]">
+        <div class="relative w-full max-w-4xl bg-white shadow-2xl z-10 flex flex-col max-h-[90vh] rounded-xl overflow-hidden border-t-[6px] border-[#3b82f6]">
+            <!-- 모달 헤더 -->
             <div class="bg-white text-gray-800 px-6 py-5 border-b border-gray-200 flex justify-between items-start shrink-0">
                 <div class="pr-6">
-                    <h2 id="modal-title" class="text-xl md:text-2xl font-extrabold tracking-tight mb-1">[선교지 소식] 제목</h2>
-                    <p id="modal-date" class="text-sm text-gray-500 font-medium"><i class="far fa-calendar-alt mr-1"></i> 등록일 : 2026.06.05</p>
+                    <h2 id="modal-title" class="text-xl md:text-2xl font-extrabold tracking-tight mb-1">제목</h2>
+                    <p id="modal-date" class="text-sm text-gray-500 font-medium"><i class="far fa-calendar-alt mr-1"></i> 등록일 : </p>
                 </div>
-                <button onclick="closeModal()" class="text-gray-400 hover:text-red-500 transition-colors focus:outline-none">
-                    <i class="fas fa-times text-2xl"></i>
-                </button>
+                <div class="flex items-center gap-2 shrink-0">
+                    <button onclick="closeModal()" class="text-gray-400 hover:text-red-500 transition-colors focus:outline-none p-2">
+                        <i class="fas fa-times text-3xl"></i>
+                    </button>
+                </div>
             </div>
             
-            <div class="p-6 md:p-8 overflow-y-auto flex-1 bg-gray-50 modal-scroll">
-                <div id="modal-image-container" class="rounded-lg overflow-hidden border border-gray-200 shadow-sm bg-white p-2 mb-6 hidden">
-                    <img id="modal-image" src="" alt="선교지 소식 사진" class="w-full h-auto object-contain rounded">
-                </div>
-                
-                <div class="bg-white p-6 md:p-8 rounded-lg border border-gray-200 shadow-sm text-gray-700 leading-relaxed text-[15px] md:text-base">
-                    <div id="modal-content" class="space-y-4">
-                        </div>
+            <!-- 모달 콘텐츠 -->
+            <div class="p-6 md:p-8 overflow-y-auto flex-1 bg-gray-100 modal-scroll flex flex-col items-center gap-6 relative" id="modal-image-container">
+                <div id="loading-msg" class="text-gray-500 font-bold py-10 flex flex-col items-center gap-3">
+                    <i class="fas fa-spinner fa-spin text-3xl text-blue-500"></i>
+                    <span>선교지 소식을 불러오는 중입니다...</span>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- ★ 이미지 전체화면 확대 모달창 ★ -->
+    <div id="zoom-modal" class="fixed inset-0 z-[110] hidden items-center justify-center bg-black/90 backdrop-blur-md" onclick="closeZoom()">
+        <button class="absolute top-6 right-6 text-white/70 hover:text-white transition focus:outline-none z-[120]" onclick="closeZoom()">
+            <i class="fas fa-times text-4xl"></i>
+        </button>
+        <div class="w-full h-full flex items-center justify-center p-2 sm:p-10 overflow-auto modal-scroll zoom-active">
+            <img id="zoom-image" src="" alt="선교편지 확대" class="max-w-full max-h-none md:max-h-full object-contain shadow-2xl">
+        </div>
+    </div>
+
+    <!-- 마법의 파일 연결 2: 공통 하단 푸터 & 사이트맵 -->
+    <div id="common-footer"></div>
+    <div id="common-sitemap"></div>
+
     <script>
-        // 선교지 소식 데이터 (사진의 목록과 내용 참조)
-        const newsData = [
-            {
-                id: 43,
-                title: "파키스탄 최혜신 선교사님 - 2026년 6월",
-                date: "2026.06.05",
-                hasImage: true,
-                imageUrl: "https://images.unsplash.com/photo-1540455580005-4f4edb75ed85?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80", // 임시 파키스탄 사역 사진
-                content: `
-                    <h3 class="text-xl font-bold text-[#1b315b] mb-4">하나님을 기쁘시게 하는 자들은 복 되다</h3>
-                    <p>늘 주 안에서 평안하시기를 기도합니다. 이곳은 벌써 낮에 45도를 웃돌며 체감온도를 올리고 두터운 먼지바람이 불고 수박, 살구, 멜론, 복숭아 등 거리에는 달고 맛있는 과일들로 가득합니다. 뜨거운 햇빛 내리쬐는 이 달콤한 과일들 만큼 고난과 인내는 힘들지만 그로 인해 더 달콤하고 맛있는 열매가 우리의 삶 속에 가득 맺혀지기를 소망합니다.</p>
-                    <div class="mt-6 mb-2"><strong class="bg-[#d1e5df] text-[#1a5b48] px-2 py-1 rounded text-sm">이슬라마바드 사역</strong></div>
-                    <p>지난 5월에 아내와 이슬라마바드를 방문하여 형제들과 교제하는 시간을 가졌습니다. 무엇보다 제자들이 세워져가고 있고 말씀을 통해 변화되는 모습에 큰 감사를 드립니다.</p>
-                    <div class="mt-6 mb-2"><strong class="bg-[#d1e5df] text-[#1a5b48] px-2 py-1 rounded text-sm">감사와 기도제목</strong></div>
-                    <ul class="list-disc pl-5 space-y-2 mt-2">
-                        <li>불안정한 중동 지역의 경제와 상황이 더 이상 커지지 않고 속히 평안을 찾게 하소서.</li>
-                        <li>계속해서 간사와 학생들을 코칭하기 위해 월 2회 줌 미팅을 진행하고 있는데 이 사역에 지혜를 주시고 준비된 대학생들이 연결되게 하소서.</li>
-                        <li>사역에 지혜를 주시고, 육신의 건강을 눈동자 같이 지켜 주옵소서.</li>
-                    </ul>
-                `
-            },
-            { id: 42, title: "파키스탄 최혜신 선교사님 - 2026년 5월", date: "2026.05.22", hasImage: false, imageUrl: "", content: "<p>선교 편지 내용이 준비 중입니다.</p>" },
-            { id: 41, title: "러시아 이훈희 선교사님 - 2026년 5월", date: "2026.05.14", hasImage: false, imageUrl: "", content: "<p>선교 편지 내용이 준비 중입니다.</p>" },
-            { id: 40, title: "우간다 하재혁 선교사님 - 2026년 5월", date: "2026.05.09", hasImage: false, imageUrl: "", content: "<p>선교 편지 내용이 준비 중입니다.</p>" },
-            { id: 39, title: "조지아공화국 최경민 선교사님 - 2026년 4월", date: "2026.04.16", hasImage: false, imageUrl: "", content: "<p>선교 편지 내용이 준비 중입니다.</p>" },
-            { id: 38, title: "케냐 마형갑 선교사님 - 2026년 4월", date: "2026.04.11", hasImage: false, imageUrl: "", content: "<p>선교 편지 내용이 준비 중입니다.</p>" },
-            { id: 37, title: "파키스탄 최혜신 선교사님 - 2026년 4월", date: "2026.04.11", hasImage: false, imageUrl: "", content: "<p>선교 편지 내용이 준비 중입니다.</p>" },
-            { id: 36, title: "우간다 하재혁 선교사님 - 2026년 4월", date: "2026.04.11", hasImage: false, imageUrl: "", content: "<p>선교 편지 내용이 준비 중입니다.</p>" },
-            { id: 35, title: "파키스탄 최혜신 선교사님 - 2026년 3월", date: "2026.04.11", hasImage: false, imageUrl: "", content: "<p>선교 편지 내용이 준비 중입니다.</p>" },
-            { id: 34, title: "우간다 하재혁 선교사님 - 2026년 3월", date: "2026.04.11", hasImage: false, imageUrl: "", content: "<p>선교 편지 내용이 준비 중입니다.</p>" },
-            { id: 33, title: "파키스탄 최혜신 선교사님 - 2026년 2월", date: "2026.04.11", hasImage: false, imageUrl: "", content: "<p>선교 편지 내용이 준비 중입니다.</p>" },
-            { id: 32, title: "우간다 하재혁 선교사님 - 2026년 2월", date: "2026.04.11", hasImage: false, imageUrl: "", content: "<p>선교 편지 내용이 준비 중입니다.</p>" },
-            { id: 31, title: "멕시코 김정호 선교사님 - 2026년 1월", date: "2026.04.11", hasImage: false, imageUrl: "", content: "<p>선교 편지 내용이 준비 중입니다.</p>" },
-            { id: 30, title: "케냐 마형갑 선교사님 - 2026년 1월", date: "2026.04.11", hasImage: false, imageUrl: "", content: "<p>선교 편지 내용이 준비 중입니다.</p>" },
-            { id: 29, title: "조지아공화국 최경민 선교사님 - 2026년 1월", date: "2026.04.11", hasImage: false, imageUrl: "", content: "<p>선교 편지 내용이 준비 중입니다.</p>" }
-        ];
+        // 1. 요청하신 1번부터 43번까지의 선교지소식 데이터
+        const rawText = `
+43|파키스탄 최혜신 선교사님 - 2026년 6월|2026.06.05
+42|파키스탄 최혜신 선교사님 - 2026년 5월|2026.05.22
+41|러시아 이훈희 선교사님 - 2026년 5월|2026.05.14
+40|우간다 하재혁 선교사님 - 2026년 5월|2026.05.09
+39|조지아공화국 최경민 선교사님 - 2026년 4월|2026.04.16
+38|케냐 마형갑 선교사님 - 2026년 4월|2026.04.11
+37|파키스탄 최혜신 선교사님 - 2026년 4월|2026.04.11
+36|우간다 하재혁 선교사님 - 2026년 4월|2026.04.11
+35|파키스탄 최혜신 선교사님 - 2026년 3월|2026.04.11
+34|우간다 하재혁 선교사님 - 2026년 3월|2026.04.11
+33|파키스탄 최혜신 선교사님 - 2026년 2월|2026.04.11
+32|우간다 하재혁 선교사님 - 2026년 2월|2026.04.11
+31|멕시코 김정호 선교사님 - 2026년 1월|2026.04.11
+30|케냐 마형갑 선교사님 - 2026년 1월|2026.04.11
+29|조지아공화국 최경민 선교사님 - 2026년 1월|2026.04.11
+28|우간다 하재혁 선교사님 - 2026년 1월|2026.04.11
+27|파키스탄 최혜신 선교사님 - 2025년 12월|2025.12.12
+26|러시아 이훈희 선교사님 - 2025년 12월|2025.12.04
+25|우간다 하재혁 선교사님 - 2025년 12월|2025.12.04
+24|미국커넥션교회 류광환목사님 - 2025년 12월|2025.12.04
+23|조지아공화국 최경민 선교사님 - 2025년 12월|2025.12.04
+22|멕시코 김정호 선교사님 - 2025년 11월|2025.11.12
+21|파키스탄 최혜신 선교사님 - 2025년 11월|2025.11.12
+20|우간다 하재혁 선교사님 - 2025년 11월|2025.11.01
+19|캄보디아 박은영 선교사님 - 2025년 10월|2025.10.22
+18|파키스탄 최혜신 선교사님 - 2025년 10월|2025.10.21
+17|우간다 하재혁 선교사님 - 2025년 10월|2025.10.01
+16|아둘람교회 권성우 목사님 2025년 9월|2025.09.16
+15|러시아 이훈희 선교사님 - 2025년 9월|2025.09.10
+14|파키스탄 최혜신 선교사님 - 2025년 9월|2025.09.10
+13|멕시코 김정호 선교사님 - 2025년 9월|2025.09.03
+12|우간다 하재혁 선교사님 - 2025년 9월|2025.09.03
+11|조지아공화국 최경민 선교사님 - 2025년 9월|2025.09.03
+10|태국 도주환 선교사님 - 2025년 8월|2025.08.21
+9|케냐 마형갑 선교사님 - 2025년 8월|2025.08.12
+8|우간다 하재혁 선교사님 - 2025년 8월|2025.08.02
+7|멕시코 김정호 선교사님 - 2025년 8월|2025.08.02
+6|파키스탄 최혜신 선교사님 - 2025년 7월|2025.08.02
+5|말레이시아 이석환 선교사님 - 2025년 6월|2025.07.22
+4|러시아 이훈희 선교사님- 2024년 11월|2024.11.27
+3|러시아 이훈희 선교사님 - 2024년 10월|2024.10.29
+2|러시아 이훈희 선교사님 - 2024년 8월|2024.07.24
+1|러시아 이훈희 선교사님 -2024년 7월|2024.07.24
+        `;
+
+        // 데이터 파싱
+        const newsData = rawText.trim().split('\n')
+            .filter(line => line.trim() !== '')
+            .map(line => {
+                const parts = line.split('|');
+                return {
+                    id: parseInt(parts[0].trim()),
+                    title: parts[1].trim(),
+                    date: parts[2].trim()
+                };
+            }).filter(item => !isNaN(item.id));
+
+        document.getElementById('total-count').textContent = newsData.length;
+
+        // 2. 깃허브 사진 저장소 주소 (알려주신 규칙에 맞춤)
+        const baseURL = "https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/mission/images/";
 
         const itemsPerPage = 15; 
         let currentPage = 1;
@@ -373,35 +276,37 @@
             mobileContainer.innerHTML = '';
 
             pageData.forEach(item => {
-                // PC Version
+                // PC Version (보기 버튼 추가)
                 const tr = document.createElement('tr');
                 tr.className = 'border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer group';
                 tr.onclick = () => openModal(item.id);
                 
-                // 파일 아이콘 유무 표시
-                const iconHtml = item.hasImage ? '<i class="far fa-image text-gray-400 ml-2 text-sm"></i>' : '<i class="far fa-file-alt text-gray-300 ml-2 text-sm"></i>';
-
                 tr.innerHTML = `
                     <td class="py-4 text-gray-400">${item.id}</td>
                     <td class="py-4 px-4 text-left font-bold text-gray-800 group-hover:text-[#3b82f6] transition flex items-center">
-                        <span class="truncate max-w-[90%]">${item.title}</span>
-                        ${iconHtml}
+                        <span class="truncate max-w-full">${item.title}</span>
                     </td>
                     <td class="py-4 text-sm font-medium text-gray-500">${item.date}</td>
+                    <td class="py-4">
+                        <button class="bg-[#5c5c5c] group-hover:bg-[#1b315b] text-white rounded w-8 h-6 flex items-center justify-center mx-auto transition shadow-sm">
+                            <i class="far fa-file-image text-xs"></i>
+                        </button>
+                    </td>
                 `;
                 pcTbody.appendChild(tr);
 
                 // Mobile Version
                 const mDiv = document.createElement('div');
-                mDiv.className = 'flex border-b border-gray-200 py-3.5 hover:bg-gray-50 transition cursor-pointer items-center';
+                mDiv.className = 'flex border-b border-gray-200 py-3.5 hover:bg-gray-50 transition cursor-pointer items-center px-2';
                 mDiv.onclick = () => openModal(item.id);
                 mDiv.innerHTML = `
-                    <div class="w-16 text-center text-gray-400 text-sm font-medium shrink-0">${item.id}</div>
+                    <div class="w-14 text-center text-gray-400 text-sm font-medium shrink-0">${item.id}</div>
                     <div class="flex-1 pl-2 pr-4 relative">
-                        <div class="text-gray-800 text-[15px] font-bold mb-0.5 truncate flex items-center gap-1.5">
-                            <span class="truncate">${item.title}</span>
-                        </div>
+                        <div class="text-gray-800 text-[15px] font-bold mb-0.5 truncate pr-8">${item.title}</div>
                         <div class="text-gray-500 text-[12px] font-medium">${item.date}</div>
+                        <div class="absolute top-1/2 right-2 -translate-y-1/2 text-gray-400">
+                            <i class="far fa-file-image text-lg"></i>
+                        </div>
                     </div>
                 `;
                 mobileContainer.appendChild(mDiv);
@@ -415,7 +320,44 @@
             const paginationContainer = document.getElementById('pagination');
             paginationContainer.innerHTML = '';
 
-            for (let i = 1; i <= totalPages; i++) {
+            if (totalPages === 0) return;
+
+            const pagesPerGroup = 10;
+            const currentGroup = Math.ceil(currentPage / pagesPerGroup);
+            let startPage = (currentGroup - 1) * pagesPerGroup + 1;
+            let endPage = startPage + pagesPerGroup - 1;
+            
+            if (endPage > totalPages) endPage = totalPages;
+
+            const prevGroupBtn = document.createElement('a');
+            prevGroupBtn.href = '#';
+            prevGroupBtn.className = `page-link rounded ${startPage === 1 ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            prevGroupBtn.innerHTML = '<i class="fas fa-angle-double-left text-[10px]"></i>';
+            prevGroupBtn.onclick = (e) => {
+                e.preventDefault();
+                if (startPage > 1) {
+                    currentPage = startPage - 1;
+                    renderTable(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                }
+            };
+            paginationContainer.appendChild(prevGroupBtn);
+
+            const prevBtn = document.createElement('a');
+            prevBtn.href = '#';
+            prevBtn.className = `page-link rounded ${currentPage === 1 ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            prevBtn.innerHTML = '<i class="fas fa-chevron-left text-[10px]"></i>';
+            prevBtn.onclick = (e) => {
+                e.preventDefault();
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderTable(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                }
+            };
+            paginationContainer.appendChild(prevBtn);
+
+            for (let i = startPage; i <= endPage; i++) {
                 const a = document.createElement('a');
                 a.href = '#';
                 a.className = `page-link ${i === currentPage ? 'active' : ''} rounded`;
@@ -428,85 +370,147 @@
                 };
                 paginationContainer.appendChild(a);
             }
+
+            const nextBtn = document.createElement('a');
+            nextBtn.href = '#';
+            nextBtn.className = `page-link rounded ${currentPage === totalPages ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            nextBtn.innerHTML = '<i class="fas fa-chevron-right text-[10px]"></i>';
+            nextBtn.onclick = (e) => {
+                e.preventDefault();
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    renderTable(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                }
+            };
+            paginationContainer.appendChild(nextBtn);
+
+            const nextGroupBtn = document.createElement('a');
+            nextGroupBtn.href = '#';
+            nextGroupBtn.className = `page-link rounded ${endPage === totalPages ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            nextGroupBtn.innerHTML = '<i class="fas fa-angle-double-right text-[10px]"></i>';
+            nextGroupBtn.onclick = (e) => {
+                e.preventDefault();
+                if (endPage < totalPages) {
+                    currentPage = endPage + 1;
+                    renderTable(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                }
+            };
+            paginationContainer.appendChild(nextGroupBtn);
         }
 
-        // 팝업 열기
+        /* * ★ 팝업창 확장자 자동 탐색 다중 이미지 로딩 시스템 ★ 
+         */
         function openModal(id) {
-            const news = newsData.find(n => n.id === id);
-            if(!news) return;
+            const data = newsData.find(n => n.id === id);
+            if(!data) return;
 
-            document.getElementById('modal-title').textContent = news.title;
-            document.getElementById('modal-date').innerHTML = `<i class="far fa-calendar-alt mr-1"></i> 등록일 : ${news.date}`;
+            document.getElementById('modal-title').textContent = data.title;
+            document.getElementById('modal-date').innerHTML = `<i class="far fa-calendar-alt mr-1"></i> 등록일 : ${data.date}`;
             
-            const imageContainer = document.getElementById('modal-image-container');
-            const imageEl = document.getElementById('modal-image');
+            const container = document.getElementById('modal-image-container');
             
-            if (news.hasImage && news.imageUrl) {
-                imageEl.src = news.imageUrl;
-                imageContainer.classList.remove('hidden');
-            } else {
-                imageContainer.classList.add('hidden');
+            Array.from(container.children).forEach(child => {
+                if(child.id !== 'loading-msg') child.remove();
+            });
+            
+            const loadingMsg = document.getElementById('loading-msg');
+            loadingMsg.style.display = 'flex';
+            loadingMsg.innerHTML = '<i class="fas fa-spinner fa-spin text-3xl text-blue-500"></i><span class="mt-2">편지를 불러오는 중입니다...</span>';
+
+            const maxPages = 10; // 편지는 최대 10장까지 검사
+            let loadedCount = 0;
+            let errorCount = 0;
+
+            function tryLoadModalImage(index, extsArray, wrapElement) {
+                if (extsArray.length === 0) {
+                    wrapElement.remove(); 
+                    errorCount++;
+                    if(loadedCount === 0 && errorCount === maxPages) {
+                         loadingMsg.innerHTML = '<i class="fas fa-exclamation-circle text-2xl text-gray-400"></i><span class="mt-2">등록된 선교편지 사진이 없습니다.</span>';
+                    }
+                    return;
+                }
+
+                const currentExt = extsArray.shift();
+                
+                // 번호 형식 지정: 01, 02 등 (id는 숫자 그대로)
+                let formattedId = id < 10 ? '0' + id : id;
+                let numStr = index < 10 ? '0' + index : index;
+                
+                // 파일 경로 규칙: https://raw.github.../images/01-01.jpg
+                let imgUrl = `${baseURL}${formattedId}-${numStr}.${currentExt}`;
+
+                let img = document.createElement('img');
+                img.className = "w-full h-auto object-contain rounded shadow-sm border border-gray-200 cursor-pointer hover:opacity-90 transition duration-300";
+                img.title = "클릭하시면 원본 크기로 확대됩니다.";
+                
+                // 클릭 시 줌 모달 띄우기
+                img.onclick = () => openZoom(imgUrl);
+                
+                img.onload = function() {
+                    wrapElement.classList.remove('hidden'); 
+                    loadingMsg.style.display = 'none'; 
+                    loadedCount++;
+                    wrapElement.appendChild(img);
+                    
+                    // 돋보기 아이콘 오버레이
+                    let zoomIcon = document.createElement('div');
+                    zoomIcon.className = "absolute top-4 right-4 bg-black/50 text-white p-2 rounded-full pointer-events-none opacity-70";
+                    zoomIcon.innerHTML = '<i class="fas fa-search-plus"></i>';
+                    wrapElement.appendChild(zoomIcon);
+                };
+                
+                img.onerror = function() {
+                    tryLoadModalImage(index, extsArray, wrapElement);
+                };
+                
+                img.src = imgUrl; 
             }
 
-            document.getElementById('modal-content').innerHTML = news.content;
+            for(let i = 1; i <= maxPages; i++) {
+                let imgWrap = document.createElement('div');
+                imgWrap.className = "bg-white p-1 rounded-lg w-full mb-4 hidden flex flex-col relative"; 
+                container.appendChild(imgWrap);
+                
+                tryLoadModalImage(i, ['jpg', 'png', 'jpeg', 'JPG', 'PNG'], imgWrap);
+            }
 
             const modal = document.getElementById('news-modal');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
-            document.body.style.overflow = 'hidden'; // 배경 스크롤 방지
+            document.body.style.overflow = 'hidden'; 
         }
 
-        // 팝업 닫기
         function closeModal() {
             const modal = document.getElementById('news-modal');
             modal.classList.add('hidden');
             modal.classList.remove('flex');
-            document.body.style.overflow = ''; // 배경 스크롤 복구
+            document.body.style.overflow = ''; 
         }
 
-        // 모바일 메뉴 토글
-        function toggleMobileSubMenu(menuId) {
-            const targetMenu = document.getElementById(menuId);
-            const otherMenuId = menuId === 'menu-depth1' ? 'menu-depth2' : 'menu-depth1';
-            const otherMenu = document.getElementById(otherMenuId);
-            if (otherMenu && !otherMenu.classList.contains('hidden')) {
-                otherMenu.classList.add('hidden');
-                const otherIcon = otherMenu.previousElementSibling.querySelector('.fas');
-                if(otherIcon) {
-                    otherIcon.classList.remove('fa-minus');
-                    otherIcon.classList.add('fa-plus');
-                }
-            }
-            if (targetMenu) {
-                targetMenu.classList.toggle('hidden');
-                const icon = targetMenu.previousElementSibling.querySelector('.fas');
-                if(icon) {
-                    if(targetMenu.classList.contains('hidden')) {
-                        icon.classList.remove('fa-minus');
-                        icon.classList.add('fa-plus');
-                    } else {
-                        icon.classList.remove('fa-plus');
-                        icon.classList.add('fa-minus');
-                    }
-                }
-            }
+        // ★ 확대 모달창 관련 함수 ★
+        function openZoom(src) {
+            const zoomModal = document.getElementById('zoom-modal');
+            const zoomImg = document.getElementById('zoom-image');
+            zoomImg.src = src;
+            zoomModal.classList.remove('hidden');
+            zoomModal.classList.add('flex');
         }
-        
-        // 사이트맵 토글
-        function toggleSitemap() {
-            const modal = document.getElementById('sitemap-modal');
-            if (modal.classList.contains('hidden')) {
-                modal.classList.remove('hidden');
-                document.body.style.overflow = 'hidden'; 
-            } else {
-                modal.classList.add('hidden');
-                document.body.style.overflow = ''; 
-            }
+
+        function closeZoom() {
+            const zoomModal = document.getElementById('zoom-modal');
+            zoomModal.classList.add('hidden');
+            zoomModal.classList.remove('flex');
         }
 
         document.addEventListener('DOMContentLoaded', () => {
             renderTable(currentPage);
         });
     </script>
+    <script>const ROOT_PATH = "../";</script>
+    <script src="../js/common.js"></script>
+
 </body>
 </html>
