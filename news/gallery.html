@@ -23,6 +23,9 @@
         .modal-scroll::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
         .modal-scroll::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 4px; }
         .modal-scroll::-webkit-scrollbar-thumb:hover { background: #a8a8a8; }
+
+        /* 확대 이미지 닫기 줌 아웃 커서 */
+        .zoom-active { cursor: zoom-out; }
     </style>
 </head>
 <body class="text-gray-800">
@@ -150,6 +153,18 @@
         </div>
     </div>
 
+    <!-- ★ 이미지 전체화면 확대 모달창 ★ -->
+    <div id="zoom-modal" class="fixed inset-0 z-[110] hidden items-center justify-center bg-black/90 backdrop-blur-md" onclick="closeZoom()">
+        <!-- 닫기 버튼 (우측 상단 고정) -->
+        <button class="absolute top-6 right-6 text-white/70 hover:text-white transition focus:outline-none z-[120]" onclick="closeZoom()">
+            <i class="fas fa-times text-4xl"></i>
+        </button>
+        <!-- 확대 이미지 영역 -->
+        <div class="w-full h-full flex items-center justify-center p-2 sm:p-10 overflow-auto modal-scroll zoom-active">
+            <img id="zoom-image" src="" alt="확대된 행사사진" class="max-w-full max-h-none md:max-h-full object-contain shadow-2xl">
+        </div>
+    </div>
+
     <!-- 마법의 파일 연결 2: 공통 하단 푸터 & 사이트맵 -->
     <div id="common-footer"></div>
     <div id="common-sitemap"></div>
@@ -157,7 +172,6 @@
     <script>
         // 1. 담당자가 여기에 한 줄씩 글을 추가하면 됩니다! (모든 254개 데이터 입력 완료)
         const rawText = `
-255|20260620 9,10교구 산상기도회|2026.06.20
 254|20260613 남전도회 건강 걷기대회|2026.06.13
 253|20260610 전도대 아웃리치|2026.06.10
 252|20260530 중보기도팀과 '부흥'시네마&기도회|2026.06.10
@@ -444,7 +458,7 @@
 
             function tryNext() {
                 if (extIndex >= exts.length) {
-                    imgElement.src = `https://placehold.co/800x600/f3f4f6/9ca3af?text=${id}`; // 모두 실패시 기본 회색 이미지
+                    imgElement.src = `https://placehold.co/800x600/f3f4f6/9ca3af?text=No.${id}`; // 모두 실패시 기본 회색 이미지
                     return;
                 }
                 imgElement.src = `${baseURL}${id}-01.${exts[extIndex]}`;
