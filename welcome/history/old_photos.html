@@ -241,7 +241,7 @@
 
         // 확장자 자동 탐색하여 썸네일 로딩하는 함수
         function loadThumbnail(imgElement, id) {
-            const exts = ['jpg', 'png', 'jpeg', 'JPG', 'PNG'];
+            const exts = ['jpg', 'png', 'jpeg', 'JPG', 'PNG', 'bmp', 'BMP'];
             let extIndex = 0;
             let numStr = "01"; // 썸네일은 항상 01번 사진 시도
 
@@ -470,7 +470,7 @@
                 imgWrap.className = "bg-white p-2 md:p-3 rounded-lg shadow-sm border border-gray-200 w-full mb-4 hidden flex flex-col"; 
                 container.appendChild(imgWrap);
                 
-                tryLoadModalImage(i, ['jpg', 'png', 'jpeg', 'JPG', 'PNG'], imgWrap);
+                tryLoadModalImage(i, ['jpg', 'png', 'jpeg', 'JPG', 'PNG', 'bmp', 'BMP'], imgWrap);
             }
 
             const modal = document.getElementById('gallery-modal');
