@@ -25,6 +25,9 @@
         .modal-scroll::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
         .modal-scroll::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 4px; }
         .modal-scroll::-webkit-scrollbar-thumb:hover { background: #a8a8a8; }
+
+        /* 확대 이미지 닫기 줌 아웃 커서 */
+        .zoom-active { cursor: zoom-out; }
     </style>
 </head>
 <body class="text-gray-800">
@@ -49,33 +52,23 @@
                     <span>환영합니다</span><i class="fas fa-plus text-gray-400 text-xs"></i>
                 </button>
                 <ul id="menu-depth1" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
-                    <li class="border-b border-gray-100"><a href="../greeting.html" class="block px-4 py-3 hover:bg-gray-50">환영합니다</a></li>
-                    <li class="border-b border-gray-100"><a href="../../word/sunday.html" class="block px-4 py-3 hover:bg-gray-50">말씀과 찬양</a></li>
-                    <li class="border-b border-gray-100"><a href="../../community/parish.html" class="block px-4 py-3 hover:bg-gray-50">공동체</a></li>
-                    <li class="border-b border-gray-100"><a href="../../nextgen/infant.html" class="block px-4 py-3 hover:bg-gray-50">다음세대</a></li>
-                    <li class="border-b border-gray-100"><a href="../../mission/evangelism.html" class="block px-4 py-3 hover:bg-gray-50">전도와 선교</a></li>
-                    <li class="border-b border-gray-100"><a href="../../news/weekly.html" class="block px-4 py-3 hover:bg-gray-50">교회소식</a></li>
-                    <li><a href="../../service/application.html" class="block px-4 py-3 hover:bg-gray-50">행정서비스</a></li>
-                </ul>
-            </div>
-            <div class="flex-1 relative">
-                <button onclick="toggleMobileSubMenu('menu-depth2')" class="w-full flex justify-between items-center px-4 py-3 text-gray-800 focus:outline-none">
-                    <span>교회연혁</span><i class="fas fa-plus text-gray-400 text-xs"></i>
-                </button>
-                <ul id="menu-depth2" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
                     <li class="border-b border-gray-100"><a href="../greeting.html" class="block px-4 py-3 hover:bg-gray-50">인사말</a></li>
-                    <li class="bg-gray-50 border-b border-gray-100 py-2">
-                        <span class="block px-4 py-1 text-gray-800 font-bold text-xs">교회연혁</span>
-                        <a href="history.html" class="block px-6 py-2 hover:bg-gray-100 text-gray-600">- 교회연혁</a>
-                        <a href="building.html" class="block px-6 py-2 hover:bg-gray-100 text-gray-600">- 성전건축이야기</a>
-                        <a href="edu_building.html" class="block px-6 py-2 text-blue-600 font-bold">- 교육관건축사진</a>
-                        <a href="old_photos.html" class="block px-6 py-2 hover:bg-gray-100 text-gray-600">- 이전 홈피 사진들</a>
-                    </li>
+                    <li class="border-b border-gray-100"><a href="history.html" class="block px-4 py-3 text-blue-600 font-bold bg-gray-50">교회연혁</a></li>
                     <li class="border-b border-gray-100"><a href="../serve/serve.html" class="block px-4 py-3 hover:bg-gray-50">섬기는 분들</a></li>
                     <li class="border-b border-gray-100"><a href="../worship/worship.html" class="block px-4 py-3 hover:bg-gray-50">예배안내</a></li>
                     <li class="border-b border-gray-100"><a href="../bus/bus.html" class="block px-4 py-3 hover:bg-gray-50">차량운행안내</a></li>
                     <li class="border-b border-gray-100"><a href="../map/map.html" class="block px-4 py-3 hover:bg-gray-50">오시는길</a></li>
                     <li><a href="../newcomer/newcomer.html" class="block px-4 py-3 hover:bg-gray-50">새가족안내</a></li>
+                </ul>
+            </div>
+            <div class="flex-1 relative">
+                <button onclick="toggleMobileSubMenu('menu-depth2')" class="w-full flex justify-between items-center px-4 py-3 text-gray-800 focus:outline-none">
+                    <span>성전건축이야기</span><i class="fas fa-plus text-gray-400 text-xs"></i>
+                </button>
+                <ul id="menu-depth2" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
+                    <li class="border-b border-gray-100"><a href="building.html" class="block px-4 py-3 text-blue-600 font-bold bg-gray-50">성전건축이야기</a></li>
+                    <li class="border-b border-gray-100"><a href="edu_building.html" class="block px-4 py-3 hover:bg-gray-50">교육관건축사진</a></li>
+                    <li><a href="old_photos.html" class="block px-4 py-3 hover:bg-gray-50">이전 홈피 사진들</a></li>
                 </ul>
             </div>
         </div>
@@ -97,9 +90,9 @@
                     </a>
                     <div class="overflow-hidden">
                         <ul class="py-2 bg-white border-t border-gray-100">
-                            <li><a href="building.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">성전건축이야기</a></li>
-                            <li><a href="edu_building.html" class="block px-8 py-1.5 text-sm text-blue-600 font-bold bg-gray-50 transition">교육관건축사진</a></li>
-                            <li><a href="old_photos.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">이전 홈페이지 사진들</a></li>
+                            <li><a href="building.html" class="block px-8 py-1.5 text-sm text-blue-600 font-bold bg-gray-50 transition">성전건축이야기</a></li>
+                            <li><a href="edu_building.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">교육관건축사진</a></li>
+                            <li><a href="old_photos.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">이전 홈피 사진들</a></li>
                         </ul>
                     </div>
                 </li>
@@ -117,13 +110,13 @@
             
             <div class="w-full bg-[#1b315b] rounded-xl h-24 md:h-32 flex flex-col justify-center items-center text-white shadow-md relative overflow-hidden mb-8">
                 <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
-                <h3 class="text-2xl md:text-3xl font-extrabold relative z-10 tracking-tight">교육관건축사진</h3>
+                <h3 class="text-2xl md:text-3xl font-extrabold relative z-10 tracking-tight">성전건축이야기</h3>
             </div>
 
             <!-- 검색바 및 상태 표시 -->
             <div class="flex flex-col sm:flex-row justify-between items-center mb-8 border-b border-gray-200 pb-4 gap-4">
                 <div class="text-gray-500 text-sm font-medium w-full sm:w-auto text-left">
-                    <i class="fas fa-camera-retro text-gray-400 mr-1"></i> 총 <span id="total-count" class="text-blue-600 font-bold">4</span>건의 앨범
+                    <i class="fas fa-camera-retro text-gray-400 mr-1"></i> 총 <span id="total-count" class="text-blue-600 font-bold">118</span>건의 앨범
                 </div>
                 <div class="flex border border-gray-300 rounded shadow-sm overflow-hidden bg-white w-full sm:w-auto">
                     <select class="px-3 py-1.5 text-sm md:text-base border-r border-gray-300 text-gray-700 focus:outline-none bg-gray-50 cursor-pointer">
@@ -172,8 +165,20 @@
                     <i class="fas fa-spinner fa-spin text-3xl text-blue-500"></i>
                     <span>사진을 불러오는 중입니다...</span>
                 </div>
-                <!-- JS로 여러 장의 사진이 삽입됩니다 -->
+                <!-- JS로 여러 장의 사진과 설명(캡션)이 삽입됩니다 -->
             </div>
+        </div>
+    </div>
+
+    <!-- ★ 이미지 전체화면 확대 모달창 ★ -->
+    <div id="zoom-modal" class="fixed inset-0 z-[110] hidden items-center justify-center bg-black/90 backdrop-blur-md" onclick="closeZoom()">
+        <!-- 닫기 버튼 (우측 상단 고정) -->
+        <button class="absolute top-6 right-6 text-white/70 hover:text-white transition focus:outline-none z-[120]" onclick="closeZoom()">
+            <i class="fas fa-times text-4xl"></i>
+        </button>
+        <!-- 확대 이미지 영역 -->
+        <div class="w-full h-full flex items-center justify-center p-2 sm:p-10 overflow-auto modal-scroll zoom-active">
+            <img id="zoom-image" src="" alt="확대된 사진" class="max-w-full max-h-none md:max-h-full object-contain shadow-2xl">
         </div>
     </div>
 
@@ -182,26 +187,162 @@
     <div id="common-sitemap"></div>
 
     <script>
-        /* * 교육관 건축사진 데이터 (총 4개)
+        /* * 118개의 전체 데이터 + 9번 게시물 사진 설명(캡션) 추가 완료
          */
-        const baseURL = "https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/welcome/history/images/%EA%B5%90%EC%9C%A1%EA%B4%80"; // '교육관'을 URL 인코딩함
+        const rawText = `
+118|새성전건축 1층내부모습|2018.11.02
+117|새 성전건축 내부모습|2018.11.02
+116|새성전 건축 완공된 외부모습|2018.11.02
+115|새 성전 각종내부및 외부 공사|2018.11.02
+114|1톤의 무게를 자랑하는 역사적인 종이 올라가는 모습|2018.11.02
+113|새 성전건축 종탑과 십자가가 올라가는모습|2018.11.02
+112|새성전건축 각종 외부및 내부공사(2)|2018.11.02
+111|새성전건축 각종 외부및 내부공사(1)|2018.11.02
+110|새성전건축 당회실 인테리어 공사현황|2018.11.02
+109|새 성전 건축 휴게실 공사현황|2018.11.02
+108|새 성전건축 식당 공사 진행상황|2018.11.02
+107|새성전건축 소예배실 9월달 인테리어 공사진행모습|2018.11.02
+106|새성전건축 대예배실 인테리어 공사현황(11월달3번째)|2018.11.02
+105|새성전건축 대예배실 인테리어 공사현황(11월달2번째)|2018.11.02
+104|새성전건축 대예배실 인테리어 공사현황(11월달1번째)|2018.11.02
+103|새성전건축 대예배실 인테리어 공사현황(10월달)|2018.11.02
+102|새 성전건축 대예배실 인테리어 (9월달)공사진행 모습|2018.11.02
+101|새성전건축 2층 로비 인테리어 공사현황|2018.11.02
+100|새성전 건축 1층 로비 인테리어 공사 진행상황|2018.11.02
+99|새성전건축 감리자가 총체적으로 감리를 하는 모습|2018.11.02
+98|새 성전건축 계단 화단과 현관앞 화단을 만드는모습|2018.11.02
+97|새성전 건축 외벽 돌사이에 시리콘을 사용하기의해 작업을 하다|2018.11.02
+96|새 성전건축 외벽에 십자가를 설치하는 모습|2018.11.02
+95|새 성전건축 인테리어 공사가 진행되다|2018.11.02
+94|새 성전건축 식당에 기물을 설치하다|2018.11.02
+93|새 성전건축 유리를 끼우는모습|2018.11.02
+92|새 성전건축 두겁석 작업으로 돌공사가 마무리되어가다(79)|2018.11.02
+91|도시가스관 및 수도관 공사를 하는모습(78)|2018.11.02
+90|새성전에 교단 마크를 설치하는 모습(77)|2018.11.02
+89|새성전건축 화장실 공사 현황(76)|2018.11.02
+88|새성전 썬큰 가든 포장및 화장실, 옥상 시멘트 타설 장면|2018.11.02
+87|새성전 십자가와 종탑을 제작하는 모습(74)|2018.11.02
+86|새성전 야외 관람장을 만드는모습(73)|2018.11.02
+85|성전 냉난방 옥외 설비를 4층 옥상에 올리다(72)|2018.11.02
+84|새성전건축 본당 돌 외벽및 우수관공사(71)|2018.11.02
+83|새 성전건축 본당 인테리어 공사가 진행 되어가는 모습(70)|2018.11.02
+82|새 성전 공사 외벽 돌 작업 진행현황(2)(69)|2018.11.02
+81|새 성전건축 1층로비및 까페 인테리어 공사 현황(1)(68)|2018.11.02
+80|새 성전 건축 소예배실 인테리작업현황(67)|2018.11.02
+79|새성전 인테리어 공사 3부(66)|2018.11.02
+78|새 성전 공사 인테리어 부분 공사 2부(65)|2018.11.02
+77|새 성전 인테리어 공사 현황(1부)(64)|2018.11.02
+76|새 성전건축 내부공사와 전기공사 옥상 공사현황(63)|2018.11.02
+75|새성전건축 사택 돌 작업과 지붕공사 현황(62)|2018.11.02
+74|새 성전 외벽에 돌을 붙이는 모습(61)|2018.11.02
+73|새 성전 영상부분 계약장면과 시공에 참여한 협력 업체 관계자들 그...|2018.11.02
+72|새성전 본당 내부 작업현황(59)|2018.11.02
+71|새 성전 본당 특수조명 계약하다(58)|2018.11.02
+70|사택 외벽공사 현황(57)|2018.11.02
+69|지방회 임원들이 위로차 방문하시다|2018.11.02
+68|새 성전 실내 인테리어 회사를 내정하다(56)|2018.11.02
+67|새 성전 외벽 벽돌 모양 및 색깔(55)|2018.11.02
+66|새 성전건축 종탑 공사및 현관입구 시멘트 타설(54)(4월1일)|2018.11.02
+65|새 성전건축 6층 공사현황(53)|2018.11.02
+64|새성전 건축 5층 천정 철근공사와 세면을 타설 하는 모습(52)(3월2...|2018.11.02
+63|총회본부 연금재단 목사님 및 장로님들께서 성전건축을 위해 기도...|2018.11.02
+62|새 성전 건축현황 5층 천정 공사와 정화조 방수공사(50) (3월18일)|2018.11.02
+61|새 성전건축 5층공사현황(3월14일)|2018.11.02
+60|새성전건축 4층 콘크리트 타설 완료(48) (3월7일)|2018.11.02
+59|새 성전 건축 4층 옥상 철근감리 현황(47)(3월5일)|2018.11.02
+58|새 성전건축 4층 옥상 철근작업 및 본당 천장작업(46)(3월3일)|2018.11.02
+57|새 성전건축 현장을 금호교회 김성배 목사님께서 방문 하시다(45)|2018.11.02
+56|새 성전건축 4층공사와 설비공사현황(44)2/25)|2018.11.02
+55|새성전건축 현황(2월19일)(43)|2018.11.02
+54|새성전 설비공사와 사택 배관공사 (42)(1월30일)|2018.11.02
+53|새 성전 4층 공사가 되작 되다(41)(1월29일)|2018.11.02
+52|본당 옥상 및 4층부속실 바닥 시멘트 타설 현황 (40)(2005.1월25일)|2018.11.02
+51|새성전 건축 감리시 잘못된 부분을 수정해 놓은 모습(39)(1월17일)|2018.11.02
+50|새 성전 본당 옥상 및 4층 바닥 철근공사 감리현황(38)(1월13일)|2018.11.02
+49|새 성전 옥상과 4층 바닥 공사 현장(37)(1월10일)|2018.11.02
+48|새 성전건축현황 옥상및 4층 부속실 바닥공사(36)(1월7일)|2018.11.02
+47|새 성전건축 3층 옥상 공사 현황(35)(2005년1월05일)|2018.11.02
+46|2층 본당과 옥상과 부속실3층 공사장면(34)12월24일-29일|2018.11.02
+45|동지방 장로회 총회를 마치고 성전부지 방문(33)(12월18일)|2018.11.02
+44|3층 바닥과 본당 중3층에 감리 장면과 시멘트 타설 장면-12월13일...|2018.10.19
+43|부속실 3층 바닥 철근공사 현황-12월11일 (31)|2018.10.19
+42|본당 시멘트 타설하기 전 계단 및 옹벽거푸집 공사-12월9일(30)|2018.10.19
+41|종소리 '참고자료'입니다.|2018.10.19
+40|본당 시멘트 타설 전 최소장님이 감리를 하다-12월6일 (29)|2018.10.19
+39|새성전 2층 본당과 중3층 철골 및 철근 작업현황 (28)|2018.10.19
+38|사택 3층 지붕 공사및 시멘트 타설현황 (27)|2018.10.19
+37|새 성전 상량 감사예배(26)|2018.10.19
+36|새 성전 본당 3층 철골(빔) 작업현황(25)|2018.10.19
+35|사택동 3층 바닥 콘크리트 타설하는 모습(24)|2018.10.19
+34|본당에 철근 빔을 세우기전 바닥및 전체를 점검하다(23)|2018.10.19
+33|본당 바닥 콘크리트 타설하는 모습, 대역사였다(22)|2018.10.19
+32|새성전건축 설계수정및 지적완료된사항(21)|2018.10.19
+31|사택 기초 바닥에 흙을 메우는공사(20)|2018.10.19
+30|건축 소 위원회에서 음향회사를 결정하다(10월28일)(19)|2018.10.19
+29|음향회사 대표님께서 음향에 대하여 설명을 하다|2018.10.17
+28|새성전 뜰밟기 특별새벽 기도회 현황|2018.10.17
+27|새성전(새성전2층과 사택1층 슬라브 철근공사) 118(17)|2018.10.17
+26|설계회사 계약 장면입니다|2018.10.17
+25|"벽돌 한장을 쌓듯"|2018.10.17
+24|새 성전 건축을 위한 특별성회|2018.10.17
+23|구 성전 별관 및 지하실 공사와 종각 공사장면|2018.10.17
+22|새 성전건축(철근감리현황)(16)(10월23일)|2018.09.28
+21|새성전건축(사택건축)(15)|2018.09.28
+20|(음향회사 선정을 위한 설명회-14) (2004년10월13일)|2018.09.28
+19|새 성전 건축(1층공사현황)(14)|2018.09.19
+18|Today's focus|2018.09.19
+17|새 성전건축(1층철근 공사)(13)|2018.09.19
+16|새 성전 건축(지하층 거푸집철거)(12)|2018.09.19
+15|새성전 건축 (지하실 레미콘 콘크리트 강도시험)(11)|2018.09.19
+14|새 성전건축;지하실공사 천장 콘크리트타설(4)(10)|2018.09.19
+13|새 성전건축;지하실공사 (3부)(9)|2018.09.19
+12|새 성전건축(지하실공사(2부)(8)|2018.09.19
+11|새 성전건축: 지하실공사(1부)(7)|2018.09.19
+10|새 성전건축(지하실 터파기)(6)|2018.09.19
+9|새 성전 건축 (새성전 기공예배)(5)|2018.09.19|세진 건축설계회사 백 사장님께서 조감도 내용을 설명하시다|임창선 여주 군수님께서 축사를...|기독교 연합 회장 최하용 목사님께서 축사
+8|새 성전건축(건설회사 선정)(4)|2018.09.19
+7|새 성전건축(부지 토목공사)(3)|2018.09.19
+6|새 성전건축(토목공사 기공예배)(2)|2018.09.19
+5|새성전건축(토목공사하기이전모습)(1)(여기서부터 새성전)|2018.09.19
+4|"그 때 그 시절" (하리 284번지, 감격적인 본당2층 신축 후) 행사 ...|2018.09.19
+3|그 때 그 시절 (하리 284번지, 감격적인 본당1층 신축 후) 행사 사진들|2018.09.19
+2|그 때 그 시절 (하리 284번지) 본당 1층을 공사하던 장면|2018.09.13
+1|그 때 그 시절 (하리284 번지) 본당1층 신축위한 옛 예배당 철거장면|2018.09.13`;
 
-        const buildingData = [
-            { id: 4, title: "교육관 완공사진04", date: "2019.09.20", start: 25, end: 32 },
-            { id: 3, title: "교육관 완공사진03", date: "2019.09.20", start: 17, end: 24 },
-            { id: 2, title: "교육관 완공사진02", date: "2019.09.20", start: 9, end: 16 },
-            { id: 1, title: "교육관 완공사진01", date: "2019.09.20", start: 1, end: 8 }
-        ].map(item => {
-            let imgs = [];
-            for(let i = item.start; i <= item.end; i++) {
-                let numStr = i < 10 ? '0' + i : i;
-                imgs.push(`${baseURL}${numStr}.jpg`); // 모든 사진을 배열에 저장
-            }
-            return { ...item, images: imgs };
+        // | 파이프 기호를 기준으로 4번째 항목부터는 캡션(설명)으로 분리하여 저장합니다.
+        const buildingData = rawText.trim().split('\n').map(line => {
+            const parts = line.split('|');
+            return {
+                id: parseInt(parts[0]),
+                title: parts[1],
+                date: parts[2],
+                captions: parts.slice(3) // 4번째 이후 항목들은 설명 배열로 묶임
+            };
         });
 
-        const itemsPerPage = 12; // 갤러리 그리드용
+        // 깃허브 사진 저장소 주소
+        const baseURL = "https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/welcome/history/images/";
+        const itemsPerPage = 12; // 갤러리 그리드용 (12개씩)
         let currentPage = 1;
+
+        // ★ 확장자 자동 탐색하여 썸네일(첫번째 사진) 로딩하는 함수 ★
+        function loadThumbnail(imgElement, id) {
+            const exts = ['jpg', 'png', 'jpeg', 'JPG', 'PNG'];
+            let extIndex = 0;
+            let numStr = "01"; // 썸네일은 항상 01번 사진 시도
+
+            function tryNext() {
+                if (extIndex >= exts.length) {
+                    imgElement.src = `https://placehold.co/800x600/f3f4f6/9ca3af?text=No.${id}`;
+                    return;
+                }
+                imgElement.src = `${baseURL}${id}-${numStr}.${exts[extIndex]}`;
+                extIndex++;
+            }
+
+            imgElement.onerror = tryNext;
+            tryNext();
+        }
 
         function renderGrid(page) {
             const startIndex = (page - 1) * itemsPerPage;
@@ -216,12 +357,11 @@
                 card.className = 'flex flex-col cursor-pointer group';
                 card.onclick = () => openModal(item.id);
 
-                // 썸네일은 각 앨범의 첫 번째 이미지(item.images[0]) 사용
-                const thumbUrl = item.images[0];
+                let imgId = `thumb-b-${item.id}`;
                 
                 card.innerHTML = `
                     <div class="w-full aspect-[4/3] rounded-lg overflow-hidden shadow-sm border border-gray-200 mb-2 relative bg-gray-50">
-                        <img src="${thumbUrl}" alt="${item.title}" onerror="this.src='https://placehold.co/800x600/f3f4f6/9ca3af?text=No+Image'" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        <img id="${imgId}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
                         <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition duration-300"></div>
                         
                         <!-- ★ 마우스 호버 시 왼쪽 위에 나타나는 제목 ★ -->
@@ -239,6 +379,9 @@
                     <p class="text-[11px] text-gray-500 text-center mt-0.5">${item.date}</p>
                 `;
                 gridContainer.appendChild(card);
+                
+                // 생성 직후 썸네일 로딩 시도
+                loadThumbnail(document.getElementById(imgId), item.id);
             });
             
             renderPagination();
@@ -335,8 +478,7 @@
             paginationContainer.appendChild(nextGroupBtn);
         }
 
-        /* * ★ 모달(팝업)에서 다중 이미지 불러오는 함수 ★
-         * 교육관 사진은 확장자 탐색 불필요 (.jpg 고정)
+        /* * ★ 모달(팝업)에서 다중 이미지 불러오는 함수 (캡션 추가 기능 탑재) ★
          */
         function openModal(id) {
             const data = buildingData.find(n => n.id === id);
@@ -347,48 +489,84 @@
             
             const container = document.getElementById('modal-image-container');
             
-            // 이전 사진 삭제
             Array.from(container.children).forEach(child => {
                 if(child.id !== 'loading-msg') child.remove();
             });
-            
             document.getElementById('loading-msg').style.display = 'flex';
             document.getElementById('loading-msg').innerHTML = '<i class="fas fa-spinner fa-spin text-3xl text-blue-500"></i><span>사진을 불러오는 중입니다...</span>';
 
+            const maxImages = 30; // 글 한 개당 최대 30장까지 자동 검색
             let loadedCount = 0;
-            const totalImages = data.images.length;
-            
-            data.images.forEach(imgUrl => {
-                let imgWrap = document.createElement('div');
-                // 사진이 세로로 찌그러지지 않고 잘 나오도록 패딩과 디자인 적용
-                imgWrap.className = "bg-white p-2 md:p-3 rounded-lg shadow-sm border border-gray-200 w-full mb-4 hidden"; 
-                container.appendChild(imgWrap);
-                
+            let errorCount = 0;
+
+            // 순차적으로 이미지 확장자(jpg, png 등)를 확인하며 로드하는 재귀 함수
+            function tryLoadModalImage(index, extsArray, wrapElement) {
+                if (extsArray.length === 0) {
+                    wrapElement.remove(); // 모든 확장자 실패 시 요소 삭제
+                    errorCount++;
+                    if(loadedCount === 0 && errorCount === maxImages) {
+                         document.getElementById('loading-msg').innerHTML = '<i class="fas fa-exclamation-circle text-2xl text-gray-400"></i><span>등록된 사진이 없습니다.</span>';
+                    }
+                    return;
+                }
+
+                const currentExt = extsArray.shift();
+                let numStr = index < 10 ? '0' + index : index;
+                let imgUrl = `${baseURL}${id}-${numStr}.${currentExt}`;
+
+                let imgInnerWrap = document.createElement('div');
+                imgInnerWrap.className = 'relative inline-block w-full';
+
                 let img = document.createElement('img');
-                img.className = "w-full h-auto object-contain rounded";
+                img.className = "w-full h-auto object-contain rounded cursor-pointer hover:opacity-90 transition duration-300";
+                img.title = "클릭하시면 원본 크기로 확대됩니다.";
                 
+                // 클릭 시 줌 모달 띄우기
+                img.onclick = () => openZoom(imgUrl);
+                
+                let zoomIcon = document.createElement('div');
+                zoomIcon.className = "absolute top-4 right-4 bg-black/50 text-white p-2 rounded-full pointer-events-none opacity-70";
+                zoomIcon.innerHTML = '<i class="fas fa-search-plus"></i>';
+                
+                imgInnerWrap.appendChild(img);
+                imgInnerWrap.appendChild(zoomIcon);
+                wrapElement.appendChild(imgInnerWrap);
+
                 img.onload = function() {
-                    imgWrap.classList.remove('hidden');
+                    wrapElement.classList.remove('hidden'); 
+                    document.getElementById('loading-msg').style.display = 'none'; 
                     loadedCount++;
-                    // 첫 번째 이미지만 로드되어도 로딩 메시지 숨김
-                    if (loadedCount === 1) { 
-                        document.getElementById('loading-msg').style.display = 'none';
+
+                    // ==========================================
+                    // ★ 사진 설명(캡션) 추가 로직 작동 부분 ★
+                    // ==========================================
+                    if (data.captions && data.captions[index - 1] && data.captions[index - 1].trim() !== '') {
+                        let captionText = data.captions[index - 1].trim();
+                        let p = document.createElement('p');
+                        p.className = "text-center text-sm md:text-base text-gray-800 mt-3 font-medium bg-gray-100 py-2.5 rounded-md w-full";
+                        p.textContent = captionText;
+                        wrapElement.appendChild(p);
                     }
                 };
                 
                 img.onerror = function() {
-                    imgWrap.remove();
-                    loadedCount++;
-                    // 모든 이미지 로드 시도 후, 로드된 이미지가 없으면 오류 메시지 표시
-                    if (loadedCount === totalImages && container.children.length <= 1) {
-                        document.getElementById('loading-msg').innerHTML = '<i class="fas fa-exclamation-circle text-2xl text-gray-400"></i><span>등록된 사진이 없습니다.</span>';
-                        document.getElementById('loading-msg').style.display = 'flex';
-                    }
+                    // 실패 시 다음 확장자 시도
+                    wrapElement.innerHTML = ''; // 요소 비우고 다시 시도
+                    tryLoadModalImage(index, extsArray, wrapElement);
                 };
                 
-                img.src = imgUrl;
-                imgWrap.appendChild(img);
-            });
+                img.src = imgUrl; 
+            }
+
+            for(let i = 1; i <= maxImages; i++) {
+                let imgWrap = document.createElement('div');
+                // 사진이 세로로 찌그러지지 않고 잘 나오도록 패딩과 디자인 적용
+                imgWrap.className = "bg-white p-2 md:p-3 rounded-lg shadow-sm border border-gray-200 w-full mb-4 hidden flex flex-col"; 
+                container.appendChild(imgWrap);
+                
+                // jpg, png, jpeg 순서로 시도하도록 배열 전송
+                tryLoadModalImage(i, ['jpg', 'png', 'jpeg', 'JPG', 'PNG'], imgWrap);
+            }
 
             const modal = document.getElementById('building-modal');
             modal.classList.remove('hidden');
@@ -403,7 +581,23 @@
             document.body.style.overflow = ''; 
         }
 
+        // 확대 모달창 관련 함수
+        function openZoom(src) {
+            const zoomModal = document.getElementById('zoom-modal');
+            const zoomImg = document.getElementById('zoom-image');
+            zoomImg.src = src;
+            zoomModal.classList.remove('hidden');
+            zoomModal.classList.add('flex');
+        }
+
+        function closeZoom() {
+            const zoomModal = document.getElementById('zoom-modal');
+            zoomModal.classList.add('hidden');
+            zoomModal.classList.remove('flex');
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
+            // 테이블 렌더링 함수 대신 그리드 렌더링 함수 호출
             renderGrid(currentPage);
         });
     </script>
