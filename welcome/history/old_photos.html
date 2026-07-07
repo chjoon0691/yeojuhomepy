@@ -23,6 +23,9 @@
         .modal-scroll::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
         .modal-scroll::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 4px; }
         .modal-scroll::-webkit-scrollbar-thumb:hover { background: #a8a8a8; }
+
+        /* 확대 이미지 닫기 줌 아웃 커서 */
+        .zoom-active { cursor: zoom-out; }
     </style>
 </head>
 <body class="text-gray-800">
@@ -170,6 +173,18 @@
                     <span>사진을 불러오는 중입니다...</span>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- ★ 이미지 전체화면 확대 모달창 ★ -->
+    <div id="zoom-modal" class="fixed inset-0 z-[110] hidden items-center justify-center bg-black/90 backdrop-blur-md" onclick="closeZoom()">
+        <!-- 닫기 버튼 (우측 상단 고정) -->
+        <button class="absolute top-6 right-6 text-white/70 hover:text-white transition focus:outline-none z-[120]" onclick="closeZoom()">
+            <i class="fas fa-times text-4xl"></i>
+        </button>
+        <!-- 확대 이미지 영역 -->
+        <div class="w-full h-full flex items-center justify-center p-2 sm:p-10 overflow-auto modal-scroll zoom-active">
+            <img id="zoom-image" src="" alt="확대된 사진" class="max-w-full max-h-none md:max-h-full object-contain shadow-2xl">
         </div>
     </div>
 
@@ -396,7 +411,7 @@
 
             function tryLoadModalImage(index, extsArray, wrapElement) {
                 if (extsArray.length === 0) {
-                    wrapElement.remove();
+                    wrapElement.remove(); // 모든 확장자 실패 시 요소 삭제
                     errorCount++;
                     if(loadedCount === 0 && errorCount === maxImages) {
                          document.getElementById('loading-msg').innerHTML = '<i class="fas fa-exclamation-circle text-2xl text-gray-400"></i><span>등록된 사진이 없습니다.</span>';
@@ -408,26 +423,42 @@
                 let numStr = index < 10 ? '0' + index : index;
                 let imgUrl = `${baseURL}${id}-${numStr}.${currentExt}`;
 
+                let imgInnerWrap = document.createElement('div');
+                imgInnerWrap.className = 'relative inline-block w-full';
+
                 let img = document.createElement('img');
-                img.className = "w-full h-auto object-contain rounded";
+                img.className = "w-full h-auto object-contain rounded cursor-pointer hover:opacity-90 transition duration-300";
+                img.title = "클릭하시면 원본 크기로 확대됩니다.";
                 
+                // 클릭 시 줌 모달 띄우기
+                img.onclick = () => openZoom(imgUrl);
+                
+                let zoomIcon = document.createElement('div');
+                zoomIcon.className = "absolute top-4 right-4 bg-black/50 text-white p-2 rounded-full pointer-events-none opacity-70";
+                zoomIcon.innerHTML = '<i class="fas fa-search-plus"></i>';
+                
+                imgInnerWrap.appendChild(img);
+                imgInnerWrap.appendChild(zoomIcon);
+                wrapElement.appendChild(imgInnerWrap);
+
                 img.onload = function() {
                     wrapElement.classList.remove('hidden'); 
                     document.getElementById('loading-msg').style.display = 'none'; 
                     loadedCount++;
-                    wrapElement.appendChild(img);
 
                     // 사진 설명(캡션) 추가 로직
                     if (data.captions && data.captions[index - 1] && data.captions[index - 1].trim() !== '') {
                         let captionText = data.captions[index - 1].trim();
                         let p = document.createElement('p');
-                        p.className = "text-center text-sm md:text-base text-gray-800 mt-3 font-medium bg-gray-100 py-2.5 rounded-md";
+                        p.className = "text-center text-sm md:text-base text-gray-800 mt-3 font-medium bg-gray-100 py-2.5 rounded-md w-full";
                         p.textContent = captionText;
                         wrapElement.appendChild(p);
                     }
                 };
                 
                 img.onerror = function() {
+                    // 실패 시 다음 확장자 시도
+                    wrapElement.innerHTML = ''; // 요소 비우고 다시 시도
                     tryLoadModalImage(index, extsArray, wrapElement);
                 };
                 
@@ -453,6 +484,21 @@
             modal.classList.add('hidden');
             modal.classList.remove('flex');
             document.body.style.overflow = ''; 
+        }
+
+        // 확대 모달창 관련 함수
+        function openZoom(src) {
+            const zoomModal = document.getElementById('zoom-modal');
+            const zoomImg = document.getElementById('zoom-image');
+            zoomImg.src = src;
+            zoomModal.classList.remove('hidden');
+            zoomModal.classList.add('flex');
+        }
+
+        function closeZoom() {
+            const zoomModal = document.getElementById('zoom-modal');
+            zoomModal.classList.add('hidden');
+            zoomModal.classList.remove('flex');
         }
 
         document.addEventListener('DOMContentLoaded', () => {
