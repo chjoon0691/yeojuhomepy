@@ -116,7 +116,7 @@
         </div>
     </section>
 
-    <!-- Welcome Section (영어 문구 수정 완료) -->
+    <!-- Welcome Section -->
     <section class="py-16 md:py-32 max-w-7xl mx-auto px-4 text-center">
         <h2 class="text-2xl md:text-4xl font-extrabold mb-4 md:mb-6 text-gray-900 tracking-tight">여주성결교회에 오신 것을 환영합니다</h2>
         <p class="block md:hidden text-xs text-gray-500 mb-12 font-medium mt-2 px-2 leading-relaxed">
@@ -159,6 +159,7 @@
             <h2 class="text-xl md:text-3xl font-extrabold text-center mb-8 md:mb-16 text-gray-900">금주의 예배와 찬양</h2>
             <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
                 
+                <!-- 1. 주일설교 카드 -->
                 <div id="main-sunday-card" onclick="location.href='word/sunday.html'" class="col-span-2 md:col-span-1 order-1 md:order-2 cursor-pointer">
                     <div class="relative h-48 md:h-72 rounded-2xl md:rounded-3xl overflow-hidden shadow-lg group border-4 md:border-8 border-white">
                         <img src="https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="주일설교 성경책과 십자가" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
@@ -167,26 +168,34 @@
                             <p class="text-[0.7rem] md:text-sm opacity-80">Sunday sermon</p>
                         </div>
                     </div>
-                    <div class="text-center mt-4 px-1">
-                        <h4 id="main-sunday-title" class="font-extrabold text-base md:text-xl text-gray-900">불러오는 중...</h4>
-                        <p id="main-sunday-info" class="text-xs md:text-sm text-gray-600 mt-1"><i class="fas fa-spinner fa-spin"></i></p>
+                    <!-- 3줄 표시 영역 -->
+                    <div class="text-center mt-4 px-1 flex flex-col gap-0.5">
+                        <h4 id="main-sunday-title" class="font-extrabold text-base md:text-xl text-gray-900 truncate">불러오는 중...</h4>
+                        <p id="main-sunday-scripture" class="text-xs md:text-sm text-gray-700 font-medium truncate"><i class="fas fa-spinner fa-spin"></i></p>
+                        <p id="main-sunday-date" class="text-[11px] md:text-xs text-gray-500"></p>
                     </div>
                 </div>
 
+                <!-- 2. 수요설교 카드 -->
                 <div id="main-wed-card" onclick="location.href='word/wednesday.html'" class="col-span-1 order-2 md:order-1 cursor-pointer">
                     <div class="relative h-40 md:h-72 rounded-2xl md:rounded-3xl overflow-hidden shadow-lg group">
-                        <img src="https://images.unsplash.com/photo-1504052434569-70ad5836ab65?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="수요예배 십자가" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <img src="https://images.unsplash.com/photo-1504052434569-70ad5836ab65?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="수요설교 십자가" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                         <div class="absolute inset-0 bg-black/40 flex flex-col justify-end items-center text-white pb-6 md:pb-10">
-                            <h3 class="text-lg md:text-3xl font-extrabold mb-1">수요예배</h3>
-                            <p class="text-[0.7rem] md:text-sm opacity-80">Wednesday Worship</p>
+                            <!-- 수요예배 -> 수요설교 변경 -->
+                            <h3 class="text-lg md:text-3xl font-extrabold mb-1">수요설교</h3>
+                            <p class="text-[0.7rem] md:text-sm opacity-80">Wednesday Sermon</p>
                         </div>
                     </div>
-                    <div class="text-center mt-4 px-1">
-                        <h4 id="main-wed-title" class="font-extrabold text-base md:text-xl text-gray-900">불러오는 중...</h4>
-                        <p id="main-wed-info" class="text-[0.65rem] md:text-sm text-gray-600 mt-1"><i class="fas fa-spinner fa-spin"></i></p>
+                    <!-- 3줄 표시 영역 -->
+                    <div class="text-center mt-4 px-1 flex flex-col gap-0.5">
+                        <h4 id="main-wed-title" class="font-extrabold text-base md:text-xl text-gray-900 truncate">불러오는 중...</h4>
+                        <p id="main-wed-scripture" class="text-xs md:text-sm text-gray-700 font-medium truncate"><i class="fas fa-spinner fa-spin"></i></p>
+                        <p id="main-wed-date" class="text-[11px] md:text-xs text-gray-500"></p>
                     </div>
                 </div>
 
+                <!-- 3. 찬양대 찬양 카드 -->
+                <!-- 전체 박스 클릭 시 시온찬양대 페이지로 이동 -->
                 <div onclick="location.href='word/praise.html'" class="col-span-1 order-3 cursor-pointer">
                     <div class="relative h-40 md:h-72 rounded-2xl md:rounded-3xl overflow-hidden shadow-lg group">
                         <img src="https://images.unsplash.com/photo-1510590337019-5ef8d3d32116?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="찬양대 찬양" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
@@ -195,9 +204,19 @@
                             <p class="text-[0.7rem] md:text-sm opacity-80">Praise</p>
                         </div>
                     </div>
-                    <div class="text-center mt-4 px-1">
-                        <h4 class="font-extrabold text-base md:text-xl text-gray-900">은빛찬양대</h4>
-                        <p class="text-[0.65rem] md:text-sm text-gray-600 mt-1">저 높은 곳을 향하여</p>
+                    <!-- 3줄 표시 영역 및 개별 클릭 이동 (event.stopPropagation 적용) -->
+                    <div class="text-center mt-4 px-1 flex flex-col gap-1 text-[11px] md:text-[13px] font-bold">
+                        <p class="text-gray-700">
+                            <a href="word/praise.html" onclick="event.stopPropagation();" class="hover:text-blue-600 transition">시온찬양대(1부)</a> 
+                            <span class="text-gray-300 mx-1">|</span> 
+                            <a href="word/silver.html" onclick="event.stopPropagation();" class="hover:text-blue-600 transition">은빛찬양대(오후)</a>
+                        </p>
+                        <p class="text-gray-700">
+                            <a href="word/hallelujah.html" onclick="event.stopPropagation();" class="hover:text-blue-600 transition">할렐루야찬양대(2부)</a>
+                        </p>
+                        <p class="text-gray-700">
+                            <a href="word/dreamnlove.html" onclick="event.stopPropagation();" class="hover:text-blue-600 transition">꿈과사랑의찬양대(수요)</a>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -226,7 +245,7 @@
                 </div>
             </div>
 
-            <!-- 우측 Quick Links 영역 (버튼 디자인 수정) -->
+            <!-- 우측 Quick Links 영역 -->
             <div class="flex flex-col justify-center space-y-6 md:space-y-8 bg-white p-6 md:p-10 rounded-3xl shadow-sm border border-gray-100">
                 <div class="flex items-center justify-between border-b border-gray-200 pb-5">
                     <div class="pr-2">
@@ -247,7 +266,6 @@
                         <h4 class="text-base md:text-xl font-extrabold text-gray-800">서식자료</h4>
                         <p class="text-[11px] md:text-sm text-gray-500 mt-1">대관신청 및 차량신청 등을<br>온라인에서 지원하고 있습니다</p>
                     </div>
-                    <!-- 모바일에서 글씨가 삐져나가지 않도록 padding 조절 및 truncate 적용 -->
                     <button onclick="location.href='service/application.html'" class="bg-[#7896c3] text-white text-[9px] md:text-sm font-bold px-1 py-2 md:px-6 md:py-3 rounded-full hover:bg-[#1a3668] transition shadow-sm w-24 md:w-32 shrink-0 truncate">APPLICATION</button>
                 </div>
                 <div class="flex items-center justify-between">
@@ -351,28 +369,15 @@
             return arr;
         }
 
-        // =========================================================================
-        // ★ 1. 팝업창 관리 기능 (여러 개 띄우기, 쿠키 저장) ★
-        // 목사님! 팝업창이 필요하시면 아래 popups 배열 안에 내용을 채워주시면 됩니다.
-        // imageUrl: 팝업창 이미지 주소 / linkUrl: 클릭 시 이동할 주소(신청서 등)
-        // width: PC에서 보일 팝업창의 가로 넓이 (모바일은 자동으로 화면에 맞춰집니다)
-        // =========================================================================
-        const popups = [
-            // 예시 1: 온라인 성경통독 신청서 팝업 (필요 없으면 이 줄을 통째로 지우거나 // 를 맨 앞에 붙이세요)
-            // { id: 'popup1', imageUrl: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=400&q=80', linkUrl: 'https://forms.gle/어쩌고저쩌고', width: 350 },
-            
-            // 예시 2: 가을 부흥성회 안내 팝업 (두 번째 팝업)
-            // { id: 'popup2', imageUrl: 'https://images.unsplash.com/photo-1510590337019-5ef8d3d32116?auto=format&fit=crop&w=400&q=80', linkUrl: 'word/special_worship.html', width: 350 }
-        ];
+        // 팝업창 관리 기능
+        const popups = [];
 
-        // 쿠키(하루 동안 보지 않기 기억 장치) 설정 함수
         function setCookie(name, value, expiredays) {
             var todayDate = new Date();
             todayDate.setDate(todayDate.getDate() + expiredays);
             document.cookie = name + "=" + escape(value) + "; path=/; expires=" + todayDate.toGMTString() + ";";
         }
 
-        // 쿠키 확인 함수
         function getCookie(name) {
             var nameOfCookie = name + "=";
             var x = 0;
@@ -389,22 +394,19 @@
             return "";
         }
 
-        // 팝업 닫기 함수
         function closePopup(id, isHideForToday) {
             if (isHideForToday) {
-                setCookie(id, "done", 1); // 1일 동안 쿠키 저장
+                setCookie(id, "done", 1);
             }
             const popupEl = document.getElementById(id);
             if(popupEl) popupEl.style.display = 'none';
         }
 
-        // 팝업창 화면에 그리기
         function initPopups() {
             const container = document.getElementById('popup-container');
             let html = '';
             popups.forEach((p, index) => {
                 if (getCookie(p.id) !== "done") {
-                    // 모바일에서는 화면 중앙에 겹치도록, PC에서는 좌측 상단부터 약간씩 빗겨서 배치
                     const offset = index * 30; 
                     html += `
                         <div id="${p.id}" class="pointer-events-auto fixed md:absolute shadow-2xl bg-white rounded-lg overflow-hidden border border-gray-200 z-[${100 + index}]" 
@@ -425,17 +427,14 @@
             });
             container.innerHTML = html;
 
-            // 반응형 위치 조절
             popups.forEach((p, index) => {
                 const el = document.getElementById(p.id);
                 if(el) {
                     if(window.innerWidth < 768) {
-                        // 모바일: 정중앙 배치
                         el.style.top = '50%';
                         el.style.left = '50%';
                         el.style.transform = 'translate(-50%, -50%)';
                     } else {
-                        // PC: 좌측 상단 계단식 배치
                         el.style.top = (100 + (index * 40)) + 'px';
                         el.style.left = (50 + (index * 40)) + 'px';
                         el.style.transform = 'none';
@@ -444,20 +443,15 @@
             });
         }
 
-
-        // =========================================================================
-        // ★ 2. 행사사진 갤러리 완전 자동 연동 기능 (news/gallery.html 몰래 읽어오기) ★
-        // =========================================================================
+        // 행사사진 갤러리 연동
         async function loadMainGallery() {
             const container = document.getElementById('main-gallery-grid');
             const galleryBaseURL = "https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/news/images/gallery/";
             
             try {
-                // 핵심: 행사사진 게시판(news/gallery.html) 파일의 코드를 인터넷으로 몰래 읽어옵니다.
                 const response = await fetch('news/gallery.html');
                 const htmlText = await response.text();
                 
-                // 읽어온 코드 중에서 'const rawText = `...`;' 부분(사진 데이터 텍스트)만 정규식으로 쏙 뽑아냅니다.
                 const match = htmlText.match(/const rawText = `([\s\S]*?)`;/);
                 if (!match || !match[1]) throw new Error("갤러리 데이터를 찾을 수 없습니다.");
                 
@@ -473,7 +467,6 @@
                     };
                 });
                 
-                // 최신 번호(가장 큰 번호) 순으로 정렬 후 딱 4개만 자르기
                 galleryData.sort((a, b) => b.id - a.id);
                 const top4Gallery = galleryData.slice(0, 4);
 
@@ -491,7 +484,6 @@
                 });
                 container.innerHTML = html;
 
-                // 썸네일 이미지 로딩 (확장자 탐색)
                 top4Gallery.forEach(item => {
                     const imgElement = document.getElementById(`main-thumb-${item.id}`);
                     const exts = ['jpg', 'png', 'jpeg', 'JPG', 'PNG'];
@@ -515,7 +507,7 @@
         }
 
         // =========================================================================
-        // 3. 메인페이지 예배 최신 데이터 불러오기
+        // ★ 메인페이지 예배 최신 데이터 3줄 출력 세팅 ★
         // =========================================================================
         async function loadLatestWorship() {
             const sundayCsvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTmNPl7QMOdRz4v6O0kYga96lCTM8t2xeDwVepsmdUtBfiXyTz4jVmJ_meq0fP0ENusdnKxfHpPjTrJ/pub?gid=1778090244&single=true&output=csv";
@@ -538,10 +530,12 @@
                 
                 if(validRows.length > 0) {
                     const latest = validRows[0];
-                    // [태그] 분리해서 없애고 메인제목만 깔끔하게 표시
                     let mainTitle = latest.title.replace(/^\[.*?\]\s*/, '');
+                    
+                    // 주일설교 3줄(제목/본문/날짜) 업데이트
                     document.getElementById('main-sunday-title').textContent = mainTitle;
-                    document.getElementById('main-sunday-info').textContent = `${latest.date} ${latest.scripture}`;
+                    document.getElementById('main-sunday-scripture').textContent = latest.scripture;
+                    document.getElementById('main-sunday-date').textContent = latest.date;
                     
                     if(latest.link && latest.link.length > 5) {
                         document.getElementById('main-sunday-card').onclick = () => window.open(latest.link, '_blank');
@@ -552,7 +546,7 @@
             } catch(error) { 
                 console.error("주일예배 로딩 에러:", error); 
                 document.getElementById('main-sunday-title').textContent = "주일설교";
-                document.getElementById('main-sunday-info').textContent = "말씀을 불러올 수 없습니다.";
+                document.getElementById('main-sunday-scripture').textContent = "말씀을 불러올 수 없습니다.";
             }
 
             const wedCsvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTmNPl7QMOdRz4v6O0kYga96lCTM8t2xeDwVepsmdUtBfiXyTz4jVmJ_meq0fP0ENusdnKxfHpPjTrJ/pub?gid=1347943468&single=true&output=csv"; 
@@ -577,8 +571,11 @@
                     if(validRows.length > 0) {
                         const latest = validRows[0];
                         let mainTitle = latest.title.replace(/^\[.*?\]\s*/, '');
+                        
+                        // 수요설교 3줄(제목/본문/날짜) 업데이트
                         document.getElementById('main-wed-title').textContent = mainTitle;
-                        document.getElementById('main-wed-info').textContent = `${latest.date} ${latest.scripture}`;
+                        document.getElementById('main-wed-scripture').textContent = latest.scripture;
+                        document.getElementById('main-wed-date').textContent = latest.date;
                         
                         if(latest.link && latest.link.length > 5) {
                             document.getElementById('main-wed-card').onclick = () => window.open(latest.link, '_blank');
@@ -591,8 +588,8 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            initPopups();        // ★ 추가됨: 팝업창 띄우기 함수 실행
-            loadMainGallery();   // ★ 추가됨: 행사사진 파일 몰래 읽어와서 갤러리 4개 자동 띄우기
+            initPopups();        
+            loadMainGallery();   
             startInterval();     
             loadLatestWorship(); 
         });

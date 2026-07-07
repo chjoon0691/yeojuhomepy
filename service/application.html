@@ -10,16 +10,20 @@
     <style>
         @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
         body { font-family: 'Pretendard', sans-serif; background-color: #ffffff; overflow-x: hidden; }
-        /* 따옴표 장식용 폰트 */
-        .quote-mark { font-family: Georgia, serif; }
     </style>
 </head>
 <body class="text-gray-800">
 
-    <!-- 마법의 파일 연결 1: 공통 상단 헤더 -->
     <div id="common-header"></div>
 
-    <!-- 모바일 전용 2차 메뉴 바 -->
+    <section class="bg-[#102242] py-12 md:py-20 text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-luminosity"></div>
+        <div class="relative z-10">
+            <h2 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-2">행정서비스</h2>
+            <p class="text-blue-200 text-sm md:text-base">Administrative Services</p>
+        </div>
+    </section>
+
     <div class="md:hidden border-b border-gray-300 bg-white relative z-30 shadow-sm">
         <div class="flex text-sm md:text-base">
             <a href="../index.html" class="px-4 py-3 border-r border-gray-300 text-gray-600 flex items-center justify-center hover:bg-gray-50">
@@ -52,10 +56,8 @@
         </div>
     </div>
 
-    <!-- Main Content Layout -->
     <div class="max-w-7xl mx-auto px-4 py-12 md:py-20 flex flex-col md:flex-row gap-10">
         
-        <!-- Left Sidebar -->
         <aside class="hidden md:block w-64 flex-shrink-0">
             <div class="bg-[#6b8cba] text-white text-center py-4 text-xl font-bold rounded-t-lg">행정서비스</div>
             <ul class="border border-t-0 border-gray-200 flex flex-col">
@@ -63,152 +65,107 @@
             </ul>
         </aside>
 
-        <!-- Right Content Area -->
         <main class="flex-1">
             
-            <div class="w-full bg-[#1b315b] rounded-xl h-24 md:h-32 flex flex-col justify-center items-center text-white shadow-md relative overflow-hidden mb-12">
+            <div class="w-full bg-[#1b315b] rounded-xl h-24 md:h-32 flex flex-col justify-center items-center text-white shadow-md relative overflow-hidden mb-10">
                 <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
                 <h3 class="text-2xl md:text-3xl font-extrabold relative z-10 tracking-tight">신청서류</h3>
             </div>
 
-            <div class="space-y-16">
-                <!-- 대관신청 -->
-                <div class="flex flex-col md:flex-row gap-8 items-center border-b border-gray-200 pb-16">
-                    <div class="w-full md:w-1/2">
-                        <img src="https://images.unsplash.com/photo-1601142634808-38923eb7c560?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="대관신청 목십자가" class="w-full h-auto shadow-md object-cover aspect-[16/9] rounded-lg">
+            <!-- ★ 한눈에 들어오는 카드 그리드 레이아웃 ★ -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+                
+                <!-- 1. 대관신청 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden hover:-translate-y-1 hover:shadow-md transition duration-300 flex flex-col">
+                    <div class="h-48 overflow-hidden relative">
+                        <!-- ★ 말 사진 완전히 삭제! 확실한 십자가/예배당 사진으로 교체 완료 ★ -->
+                        <img src="https://images.unsplash.com/photo-1504052434569-70ad5836ab65?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="대관신청 이미지" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                        <h3 class="absolute bottom-4 left-5 text-2xl font-extrabold text-white tracking-tight flex items-center gap-2">
+                            <i class="fas fa-church text-blue-300"></i> 대관신청
+                        </h3>
                     </div>
-                    <div class="w-full md:w-1/2 flex flex-col justify-center relative px-2">
-                        <!-- 큰 따옴표 장식 -->
-                        <span class="absolute -top-10 md:-top-16 -left-4 md:-left-8 text-8xl md:text-9xl text-gray-200 quote-mark opacity-50 z-0">“</span>
-                        
-                        <div class="relative z-10">
-                            <h3 class="text-3xl md:text-4xl font-extrabold text-[#78b394] mb-6 tracking-tight flex items-center">대관신청</h3>
-                            <div class="bg-white border-y border-gray-200 py-6 mb-8 text-gray-700 md:text-lg">
-                                아래의 신청서를 다운 받아 작성하여 주세요.<br>
-                                자세한 내용은 사무실로 연락주시기 바랍니다.
-                            </div>
-                            <a href="../assets/대관신청서.hwp" download class="inline-flex items-center gap-2 bg-gradient-to-b from-[#f3f4f6] to-[#e5e7eb] hover:from-[#e5e7eb] hover:to-[#d1d5db] border border-gray-300 text-gray-600 px-6 py-2.5 rounded-full text-sm md:text-base font-bold transition shadow-sm">
-                                대관신청서 다운받기
-                            </a>
-                        </div>
-                        
-                        <span class="absolute -bottom-8 md:-bottom-12 right-0 text-8xl md:text-9xl text-gray-200 quote-mark opacity-50 z-0">”</span>
+                    <div class="p-6 flex-1 flex flex-col justify-between bg-gray-50/50">
+                        <p class="text-gray-600 text-sm md:text-[15px] mb-6 leading-relaxed break-keep">
+                            교회 공간 사용이 필요하신 분은 아래의 신청서를 다운받아 작성하여 사무실로 제출해 주시기 바랍니다.
+                        </p>
+                        <a href="../assets/대관신청서.hwp" download class="inline-flex justify-center items-center gap-2 bg-[#6b8cba] hover:bg-[#1b315b] text-white px-4 py-3 rounded-lg text-sm md:text-base font-bold transition shadow-sm w-full">
+                            <i class="fas fa-download"></i> 대관신청서 다운로드
+                        </a>
                     </div>
                 </div>
 
-                <!-- 차량신청 (사진 우측) -->
-                <div class="flex flex-col md:flex-row-reverse gap-8 items-center border-b border-gray-200 pb-16">
-                    <div class="w-full md:w-1/2">
-                        <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="차량 버스" class="w-full h-auto shadow-md object-cover aspect-[16/9] rounded-lg">
+                <!-- 2. 차량신청 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden hover:-translate-y-1 hover:shadow-md transition duration-300 flex flex-col">
+                    <div class="h-48 overflow-hidden relative">
+                        <!-- ★ 사막의 SUV 사진 삭제! 확실한 대형 버스 사진으로 교체 완료 ★ -->
+                        <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="차량신청 이미지" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                        <h3 class="absolute bottom-4 left-5 text-2xl font-extrabold text-white tracking-tight flex items-center gap-2">
+                            <i class="fas fa-bus-alt text-blue-300"></i> 차량신청
+                        </h3>
                     </div>
-                    <div class="w-full md:w-1/2 flex flex-col justify-center relative px-2">
-                        <span class="absolute -top-10 md:-top-16 -left-4 md:-left-8 text-8xl md:text-9xl text-gray-200 quote-mark opacity-50 z-0">“</span>
-                        
-                        <div class="relative z-10 text-right md:text-left">
-                            <h3 class="text-3xl md:text-4xl font-extrabold text-[#78b394] mb-6 tracking-tight flex items-center justify-end md:justify-start">차량신청</h3>
-                            <div class="bg-white border-y border-gray-200 py-6 mb-8 text-gray-700 md:text-lg text-left">
-                                아래의 신청서를 다운 받아 작성하여 주세요.<br>
-                                자세한 내용은 사무실로 연락주시기 바랍니다.
-                            </div>
-                            <a href="../assets/차량신청서.hwp" download class="inline-flex items-center gap-2 bg-gradient-to-b from-[#f3f4f6] to-[#e5e7eb] hover:from-[#e5e7eb] hover:to-[#d1d5db] border border-gray-300 text-gray-600 px-6 py-2.5 rounded-full text-sm md:text-base font-bold transition shadow-sm">
-                                차량신청서 다운받기
-                            </a>
-                        </div>
-                        
-                        <span class="absolute -bottom-8 md:-bottom-12 right-0 text-8xl md:text-9xl text-gray-200 quote-mark opacity-50 z-0">”</span>
+                    <div class="p-6 flex-1 flex flex-col justify-between bg-gray-50/50">
+                        <p class="text-gray-600 text-sm md:text-[15px] mb-6 leading-relaxed break-keep">
+                            교회 차량 배차가 필요하신 부서 및 기관은 아래 신청서를 다운받아 작성하여 사무실로 제출해 주시기 바랍니다.
+                        </p>
+                        <a href="../assets/차량신청서.hwp" download class="inline-flex justify-center items-center gap-2 bg-[#6b8cba] hover:bg-[#1b315b] text-white px-4 py-3 rounded-lg text-sm md:text-base font-bold transition shadow-sm w-full">
+                            <i class="fas fa-download"></i> 차량신청서 다운로드
+                        </a>
                     </div>
                 </div>
 
-                <!-- 재정신청 -->
-                <div class="flex flex-col md:flex-row gap-8 items-center border-b border-gray-200 pb-16">
-                    <div class="w-full md:w-1/2">
-                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="재정 키보드" class="w-full h-auto shadow-md object-cover aspect-[16/9] rounded-lg">
+                <!-- 3. 재정신청 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden hover:-translate-y-1 hover:shadow-md transition duration-300 flex flex-col">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="재정신청 이미지" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                        <h3 class="absolute bottom-4 left-5 text-2xl font-extrabold text-white tracking-tight flex items-center gap-2">
+                            <i class="fas fa-calculator text-blue-300"></i> 재정신청
+                        </h3>
                     </div>
-                    <div class="w-full md:w-1/2 flex flex-col justify-center relative px-2">
-                        <span class="absolute -top-10 md:-top-16 -left-4 md:-left-8 text-8xl md:text-9xl text-gray-200 quote-mark opacity-50 z-0">“</span>
-                        
-                        <div class="relative z-10">
-                            <h3 class="text-3xl md:text-4xl font-extrabold text-[#78b394] mb-6 tracking-tight flex items-center">재정신청</h3>
-                            <div class="bg-white border-y border-gray-200 py-6 mb-8 text-gray-700 md:text-lg">
-                                아래의 신청서를 다운 받아 작성하여 주세요.<br>
-                                자세한 내용은 사무실로 연락주시기 바랍니다.
-                            </div>
-                            <a href="../assets/재정신청서.hwp" download class="inline-flex items-center gap-2 bg-gradient-to-b from-[#f3f4f6] to-[#e5e7eb] hover:from-[#e5e7eb] hover:to-[#d1d5db] border border-gray-300 text-gray-600 px-6 py-2.5 rounded-full text-sm md:text-base font-bold transition shadow-sm">
-                                재정신청서 다운받기
-                            </a>
-                        </div>
-                        
-                        <span class="absolute -bottom-8 md:-bottom-12 right-0 text-8xl md:text-9xl text-gray-200 quote-mark opacity-50 z-0">”</span>
+                    <div class="p-6 flex-1 flex flex-col justify-between bg-gray-50/50">
+                        <p class="text-gray-600 text-sm md:text-[15px] mb-6 leading-relaxed break-keep">
+                            각 부서 및 기관의 재정 청구 시 필요한 서식입니다. 다운받아 작성하여 사무실로 제출해 주시기 바랍니다.
+                        </p>
+                        <a href="../assets/재정신청서.hwp" download class="inline-flex justify-center items-center gap-2 bg-[#6b8cba] hover:bg-[#1b315b] text-white px-4 py-3 rounded-lg text-sm md:text-base font-bold transition shadow-sm w-full">
+                            <i class="fas fa-download"></i> 재정신청서 다운로드
+                        </a>
                     </div>
                 </div>
 
-                <!-- 각종 서식 및 예배 안내서 -->
-                <div class="flex flex-col md:flex-row-reverse gap-8 items-center">
-                    <div class="w-full md:w-1/2">
-                        <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="서식 작성" class="w-full h-auto shadow-md object-cover aspect-[16/9] rounded-lg">
+                <!-- 4. 각종 서식 및 안내서 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden hover:-translate-y-1 hover:shadow-md transition duration-300 flex flex-col">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="서식 작성 이미지" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                        <h3 class="absolute bottom-4 left-5 text-2xl font-extrabold text-white tracking-tight flex items-center gap-2">
+                            <i class="fas fa-file-alt text-blue-300"></i> 기타 서식 및 안내
+                        </h3>
                     </div>
-                    <div class="w-full md:w-1/2 flex flex-col justify-center relative px-2">
-                        <span class="absolute -top-10 md:-top-16 -left-4 md:-left-8 text-8xl md:text-9xl text-gray-200 quote-mark opacity-50 z-0">“</span>
-                        
-                        <div class="relative z-10 text-right md:text-left">
-                            <h3 class="text-3xl md:text-4xl font-extrabold text-[#78b394] mb-6 tracking-tight flex items-center justify-end md:justify-start">각종 서식 및 예배 안내서</h3>
-                            <div class="bg-white border-y border-gray-200 py-6 mb-8 text-gray-700 md:text-lg text-left">
-                                필요한 신청서를 다운 받아 사용하시고,<br>
-                                자세한 내용은 사무실로 연락주시기 바랍니다.
-                            </div>
-                            
-                            <div class="flex flex-col items-end md:items-start gap-3">
-                                <a href="../assets/기부금영수증신청서.hwp" download class="inline-flex items-center gap-2 bg-gradient-to-b from-[#f3f4f6] to-[#e5e7eb] hover:from-[#e5e7eb] hover:to-[#d1d5db] border border-gray-300 text-gray-600 px-6 py-2.5 rounded-full text-sm md:text-base font-bold transition shadow-sm w-fit">
-                                    기부금영수증신청 다운받기
-                                </a>
-                                <a href="../assets/여주성결교회 2025추석가정예배 안내서.pdf" download class="inline-flex items-center gap-2 bg-gradient-to-b from-[#f3f4f6] to-[#e5e7eb] hover:from-[#e5e7eb] hover:to-[#d1d5db] border border-gray-300 text-gray-600 px-6 py-2.5 rounded-full text-sm md:text-base font-bold transition shadow-sm w-fit">
-                                    추석가정예배안내서다운받기
-                                </a>
-                            </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between bg-gray-50/50">
+                        <p class="text-gray-600 text-sm md:text-[15px] mb-6 leading-relaxed break-keep">
+                            기부금 영수증 발급 신청서 및 각 절기별 가정예배 안내서 등의 기타 자료를 다운받으실 수 있습니다.
+                        </p>
+                        <div class="flex flex-col gap-2.5">
+                            <a href="../assets/기부금영수증신청서.hwp" download class="inline-flex justify-center items-center gap-2 bg-[#6b8cba] hover:bg-[#1b315b] text-white px-4 py-2.5 rounded-lg text-sm md:text-base font-bold transition shadow-sm w-full">
+                                <i class="fas fa-download"></i> 기부금영수증 신청
+                            </a>
+                            <a href="../assets/여주성결교회 2025추석가정예배 안내서.pdf" download class="inline-flex justify-center items-center gap-2 border-2 border-[#6b8cba] text-[#1b315b] hover:bg-[#6b8cba] hover:text-white px-4 py-2.5 rounded-lg text-sm md:text-base font-bold transition shadow-sm w-full">
+                                <i class="fas fa-download"></i> 추석가정예배 안내서
+                            </a>
                         </div>
-                        
-                        <span class="absolute -bottom-8 md:-bottom-12 right-0 text-8xl md:text-9xl text-gray-200 quote-mark opacity-50 z-0">”</span>
                     </div>
                 </div>
 
             </div>
+
         </main>
     </div>
 
-    <!-- 마법의 파일 연결 2: 공통 하단 푸터 & 사이트맵 -->
     <div id="common-footer"></div>
     <div id="common-sitemap"></div>
 
-    <script>
-        function toggleMobileSubMenu(menuId) {
-            const targetMenu = document.getElementById(menuId);
-            const otherMenuId = menuId === 'menu-depth1' ? 'menu-depth2' : 'menu-depth1';
-            const otherMenu = document.getElementById(otherMenuId);
-            if (otherMenu && !otherMenu.classList.contains('hidden')) {
-                otherMenu.classList.add('hidden');
-                const otherIcon = otherMenu.previousElementSibling.querySelector('.fas');
-                if(otherIcon) {
-                    otherIcon.classList.remove('fa-minus');
-                    otherIcon.classList.add('fa-plus');
-                }
-            }
-            if (targetMenu) {
-                targetMenu.classList.toggle('hidden');
-                const icon = targetMenu.previousElementSibling.querySelector('.fas');
-                if(icon) {
-                    if(targetMenu.classList.contains('hidden')) {
-                        icon.classList.remove('fa-minus');
-                        icon.classList.add('fa-plus');
-                    } else {
-                        icon.classList.remove('fa-plus');
-                        icon.classList.add('fa-minus');
-                    }
-                }
-            }
-        }
-    </script>
-
-    <!-- ★ 중요: 서브페이지는 js 파일을 불러오기 위해 경로를 알려줘야 합니다 ★ -->
     <script>const ROOT_PATH = "../";</script>
     <script src="../js/common.js"></script>
 
