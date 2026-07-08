@@ -169,11 +169,11 @@
                             <p class="text-[0.7rem] md:text-sm opacity-80">Sunday sermon</p>
                         </div>
                     </div>
-                    <!-- 3줄 표시 영역 (높이 고정으로 찬양대와 맞춤) -->
+                    <!-- 3줄 표시 영역 -->
                     <div class="text-center mt-4 px-1 flex flex-col justify-center h-[70px] md:h-[90px]">
                         <h4 id="main-sunday-title" class="font-extrabold text-[16px] md:text-[20px] text-gray-900 truncate">불러오는 중...</h4>
-                        <p id="main-sunday-scripture" class="text-[15px] md:text-[19px] text-gray-800 font-bold truncate mt-0.5"><i class="fas fa-spinner fa-spin"></i></p>
-                        <p id="main-sunday-date" class="text-[15px] md:text-[19px] text-gray-500 font-normal"></p>
+                        <p id="main-sunday-scripture" class="text-[14px] md:text-[16px] text-gray-800 font-bold truncate mt-1"><i class="fas fa-spinner fa-spin"></i></p>
+                        <p id="main-sunday-date" class="text-[14px] md:text-[16px] text-gray-500 font-normal mt-0.5"></p>
                     </div>
                 </div>
 
@@ -189,8 +189,8 @@
                     <!-- 3줄 표시 영역 -->
                     <div class="text-center mt-4 px-1 flex flex-col justify-center h-[70px] md:h-[90px]">
                         <h4 id="main-wed-title" class="font-extrabold text-[16px] md:text-[20px] text-gray-900 truncate">불러오는 중...</h4>
-                        <p id="main-wed-scripture" class="text-[15px] md:text-[19px] text-gray-800 font-bold truncate mt-0.5"><i class="fas fa-spinner fa-spin"></i></p>
-                        <p id="main-wed-date" class="text-[15px] md:text-[19px] text-gray-500 font-normal"></p>
+                        <p id="main-wed-scripture" class="text-[14px] md:text-[16px] text-gray-800 font-bold truncate mt-1"><i class="fas fa-spinner fa-spin"></i></p>
+                        <p id="main-wed-date" class="text-[14px] md:text-[16px] text-gray-500 font-normal mt-0.5"></p>
                     </div>
                 </div>
 
@@ -204,18 +204,20 @@
                             <p class="text-[0.7rem] md:text-sm opacity-80">Praise</p>
                         </div>
                     </div>
-                    <!-- 2줄 표시 영역 (글씨를 성경구절 크기와 맞춤, 간격 조정) -->
-                    <div class="text-center mt-4 px-1 flex flex-col justify-center h-[70px] md:h-[90px] gap-1 md:gap-1.5">
-                        <p class="text-[15px] md:text-[19px] font-bold text-gray-800">
-                            <a href="word/praise.html" onclick="event.stopPropagation();" class="hover:text-blue-600 transition">시온찬양대(1부)</a> 
-                            <span class="text-gray-300 mx-1 md:mx-2">|</span> 
-                            <a href="word/hallelujah.html" onclick="event.stopPropagation();" class="hover:text-blue-600 transition">할렐루야찬양대(2부)</a>
-                        </p>
-                        <p class="text-[15px] md:text-[19px] font-bold text-gray-800">
-                            <a href="word/dreamnlove.html" onclick="event.stopPropagation();" class="hover:text-blue-600 transition">꿈과사랑(수요)</a>
-                            <span class="text-gray-300 mx-1 md:mx-2">|</span>
-                            <a href="word/silver.html" onclick="event.stopPropagation();" class="hover:text-blue-600 transition">은빛찬양대(오후)</a>
-                        </p>
+                    <!-- 아이콘 버튼 표시 영역 -->
+                    <div class="grid grid-cols-2 gap-1.5 md:gap-2 mt-4 px-1 h-[70px] md:h-[90px] content-center">
+                        <a href="word/praise.html" onclick="event.stopPropagation();" class="flex items-center justify-center gap-1.5 text-[11px] md:text-[14px] font-bold text-gray-700 bg-white hover:bg-blue-50 py-1.5 md:py-2 rounded-lg border border-gray-200 hover:border-blue-300 transition shadow-sm">
+                            <i class="fas fa-music text-blue-500"></i> 1부 시온
+                        </a>
+                        <a href="word/hallelujah.html" onclick="event.stopPropagation();" class="flex items-center justify-center gap-1.5 text-[11px] md:text-[14px] font-bold text-gray-700 bg-white hover:bg-green-50 py-1.5 md:py-2 rounded-lg border border-gray-200 hover:border-green-300 transition shadow-sm">
+                            <i class="fas fa-music text-green-500"></i> 2부 할렐루야
+                        </a>
+                        <a href="word/dreamnlove.html" onclick="event.stopPropagation();" class="flex items-center justify-center gap-1.5 text-[11px] md:text-[14px] font-bold text-gray-700 bg-white hover:bg-purple-50 py-1.5 md:py-2 rounded-lg border border-gray-200 hover:border-purple-300 transition shadow-sm">
+                            <i class="fas fa-music text-purple-500"></i> 수요 꿈과사랑
+                        </a>
+                        <a href="word/silver.html" onclick="event.stopPropagation();" class="flex items-center justify-center gap-1.5 text-[11px] md:text-[14px] font-bold text-gray-700 bg-white hover:bg-orange-50 py-1.5 md:py-2 rounded-lg border border-gray-200 hover:border-orange-300 transition shadow-sm">
+                            <i class="fas fa-music text-orange-500"></i> 오후 은빛
+                        </a>
                     </div>
                 </div>
             </div>
