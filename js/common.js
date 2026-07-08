@@ -191,13 +191,13 @@ document.addEventListener('DOMContentLoaded', () => {
     </footer>
     `;
 
-    // 3. 공통 사이트맵 모달창 HTML (메뉴 순서 및 줄간격 완벽 일치)
+    // 3. 공통 사이트맵 모달창 HTML (모바일 2단, PC 4단 반응형, 줄간격 최적화)
     const sitemapHTML = `
     <div id="global-sitemap-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 md:p-6">
         <!-- 반투명 배경 -->
         <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="toggleGlobalSitemap()"></div>
         
-        <!-- 팝업창 본체 (모바일에서도 여백 있는 둥근 창) -->
+        <!-- 팝업창 본체 -->
         <div class="relative w-full max-w-[1000px] bg-white shadow-2xl z-10 flex flex-col rounded-2xl overflow-hidden max-h-[90vh]">
             
             <!-- 상단 타이틀 바 -->
@@ -211,19 +211,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 </button>
             </div>
             
-            <!-- 사이트맵 링크 영역 -->
+            <!-- 사이트맵 링크 영역 (★ grid-cols-2 로 수정하여 모바일에서도 2단 배치) -->
             <div id="sitemap-content" class="p-5 md:p-8 overflow-y-auto bg-white flex-1">
-                <!-- 메인 메뉴 순서와 100% 동일한 7개 메뉴 순차적 나열 -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-6">
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-4 md:gap-x-6 gap-y-6">
                     
                     <!-- 1. 환영합니다 -->
                     <div>
-                        <h3 class="font-bold text-gray-900 border-t-2 border-[#1b315b] pt-2 pb-2 text-base">환영합니다</h3>
-                        <ul class="border-t border-gray-200 text-sm text-gray-700">
+                        <h3 class="font-bold text-gray-900 border-t-2 border-[#1b315b] pt-2 pb-1.5 text-[15px] md:text-base">환영합니다</h3>
+                        <ul class="border-t border-gray-200 text-[13px] md:text-sm text-gray-700">
                             <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}welcome/greeting.html" class="block w-full">인사말</a></li>
                             <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition">
                                 <a href="${root}welcome/history/history.html" class="block w-full font-bold text-gray-900">교회연혁</a>
-                                <ul class="pl-3 mt-1 space-y-1 text-[13px] text-gray-500">
+                                <ul class="pl-2.5 mt-1 space-y-1 text-[12px] md:text-[13px] text-gray-500">
                                     <li>- <a href="${root}welcome/history/building.html" class="hover:text-blue-500">성전건축이야기</a></li>
                                     <li>- <a href="${root}welcome/history/edu_building.html" class="hover:text-blue-500">교육관건축사진</a></li>
                                     <li>- <a href="${root}welcome/history/old_photos.html" class="hover:text-blue-500">이전 홈피 사진들</a></li>
@@ -239,17 +238,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     <!-- 2. 말씀과 찬양 -->
                     <div>
-                        <h3 class="font-bold text-gray-900 border-t-2 border-[#1b315b] pt-2 pb-2 text-base">말씀과 찬양</h3>
-                        <ul class="border-t border-gray-200 text-sm text-gray-700">
-                            <li class="py-1.5 text-gray-900 font-bold border-b border-gray-100">말씀</li>
-                            <li class="bg-gray-50/80 p-2 space-y-1.5 text-[13px] text-gray-600 mb-1 border-b border-dashed border-gray-100 rounded-sm">
+                        <h3 class="font-bold text-gray-900 border-t-2 border-[#1b315b] pt-2 pb-1.5 text-[15px] md:text-base">말씀과 찬양</h3>
+                        <ul class="border-t border-gray-200 text-[13px] md:text-sm text-gray-700">
+                            <li class="py-1 text-gray-900 font-bold border-b border-gray-100">말씀</li>
+                            <li class="bg-gray-50/80 p-1.5 space-y-1 text-[12px] md:text-[13px] text-gray-600 mb-1 border-b border-dashed border-gray-100 rounded-sm">
                                 <a href="${root}word/sunday.html" class="block hover:text-blue-600">- 주일예배</a>
                                 <a href="${root}word/afternoon.html" class="block hover:text-blue-600">- 주일오후예배</a>
                                 <a href="${root}word/wednesday.html" class="block hover:text-blue-600">- 수요예배</a>
                                 <a href="${root}word/special_worship.html" class="block hover:text-blue-600">- 특별집회</a>
                             </li>
-                            <li class="py-1.5 text-gray-900 font-bold border-b border-gray-100">찬양대/중창단</li>
-                            <li class="bg-gray-50/80 p-2 space-y-1.5 text-[13px] text-gray-600 mb-1 border-b border-dashed border-gray-100 rounded-sm">
+                            <li class="py-1 text-gray-900 font-bold border-b border-gray-100">찬양대/중창단</li>
+                            <li class="bg-gray-50/80 p-1.5 space-y-1 text-[12px] md:text-[13px] text-gray-600 mb-1 border-b border-dashed border-gray-100 rounded-sm">
                                 <a href="${root}word/praise.html" class="block hover:text-blue-600">- 시온찬양대</a>
                                 <a href="${root}word/hallelujah.html" class="block hover:text-blue-600">- 할렐루야찬양대</a>
                                 <a href="${root}word/dreamnlove.html" class="block hover:text-blue-600">- 꿈과사랑의찬양대</a>
@@ -263,20 +262,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     <!-- 3. 공동체 -->
                     <div>
-                        <h3 class="font-bold text-gray-900 border-t-2 border-[#1b315b] pt-2 pb-2 text-base">공동체</h3>
-                        <ul class="border-t border-gray-200 text-sm text-gray-700">
+                        <h3 class="font-bold text-gray-900 border-t-2 border-[#1b315b] pt-2 pb-1.5 text-[15px] md:text-base">공동체</h3>
+                        <ul class="border-t border-gray-200 text-[13px] md:text-sm text-gray-700 mb-6">
                             <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}community/parish.html" class="block w-full">교구</a></li>
                             <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}community/organization.html" class="block w-full">기관</a></li>
                             <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}community/training.html" class="block w-full">양육&훈련</a></li>
                             <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}community/senior.html" class="block w-full">청춘대학</a></li>
                             <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}community/company.html" class="block w-full">성도기업</a></li>
                         </ul>
+                        
+                        <h3 class="font-bold text-gray-900 border-t-2 border-[#1b315b] pt-2 pb-1.5 text-[15px] md:text-base mt-2">행정서비스</h3>
+                        <ul class="border-t border-gray-200 text-[13px] md:text-sm text-gray-700">
+                            <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}service/application.html" class="block w-full">신청서류</a></li>
+                        </ul>
                     </div>
 
-                    <!-- 4. 다음세대 -->
+                    <!-- 4. 다음세대 / 전도와 선교 -->
                     <div>
-                        <h3 class="font-bold text-gray-900 border-t-2 border-[#1b315b] pt-2 pb-2 text-base">다음세대</h3>
-                        <ul class="border-t border-gray-200 text-sm text-gray-700">
+                        <h3 class="font-bold text-gray-900 border-t-2 border-[#1b315b] pt-2 pb-1.5 text-[15px] md:text-base">다음세대</h3>
+                        <ul class="border-t border-gray-200 text-[13px] md:text-sm text-gray-700 mb-6">
                             <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}nextgen/infant.html" class="block w-full">영아부</a></li>
                             <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}nextgen/kindergarten.html" class="block w-full">유치부</a></li>
                             <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}nextgen/children.html" class="block w-full">유년부</a></li>
@@ -286,12 +290,9 @@ document.addEventListener('DOMContentLoaded', () => {
                             <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}nextgen/high.html" class="block w-full">고등부</a></li>
                             <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}nextgen/youth.html" class="block w-full">청년사역위원회</a></li>
                         </ul>
-                    </div>
 
-                    <!-- 5. 전도와 선교 -->
-                    <div>
-                        <h3 class="font-bold text-gray-900 border-t-2 border-[#1b315b] pt-2 pb-2 text-base">전도와 선교</h3>
-                        <ul class="border-t border-gray-200 text-sm text-gray-700">
+                        <h3 class="font-bold text-gray-900 border-t-2 border-[#1b315b] pt-2 pb-1.5 text-[15px] md:text-base mt-2">전도와 선교</h3>
+                        <ul class="border-t border-gray-200 text-[13px] md:text-sm text-gray-700">
                             <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}mission/evangelism.html" class="block w-full">전도대</a></li>
                             <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}mission/domestic.html" class="block w-full">국내선교</a></li>
                             <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}mission/overseas.html" class="block w-full">해외선교</a></li>
@@ -300,23 +301,18 @@ document.addEventListener('DOMContentLoaded', () => {
                         </ul>
                     </div>
 
-                    <!-- 6. 교회소식 -->
-                    <div>
-                        <h3 class="font-bold text-gray-900 border-t-2 border-[#1b315b] pt-2 pb-2 text-base">교회소식</h3>
-                        <ul class="border-t border-gray-200 text-sm text-gray-700">
-                            <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}news/weekly.html" class="block w-full">교회주보</a></li>
-                            <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}news/newcomer.html" class="block w-full">새가족소식</a></li>
-                            <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}news/member.html" class="block w-full">성도소식</a></li>
-                            <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}news/gallery.html" class="block w-full">행사사진</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- 7. 행정서비스 -->
-                    <div>
-                        <h3 class="font-bold text-gray-900 border-t-2 border-[#1b315b] pt-2 pb-2 text-base">행정서비스</h3>
-                        <ul class="border-t border-gray-200 text-sm text-gray-700">
-                            <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}service/application.html" class="block w-full">신청서류</a></li>
-                        </ul>
+                    <!-- 6. 교회소식은 자리가 남는 곳에 병합하거나 100% 폭으로 하단에 배치 -->
+                    <div class="col-span-2 lg:col-span-4 mt-2">
+                         <h3 class="font-bold text-gray-900 border-t-2 border-[#1b315b] pt-2 pb-1.5 text-[15px] md:text-base text-center bg-gray-50">교회소식</h3>
+                         <div class="flex flex-wrap justify-center gap-4 py-2 text-[13px] md:text-sm text-gray-700">
+                             <a href="${root}news/weekly.html" class="hover:text-blue-600 transition">교회주보</a>
+                             <span class="text-gray-300">|</span>
+                             <a href="${root}news/newcomer.html" class="hover:text-blue-600 transition">새가족소식</a>
+                             <span class="text-gray-300">|</span>
+                             <a href="${root}news/member.html" class="hover:text-blue-600 transition">성도소식</a>
+                             <span class="text-gray-300">|</span>
+                             <a href="${root}news/gallery.html" class="hover:text-blue-600 transition">행사사진</a>
+                         </div>
                     </div>
 
                 </div>
@@ -335,18 +331,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (sitemapEl) sitemapEl.innerHTML = sitemapHTML;
 });
 
-// 전역 함수: 사이트맵 모달 토글 (이제 모바일/PC 모두 화면 가운데 여백을 두고 예쁘게 뜹니다)
+// 전역 함수: 사이트맵 모달 토글
 window.toggleGlobalSitemap = function() {
     const modal = document.getElementById('global-sitemap-modal');
     if (modal) {
         if (modal.classList.contains('hidden')) {
             modal.classList.remove('hidden');
-            modal.classList.add('flex'); // 모달창을 화면 정중앙에 띄우기 위해 flex 활성화
-            document.body.style.overflow = 'hidden'; // 배경 스크롤 방지
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
         } else {
             modal.classList.add('hidden');
-            modal.classList.remove('flex'); // flex 해제
-            document.body.style.overflow = ''; // 배경 스크롤 복구
+            modal.classList.remove('flex');
+            document.body.style.overflow = '';
         }
     }
 };
