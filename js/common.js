@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </button>
 
             <!-- Menu (Desktop) -->
-            <nav class="hidden md:flex items-center space-x-8 text-lg font-medium">
+            <nav class="hidden md:flex items-center space-x-4 lg:space-x-8 text-[15px] lg:text-lg font-medium whitespace-nowrap">
                 <div class="relative group py-2">
                     <a href="${root}welcome/greeting.html" class="hover:text-blue-300 transition">환영합니다</a>
                     <div class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
