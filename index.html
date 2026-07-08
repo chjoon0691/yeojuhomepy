@@ -128,23 +128,24 @@
             <div class="absolute inset-0 flex justify-center items-center pointer-events-none z-0">
                 <img src="images/image_8bddfb.png" alt="여주성결교회 성전 이미지" class="w-full max-w-[160px] sm:max-w-[200px] md:max-w-[320px] object-contain opacity-100" onerror="this.src='https://placehold.co/300x400/transparent/transparent'">
             </div>
-            <div class="grid grid-cols-2 gap-y-24 md:gap-y-32 gap-x-2 md:gap-x-8 relative z-10">
-                <div class="flex flex-col items-start text-left md:pr-40 pl-3 sm:pl-8 md:pl-0">
+            <!-- 환영 섹션 좌우 패딩을 제거하여 글씨가 가운데 아이콘 위로 자연스럽게 겹치며 1줄로 유지되도록 수정 -->
+            <div class="grid grid-cols-2 gap-y-24 md:gap-y-32 gap-x-4 md:gap-x-12 relative z-10">
+                <div class="flex flex-col items-start text-left pl-3 sm:pl-8 md:pl-0">
                     <h4 class="text-base md:text-3xl font-extrabold mb-3 md:mb-4 text-gray-900 leading-tight">여주성결교회에<br class="md:hidden"> 처음 오셨나요?</h4>
                     <p class="hidden md:block text-sm md:text-xl text-gray-500 mb-3 md:mb-6 leading-relaxed font-medium">"꿈과 사랑이 있는 여주교회"<br>새가족이 되심을<br>진심으로 축하드립니다.</p>
                     <button onclick="location.href='welcome/newcomer/newcomer.html'" class="bg-[#6b8cba] text-white text-xs md:text-xl font-bold px-4 py-2 md:px-8 md:py-3 rounded hover:bg-[#1a3668] transition shadow-sm">새가족 안내</button>
                 </div>
-                <div class="flex flex-col items-end text-right md:pl-40 pr-3 sm:pr-8 md:pr-0">
+                <div class="flex flex-col items-end text-right pr-3 sm:pr-8 md:pr-0">
                     <h4 class="text-base md:text-3xl font-extrabold mb-3 md:mb-4 text-gray-900 leading-tight">다음세대가<br class="md:hidden"> 함께하는 교회</h4>
                     <p class="hidden md:block text-sm md:text-xl text-gray-500 mb-3 md:mb-6 leading-relaxed font-medium">여주성결교회의 다음세대 교회학교는<br>예수님의 작은 제자들이<br>올바른 그리스도의 자녀로 성장하기 위한<br>훈련과정을 담고 있습니다</p>
                     <button onclick="location.href='nextgen/infant.html'" class="bg-[#6b8cba] text-white text-xs md:text-xl font-bold px-4 py-2 md:px-8 md:py-3 rounded hover:bg-[#1a3668] transition shadow-sm">다음세대</button>
                 </div>
-                <div class="flex flex-col items-start text-left md:pr-40 pl-3 sm:pl-8 md:pl-0 mt-4 md:mt-0">
+                <div class="flex flex-col items-start text-left pl-3 sm:pl-8 md:pl-0 mt-4 md:mt-0">
                     <h4 class="text-base md:text-3xl font-extrabold mb-3 md:mb-4 text-gray-900 leading-tight">세계로<br class="md:hidden"> 선교하는 교회</h4>
                     <p class="hidden md:block text-sm md:text-xl text-gray-500 mb-3 md:mb-6 leading-relaxed font-medium">여주성결교회는 선교에 동참하는 공동체로<br>복음이 필요한 국내,외 지구촌 곳곳에<br>하나님의 복음을 전하는데<br>그 가치를 두고 있습니다</p>
                     <button onclick="location.href='mission/domestic.html'" class="bg-[#6b8cba] text-white text-xs md:text-xl font-bold px-4 py-2 md:px-8 md:py-3 rounded hover:bg-[#1a3668] transition shadow-sm">국내외 선교</button>
                 </div>
-                <div class="flex flex-col items-end text-right md:pl-40 pr-3 sm:pr-8 md:pr-0 mt-4 md:mt-0">
+                <div class="flex flex-col items-end text-right pr-3 sm:pr-8 md:pr-0 mt-4 md:mt-0">
                     <h4 class="text-base md:text-3xl font-extrabold mb-3 md:mb-4 text-gray-900 leading-tight">예수 제자를<br class="md:hidden"> 양육하는 교회</h4>
                     <p class="hidden md:block text-sm md:text-xl text-gray-500 mb-3 md:mb-6 leading-relaxed font-medium">여주성결교회는 성도들이 예수님의 사랑을<br>경험하는 것을 가치있게 여기는 교회로<br>모든 성도들의 신앙성숙을 도와<br>예수 제자를 양육하고 있습니다</p>
                     <button onclick="location.href='community/training.html'" class="bg-[#6b8cba] text-white text-xs md:text-xl font-bold px-4 py-2 md:px-8 md:py-3 rounded hover:bg-[#1a3668] transition shadow-sm">양육&훈련</button>
@@ -169,10 +170,10 @@
                         </div>
                     </div>
                     <!-- 3줄 표시 영역 -->
-                    <div class="text-center mt-4 px-1 flex flex-col gap-0.5">
-                        <h4 id="main-sunday-title" class="font-extrabold text-base md:text-xl text-gray-900 truncate">불러오는 중...</h4>
-                        <p id="main-sunday-scripture" class="text-xs md:text-sm text-gray-700 font-medium truncate"><i class="fas fa-spinner fa-spin"></i></p>
-                        <p id="main-sunday-date" class="text-[11px] md:text-xs text-gray-500"></p>
+                    <div class="text-center mt-4 px-1 flex flex-col justify-center h-[70px] md:h-[90px]">
+                        <h4 id="main-sunday-title" class="font-extrabold text-[16px] md:text-[20px] text-gray-900 truncate">불러오는 중...</h4>
+                        <p id="main-sunday-scripture" class="text-[14px] md:text-[16px] text-gray-800 font-bold truncate mt-1"><i class="fas fa-spinner fa-spin"></i></p>
+                        <p id="main-sunday-date" class="text-[14px] md:text-[16px] text-gray-500 font-normal mt-0.5"></p>
                     </div>
                 </div>
 
@@ -181,16 +182,15 @@
                     <div class="relative h-40 md:h-72 rounded-2xl md:rounded-3xl overflow-hidden shadow-lg group">
                         <img src="https://images.unsplash.com/photo-1504052434569-70ad5836ab65?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="수요설교 십자가" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                         <div class="absolute inset-0 bg-black/40 flex flex-col justify-end items-center text-white pb-6 md:pb-10">
-                            <!-- 수요예배 -> 수요설교 변경 -->
                             <h3 class="text-lg md:text-3xl font-extrabold mb-1">수요설교</h3>
                             <p class="text-[0.7rem] md:text-sm opacity-80">Wednesday Sermon</p>
                         </div>
                     </div>
                     <!-- 3줄 표시 영역 -->
-                    <div class="text-center mt-4 px-1 flex flex-col gap-0.5">
-                        <h4 id="main-wed-title" class="font-extrabold text-base md:text-xl text-gray-900 truncate">불러오는 중...</h4>
-                        <p id="main-wed-scripture" class="text-xs md:text-sm text-gray-700 font-medium truncate"><i class="fas fa-spinner fa-spin"></i></p>
-                        <p id="main-wed-date" class="text-[11px] md:text-xs text-gray-500"></p>
+                    <div class="text-center mt-4 px-1 flex flex-col justify-center h-[70px] md:h-[90px]">
+                        <h4 id="main-wed-title" class="font-extrabold text-[16px] md:text-[20px] text-gray-900 truncate">불러오는 중...</h4>
+                        <p id="main-wed-scripture" class="text-[14px] md:text-[16px] text-gray-800 font-bold truncate mt-1"><i class="fas fa-spinner fa-spin"></i></p>
+                        <p id="main-wed-date" class="text-[14px] md:text-[16px] text-gray-500 font-normal mt-0.5"></p>
                     </div>
                 </div>
 
@@ -204,19 +204,20 @@
                             <p class="text-[0.7rem] md:text-sm opacity-80">Praise</p>
                         </div>
                     </div>
-                    <!-- 3줄 표시 영역 및 개별 클릭 이동 (event.stopPropagation 적용) -->
-                    <div class="text-center mt-4 px-1 flex flex-col gap-1 text-[11px] md:text-[13px] font-bold">
-                        <p class="text-gray-700">
-                            <a href="word/praise.html" onclick="event.stopPropagation();" class="hover:text-blue-600 transition">시온찬양대(1부)</a> 
-                            <span class="text-gray-300 mx-1">|</span> 
-                            <a href="word/silver.html" onclick="event.stopPropagation();" class="hover:text-blue-600 transition">은빛찬양대(오후)</a>
-                        </p>
-                        <p class="text-gray-700">
-                            <a href="word/hallelujah.html" onclick="event.stopPropagation();" class="hover:text-blue-600 transition">할렐루야찬양대(2부)</a>
-                        </p>
-                        <p class="text-gray-700">
-                            <a href="word/dreamnlove.html" onclick="event.stopPropagation();" class="hover:text-blue-600 transition">꿈과사랑의찬양대(수요)</a>
-                        </p>
+                    <!-- 아이콘 버튼 표시 영역 -->
+                    <div class="grid grid-cols-2 gap-1.5 md:gap-2 mt-4 px-1 h-[70px] md:h-[90px] content-center">
+                        <a href="word/praise.html" onclick="event.stopPropagation();" class="flex items-center justify-center gap-1.5 text-[11px] md:text-[14px] font-bold text-white bg-[#7896c3] hover:bg-[#1a3668] py-1.5 md:py-2 rounded-lg transition shadow-sm">
+                            <i class="fas fa-music text-blue-100"></i> 1부 시온
+                        </a>
+                        <a href="word/hallelujah.html" onclick="event.stopPropagation();" class="flex items-center justify-center gap-1.5 text-[11px] md:text-[14px] font-bold text-white bg-[#7896c3] hover:bg-[#1a3668] py-1.5 md:py-2 rounded-lg transition shadow-sm">
+                            <i class="fas fa-music text-blue-100"></i> 2부 할렐루야
+                        </a>
+                        <a href="word/dreamnlove.html" onclick="event.stopPropagation();" class="flex items-center justify-center gap-1.5 text-[11px] md:text-[14px] font-bold text-white bg-[#7896c3] hover:bg-[#1a3668] py-1.5 md:py-2 rounded-lg transition shadow-sm">
+                            <i class="fas fa-music text-blue-100"></i> 수요 꿈과사랑
+                        </a>
+                        <a href="word/silver.html" onclick="event.stopPropagation();" class="flex items-center justify-center gap-1.5 text-[11px] md:text-[14px] font-bold text-white bg-[#7896c3] hover:bg-[#1a3668] py-1.5 md:py-2 rounded-lg transition shadow-sm">
+                            <i class="fas fa-music text-blue-100"></i> 오후 은빛
+                        </a>
                     </div>
                 </div>
             </div>
@@ -507,7 +508,7 @@
         }
 
         // =========================================================================
-        // ★ 메인페이지 예배 최신 데이터 3줄 출력 세팅 ★
+        // 3. 메인페이지 예배 최신 데이터 불러오기
         // =========================================================================
         async function loadLatestWorship() {
             const sundayCsvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTmNPl7QMOdRz4v6O0kYga96lCTM8t2xeDwVepsmdUtBfiXyTz4jVmJ_meq0fP0ENusdnKxfHpPjTrJ/pub?gid=1778090244&single=true&output=csv";
@@ -530,9 +531,8 @@
                 
                 if(validRows.length > 0) {
                     const latest = validRows[0];
+                    // [태그] 분리해서 없애고 메인제목만 깔끔하게 표시
                     let mainTitle = latest.title.replace(/^\[.*?\]\s*/, '');
-                    
-                    // 주일설교 3줄(제목/본문/날짜) 업데이트
                     document.getElementById('main-sunday-title').textContent = mainTitle;
                     document.getElementById('main-sunday-scripture').textContent = latest.scripture;
                     document.getElementById('main-sunday-date').textContent = latest.date;
@@ -571,8 +571,6 @@
                     if(validRows.length > 0) {
                         const latest = validRows[0];
                         let mainTitle = latest.title.replace(/^\[.*?\]\s*/, '');
-                        
-                        // 수요설교 3줄(제목/본문/날짜) 업데이트
                         document.getElementById('main-wed-title').textContent = mainTitle;
                         document.getElementById('main-wed-scripture').textContent = latest.scripture;
                         document.getElementById('main-wed-date').textContent = latest.date;
