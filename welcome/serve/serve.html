@@ -16,9 +16,9 @@
         }
         html { scroll-behavior: smooth; }
         
-        /* 사진 카드용 CSS */
+        /* 사진 카드용 CSS - margin-bottom을 15px에서 8px로 대폭 줄여 밀착시켰습니다 */
         .person-card { display: flex; flex-direction: column; align-items: center; text-align: center; }
-        .person-img-wrap { width: 150px; background: white; padding: 5px; border: 1px solid #e5e7eb; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 15px; }
+        .person-img-wrap { width: 150px; background: white; padding: 5px; border: 1px solid #e5e7eb; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 8px; }
         .person-img { width: 100%; aspect-ratio: 3/4; object-fit: cover; }
         @media (max-width: 640px) {
             .person-img-wrap { width: 130px; }
@@ -114,8 +114,8 @@
             </ul>
         </aside>
 
-        <!-- 메인 콘텐츠 영역 -->
-        <main class="flex-1 space-y-16">
+        <!-- 메인 콘텐츠 영역 (space-y-16 에서 space-y-10으로 줄임) -->
+        <main class="flex-1 space-y-10">
             
             <!-- 이너 배너 -->
             <div class="w-full bg-[#1b315b] rounded-xl h-32 md:h-48 flex flex-col justify-center items-center text-white shadow-md relative overflow-hidden mb-10">
@@ -123,9 +123,8 @@
                 <h3 class="text-3xl md:text-4xl font-extrabold relative z-10 tracking-tight">섬기는 분들</h3>
             </div>
 
-            <!-- ★ 필터 및 검색바 디자인 (바둑판 정렬로 완벽 교체) ★ -->
-            <div class="border-b border-gray-200 pb-8 mb-10" id="serve-top">
-                <!-- 1줄에 3칸(모바일), 4칸(작은화면), 5칸(태블릿), 7칸(PC)씩 크기가 일정하게 줄맞춤 됩니다 -->
+            <!-- ★ 필터 및 검색바 디자인 -->
+            <div class="border-b border-gray-200 pb-8 mb-6" id="serve-top">
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-2 md:gap-3">
                     <a href="#serve-top" class="bg-[#6b8cba] text-white py-2.5 text-[13px] sm:text-sm font-bold text-center border border-[#6b8cba] rounded-lg shadow-sm hover:bg-[#1a3668] transition">전체</a>
                     <a href="#cate-1" class="bg-white text-gray-700 py-2.5 text-[13px] sm:text-sm font-medium text-center border border-gray-300 rounded-lg shadow-sm hover:bg-gray-50 hover:text-blue-600 transition">담임목사</a>
@@ -145,12 +144,14 @@
 
             <!-- 1. 담임목사 -->
             <section id="cate-1" class="scroll-mt-10">
-                <h4 class="text-xl font-bold text-gray-800 border-b border-gray-200 pb-2 mb-8"><i class="far fa-circle text-gray-500 mr-2 text-lg"></i>담임목사</h4>
+                <!-- mb-8 에서 mb-5 로 줄임 -->
+                <h4 class="text-xl font-bold text-gray-800 border-b border-gray-200 pb-2 mb-5"><i class="far fa-circle text-gray-500 mr-2 text-lg"></i>담임목사</h4>
                 <div class="flex flex-col md:flex-row gap-8 items-center md:items-start bg-gray-50 p-6 md:p-8 rounded-xl border border-gray-200 shadow-sm">
                     <!-- Left: Photo -->
                     <div class="person-card shrink-0">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/조형준담임목사.jpg" alt="조형준 담임목사" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <!-- mt-2 여백 제거 -->
+                        <div>
                             <span class="text-lg font-bold text-gray-900">조형준</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">담임목사</span>
                         </div>
@@ -165,7 +166,8 @@
                             </h5>
                             <ul class="text-gray-700 leading-relaxed space-y-2 text-[15px] md:text-base">
                                 <li class="flex items-start gap-2"><i class="fas fa-check text-[#78b394] mt-1.5 text-[10px]"></i> <span>서울신학대학교 신학과 (B.A.)</span></li>
-                                <li class="flex items-start gap-2"><i class="fas fa-check text-[#78b394] mt-1.5 text-[10px]"></i> <span>서울신학대학교 신학대학원 (M.Div.2)</span></li>
+                                <!-- M.Div.2 -> M.Div.Ⅱ 로마자로 수정 완료 -->
+                                <li class="flex items-start gap-2"><i class="fas fa-check text-[#78b394] mt-1.5 text-[10px]"></i> <span>서울신학대학교 신학대학원 (M.Div.Ⅱ)</span></li>
                                 <li class="flex items-start gap-2"><i class="fas fa-check text-[#78b394] mt-1.5 text-[10px]"></i> <span>미국 Fuller Theological Seminary 선교학 (D.Min-G.M.) 수료</span></li>
                             </ul>
                         </div>
@@ -180,21 +182,21 @@
                                 <li class="flex items-start gap-2"><i class="fas fa-check text-[#78b394] mt-1.5 text-[10px]"></i> <span>조치원성결교회 부목사</span></li>
                                 <li class="flex items-start gap-2"><i class="fas fa-check text-[#78b394] mt-1.5 text-[10px]"></i> <span>신촌성결교회 부목사</span></li>
                                 <li class="flex items-start gap-2"><i class="fas fa-check text-[#78b394] mt-1.5 text-[10px]"></i> <span>동산성결교회 담임목사</span></li>
-                                <li class="flex items-start gap-2"><i class="fas fa-check text-[#78b394] mt-1.5 text-[10px]"></i> <span class="font-bold text-[#1b315b]">現, 여주성결교회 담임목사</span></li>
+                                <li class="flex items-start gap-2"><i class="fas fa-check text-[#78b394] mt-1.5 text-[10px]"></i> <span>現, 여주성결교회 담임목사</span></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- 2. 원로목사 (담임목사님과 동일한 프로필 레이아웃 적용) -->
+            <!-- 2. 원로목사 -->
             <section id="cate-2" class="scroll-mt-10">
-                <h4 class="text-xl font-bold text-gray-800 border-b border-gray-200 pb-2 mb-8"><i class="far fa-circle text-gray-500 mr-2 text-lg"></i>원로목사</h4>
+                <h4 class="text-xl font-bold text-gray-800 border-b border-gray-200 pb-2 mb-5"><i class="far fa-circle text-gray-500 mr-2 text-lg"></i>원로목사</h4>
                 <div class="flex flex-col md:flex-row gap-8 items-center md:items-start bg-gray-50 p-6 md:p-8 rounded-xl border border-gray-200 shadow-sm">
                     <!-- Left: Photo -->
                     <div class="person-card shrink-0">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/이성관원로목사.jpg" alt="이성관 원로목사" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">이성관</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">원로목사</span>
                         </div>
@@ -253,81 +255,82 @@
 
             <!-- 3. 부목사 -->
             <section id="cate-3" class="scroll-mt-10">
-                <h4 class="text-xl font-bold text-gray-800 border-b border-gray-200 pb-2 mb-8"><i class="far fa-circle text-gray-500 mr-2 text-lg"></i>부목사</h4>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-y-10 gap-x-6">
+                <h4 class="text-xl font-bold text-gray-800 border-b border-gray-200 pb-2 mb-5"><i class="far fa-circle text-gray-500 mr-2 text-lg"></i>부목사</h4>
+                <!-- gap-y-10 에서 gap-y-6 으로 줄임 -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-y-6 gap-x-6">
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/한신희목사.png" alt="한신희" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">한신희</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">목사</span>
                         </div>
-                        <p class="text-[13px] text-gray-500 mt-2 leading-snug">3-4교구<br>선임<br>주보/행정<br>예배위원회<br>음악문화위원회</p>
+                        <p class="text-[13px] text-gray-500 mt-1 leading-snug">3-4교구<br>선임<br>주보/행정<br>예배위원회<br>음악문화위원회</p>
                     </div>
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/이정욱목사.png" alt="이정욱" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">이정욱</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">목사</span>
                         </div>
-                        <p class="text-[13px] text-gray-500 mt-2 leading-snug">9-10교구<br>전도대<br>교육위원회<br>장학위원회<br>고등부</p>
+                        <p class="text-[13px] text-gray-500 mt-1 leading-snug">9-10교구<br>전도대<br>교육위원회<br>장학위원회<br>고등부</p>
                     </div>
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/김성재목사.png" alt="김성재" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">김성재</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">목사</span>
                         </div>
-                        <p class="text-[13px] text-gray-500 mt-2 leading-snug">7-8교구<br>방송팀<br>선교위원회<br>홍보위원회<br>청년사역위원회</p>
+                        <p class="text-[13px] text-gray-500 mt-1 leading-snug">7-8교구<br>방송팀<br>선교위원회<br>홍보위원회<br>청년사역위원회</p>
                     </div>
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/김대희목사.png" alt="김대희" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">김대희</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">목사</span>
                         </div>
-                        <p class="text-[13px] text-gray-500 mt-2 leading-snug">11-12교구<br>청춘대학<br>봉사위원회<br>복지위원회<br>홈페이지<br>중등부</p>
+                        <p class="text-[13px] text-gray-500 mt-1 leading-snug">11-12교구<br>청춘대학<br>봉사위원회<br>복지위원회<br>홈페이지<br>중등부</p>
                     </div>
                 </div>
             </section>
 
             <!-- 4. 전도사 -->
             <section id="cate-4" class="scroll-mt-10">
-                <h4 class="text-xl font-bold text-gray-800 border-b border-gray-200 pb-2 mb-8"><i class="far fa-circle text-gray-500 mr-2 text-lg"></i>전도사</h4>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-y-10 gap-x-6">
+                <h4 class="text-xl font-bold text-gray-800 border-b border-gray-200 pb-2 mb-5"><i class="far fa-circle text-gray-500 mr-2 text-lg"></i>전도사</h4>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-y-6 gap-x-6">
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/강희경전도사.png" alt="강희경" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">강희경</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">전도사</span>
                         </div>
-                        <p class="text-[13px] text-gray-500 mt-2 leading-snug">5-6교구<br>전도팀<br>새가족위원회<br>평신도위원회</p>
+                        <p class="text-[13px] text-gray-500 mt-1 leading-snug">5-6교구<br>전도팀<br>새가족위원회<br>평신도위원회</p>
                     </div>
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/신정수전도사.png" alt="신정수" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">신정수</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">전도사</span>
                         </div>
-                        <p class="text-[13px] text-gray-500 mt-2 leading-snug">1-2교구<br>중보기도팀<br>마더와이즈<br>영아부</p>
+                        <p class="text-[13px] text-gray-500 mt-1 leading-snug">1-2교구<br>중보기도팀<br>마더와이즈<br>영아부</p>
                     </div>
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/유환영전도사.png" alt="유환영" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">유환영</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">전도사</span>
                         </div>
-                        <p class="text-[13px] text-gray-500 mt-2 leading-snug">초등부(초4~6학년)<br>어와나</p>
+                        <p class="text-[13px] text-gray-500 mt-1 leading-snug">초등부(초4~6학년)<br>어와나</p>
                     </div>
                 </div>
             </section>
 
             <!-- 5. 협동전도사 -->
             <section id="cate-5" class="scroll-mt-10">
-                <h4 class="text-xl font-bold text-gray-800 border-b border-gray-200 pb-2 mb-8"><i class="far fa-circle text-gray-500 mr-2 text-lg"></i>협동전도사</h4>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8">
+                <h4 class="text-xl font-bold text-gray-800 border-b border-gray-200 pb-2 mb-5"><i class="far fa-circle text-gray-500 mr-2 text-lg"></i>협동전도사</h4>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-y-6 gap-x-6">
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/이준섭전도사.png" alt="이준섭" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">이준섭</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">전도사</span>
                         </div>
@@ -337,55 +340,55 @@
 
             <!-- 6. 교육전도사 -->
             <section id="cate-6" class="scroll-mt-10">
-                <h4 class="text-xl font-bold text-gray-800 border-b border-gray-200 pb-2 mb-8"><i class="far fa-circle text-gray-500 mr-2 text-lg"></i>교육전도사</h4>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-y-10 gap-x-6">
+                <h4 class="text-xl font-bold text-gray-800 border-b border-gray-200 pb-2 mb-5"><i class="far fa-circle text-gray-500 mr-2 text-lg"></i>교육전도사</h4>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-y-6 gap-x-6">
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/박이랑전도사.png" alt="박이랑" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">박이랑</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">전도사</span>
                         </div>
-                        <p class="text-[13px] text-gray-500 mt-2 leading-snug">유년부(초1~3학년)</p>
+                        <p class="text-[13px] text-gray-500 mt-1 leading-snug">유년부(초1~3학년)</p>
                     </div>
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/민현정전도사.png" alt="민현정" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">민현정</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">교육전도사</span>
                         </div>
-                        <p class="text-[13px] text-gray-500 mt-2 leading-snug">유치부</p>
+                        <p class="text-[13px] text-gray-500 mt-1 leading-snug">유치부</p>
                     </div>
                 </div>
             </section>
 
             <!-- 7. 원로장로 -->
             <section id="cate-7" class="scroll-mt-10">
-                <h4 class="text-xl font-bold text-gray-800 border-b border-gray-200 pb-2 mb-8"><i class="far fa-circle text-gray-500 mr-2 text-lg"></i>원로장로</h4>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-y-10 gap-x-6">
+                <h4 class="text-xl font-bold text-gray-800 border-b border-gray-200 pb-2 mb-5"><i class="far fa-circle text-gray-500 mr-2 text-lg"></i>원로장로</h4>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-y-6 gap-x-6">
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/이임수장로.png" alt="이임수" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">이임수</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">장로</span>
                         </div>
                     </div>
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/박광선장로.png" alt="박광선" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">박광선</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">장로</span>
                         </div>
                     </div>
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/신호진장로.png" alt="신호진" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">신호진</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">장로</span>
                         </div>
                     </div>
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/장기평장로.png" alt="장기평" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">장기평</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">장로</span>
                         </div>
@@ -395,11 +398,11 @@
 
             <!-- 8. 명예장로 -->
             <section id="cate-8" class="scroll-mt-10">
-                <h4 class="text-xl font-bold text-gray-800 border-b border-gray-200 pb-2 mb-8"><i class="far fa-circle text-gray-500 mr-2 text-lg"></i>명예장로</h4>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8">
+                <h4 class="text-xl font-bold text-gray-800 border-b border-gray-200 pb-2 mb-5"><i class="far fa-circle text-gray-500 mr-2 text-lg"></i>명예장로</h4>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-y-6 gap-x-6">
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/권오범장로.png" alt="권오범" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">권오범</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">장로</span>
                         </div>
@@ -409,114 +412,114 @@
 
             <!-- 9. 시무장로 -->
             <section id="cate-9" class="scroll-mt-10">
-                <h4 class="text-xl font-bold text-gray-800 border-b border-gray-200 pb-2 mb-8"><i class="far fa-circle text-gray-500 mr-2 text-lg"></i>시무장로</h4>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-y-10 gap-x-6">
+                <h4 class="text-xl font-bold text-gray-800 border-b border-gray-200 pb-2 mb-5"><i class="far fa-circle text-gray-500 mr-2 text-lg"></i>시무장로</h4>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-y-6 gap-x-6">
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/박광섭장로.png" alt="박광섭" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">박광섭</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">장로</span>
                         </div>
-                        <p class="text-[13px] text-gray-500 mt-2 leading-snug">1교구<br>예배위원회<br>관리위원회</p>
+                        <p class="text-[13px] text-gray-500 mt-1 leading-snug">1교구<br>예배위원회<br>관리위원회</p>
                     </div>
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/권재윤장로.png" alt="권재윤" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">권재윤</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">장로</span>
                         </div>
-                        <p class="text-[13px] text-gray-500 mt-2 leading-snug">3교구<br>선교위원회<br>장학위원회</p>
+                        <p class="text-[13px] text-gray-500 mt-1 leading-snug">3교구<br>선교위원회<br>장학위원회</p>
                     </div>
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/노성호장로.png" alt="노성호" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png&text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">노성호</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">장로</span>
                         </div>
-                        <p class="text-[13px] text-gray-500 mt-2 leading-snug">8교구<br>음악·문화위원회</p>
+                        <p class="text-[13px] text-gray-500 mt-1 leading-snug">8교구<br>음악·문화위원회</p>
                     </div>
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/정완길장로.png" alt="정완길" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">정완길</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">장로</span>
                         </div>
-                        <p class="text-[13px] text-gray-500 mt-2 leading-snug">10교구<br>봉사위원회</p>
+                        <p class="text-[13px] text-gray-500 mt-1 leading-snug">10교구<br>봉사위원회</p>
                     </div>
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/이태수장로.png" alt="이태수" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">이태수</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">장로</span>
                         </div>
-                        <p class="text-[13px] text-gray-500 mt-2 leading-snug">6교구<br>교육위원회</p>
+                        <p class="text-[13px] text-gray-500 mt-1 leading-snug">6교구<br>교육위원회</p>
                     </div>
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/임성선장로.png" alt="임성선" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">임성선</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">장로</span>
                         </div>
-                        <p class="text-[13px] text-gray-500 mt-2 leading-snug">4교구<br>재정위원회</p>
+                        <p class="text-[13px] text-gray-500 mt-1 leading-snug">4교구<br>재정위원회</p>
                     </div>
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/김기호장로.png" alt="김기호" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">김기호</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">장로</span>
                         </div>
-                        <p class="text-[13px] text-gray-500 mt-2 leading-snug">2교구<br>복지위원회</p>
+                        <p class="text-[13px] text-gray-500 mt-1 leading-snug">2교구<br>복지위원회</p>
                     </div>
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/류근식장로.png" alt="류근식" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">류근식</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">장로</span>
                         </div>
-                        <p class="text-[13px] text-gray-500 mt-2 leading-snug">11교구<br>새가족위원회</p>
+                        <p class="text-[13px] text-gray-500 mt-1 leading-snug">11교구<br>새가족위원회</p>
                     </div>
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/황덕수장로.png" alt="황덕수" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">황덕수</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">장로</span>
                         </div>
-                        <p class="text-[13px] text-gray-500 mt-2 leading-snug">5교구<br>평신도위원회</p>
+                        <p class="text-[13px] text-gray-500 mt-1 leading-snug">5교구<br>평신도위원회</p>
                     </div>
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/이종수장로.png" alt="이종수" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">이종수</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">장로</span>
                         </div>
-                        <p class="text-[13px] text-gray-500 mt-2 leading-snug">7교구<br>청년사역위원회<br>행사기획위원회</p>
+                        <p class="text-[13px] text-gray-500 mt-1 leading-snug">7교구<br>청년사역위원회<br>행사기획위원회</p>
                     </div>
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/곽동석장로.png" alt="곽동석" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">곽동석</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">장로</span>
                         </div>
-                        <p class="text-[13px] text-gray-500 mt-2 leading-snug">12교구<br>장년사역위원회<br>방송팀</p>
+                        <p class="text-[13px] text-gray-500 mt-1 leading-snug">12교구<br>장년사역위원회<br>방송팀</p>
                     </div>
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/이훈희장로.png" alt="이훈희" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">이훈희</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">장로</span>
                         </div>
-                        <p class="text-[13px] text-gray-500 mt-2 leading-snug">9교구<br>홍보위원회<br>어와나</p>
+                        <p class="text-[13px] text-gray-500 mt-1 leading-snug">9교구<br>홍보위원회<br>어와나</p>
                     </div>
                 </div>
             </section>
 
             <!-- 10. 은퇴장로 -->
             <section id="cate-10" class="scroll-mt-10">
-                <h4 class="text-xl font-bold text-gray-800 border-b border-gray-200 pb-2 mb-8"><i class="far fa-circle text-gray-500 mr-2 text-lg"></i>은퇴장로</h4>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8">
+                <h4 class="text-xl font-bold text-gray-800 border-b border-gray-200 pb-2 mb-5"><i class="far fa-circle text-gray-500 mr-2 text-lg"></i>은퇴장로</h4>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-y-6 gap-x-6">
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/강희주장로.png" alt="강희주" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">강희주</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">장로</span>
                         </div>
@@ -526,134 +529,134 @@
 
             <!-- 11. 직원 -->
             <section id="cate-11" class="scroll-mt-10">
-                <h4 class="text-xl font-bold text-gray-800 border-b border-gray-200 pb-2 mb-8"><i class="far fa-circle text-gray-500 mr-2 text-lg"></i>직원</h4>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-y-10 gap-x-6">
+                <h4 class="text-xl font-bold text-gray-800 border-b border-gray-200 pb-2 mb-5"><i class="far fa-circle text-gray-500 mr-2 text-lg"></i>직원</h4>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-y-6 gap-x-6">
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/박영섭권사.png" alt="박영섭" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">박영섭</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">권사</span>
                         </div>
-                        <p class="text-[13px] text-gray-500 mt-2 leading-snug">교회시설관리</p>
+                        <p class="text-[13px] text-gray-500 mt-1 leading-snug">교회시설관리</p>
                     </div>
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/남기태권사.png" alt="남기태" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">남기태</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">권사</span>
                         </div>
-                        <p class="text-[13px] text-gray-500 mt-2 leading-snug">차량관리</p>
+                        <p class="text-[13px] text-gray-500 mt-1 leading-snug">차량관리</p>
                     </div>
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/진정례집사.png" alt="진정례" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">진정례</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">집사</span>
                         </div>
-                        <p class="text-[13px] text-gray-500 mt-2 leading-snug">사무행정</p>
+                        <p class="text-[13px] text-gray-500 mt-1 leading-snug">사무행정</p>
                     </div>
                 </div>
             </section>
 
             <!-- 12. 교구장 -->
             <section id="cate-12" class="scroll-mt-10">
-                <h4 class="text-xl font-bold text-gray-800 border-b border-gray-200 pb-2 mb-8"><i class="far fa-circle text-gray-500 mr-2 text-lg"></i>교구장</h4>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-y-10 gap-x-6">
+                <h4 class="text-xl font-bold text-gray-800 border-b border-gray-200 pb-2 mb-5"><i class="far fa-circle text-gray-500 mr-2 text-lg"></i>교구장</h4>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-y-6 gap-x-6">
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/김명숙C권사.png" alt="김명숙C" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">김명숙C</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">권사</span>
                         </div>
-                        <p class="text-[13px] text-gray-500 mt-2 leading-snug">1교구</p>
+                        <p class="text-[13px] text-gray-500 mt-1 leading-snug">1교구</p>
                     </div>
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/이종숙권사.png" alt="이종숙" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">이종숙</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">권사</span>
                         </div>
-                        <p class="text-[13px] text-gray-500 mt-2 leading-snug">2교구</p>
+                        <p class="text-[13px] text-gray-500 mt-1 leading-snug">2교구</p>
                     </div>
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/조선옥권사.png" alt="조선옥" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">조선옥</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">권사</span>
                         </div>
-                        <p class="text-[13px] text-gray-500 mt-2 leading-snug">3교구</p>
+                        <p class="text-[13px] text-gray-500 mt-1 leading-snug">3교구</p>
                     </div>
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/유옥자권사.png" alt="유옥자" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">유옥자</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">권사</span>
                         </div>
-                        <p class="text-[13px] text-gray-500 mt-2 leading-snug">4교구</p>
+                        <p class="text-[13px] text-gray-500 mt-1 leading-snug">4교구</p>
                     </div>
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/윤석경권사.png" alt="윤석경" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">윤석경</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">권사</span>
                         </div>
-                        <p class="text-[13px] text-gray-500 mt-2 leading-snug">5교구</p>
+                        <p class="text-[13px] text-gray-500 mt-1 leading-snug">5교구</p>
                     </div>
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/손정희권사.png" alt="손정희" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">손정희</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">권사</span>
                         </div>
-                        <p class="text-[13px] text-gray-500 mt-2 leading-snug">6교구</p>
+                        <p class="text-[13px] text-gray-500 mt-1 leading-snug">6교구</p>
                     </div>
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/김경희H집사.png" alt="김경희H" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">김경희H</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">집사</span>
                         </div>
-                        <p class="text-[13px] text-gray-500 mt-2 leading-snug">7교구</p>
+                        <p class="text-[13px] text-gray-500 mt-1 leading-snug">7교구</p>
                     </div>
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/염옥주권사.png" alt="염옥주" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">염옥주</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">권사</span>
                         </div>
-                        <p class="text-[13px] text-gray-500 mt-2 leading-snug">8교구</p>
+                        <p class="text-[13px] text-gray-500 mt-1 leading-snug">8교구</p>
                     </div>
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/곽성란집사.png" alt="곽성란" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">곽성란</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">집사</span>
                         </div>
-                        <p class="text-[13px] text-gray-500 mt-2 leading-snug">9교구</p>
+                        <p class="text-[13px] text-gray-500 mt-1 leading-snug">9교구</p>
                     </div>
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/김현숙C권사.png" alt="김현숙C" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">김현숙C</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">권사</span>
                         </div>
-                        <p class="text-[13px] text-gray-500 mt-2 leading-snug">10교구</p>
+                        <p class="text-[13px] text-gray-500 mt-1 leading-snug">10교구</p>
                     </div>
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/김경선권사.png" alt="김경선" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">김경선</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">권사</span>
                         </div>
-                        <p class="text-[13px] text-gray-500 mt-2 leading-snug">11교구</p>
+                        <p class="text-[13px] text-gray-500 mt-1 leading-snug">11교구</p>
                     </div>
                     <div class="person-card">
                         <div class="person-img-wrap"><img src="https://chjoon0691.github.io/yeojuhomepy/welcome/serve/images/박선분권사.png" alt="박선분" onerror="this.src='https://dummyimage.com/300x400/e0e0e0/666666.png?text=준비중'; this.onerror=null;" class="person-img"></div>
-                        <div class="mt-2">
+                        <div>
                             <span class="text-lg font-bold text-gray-900">박선분</span>
                             <span class="text-sm text-gray-500 font-medium ml-1">권사</span>
                         </div>
-                        <p class="text-[13px] text-gray-500 mt-2 leading-snug">12교구</p>
+                        <p class="text-[13px] text-gray-500 mt-1 leading-snug">12교구</p>
                     </div>
                 </div>
             </section>
