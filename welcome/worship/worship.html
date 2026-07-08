@@ -44,7 +44,7 @@
                     <i class="fas fa-plus text-gray-400 text-xs"></i>
                 </button>
                 <ul id="menu-depth1" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
-                    <li class="border-b border-gray-100"><a href="../greeting.html" class="block px-4 py-3 text-blue-600 font-bold bg-gray-50">환영합니다</a></li>
+                    <li class="border-b border-gray-100"><a href="../greeting.html" class="block px-4 py-3 hover:bg-gray-50">인사말</a></li>
                     <li class="border-b border-gray-100"><a href="../../word/sunday.html" class="block px-4 py-3 hover:bg-gray-50">말씀과 찬양</a></li>
                     <li class="border-b border-gray-100"><a href="../../community/parish.html" class="block px-4 py-3 hover:bg-gray-50">공동체</a></li>
                     <li class="border-b border-gray-100"><a href="../../nextgen/infant.html" class="block px-4 py-3 hover:bg-gray-50">다음세대</a></li>
@@ -81,12 +81,11 @@
     <!-- Main Content Layout (2-Column) -->
     <div class="max-w-7xl mx-auto px-4 py-12 md:py-20 flex flex-col md:flex-row gap-10">
         
-        <!-- Left Sidebar -->
+        <!-- Left Sidebar (LNB - 모바일에서는 숨김) -->
         <aside class="hidden md:block w-64 flex-shrink-0">
             <div class="bg-[#6b8cba] text-white text-center py-4 text-xl font-bold rounded-t-lg">환영합니다</div>
             <ul class="border border-t-0 border-gray-200 flex flex-col">
                 <li class="border-b border-gray-200"><a href="../greeting.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">인사말</a></li>
-                
                 <li class="border-b border-gray-200 group">
                     <a href="../history/history.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">
                         교회연혁 <i class="fas fa-chevron-down text-xs text-gray-400 group-hover:rotate-180 transition-transform duration-300"></i>
@@ -99,7 +98,6 @@
                         </ul>
                     </div>
                 </li>
-
                 <li class="border-b border-gray-200"><a href="../serve/serve.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">섬기는 분들</a></li>
                 <li class="border-b border-gray-200">
                     <a href="worship.html" class="flex justify-between items-center px-5 py-3 text-[#3b82f6] font-bold bg-gray-50 hover:bg-gray-100 transition">
@@ -141,85 +139,71 @@
                             <tbody>
                                 <tr class="border-b border-gray-200/50">
                                     <td class="py-3 px-2 md:px-4 text-center font-bold text-gray-800">주일예배 1부</td>
-                                    <td class="py-3 px-2 md:px-4 text-gray-600 font-medium">
-                                        <!-- ★ 시간 위아래 간격 완벽 맞춤 ★ -->
-                                        <div class="flex justify-center mx-auto">
-                                            <div class="flex justify-between w-[4.5rem]">
-                                                <span class="text-left w-8">오전</span>
-                                                <span class="text-right flex-1">9:00</span>
-                                            </div>
+                                    <td class="py-3 px-2 md:px-4 text-center text-gray-600 font-medium">
+                                        <!-- ★ 시간이 붙어있고, 숫자만 우측 정렬되는 완벽한 그리드 ★ -->
+                                        <div class="inline-grid grid-cols-[2rem_3rem] gap-1">
+                                            <span class="text-left">오전</span>
+                                            <span class="text-right">9:00</span>
                                         </div>
                                     </td>
                                     <td class="py-3 px-2 md:px-4 text-center text-gray-600">푸른초장(3층)</td>
                                 </tr>
                                 <tr class="bg-gray-100/50 border-b border-gray-200/50">
                                     <td class="py-3 px-2 md:px-4 text-center font-bold text-gray-800">주일예배 2부</td>
-                                    <td class="py-3 px-2 md:px-4 text-gray-600 font-medium">
-                                        <div class="flex justify-center mx-auto">
-                                            <div class="flex justify-between w-[4.5rem]">
-                                                <span class="text-left w-8">오전</span>
-                                                <span class="text-right flex-1">11:00</span>
-                                            </div>
+                                    <td class="py-3 px-2 md:px-4 text-center text-gray-600 font-medium">
+                                        <div class="inline-grid grid-cols-[2rem_3rem] gap-1">
+                                            <span class="text-left">오전</span>
+                                            <span class="text-right">11:00</span>
                                         </div>
                                     </td>
                                     <td class="py-3 px-2 md:px-4 text-center text-gray-600">푸른초장(3층)</td>
                                 </tr>
                                 <tr class="border-b border-gray-200/50">
                                     <td class="py-3 px-2 md:px-4 text-center font-bold text-gray-800">주일오후예배</td>
-                                    <td class="py-3 px-2 md:px-4 text-gray-600 font-medium">
-                                        <div class="flex justify-center mx-auto">
-                                            <div class="flex justify-between w-[4.5rem]">
-                                                <span class="text-left w-8">오후</span>
-                                                <span class="text-right flex-1">1:30</span>
-                                            </div>
+                                    <td class="py-3 px-2 md:px-4 text-center text-gray-600 font-medium">
+                                        <div class="inline-grid grid-cols-[2rem_3rem] gap-1">
+                                            <span class="text-left">오후</span>
+                                            <span class="text-right">1:30</span>
                                         </div>
                                     </td>
                                     <td class="py-3 px-2 md:px-4 text-center text-gray-600">푸른초장(3층)</td>
                                 </tr>
                                 <tr class="bg-gray-100/50 border-b border-gray-200/50">
                                     <td class="py-3 px-2 md:px-4 text-center font-bold text-gray-800">수요예배</td>
-                                    <td class="py-3 px-2 md:px-4 text-gray-600 font-medium">
-                                        <div class="flex justify-center mx-auto">
-                                            <div class="flex justify-between w-[4.5rem]">
-                                                <span class="text-left w-8">오후</span>
-                                                <span class="text-right flex-1">7:30</span>
-                                            </div>
+                                    <td class="py-3 px-2 md:px-4 text-center text-gray-600 font-medium">
+                                        <div class="inline-grid grid-cols-[2rem_3rem] gap-1">
+                                            <span class="text-left">오후</span>
+                                            <span class="text-right">7:30</span>
                                         </div>
                                     </td>
                                     <td class="py-3 px-2 md:px-4 text-center text-gray-600">푸른초장(3층)</td>
                                 </tr>
                                 <tr class="border-b border-gray-200/50">
                                     <td class="py-3 px-2 md:px-4 text-center font-bold text-gray-800">금요성령집회</td>
-                                    <td class="py-3 px-2 md:px-4 text-gray-600 font-medium">
-                                        <div class="flex justify-center mx-auto">
-                                            <div class="flex justify-between w-[4.5rem]">
-                                                <span class="text-left w-8">오후</span>
-                                                <span class="text-right flex-1">9:00</span>
-                                            </div>
+                                    <td class="py-3 px-2 md:px-4 text-center text-gray-600 font-medium">
+                                        <div class="inline-grid grid-cols-[2rem_3rem] gap-1">
+                                            <span class="text-left">오후</span>
+                                            <span class="text-right">9:00</span>
                                         </div>
                                     </td>
                                     <td class="py-3 px-2 md:px-4 text-center text-gray-600">비전홀(2층)</td>
                                 </tr>
                                 <tr class="bg-gray-100/50 border-b border-gray-200/50">
                                     <td class="py-3 px-2 md:px-4 text-center font-bold text-gray-800">새벽예배 (1부)</td>
-                                    <td class="py-3 px-2 md:px-4 text-gray-600 font-medium">
-                                        <div class="flex justify-center mx-auto">
-                                            <div class="flex justify-between w-[4.5rem]">
-                                                <span class="text-left w-8">오전</span>
-                                                <span class="text-right flex-1">5:00</span>
-                                            </div>
+                                    <td class="py-3 px-2 md:px-4 text-center text-gray-600 font-medium">
+                                        <div class="inline-grid grid-cols-[2rem_3rem] gap-1">
+                                            <span class="text-left">오전</span>
+                                            <span class="text-right">5:00</span>
                                         </div>
                                     </td>
                                     <td class="py-3 px-2 md:px-4 text-center text-gray-600">비전홀(2층)</td>
                                 </tr>
                                 <tr>
                                     <td class="py-3 px-2 md:px-4 text-center font-bold text-gray-800">새벽예배 (2부)</td>
-                                    <td class="py-3 px-2 md:px-4 text-gray-600 font-medium">
-                                        <div class="flex justify-center mx-auto">
-                                            <div class="flex justify-between w-[4.5rem]">
-                                                <span class="text-left w-8">오전</span>
-                                                <span class="text-right flex-1">6:30</span>
-                                            </div>
+                                    <td class="py-3 px-2 md:px-4 text-center text-gray-600 font-medium">
+                                        <div class="inline-grid grid-cols-[2rem_3rem] gap-1">
+                                            <span class="text-left">오전</span>
+                                            <span class="text-right">6:30</span>
                                         </div>
                                     </td>
                                     <td class="py-3 px-2 md:px-4 text-center text-gray-600">비전홀(2층)</td>
@@ -234,7 +218,6 @@
                     <div class="bg-[#1b315b] text-white text-center py-4 text-xl font-bold">교회학교예배</div>
                     <div class="p-2 bg-gray-50">
                         <table class="w-full text-sm md:text-base border-collapse">
-                            <!-- ★ 헤더 가운데 정렬, 글씨 크게 굵게 ★ -->
                             <thead class="bg-gray-200/50 text-gray-800 text-base md:text-lg font-extrabold border-b-2 border-gray-300">
                                 <tr>
                                     <th class="py-3 px-2 md:px-3 text-center">예배 <span class="font-normal text-[11px] text-gray-500 hidden sm:inline">(연령)</span></th>
@@ -245,97 +228,80 @@
                             <tbody>
                                 <tr class="border-b border-gray-200/50">
                                     <td class="py-3 px-2 md:px-3 text-center font-bold text-gray-800">영아부 <span class="font-normal text-gray-500 text-xs ml-0.5">0-3세</span></td>
-                                    <td class="py-3 px-2 md:px-3 text-gray-600 font-medium">
-                                        <!-- ★ 시간 위아래 간격 완벽 맞춤 ★ -->
-                                        <div class="flex justify-center mx-auto">
-                                            <div class="flex justify-between w-[4.5rem]">
-                                                <span class="text-left w-8">오전</span>
-                                                <span class="text-right flex-1">11:00</span>
-                                            </div>
+                                    <td class="py-3 px-2 md:px-3 text-center text-gray-600 font-medium">
+                                        <div class="inline-grid grid-cols-[2rem_3rem] gap-1">
+                                            <span class="text-left">오전</span>
+                                            <span class="text-right">11:00</span>
                                         </div>
                                     </td>
                                     <td class="py-3 px-2 md:px-3 text-center text-gray-600 text-xs md:text-sm">교육관 영아부실(1층)</td>
                                 </tr>
                                 <tr class="bg-gray-100/50 border-b border-gray-200/50">
                                     <td class="py-3 px-2 md:px-3 text-center font-bold text-gray-800">유치부 <span class="font-normal text-gray-500 text-xs ml-0.5">4-7세</span></td>
-                                    <td class="py-3 px-2 md:px-3 text-gray-600 font-medium">
-                                        <div class="flex justify-center mx-auto">
-                                            <div class="flex justify-between w-[4.5rem]">
-                                                <span class="text-left w-8">오전</span>
-                                                <span class="text-right flex-1">11:00</span>
-                                            </div>
+                                    <td class="py-3 px-2 md:px-3 text-center text-gray-600 font-medium">
+                                        <div class="inline-grid grid-cols-[2rem_3rem] gap-1">
+                                            <span class="text-left">오전</span>
+                                            <span class="text-right">11:00</span>
                                         </div>
                                     </td>
                                     <td class="py-3 px-2 md:px-3 text-center text-gray-600 text-xs md:text-sm">사랑방(1층)</td>
                                 </tr>
                                 <tr class="border-b border-gray-200/50">
                                     <td class="py-3 px-2 md:px-3 text-center font-bold text-gray-800">유년부 <span class="font-normal text-gray-500 text-xs ml-0.5">8-10세</span></td>
-                                    <td class="py-3 px-2 md:px-3 text-gray-600 font-medium">
-                                        <div class="flex justify-center mx-auto">
-                                            <div class="flex justify-between w-[4.5rem]">
-                                                <span class="text-left w-8">오전</span>
-                                                <span class="text-right flex-1">11:00</span>
-                                            </div>
+                                    <td class="py-3 px-2 md:px-3 text-center text-gray-600 font-medium">
+                                        <div class="inline-grid grid-cols-[2rem_3rem] gap-1">
+                                            <span class="text-left">오전</span>
+                                            <span class="text-right">11:00</span>
                                         </div>
                                     </td>
                                     <td class="py-3 px-2 md:px-3 text-center text-gray-600 text-xs md:text-sm">물댄동산(3층)</td>
                                 </tr>
                                 <tr class="bg-gray-100/50 border-b border-gray-200/50">
                                     <td class="py-3 px-2 md:px-3 text-center font-bold text-gray-800">초등부 <span class="font-normal text-gray-500 text-xs ml-0.5">11-13세</span></td>
-                                    <td class="py-3 px-2 md:px-3 text-gray-600 font-medium">
-                                        <div class="flex justify-center mx-auto">
-                                            <div class="flex justify-between w-[4.5rem]">
-                                                <span class="text-left w-8">오전</span>
-                                                <span class="text-right flex-1">11:00</span>
-                                            </div>
+                                    <td class="py-3 px-2 md:px-3 text-center text-gray-600 font-medium">
+                                        <div class="inline-grid grid-cols-[2rem_3rem] gap-1">
+                                            <span class="text-left">오전</span>
+                                            <span class="text-right">11:00</span>
                                         </div>
                                     </td>
                                     <td class="py-3 px-2 md:px-3 text-center text-gray-600 text-xs md:text-sm">교육관 초등부실(2층)</td>
                                 </tr>
                                 <tr class="border-b border-gray-200/50">
                                     <td class="py-3 px-2 md:px-3 text-center font-bold text-gray-800">어와나 <span class="font-normal text-gray-500 text-xs ml-0.5">7-13세</span></td>
-                                    <td class="py-3 px-2 md:px-3 text-gray-600 font-medium">
-                                        <div class="flex justify-center mx-auto">
-                                            <div class="flex justify-between w-[4.5rem]">
-                                                <span class="text-left w-8">오후</span>
-                                                <span class="text-right flex-1">1:30</span>
-                                            </div>
+                                    <td class="py-3 px-2 md:px-3 text-center text-gray-600 font-medium">
+                                        <div class="inline-grid grid-cols-[2rem_3rem] gap-1">
+                                            <span class="text-left">오후</span>
+                                            <span class="text-right">1:30</span>
                                         </div>
                                     </td>
                                     <td class="py-3 px-2 md:px-3 text-center text-gray-600 text-xs md:text-sm">사랑방(1층)</td>
                                 </tr>
                                 <tr class="bg-gray-100/50 border-b border-gray-200/50">
                                     <td class="py-3 px-2 md:px-3 text-center font-bold text-gray-800">중등부 <span class="font-normal text-gray-500 text-xs ml-0.5">14-16세</span></td>
-                                    <td class="py-3 px-2 md:px-3 text-gray-600 font-medium">
-                                        <div class="flex justify-center mx-auto">
-                                            <div class="flex justify-between w-[4.5rem]">
-                                                <span class="text-left w-8">오전</span>
-                                                <span class="text-right flex-1">11:00</span>
-                                            </div>
+                                    <td class="py-3 px-2 md:px-3 text-center text-gray-600 font-medium">
+                                        <div class="inline-grid grid-cols-[2rem_3rem] gap-1">
+                                            <span class="text-left">오전</span>
+                                            <span class="text-right">11:00</span>
                                         </div>
                                     </td>
                                     <td class="py-3 px-2 md:px-3 text-center text-gray-600 text-xs md:text-sm">교육관 중등부실(1층)</td>
                                 </tr>
                                 <tr class="border-b border-gray-200/50">
                                     <td class="py-3 px-2 md:px-3 text-center font-bold text-gray-800">고등부 <span class="font-normal text-gray-500 text-xs ml-0.5">17-19세</span></td>
-                                    <td class="py-3 px-2 md:px-3 text-gray-600 font-medium">
-                                        <div class="flex justify-center mx-auto">
-                                            <div class="flex justify-between w-[4.5rem]">
-                                                <span class="text-left w-8">오전</span>
-                                                <span class="text-right flex-1">11:00</span>
-                                            </div>
+                                    <td class="py-3 px-2 md:px-3 text-center text-gray-600 font-medium">
+                                        <div class="inline-grid grid-cols-[2rem_3rem] gap-1">
+                                            <span class="text-left">오전</span>
+                                            <span class="text-right">11:00</span>
                                         </div>
                                     </td>
                                     <td class="py-3 px-2 md:px-3 text-center text-gray-600 text-xs md:text-sm">비전홀(2층)</td>
                                 </tr>
                                 <tr class="bg-gray-100/50">
                                     <td class="py-3 px-2 md:px-3 text-center font-bold text-gray-800">청년부 <span class="font-normal text-gray-500 text-xs ml-0.5">20세 이상</span></td>
-                                    <td class="py-3 px-2 md:px-3 text-gray-600 font-medium">
-                                        <div class="flex justify-center mx-auto">
-                                            <div class="flex justify-between w-[4.5rem]">
-                                                <span class="text-left w-8">오후</span>
-                                                <span class="text-right flex-1">1:30</span>
-                                            </div>
+                                    <td class="py-3 px-2 md:px-3 text-center text-gray-600 font-medium">
+                                        <div class="inline-grid grid-cols-[2rem_3rem] gap-1">
+                                            <span class="text-left">오후</span>
+                                            <span class="text-right">1:30</span>
                                         </div>
                                     </td>
                                     <td class="py-3 px-2 md:px-3 text-center text-gray-600 text-xs md:text-sm">비전홀(2층)</td>
@@ -403,8 +369,9 @@
         }
     </script>
     
-    <script>const ROOT_PATH = "../";</script>
-    <script src="../js/common.js"></script>
+    <!-- ★ 아주 중요: 서브페이지는 js 파일을 불러오기 위해 경로를 알려줘야 합니다 ★ -->
+    <script>const ROOT_PATH = "../../";</script>
+    <script src="../../js/common.js"></script>
 
 </body>
 </html>
