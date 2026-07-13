@@ -1,4 +1,214 @@
-<!-- ... existing code ... -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>성도기업 - 여주성결교회</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+        body { font-family: 'Pretendard', sans-serif; background-color: #ffffff; overflow-x: hidden; }
+        
+        /* 페이지네이션 스타일 */
+        .page-link {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 32px; height: 32px; border: 1px solid #e5e7eb; color: #4b5563;
+            font-size: 14px; transition: all 0.2s; margin: 0 2px;
+        }
+        .page-link:hover { background-color: #f3f4f6; color: #1b315b; }
+        .page-link.active { border-color: #1b315b; color: #1b315b; font-weight: bold; }
+
+        /* 모달 스크롤바 디자인 */
+        .modal-scroll::-webkit-scrollbar { width: 8px; }
+        .modal-scroll::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
+        .modal-scroll::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 4px; }
+        .modal-scroll::-webkit-scrollbar-thumb:hover { background: #a8a8a8; }
+
+        /* 돋보기 커서 */
+        .zoom-active { cursor: zoom-out; }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- 마법의 파일 연결 1: 공통 상단 헤더 -->
+    <div id="common-header"></div>
+
+    <!-- 상단 배너 -->
+    <section class="bg-[#102242] py-12 md:py-20 text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-luminosity"></div>
+        <div class="relative z-10">
+            <h2 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-2">공동체</h2>
+            <p class="text-blue-200 text-sm md:text-base">Community</p>
+        </div>
+    </section>
+
+    <!-- 모바일 전용 2차 메뉴 바 -->
+    <div class="md:hidden border-b border-gray-300 bg-white relative z-30 shadow-sm">
+        <div class="flex text-sm md:text-base">
+            <a href="../index.html" class="px-4 py-3 border-r border-gray-300 text-gray-600 flex items-center justify-center hover:bg-gray-50">
+                Home
+            </a>
+            <div class="flex-1 border-r border-gray-300 relative">
+                <button onclick="toggleMobileSubMenu('menu-depth1')" class="w-full flex justify-between items-center px-4 py-3 text-gray-800 focus:outline-none">
+                    <span>공동체</span>
+                    <i class="fas fa-plus text-gray-400 text-xs"></i>
+                </button>
+                <ul id="menu-depth1" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
+                    <li class="border-b border-gray-100"><a href="../welcome/greeting.html" class="block px-4 py-3 hover:bg-gray-50">환영합니다</a></li>
+                    <li class="border-b border-gray-100"><a href="../word/sunday.html" class="block px-4 py-3 hover:bg-gray-50">말씀과 찬양</a></li>
+                    <li class="border-b border-gray-100"><a href="parish.html" class="block px-4 py-3 text-blue-600 font-bold bg-gray-50">공동체</a></li>
+                    <li class="border-b border-gray-100"><a href="../nextgen/infant.html" class="block px-4 py-3 hover:bg-gray-50">다음세대</a></li>
+                    <li class="border-b border-gray-100"><a href="../mission/evangelism.html" class="block px-4 py-3 hover:bg-gray-50">전도와 선교</a></li>
+                    <li class="border-b border-gray-100"><a href="../news/weekly.html" class="block px-4 py-3 hover:bg-gray-50">교회소식</a></li>
+                    <li><a href="../service/application.html" class="block px-4 py-3 hover:bg-gray-50">행정서비스</a></li>
+                </ul>
+            </div>
+            <div class="flex-1 relative">
+                <button onclick="toggleMobileSubMenu('menu-depth2')" class="w-full flex justify-between items-center px-4 py-3 text-gray-800 focus:outline-none">
+                    <span>성도기업</span>
+                    <i class="fas fa-plus text-gray-400 text-xs"></i>
+                </button>
+                <ul id="menu-depth2" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
+                    <li class="border-b border-gray-100"><a href="parish.html" class="block px-4 py-3 hover:bg-gray-50">교구</a></li>
+                    <li class="border-b border-gray-100"><a href="organization.html" class="block px-4 py-3 hover:bg-gray-50">기관</a></li>
+                    <li class="border-b border-gray-100"><a href="training.html" class="block px-4 py-3 hover:bg-gray-50">양육&훈련</a></li>
+                    <li class="border-b border-gray-100"><a href="senior.html" class="block px-4 py-3 hover:bg-gray-50">청춘대학</a></li>
+                    <li><a href="company.html" class="block px-4 py-3 text-blue-600 font-bold bg-gray-50">성도기업</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Layout -->
+    <div class="max-w-7xl mx-auto px-4 py-12 md:py-20 flex flex-col md:flex-row gap-10 relative">
+        
+        <!-- 좌측 사이드바 -->
+        <aside class="hidden md:block w-64 flex-shrink-0">
+            <div class="bg-[#6b8cba] text-white text-center py-4 text-xl font-bold rounded-t-lg">공동체</div>
+            <ul class="border border-t-0 border-gray-200 flex flex-col">
+                <li><a href="parish.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">교구</a></li>
+                <li><a href="organization.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">기관</a></li>
+                <li><a href="training.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">양육&훈련</a></li>
+                <li><a href="senior.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">청춘대학</a></li>
+                <li><a href="company.html" class="flex justify-between items-center px-5 py-3 text-[#3b82f6] font-bold bg-gray-50 hover:bg-gray-100 transition rounded-b-lg">성도기업 <i class="fas fa-chevron-right text-xs"></i></a></li>
+            </ul>
+        </aside>
+
+        <!-- 메인 콘텐츠 영역 -->
+        <main class="flex-1">
+            <div class="w-full bg-[#1b315b] rounded-xl h-32 md:h-48 flex flex-col justify-center items-center text-white shadow-md relative overflow-hidden mb-10">
+                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
+                <h3 class="text-3xl md:text-4xl font-extrabold relative z-10 tracking-tight">성도기업</h3>
+            </div>
+
+            <!-- 검색바 -->
+            <div class="flex justify-end mb-4 border-b border-gray-200 pb-4">
+                <div class="flex border border-gray-300 rounded shadow-sm overflow-hidden bg-white">
+                    <select class="px-3 py-1.5 text-sm md:text-base border-r border-gray-300 text-gray-700 focus:outline-none bg-gray-50 cursor-pointer">
+                        <option>상호명</option>
+                        <option>업종</option>
+                        <option>성도명</option>
+                    </select>
+                    <input type="text" class="px-3 py-1.5 text-sm md:text-base w-32 md:w-48 focus:outline-none" placeholder="검색어 입력">
+                    <button class="bg-gray-100 hover:bg-gray-200 text-gray-600 px-4 py-1.5 text-sm md:text-base border-l border-gray-300 transition">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- PC Version Table -->
+            <table class="hidden md:table w-full text-center text-sm md:text-base border-t-2 border-gray-800 table-fixed">
+                <colgroup>
+                    <col class="w-[10%]">
+                    <col class="w-[25%]">
+                    <col class="w-[45%]">
+                    <col class="w-[20%]">
+                </colgroup>
+                <thead class="bg-gray-50 text-gray-700 font-bold border-b border-gray-300">
+                    <tr>
+                        <th class="py-3 px-2">번호</th>
+                        <th class="py-3 px-2">구분(업종)</th>
+                        <th class="py-3 px-4 text-left">상호명(제목)</th>
+                        <th class="py-3 px-2">성도</th>
+                    </tr>
+                </thead>
+                <tbody id="company-list-pc" class="text-gray-600"></tbody>
+            </table>
+
+            <!-- Mobile Version List -->
+            <div class="md:hidden block w-full border-t-2 border-gray-800">
+                <div class="flex bg-gray-50 text-gray-700 font-bold border-b border-gray-300 py-3 text-sm">
+                    <div class="w-12 text-center">번호</div>
+                    <div class="flex-1 pl-2">상호명 / 성도</div>
+                </div>
+                <div id="company-list-mobile-body"></div>
+            </div>
+
+            <!-- 페이지네이션 -->
+            <div id="pagination" class="flex justify-center items-center mt-8 mb-6 flex-wrap gap-y-2"></div>
+            
+            <!-- 관리자용 안내 문구 (숨김 가능) -->
+            <div class="mt-12 bg-blue-50 border border-blue-200 rounded-lg p-4 text-sm text-blue-800 shadow-sm">
+                <h4 class="font-bold mb-2"><i class="fas fa-info-circle mr-1"></i> [관리자 안내] 성도기업 추가하는 방법</h4>
+                <p>웹 소스코드 안의 <code>rawCompanyText</code> 부분에 텍스트만 한 줄씩 추가하시면 됩니다.</p>
+                <p class="text-xs mt-1 text-blue-600 font-mono">형식: 번호|업종|상호명|상세설명|성도명|주소(위치)|전화번호</p>
+                <p class="mt-2 text-xs">※ 사진은 깃허브의 <code class="bg-blue-100 px-1 rounded">community/images/</code> 폴더에 <code>번호-01.jpg</code>, <code>번호-02.jpg</code> 형식으로 올리면 모달창에서 여러 장이 자동으로 보입니다.</p>
+            </div>
+            
+        </main>
+    </div>
+
+    <div id="common-footer"></div>
+    <div id="common-sitemap"></div>
+    
+    <!-- ★ 상세정보 및 다중 사진 팝업 모달창 ★ -->
+    <div id="company-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="closeModal()"></div>
+        <div class="relative w-full max-w-3xl bg-white shadow-2xl z-10 flex flex-col max-h-[90vh] rounded-xl overflow-hidden border-t-[6px] border-[#3b82f6]">
+            <!-- 모달 헤더 -->
+            <div class="bg-white text-gray-800 px-5 py-4 flex justify-between items-center shrink-0 border-b border-gray-200">
+                <h2 id="modal-header-title" class="text-lg md:text-xl font-bold truncate">[업종] 상호명</h2>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-red-500 transition-colors ml-4 focus:outline-none"><i class="fas fa-times text-3xl"></i></button>
+            </div>
+            
+            <div class="p-6 md:p-8 overflow-y-auto flex-1 bg-gray-100 modal-scroll">
+                
+                <!-- 상세 정보 텍스트 박스 -->
+                <div class="bg-white p-5 md:p-6 rounded-lg border border-gray-200 shadow-sm mb-6">
+                    <div class="space-y-3 text-[15px] md:text-base text-gray-700">
+                        <div class="flex items-start">
+                            <span class="font-bold w-20 shrink-0 text-gray-900">상호명:</span>
+                            <span id="modal-name"></span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="font-bold w-20 shrink-0 text-gray-900">위치:</span>
+                            <span id="modal-location"></span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="font-bold w-20 shrink-0 text-gray-900">전화:</span>
+                            <span id="modal-phone"></span>
+                        </div>
+                        <div class="flex items-start pt-3 mt-3 border-t border-gray-100">
+                            <span class="font-bold w-20 shrink-0 text-gray-900">성도명:</span>
+                            <span id="modal-owner" class="text-blue-700 font-medium"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 사진 컨테이너 (여러 장이 여기에 생성됨) -->
+                <div id="modal-image-container" class="flex flex-col items-center gap-4 relative">
+                    <div id="loading-msg" class="text-gray-500 font-bold py-6 flex flex-col items-center gap-3">
+                        <i class="fas fa-spinner fa-spin text-2xl text-blue-500"></i>
+                        <span>사진을 불러오는 중입니다...</span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
     <!-- ★ 이미지 전체화면 확대 모달창 ★ -->
     <div id="zoom-modal" class="fixed inset-0 z-[110] hidden items-center justify-center bg-black/90 backdrop-blur-md" onclick="closeZoom()">
         <button class="absolute top-6 right-6 text-white/70 hover:text-white transition focus:outline-none z-[120]" onclick="closeZoom()">
@@ -10,18 +220,20 @@
     </div>
 
     <script>
+        // =========================================================================
         // ★ 수정하기 쉽도록 파이프(|) 기호로 데이터를 분리한 텍스트 방식 적용 ★
         // 형식: 번호|업종|상호명|상세설명|성도명|주소(위치)|전화번호
+        // =========================================================================
         const rawCompanyText = `
 1|이미용, 건강, 스포츠|올리브헤어샵||이진숙 집사|여주시 청심로 192|010-2261-8804
-2|부동산, 관광|여일관광||류호웅 집사, 고재순 권사|여주시 청심로 152 (사무실), 매룡동 209-5 (차고)|010-5306-4811
+2|부동산, 관광|여일관광||류호웅 집사, 고재순 권사|여주시 청심로 152(사무실), 매룡동 209-5(차고) (시청 정문앞(사무실))|010-5306-4811
 3|디자인기획, 기타|명보당|귀금속, 결혼예물 전문점|임성선 장로, 박선자 권사|여주시 세종로 14 (하리 로터리)|010-7336-3505
 4|의류, 수선, 세탁|고은옷수선|옷수선, 각종리폼, 세탁, 드라이, 운동화, 교복|김명숙C 집사 (정선호 권사)|여주시 청심로132번길 8 (여주시주차장 길목)|010-2979-5231
 5|디자인기획, 기타|복권백화점(여주점)||조은제 권사|여주시 세종로 41 (경찰서 맞은편)|010-3223-2633
-6|디자인기획, 기타|아이콘기획||김기유 집사, 이한나 집사|여주시 세종로 46-1 (세종병원 부근)|010-2764-4719
+6|디자인기획, 기타|아이콘기획||김기유 집사, 이한나 집사|여주시 하동 415-4 (세종병원 부근)|010-2764-4719
 7|건설, 설비, 건축, 조경|경기지물||박미경 집사|여주시 여흥로11번길 50-3|010-4398-0482
 8|자동차|희망자동차 병원||김경근 권사|여주시 여흥로33번길 18|010-7430-114
-9|건설, 설비, 건축, 조경|좋은창호(샷시)|샷시공사, 인테리어 등|황은순 집사|여주시 세종로45번길 (경찰서 뒷편)|010-9352-9634
+9|건설, 설비, 건축, 조경|좋은창호(샷시)|샷시공사, 인테리어 등|황은순 집사|여주시 세종로45번길 14-1 (경찰서 뒷편)|010-9352-9634
 10|부동산, 관광|정아관광여행사||길호숙 권사|여주시 세종로 62-1|010-5347-5277
         `;
 
@@ -37,7 +249,7 @@
                 location: parts[5].trim(),
                 phone: parts[6] ? parts[6].trim() : ""
             };
-        }).filter(item => !isNaN(item.id)).sort((a, b) => a.id - b.id);
+        }).filter(item => !isNaN(item.id)).sort((a, b) => a.id - b.id); // 1번부터 차례대로 정렬
 
         const itemsPerPage = 15; 
         let currentPage = 1;
@@ -45,21 +257,246 @@
         // 깃허브 사진 보관함 기본 주소 (이 폴더 안에 01-01.jpg, 02-01.png 등을 올리시면 됩니다)
         const baseURL = "https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/community/images/";
 
+        // 썸네일(목록 우측 작은 사진 아이콘) 유무를 확인하는 함수
+        function loadThumbnailIcon(id) {
+            const exts = ['jpg', 'png', 'jpeg', 'JPG', 'PNG'];
+            let extIndex = 0;
+            let fileName = id < 10 ? '0' + id : id;
+
+            let dummyImg = new Image();
+            function tryNext() {
+                if (extIndex >= exts.length) return; // 실패하면 아이콘 안 띄움
+                dummyImg.src = `${baseURL}${fileName}-01.${exts[extIndex]}`;
+                extIndex++;
+            }
+            
+            dummyImg.onload = function() {
+                // 성공하면 카메라 아이콘을 보여줌
+                const iconPc = document.getElementById(`icon-pc-${id}`);
+                const iconM = document.getElementById(`icon-m-${id}`);
+                if (iconPc) iconPc.classList.remove('hidden');
+                if (iconM) iconM.classList.remove('hidden');
+            };
+            dummyImg.onerror = tryNext;
+            
+            tryNext();
+        }
+
         function renderTable(page) {
-<!-- ... existing code ... -->
-```
+            const startIndex = (page - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const pageData = companyData.slice(startIndex, endIndex);
 
-### 💡 새로운 성도기업을 추가하는 방법
-이제 자바스크립트 배열 괄호를 만지실 필요 없이, **`<script>` 태그 바로 아래에 있는 `rawCompanyText` 영역에 텍스트만 한 줄씩 추가**하시면 됩니다.
+            const pcTbody = document.getElementById('company-list-pc');
+            const mobileContainer = document.getElementById('company-list-mobile-body');
 
-**[작성 규칙]**
-`번호 | 업종 | 상호명 | 추가설명(없으면 비움) | 성도명 | 주소 | 전화번호`
+            pcTbody.innerHTML = '';
+            mobileContainer.innerHTML = '';
 
-**(예시: 11번 추가 시)**
-```text
-11|음식점, 카페|만나식당|정성가득 백반|조형준 목사|여주시 우암로 96|010-1234-5678
-```
+            pageData.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.className = 'border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer group h-[50px]';
+                tr.onclick = () => openModal(item.id);
+                tr.innerHTML = `
+                    <td class="py-3 text-gray-400 font-medium">${item.id}</td>
+                    <td class="py-3 text-gray-500 text-sm truncate px-2">${item.category}</td>
+                    <td class="py-3 px-4 text-left font-bold text-gray-800 group-hover:text-blue-600 transition flex items-center gap-2">
+                        <span class="truncate">${item.name}</span>
+                        <i id="icon-pc-${item.id}" class="far fa-image text-gray-400 text-sm hidden"></i>
+                    </td>
+                    <td class="py-3 text-[14px] font-medium text-gray-700 truncate px-2">${item.owner}</td>
+                `;
+                pcTbody.appendChild(tr);
 
-그리고 사진은 깃허브의 `community/images` 폴더에 가셔서,
-1번 기업은 `01-01.jpg`, `01-02.jpg` ...
-11번 기업은 `11-01.jpg`, `11-02.jpg` ... 로 올려주시면 모달창이 알아서 전부 찾아서 띄워줍니다!
+                const mDiv = document.createElement('div');
+                mDiv.className = 'flex border-b border-gray-200 py-3 hover:bg-gray-50 transition cursor-pointer items-center px-2';
+                mDiv.onclick = () => openModal(item.id);
+                mDiv.innerHTML = `
+                    <div class="w-12 text-center text-gray-400 text-sm shrink-0 font-medium">${item.id}</div>
+                    <div class="flex-1 pl-2 pr-4 relative overflow-hidden">
+                        <div class="text-gray-500 text-[11px] mb-0.5 truncate">${item.category}</div>
+                        <div class="text-gray-800 text-[15px] font-bold mb-0.5 flex items-center gap-1.5">
+                            <span class="truncate max-w-[90%]">${item.name}</span>
+                            <i id="icon-m-${item.id}" class="far fa-image text-gray-400 text-[11px] hidden shrink-0 mt-0.5"></i>
+                        </div>
+                        <div class="text-blue-700 text-[12px] font-medium truncate">${item.owner}</div>
+                    </div>
+                `;
+                mobileContainer.appendChild(mDiv);
+
+                // 리스트 렌더링 시 사진이 있는지 살짝 체크
+                loadThumbnailIcon(item.id);
+            });
+            renderPagination();
+        }
+
+        function renderPagination() {
+            const totalPages = Math.ceil(companyData.length / itemsPerPage);
+            const paginationContainer = document.getElementById('pagination');
+            paginationContainer.innerHTML = '';
+            
+            if (totalPages <= 1) return;
+            
+            for (let i = 1; i <= totalPages; i++) {
+                const a = document.createElement('a');
+                a.href = '#';
+                a.className = `page-link ${i === currentPage ? 'active' : ''} rounded`;
+                a.textContent = i;
+                a.onclick = (e) => {
+                    e.preventDefault();
+                    currentPage = i;
+                    renderTable(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                };
+                paginationContainer.appendChild(a);
+            }
+        }
+
+        // ★ 모달(팝업창) 다중 사진 불러오기 로직 ★
+        function openModal(id) {
+            const company = companyData.find(c => c.id === id);
+            if(!company) return;
+            
+            // 텍스트 정보 세팅
+            document.getElementById('modal-header-title').textContent = `[${company.category}] ${company.name}`;
+            
+            const fullName = company.description ? `${company.name} <span class="text-sm text-gray-500 font-normal ml-1">${company.description}</span>` : company.name;
+            document.getElementById('modal-name').innerHTML = fullName;
+            
+            document.getElementById('modal-location').textContent = company.location || "-";
+            document.getElementById('modal-phone').textContent = company.phone || "-";
+            document.getElementById('modal-owner').textContent = company.owner || "-";
+            
+            // 사진 컨테이너 초기화
+            const container = document.getElementById('modal-image-container');
+            Array.from(container.children).forEach(child => {
+                if(child.id !== 'loading-msg') child.remove();
+            });
+            
+            const loadingMsg = document.getElementById('loading-msg');
+            loadingMsg.style.display = 'flex';
+            loadingMsg.innerHTML = '<i class="fas fa-spinner fa-spin text-2xl text-blue-500"></i><span>사진을 불러오는 중입니다...</span>';
+
+            const maxImages = 10; // 하나의 성도기업에 최대 10장까지 등록 가능하다고 가정
+            let loadedCount = 0;
+            let errorCount = 0;
+
+            function tryLoadModalImage(index, extsArray, wrapElement) {
+                if (extsArray.length === 0) {
+                    wrapElement.remove(); 
+                    errorCount++;
+                    if(loadedCount === 0 && errorCount === maxImages) {
+                         loadingMsg.innerHTML = '<i class="fas fa-exclamation-circle text-xl text-gray-400"></i><span class="mt-1">등록된 사진이 없습니다.</span>';
+                    }
+                    return;
+                }
+
+                const currentExt = extsArray.shift();
+                
+                // 번호 형식 지정: id가 1이면 '01', index가 1이면 '01' -> '01-01.jpg'
+                let formattedId = id < 10 ? '0' + id : id;
+                let numStr = index < 10 ? '0' + index : index;
+                let imgUrl = `${baseURL}${formattedId}-${numStr}.${currentExt}`;
+
+                let imgInnerWrap = document.createElement('div');
+                imgInnerWrap.className = 'relative inline-block w-full';
+
+                let img = document.createElement('img');
+                img.className = "w-full h-auto object-contain rounded shadow-sm border border-gray-200 cursor-pointer hover:opacity-90 transition duration-300 bg-white";
+                img.title = "클릭하시면 원본 크기로 확대됩니다.";
+                img.onclick = () => openZoom(imgUrl);
+                
+                let zoomIcon = document.createElement('div');
+                zoomIcon.className = "absolute top-4 right-4 bg-black/50 text-white p-2 rounded-full pointer-events-none opacity-70";
+                zoomIcon.innerHTML = '<i class="fas fa-search-plus"></i>';
+                
+                imgInnerWrap.appendChild(img);
+                imgInnerWrap.appendChild(zoomIcon);
+                
+                img.onload = function() {
+                    wrapElement.classList.remove('hidden'); 
+                    loadingMsg.style.display = 'none'; 
+                    loadedCount++;
+                    wrapElement.appendChild(imgInnerWrap);
+                };
+                
+                img.onerror = function() {
+                    tryLoadModalImage(index, extsArray, wrapElement);
+                };
+                
+                img.src = imgUrl; 
+            }
+
+            for(let i = 1; i <= maxImages; i++) {
+                let imgWrap = document.createElement('div');
+                imgWrap.className = "w-full mb-3 hidden"; 
+                container.appendChild(imgWrap);
+                tryLoadModalImage(i, ['jpg', 'png', 'jpeg', 'JPG', 'PNG'], imgWrap);
+            }
+
+            // 모달 열기
+            const modal = document.getElementById('company-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('company-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = '';
+        }
+
+        // 전체화면 확대 기능
+        function openZoom(src) {
+            const zoomModal = document.getElementById('zoom-modal');
+            const zoomImg = document.getElementById('zoom-image');
+            zoomImg.src = src;
+            zoomModal.classList.remove('hidden');
+            zoomModal.classList.add('flex');
+        }
+
+        function closeZoom() {
+            const zoomModal = document.getElementById('zoom-modal');
+            zoomModal.classList.add('hidden');
+            zoomModal.classList.remove('flex');
+        }
+
+        // 모바일 보조메뉴 토글
+        function toggleMobileSubMenu(menuId) {
+            const targetMenu = document.getElementById(menuId);
+            const otherMenuId = menuId === 'menu-depth1' ? 'menu-depth2' : 'menu-depth1';
+            const otherMenu = document.getElementById(otherMenuId);
+            
+            if (otherMenu && !otherMenu.classList.contains('hidden')) {
+                otherMenu.classList.add('hidden');
+                const otherIcon = otherMenu.previousElementSibling.querySelector('.fas');
+                if(otherIcon) {
+                    otherIcon.classList.remove('fa-minus');
+                    otherIcon.classList.add('fa-plus');
+                }
+            }
+            if (targetMenu) {
+                targetMenu.classList.toggle('hidden');
+                const icon = targetMenu.previousElementSibling.querySelector('.fas');
+                if(icon) {
+                    if(targetMenu.classList.contains('hidden')) {
+                        icon.classList.remove('fa-minus');
+                        icon.classList.add('fa-plus');
+                    } else {
+                        icon.classList.remove('fa-plus');
+                        icon.classList.add('fa-minus');
+                    }
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderTable(currentPage);
+        });
+    </script>
+    <script>const ROOT_PATH = "../";</script>
+    <script src="../js/common.js"></script>
+</body>
+</html>
