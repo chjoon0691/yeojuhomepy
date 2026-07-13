@@ -103,16 +103,19 @@
                 <h3 class="text-3xl md:text-4xl font-extrabold relative z-10 tracking-tight">성도기업</h3>
             </div>
 
-            <!-- 검색바 -->
-            <div class="flex justify-end mb-4 border-b border-gray-200 pb-4">
+            <!-- ★ 검색바 ★ -->
+            <div class="flex justify-between items-center mb-4 border-b border-gray-200 pb-4 flex-wrap gap-4">
+                <div class="text-gray-500 text-sm font-medium pl-1">
+                    <i class="fas fa-store text-gray-400 mr-1"></i> 총 <span id="total-count" class="text-blue-600 font-bold">0</span>개의 성도기업
+                </div>
                 <div class="flex border border-gray-300 rounded shadow-sm overflow-hidden bg-white">
-                    <select class="px-3 py-1.5 text-sm md:text-base border-r border-gray-300 text-gray-700 focus:outline-none bg-gray-50 cursor-pointer">
-                        <option>상호명</option>
-                        <option>업종</option>
-                        <option>성도명</option>
+                    <select id="search-type" class="px-3 py-1.5 text-sm md:text-base border-r border-gray-300 text-gray-700 focus:outline-none bg-gray-50 cursor-pointer">
+                        <option value="name">상호명</option>
+                        <option value="category">업종</option>
+                        <option value="owner">성도명</option>
                     </select>
-                    <input type="text" class="px-3 py-1.5 text-sm md:text-base w-32 md:w-48 focus:outline-none" placeholder="검색어 입력">
-                    <button class="bg-gray-100 hover:bg-gray-200 text-gray-600 px-4 py-1.5 text-sm md:text-base border-l border-gray-300 transition">
+                    <input id="search-keyword" type="text" class="px-3 py-1.5 text-sm md:text-base w-32 md:w-48 focus:outline-none" placeholder="검색어 입력">
+                    <button id="search-btn" class="bg-gray-100 hover:bg-gray-200 text-gray-600 px-4 py-1.5 text-sm md:text-base border-l border-gray-300 transition focus:outline-none">
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
@@ -146,16 +149,10 @@
                 <div id="company-list-mobile-body"></div>
             </div>
 
-            <!-- 페이지네이션 -->
-            <div id="pagination" class="flex justify-center items-center mt-8 mb-6 flex-wrap gap-y-2"></div>
+            <!-- ★ 페이지네이션 (10페이지씩 묶음 처리) ★ -->
+            <div id="pagination" class="flex justify-center items-center mt-10 mb-6 flex-wrap gap-y-2 gap-x-1"></div>
             
-            <!-- 관리자용 안내 문구 (숨김 가능) -->
-            <div class="mt-12 bg-blue-50 border border-blue-200 rounded-lg p-4 text-sm text-blue-800 shadow-sm">
-                <h4 class="font-bold mb-2"><i class="fas fa-info-circle mr-1"></i> [관리자 안내] 성도기업 추가하는 방법</h4>
-                <p>웹 소스코드 안의 <code>rawCompanyText</code> 부분에 텍스트만 한 줄씩 추가하시면 됩니다.</p>
-                <p class="text-xs mt-1 text-blue-600 font-mono">형식: 번호|업종|상호명|상세설명|성도명|주소(위치)|전화번호</p>
-                <p class="mt-2 text-xs">※ 사진은 깃허브의 <code class="bg-blue-100 px-1 rounded">community/images/</code> 폴더에 <code>번호-01.jpg</code>, <code>번호-02.jpg</code> 형식으로 올리면 모달창에서 여러 장이 자동으로 보입니다.</p>
-            </div>
+            <!-- (관리자 안내 박스는 요청에 따라 삭제되었습니다.) -->
             
         </main>
     </div>
@@ -222,39 +219,42 @@
     <script>
         // =========================================================================
         // ★ 수정하기 쉽도록 파이프(|) 기호로 데이터를 분리한 텍스트 방식 적용 ★
-        // 형식: 번호|업종|상호명|상세설명|성도명|주소(위치)|전화번호
+        // 형식: 번호|업종|상호명|상세설명|성도명|주소(도로명주소 적용)|전화번호
         // =========================================================================
         const rawCompanyText = `
 1|이미용, 건강, 스포츠|올리브헤어샵||이진숙 집사|여주시 청심로 192|010-2261-8804
-2|부동산, 관광|여일관광||류호웅 집사, 고재순 권사|여주시 청심로 152(사무실), 매룡동 209-5(차고) (시청 정문앞(사무실))|010-5306-4811
+2|부동산, 관광|여일관광||류호웅 집사, 고재순 권사|여주시 청심로 152 (시청 정문 앞)|010-5306-4811
 3|디자인기획, 기타|명보당|귀금속, 결혼예물 전문점|임성선 장로, 박선자 권사|여주시 세종로 14 (하리 로터리)|010-7336-3505
 4|의류, 수선, 세탁|고은옷수선|옷수선, 각종리폼, 세탁, 드라이, 운동화, 교복|김명숙C 집사 (정선호 권사)|여주시 청심로132번길 8 (여주시주차장 길목)|010-2979-5231
 5|디자인기획, 기타|복권백화점(여주점)||조은제 권사|여주시 세종로 41 (경찰서 맞은편)|010-3223-2633
-6|디자인기획, 기타|아이콘기획||김기유 집사, 이한나 집사|여주시 하동 415-4 (세종병원 부근)|010-2764-4719
+6|디자인기획, 기타|아이콘기획||김기유 집사, 이한나 집사|여주시 세종로 109 (세종병원 부근)|010-2764-4719
 7|건설, 설비, 건축, 조경|경기지물||박미경 집사|여주시 여흥로11번길 50-3|010-4398-0482
 8|자동차|희망자동차 병원||김경근 권사|여주시 여흥로33번길 18|010-7430-114
 9|건설, 설비, 건축, 조경|좋은창호(샷시)|샷시공사, 인테리어 등|황은순 집사|여주시 세종로45번길 14-1 (경찰서 뒷편)|010-9352-9634
 10|부동산, 관광|정아관광여행사||길호숙 권사|여주시 세종로 62-1|010-5347-5277
         `;
 
-        // 데이터를 자바스크립트 배열로 변환
-        const companyData = rawCompanyText.trim().split('\n').map(line => {
+        // 데이터를 자바스크립트 배열로 변환 및 ★최신순(내림차순) 정렬 적용★
+        const originalCompanyData = rawCompanyText.trim().split('\n').map(line => {
             const parts = line.split('|');
             return {
-                id: parseInt(parts[0].trim()),
-                category: parts[1].trim(),
-                name: parts[2].trim(),
+                id: parseInt(parts[0] ? parts[0].trim() : 0),
+                category: parts[1] ? parts[1].trim() : "",
+                name: parts[2] ? parts[2].trim() : "",
                 description: parts[3] ? parts[3].trim() : "",
-                owner: parts[4].trim(),
-                location: parts[5].trim(),
+                owner: parts[4] ? parts[4].trim() : "",
+                location: parts[5] ? parts[5].trim() : "",
                 phone: parts[6] ? parts[6].trim() : ""
             };
-        }).filter(item => !isNaN(item.id)).sort((a, b) => a.id - b.id); // 1번부터 차례대로 정렬
+        }).filter(item => !isNaN(item.id)).sort((a, b) => b.id - a.id); 
+
+        // 검색 필터링을 위한 복사본 생성
+        let companyData = [...originalCompanyData];
 
         const itemsPerPage = 15; 
         let currentPage = 1;
 
-        // 깃허브 사진 보관함 기본 주소 (이 폴더 안에 01-01.jpg, 02-01.png 등을 올리시면 됩니다)
+        // 깃허브 사진 보관함 기본 주소 
         const baseURL = "https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/community/images/";
 
         // 썸네일(목록 우측 작은 사진 아이콘) 유무를 확인하는 함수
@@ -271,7 +271,7 @@
             }
             
             dummyImg.onload = function() {
-                // 성공하면 카메라 아이콘을 보여줌
+                // 성공하면 사진 아이콘을 보여줌
                 const iconPc = document.getElementById(`icon-pc-${id}`);
                 const iconM = document.getElementById(`icon-m-${id}`);
                 if (iconPc) iconPc.classList.remove('hidden');
@@ -282,7 +282,10 @@
             tryNext();
         }
 
+        // ★ 테이블/리스트 화면에 그리기 ★
         function renderTable(page) {
+            document.getElementById('total-count').textContent = companyData.length;
+
             const startIndex = (page - 1) * itemsPerPage;
             const endIndex = startIndex + itemsPerPage;
             const pageData = companyData.slice(startIndex, endIndex);
@@ -292,6 +295,13 @@
 
             pcTbody.innerHTML = '';
             mobileContainer.innerHTML = '';
+
+            if(pageData.length === 0) {
+                pcTbody.innerHTML = '<tr><td colspan="4" class="py-10 text-center text-gray-500 font-bold">검색된 성도기업이 없습니다.</td></tr>';
+                mobileContainer.innerHTML = '<div class="py-10 text-center text-gray-500 font-bold">검색된 성도기업이 없습니다.</div>';
+                renderPagination();
+                return;
+            }
 
             pageData.forEach(item => {
                 const tr = document.createElement('tr');
@@ -330,14 +340,53 @@
             renderPagination();
         }
 
+        // ★ 페이지네이션 (10개씩 묶음, 화살표 추가) ★
         function renderPagination() {
             const totalPages = Math.ceil(companyData.length / itemsPerPage);
             const paginationContainer = document.getElementById('pagination');
             paginationContainer.innerHTML = '';
             
-            if (totalPages <= 1) return;
+            if (totalPages === 0) return;
             
-            for (let i = 1; i <= totalPages; i++) {
+            const pagesPerGroup = 10;
+            const currentGroup = Math.ceil(currentPage / pagesPerGroup);
+            let startPage = (currentGroup - 1) * pagesPerGroup + 1;
+            let endPage = startPage + pagesPerGroup - 1;
+            
+            if (endPage > totalPages) endPage = totalPages;
+
+            // [이전 10페이지] 버튼 (<<)
+            const prevGroupBtn = document.createElement('a');
+            prevGroupBtn.href = '#';
+            prevGroupBtn.className = `page-link rounded ${startPage === 1 ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            prevGroupBtn.innerHTML = '<i class="fas fa-angle-double-left text-[10px]"></i>';
+            prevGroupBtn.onclick = (e) => {
+                e.preventDefault();
+                if (startPage > 1) {
+                    currentPage = startPage - 1;
+                    renderTable(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                }
+            };
+            paginationContainer.appendChild(prevGroupBtn);
+
+            // [이전 1페이지] 화살표 버튼 (<)
+            const prevBtn = document.createElement('a');
+            prevBtn.href = '#';
+            prevBtn.className = `page-link rounded ${currentPage === 1 ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            prevBtn.innerHTML = '<i class="fas fa-chevron-left text-[10px]"></i>';
+            prevBtn.onclick = (e) => {
+                e.preventDefault();
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderTable(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                }
+            };
+            paginationContainer.appendChild(prevBtn);
+
+            // [페이지 번호] 버튼
+            for (let i = startPage; i <= endPage; i++) {
                 const a = document.createElement('a');
                 a.href = '#';
                 a.className = `page-link ${i === currentPage ? 'active' : ''} rounded`;
@@ -350,11 +399,68 @@
                 };
                 paginationContainer.appendChild(a);
             }
+
+            // [다음 1페이지] 화살표 버튼 (>)
+            const nextBtn = document.createElement('a');
+            nextBtn.href = '#';
+            nextBtn.className = `page-link rounded ${currentPage === totalPages ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            nextBtn.innerHTML = '<i class="fas fa-chevron-right text-[10px]"></i>';
+            nextBtn.onclick = (e) => {
+                e.preventDefault();
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    renderTable(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                }
+            };
+            paginationContainer.appendChild(nextBtn);
+
+            // [다음 10페이지] 버튼 (>>)
+            const nextGroupBtn = document.createElement('a');
+            nextGroupBtn.href = '#';
+            nextGroupBtn.className = `page-link rounded ${endPage === totalPages ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            nextGroupBtn.innerHTML = '<i class="fas fa-angle-double-right text-[10px]"></i>';
+            nextGroupBtn.onclick = (e) => {
+                e.preventDefault();
+                if (endPage < totalPages) {
+                    currentPage = endPage + 1;
+                    renderTable(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                }
+            };
+            paginationContainer.appendChild(nextGroupBtn);
+        }
+
+        // ★ 검색 기능 실행 함수 ★
+        function executeSearch() {
+            const type = document.getElementById('search-type').value;
+            const keyword = document.getElementById('search-keyword').value.trim().toLowerCase();
+
+            if (!keyword) {
+                // 검색어가 없으면 원래 전체 데이터로 복구
+                companyData = [...originalCompanyData];
+            } else {
+                // 검색어가 있으면 필터링
+                companyData = originalCompanyData.filter(item => {
+                    if (type === 'name') {
+                        return item.name.toLowerCase().includes(keyword) || item.description.toLowerCase().includes(keyword);
+                    } else if (type === 'category') {
+                        return item.category.toLowerCase().includes(keyword);
+                    } else if (type === 'owner') {
+                        return item.owner.toLowerCase().includes(keyword);
+                    }
+                    return false;
+                });
+            }
+            
+            currentPage = 1; // 검색 후 무조건 1페이지로 이동
+            renderTable(currentPage);
         }
 
         // ★ 모달(팝업창) 다중 사진 불러오기 로직 ★
         function openModal(id) {
-            const company = companyData.find(c => c.id === id);
+            // 원본 데이터에서 찾기 (검색 결과와 무관하게 항상 원본에서 찾음)
+            const company = originalCompanyData.find(c => c.id === id);
             if(!company) return;
             
             // 텍스트 정보 세팅
@@ -493,7 +599,18 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
+            // 초기 렌더링
             renderTable(currentPage);
+
+            // 검색 버튼 클릭 이벤트
+            document.getElementById('search-btn').addEventListener('click', executeSearch);
+
+            // 검색창 엔터키 입력 이벤트
+            document.getElementById('search-keyword').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    executeSearch();
+                }
+            });
         });
     </script>
     <script>const ROOT_PATH = "../";</script>
