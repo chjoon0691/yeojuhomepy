@@ -164,13 +164,13 @@
                     <col class="w-[12%]">
                     <col class="w-[8%]">
                 </colgroup>
-                <thead class="bg-gray-700 text-white font-bold border-b border-gray-300">
+                <thead class="bg-gray-50 text-gray-700 font-bold border-b border-gray-300">
                     <tr>
                         <th class="py-3 px-2">번호</th>
                         <th class="py-3 px-4 text-left">제목</th>
                         <th class="py-3 px-2">본문</th>
                         <th class="py-3 px-2">설교자</th>
-                        <th class="py-3 px-2">날짜 <i class="fas fa-sort text-[10px]"></i></th>
+                        <th class="py-3 px-2 text-gray-500">날짜 <i class="fas fa-sort text-[10px]"></i></th>
                         <th class="py-3 px-2">보기</th>
                     </tr>
                 </thead>
@@ -182,7 +182,7 @@
             <!-- Mobile Version List -->
             <div class="md:hidden block w-full border-t-2 border-gray-800 mt-4">
                 <div class="flex bg-gray-50 text-gray-700 font-bold border-b border-gray-300 py-3 text-sm px-2">
-                    <div class="w-14 text-center">번호</div>
+                    <div class="w-12 text-center">번호</div>
                     <div class="flex-1 text-center pr-8">제목</div>
                 </div>
                 <div id="sermon-list-mobile-body">
@@ -202,7 +202,8 @@
     <div id="common-sitemap"></div>
 
     <script>
-        const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTmNPl7QMOdRz4v6O0kYga96lCTM8t2xeDwVepsmdUtBfiXyTz4jVmJ_meq0fP0ENusdnKxfHpPjTrJ/pub?gid=0&single=true&output=csv";
+        // ★ 새로운 오후예배 공유 링크 적용 ★
+        const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQRNPElzEN61_ChQFPhnsn2mlDvONB5o0FfxzVw8-5824qiquK45KpmeH-_952324ek43B9nwZbkXrS/pub?gid=2102374608&single=true&output=csv";
 
         let formattedData = [];
         const itemsPerPage = 15; 

@@ -19,6 +19,15 @@
         }
         .page-link:hover { background-color: #f3f4f6; color: #1b315b; }
         .page-link.active { border-color: #1b315b; color: #1b315b; font-weight: bold; }
+
+        /* 모달 스크롤바 디자인 */
+        .modal-scroll::-webkit-scrollbar { width: 8px; }
+        .modal-scroll::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
+        .modal-scroll::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 4px; }
+        .modal-scroll::-webkit-scrollbar-thumb:hover { background: #a8a8a8; }
+
+        /* 돋보기 커서 */
+        .zoom-active { cursor: zoom-out; }
     </style>
 </head>
 <body class="text-gray-800">
@@ -34,6 +43,43 @@
             <p class="text-blue-200 text-sm md:text-base">Community</p>
         </div>
     </section>
+
+    <!-- 모바일 전용 2차 메뉴 바 -->
+    <div class="md:hidden border-b border-gray-300 bg-white relative z-30 shadow-sm">
+        <div class="flex text-sm md:text-base">
+            <a href="../index.html" class="px-4 py-3 border-r border-gray-300 text-gray-600 flex items-center justify-center hover:bg-gray-50">
+                Home
+            </a>
+            <div class="flex-1 border-r border-gray-300 relative">
+                <button onclick="toggleMobileSubMenu('menu-depth1')" class="w-full flex justify-between items-center px-4 py-3 text-gray-800 focus:outline-none">
+                    <span>공동체</span>
+                    <i class="fas fa-plus text-gray-400 text-xs"></i>
+                </button>
+                <ul id="menu-depth1" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
+                    <li class="border-b border-gray-100"><a href="../welcome/greeting.html" class="block px-4 py-3 hover:bg-gray-50">환영합니다</a></li>
+                    <li class="border-b border-gray-100"><a href="../word/sunday.html" class="block px-4 py-3 hover:bg-gray-50">말씀과 찬양</a></li>
+                    <li class="border-b border-gray-100"><a href="parish.html" class="block px-4 py-3 text-blue-600 font-bold bg-gray-50">공동체</a></li>
+                    <li class="border-b border-gray-100"><a href="../nextgen/infant.html" class="block px-4 py-3 hover:bg-gray-50">다음세대</a></li>
+                    <li class="border-b border-gray-100"><a href="../mission/evangelism.html" class="block px-4 py-3 hover:bg-gray-50">전도와 선교</a></li>
+                    <li class="border-b border-gray-100"><a href="../news/weekly.html" class="block px-4 py-3 hover:bg-gray-50">교회소식</a></li>
+                    <li><a href="../service/application.html" class="block px-4 py-3 hover:bg-gray-50">행정서비스</a></li>
+                </ul>
+            </div>
+            <div class="flex-1 relative">
+                <button onclick="toggleMobileSubMenu('menu-depth2')" class="w-full flex justify-between items-center px-4 py-3 text-gray-800 focus:outline-none">
+                    <span>성도기업</span>
+                    <i class="fas fa-plus text-gray-400 text-xs"></i>
+                </button>
+                <ul id="menu-depth2" class="hidden absolute top-full left-[-1px] right-[-1px] bg-white border border-t-0 border-gray-300 shadow-lg z-40">
+                    <li class="border-b border-gray-100"><a href="parish.html" class="block px-4 py-3 hover:bg-gray-50">교구</a></li>
+                    <li class="border-b border-gray-100"><a href="organization.html" class="block px-4 py-3 hover:bg-gray-50">기관</a></li>
+                    <li class="border-b border-gray-100"><a href="training.html" class="block px-4 py-3 hover:bg-gray-50">양육&훈련</a></li>
+                    <li class="border-b border-gray-100"><a href="senior.html" class="block px-4 py-3 hover:bg-gray-50">청춘대학</a></li>
+                    <li><a href="company.html" class="block px-4 py-3 text-blue-600 font-bold bg-gray-50">성도기업</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
     <!-- Main Content Layout -->
     <div class="max-w-7xl mx-auto px-4 py-12 md:py-20 flex flex-col md:flex-row gap-10 relative">
@@ -57,16 +103,19 @@
                 <h3 class="text-3xl md:text-4xl font-extrabold relative z-10 tracking-tight">성도기업</h3>
             </div>
 
-            <!-- 검색바 -->
-            <div class="flex justify-end mb-4 border-b border-gray-200 pb-4">
+            <!-- ★ 검색바 ★ -->
+            <div class="flex justify-between items-center mb-4 border-b border-gray-200 pb-4 flex-wrap gap-4">
+                <div class="text-gray-500 text-sm font-medium pl-1">
+                    <i class="fas fa-store text-gray-400 mr-1"></i> 총 <span id="total-count" class="text-blue-600 font-bold">0</span>개의 성도기업
+                </div>
                 <div class="flex border border-gray-300 rounded shadow-sm overflow-hidden bg-white">
-                    <select class="px-3 py-1.5 text-sm md:text-base border-r border-gray-300 text-gray-700 focus:outline-none bg-gray-50 cursor-pointer">
-                        <option>제목</option>
-                        <option>업종</option>
-                        <option>성도명</option>
+                    <select id="search-type" class="px-3 py-1.5 text-sm md:text-base border-r border-gray-300 text-gray-700 focus:outline-none bg-gray-50 cursor-pointer">
+                        <option value="name">상호명</option>
+                        <option value="category">업종</option>
+                        <option value="owner">성도명</option>
                     </select>
-                    <input type="text" class="px-3 py-1.5 text-sm md:text-base w-32 md:w-48 focus:outline-none" placeholder="검색어 입력">
-                    <button class="bg-gray-100 hover:bg-gray-200 text-gray-600 px-4 py-1.5 text-sm md:text-base border-l border-gray-300 transition">
+                    <input id="search-keyword" type="text" class="px-3 py-1.5 text-sm md:text-base w-32 md:w-48 focus:outline-none" placeholder="검색어 입력">
+                    <button id="search-btn" class="bg-gray-100 hover:bg-gray-200 text-gray-600 px-4 py-1.5 text-sm md:text-base border-l border-gray-300 transition focus:outline-none">
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
@@ -100,59 +149,164 @@
                 <div id="company-list-mobile-body"></div>
             </div>
 
-            <!-- 페이지네이션 -->
-            <div id="pagination" class="flex justify-center items-center mt-8 mb-6 flex-wrap gap-y-2"></div>
+            <!-- ★ 페이지네이션 (10페이지씩 묶음 처리) ★ -->
+            <div id="pagination" class="flex justify-center items-center mt-10 mb-6 flex-wrap gap-y-2 gap-x-1"></div>
+            
         </main>
     </div>
 
     <div id="common-footer"></div>
     <div id="common-sitemap"></div>
     
-    <!-- 모달 -->
+    <!-- ★ 상세정보 및 다중 사진 팝업 모달창 ★ -->
     <div id="company-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6">
         <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="closeModal()"></div>
-        <div class="relative w-full max-w-3xl bg-white shadow-2xl z-10 flex flex-col max-h-[90vh] rounded-xl overflow-hidden">
-            <div class="bg-gray-800 text-white px-5 py-4 flex justify-between items-center shrink-0">
+        <div class="relative w-full max-w-3xl bg-white shadow-2xl z-10 flex flex-col max-h-[90vh] rounded-xl overflow-hidden border-t-[6px] border-[#3b82f6]">
+            <!-- 모달 헤더 -->
+            <div class="bg-white text-gray-800 px-5 py-4 flex justify-between items-center shrink-0 border-b border-gray-200">
                 <h2 id="modal-header-title" class="text-lg md:text-xl font-bold truncate">[업종] 상호명</h2>
-                <button onclick="closeModal()" class="text-gray-300 hover:text-white transition-colors ml-4 focus:outline-none"><i class="fas fa-times text-2xl"></i></button>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-red-500 transition-colors ml-4 focus:outline-none"><i class="fas fa-times text-3xl"></i></button>
             </div>
-            <div class="p-6 md:p-8 overflow-y-auto flex-1 bg-gray-50">
+            
+            <div class="p-6 md:p-8 overflow-y-auto flex-1 bg-gray-100 modal-scroll">
+                
+                <!-- 상세 정보 텍스트 박스 -->
                 <div class="bg-white p-5 md:p-6 rounded-lg border border-gray-200 shadow-sm mb-6">
                     <div class="space-y-3 text-[15px] md:text-base text-gray-700">
-                        <div class="flex items-start"><span class="font-bold w-20 shrink-0 text-gray-900">상호명:</span><span id="modal-name"></span></div>
-                        <div class="flex items-start"><span class="font-bold w-20 shrink-0 text-gray-900">위치:</span><span id="modal-location"></span></div>
-                        <div class="flex items-start"><span class="font-bold w-20 shrink-0 text-gray-900">전화:</span><span id="modal-phone"></span></div>
-                        <div class="flex items-start pt-3 mt-3 border-t border-gray-100"><span class="font-bold w-20 shrink-0 text-gray-900">성도:</span><span id="modal-owner" class="text-blue-700 font-medium"></span></div>
+                        <div class="flex items-start">
+                            <span class="font-bold w-20 shrink-0 text-gray-900">상호명:</span>
+                            <span id="modal-name"></span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="font-bold w-20 shrink-0 text-gray-900">위치:</span>
+                            <span id="modal-location"></span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="font-bold w-20 shrink-0 text-gray-900">전화:</span>
+                            <span id="modal-phone"></span>
+                        </div>
+                        <div class="flex items-start pt-3 mt-3 border-t border-gray-100">
+                            <span class="font-bold w-20 shrink-0 text-gray-900">성도명:</span>
+                            <span id="modal-owner" class="text-blue-700 font-medium"></span>
+                        </div>
                     </div>
                 </div>
-                <div class="rounded-lg overflow-hidden border border-gray-200 shadow-sm bg-white p-2"><img id="modal-image" src="" alt="매장 사진" class="w-full h-auto object-cover rounded"></div>
+                
+                <!-- 사진 컨테이너 (여러 장이 여기에 생성됨) -->
+                <div id="modal-image-container" class="flex flex-col items-center gap-4 relative">
+                    <div id="loading-msg" class="text-gray-500 font-bold py-6 flex flex-col items-center gap-3">
+                        <i class="fas fa-spinner fa-spin text-2xl text-blue-500"></i>
+                        <span>사진을 불러오는 중입니다...</span>
+                    </div>
+                </div>
+                
             </div>
         </div>
     </div>
 
+    <!-- ★ 이미지 전체화면 확대 모달창 ★ -->
+    <div id="zoom-modal" class="fixed inset-0 z-[110] hidden items-center justify-center bg-black/90 backdrop-blur-md" onclick="closeZoom()">
+        <button class="absolute top-6 right-6 text-white/70 hover:text-white transition focus:outline-none z-[120]" onclick="closeZoom()">
+            <i class="fas fa-times text-4xl"></i>
+        </button>
+        <div class="w-full h-full flex items-center justify-center p-2 sm:p-10 overflow-auto modal-scroll zoom-active">
+            <img id="zoom-image" src="" alt="확대된 사진" class="max-w-full max-h-none md:max-h-full object-contain shadow-2xl">
+        </div>
+    </div>
+
     <script>
-        const companyData = [
-            { id: 43, category: "이미용, 건강, 스포츠", name: "퓨어벨로", description: "(눈썹 관리, 눈썹 펌 전문)", owner: "신율 청년", owner_detail: "(신현호 집사, 이은은 집사 차녀)", location: "오학초등학교 후문쪽", phone: "010-9884-9150", image_url: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-            { id: 42, category: "생산, 제작, 가공", name: "장 봐주는 언니 2호점", description: "", owner: "관리자", owner_detail: "", location: "여주시", phone: "-", image_url: "https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-            { id: 41, category: "음식점, 분식, 커피", name: "던킨 여주 오학점", description: "", owner: "성도", owner_detail: "", location: "오학동", phone: "-", image_url: "https://images.unsplash.com/photo-1551024601-bec78aea704b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-            { id: 40, category: "자동차", name: "하이테크정비센터(자동차)", description: "", owner: "성도", owner_detail: "", location: "여주시", phone: "-", image_url: "https://images.unsplash.com/photo-1613214149922-f1809c99b414?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-            { id: 39, category: "부동산, 관광", name: "여주 이편한 공인중개사", description: "", owner: "성도", owner_detail: "", location: "여주시", phone: "-", image_url: "https://images.unsplash.com/photo-1560518846-cebc81520052?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-            { id: 38, category: "생산, 제작, 가공", name: "장 봐주는 언니", description: "", owner: "성도", owner_detail: "", location: "여주시", phone: "-", image_url: "https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-            { id: 37, category: "의류, 수선, 세탁", name: "수선나라", description: "", owner: "성도", owner_detail: "", location: "여주시", phone: "-", image_url: "https://images.unsplash.com/photo-1528325983731-0177dd3f9ea8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-            { id: 36, category: "자동차", name: "현대자동차", description: "대리점", owner: "이종필 성도", owner_detail: "", location: "여주시", phone: "-", image_url: "https://images.unsplash.com/photo-1562145887-f823f66673eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-            { id: 35, category: "자동차", name: "현대자동차", description: "대리점", owner: "곽봉철 집사", owner_detail: "", location: "여주시", phone: "-", image_url: "https://images.unsplash.com/photo-1562145887-f823f66673eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-            { id: 34, category: "건설, 설비, 조경", name: "KS 건설(주)", description: "", owner: "성도", owner_detail: "", location: "여주시", phone: "-", image_url: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-            { id: 33, category: "음식점, 분식, 커피", name: "김밥나라", description: "", owner: "성도", owner_detail: "", location: "여주시", phone: "-", image_url: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-            { id: 32, category: "생산, 제작, 가공", name: "우리마트", description: "", owner: "성도", owner_detail: "", location: "여주시", phone: "-", image_url: "https://images.unsplash.com/photo-1578916171728-46686eac8d58?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-            { id: 31, category: "음식점, 분식, 커피", name: "앵두나무집", description: "", owner: "성도", owner_detail: "", location: "여주시", phone: "-", image_url: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-            { id: 30, category: "자동차", name: "대황부품센타", description: "", owner: "성도", owner_detail: "", location: "여주시", phone: "-", image_url: "https://images.unsplash.com/photo-1486262715619-670810a074e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-            { id: 29, category: "음식점, 분식, 커피", name: "영구스피자", description: "", owner: "성도", owner_detail: "", location: "여주시", phone: "-", image_url: "https://images.unsplash.com/photo-1513104890d38-7c7f5845cb65?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" }
-        ];
+        // =========================================================================
+        // ★ 수정하기 쉽도록 파이프(|) 기호로 데이터를 분리한 텍스트 방식 적용 ★
+        // 형식: 번호|업종|상호명|상세설명|성도명|주소(도로명주소 적용)|전화번호
+        // =========================================================================
+        const rawCompanyText = `
+1|이미용, 건강, 스포츠|올리브헤어샵||이진숙 집사|여주시 청심로 192|010-2261-8804
+2|부동산, 관광|여일관광||류호웅 집사, 고재순 권사|여주시 청심로 152 (시청 정문 앞)|010-5306-4811
+3|디자인기획, 기타|명보당|귀금속, 결혼예물 전문점|임성선 장로, 박선자 권사|여주시 세종로 14 (하리 로터리)|010-7336-3505
+4|의류, 수선, 세탁|고은옷수선|옷수선, 각종리폼, 세탁, 드라이, 운동화, 교복|김명숙C 권사|여주시 청심로132번길 8 (여주시주차장 길목)|010-2979-5231
+5|디자인기획, 기타|복권백화점 여주점||조은제 권사|여주시 세종로 41 (경찰서 맞은편)|010-3223-2633
+6|디자인기획, 기타|아이콘기획||김기유 집사, 이한나 집사|여주시 세종로 109 (세종병원 부근)|010-2764-4719
+7|건설, 설비, 건축, 조경|경기지물||박미경 집사|여주시 여흥로11번길 50-3|010-4398-0482
+8|자동차|희망자동차 병원||김경근 권사|여주시 여흥로33번길 18|010-7430-114
+9|건설, 설비, 건축, 조경|좋은창호|샷시공사, 인테리어 등|황은순 집사|여주시 세종로45번길 14-1 (경찰서 뒷편)|010-9352-9634
+10|부동산, 관광|정아관광||길호숙 권사|여주시 세종로 62-1|010-5347-5277
+11|이미용, 건강, 스포츠|인화이발관||최석출 권사|여주시 세종로13번길 22|010-9031-3439
+12|생산, 제작, 가공, 유통, 축산|매일고추방앗간||김화숙A 권사, 여삼수 성도|여주시 성심로 116번지|010-9041-5390
+13|이미용, 건강, 스포츠|드림스포츠타운||엄태복,고미선 권사|여주시 여흥로46|010-9085-0015
+14|음식점, 분식, 제과, 커피숍, 식품판매|김밥나라||최순례 권사|여주시 세종로26 (중앙통사거리)|010-9066-3621
+15|건설, 설비, 건축, 조경|KS건설(주)||박광섭 장로|여주시 주내로 737-2(멱곡1통)|010-3664-1075
+16|자동차|현대자동차 신여주대리점||곽봉철 집사|여주시 우암로 44 (여주중앙감리교회 옆)|010-9761-1009
+17|자동차|현대자동차 남한강대리점||이종필 집사|여주시 강변북로 37 (축협 건너편)|882-1082 / 010-3788-7214
+18|자동차|1급 하이테크 정비센터||김남열 권사|여주시 여양로 372-9 (오학동 유한세라믹전시장 옆)|010-2499-7499
+19|음식점, 분식, 제과, 커피숍, 식품판매|영빈루|중식|최덕기,김미숙 권사|여주시 세종로40번길 11 2층|010-4503-3220
+20|음식점, 분식, 제과, 커피숍, 식품판매|돈이돈까스|양식|김 훈,황민경 집사|여주시 여주남로 84-5 1동|010-3945-6910
+21|생산, 제작, 가공, 유통, 축산|양평 물댄동산 농원||김화목,박경철 집사|양평군 양평읍 양근로312|010-9069-1042
+22|의류, 수선, 세탁|땡큐|이불,옷,신발, 악세사리|신정회 집사|여주시 세종로 67(홍문현대아파트 정문 앞)|031-884-8249
+23|음식점, 분식, 제과, 커피숍, 식품판매|가든 삼밭골|한식,육류|권명순 권사|여주시 삼밭골길21(여주CC근처)|031-882-1848
+24|음식점, 분식, 제과, 커피숍, 식품판매|한끼채움마트|온라인마켓|장상환 성도|여주시 세종로79번길 8|010-3942-6553
+25|음식점, 분식, 제과, 커피숍, 식품판매|남강식당|한식,백반|신윤경 집사|여주시 여흥로128번길 8(시민회관 뒷길)|010-7357-2766
+26|음식점, 분식, 제과, 커피숍, 식품판매|아구랑 대구랑||노순구, 길현순 권사|여주시 태평중앙1길 1(가남읍 현진아파트 앞)|010-8255-3331
+27|생산, 제작, 가공, 유통, 축산|야곱이네 흑염소|농장|장병용,한창임 권사|여주시 가남읍 본두3길 54-68|010-8378-0691
+28|건설, 설비, 건축, 조경|DoBe E&C||원명자 권사, 김광호 집사|여주시 월평로71, 4동 102호(YJC골프클럽 맞은편)|010-5263-8500
+29|이미용, 건강, 스포츠|남강골프연습장||안순자 권사, 김경섭 집사|여주시 웅골로59(세종그랑시아 옆)|010-4723-8050
+30|어린이집, 유치원, 학원, 교육|중앙해피한학원||장성자 권사|여주시 여흥로 131 3층(여주신협본점 옆)|010-5002-3919
+31|이미용, 건강, 스포츠|동문이용원||권병구,김수옥B 권사|여주시 청심로 148(여주시청 앞)|010-9732-3989
+32|어린이집, 유치원, 학원, 교육|대통령학원||김경희H,이상욱 집사|여주시 교동로 89-23 2층(여주역 맞은편)|010-5877-3328
+33|생산, 제작, 가공, 유통, 축산|대통령자원||이상욱,김경희H 집사|여주시 용강길 10-11(여주석재 뒤편)|010-4422-3328
+34|의료, 요양, 보험|한양성모의원||이재근 집사|여주시 가남읍 본두3길 54-68|010-8378-0691
+        `;
+
+        // 데이터를 자바스크립트 배열로 변환 및 ★최신순(내림차순) 정렬 적용★
+        const originalCompanyData = rawCompanyText.trim().split('\n').map(line => {
+            const parts = line.split('|');
+            return {
+                id: parseInt(parts[0] ? parts[0].trim() : 0),
+                category: parts[1] ? parts[1].trim() : "",
+                name: parts[2] ? parts[2].trim() : "",
+                description: parts[3] ? parts[3].trim() : "",
+                owner: parts[4] ? parts[4].trim() : "",
+                location: parts[5] ? parts[5].trim() : "",
+                phone: parts[6] ? parts[6].trim() : ""
+            };
+        }).filter(item => !isNaN(item.id)).sort((a, b) => b.id - a.id); 
+
+        // 검색 필터링을 위한 복사본 생성
+        let companyData = [...originalCompanyData];
 
         const itemsPerPage = 15; 
         let currentPage = 1;
 
+        // 깃허브 사진 보관함 기본 주소 
+        const baseURL = "https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/community/images/";
+
+        // ★ 변경된 부분: 썸네일을 '상호명'으로 확인하는 함수 ★
+        function loadThumbnailIcon(id, name) {
+            const exts = ['jpg', 'png', 'jpeg', 'JPG', 'PNG'];
+            let extIndex = 0;
+
+            let dummyImg = new Image();
+            function tryNext() {
+                if (extIndex >= exts.length) return; // 실패하면 아이콘 안 띄움
+                dummyImg.src = `${baseURL}${name}-01.${exts[extIndex]}`;
+                extIndex++;
+            }
+            
+            dummyImg.onload = function() {
+                // 성공하면 사진 아이콘을 보여줌
+                const iconPc = document.getElementById(`icon-pc-${id}`);
+                const iconM = document.getElementById(`icon-m-${id}`);
+                if (iconPc) iconPc.classList.remove('hidden');
+                if (iconM) iconM.classList.remove('hidden');
+            };
+            dummyImg.onerror = tryNext;
+            
+            tryNext();
+        }
+
+        // ★ 테이블/리스트 화면에 그리기 ★
         function renderTable(page) {
+            document.getElementById('total-count').textContent = companyData.length;
+
             const startIndex = (page - 1) * itemsPerPage;
             const endIndex = startIndex + itemsPerPage;
             const pageData = companyData.slice(startIndex, endIndex);
@@ -163,45 +317,97 @@
             pcTbody.innerHTML = '';
             mobileContainer.innerHTML = '';
 
+            if(pageData.length === 0) {
+                pcTbody.innerHTML = '<tr><td colspan="4" class="py-10 text-center text-gray-500 font-bold">검색된 성도기업이 없습니다.</td></tr>';
+                mobileContainer.innerHTML = '<div class="py-10 text-center text-gray-500 font-bold">검색된 성도기업이 없습니다.</div>';
+                renderPagination();
+                return;
+            }
+
             pageData.forEach(item => {
                 const tr = document.createElement('tr');
-                tr.className = 'border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer group';
+                tr.className = 'border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer group h-[50px]';
                 tr.onclick = () => openModal(item.id);
                 tr.innerHTML = `
-                    <td class="py-4 text-gray-400">${item.id}</td>
-                    <td class="py-4 text-gray-500 text-sm truncate">${item.category}</td>
-                    <td class="py-4 px-4 text-left font-bold text-gray-800 group-hover:text-blue-600 transition flex items-center gap-2">
+                    <td class="py-3 text-gray-400 font-medium">${item.id}</td>
+                    <td class="py-3 text-gray-500 text-sm truncate px-2">${item.category}</td>
+                    <td class="py-3 px-4 text-left font-bold text-gray-800 group-hover:text-blue-600 transition flex items-center gap-2">
                         <span class="truncate">${item.name}</span>
-                        <i class="far fa-image text-gray-400 text-xs"></i>
+                        <i id="icon-pc-${item.id}" class="far fa-image text-gray-400 text-sm hidden"></i>
                     </td>
-                    <td class="py-4 text-sm font-medium text-gray-700">${item.owner}</td>
+                    <td class="py-3 text-[14px] font-medium text-gray-700 truncate px-2">${item.owner}</td>
                 `;
                 pcTbody.appendChild(tr);
 
                 const mDiv = document.createElement('div');
-                mDiv.className = 'flex border-b border-gray-200 py-3 hover:bg-gray-50 transition cursor-pointer';
+                mDiv.className = 'flex border-b border-gray-200 py-3 hover:bg-gray-50 transition cursor-pointer items-center px-2';
                 mDiv.onclick = () => openModal(item.id);
                 mDiv.innerHTML = `
-                    <div class="w-12 text-center text-gray-400 text-sm pt-0.5">${item.id}</div>
-                    <div class="flex-1 pl-2 pr-4 relative">
-                        <div class="text-gray-500 text-[12px] mb-0.5">${item.category}</div>
+                    <div class="w-12 text-center text-gray-400 text-sm shrink-0 font-medium">${item.id}</div>
+                    <div class="flex-1 pl-2 pr-4 relative overflow-hidden">
+                        <div class="text-gray-500 text-[11px] mb-0.5 truncate">${item.category}</div>
                         <div class="text-gray-800 text-[15px] font-bold mb-0.5 flex items-center gap-1.5">
-                            <span class="truncate max-w-[200px]">${item.name}</span>
-                            <i class="far fa-image text-gray-400 text-[10px]"></i>
+                            <span class="truncate max-w-[90%]">${item.name}</span>
+                            <i id="icon-m-${item.id}" class="far fa-image text-gray-400 text-[11px] hidden shrink-0 mt-0.5"></i>
                         </div>
-                        <div class="text-blue-600 text-[13px] font-medium">${item.owner}</div>
+                        <div class="text-blue-700 text-[12px] font-medium truncate">${item.owner}</div>
                     </div>
                 `;
                 mobileContainer.appendChild(mDiv);
+
+                // 리스트 렌더링 시 사진이 있는지 살짝 체크
+                loadThumbnailIcon(item.id, item.name);
             });
             renderPagination();
         }
 
+        // ★ 페이지네이션 (10개씩 묶음, 화살표 추가) ★
         function renderPagination() {
             const totalPages = Math.ceil(companyData.length / itemsPerPage);
             const paginationContainer = document.getElementById('pagination');
             paginationContainer.innerHTML = '';
-            for (let i = 1; i <= totalPages; i++) {
+            
+            if (totalPages === 0) return;
+            
+            const pagesPerGroup = 10;
+            const currentGroup = Math.ceil(currentPage / pagesPerGroup);
+            let startPage = (currentGroup - 1) * pagesPerGroup + 1;
+            let endPage = startPage + pagesPerGroup - 1;
+            
+            if (endPage > totalPages) endPage = totalPages;
+
+            // [이전 10페이지] 버튼 (<<)
+            const prevGroupBtn = document.createElement('a');
+            prevGroupBtn.href = '#';
+            prevGroupBtn.className = `page-link rounded ${startPage === 1 ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            prevGroupBtn.innerHTML = '<i class="fas fa-angle-double-left text-[10px]"></i>';
+            prevGroupBtn.onclick = (e) => {
+                e.preventDefault();
+                if (startPage > 1) {
+                    currentPage = startPage - 1;
+                    renderTable(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                }
+            };
+            paginationContainer.appendChild(prevGroupBtn);
+
+            // [이전 1페이지] 화살표 버튼 (<)
+            const prevBtn = document.createElement('a');
+            prevBtn.href = '#';
+            prevBtn.className = `page-link rounded ${currentPage === 1 ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            prevBtn.innerHTML = '<i class="fas fa-chevron-left text-[10px]"></i>';
+            prevBtn.onclick = (e) => {
+                e.preventDefault();
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderTable(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                }
+            };
+            paginationContainer.appendChild(prevBtn);
+
+            // [페이지 번호] 버튼
+            for (let i = startPage; i <= endPage; i++) {
                 const a = document.createElement('a');
                 a.href = '#';
                 a.className = `page-link ${i === currentPage ? 'active' : ''} rounded`;
@@ -214,18 +420,147 @@
                 };
                 paginationContainer.appendChild(a);
             }
+
+            // [다음 1페이지] 화살표 버튼 (>)
+            const nextBtn = document.createElement('a');
+            nextBtn.href = '#';
+            nextBtn.className = `page-link rounded ${currentPage === totalPages ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            nextBtn.innerHTML = '<i class="fas fa-chevron-right text-[10px]"></i>';
+            nextBtn.onclick = (e) => {
+                e.preventDefault();
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    renderTable(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                }
+            };
+            paginationContainer.appendChild(nextBtn);
+
+            // [다음 10페이지] 버튼 (>>)
+            const nextGroupBtn = document.createElement('a');
+            nextGroupBtn.href = '#';
+            nextGroupBtn.className = `page-link rounded ${endPage === totalPages ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            nextGroupBtn.innerHTML = '<i class="fas fa-angle-double-right text-[10px]"></i>';
+            nextGroupBtn.onclick = (e) => {
+                e.preventDefault();
+                if (endPage < totalPages) {
+                    currentPage = endPage + 1;
+                    renderTable(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                }
+            };
+            paginationContainer.appendChild(nextGroupBtn);
         }
 
+        // ★ 검색 기능 실행 함수 ★
+        function executeSearch() {
+            const type = document.getElementById('search-type').value;
+            const keyword = document.getElementById('search-keyword').value.trim().toLowerCase();
+
+            if (!keyword) {
+                // 검색어가 없으면 원래 전체 데이터로 복구
+                companyData = [...originalCompanyData];
+            } else {
+                // 검색어가 있으면 필터링
+                companyData = originalCompanyData.filter(item => {
+                    if (type === 'name') {
+                        return item.name.toLowerCase().includes(keyword) || item.description.toLowerCase().includes(keyword);
+                    } else if (type === 'category') {
+                        return item.category.toLowerCase().includes(keyword);
+                    } else if (type === 'owner') {
+                        return item.owner.toLowerCase().includes(keyword);
+                    }
+                    return false;
+                });
+            }
+            
+            currentPage = 1; // 검색 후 무조건 1페이지로 이동
+            renderTable(currentPage);
+        }
+
+        // ★ 모달(팝업창) 다중 사진 불러오기 로직 ★
         function openModal(id) {
-            const company = companyData.find(c => c.id === id);
+            // 원본 데이터에서 찾기
+            const company = originalCompanyData.find(c => c.id === id);
             if(!company) return;
+            
+            // 텍스트 정보 세팅
             document.getElementById('modal-header-title').textContent = `[${company.category}] ${company.name}`;
-            document.getElementById('modal-name').textContent = `${company.name} ${company.description}`;
-            document.getElementById('modal-location').textContent = company.location;
-            document.getElementById('modal-phone').textContent = company.phone;
-            const ownerText = company.owner_detail ? `${company.owner} ${company.owner_detail}` : company.owner;
-            document.getElementById('modal-owner').textContent = ownerText;
-            document.getElementById('modal-image').src = company.image_url;
+            
+            const fullName = company.description ? `${company.name} <span class="text-sm text-gray-500 font-normal ml-1">${company.description}</span>` : company.name;
+            document.getElementById('modal-name').innerHTML = fullName;
+            
+            document.getElementById('modal-location').textContent = company.location || "-";
+            document.getElementById('modal-phone').textContent = company.phone || "-";
+            document.getElementById('modal-owner').textContent = company.owner || "-";
+            
+            // 사진 컨테이너 초기화
+            const container = document.getElementById('modal-image-container');
+            Array.from(container.children).forEach(child => {
+                if(child.id !== 'loading-msg') child.remove();
+            });
+            
+            const loadingMsg = document.getElementById('loading-msg');
+            loadingMsg.style.display = 'flex';
+            loadingMsg.innerHTML = '<i class="fas fa-spinner fa-spin text-2xl text-blue-500"></i><span>사진을 불러오는 중입니다...</span>';
+
+            const maxImages = 10; // 하나의 성도기업에 최대 10장까지 등록 가능하다고 가정
+            let loadedCount = 0;
+            let errorCount = 0;
+
+            function tryLoadModalImage(index, extsArray, wrapElement) {
+                if (extsArray.length === 0) {
+                    wrapElement.remove(); 
+                    errorCount++;
+                    if(loadedCount === 0 && errorCount === maxImages) {
+                         loadingMsg.innerHTML = '<i class="fas fa-exclamation-circle text-xl text-gray-400"></i><span class="mt-1">등록된 사진이 없습니다.</span>';
+                    }
+                    return;
+                }
+
+                const currentExt = extsArray.shift();
+                
+                // ★ 번호 대신 상호명(company.name)으로 사진 가져오기 ★
+                let numStr = index < 10 ? '0' + index : index;
+                let imgUrl = `${baseURL}${company.name}-${numStr}.${currentExt}`;
+
+                let imgInnerWrap = document.createElement('div');
+                imgInnerWrap.className = 'relative inline-block w-full';
+
+                let img = document.createElement('img');
+                img.className = "w-full h-auto object-contain rounded shadow-sm border border-gray-200 cursor-pointer hover:opacity-90 transition duration-300 bg-white";
+                img.title = "클릭하시면 원본 크기로 확대됩니다.";
+                img.onclick = () => openZoom(imgUrl);
+                
+                let zoomIcon = document.createElement('div');
+                zoomIcon.className = "absolute top-4 right-4 bg-black/50 text-white p-2 rounded-full pointer-events-none opacity-70";
+                zoomIcon.innerHTML = '<i class="fas fa-search-plus"></i>';
+                
+                imgInnerWrap.appendChild(img);
+                imgInnerWrap.appendChild(zoomIcon);
+                
+                img.onload = function() {
+                    wrapElement.classList.remove('hidden'); 
+                    loadingMsg.style.display = 'none'; 
+                    loadedCount++;
+                    wrapElement.appendChild(imgInnerWrap);
+                };
+                
+                img.onerror = function() {
+                    tryLoadModalImage(index, extsArray, wrapElement);
+                };
+                
+                img.src = imgUrl; 
+            }
+
+            for(let i = 1; i <= maxImages; i++) {
+                let imgWrap = document.createElement('div');
+                imgWrap.className = "w-full mb-3 hidden"; 
+                container.appendChild(imgWrap);
+                tryLoadModalImage(i, ['jpg', 'png', 'jpeg', 'JPG', 'PNG'], imgWrap);
+            }
+
+            // 모달 열기
             const modal = document.getElementById('company-modal');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
@@ -239,8 +574,63 @@
             document.body.style.overflow = '';
         }
 
+        // 전체화면 확대 기능
+        function openZoom(src) {
+            const zoomModal = document.getElementById('zoom-modal');
+            const zoomImg = document.getElementById('zoom-image');
+            zoomImg.src = src;
+            zoomModal.classList.remove('hidden');
+            zoomModal.classList.add('flex');
+        }
+
+        function closeZoom() {
+            const zoomModal = document.getElementById('zoom-modal');
+            zoomModal.classList.add('hidden');
+            zoomModal.classList.remove('flex');
+        }
+
+        // 모바일 보조메뉴 토글
+        function toggleMobileSubMenu(menuId) {
+            const targetMenu = document.getElementById(menuId);
+            const otherMenuId = menuId === 'menu-depth1' ? 'menu-depth2' : 'menu-depth1';
+            const otherMenu = document.getElementById(otherMenuId);
+            
+            if (otherMenu && !otherMenu.classList.contains('hidden')) {
+                otherMenu.classList.add('hidden');
+                const otherIcon = otherMenu.previousElementSibling.querySelector('.fas');
+                if(otherIcon) {
+                    otherIcon.classList.remove('fa-minus');
+                    otherIcon.classList.add('fa-plus');
+                }
+            }
+            if (targetMenu) {
+                targetMenu.classList.toggle('hidden');
+                const icon = targetMenu.previousElementSibling.querySelector('.fas');
+                if(icon) {
+                    if(targetMenu.classList.contains('hidden')) {
+                        icon.classList.remove('fa-minus');
+                        icon.classList.add('fa-plus');
+                    } else {
+                        icon.classList.remove('fa-plus');
+                        icon.classList.add('fa-minus');
+                    }
+                }
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
+            // 초기 렌더링
             renderTable(currentPage);
+
+            // 검색 버튼 클릭 이벤트
+            document.getElementById('search-btn').addEventListener('click', executeSearch);
+
+            // 검색창 엔터키 입력 이벤트
+            document.getElementById('search-keyword').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    executeSearch();
+                }
+            });
         });
     </script>
     <script>const ROOT_PATH = "../";</script>

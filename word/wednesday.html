@@ -202,7 +202,8 @@
     <div id="common-sitemap"></div>
 
     <script>
-        const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTmNPl7QMOdRz4v6O0kYga96lCTM8t2xeDwVepsmdUtBfiXyTz4jVmJ_meq0fP0ENusdnKxfHpPjTrJ/pub?gid=1347943468&single=true&output=csv";
+        // ★ 수요예배 새로운 공유 링크 적용 (csv 포맷 변환 완료) ★
+        const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQMk1mUmq19I5HQ7_W1patskpHVzROscsJsj7y2N8JvslryyGXkMTFt1ckAO7uKgraEm9IAT7g_kZUT/pub?gid=476140477&single=true&output=csv";
 
         let formattedData = [];
         const itemsPerPage = 15;
@@ -230,13 +231,6 @@
 
         // 구글 엑셀 실시간 읽어오기
         async function loadData() {
-            // 링크가 없거나 "여기에..."인 경우 안내 메시지 출력
-            if (!csvUrl || csvUrl.includes("여기에_수요예배_CSV_링크를_넣어주세요")) {
-                document.getElementById('sermon-list-pc').innerHTML = '<tr><td colspan="6" class="py-10 text-center text-red-500 font-bold"><i class="fas fa-exclamation-triangle mr-2"></i>웹 관리자에게 수요예배 엑셀 링크(CSV) 연결을 요청해주세요.</td></tr>';
-                document.getElementById('sermon-list-mobile-body').innerHTML = '<div class="py-10 text-center text-red-500 font-bold text-sm">엑셀 링크(CSV) 연결이 필요합니다.</div>';
-                return;
-            }
-
             try {
                 document.getElementById('sermon-list-pc').innerHTML = '<tr><td colspan="6" class="py-10 text-center text-gray-500"><i class="fas fa-spinner fa-spin mr-2"></i>데이터를 불러오는 중입니다...</td></tr>';
                 document.getElementById('sermon-list-mobile-body').innerHTML = '<div class="py-10 text-center text-gray-500"><i class="fas fa-spinner fa-spin mr-2"></i>불러오는 중...</div>';
@@ -451,6 +445,35 @@
         document.addEventListener('DOMContentLoaded', () => {
             loadData();
         });
+
+        function toggleMobileSubMenu(menuId) {
+            const targetMenu = document.getElementById(menuId);
+            const otherMenuId = menuId === 'menu-depth1' ? 'menu-depth2' : 'menu-depth1';
+            const otherMenu = document.getElementById(otherMenuId);
+            
+            if (otherMenu && !otherMenu.classList.contains('hidden')) {
+                otherMenu.classList.add('hidden');
+                const otherIcon = otherMenu.previousElementSibling.querySelector('.fas');
+                if(otherIcon) {
+                    otherIcon.classList.remove('fa-minus');
+                    otherIcon.classList.add('fa-plus');
+                }
+            }
+            
+            if (targetMenu) {
+                targetMenu.classList.toggle('hidden');
+                const icon = targetMenu.previousElementSibling.querySelector('.fas');
+                if(icon) {
+                    if(targetMenu.classList.contains('hidden')) {
+                        icon.classList.remove('fa-minus');
+                        icon.classList.add('fa-plus');
+                    } else {
+                        icon.classList.remove('fa-plus');
+                        icon.classList.add('fa-minus');
+                    }
+                }
+            }
+        }
     </script>
     <script>const ROOT_PATH = "../";</script>
     <script src="../js/common.js"></script>
