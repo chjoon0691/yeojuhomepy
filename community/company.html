@@ -283,16 +283,24 @@
         // 깃허브 사진 보관함 기본 주소 
         const baseURL = "https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/community/images/";
 
-        // ★ 변경된 부분: 썸네일을 '상호명'으로 확인하는 함수 ★
+        // ★ 변경된 부분: 썸네일을 '상호명'으로 똑똑하게 확인하는 함수 ★
         function loadThumbnailIcon(id, name) {
             const exts = ['jpg', 'png', 'jpeg', 'JPG', 'PNG'];
+            const patterns = ['', '-01']; // 1장짜리 이름(상호명.jpg)과 다중 이름(상호명-01.jpg) 모두 순차적으로 검사
             let extIndex = 0;
+            let patternIndex = 0;
 
             let dummyImg = new Image();
             function tryNext() {
-                if (extIndex >= exts.length) return; // 실패하면 아이콘 안 띄움
-                dummyImg.src = `${baseURL}${name}-01.${exts[extIndex]}`;
+                if (patternIndex >= patterns.length) return; // 모든 경우의 수 실패하면 아이콘 안 띄움
+                
+                dummyImg.src = `${baseURL}${name}${patterns[patternIndex]}.${exts[extIndex]}`;
+                
                 extIndex++;
+                if (extIndex >= exts.length) {
+                    extIndex = 0;
+                    patternIndex++;
+                }
             }
             
             dummyImg.onload = function() {
@@ -512,56 +520,82 @@
             let loadedCount = 0;
             let errorCount = 0;
 
-            function tryLoadModalImage(index, extsArray, wrapElement) {
-                if (extsArray.length === 0) {
-                    wrapElement.remove(); 
-                    errorCount++;
-                    if(loadedCount === 0 && errorCount === maxImages) {
-                         loadingMsg.innerHTML = '<i class="fas fa-exclamation-circle text-xl text-gray-400"></i><span class="mt-1">등록된 사진이 없습니다.</span>';
+            // ★ 변경된 부분: 사진 한 장일 때와 여러 장일 때를 모두 감지하는 로직 ★
+            function tryLoadModalImage(index, wrapElement) {
+                const exts = ['jpg', 'png', 'jpeg', 'JPG', 'PNG'];
+                let currentExtIndex = 0;
+                let tryCountForIndex1 = 0; // 첫 번째 사진일 때: 0이면 '상호명.jpg', 1이면 '상호명-01.jpg' 검사
+
+                function loadStep() {
+                    // 지정된 확장자를 다 찾아봤는데 없을 경우
+                    if (currentExtIndex >= exts.length) {
+                        if (index === 1 && tryCountForIndex1 === 0) {
+                            // 단일 이름(상호명.jpg)을 못 찾았으면, 다중 이름(상호명-01.jpg)으로 2차 시도!
+                            tryCountForIndex1 = 1;
+                            currentExtIndex = 0;
+                            loadStep();
+                        } else {
+                            // 완전히 실패했을 경우 (사진 없음 처리)
+                            wrapElement.remove(); 
+                            errorCount++;
+                            if(loadedCount === 0 && errorCount === maxImages) {
+                                loadingMsg.innerHTML = '<i class="fas fa-exclamation-circle text-xl text-gray-400"></i><span class="mt-1">등록된 사진이 없습니다.</span>';
+                            }
+                        }
+                        return; // 반복 방지를 위해 멈춤
                     }
-                    return;
+
+                    let imgUrl = "";
+                    if (index === 1 && tryCountForIndex1 === 0) {
+                        // 1번 사진은 먼저 꼬리표 없는 '상호명.jpg' 형식 확인
+                        imgUrl = `${baseURL}${company.name}.${exts[currentExtIndex]}`;
+                    } else {
+                        // 2번 사진 이상이거나, 1번 사진 2차 시도일 경우 '상호명-01.jpg' 형식 확인
+                        let numStr = index < 10 ? '0' + index : index;
+                        imgUrl = `${baseURL}${company.name}-${numStr}.${exts[currentExtIndex]}`;
+                    }
+
+                    let img = new Image();
+                    
+                    img.onload = function() {
+                        // 로딩 성공 시 화면에 예쁘게 추가
+                        img.className = "w-full h-auto object-contain rounded shadow-sm border border-gray-200 cursor-pointer hover:opacity-90 transition duration-300 bg-white";
+                        img.title = "클릭하시면 원본 크기로 확대됩니다.";
+                        img.onclick = () => openZoom(imgUrl);
+                        
+                        let imgInnerWrap = document.createElement('div');
+                        imgInnerWrap.className = 'relative inline-block w-full';
+                        
+                        let zoomIcon = document.createElement('div');
+                        zoomIcon.className = "absolute top-4 right-4 bg-black/50 text-white p-2 rounded-full pointer-events-none opacity-70";
+                        zoomIcon.innerHTML = '<i class="fas fa-search-plus"></i>';
+                        
+                        imgInnerWrap.appendChild(img);
+                        imgInnerWrap.appendChild(zoomIcon);
+
+                        wrapElement.classList.remove('hidden'); 
+                        loadingMsg.style.display = 'none'; 
+                        loadedCount++;
+                        wrapElement.appendChild(imgInnerWrap);
+                    };
+                    
+                    img.onerror = function() {
+                        // 실패 시 다음 확장자(png, jpeg 등)로 재검색
+                        currentExtIndex++;
+                        loadStep();
+                    };
+                    
+                    img.src = imgUrl; 
                 }
-
-                const currentExt = extsArray.shift();
                 
-                // ★ 번호 대신 상호명(company.name)으로 사진 가져오기 ★
-                let numStr = index < 10 ? '0' + index : index;
-                let imgUrl = `${baseURL}${company.name}-${numStr}.${currentExt}`;
-
-                let imgInnerWrap = document.createElement('div');
-                imgInnerWrap.className = 'relative inline-block w-full';
-
-                let img = document.createElement('img');
-                img.className = "w-full h-auto object-contain rounded shadow-sm border border-gray-200 cursor-pointer hover:opacity-90 transition duration-300 bg-white";
-                img.title = "클릭하시면 원본 크기로 확대됩니다.";
-                img.onclick = () => openZoom(imgUrl);
-                
-                let zoomIcon = document.createElement('div');
-                zoomIcon.className = "absolute top-4 right-4 bg-black/50 text-white p-2 rounded-full pointer-events-none opacity-70";
-                zoomIcon.innerHTML = '<i class="fas fa-search-plus"></i>';
-                
-                imgInnerWrap.appendChild(img);
-                imgInnerWrap.appendChild(zoomIcon);
-                
-                img.onload = function() {
-                    wrapElement.classList.remove('hidden'); 
-                    loadingMsg.style.display = 'none'; 
-                    loadedCount++;
-                    wrapElement.appendChild(imgInnerWrap);
-                };
-                
-                img.onerror = function() {
-                    tryLoadModalImage(index, extsArray, wrapElement);
-                };
-                
-                img.src = imgUrl; 
+                loadStep();
             }
 
             for(let i = 1; i <= maxImages; i++) {
                 let imgWrap = document.createElement('div');
                 imgWrap.className = "w-full mb-3 hidden"; 
                 container.appendChild(imgWrap);
-                tryLoadModalImage(i, ['jpg', 'png', 'jpeg', 'JPG', 'PNG'], imgWrap);
+                tryLoadModalImage(i, imgWrap);
             }
 
             // 모달 열기
