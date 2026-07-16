@@ -173,7 +173,7 @@
     <script>
         // ★ 255번 (9,10교구 산상기도회) 복구 완료! ★
         const rawText = `
-259|260704 성결파크골크선교회|2026.07.04
+259|260704 성결파크골프선교회|2026.07.04
 258|260705 그루터기 중창단 창단식|2026.07.05
 257|260701 제8회 지역어르신 초청잔치|2026.07.01
 256|260628 2분기 새가족수료식|2026.06.28
@@ -432,216 +432,287 @@
 3|180106 여주성결오케스트라창단식|2018.09.15
 2|180105 신년특별금요심야기도회&제직예배|2018.09.11
 1|180101 송구영신예배|2018.09.11
-        `;
+        `;
 
-        // 데이터 변환 및 날짜 축약 규칙 적용 (2026 -> 26)
-        const galleryData = rawText.trim().split('\n').filter(line => line.trim() !== '').map(line => {
-            const parts = line.split('|');
-            let originalTitle = parts[1].trim();
-            // 제목이 202X로 시작하면 2X로 변경하는 마법의 규칙
-            let shortTitle = originalTitle.replace(/^20([2-9][0-9])/, '$1');
-            
-            return {
-                id: parseInt(parts[0].trim()),
-                title: shortTitle,
-                date: parts[2].trim()
-            };
-        });
+        // 데이터 변환 및 날짜 축약 규칙 적용 (2026 -> 26)
+        const galleryData = rawText.trim().split('\n').filter(line => line.trim() !== '').map(line => {
+            const parts = line.split('|');
+            let originalTitle = parts[1].trim();
+            // 제목이 202X로 시작하면 2X로 변경하는 마법의 규칙
+            let shortTitle = originalTitle.replace(/^20([2-9][0-9])/, '$1');
+            
+            return {
+                id: parseInt(parts[0].trim()),
+                title: shortTitle,
+                date: parts[2].trim()
+            };
+        });
 
-        // 총 앨범 수 자동 표시
-        document.getElementById('total-count').textContent = galleryData.length;
+        // 총 앨범 수 자동 표시
+        document.getElementById('total-count').textContent = galleryData.length;
 
-        // 2. 깃허브 사진 저장소 기본 주소 (이 폴더에 올리시면 됩니다)
-        const baseURL = "https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/news/images/gallery/";
+        // 2. 깃허브 사진 저장소 기본 주소 (이 폴더에 올리시면 됩니다)
+        const baseURL = "https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/news/images/gallery/";
 
-        const itemsPerPage = 12; 
-        let currentPage = 1;
+        const itemsPerPage = 12; 
+        let currentPage = 1;
 
-        // ★ 확장자 자동 탐색하여 썸네일 로딩하는 함수 ★
-        function loadThumbnail(imgElement, id) {
-            const exts = ['jpg', 'png', 'jpeg', 'JPG', 'PNG'];
-            let extIndex = 0;
+        // ★ 확장자 자동 탐색하여 썸네일 로딩하는 함수 ★
+        function loadThumbnail(imgElement, id) {
+            const exts = ['jpg', 'png', 'jpeg', 'JPG', 'PNG'];
+            let extIndex = 0;
 
-            function tryNext() {
-                if (extIndex >= exts.length) {
-                    imgElement.src = `https://placehold.co/800x600/f3f4f6/9ca3af?text=No.${id}`; // 모두 실패시 기본 회색 이미지
-                    return;
-                }
-                imgElement.src = `${baseURL}${id}-01.${exts[extIndex]}`;
-                extIndex++;
-            }
+            function tryNext() {
+                if (extIndex >= exts.length) {
+                    imgElement.src = `https://placehold.co/800x600/f3f4f6/9ca3af?text=No.${id}`; // 모두 실패시 기본 회색 이미지
+                    return;
+                }
+                imgElement.src = `${baseURL}${id}-01.${exts[extIndex]}`;
+                extIndex++;
+            }
 
-            imgElement.onerror = tryNext;
-            tryNext(); // 첫 번째 시도 시작
-        }
+            imgElement.onerror = tryNext;
+            tryNext(); // 첫 번째 시도 시작
+        }
 
-        function renderGallery(page) {
-            const startIndex = (page - 1) * itemsPerPage;
-            const endIndex = startIndex + itemsPerPage;
-            const pageData = galleryData.slice(startIndex, endIndex);
+        function renderGallery(page) {
+            const startIndex = (page - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const pageData = galleryData.slice(startIndex, endIndex);
 
-            const gridContainer = document.getElementById('gallery-grid');
-            gridContainer.innerHTML = '';
+            const gridContainer = document.getElementById('gallery-grid');
+            gridContainer.innerHTML = '';
 
-            pageData.forEach(item => {
-                const card = document.createElement('div');
-                card.className = 'flex flex-col cursor-pointer group';
-                card.onclick = () => openModal(item.id);
+            pageData.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'flex flex-col cursor-pointer group';
+                card.onclick = () => openModal(item.id);
 
-                let imgId = `thumb-${item.id}`;
-                
-                card.innerHTML = `
-                    <div class="w-full aspect-[4/3] rounded-lg overflow-hidden shadow-sm border border-gray-200 mb-2 relative bg-gray-50">
-                        <img id="${imgId}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition duration-300"></div>
-                        
-                        <!-- ★ 마우스 호버 시 왼쪽 위에 나타나는 번호 배지 ★ -->
-                        <div class="absolute top-2 left-2 bg-[#1b315b]/90 text-white text-xs font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm z-10 shadow">
-                            No.${item.id}
-                        </div>
+                let imgId = `thumb-${item.id}`;
+                
+                card.innerHTML = `
+                    <div class="w-full aspect-[4/3] rounded-lg overflow-hidden shadow-sm border border-gray-200 mb-2 relative bg-gray-50">
+                        <img id="${imgId}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition duration-300"></div>
+                        
+                        <!-- ★ 마우스 호버 시 왼쪽 위에 나타나는 번호 배지 ★ -->
+                        <div class="absolute top-2 left-2 bg-[#1b315b]/90 text-white text-xs font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm z-10 shadow">
+                            No.${item.id}
+                        </div>
 
-                        <div class="absolute bottom-2 right-2 bg-black/60 text-white text-[10px] px-2 py-0.5 rounded flex items-center gap-1">
-                            <i class="far fa-images"></i>
-                        </div>
-                    </div>
-                    <p class="text-sm font-bold text-gray-800 text-center truncate px-1 group-hover:text-[#3b82f6] transition">${item.title}</p>
-                `;
-                gridContainer.appendChild(card);
-                
-                // 생성 직후 썸네일 로딩 시도
-                loadThumbnail(document.getElementById(imgId), item.id);
-            });
-            
-            renderPagination();
-        }
+                        <div class="absolute bottom-2 right-2 bg-black/60 text-white text-[10px] px-2 py-0.5 rounded flex items-center gap-1">
+                            <i class="far fa-images"></i>
+                        </div>
+                    </div>
+                    <p class="text-sm font-bold text-gray-800 text-center truncate px-1 group-hover:text-[#3b82f6] transition">${item.title}</p>
+                `;
+                gridContainer.appendChild(card);
+                
+                // 생성 직후 썸네일 로딩 시도
+                loadThumbnail(document.getElementById(imgId), item.id);
+            });
+            
+            renderPagination();
+        }
 
-        function renderPagination() {
-            const totalPages = Math.ceil(galleryData.length / itemsPerPage);
-            const paginationContainer = document.getElementById('pagination');
-            paginationContainer.innerHTML = '';
+        function renderPagination() {
+            const totalPages = Math.ceil(galleryData.length / itemsPerPage);
+            const paginationContainer = document.getElementById('pagination');
+            paginationContainer.innerHTML = '';
 
-            for (let i = 1; i <= totalPages; i++) {
-                const a = document.createElement('a');
-                a.href = '#';
-                a.className = `page-link ${i === currentPage ? 'active' : ''} rounded`;
-                a.textContent = i;
-                a.onclick = (e) => {
-                    e.preventDefault();
-                    currentPage = i;
-                    renderGallery(currentPage);
-                    window.scrollTo({top: 300, behavior: 'smooth'}); 
-                };
-                paginationContainer.appendChild(a);
-            }
-        }
+            if (totalPages === 0) return;
 
-        /* * ★ 팝업창 확장자 자동 탐색 로딩 시스템 ★ 
-         */
-        function openModal(id) {
-            const data = galleryData.find(n => n.id === id);
-            if(!data) return;
+            // 한 번에 보여줄 페이지 번호 개수 (10개씩)
+            const pagesPerGroup = 10;
+            const currentGroup = Math.ceil(currentPage / pagesPerGroup);
+            let startPage = (currentGroup - 1) * pagesPerGroup + 1;
+            let endPage = startPage + pagesPerGroup - 1;
+            
+            if (endPage > totalPages) endPage = totalPages;
 
-            document.getElementById('modal-title').textContent = data.title;
-            document.getElementById('modal-date').innerHTML = `<i class="far fa-calendar-alt mr-1"></i> 등록일 : ${data.date}`;
-            
-            const container = document.getElementById('modal-image-container');
-            
-            Array.from(container.children).forEach(child => {
-                if(child.id !== 'loading-msg') child.remove();
-            });
-            document.getElementById('loading-msg').style.display = 'flex';
-            document.getElementById('loading-msg').innerHTML = '<i class="fas fa-spinner fa-spin text-3xl text-blue-500"></i><span>사진을 불러오는 중입니다...</span>';
+            // [이전 10페이지] 버튼 (<<)
+            const prevGroupBtn = document.createElement('a');
+            prevGroupBtn.href = '#';
+            prevGroupBtn.className = `page-link rounded ${startPage === 1 ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            prevGroupBtn.innerHTML = '<i class="fas fa-angle-double-left text-[10px]"></i>';
+            prevGroupBtn.onclick = (e) => {
+                e.preventDefault();
+                if (startPage > 1) {
+                    currentPage = startPage - 1;
+                    renderGallery(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                }
+            };
+            paginationContainer.appendChild(prevGroupBtn);
 
-            const maxImages = 30; // 앨범당 최대 30장 검사
-            let loadedCount = 0;
-            let errorCount = 0;
+            // [이전 1페이지] 화살표 버튼 (<)
+            const prevBtn = document.createElement('a');
+            prevBtn.href = '#';
+            prevBtn.className = `page-link rounded ${currentPage === 1 ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            prevBtn.innerHTML = '<i class="fas fa-chevron-left text-[10px]"></i>';
+            prevBtn.onclick = (e) => {
+                e.preventDefault();
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderGallery(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                }
+            };
+            paginationContainer.appendChild(prevBtn);
 
-            // 순차적으로 이미지 존재 여부를 확인하고 로드하는 재귀 함수
-            function tryLoadModalImage(index, extsArray, wrapElement) {
-                if (extsArray.length === 0) {
-                    wrapElement.remove(); // 모든 확장자 실패 시 요소 삭제
-                    errorCount++;
-                    if(loadedCount === 0 && errorCount === maxImages) {
-                         document.getElementById('loading-msg').innerHTML = '<i class="fas fa-exclamation-circle text-2xl text-gray-400"></i><span>등록된 사진이 없습니다.</span>';
-                    }
-                    return;
-                }
+            // [페이지 번호] 버튼 (10개씩)
+            for (let i = startPage; i <= endPage; i++) {
+                const a = document.createElement('a');
+                a.href = '#';
+                a.className = `page-link ${i === currentPage ? 'active' : ''} rounded`;
+                a.textContent = i;
+                a.onclick = (e) => {
+                    e.preventDefault();
+                    currentPage = i;
+                    renderGallery(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                };
+                paginationContainer.appendChild(a);
+            }
 
-                const currentExt = extsArray.shift();
-                let numStr = index < 10 ? '0' + index : index;
-                let imgUrl = `${baseURL}${id}-${numStr}.${currentExt}`;
+            // [다음 1페이지] 화살표 버튼 (>)
+            const nextBtn = document.createElement('a');
+            nextBtn.href = '#';
+            nextBtn.className = `page-link rounded ${currentPage === totalPages ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            nextBtn.innerHTML = '<i class="fas fa-chevron-right text-[10px]"></i>';
+            nextBtn.onclick = (e) => {
+                e.preventDefault();
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    renderGallery(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                }
+            };
+            paginationContainer.appendChild(nextBtn);
 
-                let img = document.createElement('img');
-                img.className = "w-full h-auto object-contain rounded shadow-sm border border-gray-200 cursor-pointer hover:opacity-90 transition duration-300";
-                img.title = "클릭하시면 원본 크기로 확대됩니다.";
-                
-                // 클릭 시 줌 모달 띄우기
-                img.onclick = () => openZoom(imgUrl);
-                
-                img.onload = function() {
-                    wrapElement.classList.remove('hidden'); 
-                    document.getElementById('loading-msg').style.display = 'none'; 
-                    loadedCount++;
-                    wrapElement.appendChild(img);
-                    
-                    // 돋보기 아이콘 오버레이
-                    let zoomIcon = document.createElement('div');
-                    zoomIcon.className = "absolute top-4 right-4 bg-black/50 text-white p-2 rounded-full pointer-events-none opacity-70";
-                    zoomIcon.innerHTML = '<i class="fas fa-search-plus"></i>';
-                    wrapElement.appendChild(zoomIcon);
-                };
-                
-                img.onerror = function() {
-                    // 실패 시 다음 확장자 시도
-                    tryLoadModalImage(index, extsArray, wrapElement);
-                };
-                
-                img.src = imgUrl; 
-            }
+            // [다음 10페이지] 버튼 (>>)
+            const nextGroupBtn = document.createElement('a');
+            nextGroupBtn.href = '#';
+            nextGroupBtn.className = `page-link rounded ${endPage === totalPages ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            nextGroupBtn.innerHTML = '<i class="fas fa-angle-double-right text-[10px]"></i>';
+            nextGroupBtn.onclick = (e) => {
+                e.preventDefault();
+                if (endPage < totalPages) {
+                    currentPage = endPage + 1;
+                    renderGallery(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                }
+            };
+            paginationContainer.appendChild(nextGroupBtn);
+        }
 
-            for(let i = 1; i <= maxImages; i++) {
-                let imgWrap = document.createElement('div');
-                imgWrap.className = "bg-white p-1 rounded-lg w-full mb-4 hidden flex flex-col relative"; 
-                container.appendChild(imgWrap);
-                
-                // jpg, png, jpeg 순서로 시도하도록 배열 복사
-                tryLoadModalImage(i, ['jpg', 'png', 'jpeg', 'JPG', 'PNG'], imgWrap);
-            }
+        /* * ★ 팝업창 확장자 자동 탐색 로딩 시스템 ★ 
+         */
+        function openModal(id) {
+            const data = galleryData.find(n => n.id === id);
+            if(!data) return;
 
-            const modal = document.getElementById('gallery-modal');
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            document.body.style.overflow = 'hidden'; 
-        }
+            document.getElementById('modal-title').textContent = data.title;
+            document.getElementById('modal-date').innerHTML = `<i class="far fa-calendar-alt mr-1"></i> 등록일 : ${data.date}`;
+            
+            const container = document.getElementById('modal-image-container');
+            
+            Array.from(container.children).forEach(child => {
+                if(child.id !== 'loading-msg') child.remove();
+            });
+            document.getElementById('loading-msg').style.display = 'flex';
+            document.getElementById('loading-msg').innerHTML = '<i class="fas fa-spinner fa-spin text-3xl text-blue-500"></i><span>사진을 불러오는 중입니다...</span>';
 
-        function closeModal() {
-            const modal = document.getElementById('gallery-modal');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-            document.body.style.overflow = ''; 
-        }
+            const maxImages = 30; // 앨범당 최대 30장 검사
+            let loadedCount = 0;
+            let errorCount = 0;
 
-        // ★ 확대 모달창 관련 함수 ★
-        function openZoom(src) {
-            const zoomModal = document.getElementById('zoom-modal');
-            const zoomImg = document.getElementById('zoom-image');
-            zoomImg.src = src;
-            zoomModal.classList.remove('hidden');
-            zoomModal.classList.add('flex');
-        }
+            // 순차적으로 이미지 존재 여부를 확인하고 로드하는 재귀 함수
+            function tryLoadModalImage(index, extsArray, wrapElement) {
+                if (extsArray.length === 0) {
+                    wrapElement.remove(); // 모든 확장자 실패 시 요소 삭제
+                    errorCount++;
+                    if(loadedCount === 0 && errorCount === maxImages) {
+                         document.getElementById('loading-msg').innerHTML = '<i class="fas fa-exclamation-circle text-2xl text-gray-400"></i><span>등록된 사진이 없습니다.</span>';
+                    }
+                    return;
+                }
 
-        function closeZoom() {
-            const zoomModal = document.getElementById('zoom-modal');
-            zoomModal.classList.add('hidden');
-            zoomModal.classList.remove('flex');
-        }
+                const currentExt = extsArray.shift();
+                let numStr = index < 10 ? '0' + index : index;
+                let imgUrl = `${baseURL}${id}-${numStr}.${currentExt}`;
 
-        document.addEventListener('DOMContentLoaded', () => {
-            renderGallery(currentPage);
-        });
-    </script>
-    <script>const ROOT_PATH = "../";</script>
-    <script src="../js/common.js"></script>
+                let img = document.createElement('img');
+                img.className = "w-full h-auto object-contain rounded shadow-sm border border-gray-200 cursor-pointer hover:opacity-90 transition duration-300";
+                img.title = "클릭하시면 원본 크기로 확대됩니다.";
+                
+                // 클릭 시 줌 모달 띄우기
+                img.onclick = () => openZoom(imgUrl);
+                
+                img.onload = function() {
+                    wrapElement.classList.remove('hidden'); 
+                    document.getElementById('loading-msg').style.display = 'none'; 
+                    loadedCount++;
+                    wrapElement.appendChild(img);
+                    
+                    // 돋보기 아이콘 오버레이
+                    let zoomIcon = document.createElement('div');
+                    zoomIcon.className = "absolute top-4 right-4 bg-black/50 text-white p-2 rounded-full pointer-events-none opacity-70";
+                    zoomIcon.innerHTML = '<i class="fas fa-search-plus"></i>';
+                    wrapElement.appendChild(zoomIcon);
+                };
+                
+                img.onerror = function() {
+                    // 실패 시 다음 확장자 시도
+                    tryLoadModalImage(index, extsArray, wrapElement);
+                };
+                
+                img.src = imgUrl; 
+            }
+
+            for(let i = 1; i <= maxImages; i++) {
+                let imgWrap = document.createElement('div');
+                imgWrap.className = "bg-white p-1 rounded-lg w-full mb-4 hidden flex flex-col relative"; 
+                container.appendChild(imgWrap);
+                
+                // jpg, png, jpeg 순서로 시도하도록 배열 복사
+                tryLoadModalImage(i, ['jpg', 'png', 'jpeg', 'JPG', 'PNG'], imgWrap);
+            }
+
+            const modal = document.getElementById('gallery-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('gallery-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = ''; 
+        }
+
+        // ★ 확대 모달창 관련 함수 ★
+        function openZoom(src) {
+            const zoomModal = document.getElementById('zoom-modal');
+            const zoomImg = document.getElementById('zoom-image');
+            zoomImg.src = src;
+            zoomModal.classList.remove('hidden');
+            zoomModal.classList.add('flex');
+        }
+
+        function closeZoom() {
+            const zoomModal = document.getElementById('zoom-modal');
+            zoomModal.classList.add('hidden');
+            zoomModal.classList.remove('flex');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderGallery(currentPage);
+        });
+    </script>
+    <script>const ROOT_PATH = "../";</script>
+    <script src="../js/common.js"></script>
 
 </body>
 </html>
