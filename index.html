@@ -310,8 +310,6 @@
         
         // ① [광고 슬라이드] 새로 추가할 배너 광고가 있다면 이곳에 추가하세요. 
         // -----------------------------------------------------------------
-        // 아래 대괄호 [ ] 안에 광고를 넣으면 자동으로 1번으로 나오고, 기존 사진들은 뒤로 밀립니다!
-        // -----------------------------------------------------------------
         const adSlides = [
             // 광고를 넣으시려면 아래 주석(//)을 지우고 파일명과 링크를 적어주세요.
             // { type: 'banner', image: 'images/여름성경학교배너.png', link: 'news/weekly.html' },
@@ -327,15 +325,15 @@
         };
 
         // ③ [기본 슬라이드 4개] 목사님께서 올려주신 정확한 파일명과 확장자 적용 완료!
+        // ★ 캐시 타파를 위해 이미지 이름 뒤에 ?v=2 꼬리표를 달아 옛날 기억을 강제로 지웁니다!
         const defaultSlides = [
-            { type: 'text', image: 'images/메인화면01.png', ...textContent },
-            { type: 'text', image: 'images/메인화면02.png', ...textContent },
-            { type: 'text', image: 'images/교회전경.jfif', ...textContent },
-            { type: 'text', image: 'images/여주교회예배.png', ...textContent }
+            { type: 'text', image: 'images/메인화면01.png?v=2', ...textContent },
+            { type: 'text', image: 'images/메인화면02.png?v=2', ...textContent },
+            { type: 'text', image: 'images/교회전경.jfif?v=2', ...textContent },
+            { type: 'text', image: 'images/여주교회예배.png?v=2', ...textContent }
         ];
 
         // ④ [최종 병합 및 컷트 로직] 
-        // 목사님 요청사항 완벽 적용: 광고가 1개면 총 5개 회전, 광고가 3개면 기존 1개가 밀려나 총 6개 회전!
         const heroSlides = [...adSlides, ...defaultSlides].slice(0, 6);
 
         // =========================================================================
@@ -356,14 +354,10 @@
             heroSlides.forEach((slide, index) => {
                 const isActive = index === 0 ? 'active' : '';
                 
-                // ★ 한글 파일명 깨짐 현상 완벽 해결 ★
-                const safeImageUrl = encodeURI(slide.image);
-                
                 if (slide.type === 'text') {
                     slidesHtml += `
                         <div class="slide ${isActive} w-full h-full flex flex-col justify-center items-center relative bg-[#102242]">
-                            <!-- 사진이 무조건 뜰 수 있도록 직접적으로 src 속성을 넣었습니다 -->
-                            <img src="${safeImageUrl}" alt="배경 이미지" class="absolute inset-0 w-full h-full object-cover opacity-70 transition duration-700" onerror="this.src='https://placehold.co/1920x1080/cc0000/ffffff?text=Image+Not+Found'">
+                            <img src="${slide.image}" alt="배경 이미지" class="absolute inset-0 w-full h-full object-cover opacity-70 transition duration-700" onerror="this.src='https://placehold.co/1920x1080/cc0000/ffffff?text=Image+Not+Found'">
                             <div class="absolute inset-0 bg-black/40"></div>
                             
                             <div class="relative z-10 max-w-5xl mx-auto px-4 flex flex-col items-center w-full pb-16 md:pb-20">
@@ -381,7 +375,7 @@
                 } else {
                     slidesHtml += `
                         <div class="slide ${isActive} w-full h-full cursor-pointer relative overflow-hidden bg-[#102242]" onclick="location.href='${slide.link}'">
-                            <img src="${safeImageUrl}" alt="광고 배너" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2000ms] hover:scale-105" onerror="this.src='https://placehold.co/1920x1080/cc0000/ffffff?text=Banner+Not+Found'">
+                            <img src="${slide.image}" alt="광고 배너" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2000ms] hover:scale-105" onerror="this.src='https://placehold.co/1920x1080/cc0000/ffffff?text=Banner+Not+Found'">
                             <div class="absolute inset-0 bg-black/10"></div>
                         </div>
                     `;
