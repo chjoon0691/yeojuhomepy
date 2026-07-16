@@ -315,9 +315,9 @@
             /*
             {
                 type: 'banner', 
-                image: 'https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/images/여름성경학교광고.png',
+                image: 'images/여름성경학교광고.png', // 여기에 올리신 사진 이름을 넣으세요.
                 link: 'nextgen/infant.html'
-            },
+            }
             */
         ];
 
@@ -325,7 +325,8 @@
         const defaultSlides = [
             {
                 type: 'text', // 1번 슬라이드: 텍스트와 버튼이 있는 형태
-                image: 'https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/images/%EB%A9%94%EC%9D%B8%ED%99%94%EB%A9%B401.png',
+                // 목사님! 아래 긴 주소 대신 'images/메인화면01.jpg' 처럼 직접 올리신 사진 주소를 넣으시면 됩니다.
+                image: 'https://images.unsplash.com/photo-1438283173091-5dbf5c5a3206?auto=format&fit=crop&w=1920&q=80',
                 subTitle: 'Oikos Church',
                 mainTitle: '기도하는 구역, 기대되는 교회',
                 desc: '그들이 사도의 가르침을 받아 서로 교제하고 떡을 떼며 오로지 기도하기를 힘쓰니라<br>(사도행전 2:42)',
@@ -334,17 +335,17 @@
             },
             {
                 type: 'banner', // 2번 슬라이드
-                image: 'https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/images/%EB%A9%94%EC%9D%B8%ED%99%94%EB%A9%B402.png',
+                image: 'https://images.unsplash.com/photo-1504052434569-70ad5836ab65?auto=format&fit=crop&w=1920&q=80',
                 link: 'news/weekly.html'
             },
             {
                 type: 'banner', // 3번 슬라이드
-                image: 'https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/images/%EA%B5%90%ED%9A%8C%EC%A0%84%EA%B2%BD.jfif',
+                image: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=1920&q=80',
                 link: 'welcome/greeting.html'
             },
             {
                 type: 'banner', // 4번 슬라이드
-                image: 'https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/images/%EC%97%AC%EC%A3%BC%EA%B5%90%ED%9A%8C%EC%98%88%EB%B0%B0.png',
+                image: 'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?auto=format&fit=crop&w=1920&q=80',
                 link: 'word/media.html'
             }
         ];
@@ -370,12 +371,13 @@
             heroSlides.forEach((slide, index) => {
                 const isActive = index === 0 ? 'active' : '';
                 
+                // ★ 주의: 백그라운드 이미지를 확실히 띄우기 위해 인라인 스타일(style="background-image: url(...)")을 사용합니다! ★
                 if (slide.type === 'text') {
                     // 텍스트형 슬라이드 구조
                     slidesHtml += `
                         <div class="slide ${isActive} w-full h-full flex flex-col justify-center items-center relative">
                             <!-- 배경 이미지와 어두운 오버레이 -->
-                            <div class="absolute inset-0 bg-[url('${slide.image}')] bg-cover bg-center mix-blend-luminosity opacity-30"></div>
+                            <div class="absolute inset-0 bg-cover bg-center mix-blend-luminosity opacity-30" style="background-image: url('${slide.image}');"></div>
                             <div class="absolute inset-0 bg-gradient-to-b from-[#102242]/50 to-[#102242]/90 opacity-80"></div>
                             
                             <!-- 텍스트 영역 -->
@@ -394,9 +396,9 @@
                 } else {
                     // 배너형 슬라이드 구조 (이미지 자체 클릭 가능)
                     slidesHtml += `
-                        <div class="slide ${isActive} w-full h-full cursor-pointer relative" onclick="location.href='${slide.link}'">
+                        <div class="slide ${isActive} w-full h-full cursor-pointer relative overflow-hidden" onclick="location.href='${slide.link}'">
                             <!-- 배너 이미지는 원본 색상을 유지 (오버레이 없음) -->
-                            <div class="absolute inset-0 bg-[url('${slide.image}')] bg-cover bg-center transition-transform duration-[2000ms] hover:scale-105"></div>
+                            <div class="absolute inset-0 bg-cover bg-center transition-transform duration-[2000ms] hover:scale-105" style="background-image: url('${slide.image}');"></div>
                             <!-- 가독성을 위해 아주 살짝만 그림자 처리 -->
                             <div class="absolute inset-0 bg-black/10"></div>
                         </div>
