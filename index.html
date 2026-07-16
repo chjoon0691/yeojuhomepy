@@ -74,7 +74,7 @@
     <section class="relative text-center overflow-hidden curved-bottom shadow-[0_10px_30px_rgba(0,0,0,0.2)] bg-[#102242] h-[550px] md:h-[750px]">
         
         <!-- JS로 슬라이드가 렌더링 되는 공간 -->
-        <div id="hero-slider" class="absolute inset-0 w-full h-full"></div>
+        <div id="hero-slider" class="absolute inset-0 w-full h-full bg-black"></div>
         
         <!-- 좌우 화살표 (공통 고정) -->
         <div class="absolute inset-0 z-20 max-w-7xl mx-auto px-2 md:px-4 pointer-events-none flex items-center justify-between">
@@ -305,52 +305,33 @@
     <!-- ★ 메인 페이지 슬라이더 및 데이터 자바스크립트 ★ -->
     <script>
         // =========================================================================
-        // ★ 1. 메인 슬라이더 설정 박스 (광고가 있으면 앞으로, 없으면 기본 4개가 돕니다) ★
+        // ★ 1. 메인 슬라이더 설정 박스 (광고 + 기본 4개 자동 병합 로직 탑재) ★
         // =========================================================================
         
-        // ① [광고 슬라이드] 새로 추가할 광고가 있다면 이곳에 괄호 { } 안에 적어주세요. 
+        // ① [광고 슬라이드] 새로 추가할 배너 광고가 있다면 이곳에 추가하세요. (무조건 1번부터 나옵니다)
         const adSlides = [
-            // 광고 예시 (필요 없으시면 주석처리하거나 지워두시면 됩니다)
-            /*
-            {
-                type: 'banner', 
-                image: 'https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/images/여름성경학교광고.png',
-                link: 'nextgen/infant.html'
-            }
-            */
+            // 예시: 
+            // { type: 'banner', image: 'https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/images/광고.png', link: 'news/weekly.html' }
         ];
 
-        // ② [기본 슬라이드] 목사님이 올리신 실제 사진 4장입니다! (수정 완료)
+        // ② [기본 텍스트 내용] 모든 배경 사진에 공통으로 들어갈 텍스트입니다.
+        const textContent = {
+            subTitle: 'Oikos Church',
+            mainTitle: '기도하는 구역, 기대되는 교회',
+            desc: '그들이 사도의 가르침을 받아 서로 교제하고 떡을 떼며 오로지 기도하기를 힘쓰니라<br>(사도행전 2:42)',
+            btnText: '주일예배 바로가기',
+            link: 'word/sunday.html'
+        };
+
+        // ③ [기본 슬라이드 4개] 목사님이 지정해주신 4장의 사진에 Oikos Church 텍스트를 고정으로 합칩니다.
         const defaultSlides = [
-            {
-                type: 'text', // 1번: 텍스트와 버튼이 나오는 형태
-                image: 'https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/images/메인화면01.png',
-                subTitle: 'Oikos Church',
-                mainTitle: '기도하는 구역, 기대되는 교회',
-                desc: '그들이 사도의 가르침을 받아 서로 교제하고 떡을 떼며 오로지 기도하기를 힘쓰니라<br>(사도행전 2:42)',
-                btnText: '주일예배 바로가기',
-                link: 'word/sunday.html'
-            },
-            {
-                type: 'banner', // 2번: 사진 전체가 배너로 나옴
-                image: 'https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/images/메인화면02.png',
-                link: 'news/weekly.html'
-            },
-            {
-                type: 'banner', // 3번: 사진 전체가 배너로 나옴
-                image: 'https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/images/교회전경.jfif',
-                link: 'welcome/greeting.html'
-            },
-            {
-                type: 'banner', // 4번: 사진 전체가 배너로 나옴
-                image: 'https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/images/여주교회예배.png',
-                link: 'word/media.html'
-            }
+            { type: 'text', image: 'https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/images/메인화면01.png', ...textContent },
+            { type: 'text', image: 'https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/images/메인화면02.png', ...textContent },
+            { type: 'text', image: 'https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/images/교회전경.jfif', ...textContent },
+            { type: 'text', image: 'https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/images/여주교회예배.png', ...textContent }
         ];
 
-        // ③ [최종 병합] 광고(adSlides)를 먼저 넣고, 그 뒤에 기본(defaultSlides)을 붙인 뒤 최대 6개까지만 자릅니다.
-        // ★ 만약 adSlides에 광고가 1개 있다면: 광고1개 + 기본 4개 = 총 5개가 돌아갑니다!
-        // ★ 만약 adSlides에 광고가 3개 있다면: 광고 3개 + 기본 앞의 3개 = 총 6개가 돌아갑니다!
+        // ④ [최종 병합 및 컷트 로직] 광고가 먼저 오고 기본 4개가 뒤에 붙습니다. 총 개수는 무조건 최대 6개까지만!
         const heroSlides = [...adSlides, ...defaultSlides].slice(0, 6);
 
         // =========================================================================
@@ -370,15 +351,18 @@
 
             heroSlides.forEach((slide, index) => {
                 const isActive = index === 0 ? 'active' : '';
+                // 한글 깨짐 방지를 위해 안전한 URL 변환
+                const safeImageUrl = encodeURI(slide.image);
                 
-                // ★ 주의: <img src="..."> 태그를 사용하여 이미지 주소 에러나 한글 깨짐을 완벽하게 방지합니다. ★
                 if (slide.type === 'text') {
-                    // 텍스트형 슬라이드 구조 (1번 화면 전용)
+                    // ★ 투명도 및 사진 표시 로직을 완벽하게 수정하여 사진이 가려지지 않게 했습니다. ★
                     slidesHtml += `
-                        <div class="slide ${isActive} w-full h-full flex flex-col justify-center items-center relative bg-[#102242]">
-                            <!-- 배경 이미지 (img 태그로 안전하게 로드) -->
-                            <img src="${encodeURI(slide.image)}" alt="배경 이미지" class="absolute inset-0 w-full h-full object-cover mix-blend-luminosity opacity-30" onerror="this.src='https://placehold.co/1200x600/102242/ffffff?text=Image+Not+Found'">
-                            <div class="absolute inset-0 bg-gradient-to-b from-[#102242]/50 to-[#102242]/90 opacity-80"></div>
+                        <div class="slide ${isActive} w-full h-full flex flex-col justify-center items-center relative">
+                            <!-- 배경 이미지 -->
+                            <img src="${safeImageUrl}" alt="배경 이미지" class="absolute inset-0 w-full h-full object-cover">
+                            
+                            <!-- 어두운 오버레이 (글씨가 잘 보이도록 검은색 반투명 필터 적용) -->
+                            <div class="absolute inset-0 bg-black/50"></div>
                             
                             <!-- 텍스트 영역 -->
                             <div class="relative z-10 max-w-5xl mx-auto px-4 flex flex-col items-center w-full pb-16 md:pb-20">
@@ -394,12 +378,10 @@
                         </div>
                     `;
                 } else {
-                    // 배너형 슬라이드 구조 (이미지 자체 클릭 가능)
+                    // 글씨 없는 순수 광고 배너 형태
                     slidesHtml += `
-                        <div class="slide ${isActive} w-full h-full cursor-pointer relative overflow-hidden bg-[#102242]" onclick="location.href='${slide.link}'">
-                            <!-- 배너 이미지 (img 태그로 안전하게 로드) -->
-                            <img src="${encodeURI(slide.image)}" alt="배너 이미지" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2000ms] hover:scale-105" onerror="this.src='https://placehold.co/1200x600/102242/ffffff?text=Image+Not+Found'">
-                            <!-- 가독성을 위해 아주 살짝만 그림자 처리 -->
+                        <div class="slide ${isActive} w-full h-full cursor-pointer relative overflow-hidden" onclick="location.href='${slide.link}'">
+                            <img src="${safeImageUrl}" alt="광고 배너" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2000ms] hover:scale-105">
                             <div class="absolute inset-0 bg-black/10"></div>
                         </div>
                     `;
@@ -597,7 +579,6 @@
         }
 
         async function loadLatestWorship() {
-            // 주일예배 최신 데이터 연동 (새로운 링크 적용)
             const sundayCsvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSktCsHualM1ZIembjwk7eQHv2qep4iFZKvuSmdtRqSTuTFc0CbR2nYiNaaYFCcD9I_XLTkOn6R8By4/pub?gid=705133327&single=true&output=csv";
             try {
                 const res = await fetch(sundayCsvUrl);
@@ -626,7 +607,6 @@
                 document.getElementById('main-sunday-scripture').textContent = "말씀을 불러올 수 없습니다.";
             }
 
-            // 수요예배 최신 데이터 연동 (새로운 링크 적용)
             const wedCsvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQMk1mUmq19I5HQ7_W1patskpHVzROscsJsj7y2N8JvslryyGXkMTFt1ckAO7uKgraEm9IAT7g_kZUT/pub?gid=476140477&single=true&output=csv"; 
             if(wedCsvUrl !== "") {
                 try {
@@ -655,7 +635,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            initHeroSlider(); // 개편된 슬라이더 실행
+            initHeroSlider();
             initPopups();        
             loadMainGallery();   
             loadLatestWorship(); 
