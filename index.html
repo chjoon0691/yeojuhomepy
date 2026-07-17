@@ -168,7 +168,7 @@
                             <p class="text-[0.7rem] md:text-sm opacity-80">Sunday sermon</p>
                         </div>
                     </div>
-                    <!-- 3줄 표시 영역 (폰트 크기 미세 조정) -->
+                    <!-- 3줄 표시 영역 -->
                     <div class="text-center mt-4 px-1 flex flex-col justify-center h-[70px] md:h-[90px]">
                         <h4 id="main-sunday-title" class="font-extrabold text-[15px] md:text-[18px] text-gray-900 truncate">불러오는 중...</h4>
                         <p id="main-sunday-scripture" class="text-[12px] md:text-[14px] text-gray-800 font-bold truncate mt-1"><i class="fas fa-spinner fa-spin"></i></p>
@@ -185,7 +185,7 @@
                             <p class="text-[0.7rem] md:text-sm opacity-80">Wednesday Sermon</p>
                         </div>
                     </div>
-                    <!-- 3줄 표시 영역 (폰트 크기 미세 조정) -->
+                    <!-- 3줄 표시 영역 -->
                     <div class="text-center mt-4 px-1 flex flex-col justify-center h-[70px] md:h-[90px]">
                         <h4 id="main-wed-title" class="font-extrabold text-[15px] md:text-[18px] text-gray-900 truncate">불러오는 중...</h4>
                         <p id="main-wed-scripture" class="text-[12px] md:text-[14px] text-gray-800 font-bold truncate mt-1"><i class="fas fa-spinner fa-spin"></i></p>
@@ -193,7 +193,7 @@
                     </div>
                 </div>
 
-                <!-- 3. 찬양대 찬양 카드 (버튼 모서리 완벽 둥글게, 아이콘 제거) -->
+                <!-- 3. 찬양대 찬양 카드 (요청하신 대로 끝이 둥근 네모 + 검은색 텍스트 반영) -->
                 <div onclick="location.href='word/praise.html'" class="col-span-1 order-3 cursor-pointer">
                     <div class="relative h-40 md:h-72 rounded-2xl md:rounded-3xl overflow-hidden shadow-lg group">
                         <img src="https://images.unsplash.com/photo-1510590337019-5ef8d3d32116?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="찬양대 찬양" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
@@ -202,19 +202,19 @@
                             <p class="text-[0.7rem] md:text-sm opacity-80">Praise</p>
                         </div>
                     </div>
-                    <!-- ★ 버튼 아이콘 제거 및 rounded-full 로 모서리 완전 둥글게 변경 ★ -->
+                    <!-- rounded-md로 네모 버튼 변경 & span 태그로 특정 글씨만 검은색 처리 -->
                     <div class="grid grid-cols-2 gap-1.5 md:gap-2 mt-4 px-1 h-[70px] md:h-[90px] content-center">
-                        <a href="word/praise.html" onclick="event.stopPropagation();" class="flex items-center justify-center text-[11px] md:text-[13px] font-bold text-white bg-[#7896c3] hover:bg-[#1a3668] py-2 md:py-2.5 rounded-full transition shadow-sm">
-                            1부 시온
+                        <a href="word/praise.html" onclick="event.stopPropagation();" class="flex items-center justify-center text-[11px] md:text-[13px] font-bold text-white bg-[#7896c3] hover:bg-[#1a3668] py-2 md:py-2.5 rounded-md transition shadow-sm">
+                            <span class="text-black mr-1">1부</span> 시온
                         </a>
-                        <a href="word/hallelujah.html" onclick="event.stopPropagation();" class="flex items-center justify-center text-[11px] md:text-[13px] font-bold text-white bg-[#7896c3] hover:bg-[#1a3668] py-2 md:py-2.5 rounded-full transition shadow-sm">
-                            2부 할렐루야
+                        <a href="word/hallelujah.html" onclick="event.stopPropagation();" class="flex items-center justify-center text-[11px] md:text-[13px] font-bold text-white bg-[#7896c3] hover:bg-[#1a3668] py-2 md:py-2.5 rounded-md transition shadow-sm">
+                            <span class="text-black mr-1">2부</span> 할렐루야
                         </a>
-                        <a href="word/dreamnlove.html" onclick="event.stopPropagation();" class="flex items-center justify-center text-[11px] md:text-[13px] font-bold text-white bg-[#7896c3] hover:bg-[#1a3668] py-2 md:py-2.5 rounded-full transition shadow-sm">
-                            수요 꿈과사랑
+                        <a href="word/dreamnlove.html" onclick="event.stopPropagation();" class="flex items-center justify-center text-[11px] md:text-[13px] font-bold text-white bg-[#7896c3] hover:bg-[#1a3668] py-2 md:py-2.5 rounded-md transition shadow-sm">
+                            <span class="text-black mr-1">수요</span> 꿈과사랑
                         </a>
-                        <a href="word/silver.html" onclick="event.stopPropagation();" class="flex items-center justify-center text-[11px] md:text-[13px] font-bold text-white bg-[#7896c3] hover:bg-[#1a3668] py-2 md:py-2.5 rounded-full transition shadow-sm">
-                            오후 은빛
+                        <a href="word/silver.html" onclick="event.stopPropagation();" class="flex items-center justify-center text-[11px] md:text-[13px] font-bold text-white bg-[#7896c3] hover:bg-[#1a3668] py-2 md:py-2.5 rounded-md transition shadow-sm">
+                            <span class="text-black mr-1">오후</span> 은빛
                         </a>
                     </div>
                 </div>
