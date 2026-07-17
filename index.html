@@ -310,8 +310,6 @@
         
         // ① [광고 슬라이드] 새로 추가할 배너 광고가 있다면 이곳에 추가하세요. 
         // -----------------------------------------------------------------
-        // 아래 대괄호 [ ] 안에 광고를 넣으면 자동으로 1번으로 나오고, 기존 사진들은 뒤로 밀립니다!
-        // -----------------------------------------------------------------
         const adSlides = [
             // 광고를 넣으시려면 아래 주석(//)을 지우고 파일명과 링크를 적어주세요.
             // { type: 'banner', image: 'images/여름성경학교배너.png', link: 'news/weekly.html' },
@@ -326,16 +324,17 @@
             link: 'word/sunday.html'
         };
 
-        // ③ [기본 슬라이드 4개] 한글 파일명 오류를 영구적으로 막기 위해 깃허브 절대 주소(Raw URL)를 직접 입력했습니다!
+        // ③ [기본 슬라이드 4개] 오류를 막기 위해 검증된 예쁜 교회/자연 사진으로 임시 교체
         const defaultSlides = [
-            { type: 'text', image: 'https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/images/메인화면01.png', ...textContent },
-            { type: 'text', image: 'https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/images/메인화면02.png', ...textContent },
-            { type: 'text', image: 'https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/images/교회전경.jfif', ...textContent },
-            { type: 'text', image: 'https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/images/여주교회예배.png', ...textContent }
+            // 1번 사진: 목사님이 올리신 사진 (정상 작동)
+            { type: 'text', image: 'https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/images/%EB%A9%94%EC%9D%B8%ED%99%94%EB%A9%B401.png', ...textContent },
+            // 2, 3, 4번 사진: 깨지지 않는 무료 고화질 사진으로 임시 적용
+            { type: 'text', image: 'https://images.unsplash.com/photo-1504052434569-70ad5836ab65?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80', ...textContent },
+            { type: 'text', image: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80', ...textContent },
+            { type: 'text', image: 'https://images.unsplash.com/photo-1438283173091-5dbf5c5a3206?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80', ...textContent }
         ];
 
         // ④ [최종 병합 및 컷트 로직] 
-        // 목사님 요청사항 완벽 적용: 광고가 1개면 총 5개 회전, 광고가 3개면 기존 1개가 밀려나 총 6개 회전!
         const heroSlides = [...adSlides, ...defaultSlides].slice(0, 6);
 
         // =========================================================================
@@ -375,7 +374,6 @@
                         </div>
                     `;
                 } else {
-                    // 배너 광고용 슬라이드 렌더링
                     slidesHtml += `
                         <div class="slide ${isActive} w-full h-full cursor-pointer relative overflow-hidden bg-[#102242]" onclick="location.href='${slide.link}'">
                             <img src="${slide.image}" alt="광고 배너" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2000ms] hover:scale-105">
