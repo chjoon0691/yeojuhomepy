@@ -1,7 +1,7 @@
-// 현재 페이지 위치에 따른 상대 경로 설정 (루트 경로 보정)
-if (typeof ROOT_PATH === 'undefined') {
-    var ROOT_PATH = '';
-}
+// ==========================================
+// 경로 변수 충돌 방지 로직 (에러 원인 완벽 해결!)
+// ==========================================
+const PATH = typeof ROOT_PATH !== 'undefined' ? ROOT_PATH : '';
 
 // ==========================================
 // 1. 공통 헤더 (상단 메뉴바)
@@ -22,21 +22,21 @@ const headerHtml = `
     <div class="max-w-7xl mx-auto px-4">
         <div class="flex justify-between items-center h-16 md:h-20">
             <!-- 로고 및 교회이름 -->
-            <a href="${ROOT_PATH}index.html" class="flex items-center gap-2">
+            <a href="${PATH}index.html" class="flex items-center gap-2">
                 <!-- 엑스박스 방지: 사진이 없으면 글씨만 굵게 나옵니다 -->
-                <img src="${ROOT_PATH}images/image_8bddfb.png" alt="로고" class="h-8 md:h-10 bg-white rounded p-0.5 hidden sm:block" onerror="this.style.display='none'">
+                <img src="${PATH}images/image_8bddfb.png" alt="로고" class="h-8 md:h-10 bg-white rounded p-0.5 hidden sm:block" onerror="this.style.display='none'">
                 <span class="font-extrabold text-lg md:text-2xl tracking-tight">여주성결교회</span>
             </a>
 
             <!-- PC 메인 메뉴 -->
             <nav class="hidden md:flex space-x-5 lg:space-x-8 font-bold text-[14px] lg:text-base items-center">
-                <a href="${ROOT_PATH}welcome/greeting.html" class="hover:text-blue-300 transition">환영합니다</a>
-                <a href="${ROOT_PATH}word/sunday.html" class="hover:text-blue-300 transition">말씀과 찬양</a>
-                <a href="${ROOT_PATH}community/parish.html" class="hover:text-blue-300 transition">공동체</a>
-                <a href="${ROOT_PATH}nextgen/infant.html" class="hover:text-blue-300 transition">다음세대</a>
-                <a href="${ROOT_PATH}mission/evangelism.html" class="hover:text-blue-300 transition">전도와 선교</a>
-                <a href="${ROOT_PATH}news/weekly.html" class="hover:text-blue-300 transition">교회소식</a>
-                <a href="${ROOT_PATH}service/application.html" class="hover:text-blue-300 transition">행정서비스</a>
+                <a href="${PATH}welcome/greeting.html" class="hover:text-blue-300 transition">환영합니다</a>
+                <a href="${PATH}word/sunday.html" class="hover:text-blue-300 transition">말씀과 찬양</a>
+                <a href="${PATH}community/parish.html" class="hover:text-blue-300 transition">공동체</a>
+                <a href="${PATH}nextgen/infant.html" class="hover:text-blue-300 transition">다음세대</a>
+                <a href="${PATH}mission/evangelism.html" class="hover:text-blue-300 transition">전도와 선교</a>
+                <a href="${PATH}news/weekly.html" class="hover:text-blue-300 transition">교회소식</a>
+                <a href="${PATH}service/application.html" class="hover:text-blue-300 transition">행정서비스</a>
                 
                 <!-- PC 햄버거 버튼 -->
                 <button onclick="openSitemap()" class="ml-2 border border-white/30 rounded p-1.5 hover:bg-white/20 transition focus:outline-none">
@@ -111,16 +111,16 @@ const sitemapHtml = `
                 <div class="flex flex-col">
                     <h3 class="text-[13px] md:text-lg font-bold text-gray-900 border-b-2 border-[#1b315b] pb-1 mb-1 md:pb-1.5 md:mb-1.5">환영합니다</h3>
                     <ul class="flex flex-col gap-0 md:gap-1.5 text-[11px] md:text-[14px] text-gray-600">
-                        <li><a href="${ROOT_PATH}welcome/greeting.html" class="hover:text-blue-600 block py-0.5">인사말</a></li>
+                        <li><a href="${PATH}welcome/greeting.html" class="hover:text-blue-600 block py-0.5">인사말</a></li>
                         <li class="font-bold text-gray-800 mt-1 md:mt-2">교회연혁</li>
-                        <li><a href="${ROOT_PATH}welcome/history/building.html" class="hover:text-blue-600 ml-1.5 block py-0.5">- 성전건축이야기</a></li>
-                        <li><a href="${ROOT_PATH}welcome/history/edu_building.html" class="hover:text-blue-600 ml-1.5 block py-0.5">- 교육관건축사진</a></li>
-                        <li><a href="${ROOT_PATH}welcome/history/old_photos.html" class="hover:text-blue-600 ml-1.5 block py-0.5">- 이전 홈피 사진들</a></li>
-                        <li class="mt-1 md:mt-2"><a href="${ROOT_PATH}welcome/serve/serve.html" class="hover:text-blue-600 block py-0.5">섬기는 분들</a></li>
-                        <li><a href="${ROOT_PATH}welcome/worship/worship.html" class="hover:text-blue-600 block py-0.5">예배안내</a></li>
-                        <li><a href="${ROOT_PATH}welcome/bus/bus.html" class="hover:text-blue-600 block py-0.5">차량운행안내</a></li>
-                        <li><a href="${ROOT_PATH}welcome/map/map.html" class="hover:text-blue-600 block py-0.5">오시는길</a></li>
-                        <li><a href="${ROOT_PATH}welcome/newcomer/newcomer.html" class="hover:text-blue-600 block py-0.5">새가족안내</a></li>
+                        <li><a href="${PATH}welcome/history/building.html" class="hover:text-blue-600 ml-1.5 block py-0.5">- 성전건축이야기</a></li>
+                        <li><a href="${PATH}welcome/history/edu_building.html" class="hover:text-blue-600 ml-1.5 block py-0.5">- 교육관건축사진</a></li>
+                        <li><a href="${PATH}welcome/history/old_photos.html" class="hover:text-blue-600 ml-1.5 block py-0.5">- 이전 홈피 사진들</a></li>
+                        <li class="mt-1 md:mt-2"><a href="${PATH}welcome/serve/serve.html" class="hover:text-blue-600 block py-0.5">섬기는 분들</a></li>
+                        <li><a href="${PATH}welcome/worship/worship.html" class="hover:text-blue-600 block py-0.5">예배안내</a></li>
+                        <li><a href="${PATH}welcome/bus/bus.html" class="hover:text-blue-600 block py-0.5">차량운행안내</a></li>
+                        <li><a href="${PATH}welcome/map/map.html" class="hover:text-blue-600 block py-0.5">오시는길</a></li>
+                        <li><a href="${PATH}welcome/newcomer/newcomer.html" class="hover:text-blue-600 block py-0.5">새가족안내</a></li>
                     </ul>
                 </div>
 
@@ -129,18 +129,18 @@ const sitemapHtml = `
                     <h3 class="text-[13px] md:text-lg font-bold text-gray-900 border-b-2 border-[#1b315b] pb-1 mb-1 md:pb-1.5 md:mb-1.5">말씀과 찬양</h3>
                     <ul class="flex flex-col gap-0 md:gap-1.5 text-[11px] md:text-[14px] text-gray-600">
                         <li class="font-bold text-gray-800">말씀</li>
-                        <li><a href="${ROOT_PATH}word/sunday.html" class="hover:text-blue-600 ml-1.5 bg-gray-50 block py-0.5">- 주일예배</a></li>
-                        <li><a href="${ROOT_PATH}word/sunday_pm.html" class="hover:text-blue-600 ml-1.5 bg-gray-50 block py-0.5">- 주일오후예배</a></li>
-                        <li><a href="${ROOT_PATH}word/wednesday.html" class="hover:text-blue-600 ml-1.5 bg-gray-50 block py-0.5">- 수요예배</a></li>
-                        <li><a href="${ROOT_PATH}word/special.html" class="hover:text-blue-600 ml-1.5 bg-gray-50 block py-0.5">- 특별집회</a></li>
+                        <li><a href="${PATH}word/sunday.html" class="hover:text-blue-600 ml-1.5 bg-gray-50 block py-0.5">- 주일예배</a></li>
+                        <li><a href="${PATH}word/sunday_pm.html" class="hover:text-blue-600 ml-1.5 bg-gray-50 block py-0.5">- 주일오후예배</a></li>
+                        <li><a href="${PATH}word/wednesday.html" class="hover:text-blue-600 ml-1.5 bg-gray-50 block py-0.5">- 수요예배</a></li>
+                        <li><a href="${PATH}word/special.html" class="hover:text-blue-600 ml-1.5 bg-gray-50 block py-0.5">- 특별집회</a></li>
                         <li class="font-bold text-gray-800 mt-1 md:mt-2">찬양대/중창단</li>
-                        <li><a href="${ROOT_PATH}word/praise.html" class="hover:text-blue-600 ml-1.5 bg-gray-50 block py-0.5">- 시온찬양대</a></li>
-                        <li><a href="${ROOT_PATH}word/hallelujah.html" class="hover:text-blue-600 ml-1.5 bg-gray-50 block py-0.5">- 할렐루야찬양대</a></li>
-                        <li><a href="${ROOT_PATH}word/dreamnlove.html" class="hover:text-blue-600 ml-1.5 bg-gray-50 block py-0.5">- 꿈과사랑의찬양대</a></li>
-                        <li><a href="${ROOT_PATH}word/silver.html" class="hover:text-blue-600 ml-1.5 bg-gray-50 block py-0.5">- 은빛찬양대</a></li>
-                        <li><a href="${ROOT_PATH}word/sunday_offering.html" class="hover:text-blue-600 ml-1.5 bg-gray-50 block py-0.5">- 주일봉헌찬양</a></li>
-                        <li><a href="${ROOT_PATH}word/special_praise.html" class="hover:text-blue-600 ml-1.5 bg-gray-50 block py-0.5">- 특별찬양</a></li>
-                        <li class="font-bold text-gray-800 mt-1 md:mt-2"><a href="${ROOT_PATH}word/media.html" class="hover:text-blue-600 block py-0.5">여주미디어</a></li>
+                        <li><a href="${PATH}word/praise.html" class="hover:text-blue-600 ml-1.5 bg-gray-50 block py-0.5">- 시온찬양대</a></li>
+                        <li><a href="${PATH}word/hallelujah.html" class="hover:text-blue-600 ml-1.5 bg-gray-50 block py-0.5">- 할렐루야찬양대</a></li>
+                        <li><a href="${PATH}word/dreamnlove.html" class="hover:text-blue-600 ml-1.5 bg-gray-50 block py-0.5">- 꿈과사랑의찬양대</a></li>
+                        <li><a href="${PATH}word/silver.html" class="hover:text-blue-600 ml-1.5 bg-gray-50 block py-0.5">- 은빛찬양대</a></li>
+                        <li><a href="${PATH}word/sunday_offering.html" class="hover:text-blue-600 ml-1.5 bg-gray-50 block py-0.5">- 주일봉헌찬양</a></li>
+                        <li><a href="${PATH}word/special_praise.html" class="hover:text-blue-600 ml-1.5 bg-gray-50 block py-0.5">- 특별찬양</a></li>
+                        <li class="font-bold text-gray-800 mt-1 md:mt-2"><a href="${PATH}word/media.html" class="hover:text-blue-600 block py-0.5">여주미디어</a></li>
                     </ul>
                 </div>
 
@@ -148,11 +148,11 @@ const sitemapHtml = `
                 <div class="flex flex-col">
                     <h3 class="text-[13px] md:text-lg font-bold text-gray-900 border-b-2 border-[#1b315b] pb-1 mb-1 md:pb-1.5 md:mb-1.5">공동체</h3>
                     <ul class="flex flex-col gap-0 md:gap-1.5 text-[11px] md:text-[14px] text-gray-600">
-                        <li><a href="${ROOT_PATH}community/parish.html" class="hover:text-blue-600 block py-0.5">교구</a></li>
-                        <li><a href="${ROOT_PATH}community/organization.html" class="hover:text-blue-600 block py-0.5">기관</a></li>
-                        <li><a href="${ROOT_PATH}community/training.html" class="hover:text-blue-600 block py-0.5">양육&훈련</a></li>
-                        <li><a href="${ROOT_PATH}community/senior.html" class="hover:text-blue-600 block py-0.5">청춘대학</a></li>
-                        <li><a href="${ROOT_PATH}community/company.html" class="hover:text-blue-600 block py-0.5">성도기업</a></li>
+                        <li><a href="${PATH}community/parish.html" class="hover:text-blue-600 block py-0.5">교구</a></li>
+                        <li><a href="${PATH}community/organization.html" class="hover:text-blue-600 block py-0.5">기관</a></li>
+                        <li><a href="${PATH}community/training.html" class="hover:text-blue-600 block py-0.5">양육&훈련</a></li>
+                        <li><a href="${PATH}community/senior.html" class="hover:text-blue-600 block py-0.5">청춘대학</a></li>
+                        <li><a href="${PATH}community/company.html" class="hover:text-blue-600 block py-0.5">성도기업</a></li>
                     </ul>
                 </div>
 
@@ -160,14 +160,14 @@ const sitemapHtml = `
                 <div class="flex flex-col">
                     <h3 class="text-[13px] md:text-lg font-bold text-gray-900 border-b-2 border-[#1b315b] pb-1 mb-1 md:pb-1.5 md:mb-1.5">다음세대</h3>
                     <ul class="flex flex-col gap-0 md:gap-1.5 text-[11px] md:text-[14px] text-gray-600">
-                        <li><a href="${ROOT_PATH}nextgen/infant.html" class="hover:text-blue-600 block border-b border-gray-50 pb-0.5">영아부</a></li>
-                        <li><a href="${ROOT_PATH}nextgen/kinder.html" class="hover:text-blue-600 block border-b border-gray-50 pb-0.5">유치부</a></li>
-                        <li><a href="${ROOT_PATH}nextgen/child1.html" class="hover:text-blue-600 block border-b border-gray-50 pb-0.5">유년부</a></li>
-                        <li><a href="${ROOT_PATH}nextgen/child2.html" class="hover:text-blue-600 block border-b border-gray-50 pb-0.5">초등부</a></li>
-                        <li><a href="${ROOT_PATH}nextgen/awana.html" class="hover:text-blue-600 block border-b border-gray-50 pb-0.5">어와나</a></li>
-                        <li><a href="${ROOT_PATH}nextgen/middle.html" class="hover:text-blue-600 block border-b border-gray-50 pb-0.5">중등부</a></li>
-                        <li><a href="${ROOT_PATH}nextgen/high.html" class="hover:text-blue-600 block border-b border-gray-50 pb-0.5">고등부</a></li>
-                        <li><a href="${ROOT_PATH}nextgen/youth.html" class="hover:text-blue-600 block border-b border-gray-50 pb-0.5">청년사역위원회</a></li>
+                        <li><a href="${PATH}nextgen/infant.html" class="hover:text-blue-600 block border-b border-gray-50 pb-0.5">영아부</a></li>
+                        <li><a href="${PATH}nextgen/kinder.html" class="hover:text-blue-600 block border-b border-gray-50 pb-0.5">유치부</a></li>
+                        <li><a href="${PATH}nextgen/child1.html" class="hover:text-blue-600 block border-b border-gray-50 pb-0.5">유년부</a></li>
+                        <li><a href="${PATH}nextgen/child2.html" class="hover:text-blue-600 block border-b border-gray-50 pb-0.5">초등부</a></li>
+                        <li><a href="${PATH}nextgen/awana.html" class="hover:text-blue-600 block border-b border-gray-50 pb-0.5">어와나</a></li>
+                        <li><a href="${PATH}nextgen/middle.html" class="hover:text-blue-600 block border-b border-gray-50 pb-0.5">중등부</a></li>
+                        <li><a href="${PATH}nextgen/high.html" class="hover:text-blue-600 block border-b border-gray-50 pb-0.5">고등부</a></li>
+                        <li><a href="${PATH}nextgen/youth.html" class="hover:text-blue-600 block border-b border-gray-50 pb-0.5">청년사역위원회</a></li>
                     </ul>
                 </div>
 
@@ -176,26 +176,26 @@ const sitemapHtml = `
                     <div>
                         <h3 class="text-[13px] md:text-lg font-bold text-gray-900 border-b-2 border-[#1b315b] pb-1 mb-1 md:pb-1.5 md:mb-1.5">전도와 선교</h3>
                         <ul class="flex flex-col gap-0 md:gap-1.5 text-[11px] md:text-[14px] text-gray-600">
-                            <li><a href="${ROOT_PATH}mission/evangelism.html" class="hover:text-blue-600 block py-0.5">전도대</a></li>
-                            <li><a href="${ROOT_PATH}mission/domestic.html" class="hover:text-blue-600 block py-0.5">국내선교</a></li>
-                            <li><a href="${ROOT_PATH}mission/overseas.html" class="hover:text-blue-600 block py-0.5">해외선교</a></li>
-                            <li><a href="${ROOT_PATH}mission/news.html" class="hover:text-blue-600 block py-0.5">선교지소식</a></li>
-                            <li><a href="${ROOT_PATH}mission/club.html" class="hover:text-blue-600 block py-0.5">동호인선교회</a></li>
+                            <li><a href="${PATH}mission/evangelism.html" class="hover:text-blue-600 block py-0.5">전도대</a></li>
+                            <li><a href="${PATH}mission/domestic.html" class="hover:text-blue-600 block py-0.5">국내선교</a></li>
+                            <li><a href="${PATH}mission/overseas.html" class="hover:text-blue-600 block py-0.5">해외선교</a></li>
+                            <li><a href="${PATH}mission/news.html" class="hover:text-blue-600 block py-0.5">선교지소식</a></li>
+                            <li><a href="${PATH}mission/club.html" class="hover:text-blue-600 block py-0.5">동호인선교회</a></li>
                         </ul>
                     </div>
                     <div>
                         <h3 class="text-[13px] md:text-lg font-bold text-gray-900 border-b-2 border-[#1b315b] pb-1 mb-1 md:pb-1.5 md:mb-1.5">교회소식</h3>
                         <ul class="flex flex-col gap-0 md:gap-1.5 text-[11px] md:text-[14px] text-gray-600">
-                            <li><a href="${ROOT_PATH}news/weekly.html" class="hover:text-blue-600 block py-0.5">교회주보</a></li>
-                            <li><a href="${ROOT_PATH}news/newcomer.html" class="hover:text-blue-600 block py-0.5">새가족소식</a></li>
-                            <li><a href="${ROOT_PATH}news/member.html" class="hover:text-blue-600 block py-0.5">성도소식</a></li>
-                            <li><a href="${ROOT_PATH}news/gallery.html" class="hover:text-blue-600 block py-0.5">행사사진</a></li>
+                            <li><a href="${PATH}news/weekly.html" class="hover:text-blue-600 block py-0.5">교회주보</a></li>
+                            <li><a href="${PATH}news/newcomer.html" class="hover:text-blue-600 block py-0.5">새가족소식</a></li>
+                            <li><a href="${PATH}news/member.html" class="hover:text-blue-600 block py-0.5">성도소식</a></li>
+                            <li><a href="${PATH}news/gallery.html" class="hover:text-blue-600 block py-0.5">행사사진</a></li>
                         </ul>
                     </div>
                     <div>
                         <h3 class="text-[13px] md:text-lg font-bold text-gray-900 border-b-2 border-[#1b315b] pb-1 mb-1 md:pb-1.5 md:mb-1.5">행정서비스</h3>
                         <ul class="flex flex-col gap-0 md:gap-1.5 text-[11px] md:text-[14px] text-gray-600">
-                            <li><a href="${ROOT_PATH}service/application.html" class="hover:text-blue-600 block py-0.5">신청서류</a></li>
+                            <li><a href="${PATH}service/application.html" class="hover:text-blue-600 block py-0.5">신청서류</a></li>
                         </ul>
                     </div>
                 </div>
