@@ -368,7 +368,15 @@
         }
 
         // 팝업창 관리 기능
-        const popups = [];
+        const popups = [
+            {
+                id: 'popup_event_typo', // 팝업 고유 아이디
+                imageUrl: 'https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/images/%EC%98%A4%ED%83%80%EC%B0%BE%EA%B8%B0%EC%9D%B4%EB%B2%A4%ED%8A%B8.png',
+                linkUrl: '#', // 클릭 시 이동할 주소 (없으면 #)
+                width: 350, // 스마트폰에서도 잘 보이도록 적절한 크기 지정
+                endDate: '2026-07-27T00:00:00+09:00' // 한국 시간 기준 2026년 7월 27일 0시 0분에 종료
+            }
+        ];
 
         function setCookie(name, value, expiredays) {
             var todayDate = new Date();
@@ -403,7 +411,14 @@
         function initPopups() {
             const container = document.getElementById('popup-container');
             let html = '';
+            const now = new Date(); // 현재 시간 확인
+
             popups.forEach((p, index) => {
+                // ★ 지정된 날짜(27일 0시)가 지났으면 아예 팝업을 생성하지 않고 넘깁니다.
+                if (p.endDate && now >= new Date(p.endDate)) {
+                    return; 
+                }
+
                 if (getCookie(p.id) !== "done") {
                     const offset = index * 30; 
                     html += `
