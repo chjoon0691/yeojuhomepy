@@ -1,19 +1,20 @@
-// ==========================================
-// 여주성결교회 공통 스크립트 (마법의 파일)
-// ==========================================
-
-function injectCommonHtml() {
+/**
+ * 여주성결교회 공통 스크립트 (마법의 파일)
+ * 모든 페이지의 헤더(상단메뉴), 푸터(하단정보), 사이트맵을 이 파일 하나로 통제합니다.
+ */
+document.addEventListener('DOMContentLoaded', () => {
+    
     // 각 페이지마다 폴더 깊이가 다르므로, 미리 정의된 ROOT_PATH를 사용해 경로를 맞춥니다.
     const root = typeof ROOT_PATH !== 'undefined' ? ROOT_PATH : '';
 
-    // 1. 공통 헤더(상단 메뉴) HTML (목사님 백업본 디자인 완벽 복구!)
+    //    // 1. 공통 헤더(상단 메뉴) HTML
     const headerHTML = `
     <header class="bg-[#244177] text-white w-full z-50 relative">
         <div class="hidden md:block border-b border-white/20 bg-[#1b315b]">
             <div class="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center text-sm font-light">
                 <span class="text-blue-200 tracking-wide">교회창립일: 1932. 5. 13.</span>
                 <div class="flex items-center space-x-6">
-                    <a href="https://www.youtube.com/@여주성결교회" target="_blank" class="hover:text-white transition flex items-center gap-1.5"><i class="fab fa-youtube text-red-500 text-lg"></i> 유튜브채널</a>
+                    <a href="https://www.youtube.com/@여주성결교회" target="_blank" class="hover:text-blue-300 flex items-center gap-1.5 transition"><i class="fab fa-youtube text-red-500 text-lg"></i> 유튜브채널</a>
                 </div>
             </div>
         </div>
@@ -174,7 +175,7 @@ function injectCommonHtml() {
     </header>
     `;
 
-    // 2. 공통 푸터(하단 정보) HTML (목사님 백업본 화이트 톤 완벽 복구!)
+    //    // 2. 공통 푸터(하단 정보) HTML
     const footerHTML = `
     <footer class="bg-white border-t border-gray-100 py-10 md:py-16 mt-10 w-full">
         <div class="max-w-6xl mx-auto px-4 flex flex-col items-center text-center">
@@ -190,14 +191,14 @@ function injectCommonHtml() {
     </footer>
     `;
 
-    // 3. 공통 사이트맵 모달창 HTML (4칸 유지)
+    //    // 3. 공통 사이트맵 모달창 HTML (모바일 우측 서랍형 1단, PC 중앙 4단 반응형)
     const sitemapHTML = `
-    <div id="global-sitemap-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 md:p-6">
+    <div id="global-sitemap-modal" class="fixed inset-0 z-[100] hidden md:items-center md:justify-center p-0 md:p-6">
         <!-- 반투명 배경 -->
         <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="toggleGlobalSitemap()"></div>
         
-        <!-- 팝업창 본체 -->
-        <div class="relative w-full max-w-[1000px] bg-white shadow-2xl z-10 flex flex-col rounded-2xl overflow-hidden max-h-[90vh]">
+        <!-- 팝업창 본체 (모바일: 오른쪽 꽉 차는 서랍형 / PC: 중앙 팝업형) -->
+        <div class="relative w-[85%] max-w-[400px] md:max-w-[1000px] md:w-full bg-white shadow-2xl z-10 flex flex-col h-full md:h-auto md:max-h-[90vh] md:rounded-2xl ml-auto md:ml-0 overflow-hidden">
             
             <!-- 상단 타이틀 바 -->
             <div class="bg-[#1b315b] text-white px-5 py-4 flex justify-between items-center shrink-0">
@@ -210,11 +211,11 @@ function injectCommonHtml() {
                 </button>
             </div>
             
-            <!-- 사이트맵 링크 영역 (grid-cols-2 로 수정하여 모바일에서도 2단 배치) -->
+            <!-- 사이트맵 링크 영역 (PC: 4단 분리 / 모바일: 1단 한줄 세로배열) -->
             <div id="sitemap-content" class="p-5 md:p-8 overflow-y-auto bg-white flex-1">
-                <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-4 md:gap-x-6 gap-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-x-6 gap-y-8">
                     
-                    <!-- 1. 환영합니다 -->
+                    <!-- 1열. 환영합니다 -->
                     <div>
                         <h3 class="font-bold text-gray-900 border-t-2 border-[#1b315b] pt-2 pb-1.5 text-[15px] md:text-base">환영합니다</h3>
                         <ul class="border-t border-gray-200 text-[13px] md:text-sm text-gray-700">
@@ -235,7 +236,7 @@ function injectCommonHtml() {
                         </ul>
                     </div>
                     
-                    <!-- 2. 말씀과 찬양 -->
+                    <!-- 2열. 말씀과 찬양 -->
                     <div>
                         <h3 class="font-bold text-gray-900 border-t-2 border-[#1b315b] pt-2 pb-1.5 text-[15px] md:text-base">말씀과 찬양</h3>
                         <ul class="border-t border-gray-200 text-[13px] md:text-sm text-gray-700">
@@ -259,59 +260,60 @@ function injectCommonHtml() {
                         </ul>
                     </div>
 
-                    <!-- 3. 공동체 -->
-                    <div>
-                        <h3 class="font-bold text-gray-900 border-t-2 border-[#1b315b] pt-2 pb-1.5 text-[15px] md:text-base">공동체</h3>
-                        <ul class="border-t border-gray-200 text-[13px] md:text-sm text-gray-700 mb-6">
-                            <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}community/parish.html" class="block w-full">교구</a></li>
-                            <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}community/organization.html" class="block w-full">기관</a></li>
-                            <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}community/training.html" class="block w-full">양육&훈련</a></li>
-                            <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}community/senior.html" class="block w-full">청춘대학</a></li>
-                            <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}community/company.html" class="block w-full">성도기업</a></li>
-                        </ul>
-                        
-                        <h3 class="font-bold text-gray-900 border-t-2 border-[#1b315b] pt-2 pb-1.5 text-[15px] md:text-base mt-2">행정서비스</h3>
-                        <ul class="border-t border-gray-200 text-[13px] md:text-sm text-gray-700">
-                            <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}service/application.html" class="block w-full">신청서류</a></li>
-                        </ul>
+                    <!-- 3열. 공동체 & 다음세대 (세로정렬) -->
+                    <div class="flex flex-col gap-y-6 md:gap-y-8">
+                        <div>
+                            <h3 class="font-bold text-gray-900 border-t-2 border-[#1b315b] pt-2 pb-1.5 text-[15px] md:text-base">공동체</h3>
+                            <ul class="border-t border-gray-200 text-[13px] md:text-sm text-gray-700">
+                                <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}community/parish.html" class="block w-full">교구</a></li>
+                                <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}community/organization.html" class="block w-full">기관</a></li>
+                                <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}community/training.html" class="block w-full">양육&훈련</a></li>
+                                <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}community/senior.html" class="block w-full">청춘대학</a></li>
+                                <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}community/company.html" class="block w-full">성도기업</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-900 border-t-2 border-[#1b315b] pt-2 pb-1.5 text-[15px] md:text-base">다음세대</h3>
+                            <ul class="border-t border-gray-200 text-[13px] md:text-sm text-gray-700">
+                                <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}nextgen/infant.html" class="block w-full">영아부</a></li>
+                                <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}nextgen/kindergarten.html" class="block w-full">유치부</a></li>
+                                <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}nextgen/children.html" class="block w-full">유년부</a></li>
+                                <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}nextgen/elementary.html" class="block w-full">초등부</a></li>
+                                <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}nextgen/awana.html" class="block w-full">어와나</a></li>
+                                <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}nextgen/middle.html" class="block w-full">중등부</a></li>
+                                <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}nextgen/high.html" class="block w-full">고등부</a></li>
+                                <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}nextgen/youth.html" class="block w-full">청년사역위원회</a></li>
+                            </ul>
+                        </div>
                     </div>
 
-                    <!-- 4. 다음세대 / 전도와 선교 -->
-                    <div>
-                        <h3 class="font-bold text-gray-900 border-t-2 border-[#1b315b] pt-2 pb-1.5 text-[15px] md:text-base">다음세대</h3>
-                        <ul class="border-t border-gray-200 text-[13px] md:text-sm text-gray-700 mb-6">
-                            <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}nextgen/infant.html" class="block w-full">영아부</a></li>
-                            <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}nextgen/kindergarten.html" class="block w-full">유치부</a></li>
-                            <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}nextgen/children.html" class="block w-full">유년부</a></li>
-                            <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}nextgen/elementary.html" class="block w-full">초등부</a></li>
-                            <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}nextgen/awana.html" class="block w-full">어와나</a></li>
-                            <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}nextgen/middle.html" class="block w-full">중등부</a></li>
-                            <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}nextgen/high.html" class="block w-full">고등부</a></li>
-                            <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}nextgen/youth.html" class="block w-full">청년사역위원회</a></li>
-                        </ul>
-
-                        <h3 class="font-bold text-gray-900 border-t-2 border-[#1b315b] pt-2 pb-1.5 text-[15px] md:text-base mt-2">전도와 선교</h3>
-                        <ul class="border-t border-gray-200 text-[13px] md:text-sm text-gray-700">
-                            <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}mission/evangelism.html" class="block w-full">전도대</a></li>
-                            <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}mission/domestic.html" class="block w-full">국내선교</a></li>
-                            <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}mission/overseas.html" class="block w-full">해외선교</a></li>
-                            <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}mission/news.html" class="block w-full">선교지소식</a></li>
-                            <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}mission/club.html" class="block w-full">동호인선교회</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- 6. 교회소식은 자리가 남는 곳에 병합하거나 100% 폭으로 하단에 배치 -->
-                    <div class="col-span-2 lg:col-span-4 mt-2">
-                         <h3 class="font-bold text-gray-900 border-t-2 border-[#1b315b] pt-2 pb-1.5 text-[15px] md:text-base text-center bg-gray-50">교회소식</h3>
-                         <div class="flex flex-wrap justify-center gap-4 py-2 text-[13px] md:text-sm text-gray-700">
-                             <a href="${root}news/weekly.html" class="hover:text-blue-600 transition">교회주보</a>
-                             <span class="text-gray-300">|</span>
-                             <a href="${root}news/newcomer.html" class="hover:text-blue-600 transition">새가족소식</a>
-                             <span class="text-gray-300">|</span>
-                             <a href="${root}news/member.html" class="hover:text-blue-600 transition">성도소식</a>
-                             <span class="text-gray-300">|</span>
-                             <a href="${root}news/gallery.html" class="hover:text-blue-600 transition">행사사진</a>
-                         </div>
+                    <!-- 4열. 전도와 선교 & 교회소식 & 행정서비스 (세로정렬) -->
+                    <div class="flex flex-col gap-y-6 md:gap-y-8">
+                        <div>
+                            <h3 class="font-bold text-gray-900 border-t-2 border-[#1b315b] pt-2 pb-1.5 text-[15px] md:text-base">전도와 선교</h3>
+                            <ul class="border-t border-gray-200 text-[13px] md:text-sm text-gray-700">
+                                <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}mission/evangelism.html" class="block w-full">전도대</a></li>
+                                <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}mission/domestic.html" class="block w-full">국내선교</a></li>
+                                <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}mission/overseas.html" class="block w-full">해외선교</a></li>
+                                <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}mission/news.html" class="block w-full">선교지소식</a></li>
+                                <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}mission/club.html" class="block w-full">동호인선교회</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-900 border-t-2 border-[#1b315b] pt-2 pb-1.5 text-[15px] md:text-base">교회소식</h3>
+                            <ul class="border-t border-gray-200 text-[13px] md:text-sm text-gray-700">
+                                <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}news/weekly.html" class="block w-full">교회주보</a></li>
+                                <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}news/newcomer.html" class="block w-full">새가족소식</a></li>
+                                <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}news/member.html" class="block w-full">성도소식</a></li>
+                                <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}news/gallery.html" class="block w-full">행사사진</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-900 border-t-2 border-[#1b315b] pt-2 pb-1.5 text-[15px] md:text-base">행정서비스</h3>
+                            <ul class="border-t border-gray-200 text-[13px] md:text-sm text-gray-700">
+                                <li class="border-b border-dashed border-gray-100 py-1.5 hover:text-blue-600 transition"><a href="${root}service/application.html" class="block w-full">신청서류</a></li>
+                            </ul>
+                        </div>
                     </div>
 
                 </div>
@@ -320,52 +322,33 @@ function injectCommonHtml() {
     </div>
     `;
 
-    // 4. 각각의 빈 공간에 HTML을 쏙쏙 집어넣는 강력한 함수
+    //    // 4. 각 페이지의 빈 공간(div)에 생성한 HTML을 밀어 넣습니다.
     const headerEl = document.getElementById('common-header');
-    if (headerEl) headerEl.innerHTML = headerHTML;
-
     const footerEl = document.getElementById('common-footer');
-    if (footerEl) footerEl.innerHTML = footerHTML;
-
     const sitemapEl = document.getElementById('common-sitemap');
+
+    if (headerEl) headerEl.innerHTML = headerHTML;
+    if (footerEl) footerEl.innerHTML = footerHTML;
     if (sitemapEl) sitemapEl.innerHTML = sitemapHTML;
-}
+});
 
-// ==========================================
-// ★ 타이밍 에러 원천 차단 마법 ★ (메뉴 안 나오는 현상 100% 해결)
-// ==========================================
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', injectCommonHtml);
-} else {
-    injectCommonHtml();
-}
-
-// ==========================================
-// 5. 사이트맵 열기/닫기 작동 스위치 기능
-// ==========================================
+//// 전역 함수: 사이트맵 모달 토글
 window.toggleGlobalSitemap = function() {
     const modal = document.getElementById('global-sitemap-modal');
     if (modal) {
         if (modal.classList.contains('hidden')) {
             modal.classList.remove('hidden');
             modal.classList.add('flex');
-            // 부드럽게 나타나는 효과 (애니메이션)
-            setTimeout(() => {
-                modal.classList.remove('opacity-0');
-            }, 10);
-            document.body.style.overflow = 'hidden'; // 메뉴가 열렸을 때 뒷배경 고정
+            document.body.style.overflow = 'hidden';
         } else {
-            modal.classList.add('opacity-0');
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                modal.classList.remove('flex');
-                document.body.style.overflow = ''; // 뒷배경 고정 해제
-            }, 300);
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = '';
         }
     }
 };
 
-// 모바일 전용 서브 메뉴 열기/닫기 (필요시 사용)
+// 모바일 서브 메뉴 토글 (중간 네비게이션 바용)
 window.toggleMobileSubMenu = function(menuId) {
     const targetMenu = document.getElementById(menuId);
     const otherMenuId = menuId === 'menu-depth1' ? 'menu-depth2' : 'menu-depth1';
