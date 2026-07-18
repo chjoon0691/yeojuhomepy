@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ★ 핵심: 0.5초 뒤에 메인 홈페이지(/)로 무조건 자동 이동시킵니다 ★ -->
+    <meta http-equiv="refresh" content="0.5; url=/">
+    <title>페이지 이동 중 - 여주성결교회</title>
+    <style>
+        body { 
+            font-family: '맑은 고딕', sans-serif; 
+            background-color: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 { color: #1b315b; font-size: 24px; margin-bottom: 10px; }
+        p { color: #666; font-size: 16px; margin-bottom: 20px; }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3b82f6;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>여주성결교회 홈페이지가 새롭게 단장되었습니다!</h1>
+        <p>잠시 후 새로운 메인 화면으로 자동 이동합니다...</p>
+        <div class="loader"></div>
+        <p style="margin-top: 20px; font-size: 14px;">
+            이동하지 않는다면 <a href="/" style="color: #3b82f6; text-decoration: none; font-weight: bold;">[여기]</a>를 클릭해주세요.
+        </p>
+    </div>
+</body>
+</html>
