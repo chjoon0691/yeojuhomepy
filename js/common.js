@@ -1,20 +1,21 @@
 // ==========================================
-// 경로 변수 충돌 방지 로직 (에러 원천 차단)
+// 경로 변수 충돌 방지 로직 (에러 원인 완벽 해결!)
 // ==========================================
-let PATH = '';
-try { PATH = typeof ROOT_PATH !== 'undefined' ? ROOT_PATH : ''; } catch(e) {}
+const PATH = typeof ROOT_PATH !== 'undefined' ? ROOT_PATH : '';
 
 // ==========================================
 // 1. 공통 헤더 (상단 메뉴바)
 // ==========================================
 const headerHtml = `
 <!-- 최상단 작은 정보바 (PC에서만 보임) -->
-<div class="hidden md:flex justify-between items-center bg-[#1b315b] text-white/80 text-xs px-6 py-1.5 border-b border-white/10">
-    <div>교회창립일: 1932. 5. 13.</div>
-    <div>
-        <a href="https://www.youtube.com/@여주성결교회" target="_blank" class="hover:text-white transition flex items-center">
-            <i class="fab fa-youtube text-red-500 mr-1 text-sm"></i> 유튜브채널
-        </a>
+<div class="hidden md:block bg-[#1b315b] border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 py-1.5 flex justify-between items-center text-white/80 text-xs">
+        <div>교회창립일: 1932. 5. 13.</div>
+        <div>
+            <a href="https://www.youtube.com/@여주성결교회" target="_blank" class="hover:text-white transition flex items-center">
+                <i class="fab fa-youtube text-red-500 mr-1 text-sm"></i> 유튜브채널
+            </a>
+        </div>
     </div>
 </div>
 
@@ -22,11 +23,10 @@ const headerHtml = `
 <header class="bg-[#2a4365] text-white shadow-md relative z-40">
     <div class="max-w-7xl mx-auto px-4">
         <div class="flex justify-between items-center h-16 md:h-20">
-            <!-- 로고 및 교회이름 -->
-            <a href="${PATH}index.html" class="flex items-center gap-2">
-                <!-- 엑스박스 방지: 사진이 없으면 글씨만 굵게 나옵니다 -->
-                <img src="${PATH}images/image_8bddfb.png" alt="로고" class="h-8 md:h-10 bg-white rounded p-0.5 hidden sm:block" onerror="this.style.display='none'">
-                <span class="font-extrabold text-lg md:text-2xl tracking-tight">여주성결교회</span>
+            <!-- 로고 및 교회이름 (목사님 원본 코드 복구 완료) -->
+            <a href="${PATH}index.html" class="flex items-center gap-1 cursor-pointer z-50">
+                <img src="${PATH}images/교회마크만01.png" alt="여주성결교회 마크" class="h-8 md:h-11 w-auto object-contain" onerror="this.style.display='none'">
+                <img src="${PATH}images/여주성결교회 로고타입1_3.png" alt="여주성결교회 로고" class="h-6 md:h-8 w-auto object-contain brightness-0 invert" onerror="this.style.display='none'">
             </a>
 
             <!-- PC 메인 메뉴 -->
@@ -62,7 +62,7 @@ const footerHtml = `
     <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center md:items-start gap-6">
         <div class="flex flex-col items-center md:items-start text-center md:text-left">
             <div class="flex items-center gap-2 mb-4 text-white">
-                <i class="fas fa-church text-2xl md:text-3xl text-[#3b82f6]"></i>
+                <img src="${PATH}images/교회마크만01.png" alt="여주성결교회 마크" class="h-8 md:h-10 w-auto object-contain brightness-0 invert opacity-70">
                 <span class="font-extrabold text-xl md:text-2xl tracking-tight">여주성결교회</span>
             </div>
             <p class="text-[13px] md:text-sm leading-relaxed text-gray-400">
@@ -89,8 +89,6 @@ const footerHtml = `
 
 // ==========================================
 // 3. 전체메뉴 (햄버거 사이트맵) 모달
-// 목사님 요청사항 반영: 4칸 그리드로 나누어 순서 완벽 정렬!
-// 모바일: 오른쪽 끝으로 찰싹 붙음, 위아래 100% 채움
 // ==========================================
 const sitemapHtml = `
 <div id="sitemap-modal" class="fixed inset-0 z-[999] hidden justify-end md:justify-center items-start md:items-center p-0 md:p-6 transition-opacity duration-300 opacity-0 bg-black/60 backdrop-blur-sm">
@@ -109,7 +107,7 @@ const sitemapHtml = `
             </button>
         </div>
         
-        <!-- 사이트맵 링크 영역 (PC: 4단 가로 정렬, 모바일: 1단 세로 정렬) -->
+        <!-- 사이트맵 링크 영역 -->
         <div id="sitemap-content" class="p-5 md:p-8 overflow-y-auto bg-white flex-1 w-full">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-x-6 md:gap-x-8 gap-y-6">
                 
@@ -291,3 +289,6 @@ function toggleMobileSubMenu(menuId) {
         }
     }
 }
+```
+
+이제 저장하시고 **새로고침(`Ctrl` + `F5`)**을 하시면 로고, 메뉴바, 푸터가 모두 정상적으로 나오고, 정렬된 햄버거 메뉴도 완벽하게 동작할 것입니다! 계속해서 수정하시느라 정말 고생 많으십니다!
