@@ -72,12 +72,11 @@
                 <h3 class="text-2xl md:text-3xl font-extrabold relative z-10 tracking-tight">신청서류</h3>
             </div>
 
-            <!-- ★ 기존 lg:grid-cols-2 에서 lg:grid-cols-3 로 변경하여 3개가 한 줄에 나오도록 설정 ★ -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- ★ 한눈에 들어오는 카드 그리드 레이아웃 ★ -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-6">
                 
                 <!-- 1. 기부금영수증 신청 -->
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden hover:-translate-y-1 hover:shadow-md transition duration-300 flex flex-col">
-                    <!-- ★ 높이를 h-48에서 h-28로 대폭 축소 ★ -->
                     <div class="h-28 overflow-hidden relative">
                         <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="기부금영수증" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
@@ -89,11 +88,10 @@
                         <p class="text-gray-600 text-[13px] md:text-sm mb-5 leading-relaxed break-keep">
                             기부금영수증에 필요한 사항을 입력하시고 제출하시면 처리를 도와드립니다.
                         </p>
-                        <div class="flex flex-col gap-2">
-                            <a href="#" class="inline-flex justify-center items-center gap-2 bg-[#6b8cba] hover:bg-[#1b315b] text-white px-4 py-2.5 rounded-lg text-sm font-bold transition shadow-sm w-full">
-                                <i class="fas fa-download"></i> 기부금영수증 신청
-                            </a>
-                        </div>
+                        <!-- 팝업창 띄우기 함수 연결 -->
+                        <a href="javascript:void(0)" onclick="openReceiptModal()" class="inline-flex justify-center items-center gap-2 bg-[#6b8cba] hover:bg-[#1b315b] text-white px-4 py-2.5 rounded-lg text-sm font-bold transition shadow-sm w-full">
+                            <i class="fas fa-edit"></i> 기부금영수증 신청
+                        </a>
                     </div>
                 </div>
 
@@ -111,11 +109,11 @@
                             설이나 명절에 사용할 수 있는 예배순서지를 다운받으실 수 있습니다.
                         </p>
                         <div class="flex gap-2">
-                            <a href="#" class="flex-1 flex flex-col justify-center items-center gap-1 bg-[#6b8cba] hover:bg-[#1b315b] text-white p-2 rounded-lg text-[13px] font-bold transition shadow-sm leading-tight text-center">
+                            <a href="../assets/여주성결교회 2025추석가정예배 안내서.pdf" download class="flex-1 flex flex-col justify-center items-center gap-1 bg-[#6b8cba] hover:bg-[#1b315b] text-white p-2 rounded-lg text-[13px] font-bold transition shadow-sm leading-tight text-center">
                                 <i class="fas fa-download text-sm"></i>
                                 <span>추석가정예배</span>
                             </a>
-                            <a href="#" class="flex-1 flex flex-col justify-center items-center gap-1 border-2 border-[#6b8cba] text-[#1b315b] hover:bg-[#6b8cba] hover:text-white p-2 rounded-lg text-[13px] font-bold transition shadow-sm leading-tight text-center">
+                            <a href="../assets/여주성결교회 2025설가정예배 안내서.pdf" download class="flex-1 flex flex-col justify-center items-center gap-1 border-2 border-[#6b8cba] text-[#1b315b] hover:bg-[#6b8cba] hover:text-white p-2 rounded-lg text-[13px] font-bold transition shadow-sm leading-tight text-center">
                                 <i class="fas fa-download text-sm"></i>
                                 <span>설가정예배</span>
                             </a>
@@ -137,7 +135,7 @@
                             교회 공간 사용이 필요하신 분은 아래의 신청서를 다운받아 작성하여 사무실로 제출해 주시기 바랍니다.
                         </p>
                         <div class="flex flex-col gap-2">
-                            <a href="data/%EB%8C%80%EA%B4%80%EC%8B%A0%EC%B2%AD%EC%84%9C.jpg" download class="inline-flex justify-center items-center gap-2 bg-[#6b8cba] hover:bg-[#1b315b] text-white px-4 py-2.5 rounded-lg text-sm font-bold transition shadow-sm w-full">
+                            <a href="../service/data/%EB%8C%80%EA%B4%80%EC%8B%A0%EC%B2%AD%EC%84%9C.jpg" download class="inline-flex justify-center items-center gap-2 bg-[#6b8cba] hover:bg-[#1b315b] text-white px-4 py-2.5 rounded-lg text-sm font-bold transition shadow-sm w-full">
                                 <i class="fas fa-download"></i> 대관신청서 다운로드
                             </a>
                         </div>
@@ -158,7 +156,7 @@
                             교회 차량 배차가 필요하신 부서 및 기관은 아래 신청서를 다운받아 작성하여 사무실로 제출해 주시기 바랍니다.
                         </p>
                         <div class="flex flex-col gap-2">
-                            <a href="data/%EC%B0%A8%EB%9F%89%EC%82%AC%EC%9A%A9%EC%8B%A0%EC%B2%AD%EC%84%9C.jpg" download class="inline-flex justify-center items-center gap-2 bg-[#6b8cba] hover:bg-[#1b315b] text-white px-4 py-2.5 rounded-lg text-sm font-bold transition shadow-sm w-full">
+                            <a href="../service/data/%EC%B0%A8%EB%9F%89%EC%82%AC%EC%9A%A9%EC%8B%A0%EC%B2%AD%EC%84%9C.jpg" download class="inline-flex justify-center items-center gap-2 bg-[#6b8cba] hover:bg-[#1b315b] text-white px-4 py-2.5 rounded-lg text-sm font-bold transition shadow-sm w-full">
                                 <i class="fas fa-download"></i> 차량신청서 다운로드
                             </a>
                         </div>
@@ -179,11 +177,11 @@
                             각 부서 및 기관의 재정 청구 시 필요한 서식입니다. 다운받아 작성하여 사무실로 제출해 주시기 바랍니다.
                         </p>
                         <div class="flex gap-2">
-                            <a href="data/%EB%B3%B4%EC%A1%B0%EA%B8%88%EC%B2%AD%EA%B5%AC%EC%96%91%EC%8B%9D(%EC%9D%BC%EB%B0%98).jpg" download class="flex-1 flex flex-col justify-center items-center gap-1 bg-[#6b8cba] hover:bg-[#1b315b] text-white p-2 rounded-lg text-[12px] lg:text-[13px] font-bold transition shadow-sm leading-tight text-center">
+                            <a href="../service/data/%EB%B3%B4%EC%A1%B0%EA%B8%88%EC%B2%AD%EA%B5%AC%EC%96%91%EC%8B%9D(%EC%9D%BC%EB%B0%98).jpg" download class="flex-1 flex flex-col justify-center items-center gap-1 bg-[#6b8cba] hover:bg-[#1b315b] text-white p-2 rounded-lg text-[12px] lg:text-[13px] font-bold transition shadow-sm leading-tight text-center">
                                 <i class="fas fa-download text-sm"></i>
                                 <span>재정신청서</span>
                             </a>
-                            <a href="data/%EB%B3%B4%EC%A1%B0%EA%B8%88%EC%B2%AD%EA%B5%AC%EC%96%91%EC%8B%9D(%EA%B5%90%EC%9C%A1%EA%B8%B0%EA%B4%80%EC%9A%A9).jpg" download class="flex-1 flex flex-col justify-center items-center gap-1 border-2 border-[#6b8cba] text-[#1b315b] hover:bg-[#6b8cba] hover:text-white p-2 rounded-lg text-[12px] lg:text-[13px] font-bold transition shadow-sm leading-tight text-center">
+                            <a href="../service/data/%EB%B3%B4%EC%A1%B0%EA%B8%88%EC%B2%AD%EA%B5%AC%EC%96%91%EC%8B%9D(%EA%B5%90%EC%9C%A1%EA%B8%B0%EA%B4%80%EC%9A%A9).jpg" download class="flex-1 flex flex-col justify-center items-center gap-1 border-2 border-[#6b8cba] text-[#1b315b] hover:bg-[#6b8cba] hover:text-white p-2 rounded-lg text-[12px] lg:text-[13px] font-bold transition shadow-sm leading-tight text-center">
                                 <i class="fas fa-download text-sm"></i>
                                 <span>재정신청서<br>(교육부)</span>
                             </a>
@@ -197,7 +195,7 @@
                         <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="기타서식 이미지" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
                         <h3 class="absolute bottom-3 left-4 text-xl font-extrabold text-white tracking-tight flex items-center gap-2">
-                            <i class="fas fa-file-alt text-blue-300"></i> 기타서식
+                            <i class="fas fa-file-alt text-blue-300"></i> 기타 서식 및 안내
                         </h3>
                     </div>
                     <div class="p-5 flex-1 flex flex-col justify-between bg-gray-50/50">
@@ -220,8 +218,59 @@
     <div id="common-footer"></div>
     <div id="common-sitemap"></div>
 
+    <!-- ★ 기부금영수증 개인정보보호 팝업 모달창 ★ -->
+    <div id="receipt-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="closeReceiptModal()"></div>
+        <div class="relative w-full max-w-md bg-white shadow-2xl z-10 flex flex-col rounded-xl overflow-hidden border-t-[6px] border-[#3b82f6]">
+            <!-- 모달 헤더 -->
+            <div class="bg-white text-gray-800 px-6 py-5 border-b border-gray-200 flex justify-between items-start shrink-0">
+                <h2 class="text-xl font-extrabold tracking-tight mb-1">기부금영수증 신청</h2>
+                <button onclick="closeReceiptModal()" class="text-gray-400 hover:text-red-500 transition-colors focus:outline-none p-1">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <!-- 모달 콘텐츠 -->
+            <div class="p-6 bg-gray-50 flex-1">
+                <div class="bg-red-50 text-red-700 p-4 rounded-lg border border-red-200 mb-6 text-sm md:text-base leading-relaxed break-keep">
+                    <i class="fas fa-shield-alt mr-1"></i><strong>개인정보 보호 안내</strong><br>
+                    기재하신 사항(주민번호 등)은 기부금영수증 발급 목적에만 사용되며, <strong>처리 후 안전하게 즉시 폐기됩니다.</strong>
+                </div>
+                <p class="text-gray-700 mb-6 text-sm md:text-base break-keep">
+                    성도님의 소중한 개인정보를 안전하게 암호화하여 수집하기 위해 <strong>보안 구글 설문지</strong> 시스템을 이용하고 있습니다. 아래 버튼을 눌러 양식을 작성해 주시기 바랍니다.
+                </p>
+                <!-- ★ 구글 설문지 주소가 완벽하게 들어간 부분! ★ -->
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfo45ZpPjyFae5VMN25cWD6xza4ct1Xkt3CKXzyIdXTNWX2yA/viewform?usp=publish-editor" target="_blank" onclick="closeReceiptModal()" class="flex justify-center items-center gap-2 bg-[#1b315b] hover:bg-[#102242] text-white px-4 py-3.5 rounded-lg text-base font-bold transition shadow-sm w-full">
+                    <i class="fas fa-external-link-alt"></i> 안전한 신청서 작성하기
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 기부금영수증 모달창 열고 닫는 마법의 함수
+        function openReceiptModal() {
+            const modal = document.getElementById('receipt-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeReceiptModal() {
+            const modal = document.getElementById('receipt-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = '';
+        }
+    </script>
+
     <script>const ROOT_PATH = "../";</script>
     <script src="../js/common.js"></script>
 
 </body>
 </html>
+```
+
+### ✨ 다음 단계
+이제 목사님은 더 이상 하실 일이 없고, **사무집사님께서 이 설문지의 응답 내역을 바로바로 받아보시게 하는 권한 설정 작업**만 남았습니다!
+
+아까 보여드렸던 **'구글 설문지 응답 화면'**에서 가운데 위쪽의 **[응답]** 탭을 누르시고, 오른쪽에 보이는 **초록색 십자가(Sheets에 연결)** 아이콘을 눌러 엑셀을 만드신 후, 그 엑셀을 사무집사님께 공유해주시면 모든 시스템이 완벽하게 가동됩니다!
