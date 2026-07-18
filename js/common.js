@@ -1,7 +1,8 @@
 // ==========================================
-// 경로 변수 충돌 방지 로직
+// 경로 변수 충돌 방지 로직 (에러 원천 차단)
 // ==========================================
-const PATH = typeof ROOT_PATH !== 'undefined' ? ROOT_PATH : '';
+let PATH = '';
+try { PATH = typeof ROOT_PATH !== 'undefined' ? ROOT_PATH : ''; } catch(e) {}
 
 // ==========================================
 // 1. 공통 헤더 (상단 메뉴바)
@@ -212,21 +213,25 @@ const sitemapHtml = `
 `;
 
 // ==========================================
-// 4. 각각의 빈 공간에 HTML을 쏙쏙 집어넣는 마법
+// 4. 각각의 빈 공간에 HTML을 쏙쏙 집어넣는 강력한 함수
 // ==========================================
-document.addEventListener("DOMContentLoaded", function() {
-    // 헤더(메뉴바) 넣기
+function injectCommonHtml() {
     const headerEl = document.getElementById('common-header');
     if (headerEl) headerEl.innerHTML = headerHtml;
 
-    // 푸터(하단정보) 넣기
     const footerEl = document.getElementById('common-footer');
     if (footerEl) footerEl.innerHTML = footerHtml;
 
-    // 사이트맵(햄버거메뉴) 넣기
     const sitemapEl = document.getElementById('common-sitemap');
     if (sitemapEl) sitemapEl.innerHTML = sitemapHtml;
-});
+}
+
+// 창이 켜지기 전, 켜진 후 언제든지 안전하게 실행되도록 방어막 설정
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', injectCommonHtml);
+} else {
+    injectCommonHtml();
+}
 
 // ==========================================
 // 5. 사이트맵 열기/닫기 작동 스위치 기능
@@ -286,6 +291,3 @@ function toggleMobileSubMenu(menuId) {
         }
     }
 }
-```
-
-저장(Commit)하시고 홈페이지에서 **강력 새로고침(`Ctrl` + `F5`)**을 하신 뒤 햄버거 메뉴를 눌러보시면, 완벽하게 정렬된 모습을 확인하실 수 있습니다!
