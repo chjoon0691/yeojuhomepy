@@ -171,7 +171,7 @@
     <div id="common-sitemap"></div>
 
     <script>
-        // ★ 255번 (9,10교구 산상기도회) 복구 완료! ★
+        // ★ 목사님이 올리신 259번 데이터 그대로 사용 ★
         const rawText = `
 259|260704 성결파크골크선교회|2026.07.04
 258|260705 그루터기 중창단 창단식|2026.07.05
@@ -490,17 +490,19 @@
 
                 let imgId = `thumb-${item.id}`;
                 
+                // ★ 디자인이 튀어나가지 않도록 클래스를 수정한 HTML 카드 부분 ★
                 card.innerHTML = `
                     <div class="w-full aspect-[4/3] rounded-lg overflow-hidden shadow-sm border border-gray-200 mb-2 relative bg-gray-50">
                         <img id="${imgId}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
                         <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition duration-300"></div>
                         
-                        <!-- ★ 마우스 호버 시 왼쪽 위에 나타나는 번호 배지 ★ -->
-                        <div class="absolute top-2 left-2 bg-[#1b315b]/90 text-white text-xs font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm z-10 shadow">
+                        <!-- ★ 마우스 호버 시 왼쪽 위에 나타나는 번호 배지 (바 형태 방지) ★ -->
+                        <div class="absolute top-2 left-2 bg-[#1b315b]/90 text-white text-xs font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm z-10 shadow w-fit inline-block">
                             No.${item.id}
                         </div>
 
-                        <div class="absolute bottom-2 right-2 bg-black/60 text-white text-[10px] px-2 py-0.5 rounded flex items-center gap-1">
+                        <!-- ★ 오른쪽 아래 그림 표시 아이콘 (바 형태 방지) ★ -->
+                        <div class="absolute bottom-2 right-2 bg-black/60 text-white text-[10px] w-7 h-6 flex items-center justify-center rounded z-10 shadow w-fit inline-flex">
                             <i class="far fa-images"></i>
                         </div>
                     </div>
@@ -520,7 +522,56 @@
             const paginationContainer = document.getElementById('pagination');
             paginationContainer.innerHTML = '';
 
-            for (let i = 1; i <= totalPages; i++) {
+            if (totalPages === 0) return;
+
+            // ★ 화면 크기에 따라 한 번에 보여줄 페이지 번호 개수 동적 조절 (줄바꿈 방지) ★
+            let pagesPerGroup = 10; 
+            if (window.innerWidth < 380) {
+                pagesPerGroup = 3;  // 아주 작은 스마트폰
+            } else if (window.innerWidth < 500) {
+                pagesPerGroup = 5;  // 일반 스마트폰
+            } else if (window.innerWidth < 768) {
+                pagesPerGroup = 7;  // 태블릿
+            }
+
+            const currentGroup = Math.ceil(currentPage / pagesPerGroup);
+            let startPage = (currentGroup - 1) * pagesPerGroup + 1;
+            let endPage = startPage + pagesPerGroup - 1;
+            
+            if (endPage > totalPages) endPage = totalPages;
+
+            // [이전 10페이지] 버튼 (<<)
+            const prevGroupBtn = document.createElement('a');
+            prevGroupBtn.href = '#';
+            prevGroupBtn.className = `page-link rounded ${startPage === 1 ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            prevGroupBtn.innerHTML = '<i class="fas fa-angle-double-left text-[10px]"></i>';
+            prevGroupBtn.onclick = (e) => {
+                e.preventDefault();
+                if (startPage > 1) {
+                    currentPage = startPage - 1;
+                    renderGallery(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                }
+            };
+            paginationContainer.appendChild(prevGroupBtn);
+
+            // [이전 1페이지] 화살표 버튼 (<)
+            const prevBtn = document.createElement('a');
+            prevBtn.href = '#';
+            prevBtn.className = `page-link rounded ${currentPage === 1 ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            prevBtn.innerHTML = '<i class="fas fa-chevron-left text-[10px]"></i>';
+            prevBtn.onclick = (e) => {
+                e.preventDefault();
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderGallery(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                }
+            };
+            paginationContainer.appendChild(prevBtn);
+
+            // [페이지 번호] 버튼 (10개씩)
+            for (let i = startPage; i <= endPage; i++) {
                 const a = document.createElement('a');
                 a.href = '#';
                 a.className = `page-link ${i === currentPage ? 'active' : ''} rounded`;
@@ -533,6 +584,36 @@
                 };
                 paginationContainer.appendChild(a);
             }
+
+            // [다음 1페이지] 화살표 버튼 (>)
+            const nextBtn = document.createElement('a');
+            nextBtn.href = '#';
+            nextBtn.className = `page-link rounded ${currentPage === totalPages ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            nextBtn.innerHTML = '<i class="fas fa-chevron-right text-[10px]"></i>';
+            nextBtn.onclick = (e) => {
+                e.preventDefault();
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    renderGallery(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                }
+            };
+            paginationContainer.appendChild(nextBtn);
+
+            // [다음 10페이지] 버튼 (>>)
+            const nextGroupBtn = document.createElement('a');
+            nextGroupBtn.href = '#';
+            nextGroupBtn.className = `page-link rounded ${endPage === totalPages ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}`;
+            nextGroupBtn.innerHTML = '<i class="fas fa-angle-double-right text-[10px]"></i>';
+            nextGroupBtn.onclick = (e) => {
+                e.preventDefault();
+                if (endPage < totalPages) {
+                    currentPage = endPage + 1;
+                    renderGallery(currentPage);
+                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                }
+            };
+            paginationContainer.appendChild(nextGroupBtn);
         }
 
         /* * ★ 팝업창 확장자 자동 탐색 로딩 시스템 ★ 
@@ -638,6 +719,11 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             renderGallery(currentPage);
+
+            // ★ 화면 크기가 바뀔 때마다 페이지네이션 갯수를 다시 계산해서 그리기 ★
+            window.addEventListener('resize', () => {
+                renderPagination();
+            });
         });
     </script>
     <script>const ROOT_PATH = "../";</script>
@@ -645,3 +731,7 @@
 
 </body>
 </html>
+```
+
+### 💡 확인 방법
+깃허브에 코드를 저장(`Commit changes`)하신 후, 컴퓨터 브라우저 화면의 가로 길이를 마우스로 줄였다 늘렸다 해보세요! **창 크기에 맞춰 페이지 번호 개수가 고무줄처럼 자동으로 늘어났다 줄어들며 두 줄로 넘어가는 것을 완벽하게 막아줄 것입니다.**
