@@ -354,9 +354,9 @@
         // 깃허브 사진 보관함 기본 주소 
         const baseURL = "https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/community/images/";
 
-        // ★ 변경된 부분: 썸네일을 '상호명'으로 똑똑하게 확인하는 함수 ★
+        // ★ 변경된 부분: 썸네일을 '상호명'으로 똑똑하게 확인하고 jfif 확장자를 포함하는 함수 ★
         function loadThumbnailIcon(id, name) {
-            const exts = ['jpg', 'png', 'jpeg', 'JPG', 'PNG'];
+            const exts = ['jpg', 'png', 'jpeg', 'JPG', 'PNG', 'jfif', 'JFIF'];
             const patterns = ['', '-01']; // 1장짜리 이름(상호명.jpg)과 다중 이름(상호명-01.jpg) 모두 순차적으로 검사
             let extIndex = 0;
             let patternIndex = 0;
@@ -591,9 +591,9 @@
             let loadedCount = 0;
             let errorCount = 0;
 
-            // ★ 변경된 부분: 사진 한 장일 때와 여러 장일 때를 모두 감지하는 로직 ★
+            // ★ 변경된 부분: jfif를 포함하여 사진 한 장일 때와 여러 장일 때를 모두 감지하는 로직 ★
             function tryLoadModalImage(index, wrapElement) {
-                const exts = ['jpg', 'png', 'jpeg', 'JPG', 'PNG'];
+                const exts = ['jpg', 'png', 'jpeg', 'JPG', 'PNG', 'jfif', 'JFIF'];
                 let currentExtIndex = 0;
                 let tryCountForIndex1 = 0; // 첫 번째 사진일 때: 0이면 '상호명.jpg', 1이면 '상호명-01.jpg' 검사
 
@@ -651,7 +651,7 @@
                     };
                     
                     img.onerror = function() {
-                        // 실패 시 다음 확장자(png, jpeg 등)로 재검색
+                        // 실패 시 다음 확장자(png, jpeg, jfif 등)로 재검색
                         currentExtIndex++;
                         loadStep();
                     };
