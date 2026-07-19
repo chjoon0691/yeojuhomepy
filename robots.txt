@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.yjchurch.net/sitemap.xml
+
+#DaumWebMasterTool:c23f6470b9c5d95a2a5a6841121a8e2ea39a0e7bb56b17eea0f1f6078710bfbf:NNUyi/vtme5bUL/jYol3ow==
