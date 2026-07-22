@@ -24,9 +24,6 @@
         .modal-scroll::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
         .modal-scroll::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 4px; }
         .modal-scroll::-webkit-scrollbar-thumb:hover { background: #a8a8a8; }
-        
-        /* 확대 이미지 닫기 줌 아웃 */
-        .zoom-active { cursor: zoom-out; }
     </style>
 </head>
 <body class="text-gray-800">
@@ -147,7 +144,7 @@
                 </div>
             </div>
 
-            <!-- 페이지네이션 (10페이지씩 보이도록 기능 수정됨) -->
+            <!-- 페이지네이션 (반응형 동적 조절) -->
             <div id="pagination" class="flex justify-center items-center mt-8 mb-6 flex-wrap gap-y-2 gap-x-1"></div>
 
         </main>
@@ -180,13 +177,15 @@
         </div>
     </div>
 
-    <!-- ★ 이미지 전체화면 확대 모달창 ★ -->
-    <div id="zoom-modal" class="fixed inset-0 z-[110] hidden items-center justify-center bg-black/90 backdrop-blur-md" onclick="closeZoom()">
+    <!-- ★ 이미지 전체화면 줌/팬 모달창 (강력한 확대기능 적용) ★ -->
+    <div id="zoom-modal" class="fixed inset-0 z-[110] hidden bg-black/90 backdrop-blur-md">
+        <!-- 닫기 버튼 -->
         <button class="absolute top-6 right-6 text-white/70 hover:text-white transition focus:outline-none z-[120]" onclick="closeZoom()">
             <i class="fas fa-times text-4xl"></i>
         </button>
-        <div class="w-full h-full flex items-center justify-center p-2 sm:p-10 overflow-auto modal-scroll zoom-active">
-            <img id="zoom-image" src="" alt="주보 확대" class="max-w-full max-h-none md:max-h-full object-contain shadow-2xl">
+        <!-- 확대/축소 스크롤 영역 -->
+        <div id="zoom-scroll-container" class="w-full h-full overflow-auto flex items-center justify-center p-2 sm:p-10 modal-scroll" onclick="closeZoom()">
+            <img id="zoom-image" src="" alt="주보 확대" class="max-w-full max-h-full object-contain shadow-2xl cursor-zoom-in transition-all duration-300" onclick="toggleZoom(event)">
         </div>
     </div>
 
@@ -195,11 +194,11 @@
     <div id="common-sitemap"></div>
 
     <script>
-        // 1. 주보 전체 데이터 (419번부터 1번까지 모두 통합 완료!)
+        // 1. 주보 전체 데이터
         const rawText = `
 422|260719 주보|2026.07.16
 421|260712 주보|2026.07.10
-420|260705 주보|2026.07.03
+420|260705 주보|2026.07.03        
 419|260628 주보|2026.06.26
 418|260621 주보|2026.06.19
 417|260614 주보|2026.06.12
@@ -439,9 +438,9 @@
 183|220116 주보|2022.01.14
 182|220109 주보|2022.01.08
 181|220102 주보|2021.12.31
-180|211231 송구영신예배주보|2021.12.30
+180|211231 송구영신예배|2021.12.30
 179|211226 주보|2021.12.24
-178|211225 성탄절 주보|2021.12.24
+178|211225 성탄절|2021.12.24
 177|211219 주보|2021.12.18
 176|211212 주보|2021.12.10
 175|211205 주보|2021.12.03
@@ -500,7 +499,7 @@
 122|201206 주보|2020.12.05
 121|201129 주보|2020.11.27
 120|201122 주보|2020.11.20
-119|201115 주보|2020.11.13
+119|201115 주보(추수감사주일)|2020.11.13
 118|201108 주보|2020.11.06
 117|201101 주보|2020.10.31
 116|201025 주보|2020.10.23
@@ -532,7 +531,7 @@
 90|200503 주보|2020.05.02
 89|200426 주보|2020.04.25
 88|200419 주보|2020.04.18
-87|200412 주보|2020.04.12
+87|200412 주보(부활주일)|2020.04.12
 86|200405 주보|2020.04.04
 85|200329 주보|2020.04.04
 84|200322 주보|2020.03.21
@@ -547,15 +546,15 @@
 75|200119 주보|2020.01.18
 74|200112 주보|2020.01.11
 73|200105 주보|2020.01.03
-72|191231 송구영신예배주보|2019.12.31
+72|191231 송구영신예배 순서지|2019.12.31
 71|191229 주보|2019.12.27
-70|191225 성탄절 주보|2019.12.24
+70|191225 성탄감사예배 순서지|2019.12.24
 69|191222 주보|2019.12.20
 68|191215 주보|2019.12.13
 67|191208 주보|2019.12.06
 66|191201 주보|2019.11.30
 65|191124 주보|2019.11.22
-64|191117 주보|2019.11.15
+64|191117 주보(복음대전도운동 축제)|2019.11.15
 63|191110 주보|2019.11.08
 62|191103 주보|2019.11.01
 61|191027 주보|2019.10.25
@@ -566,7 +565,7 @@
 56|190922 주보|2019.09.20
 55|190915 주보|2019.09.11
 54|190908 주보|2019.09.06
-53|190901 주보|2019.08.30
+53|190901주보|2019.08.30
 52|190818 주보|2019.08.16
 51|190811 주보|2019.08.09
 50|190804 주보|2019.08.02
@@ -580,16 +579,16 @@
 42|190609 주보|2019.06.07
 41|190602 주보|2019.05.31
 40|190526 주보|2019.05.24
-39|190519 주보|2019.05.17
-38|190512 주보|2019.05.10
-37|190505 주보|2019.05.03
-36|190428 주보|2019.04.26
-35|190421 주보|2019.04.19
-34|190414 주보|2019.04.12
-33|190407 주보|2019.04.05
-32|190331 주보|2019.03.29
-31|190324 주보|2019.03.22
-30|190317 주보|2019.03.15
+39|190519 주보|2019.05.19
+38|190512 주보|2019.05.12
+37|190505 주보|2019.05.05
+36|190428 주보|2019.04.28
+35|190421 주보|2019.04.21
+34|190414 주보|2019.04.14
+33|190407 주보|2019.04.07
+32|190331 주보|2019.03.31
+31|190324 주보|2019.03.24
+30|190317 주보|2019.03.17
 29|190310 주보|2019.03.09
 28|190303 주보|2019.03.02
 27|190224 주보|2019.02.22
@@ -606,18 +605,18 @@
 16|181209 주보|2018.12.07
 15|181202 주보|2018.11.30
 14|181125 주보|2018.11.25
-13|181118 주보|2018.11.18
+13|181118 주일주보|2018.11.18
 12|181118 주보|2018.11.17
 11|181111 주보|2018.11.16
 10|181104 주보|2018.11.03
 9|181028 주보|2018.10.27
 8|181021 주보|2018.10.23
-7|181014 주보|2018.10.16
+7|181014 주일주보|2018.10.16
 6|181007 주보|2018.10.11
-5|180930 주보|2018.10.02
-4|180923 주보|2018.10.02
+5|180930 주일주보|2018.10.02
+4|180923 주일주보|2018.10.02
 3|180916 주보|2018.09.18
-2|180909 주보|2018.09.09
+2|180909 주일주보|2018.09.09
 1|180826 주보|2018.08.28
         `;
 
@@ -700,8 +699,16 @@
 
             if (totalPages === 0) return;
 
-            // 한 번에 보여줄 페이지 번호 개수 (10개씩)
-            const pagesPerGroup = 10;
+            // ★ 화면 크기에 따라 한 번에 보여줄 페이지 번호 개수 동적 조절 (줄바꿈 방지) ★
+            let pagesPerGroup = 10; 
+            if (window.innerWidth < 380) {
+                pagesPerGroup = 3;  // 아주 작은 스마트폰
+            } else if (window.innerWidth < 500) {
+                pagesPerGroup = 5;  // 일반 스마트폰
+            } else if (window.innerWidth < 768) {
+                pagesPerGroup = 7;  // 태블릿
+            }
+
             const currentGroup = Math.ceil(currentPage / pagesPerGroup);
             let startPage = (currentGroup - 1) * pagesPerGroup + 1;
             let endPage = startPage + pagesPerGroup - 1;
@@ -738,7 +745,7 @@
             };
             paginationContainer.appendChild(prevBtn);
 
-            // [페이지 번호] 버튼 (10개씩)
+            // [페이지 번호] 버튼 (동적 갯수)
             for (let i = startPage; i <= endPage; i++) {
                 const a = document.createElement('a');
                 a.href = '#';
@@ -873,20 +880,54 @@
             document.body.style.overflow = ''; 
         }
 
-        // 확대 모달창 관련 함수
+        // =========================================================================
+        // ★ 강력한 확대/축소(줌인 줌아웃) 기능 ★
+        // =========================================================================
+        let isZoomed = false;
+
         function openZoom(src) {
             const zoomModal = document.getElementById('zoom-modal');
             const zoomImg = document.getElementById('zoom-image');
+            const container = document.getElementById('zoom-scroll-container');
+            
             zoomImg.src = src;
+            
+            // 처음 열 때는 100% 화면에 딱 맞게 열리도록 셋팅
+            isZoomed = false;
+            zoomImg.className = "max-w-full max-h-full object-contain shadow-2xl cursor-zoom-in transition-all duration-300";
+            container.className = "w-full h-full overflow-auto flex items-center justify-center p-2 sm:p-10 modal-scroll";
+            
             zoomModal.classList.remove('hidden');
-            zoomModal.classList.add('flex');
+            zoomModal.classList.add('block');
         }
 
         function closeZoom() {
             const zoomModal = document.getElementById('zoom-modal');
             zoomModal.classList.add('hidden');
-            zoomModal.classList.remove('flex');
+            zoomModal.classList.remove('block');
         }
+
+        function toggleZoom(event) {
+            // 배경이나 닫기 버튼이 눌리는 것을 방지
+            event.stopPropagation(); 
+            
+            const img = document.getElementById('zoom-image');
+            const container = document.getElementById('zoom-scroll-container');
+            
+            if (!isZoomed) {
+                // 확대: 이미지를 모바일에서는 화면의 2.5배, PC에서는 1.5배로 쭉 늘려줍니다.
+                img.className = "w-[250%] md:w-[150%] max-w-none object-contain shadow-2xl cursor-zoom-out transition-all duration-300 origin-center";
+                // 가운정 정렬을 풀어서 자유롭게 스크롤할 수 있도록 만듭니다.
+                container.className = "w-full h-full overflow-auto p-4 sm:p-10 modal-scroll block";
+                isZoomed = true;
+            } else {
+                // 축소: 다시 한 화면에 쏙 들어가게 원상복구 시킵니다.
+                img.className = "max-w-full max-h-full object-contain shadow-2xl cursor-zoom-in transition-all duration-300";
+                container.className = "w-full h-full overflow-auto flex items-center justify-center p-2 sm:p-10 modal-scroll";
+                isZoomed = false;
+            }
+        }
+        // =========================================================================
 
         function toggleMobileSubMenu(menuId) {
             const targetMenu = document.getElementById(menuId);
@@ -917,6 +958,11 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             renderTable(currentPage);
+            
+            // ★ 화면 크기가 바뀔 때마다 페이지네이션 갯수를 다시 계산해서 그리기 ★
+            window.addEventListener('resize', () => {
+                renderPagination();
+            });
         });
     </script>
     <script>const ROOT_PATH = "../";</script>
