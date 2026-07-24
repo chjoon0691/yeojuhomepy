@@ -53,6 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                 </div>
                             </div>
 
+                            <!-- ★ 역대 교역자 및 장로 단독 페이지 추가 ★ -->
+                            <a href="${root}welcome/pastors_elders.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">역대 교역자 및 장로</a>
                             <a href="${root}welcome/serve/serve.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">섬기는 분들</a>
                             <a href="${root}welcome/worship/worship.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">예배안내</a>
                             <a href="${root}welcome/bus/bus.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">차량운행안내</a>
@@ -228,6 +230,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                     <li>- <a href="${root}welcome/history/old_photos.html" class="hover:text-blue-500">이전 홈피 사진들</a></li>
                                 </ul>
                             </li>
+                            <!-- ★ 역대 교역자 및 장로 단독 페이지 추가 ★ -->
+                            <li class="border-b border-dashed border-gray-100 py-1 hover:text-blue-600 transition"><a href="${root}welcome/pastors_elders.html" class="block w-full font-bold text-gray-900">역대 교역자 및 장로</a></li>
                             <li class="border-b border-dashed border-gray-100 py-1 hover:text-blue-600 transition"><a href="${root}welcome/serve/serve.html" class="block w-full">섬기는 분들</a></li>
                             <li class="border-b border-dashed border-gray-100 py-1 hover:text-blue-600 transition"><a href="${root}welcome/worship/worship.html" class="block w-full">예배안내</a></li>
                             <li class="border-b border-dashed border-gray-100 py-1 hover:text-blue-600 transition"><a href="${root}welcome/bus/bus.html" class="block w-full">차량운행안내</a></li>
