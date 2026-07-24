@@ -103,47 +103,7 @@
     <div class="max-w-7xl mx-auto px-4 py-12 md:py-20 flex flex-col md:flex-row gap-10">
         
         <!-- Left Sidebar -->
-        <aside class="hidden md:block w-64 flex-shrink-0">
-            <div class="bg-[#6b8cba] text-white text-center py-4 text-xl font-bold rounded-t-lg">
-                말씀과 찬양
-            </div>
-            <ul class="border border-t-0 border-gray-200 flex flex-col">
-                <li class="border-b border-gray-200 group">
-                    <a href="sunday.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">
-                        말씀 <i class="fas fa-chevron-down text-xs text-gray-400 group-hover:rotate-180 transition-transform duration-300"></i>
-                    </a>
-                    <div class="max-h-0 overflow-hidden group-hover:max-h-48 transition-all duration-500 ease-in-out">
-                        <ul class="py-2 bg-white border-t border-gray-100">
-                            <li><a href="sunday.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">주일 예배</a></li>
-                            <li><a href="afternoon.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">주일 오후 예배</a></li>
-                            <li><a href="wednesday.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">수요 예배</a></li>
-                            <li><a href="special_worship.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">특별집회</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <!-- 찬양대/중창단 (Expanded) -->
-                <li class="border-b border-gray-200 group">
-                    <a href="praise.html" class="flex justify-between items-center px-5 py-3 text-[#3b82f6] font-bold bg-gray-50 transition">
-                        찬양대/중창단 <i class="fas fa-chevron-down text-xs text-[#3b82f6] group-hover:rotate-180 transition-transform duration-300"></i>
-                    </a>
-                    <div class="max-h-0 overflow-hidden group-hover:max-h-64 transition-all duration-500 ease-in-out">
-                        <ul class="py-2 bg-white border-t border-gray-100">
-                            <li><a href="praise.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">시온찬양대</a></li>
-                            <li><a href="hallelujah.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">할렐루야찬양대</a></li>
-                            <li><a href="dreamnlove.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">꿈과사랑의찬양대</a></li>
-                            <li><a href="silver.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">은빛찬양대</a></li>
-                            <li><a href="sundayoffering.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">주일봉헌찬양</a></li>
-                            <li><a href="special.html" class="block px-8 py-1.5 text-sm text-[#3b82f6] font-bold bg-gray-50 transition">특별찬양</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li>
-                    <a href="media.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition rounded-b-lg">
-                        여주미디어 <i class="fas fa-chevron-right text-xs"></i>
-                    </a>
-                </li>
-            </ul>
-        </aside>
+        <aside id="common-sidebar" class="hidden md:block w-64 flex-shrink-0" data-category="큰분류" data-active="현재페이지"></aside>
 
         <!-- Right Content Area -->
         <main class="flex-1">
