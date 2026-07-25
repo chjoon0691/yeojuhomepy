@@ -12,6 +12,11 @@
         body { font-family: 'Pretendard', sans-serif; background-color: #ffffff; overflow-x: hidden; }
         #mobile-menu { display: none; }
         #mobile-menu.open { display: flex; }
+        
+        /* 섬기는 분들 페이지 스타일의 고급스러운 액자 CSS 적용 */
+        .person-card { display: flex; flex-direction: column; align-items: center; text-align: center; width: 100%; }
+        .person-img-wrap { width: 100%; background: white; padding: 6px; border: 1px solid #e5e7eb; box-shadow: 0 2px 4px rgba(0,0,0,0.05); margin-bottom: 8px; border-radius: 4px; }
+        .person-img { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 2px; }
     </style>
 </head>
 <body class="text-gray-800">
@@ -96,7 +101,7 @@
                 </div>
                 
                 <!-- JS를 통해 여기에 1~21대 교역자 사진이 채워집니다. -->
-                <div id="pastor-gallery" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-5">
+                <div id="pastor-gallery" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 md:gap-8">
                     <!-- 사진 카드 자동 생성 영역 -->
                 </div>
             </section>
@@ -109,7 +114,7 @@
                 </div>
                 
                 <!-- 장로님 데이터는 추후 추가를 위해 준비중 박스로 남겨둡니다. -->
-                <div id="elder-gallery" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-5">
+                <div id="elder-gallery" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 md:gap-8">
                     <div class="col-span-full py-16 bg-gray-50/50 text-center text-gray-500 font-medium text-base rounded-xl border border-dashed border-gray-300">
                         <i class="fas fa-tools text-3xl mb-3 text-gray-400 block"></i>
                         장로님들의 자료를 취합 및 정리 중입니다.
@@ -186,57 +191,54 @@
 
             pastorsData.forEach(pastor => {
                 const card = document.createElement('div');
-                card.className = "flex flex-col bg-white border border-gray-200 overflow-hidden shadow-sm group hover:-translate-y-1 transition duration-300";
+                // ★ 섬기는 분들 스타일 적용 ★
+                card.className = "person-card group hover:-translate-y-1 transition duration-300 cursor-default";
 
                 const fallbackImg = `../images/교회마크만01.png`; 
-                const labelText = `${pastor.id}대 ${pastor.role} ${pastor.name.split('').join(' ')}`;
+                // 직분과 대수
+                const titleText = `${pastor.id}대 ${pastor.role}`;
+                // 이름을 띄어쓰기로 분리 (예: 조 형 준)
+                const nameText = pastor.name.split('').join(' '); 
                 const imgId = `pastor-img-${pastor.id}`;
 
+                // ★ 고급스러운 액자 프레임과 상하로 나뉜 텍스트 구조 ★
                 card.innerHTML = `
-                    <div class="w-full aspect-[3/4] bg-gray-50 flex items-center justify-center overflow-hidden border-b border-gray-100 relative">
-                        <!-- 성공적으로 찾은 사진이 들어갈 곳 -->
+                    <div class="person-img-wrap relative">
                         <img id="${imgId}" 
                              alt="${pastor.id}대 ${pastor.name}" 
-                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500 hidden">
-                        <!-- 로딩 중이거나 사진이 없을 때 보여줄 기본 교회 로고 -->
-                        <img id="fallback-${pastor.id}" src="${fallbackImg}" class="w-1/2 h-auto opacity-20 object-contain">
+                             class="person-img hidden">
+                        <img id="fallback-${pastor.id}" src="${fallbackImg}" class="person-img opacity-20 object-contain p-4">
                     </div>
-                    <div class="bg-[#4a70b0] text-white text-center py-2.5 px-1 border-t-2 border-white/20">
-                        <p class="text-[12px] sm:text-[14px] font-bold tracking-tight whitespace-nowrap">${labelText}</p>
+                    <div class="flex flex-col items-center mt-1">
+                        <span class="text-[13px] md:text-sm text-gray-500 font-medium mb-1">${titleText}</span>
+                        <span class="text-lg md:text-xl font-bold text-gray-900 tracking-widest">${nameText}</span>
                     </div>
                 `;
                 
                 gallery.appendChild(card);
 
-                // ==========================================
-                // ★ 대소문자 무시 사진 자동 찾기 마법 ★
-                // ==========================================
                 const imgElement = document.getElementById(imgId);
                 const fallbackElement = document.getElementById(`fallback-${pastor.id}`);
                 
-                // 목사님 요청 반영: jfif, webp, gif 등 상상할 수 있는 모든 그림 확장자 추가!
                 const exts = ['jpg', 'JPG', 'jpeg', 'JPEG', 'png', 'PNG', 'jfif', 'JFIF', 'webp', 'WEBP', 'gif', 'GIF', 'bmp', 'BMP'];
                 let extIndex = 0;
 
                 function tryNext() {
                     if (extIndex >= exts.length) {
-                        // 모든 확장자(.jpg, .JPG, .png, .jfif 등)를 다 찾아봤는데 없으면 로고만 그대로 둠
                         return;
                     }
-                    imgElement.src = `images/pastors/${pastor.name}.${exts[extIndex]}`;
+                    // ★ 핵심 오류 수정: 사진이 들어있는 진짜 폴더 위치(루트의 images)로 경로 변경 ★
+                    imgElement.src = `../images/pastors/${pastor.name}.${exts[extIndex]}`;
                     extIndex++;
                 }
 
-                // 사진을 성공적으로 찾았을 때
                 imgElement.onload = function() {
-                    fallbackElement.style.display = 'none'; // 기본 로고 숨기기
-                    imgElement.classList.remove('hidden');  // 진짜 사진 보여주기
+                    fallbackElement.style.display = 'none'; 
+                    imgElement.classList.remove('hidden');  
                 };
 
-                // 사진 찾기에 실패했을 때 다음 확장자로 재시도
                 imgElement.onerror = tryNext;
 
-                // 첫 번째 확장자부터 시도 시작!
                 tryNext();
             });
         }
