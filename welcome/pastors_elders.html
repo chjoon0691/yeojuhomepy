@@ -179,31 +179,27 @@
             { id: 21, name: "조형준", role: "담임목사" }
         ];
 
-        // 갤러리 생성 함수
+        // 갤러리 생성 함수 (확장자 자동 탐색 마법 적용)
         function renderPastors() {
             const gallery = document.getElementById('pastor-gallery');
-            gallery.innerHTML = ''; // 초기화
+            gallery.innerHTML = ''; 
 
             pastorsData.forEach(pastor => {
-                // 카드 컨테이너 생성
                 const card = document.createElement('div');
                 card.className = "flex flex-col bg-white border border-gray-200 overflow-hidden shadow-sm group hover:-translate-y-1 transition duration-300";
 
-                // ★ 파일명을 번호 대신 '이름.jpg' (예: 조형준.jpg) 로 불러오도록 세팅 ★
-                const imgPath = `images/pastors/${pastor.name}.jpg`;
-                // 메인 페이지에 있는 교회 마크 주소
                 const fallbackImg = `../images/교회마크만01.png`; 
-
-                // 파란색 명찰 텍스트 구성 (예: 1대 담임전도사 윤 상 현)
                 const labelText = `${pastor.id}대 ${pastor.role} ${pastor.name.split('').join(' ')}`;
+                const imgId = `pastor-img-${pastor.id}`;
 
-                // onerror 속성을 이용해, 사진 파일이 없을 경우 교회 로고를 은은하게 투명도(opacity-20)를 주어 배치합니다.
                 card.innerHTML = `
-                    <div class="w-full aspect-[3/4] bg-gray-50 flex items-center justify-center overflow-hidden border-b border-gray-100">
-                        <img src="${imgPath}" 
-                             onerror="this.onerror=null; this.src='${fallbackImg}'; this.className='w-1/2 h-auto opacity-20 object-contain';" 
+                    <div class="w-full aspect-[3/4] bg-gray-50 flex items-center justify-center overflow-hidden border-b border-gray-100 relative">
+                        <!-- 성공적으로 찾은 사진이 들어갈 곳 -->
+                        <img id="${imgId}" 
                              alt="${pastor.id}대 ${pastor.name}" 
-                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500 hidden">
+                        <!-- 로딩 중이거나 사진이 없을 때 보여줄 기본 교회 로고 -->
+                        <img id="fallback-${pastor.id}" src="${fallbackImg}" class="w-1/2 h-auto opacity-20 object-contain">
                     </div>
                     <div class="bg-[#4a70b0] text-white text-center py-2.5 px-1 border-t-2 border-white/20">
                         <p class="text-[12px] sm:text-[14px] font-bold tracking-tight whitespace-nowrap">${labelText}</p>
@@ -211,6 +207,37 @@
                 `;
                 
                 gallery.appendChild(card);
+
+                // ==========================================
+                // ★ 대소문자 무시 사진 자동 찾기 마법 ★
+                // ==========================================
+                const imgElement = document.getElementById(imgId);
+                const fallbackElement = document.getElementById(`fallback-${pastor.id}`);
+                
+                // 목사님 요청 반영: jfif, webp, gif 등 상상할 수 있는 모든 그림 확장자 추가!
+                const exts = ['jpg', 'JPG', 'jpeg', 'JPEG', 'png', 'PNG', 'jfif', 'JFIF', 'webp', 'WEBP', 'gif', 'GIF', 'bmp', 'BMP'];
+                let extIndex = 0;
+
+                function tryNext() {
+                    if (extIndex >= exts.length) {
+                        // 모든 확장자(.jpg, .JPG, .png, .jfif 등)를 다 찾아봤는데 없으면 로고만 그대로 둠
+                        return;
+                    }
+                    imgElement.src = `images/pastors/${pastor.name}.${exts[extIndex]}`;
+                    extIndex++;
+                }
+
+                // 사진을 성공적으로 찾았을 때
+                imgElement.onload = function() {
+                    fallbackElement.style.display = 'none'; // 기본 로고 숨기기
+                    imgElement.classList.remove('hidden');  // 진짜 사진 보여주기
+                };
+
+                // 사진 찾기에 실패했을 때 다음 확장자로 재시도
+                imgElement.onerror = tryNext;
+
+                // 첫 번째 확장자부터 시도 시작!
+                tryNext();
             });
         }
 
