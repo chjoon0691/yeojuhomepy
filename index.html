@@ -371,14 +371,21 @@
             return arr;
         }
 
-        // 팝업창 관리 기능
+        // 팝업창 관리 기능 (여러 개를 넣고 싶으면 이 괄호 [ ] 안에 콤마(,)로 이어서 계속 추가하면 됩니다!)
         const popups = [
             {
-                id: 'popup_scholarship_2026', // 팝업 고유 아이디 (새 이벤트이므로 이름 변경)
+                id: 'popup_event_typo', // 첫 번째 팝업: 오타찾기
+                imageUrl: 'https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/images/%EC%98%A4%ED%83%80%EC%B0%BE%EA%B8%B0%EC%9D%B4%EB%B2%A4%ED%8A%B8.png',
+                linkUrl: '#', 
+                width: 350, 
+                endDate: '2026-07-27T00:00:00+09:00' 
+            },
+            {
+                id: 'popup_scholarship_2026', // 두 번째 팝업: 장학생 선발
                 imageUrl: 'https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/service/data/%EC%9E%A5%ED%95%99%EC%8B%A0%EC%B2%AD%EA%B4%91%EA%B3%A0.png',
-                linkUrl: 'javascript:downloadScholarshipFormsPopup()', // 클릭 시 2장 동시 다운로드 마법 함수 실행
-                width: 525, // PC에서 기존 350px 대비 1.5배 확대 (모바일은 자동으로 화면에 맞게 축소됨)
-                endDate: '2026-08-04T00:00:00+09:00' // 기한 설정 (접수마감일인 8/2 이후로 넉넉히 설정)
+                linkUrl: 'javascript:downloadScholarshipFormsPopup()', 
+                width: 525, 
+                endDate: '2026-08-04T00:00:00+09:00' 
             }
         ];
 
@@ -394,7 +401,6 @@
                 setTimeout(() => {
                     const link = document.createElement('a');
                     link.href = file;
-                    // URL의 맨 끝 파일명을 추출해 다운로드 이름으로 지정
                     link.download = decodeURIComponent(file.split('/').pop()); 
                     link.target = '_blank';
                     document.body.appendChild(link);
@@ -403,7 +409,7 @@
                 }, index * 300);
             });
             
-            // 다운로드 실행 후 사용자 편의를 위해 팝업창 닫아주기
+            // 다운로드 실행 후 팝업창 닫아주기
             closePopup('popup_scholarship_2026', false);
         }
 
