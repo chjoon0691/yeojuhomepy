@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+tl<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -58,12 +58,8 @@
 
     <div class="max-w-7xl mx-auto px-4 py-12 md:py-20 flex flex-col md:flex-row gap-10">
         
-        <aside class="hidden md:block w-64 flex-shrink-0">
-            <div class="bg-[#6b8cba] text-white text-center py-4 text-xl font-bold rounded-t-lg">행정서비스</div>
-            <ul class="border border-t-0 border-gray-200 flex flex-col">
-                <li><a href="application.html" class="flex justify-between items-center px-5 py-3 text-[#3b82f6] font-bold bg-gray-50 hover:bg-gray-100 transition rounded-b-lg">신청서류 <i class="fas fa-chevron-right text-xs"></i></a></li>
-            </ul>
-        </aside>
+        <!-- 마법의 파일 연결 3: 좌측 사이드바 자동 생성 -->
+        <aside id="common-sidebar" class="hidden md:block w-64 flex-shrink-0" data-category="service" data-active="application"></aside>
 
         <main class="flex-1">
             
