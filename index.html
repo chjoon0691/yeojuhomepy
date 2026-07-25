@@ -391,9 +391,10 @@
 
         // 메인 팝업 전용 장학신청서 2장 동시 다운로드 마법 함수
         function downloadScholarshipFormsPopup() {
+            // ★ 수정됨: 절대 주소가 아닌 홈페이지 내부 상대 경로로 변경하여 브라우저의 다운로드 차단을 뚫습니다!
             const files = [
-                "https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/service/data/%EC%9E%A5%ED%95%99%EC%8B%A0%EC%B2%AD%EC%84%9C01.jpg",
-                "https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/service/data/%EC%9E%A5%ED%95%99%EC%8B%A0%EC%B2%AD%EC%84%9C02.jpg"
+                "service/data/장학신청서01.jpg",
+                "service/data/장학신청서02.jpg"
             ];
             
             // 0.3초 간격으로 파일을 연속 다운로드
@@ -401,8 +402,7 @@
                 setTimeout(() => {
                     const link = document.createElement('a');
                     link.href = file;
-                    link.download = decodeURIComponent(file.split('/').pop()); 
-                    link.target = '_blank';
+                    link.download = file.split('/').pop(); 
                     document.body.appendChild(link);
                     link.click();
                     document.body.removeChild(link);
