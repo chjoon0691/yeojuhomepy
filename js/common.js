@@ -1,6 +1,6 @@
 /**
  * 여주성결교회 공통 스크립트 (마법의 파일)
- * 모든 페이지의 헤더(상단메뉴), 푸터(하단정보), 사이트맵을 이 파일 하나로 통제합니다.
+ * 모든 페이지의 헤더(상단메뉴), 푸터(하단정보), 사이트맵, 그리고 좌측 사이드바(LNB)를 이 파일 하나로 통제합니다.
  */
 document.addEventListener('DOMContentLoaded', () => {
     
@@ -53,6 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                 </div>
                             </div>
 
+                            <!-- 역대 교역자 및 장로 단독 페이지 추가 -->
+                            <a href="${root}welcome/pastors_elders.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">역대 교역자 및 장로</a>
                             <a href="${root}welcome/serve/serve.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">섬기는 분들</a>
                             <a href="${root}welcome/worship/worship.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">예배안내</a>
                             <a href="${root}welcome/bus/bus.html" class="block px-6 py-2.5 text-base font-medium hover:text-[#3b82f6] hover:bg-gray-50 transition">차량운행안내</a>
@@ -191,13 +193,13 @@ document.addEventListener('DOMContentLoaded', () => {
     </footer>
     `;
 
-    // 3. 공통 사이트맵 모달창 HTML (모바일 좁은 서랍형 1단, PC 중앙 4단 반응형, 상하간격 대폭 축소)
+    // 3. 공통 사이트맵 모달창 HTML
     const sitemapHTML = `
     <div id="global-sitemap-modal" class="fixed inset-0 z-[100] hidden md:items-center md:justify-center p-0 md:p-6">
         <!-- 반투명 배경 -->
         <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="toggleGlobalSitemap()"></div>
         
-        <!-- 팝업창 본체 (모바일: 오른쪽 폭 좁은 서랍형 / PC: 중앙 팝업형) -->
+        <!-- 팝업창 본체 -->
         <div class="relative w-[65%] max-w-[280px] md:max-w-[1000px] md:w-full bg-white shadow-2xl z-10 flex flex-col h-full md:h-auto md:max-h-[90vh] md:rounded-2xl ml-auto md:ml-0 overflow-hidden">
             
             <!-- 상단 타이틀 바 -->
@@ -211,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </button>
             </div>
             
-            <!-- 사이트맵 링크 영역 (PC: 4단 분리 / 모바일: 1단 한줄 세로배열) -->
+            <!-- 사이트맵 링크 영역 -->
             <div id="sitemap-content" class="p-4 md:p-8 overflow-y-auto bg-white flex-1">
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-x-6 gap-y-6">
                     
@@ -228,6 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     <li>- <a href="${root}welcome/history/old_photos.html" class="hover:text-blue-500">이전 홈피 사진들</a></li>
                                 </ul>
                             </li>
+                            <li class="border-b border-dashed border-gray-100 py-1 hover:text-blue-600 transition"><a href="${root}welcome/pastors_elders.html" class="block w-full font-bold text-gray-900">역대 교역자 및 장로</a></li>
                             <li class="border-b border-dashed border-gray-100 py-1 hover:text-blue-600 transition"><a href="${root}welcome/serve/serve.html" class="block w-full">섬기는 분들</a></li>
                             <li class="border-b border-dashed border-gray-100 py-1 hover:text-blue-600 transition"><a href="${root}welcome/worship/worship.html" class="block w-full">예배안내</a></li>
                             <li class="border-b border-dashed border-gray-100 py-1 hover:text-blue-600 transition"><a href="${root}welcome/bus/bus.html" class="block w-full">차량운행안내</a></li>
@@ -330,6 +333,174 @@ document.addEventListener('DOMContentLoaded', () => {
     if (headerEl) headerEl.innerHTML = headerHTML;
     if (footerEl) footerEl.innerHTML = footerHTML;
     if (sitemapEl) sitemapEl.innerHTML = sitemapHTML;
+
+    // ==========================================
+    // 5. 공통 사이드바(LNB) 자동 생성 로직
+    // ==========================================
+    const sidebarEl = document.getElementById('common-sidebar');
+    if (sidebarEl) {
+        const category = sidebarEl.getAttribute('data-category');
+        const activeId = sidebarEl.getAttribute('data-active');
+
+        // 전체 메뉴 트리 데이터
+        const sidebarData = {
+            "welcome": {
+                title: "환영합니다",
+                items: [
+                    { id: "greeting", name: "인사말", href: "welcome/greeting.html" },
+                    { id: "history", name: "교회연혁", href: "welcome/history/history.html",
+                      subs: [
+                          { id: "building", name: "성전건축이야기", href: "welcome/history/building.html" },
+                          { id: "edu_building", name: "교육관건축사진", href: "welcome/history/edu_building.html" },
+                          { id: "old_photos", name: "이전 홈피 사진들", href: "welcome/history/old_photos.html" }
+                      ]
+                    },
+                    { id: "pastors_elders", name: "역대 교역자 및 장로", href: "welcome/pastors_elders.html" },
+                    { id: "serve", name: "섬기는 분들", href: "welcome/serve/serve.html" },
+                    { id: "worship", name: "예배안내", href: "welcome/worship/worship.html" },
+                    { id: "bus", name: "차량운행안내", href: "welcome/bus/bus.html" },
+                    { id: "map", name: "오시는길", href: "welcome/map/map.html" },
+                    { id: "newcomer", name: "새가족안내", href: "welcome/newcomer/newcomer.html" }
+                ]
+            },
+            "word": {
+                title: "말씀과 찬양",
+                items: [
+                    { id: "word_group", name: "말씀", href: "word/sunday.html",
+                      subs: [
+                          { id: "sunday", name: "주일 예배", href: "word/sunday.html" },
+                          { id: "afternoon", name: "주일 오후 예배", href: "word/afternoon.html" },
+                          { id: "wednesday", name: "수요 예배", href: "word/wednesday.html" },
+                          { id: "special_worship", name: "특별집회", href: "word/special_worship.html" }
+                      ]
+                    },
+                    { id: "praise_group", name: "찬양대/중창단", href: "word/praise.html",
+                      subs: [
+                          { id: "praise", name: "시온찬양대", href: "word/praise.html" },
+                          { id: "hallelujah", name: "할렐루야찬양대", href: "word/hallelujah.html" },
+                          { id: "dreamnlove", name: "꿈과사랑의찬양대", href: "word/dreamnlove.html" },
+                          { id: "silver", name: "은빛찬양대", href: "word/silver.html" },
+                          { id: "sundayoffering", name: "주일봉헌찬양", href: "word/sundayoffering.html" },
+                          { id: "special", name: "특별찬양", href: "word/special.html" }
+                      ]
+                    },
+                    { id: "media", name: "여주미디어", href: "word/media.html" }
+                ]
+            },
+            "community": {
+                title: "공동체",
+                items: [
+                    { id: "parish", name: "교구", href: "community/parish.html" },
+                    { id: "organization", name: "기관", href: "community/organization.html" },
+                    { id: "training", name: "양육&훈련", href: "community/training.html" },
+                    { id: "senior", name: "청춘대학", href: "community/senior.html" },
+                    { id: "company", name: "성도기업", href: "community/company.html" }
+                ]
+            },
+            "nextgen": {
+                title: "다음세대",
+                items: [
+                    { id: "infant", name: "영아부", href: "nextgen/infant.html" },
+                    { id: "kindergarten", name: "유치부", href: "nextgen/kindergarten.html" },
+                    { id: "children", name: "유년부", href: "nextgen/children.html" },
+                    { id: "elementary", name: "초등부", href: "nextgen/elementary.html" },
+                    { id: "awana", name: "어와나", href: "nextgen/awana.html" },
+                    { id: "middle", name: "중등부", href: "nextgen/middle.html" },
+                    { id: "high", name: "고등부", href: "nextgen/high.html" },
+                    { id: "youth", name: "청년사역위원회", href: "nextgen/youth.html" }
+                ]
+            },
+            "mission": {
+                title: "전도와 선교",
+                items: [
+                    { id: "evangelism", name: "전도대", href: "mission/evangelism.html" },
+                    { id: "domestic", name: "국내선교", href: "mission/domestic.html" },
+                    { id: "overseas", name: "해외선교", href: "mission/overseas.html" },
+                    { id: "news", name: "선교지 소식", href: "mission/news.html" },
+                    { id: "club", name: "동호인선교회", href: "mission/club.html" }
+                ]
+            },
+            "news": {
+                title: "교회소식",
+                items: [
+                    { id: "weekly", name: "교회주보", href: "news/weekly.html" },
+                    { id: "newcomer", name: "새가족소식", href: "news/newcomer.html" },
+                    { id: "member", name: "성도소식", href: "news/member.html" },
+                    { id: "gallery", name: "행사사진", href: "news/gallery.html" }
+                ]
+            },
+            "service": {
+                title: "행정서비스",
+                items: [
+                    { id: "application", name: "신청서류", href: "service/application.html" }
+                ]
+            }
+        };
+
+        const currentData = sidebarData[category];
+        if (currentData) {
+            let ulHtml = '';
+            
+            currentData.items.forEach((item, index) => {
+                let isItemActive = (item.id === activeId);
+                let hasActiveSub = false;
+                
+                if (item.subs) {
+                    hasActiveSub = item.subs.some(sub => sub.id === activeId);
+                }
+                
+                let liClass = index === currentData.items.length - 1 ? "" : "border-b border-gray-200";
+                
+                if (item.subs) {
+                    // 서브 메뉴가 있는 그룹 메뉴 (예: 교회연혁, 말씀, 찬양대 등)
+                    let groupActive = isItemActive || hasActiveSub;
+                    let titleColor = groupActive ? "text-[#3b82f6] font-bold bg-gray-50" : "text-gray-700 hover:text-blue-600 hover:bg-gray-50";
+                    let iconHtml = groupActive 
+                        ? `<i class="fas fa-chevron-down text-xs text-[#3b82f6] group-hover:rotate-180 transition-transform duration-300"></i>`
+                        : `<i class="fas fa-chevron-down text-xs text-gray-400 group-hover:rotate-180 transition-transform duration-300"></i>`;
+                    
+                    let subsHtml = '';
+                    item.subs.forEach(sub => {
+                        let isSubActive = (sub.id === activeId);
+                        let subColor = isSubActive ? "text-[#3b82f6] font-bold bg-gray-50" : "text-gray-500 hover:text-blue-600 hover:bg-gray-50";
+                        subsHtml += `<li><a href="${root}${sub.href}" class="block px-8 py-1.5 text-sm ${subColor} transition">${sub.name}</a></li>`;
+                    });
+
+                    ulHtml += `
+                    <li class="${liClass} group">
+                        <a href="${root}${item.href}" class="flex justify-between items-center px-5 py-3 ${titleColor} transition">
+                            ${item.name} ${iconHtml}
+                        </a>
+                        <div class="${groupActive ? '' : 'max-h-0'} overflow-hidden group-hover:max-h-96 transition-all duration-500 ease-in-out">
+                            <ul class="py-2 bg-white border-t border-gray-100">
+                                ${subsHtml}
+                            </ul>
+                        </div>
+                    </li>`;
+                } else {
+                    // 단일 메뉴 (예: 인사말, 예배안내 등)
+                    let itemColor = isItemActive ? "text-[#3b82f6] font-bold bg-gray-50 hover:bg-gray-100" : "text-gray-700 hover:text-blue-600 hover:bg-gray-50";
+                    let iconHtml = isItemActive ? `<i class="fas fa-chevron-right text-xs"></i>` : '';
+                    let aClassAdd = index === currentData.items.length - 1 ? "rounded-b-lg" : "";
+                    
+                    ulHtml += `
+                    <li class="${liClass}">
+                        <a href="${root}${item.href}" class="flex justify-between items-center px-5 py-3 ${itemColor} transition ${aClassAdd}">
+                            ${item.name} ${iconHtml}
+                        </a>
+                    </li>`;
+                }
+            });
+
+            // 사이드바 컨테이너에 최종 HTML 삽입
+            sidebarEl.innerHTML = `
+                <div class="bg-[#6b8cba] text-white text-center py-4 text-xl font-bold rounded-t-lg">${currentData.title}</div>
+                <ul class="border border-t-0 border-gray-200 flex flex-col bg-white rounded-b-lg">
+                    ${ulHtml}
+                </ul>
+            `;
+        }
+    }
 });
 
 // 전역 함수: 사이트맵 모달 토글

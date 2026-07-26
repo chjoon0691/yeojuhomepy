@@ -80,15 +80,7 @@
     <div class="max-w-7xl mx-auto px-4 py-12 md:py-20 flex flex-col md:flex-row gap-10">
         
         <!-- Left Sidebar -->
-        <aside class="hidden md:block w-64 flex-shrink-0">
-            <div class="bg-[#6b8cba] text-white text-center py-4 text-xl font-bold rounded-t-lg">교회소식</div>
-            <ul class="border border-t-0 border-gray-200 flex flex-col">
-                <li><a href="weekly.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">교회주보</a></li>
-                <li><a href="newcomer.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">새가족소식</a></li>
-                <li><a href="member.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">성도소식</a></li>
-                <li><a href="gallery.html" class="flex justify-between items-center px-5 py-3 text-[#3b82f6] font-bold bg-gray-50 hover:bg-gray-100 transition rounded-b-lg">행사사진 <i class="fas fa-chevron-right text-xs"></i></a></li>
-            </ul>
-        </aside>
+        <aside id="common-sidebar" class="hidden md:block w-64 flex-shrink-0" data-category="news" data-active="gallery"></aside>
 
         <!-- Right Content Area -->
         <main class="flex-1 relative">
@@ -173,6 +165,8 @@
     <script>
         // ★ 목사님이 올리신 259번 데이터 그대로 사용 ★
         const rawText = `
+262|260726 연합 구역예배(1교구)|2026.07.26                
+261|260712 2여전도회 헌신예배|2026.07.13                
 260|260711 경기동지방 어린이 하계대회|2026.07.11        
 259|260704 성결파크골크선교회|2026.07.04
 258|260705 그루터기 중창단 창단식|2026.07.05
@@ -732,7 +726,3 @@
 
 </body>
 </html>
-```
-
-### 💡 확인 방법
-깃허브에 코드를 저장(`Commit changes`)하신 후, 컴퓨터 브라우저 화면의 가로 길이를 마우스로 줄였다 늘렸다 해보세요! **창 크기에 맞춰 페이지 번호 개수가 고무줄처럼 자동으로 늘어났다 줄어들며 두 줄로 넘어가는 것을 완벽하게 막아줄 것입니다.**

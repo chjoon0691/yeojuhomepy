@@ -30,16 +30,7 @@
     <div class="max-w-7xl mx-auto px-4 py-12 md:py-20 flex flex-col md:flex-row gap-10">
         
         <!-- 좌측 사이드바 -->
-        <aside class="hidden md:block w-64 flex-shrink-0">
-            <div class="bg-[#6b8cba] text-white text-center py-4 text-xl font-bold rounded-t-lg">공동체</div>
-            <ul class="border border-t-0 border-gray-200 flex flex-col">
-                <li><a href="parish.html" class="flex justify-between items-center px-5 py-3 text-[#3b82f6] font-bold bg-gray-50 hover:bg-gray-100 transition border-b border-gray-200">교구 <i class="fas fa-chevron-right text-xs"></i></a></li>
-                <li><a href="organization.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">기관</a></li>
-                <li><a href="training.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">양육&훈련</a></li>
-                <li><a href="senior.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition border-b border-gray-200">청춘대학</a></li>
-                <li><a href="company.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition rounded-b-lg">성도기업</a></li>
-            </ul>
-        </aside>
+        <aside id="common-sidebar" class="hidden md:block w-64 flex-shrink-0" data-category="community" data-active="parish"></aside>
 
         <!-- 메인 콘텐츠 영역 -->
         <main class="flex-1">

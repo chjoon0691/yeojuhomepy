@@ -86,32 +86,7 @@
     <div class="max-w-7xl mx-auto px-4 py-12 md:py-20 flex flex-col md:flex-row gap-10">
         
         <!-- Left Sidebar -->
-        <aside class="hidden md:block w-64 flex-shrink-0">
-            <div class="bg-[#6b8cba] text-white text-center py-4 text-xl font-bold rounded-t-lg">환영합니다</div>
-            <ul class="border border-t-0 border-gray-200 flex flex-col">
-                <li class="border-b border-gray-200"><a href="../greeting.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">인사말</a></li>
-                
-                <!-- 교회연혁 (하위 메뉴 오픈 상태) -->
-                <li class="border-b border-gray-200 group">
-                    <a href="history.html" class="flex justify-between items-center px-5 py-3 text-[#3b82f6] font-bold bg-gray-50 transition">
-                        교회연혁 <i class="fas fa-chevron-down text-xs text-[#3b82f6]"></i>
-                    </a>
-                    <div class="overflow-hidden">
-                        <ul class="py-2 bg-white border-t border-gray-100">
-                            <li><a href="building.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">성전건축이야기</a></li>
-                            <li><a href="edu_building.html" class="block px-8 py-1.5 text-sm text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition">교육관건축사진</a></li>
-                            <li><a href="old_photos.html" class="block px-8 py-1.5 text-sm text-blue-600 font-bold bg-gray-50 transition">이전 홈피 사진들</a></li>
-                        </ul>
-                    </div>
-                </li>
-
-                <li class="border-b border-gray-200"><a href="../serve/serve.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">섬기는 분들</a></li>
-                <li class="border-b border-gray-200"><a href="../worship/worship.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">예배안내</a></li>
-                <li class="border-b border-gray-200"><a href="../bus/bus.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">차량운행안내</a></li>
-                <li class="border-b border-gray-200"><a href="../map/map.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">오시는길</a></li>
-                <li><a href="../newcomer/newcomer.html" class="flex justify-between items-center px-5 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition rounded-b-lg">새가족안내</a></li>
-            </ul>
-        </aside>
+        <aside id="common-sidebar" class="hidden md:block w-64 flex-shrink-0" data-category="welcome" data-active="old_photos"></aside>
 
         <!-- Right Content Area -->
         <main class="flex-1 relative">
