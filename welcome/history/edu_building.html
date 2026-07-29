@@ -10,7 +10,7 @@
     <style>
         @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
         body { font-family: 'Pretendard', sans-serif; background-color: #ffffff; overflow-x: hidden; }
-        
+
         /* 페이지네이션 및 스크롤바 스타일 */
         .page-link {
             display: inline-flex; align-items: center; justify-content: center;
@@ -19,7 +19,7 @@
         }
         .page-link:hover { background-color: #f3f4f6; color: #1b315b; }
         .page-link.active { border-color: #1b315b; color: #1b315b; font-weight: bold; }
-        
+
         /* 모달 세로 스크롤바 디자인 */
         .modal-scroll::-webkit-scrollbar { width: 8px; }
         .modal-scroll::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
@@ -76,13 +76,13 @@
 
     <!-- Main Content Layout -->
     <div class="max-w-7xl mx-auto px-4 py-12 md:py-20 flex flex-col md:flex-row gap-10">
-        
+
         <!-- Left Sidebar -->
         <aside id="common-sidebar" class="hidden md:block w-64 flex-shrink-0" data-category="welcome" data-active="edu_building"></aside>
 
         <!-- Right Content Area -->
         <main class="flex-1 relative">
-            
+
             <div class="w-full bg-[#1b315b] rounded-xl h-24 md:h-32 flex flex-col justify-center items-center text-white shadow-md relative overflow-hidden mb-8">
                 <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
                 <h3 class="text-2xl md:text-3xl font-extrabold relative z-10 tracking-tight">교육관건축사진</h3>
@@ -118,7 +118,7 @@
     <!-- ★ 다중 사진 팝업 모달창 ★ -->
     <div id="edu-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6">
         <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="closeModal()"></div>
-        
+
         <div class="relative w-full max-w-4xl bg-white shadow-2xl z-10 flex flex-col max-h-[90vh] rounded-xl overflow-hidden border-t-[6px] border-[#3b82f6]">
             <!-- 모달 헤더 -->
             <div class="bg-white text-gray-800 px-6 py-5 border-b border-gray-200 flex justify-between items-start shrink-0">
@@ -132,7 +132,7 @@
                     </button>
                 </div>
             </div>
-            
+
             <!-- 모달 콘텐츠 -->
             <div class="p-6 md:p-8 overflow-y-auto flex-1 bg-gray-100 modal-scroll flex flex-col items-center gap-6 relative" id="modal-image-container">
                 <!-- 로딩 중 메시지 -->
@@ -174,29 +174,29 @@
 
         // ★ 교육관 건축 33장의 사진을 4개의 그룹(앨범)으로 묶은 데이터 ★
         const eduData = [
-            { 
-                id: 4, 
-                title: '교육관건축 사진모음01', 
-                date: '2019.09.28', 
-                fileNames: generateBaseNames(26, 33) 
+            {
+                id: 4,
+                title: '내부 인테리어 및 완공',
+                date: '2019.09.28',
+                fileNames: generateBaseNames(26, 33)
             },
-            { 
-                id: 3, 
-                title: '교육관건축 사진모음02', 
-                date: '2019.06.15', 
-                fileNames: generateBaseNames(17, 25) 
+            {
+                id: 3,
+                title: '3층 골조 및 지붕 공사',
+                date: '2019.06.15',
+                fileNames: generateBaseNames(17, 25)
             },
-            { 
-                id: 2, 
-                title: '교육관건축 사진모음03', 
-                date: '2019.04.10', 
-                fileNames: generateBaseNames(9, 16) 
+            {
+                id: 2,
+                title: '1~2층 골조 및 외부 공사',
+                date: '2019.04.10',
+                fileNames: generateBaseNames(9, 16)
             },
-            { 
-                id: 1, 
-                title: '교육관건축 사진모음04', 
-                date: '2019.03.19', 
-                fileNames: generateBaseNames(1, 8) 
+            {
+                id: 1,
+                title: '교육관 신축 기공 및 기초 공사',
+                date: '2019.03.19',
+                fileNames: generateBaseNames(1, 8)
             }
         ];
 
@@ -238,13 +238,13 @@
 
                 let imgId = `thumb-edu-${item.id}`;
                 // 썸네일은 각 앨범의 첫 번째 사진의 기본 이름
-                let thumbBaseName = item.fileNames[0]; 
-                
+                let thumbBaseName = item.fileNames[0];
+
                 card.innerHTML = `
                     <div class="w-full aspect-[4/3] rounded-lg overflow-hidden shadow-sm border border-gray-200 mb-2 relative bg-gray-50">
                         <img id="${imgId}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
                         <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition duration-300"></div>
-                        
+
                         <!-- 마우스 호버 시 왼쪽 위에 나타나는 제목 -->
                         <div class="absolute top-2 left-2 bg-[#1b315b]/90 text-white text-xs font-bold px-2 py-1.5 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm z-10 shadow text-left max-w-[90%] leading-snug">
                             ${item.title}
@@ -259,11 +259,11 @@
                     <p class="text-[11px] text-gray-500 text-center mt-0.5">${item.date}</p>
                 `;
                 gridContainer.appendChild(card);
-                
+
                 // 썸네일 로딩 시도
                 loadThumbnail(document.getElementById(imgId), thumbBaseName);
             });
-            
+
             renderPagination();
         }
 
@@ -283,7 +283,7 @@
                     e.preventDefault();
                     currentPage = i;
                     renderGrid(currentPage);
-                    window.scrollTo({top: 300, behavior: 'smooth'}); 
+                    window.scrollTo({top: 300, behavior: 'smooth'});
                 };
                 paginationContainer.appendChild(a);
             }
@@ -296,9 +296,9 @@
 
             document.getElementById('modal-title').textContent = data.title;
             document.getElementById('modal-date').innerHTML = `<i class="far fa-calendar-alt mr-1"></i> 등록일 : ${data.date}`;
-            
+
             const container = document.getElementById('modal-image-container');
-            
+
             Array.from(container.children).forEach(child => {
                 if(child.id !== 'loading-msg') child.remove();
             });
@@ -324,36 +324,36 @@
                 img.className = "w-full h-auto object-contain rounded cursor-pointer hover:opacity-90 transition duration-300";
                 img.title = "클릭하시면 원본 크기로 확대됩니다.";
                 img.onclick = () => openZoom(imgUrl);
-                
+
                 let zoomIcon = document.createElement('div');
                 zoomIcon.className = "absolute top-4 right-4 bg-black/50 text-white p-2 rounded-full pointer-events-none opacity-70";
                 zoomIcon.innerHTML = '<i class="fas fa-search-plus"></i>';
-                
+
                 imgInnerWrap.appendChild(img);
                 imgInnerWrap.appendChild(zoomIcon);
                 wrapElement.appendChild(imgInnerWrap);
 
                 img.onload = function() {
-                    wrapElement.classList.remove('hidden'); 
-                    document.getElementById('loading-msg').style.display = 'none'; 
+                    wrapElement.classList.remove('hidden');
+                    document.getElementById('loading-msg').style.display = 'none';
                     loadedCount++;
                 };
-                
+
                 img.onerror = function() {
                     // 에러 발생 시 안의 요소를 비우고 다음 확장자로 재시도
-                    wrapElement.innerHTML = ''; 
+                    wrapElement.innerHTML = '';
                     tryLoadModalImage(baseName, extsArray, wrapElement);
                 };
-                
-                img.src = imgUrl; 
+
+                img.src = imgUrl;
             }
 
             // 앨범에 속한 파일 이름 배열을 돌면서 이미지 틀을 만들고 로딩 시작
             data.fileNames.forEach(baseName => {
                 let imgWrap = document.createElement('div');
-                imgWrap.className = "bg-white p-2 md:p-3 rounded-lg shadow-sm border border-gray-200 w-full mb-4 hidden flex flex-col"; 
+                imgWrap.className = "bg-white p-2 md:p-3 rounded-lg shadow-sm border border-gray-200 w-full mb-4 hidden flex flex-col";
                 container.appendChild(imgWrap);
-                
+
                 // jpg, png 등 여러 확장자 시도 가능성 부여
                 tryLoadModalImage(baseName, ['jpg', 'png', 'jpeg', 'JPG', 'PNG'], imgWrap);
             });
@@ -366,14 +366,14 @@
             const modal = document.getElementById('edu-modal');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
-            document.body.style.overflow = 'hidden'; 
+            document.body.style.overflow = 'hidden';
         }
 
         function closeModal() {
             const modal = document.getElementById('edu-modal');
             modal.classList.add('hidden');
             modal.classList.remove('flex');
-            document.body.style.overflow = ''; 
+            document.body.style.overflow = '';
         }
 
         // 확대 모달창 관련 함수
