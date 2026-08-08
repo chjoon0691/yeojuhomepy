@@ -507,110 +507,126 @@
             return String(value || '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
         }
 
-        function popupDatePoint(value, timeValue, endOfDay) {
-            if (!value) return null;
-            if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
-                const t = /^\d{2}:\d{2}$/.test(String(timeValue || '')) ? String(timeValue) : (endOfDay ? '23:59' : '00:00');
-                return new Date(value + 'T' + t + ':00+09:00');
+        function popupRectsOverlap(a, b, gap) {
+            const g = Number(gap) || 0;
+            return !(a.right + g <= b.left || b.right + g <= a.left || a.bottom + g <= b.top || b.bottom + g <= a.top);
+        }
+
+        function popupDesktopPosition(card, placed) {
+            const gap = 14;
+            const margin = 12;
+            const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0, 320);
+            const rect = card.getBoundingClientRect();
+            const w = Math.max(1, rect.width || card.offsetWidth || 350);
+            const h = Math.max(1, rect.height || card.offsetHeight || 400);
+            const maxLeft = Math.max(margin, vw - w - margin);
+            const preferredLeft = Math.min(maxLeft, Math.max(margin, Number(card.dataset.popupLeft) || margin));
+            const preferredTop = Math.max(margin, Number(card.dataset.popupTop) || 100);
+            const candidates = [{left:preferredLeft, top:preferredTop}];
+            placed.forEach(r => {
+                candidates.push({left:r.right + gap, top:r.top});
+                candidates.push({left:r.left, top:r.bottom + gap});
+            });
+            const maxBottom = placed.reduce((m, r) => Math.max(m, r.bottom), preferredTop);
+            candidates.push({left:margin, top:maxBottom + gap});
+            for (const c of candidates) {
+                const left = Math.min(maxLeft, Math.max(margin, Math.round(c.left)));
+                const top = Math.max(margin, Math.round(c.top));
+                const candidate = {left, top, right:left + w, bottom:top + h};
+                if (candidate.right > vw - margin + 1) continue;
+                if (!placed.some(r => popupRectsOverlap(candidate, r, gap))) return candidate;
             }
-            const d = new Date(value);
-            return Number.isNaN(d.getTime()) ? null : d;
+            const top = maxBottom + gap;
+            return {left:margin, top, right:margin + w, bottom:top + h};
         }
 
-        function popupAttr(value) {
-            return String(value || '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
-        }
-
-        function popupDatePoint(value, timeValue, endOfDay) {
-            if (!value) return null;
-            if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
-                const t = /^\d{2}:\d{2}$/.test(String(timeValue || '')) ? String(timeValue) : (endOfDay ? '23:59' : '00:00');
-                return new Date(value + 'T' + t + ':00+09:00');
+        function layoutHomepagePopups(container) {
+            if (!container) return;
+            const cards = Array.from(container.querySelectorAll('[data-homepage-popup]')).filter(el => el.style.display !== 'none');
+            if (window.innerWidth < 768) {
+                cards.forEach((el, index) => {
+                    el.style.position = 'fixed';
+                    el.style.left = '50%';
+                    el.style.top = (16 + Math.min(index, 5) * 18) + 'px';
+                    el.style.transform = 'translateX(-50%)';
+                    el.style.maxWidth = '90vw';
+                });
+                return;
             }
-            const d = new Date(value);
-            return Number.isNaN(d.getTime()) ? null : d;
+            const placed = [];
+            cards.forEach(el => {
+                el.style.position = 'absolute';
+                el.style.transform = 'none';
+                if (el.dataset.popupUserMoved === '1') {
+                    const r = el.getBoundingClientRect();
+                    const left = Math.max(12, Number.parseFloat(el.style.left) || 12);
+                    const top = Math.max(12, Number.parseFloat(el.style.top) || 12);
+                    placed.push({left, top, right:left + r.width, bottom:top + r.height});
+                    return;
+                }
+                const pos = popupDesktopPosition(el, placed);
+                el.style.left = pos.left + 'px';
+                el.style.top = pos.top + 'px';
+                placed.push(pos);
+            });
         }
 
-        function popupAttr(value) {
-            return String(value || '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
-        }
-
-        function popupDatePoint(value, timeValue, endOfDay) {
-            if (!value) return null;
-            if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
-                const t = /^\d{2}:\d{2}$/.test(String(timeValue || '')) ? String(timeValue) : (endOfDay ? '23:59' : '00:00');
-                return new Date(value + 'T' + t + ':00+09:00');
-            }
-            const d = new Date(value);
-            return Number.isNaN(d.getTime()) ? null : d;
-        }
-
-        function popupAttr(value) {
-            return String(value || '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
-        }
-
-        function popupDatePoint(value, timeValue, endOfDay) {
-            if (!value) return null;
-            if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
-                const t = /^\d{2}:\d{2}$/.test(String(timeValue || '')) ? String(timeValue) : (endOfDay ? '23:59' : '00:00');
-                return new Date(value + 'T' + t + ':00+09:00');
-            }
-            const d = new Date(value);
-            return Number.isNaN(d.getTime()) ? null : d;
-        }
-
-        function popupAttr(value) {
-            return String(value || '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
-        }
-
-        function popupDatePoint(value, timeValue, endOfDay) {
-            if (!value) return null;
-            if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
-                const t = /^\d{2}:\d{2}$/.test(String(timeValue || '')) ? String(timeValue) : (endOfDay ? '23:59' : '00:00');
-                return new Date(value + 'T' + t + ':00+09:00');
-            }
-            const d = new Date(value);
-            return Number.isNaN(d.getTime()) ? null : d;
-        }
-
-        function popupAttr(value) {
-            return String(value || '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
-        }
-
-        function popupDatePoint(value, timeValue, endOfDay) {
-            if (!value) return null;
-            if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
-                const t = /^\d{2}:\d{2}$/.test(String(timeValue || '')) ? String(timeValue) : (endOfDay ? '23:59' : '00:00');
-                return new Date(value + 'T' + t + ':00+09:00');
-            }
-            const d = new Date(value);
-            return Number.isNaN(d.getTime()) ? null : d;
-        }
-
-        function popupAttr(value) {
-            return String(value || '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
-        }
-
-        function popupDatePoint(value, timeValue, endOfDay) {
-            if (!value) return null;
-            if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
-                const t = /^\d{2}:\d{2}$/.test(String(timeValue || '')) ? String(timeValue) : (endOfDay ? '23:59' : '00:00');
-                return new Date(value + 'T' + t + ':00+09:00');
-            }
-            const d = new Date(value);
-            return Number.isNaN(d.getTime()) ? null : d;
-        }
-
-        function popupAttr(value) {
-            return String(value || '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+        function bindHomepagePopupInteractions(container) {
+            if (!container) return;
+            container.querySelectorAll('[data-homepage-popup]').forEach(card => {
+                const closeButton = card.querySelector('[data-popup-close]');
+                if (closeButton) {
+                    closeButton.addEventListener('pointerdown', e => e.stopPropagation());
+                    closeButton.addEventListener('click', e => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const id = String(card.dataset.popupId || '');
+                        const check = card.querySelector('[data-popup-hide-today]');
+                        if (check && check.checked && typeof setCookie === 'function') setCookie(id, 'done', 1);
+                        card.style.display = 'none';
+                        window.setTimeout(() => layoutHomepagePopups(container), 0);
+                    });
+                }
+                card.querySelectorAll('label,input,button,a').forEach(el => el.addEventListener('pointerdown', e => e.stopPropagation()));
+                const footer = card.querySelector('[data-popup-drag]');
+                if (!footer) return;
+                footer.addEventListener('pointerdown', e => {
+                    if (window.innerWidth < 768 || e.button !== 0 || e.target.closest('label,input,button,a')) return;
+                    const startRect = card.getBoundingClientRect();
+                    const startX = e.clientX;
+                    const startY = e.clientY;
+                    const maxLeft = () => Math.max(8, window.innerWidth - card.offsetWidth - 8);
+                    const maxTop = () => Math.max(8, window.innerHeight - Math.min(card.offsetHeight, window.innerHeight - 16) - 8);
+                    card.dataset.popupUserMoved = '1';
+                    footer.classList.add('cursor-grabbing');
+                    footer.setPointerCapture?.(e.pointerId);
+                    const move = ev => {
+                        const left = Math.min(maxLeft(), Math.max(8, startRect.left + ev.clientX - startX));
+                        const top = Math.min(maxTop(), Math.max(8, startRect.top + ev.clientY - startY));
+                        card.style.left = Math.round(left) + 'px';
+                        card.style.top = Math.round(top) + 'px';
+                        card.style.transform = 'none';
+                    };
+                    const end = () => {
+                        footer.classList.remove('cursor-grabbing');
+                        window.removeEventListener('pointermove', move);
+                        window.removeEventListener('pointerup', end);
+                    };
+                    window.addEventListener('pointermove', move);
+                    window.addEventListener('pointerup', end);
+                    e.preventDefault();
+                });
+            });
         }
 
         function initPopups() {
             const container = document.getElementById('popup-container');
+            if (!container) return;
             let html = '';
             const now = new Date();
+            let visibleIndex = 0;
 
-            popups.forEach((p, index) => {
+            popups.forEach((p) => {
                 if (p.enabled === false) return;
                 const start = popupDatePoint(p.startDate, p.startTime, false);
                 const end = popupDatePoint(p.endDate, p.endTime, true);
@@ -618,61 +634,39 @@
                 if (end && now > end) return;
                 if (getCookie(p.id) === 'done') return;
 
+                const index = visibleIndex++;
                 const width = Math.max(180, Number(p.width) || 350);
                 const height = Math.max(0, Number(p.height) || 0);
                 const top = Math.max(0, Number.isFinite(Number(p.top)) ? Number(p.top) : 100 + index * 40);
                 const left = Math.max(0, Number.isFinite(Number(p.left)) ? Number(p.left) : 50 + index * 40);
                 const link = String(p.linkUrl || '').trim();
                 const legacyScholarship = link === 'javascript:downloadScholarshipFormsPopup()';
-                const safeLink = /^https:\/\//i.test(link) || /^(?![a-z][a-z0-9+.-]*:)[A-Za-z0-9_./%?#=&-]+$/i.test(link);
+                const safeLink = /^https?:\/\//i.test(link) || /^(?![a-z][a-z0-9+.-]*:)[A-Za-z0-9_./%?#=&-]+$/i.test(link);
                 const ratioStyle = height > 0 ? 'aspect-ratio:' + width + '/' + height + ';' : '';
-                let media = '<img src="' + popupAttr(p.imageUrl) + '" alt="' + popupAttr(p.name || '팝업 안내') + '" class="w-full h-full object-contain bg-white">';
+                let media = '<img src="' + popupAttr(p.imageUrl) + '" alt="' + popupAttr(p.name || '팝업 안내') + '" class="w-full h-full object-contain bg-white" draggable="false">';
                 if (legacyScholarship) {
                     media = '<a href="#" onclick="downloadScholarshipFormsPopup(); return false;" class="block cursor-pointer w-full h-full">' + media + '</a>';
                 } else if (safeLink && link) {
                     media = '<a href="' + popupAttr(link) + '" target="_blank" rel="noopener noreferrer" class="block cursor-pointer w-full h-full">' + media + '</a>';
                 }
 
-                html += '<div id="' + popupAttr(p.id) + '" class="pointer-events-auto fixed md:absolute shadow-2xl bg-white rounded-lg overflow-hidden border border-gray-200" data-popup-left="' + left + '" data-popup-top="' + top + '" style="max-width:90vw;width:' + width + 'px;z-index:' + (300 + index) + ';">' +
+                html += '<div id="' + popupAttr(p.id) + '" data-homepage-popup="1" data-popup-id="' + popupAttr(p.id) + '" data-popup-left="' + left + '" data-popup-top="' + top + '" class="pointer-events-auto shadow-2xl bg-white rounded-lg overflow-hidden border border-gray-200" style="max-width:90vw;width:' + width + 'px;z-index:' + (300 + index) + ';">' +
                         '<div class="popup-image-frame" style="width:100%;' + ratioStyle + '">' + media + '</div>' +
-                        '<div class="flex justify-between items-center bg-gray-800 text-white px-3 py-2 text-xs">' +
-                            '<label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="chk_' + popupAttr(p.id) + '" class="w-3.5 h-3.5 cursor-pointer"><span>오늘 하루 보지 않기</span></label>' +
-                            '<button type="button" data-popup-close="' + popupAttr(p.id) + '" data-popup-check="chk_' + popupAttr(p.id) + '" class="font-bold hover:text-red-400">닫기 [X]</button>' +
+                        '<div data-popup-drag="1" class="flex justify-between items-center bg-gray-800 text-white px-3 py-2 text-xs select-none md:cursor-move" title="PC에서는 이 바의 빈 곳을 잡아 팝업을 옮길 수 있습니다.">' +
+                            '<label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" data-popup-hide-today="1" class="w-3.5 h-3.5 cursor-pointer"><span>오늘 하루 보지 않기</span></label>' +
+                            '<button type="button" data-popup-close="1" class="font-bold hover:text-red-400">닫기 [X]</button>' +
                         '</div></div>';
             });
             container.innerHTML = html;
-
-            // inline onclick에 따옴표가 겹치면 닫기 버튼이 동작하지 않는 브라우저가 있어
-            // DOM 이벤트로 직접 연결합니다. 오늘 하루 보지 않기 체크 여부도 이 시점에 읽습니다.
-            container.querySelectorAll('[data-popup-close]').forEach((button) => {
-                button.addEventListener('click', () => {
-                    const id = String(button.getAttribute('data-popup-close') || '');
-                    const checkId = String(button.getAttribute('data-popup-check') || '');
-                    const check = checkId ? document.getElementById(checkId) : null;
-                    const hideForToday = !!(check && check.checked);
-                    if (typeof closePopup === 'function') {
-                        closePopup(id, hideForToday);
-                    } else {
-                        if (hideForToday && typeof setCookie === 'function') setCookie(id, 'done', 1);
-                        const popupEl = document.getElementById(id);
-                        if (popupEl) popupEl.style.display = 'none';
-                    }
-                });
+            bindHomepagePopupInteractions(container);
+            layoutHomepagePopups(container);
+            container.querySelectorAll('img').forEach(img => {
+                if (!img.complete) img.addEventListener('load', () => layoutHomepagePopups(container), {once:true});
             });
-
-            popups.forEach((p, index) => {
-                const el = document.getElementById(p.id);
-                if (!el) return;
-                if (window.innerWidth < 768) {
-                    el.style.top = '50%';
-                    el.style.left = '50%';
-                    el.style.transform = 'translate(-50%, -50%)';
-                } else {
-                    el.style.top = (Math.max(0, Number(p.top) || 100 + index * 40)) + 'px';
-                    el.style.left = (Math.max(0, Number(p.left) || 50 + index * 40)) + 'px';
-                    el.style.transform = 'none';
-                }
-            });
+            if (!window.__yeojuPopupResizeBound) {
+                window.__yeojuPopupResizeBound = true;
+                window.addEventListener('resize', () => layoutHomepagePopups(document.getElementById('popup-container')));
+            }
         }
 
         // 행사사진 갤러리 연동
