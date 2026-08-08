@@ -411,7 +411,7 @@
                 imageUrl: "images/popups/popup_20260808_135454_fea2d9.jpg",
                 linkUrl: "https://m.site.naver.com/2dFJV",
                 width: 400,
-                height: 566,
+                height: 567,
                 top: 100,
                 left: 50,
                 startDate: "2026-08-08",
@@ -491,6 +491,34 @@
             }
             const popupEl = document.getElementById(id);
             if(popupEl) popupEl.style.display = 'none';
+        }
+
+        function popupDatePoint(value, timeValue, endOfDay) {
+            if (!value) return null;
+            if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+                const t = /^\d{2}:\d{2}$/.test(String(timeValue || '')) ? String(timeValue) : (endOfDay ? '23:59' : '00:00');
+                return new Date(value + 'T' + t + ':00+09:00');
+            }
+            const d = new Date(value);
+            return Number.isNaN(d.getTime()) ? null : d;
+        }
+
+        function popupAttr(value) {
+            return String(value || '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+        }
+
+        function popupDatePoint(value, timeValue, endOfDay) {
+            if (!value) return null;
+            if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+                const t = /^\d{2}:\d{2}$/.test(String(timeValue || '')) ? String(timeValue) : (endOfDay ? '23:59' : '00:00');
+                return new Date(value + 'T' + t + ':00+09:00');
+            }
+            const d = new Date(value);
+            return Number.isNaN(d.getTime()) ? null : d;
+        }
+
+        function popupAttr(value) {
+            return String(value || '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
         }
 
         function popupDatePoint(value, timeValue, endOfDay) {
