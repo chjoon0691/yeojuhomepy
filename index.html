@@ -410,8 +410,24 @@
                 name: "바이블스쿨",
                 imageUrl: "images/popups/popup_20260808_135454_fea2d9.jpg",
                 linkUrl: "https://m.site.naver.com/2dFJV",
-                width: 350,
-                height: 495,
+                width: 400,
+                height: 566,
+                top: 100,
+                left: 50,
+                startDate: "2026-08-08",
+                startTime: "00:00",
+                endDate: "2026-08-31",
+                endTime: "00:00",
+                enabled: true,
+                aspectLock: true
+            },
+            {
+                id: "popup_20260808_142307_af05f3",
+                name: "음악문화교실",
+                imageUrl: "images/popups/popup_20260808_142307_af05f3.jpg",
+                linkUrl: "https://m.site.naver.com/2dlfC",
+                width: 400,
+                height: 567,
                 top: 100,
                 left: 50,
                 startDate: "2026-08-08",
@@ -519,6 +535,34 @@
             return String(value || '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
         }
 
+        function popupDatePoint(value, timeValue, endOfDay) {
+            if (!value) return null;
+            if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+                const t = /^\d{2}:\d{2}$/.test(String(timeValue || '')) ? String(timeValue) : (endOfDay ? '23:59' : '00:00');
+                return new Date(value + 'T' + t + ':00+09:00');
+            }
+            const d = new Date(value);
+            return Number.isNaN(d.getTime()) ? null : d;
+        }
+
+        function popupAttr(value) {
+            return String(value || '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+        }
+
+        function popupDatePoint(value, timeValue, endOfDay) {
+            if (!value) return null;
+            if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+                const t = /^\d{2}:\d{2}$/.test(String(timeValue || '')) ? String(timeValue) : (endOfDay ? '23:59' : '00:00');
+                return new Date(value + 'T' + t + ':00+09:00');
+            }
+            const d = new Date(value);
+            return Number.isNaN(d.getTime()) ? null : d;
+        }
+
+        function popupAttr(value) {
+            return String(value || '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+        }
+
         function initPopups() {
             const container = document.getElementById('popup-container');
             let html = '';
@@ -551,10 +595,28 @@
                         '<div class="popup-image-frame" style="width:100%;' + ratioStyle + '">' + media + '</div>' +
                         '<div class="flex justify-between items-center bg-gray-800 text-white px-3 py-2 text-xs">' +
                             '<label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="chk_' + popupAttr(p.id) + '" class="w-3.5 h-3.5 cursor-pointer"><span>오늘 하루 보지 않기</span></label>' +
-                            '<button onclick="closePopup(' + JSON.stringify(p.id) + ', document.getElementById(' + JSON.stringify('chk_' + p.id) + ').checked)" class="font-bold hover:text-red-400">닫기 [X]</button>' +
+                            '<button type="button" data-popup-close="' + popupAttr(p.id) + '" data-popup-check="chk_' + popupAttr(p.id) + '" class="font-bold hover:text-red-400">닫기 [X]</button>' +
                         '</div></div>';
             });
             container.innerHTML = html;
+
+            // inline onclick에 따옴표가 겹치면 닫기 버튼이 동작하지 않는 브라우저가 있어
+            // DOM 이벤트로 직접 연결합니다. 오늘 하루 보지 않기 체크 여부도 이 시점에 읽습니다.
+            container.querySelectorAll('[data-popup-close]').forEach((button) => {
+                button.addEventListener('click', () => {
+                    const id = String(button.getAttribute('data-popup-close') || '');
+                    const checkId = String(button.getAttribute('data-popup-check') || '');
+                    const check = checkId ? document.getElementById(checkId) : null;
+                    const hideForToday = !!(check && check.checked);
+                    if (typeof closePopup === 'function') {
+                        closePopup(id, hideForToday);
+                    } else {
+                        if (hideForToday && typeof setCookie === 'function') setCookie(id, 'done', 1);
+                        const popupEl = document.getElementById(id);
+                        if (popupEl) popupEl.style.display = 'none';
+                    }
+                });
+            });
 
             popups.forEach((p, index) => {
                 const el = document.getElementById(p.id);
