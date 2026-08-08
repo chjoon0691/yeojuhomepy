@@ -374,18 +374,52 @@
         // 팝업창 관리 기능 (여러 개를 넣고 싶으면 이 괄호 [ ] 안에 콤마(,)로 이어서 계속 추가하면 됩니다!)
         const popups = [
             {
-                id: 'popup_event_typo', // 첫 번째 팝업: 오타찾기
-                imageUrl: 'https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/images/%EC%98%A4%ED%83%80%EC%B0%BE%EA%B8%B0%EC%9D%B4%EB%B2%A4%ED%8A%B8.png',
-                linkUrl: '#', 
-                width: 350, 
-                endDate: '2026-07-27T00:00:00+09:00' 
+                id: "popup_event_typo",
+                name: "오타찾기 이벤트",
+                imageUrl: "https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/images/%EC%98%A4%ED%83%80%EC%B0%BE%EA%B8%B0%EC%9D%B4%EB%B2%A4%ED%8A%B8.png",
+                linkUrl: "#",
+                width: 350,
+                height: 0,
+                top: 100,
+                left: 50,
+                startDate: "",
+                startTime: "",
+                endDate: "2026-07-27",
+                endTime: "00:00",
+                enabled: false,
+                aspectLock: true
             },
             {
-                id: 'popup_scholarship_2026', // 두 번째 팝업: 장학생 선발
-                imageUrl: 'https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/service/data/%EC%9E%A5%ED%95%99%EC%8B%A0%EC%B2%AD%EA%B4%91%EA%B3%A0.png',
-                linkUrl: 'javascript:downloadScholarshipFormsPopup()', 
-                width: 525, 
-                endDate: '2026-08-04T00:00:00+09:00' 
+                id: "popup_scholarship_2026",
+                name: "장학생 선발",
+                imageUrl: "https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/service/data/%EC%9E%A5%ED%95%99%EC%8B%A0%EC%B2%AD%EA%B4%91%EA%B3%A0.png",
+                linkUrl: "javascript:downloadScholarshipFormsPopup()",
+                width: 525,
+                height: 0,
+                top: 140,
+                left: 90,
+                startDate: "",
+                startTime: "",
+                endDate: "2026-08-04",
+                endTime: "00:00",
+                enabled: false,
+                aspectLock: true
+            },
+            {
+                id: "popup_20260808_135454_fea2d9",
+                name: "바이블스쿨",
+                imageUrl: "images/popups/popup_20260808_135454_fea2d9.jpg",
+                linkUrl: "https://m.site.naver.com/2dFJV",
+                width: 350,
+                height: 495,
+                top: 100,
+                left: 50,
+                startDate: "2026-08-08",
+                startTime: "00:00",
+                endDate: "2026-08-31",
+                endTime: "00:00",
+                enabled: true,
+                aspectLock: true
             }
         ];
 
@@ -443,50 +477,96 @@
             if(popupEl) popupEl.style.display = 'none';
         }
 
+        function popupDatePoint(value, timeValue, endOfDay) {
+            if (!value) return null;
+            if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+                const t = /^\d{2}:\d{2}$/.test(String(timeValue || '')) ? String(timeValue) : (endOfDay ? '23:59' : '00:00');
+                return new Date(value + 'T' + t + ':00+09:00');
+            }
+            const d = new Date(value);
+            return Number.isNaN(d.getTime()) ? null : d;
+        }
+
+        function popupAttr(value) {
+            return String(value || '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+        }
+
+        function popupDatePoint(value, timeValue, endOfDay) {
+            if (!value) return null;
+            if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+                const t = /^\d{2}:\d{2}$/.test(String(timeValue || '')) ? String(timeValue) : (endOfDay ? '23:59' : '00:00');
+                return new Date(value + 'T' + t + ':00+09:00');
+            }
+            const d = new Date(value);
+            return Number.isNaN(d.getTime()) ? null : d;
+        }
+
+        function popupAttr(value) {
+            return String(value || '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+        }
+
+        function popupDatePoint(value, timeValue, endOfDay) {
+            if (!value) return null;
+            if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+                const t = /^\d{2}:\d{2}$/.test(String(timeValue || '')) ? String(timeValue) : (endOfDay ? '23:59' : '00:00');
+                return new Date(value + 'T' + t + ':00+09:00');
+            }
+            const d = new Date(value);
+            return Number.isNaN(d.getTime()) ? null : d;
+        }
+
+        function popupAttr(value) {
+            return String(value || '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+        }
+
         function initPopups() {
             const container = document.getElementById('popup-container');
             let html = '';
-            const now = new Date(); // 현재 시간 확인
+            const now = new Date();
 
             popups.forEach((p, index) => {
-                // ★ 지정된 날짜가 지났으면 아예 팝업을 생성하지 않고 넘깁니다.
-                if (p.endDate && now >= new Date(p.endDate)) {
-                    return; 
+                if (p.enabled === false) return;
+                const start = popupDatePoint(p.startDate, p.startTime, false);
+                const end = popupDatePoint(p.endDate, p.endTime, true);
+                if (start && now < start) return;
+                if (end && now > end) return;
+                if (getCookie(p.id) === 'done') return;
+
+                const width = Math.max(180, Number(p.width) || 350);
+                const height = Math.max(0, Number(p.height) || 0);
+                const top = Math.max(0, Number.isFinite(Number(p.top)) ? Number(p.top) : 100 + index * 40);
+                const left = Math.max(0, Number.isFinite(Number(p.left)) ? Number(p.left) : 50 + index * 40);
+                const link = String(p.linkUrl || '').trim();
+                const legacyScholarship = link === 'javascript:downloadScholarshipFormsPopup()';
+                const safeLink = /^https:\/\//i.test(link) || /^(?![a-z][a-z0-9+.-]*:)[A-Za-z0-9_./%?#=&-]+$/i.test(link);
+                const ratioStyle = height > 0 ? 'aspect-ratio:' + width + '/' + height + ';' : '';
+                let media = '<img src="' + popupAttr(p.imageUrl) + '" alt="' + popupAttr(p.name || '팝업 안내') + '" class="w-full h-full object-contain bg-white">';
+                if (legacyScholarship) {
+                    media = '<a href="#" onclick="downloadScholarshipFormsPopup(); return false;" class="block cursor-pointer w-full h-full">' + media + '</a>';
+                } else if (safeLink && link) {
+                    media = '<a href="' + popupAttr(link) + '" target="_blank" rel="noopener noreferrer" class="block cursor-pointer w-full h-full">' + media + '</a>';
                 }
 
-                if (getCookie(p.id) !== "done") {
-                    const offset = index * 30; 
-                    html += `
-                        <div id="${p.id}" class="pointer-events-auto fixed md:absolute shadow-2xl bg-white rounded-lg overflow-hidden border border-gray-200 z-[${100 + index}]" 
-                             style="max-width: 90vw; width: ${p.width || 300}px;">
-                            <a href="${p.linkUrl}" ${p.linkUrl.startsWith('javascript') ? '' : `target="${p.linkUrl === '#' ? '_self' : '_blank'}"`} class="block cursor-pointer">
-                                <img src="${p.imageUrl}" alt="팝업 안내" class="w-full h-auto object-cover">
-                            </a>
-                            <div class="flex justify-between items-center bg-gray-800 text-white px-3 py-2 text-xs">
-                                <label class="flex items-center gap-1.5 cursor-pointer">
-                                    <input type="checkbox" id="chk_${p.id}" class="w-3.5 h-3.5 cursor-pointer">
-                                    <span>오늘 하루 보지 않기</span>
-                                </label>
-                                <button onclick="closePopup('${p.id}', document.getElementById('chk_${p.id}').checked)" class="font-bold hover:text-red-400">닫기 [X]</button>
-                            </div>
-                        </div>
-                    `;
-                }
+                html += '<div id="' + popupAttr(p.id) + '" class="pointer-events-auto fixed md:absolute shadow-2xl bg-white rounded-lg overflow-hidden border border-gray-200" data-popup-left="' + left + '" data-popup-top="' + top + '" style="max-width:90vw;width:' + width + 'px;z-index:' + (300 + index) + ';">' +
+                        '<div class="popup-image-frame" style="width:100%;' + ratioStyle + '">' + media + '</div>' +
+                        '<div class="flex justify-between items-center bg-gray-800 text-white px-3 py-2 text-xs">' +
+                            '<label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="chk_' + popupAttr(p.id) + '" class="w-3.5 h-3.5 cursor-pointer"><span>오늘 하루 보지 않기</span></label>' +
+                            '<button onclick="closePopup(' + JSON.stringify(p.id) + ', document.getElementById(' + JSON.stringify('chk_' + p.id) + ').checked)" class="font-bold hover:text-red-400">닫기 [X]</button>' +
+                        '</div></div>';
             });
             container.innerHTML = html;
 
             popups.forEach((p, index) => {
                 const el = document.getElementById(p.id);
-                if(el) {
-                    if(window.innerWidth < 768) {
-                        el.style.top = '50%';
-                        el.style.left = '50%';
-                        el.style.transform = 'translate(-50%, -50%)';
-                    } else {
-                        el.style.top = (100 + (index * 40)) + 'px';
-                        el.style.left = (50 + (index * 40)) + 'px';
-                        el.style.transform = 'none';
-                    }
+                if (!el) return;
+                if (window.innerWidth < 768) {
+                    el.style.top = '50%';
+                    el.style.left = '50%';
+                    el.style.transform = 'translate(-50%, -50%)';
+                } else {
+                    el.style.top = (Math.max(0, Number(p.top) || 100 + index * 40)) + 'px';
+                    el.style.left = (Math.max(0, Number(p.left) || 50 + index * 40)) + 'px';
+                    el.style.transform = 'none';
                 }
             });
         }
