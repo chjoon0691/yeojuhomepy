@@ -174,6 +174,7 @@
     <script>
         // 성도소식 데이터
         const memberData = [
+            { id: 286, title: "장례 - 김경숙권사 모친", date: "2026.08.04", imageUrl: "https://dummyimage.com/800x400/eeeeee/333333.png&text=상세+이미지+준비중" },
             { id: 285, title: "사업장 이전 오픈 - 유성철•전혜숙집사 \"유성부동산\" 장여로 1755(여주IC 앞)", date: "2026.08.08", imageUrl: "https://dummyimage.com/800x400/eeeeee/333333.png&text=상세+이미지+준비중" },
             { id: 284, title: "장례 - 김옥조권사(최연실집사 모친)", date: "2026.07.31", imageUrl: "https://dummyimage.com/800x400/eeeeee/333333.png&text=상세+이미지+준비중" },
             { id: 283, title: "입원 - 임규옥성도", date: "2026.06.05", imageUrl: "https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/images/image_4fc5a8.png" },
@@ -364,5 +365,90 @@
     <script>const ROOT_PATH = "../";</script>
     <script src="../js/common.js"></script>
 
+
+    <!-- homepage-manager-deep-link-v1 -->
+    <script>
+    (() => {
+        const params = new URLSearchParams(window.location.search);
+        const targetId = Number(params.get('open') || 0);
+        const targetTitle = String(params.get('title') || '').trim();
+        if (!targetId && !targetTitle) return;
+
+        let finished = false;
+        let attempts = 0;
+        const normalize = value => String(value || '').replace(/\s+/g, ' ').trim().toLowerCase();
+        const wantedTitle = normalize(targetTitle);
+
+        function dialogIsVisible() {
+            return Array.from(document.querySelectorAll('[id*="modal"], [role="dialog"]')).some(el => {
+                const style = window.getComputedStyle(el);
+                return !el.classList.contains('hidden') && style.display !== 'none' && style.visibility !== 'hidden';
+            });
+        }
+
+        function clickableAncestor(el) {
+            let node = el;
+            for (let i = 0; node && node !== document.body && i < 8; i++, node = node.parentElement) {
+                if (typeof node.onclick === 'function' || node.hasAttribute('onclick') || node.matches('a,button,[role="button"]')) return node;
+            }
+            return null;
+        }
+
+        function clickMatchingElement() {
+            const all = Array.from(document.querySelectorAll('body *'));
+            if (targetId) {
+                const attrMatch = all.find(el => {
+                    const dataId = el.getAttribute('data-id') || el.getAttribute('data-item-id') || el.getAttribute('data-no');
+                    if (dataId && Number(dataId) === targetId) return true;
+                    const onclick = el.getAttribute('onclick') || '';
+                    return new RegExp('(^|\\D)' + targetId + '(\\D|$)').test(onclick);
+                });
+                const clickable = attrMatch && clickableAncestor(attrMatch);
+                if (clickable) { clickable.click(); return true; }
+
+                const idText = ['no.' + targetId, 'no. ' + targetId, '#' + targetId, String(targetId)];
+                for (const el of all) {
+                    if (el.children.length > 2) continue;
+                    const text = normalize(el.textContent);
+                    if (!text || !idText.some(x => text === normalize(x) || text.startsWith(normalize(x) + ' '))) continue;
+                    const c = clickableAncestor(el);
+                    if (c) { c.click(); return true; }
+                }
+            }
+            if (wantedTitle) {
+                for (const el of all) {
+                    if (el.children.length > 2) continue;
+                    const text = normalize(el.textContent);
+                    if (!text || !text.includes(wantedTitle)) continue;
+                    const c = clickableAncestor(el);
+                    if (c) { c.click(); return true; }
+                }
+            }
+            return false;
+        }
+
+        function tryOpen() {
+            if (finished) return;
+            attempts++;
+
+            if (targetId && typeof window.openModal === 'function') {
+                try {
+                    window.openModal(targetId);
+                    if (dialogIsVisible()) { finished = true; return; }
+                } catch (_) {}
+            }
+
+            if (clickMatchingElement()) {
+                finished = true;
+                return;
+            }
+            if (attempts < 20) window.setTimeout(tryOpen, 350);
+        }
+
+        const start = () => window.setTimeout(tryOpen, 180);
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, {once:true});
+        else start();
+    })();
+    </script>
 </body>
 </html>
