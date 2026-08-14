@@ -187,6 +187,7 @@
     <script>
         // 1. 요청하신 1번부터 43번까지의 선교지소식 데이터
         const rawText = `
+46|파키스탄 최혜신 선교사님 - 2026년 8월|2026.08.14
 45|멕시코 김정호 선교사님 - 2026년 8월|2026.08.07
 44|케냐 마형갑 선교사님 - 2026년 7월|2026.07.22
 43|파키스탄 최혜신 선교사님 - 2026년 6월|2026.06.05
@@ -498,5 +499,90 @@
     <script>const ROOT_PATH = "../";</script>
     <script src="../js/common.js"></script>
 
+
+    <!-- homepage-manager-deep-link-v1 -->
+    <script>
+    (() => {
+        const params = new URLSearchParams(window.location.search);
+        const targetId = Number(params.get('open') || 0);
+        const targetTitle = String(params.get('title') || '').trim();
+        if (!targetId && !targetTitle) return;
+
+        let finished = false;
+        let attempts = 0;
+        const normalize = value => String(value || '').replace(/\s+/g, ' ').trim().toLowerCase();
+        const wantedTitle = normalize(targetTitle);
+
+        function dialogIsVisible() {
+            return Array.from(document.querySelectorAll('[id*="modal"], [role="dialog"]')).some(el => {
+                const style = window.getComputedStyle(el);
+                return !el.classList.contains('hidden') && style.display !== 'none' && style.visibility !== 'hidden';
+            });
+        }
+
+        function clickableAncestor(el) {
+            let node = el;
+            for (let i = 0; node && node !== document.body && i < 8; i++, node = node.parentElement) {
+                if (typeof node.onclick === 'function' || node.hasAttribute('onclick') || node.matches('a,button,[role="button"]')) return node;
+            }
+            return null;
+        }
+
+        function clickMatchingElement() {
+            const all = Array.from(document.querySelectorAll('body *'));
+            if (targetId) {
+                const attrMatch = all.find(el => {
+                    const dataId = el.getAttribute('data-id') || el.getAttribute('data-item-id') || el.getAttribute('data-no');
+                    if (dataId && Number(dataId) === targetId) return true;
+                    const onclick = el.getAttribute('onclick') || '';
+                    return new RegExp('(^|\\D)' + targetId + '(\\D|$)').test(onclick);
+                });
+                const clickable = attrMatch && clickableAncestor(attrMatch);
+                if (clickable) { clickable.click(); return true; }
+
+                const idText = ['no.' + targetId, 'no. ' + targetId, '#' + targetId, String(targetId)];
+                for (const el of all) {
+                    if (el.children.length > 2) continue;
+                    const text = normalize(el.textContent);
+                    if (!text || !idText.some(x => text === normalize(x) || text.startsWith(normalize(x) + ' '))) continue;
+                    const c = clickableAncestor(el);
+                    if (c) { c.click(); return true; }
+                }
+            }
+            if (wantedTitle) {
+                for (const el of all) {
+                    if (el.children.length > 2) continue;
+                    const text = normalize(el.textContent);
+                    if (!text || !text.includes(wantedTitle)) continue;
+                    const c = clickableAncestor(el);
+                    if (c) { c.click(); return true; }
+                }
+            }
+            return false;
+        }
+
+        function tryOpen() {
+            if (finished) return;
+            attempts++;
+
+            if (targetId && typeof window.openModal === 'function') {
+                try {
+                    window.openModal(targetId);
+                    if (dialogIsVisible()) { finished = true; return; }
+                } catch (_) {}
+            }
+
+            if (clickMatchingElement()) {
+                finished = true;
+                return;
+            }
+            if (attempts < 20) window.setTimeout(tryOpen, 350);
+        }
+
+        const start = () => window.setTimeout(tryOpen, 180);
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, {once:true});
+        else start();
+    })();
+    </script>
 </body>
 </html>
