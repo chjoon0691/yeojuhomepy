@@ -374,38 +374,6 @@
         // 팝업창 관리 기능 (여러 개를 넣고 싶으면 이 괄호 [ ] 안에 콤마(,)로 이어서 계속 추가하면 됩니다!)
         const popups = [
             {
-                id: "popup_event_typo",
-                name: "오타찾기 이벤트",
-                imageUrl: "https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/images/%EC%98%A4%ED%83%80%EC%B0%BE%EA%B8%B0%EC%9D%B4%EB%B2%A4%ED%8A%B8.png",
-                linkUrl: "#",
-                width: 350,
-                height: 0,
-                top: 100,
-                left: 50,
-                startDate: "",
-                startTime: "",
-                endDate: "2026-07-27",
-                endTime: "00:00",
-                enabled: false,
-                aspectLock: true
-            },
-            {
-                id: "popup_scholarship_2026",
-                name: "장학생 선발",
-                imageUrl: "https://raw.githubusercontent.com/chjoon0691/yeojuhomepy/main/service/data/%EC%9E%A5%ED%95%99%EC%8B%A0%EC%B2%AD%EA%B4%91%EA%B3%A0.png",
-                linkUrl: "javascript:downloadScholarshipFormsPopup()",
-                width: 525,
-                height: 0,
-                top: 140,
-                left: 90,
-                startDate: "",
-                startTime: "",
-                endDate: "2026-08-04",
-                endTime: "00:00",
-                enabled: false,
-                aspectLock: true
-            },
-            {
                 id: "popup_20260808_135454_fea2d9",
                 name: "바이블스쿨",
                 imageUrl: "images/popups/popup_20260808_135454_fea2d9.jpg",
@@ -434,7 +402,7 @@
                 startTime: "00:00",
                 endDate: "2026-08-31",
                 endTime: "00:00",
-                enabled: true,
+                enabled: false,
                 aspectLock: true
             }
         ];
@@ -519,9 +487,11 @@
             const rect = card.getBoundingClientRect();
             const w = Math.max(1, rect.width || card.offsetWidth || 350);
             const h = Math.max(1, rect.height || card.offsetHeight || 400);
+            const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0, 320);
             const maxLeft = Math.max(margin, vw - w - margin);
+            const maxTop = Math.max(margin, vh - Math.min(h, Math.max(1, vh - margin * 2)) - margin);
             const preferredLeft = Math.min(maxLeft, Math.max(margin, Number(card.dataset.popupLeft) || margin));
-            const preferredTop = Math.max(margin, Number(card.dataset.popupTop) || 100);
+            const preferredTop = Math.min(maxTop, Math.max(margin, Number(card.dataset.popupTop) || 100));
             const candidates = [{left:preferredLeft, top:preferredTop}];
             placed.forEach(r => {
                 candidates.push({left:r.right + gap, top:r.top});
@@ -531,13 +501,18 @@
             candidates.push({left:margin, top:maxBottom + gap});
             for (const c of candidates) {
                 const left = Math.min(maxLeft, Math.max(margin, Math.round(c.left)));
-                const top = Math.max(margin, Math.round(c.top));
+                const top = Math.min(maxTop, Math.max(margin, Math.round(c.top)));
                 const candidate = {left, top, right:left + w, bottom:top + h};
-                if (candidate.right > vw - margin + 1) continue;
+                if (candidate.right > vw - margin + 1 || candidate.bottom > vh - margin + 1) continue;
                 if (!placed.some(r => popupRectsOverlap(candidate, r, gap))) return candidate;
             }
-            const top = maxBottom + gap;
-            return {left:margin, top, right:margin + w, bottom:top + h};
+            for (let y = margin; y <= maxTop; y += 18) {
+                for (let x = margin; x <= maxLeft; x += 18) {
+                    const candidate = {left:x, top:y, right:x + w, bottom:y + h};
+                    if (!placed.some(r => popupRectsOverlap(candidate, r, gap))) return candidate;
+                }
+            }
+            return {left:preferredLeft, top:preferredTop, right:preferredLeft + w, bottom:preferredTop + h};
         }
 
         function layoutHomepagePopups(container) {
