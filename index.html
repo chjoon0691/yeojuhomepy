@@ -377,7 +377,10 @@
                 id: "popup_20260808_135454_fea2d9",
                 name: "바이블스쿨",
                 imageUrl: "images/popups/popup_20260808_135454_fea2d9.jpg",
+                actionType: "link",
                 linkUrl: "https://m.site.naver.com/2dFJV",
+                downloadUrl: "",
+                downloadName: "",
                 width: 400,
                 height: 567,
                 top: 100,
@@ -393,7 +396,10 @@
                 id: "popup_20260808_142307_af05f3",
                 name: "음악문화교실",
                 imageUrl: "images/popups/popup_20260808_142307_af05f3.jpg",
+                actionType: "link",
                 linkUrl: "https://m.site.naver.com/2dlfC",
+                downloadUrl: "",
+                downloadName: "",
                 width: 400,
                 height: 567,
                 top: 100,
@@ -403,6 +409,25 @@
                 endDate: "2026-08-31",
                 endTime: "00:00",
                 enabled: false,
+                aspectLock: true
+            },
+            {
+                id: "popup_20260911_193230_b12d63",
+                name: "추석 가정예배 순서지",
+                imageUrl: "images/popups/popup_20260911_193230_b12d63.png",
+                actionType: "download",
+                linkUrl: "",
+                downloadUrl: "files/popups/popup_20260911_193230_b12d63.pdf",
+                downloadName: "추석가정예배순서지.pdf",
+                width: 350,
+                height: 496,
+                top: 100,
+                left: 50,
+                startDate: "2026-09-11",
+                startTime: "00:00",
+                endDate: "2026-09-27",
+                endTime: "23:59",
+                enabled: true,
                 aspectLock: true
             }
         ];
@@ -614,14 +639,21 @@
                 const height = Math.max(0, Number(p.height) || 0);
                 const top = Math.max(0, Number.isFinite(Number(p.top)) ? Number(p.top) : 100 + index * 40);
                 const left = Math.max(0, Number.isFinite(Number(p.left)) ? Number(p.left) : 50 + index * 40);
+                const actionType = String(p.actionType || '').trim().toLowerCase();
                 const link = String(p.linkUrl || '').trim();
+                const downloadUrl = String(p.downloadUrl || '').trim();
+                const downloadName = String(p.downloadName || '').trim();
                 const legacyScholarship = link === 'javascript:downloadScholarshipFormsPopup()';
                 const safeLink = /^https?:\/\//i.test(link) || /^(?![a-z][a-z0-9+.-]*:)[A-Za-z0-9_./%?#=&-]+$/i.test(link);
+                const safeDownload = /^(?![a-z][a-z0-9+.-]*:)(?!\/\/)(?!.*\.\.)[A-Za-z0-9_./%?#=&-]+$/i.test(downloadUrl) && /\.pdf(?:[?#].*)?$/i.test(downloadUrl);
                 const ratioStyle = height > 0 ? 'aspect-ratio:' + width + '/' + height + ';' : '';
                 let media = '<img src="' + popupAttr(p.imageUrl) + '" alt="' + popupAttr(p.name || '팝업 안내') + '" class="w-full h-full object-contain bg-white" draggable="false">';
-                if (legacyScholarship) {
+                if (actionType === 'download' && safeDownload && downloadUrl) {
+                    const attr = downloadName ? ' download="' + popupAttr(downloadName) + '"' : ' download';
+                    media = '<a href="' + popupAttr(downloadUrl) + '"' + attr + ' class="block cursor-pointer w-full h-full">' + media + '</a>';
+                } else if (legacyScholarship) {
                     media = '<a href="#" onclick="downloadScholarshipFormsPopup(); return false;" class="block cursor-pointer w-full h-full">' + media + '</a>';
-                } else if (safeLink && link) {
+                } else if ((actionType === 'link' || (!actionType && link)) && safeLink && link) {
                     media = '<a href="' + popupAttr(link) + '" target="_blank" rel="noopener noreferrer" class="block cursor-pointer w-full h-full">' + media + '</a>';
                 }
 
