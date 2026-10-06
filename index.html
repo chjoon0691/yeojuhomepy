@@ -391,6 +391,25 @@
                 endTime: "23:59",
                 enabled: true,
                 aspectLock: true
+            },
+            {
+                id: "popup_20261006_200337_c1090a",
+                name: "시설관리담당자 채용 배너",
+                imageUrl: "images/popups/popup_20261006_200337_c1090a.png",
+                actionType: "view",
+                linkUrl: "",
+                downloadUrl: "files/popups/popup_20261006_200337_c1090a.pdf",
+                downloadName: "여주성결 시설관리_담당자_채용공고.pdf",
+                width: 422,
+                height: 317,
+                top: 99,
+                left: 555,
+                startDate: "2026-10-06",
+                startTime: "00:00",
+                endDate: "2026-10-20",
+                endTime: "23:59",
+                enabled: true,
+                aspectLock: true
             }
         ];
 
@@ -607,12 +626,15 @@
                 const downloadName = String(p.downloadName || '').trim();
                 const legacyScholarship = link === 'javascript:downloadScholarshipFormsPopup()';
                 const safeLink = /^https?:\/\//i.test(link) || /^(?![a-z][a-z0-9+.-]*:)[A-Za-z0-9_./%?#=&-]+$/i.test(link);
-                const safeDownload = /^(?![a-z][a-z0-9+.-]*:)(?!\/\/)(?!.*\.\.)[A-Za-z0-9_./%?#=&-]+$/i.test(downloadUrl) && /\.pdf(?:[?#].*)?$/i.test(downloadUrl);
+                const safeActionFile = /^(?![a-z][a-z0-9+.-]*:)(?!\/\/)(?!.*\.\.)[A-Za-z0-9_./%?#=&-]+$/i.test(downloadUrl) && /\.(?:pdf|jpe?g|png)(?:[?#].*)?$/i.test(downloadUrl);
+                const safeDownload = safeActionFile && /\.pdf(?:[?#].*)?$/i.test(downloadUrl);
                 const ratioStyle = height > 0 ? 'aspect-ratio:' + width + '/' + height + ';' : '';
                 let media = '<img src="' + popupAttr(p.imageUrl) + '" alt="' + popupAttr(p.name || '팝업 안내') + '" class="w-full h-full object-contain bg-white" draggable="false">';
                 if (actionType === 'download' && safeDownload && downloadUrl) {
                     const attr = downloadName ? ' download="' + popupAttr(downloadName) + '"' : ' download';
                     media = '<a href="' + popupAttr(downloadUrl) + '"' + attr + ' class="block cursor-pointer w-full h-full">' + media + '</a>';
+                } else if (actionType === 'view' && safeActionFile && downloadUrl) {
+                    media = '<a href="' + popupAttr(downloadUrl) + '" target="_blank" rel="noopener noreferrer" class="block cursor-pointer w-full h-full">' + media + '</a>';
                 } else if (legacyScholarship) {
                     media = '<a href="#" onclick="downloadScholarshipFormsPopup(); return false;" class="block cursor-pointer w-full h-full">' + media + '</a>';
                 } else if ((actionType === 'link' || (!actionType && link)) && safeLink && link) {
