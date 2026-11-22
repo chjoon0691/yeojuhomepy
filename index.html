@@ -390,7 +390,8 @@
                 endDate: "2026-12-27",
                 endTime: "23:59",
                 enabled: true,
-                aspectLock: true
+                aspectLock: true,
+                hotspotsData: "%5B%7B%22x%22%3A59.28%2C%22y%22%3A78.82%2C%22w%22%3A31.74%2C%22h%22%3A12.84%2C%22action%22%3A%22file%22%2C%22label%22%3A%22%EC%83%88+%ED%81%B4%EB%A6%AD+%EC%98%81%EC%97%AD%22%7D%2C%7B%22x%22%3A59.28%2C%22y%22%3A62.96%2C%22w%22%3A31.63%2C%22h%22%3A12.91%2C%22action%22%3A%22link%22%2C%22target%22%3A%22https%3A%2F%2Fdocs.google.com%2Fforms%2Fd%2Fe%2F1FAIpQLSfo45ZpPjyFae5VMN25cWD6xza4ct1Xkt3CKXzyIdXTNWX2yA%2Fviewform%22%2C%22label%22%3A%22%EC%83%88+%ED%81%B4%EB%A6%AD+%EC%98%81%EC%97%AD%22%7D%5D"
             },
             {
                 id: "popup_20261106_133620_a598c7",
@@ -409,7 +410,8 @@
                 endDate: "2026-12-03",
                 endTime: "23:59",
                 enabled: true,
-                aspectLock: true
+                aspectLock: true,
+                hotspotsData: ""
             }
         ];
 
@@ -600,6 +602,30 @@
             });
         }
 
+        // Independent image regions; absent data preserves the legacy whole-image action.
+        function popupHotspotHTML(p) {
+            let spots=[];
+            try { if (p.hotspotsData) spots=JSON.parse(decodeURIComponent(String(p.hotspotsData).replace(/\+/g,'%20'))); }
+            catch (e) { console.warn('Popup area settings skipped', e); return ''; }
+            if (!Array.isArray(spots) || spots.length===0 || spots.length>16) return '';
+            const parts=[];
+            for (const h of spots) {
+                const vals=[h.x,h.y,h.w,h.h].map(Number);
+                if (vals.some(v=>!Number.isFinite(v)) || vals[0]<0 || vals[1]<0 || vals[2]<2 || vals[3]<2 || vals[0]+vals[2]>100.01 || vals[1]+vals[3]>100.01) continue;
+                const style='position:absolute;z-index:3;left:'+vals[0]+'%;top:'+vals[1]+'%;width:'+vals[2]+'%;height:'+vals[3]+'%;cursor:pointer;';
+                const label=popupAttr(h.label||'팝업 안내 바로가기');
+                const link=String(h.target||'').trim();
+                const internal=String(p.downloadUrl||'').trim();
+                const fileOK=/^(?![a-z][a-z0-9+.-]*:)(?!\/\/)(?!.*\.\.)[A-Za-z0-9_./%?#=&-]+$/i.test(internal) && /\.(pdf|jpe?g|png)(?:[?#].*)?$/i.test(internal);
+                if(h.action==='link' && (link.startsWith('https://') || /^(?![a-z][a-z0-9+.-]*:)(?!\/\/)(?!.*\.\.)[A-Za-z0-9_./%?#=&-]+$/i.test(link))) {
+                    parts.push('<a href="'+popupAttr(link)+'" target="_blank" rel="noopener noreferrer" aria-label="'+label+'" title="'+label+'" style="'+style+'"></a>');
+                } else if(h.action==='file' && fileOK) {
+                    parts.push('<a href="'+popupAttr(internal)+'" target="_blank" rel="noopener noreferrer" aria-label="'+label+'" title="'+label+'" style="'+style+'"></a>');
+                } else if(h.action==='none') { parts.push('<span aria-hidden="true" style="'+style+'cursor:default;"></span>'); }
+            }
+            return parts.join('');
+        }
+
         function initPopups() {
             const container = document.getElementById('popup-container');
             if (!container) return;
@@ -630,7 +656,10 @@
                 const safeDownload = safeActionFile && /\.pdf(?:[?#].*)?$/i.test(downloadUrl);
                 const ratioStyle = height > 0 ? 'aspect-ratio:' + width + '/' + height + ';' : '';
                 let media = '<img src="' + popupAttr(p.imageUrl) + '" alt="' + popupAttr(p.name || '팝업 안내') + '" class="w-full h-full object-contain bg-white" draggable="false">';
-                if (actionType === 'download' && safeDownload && downloadUrl) {
+                const hotspotMarkup = popupHotspotHTML(p);
+                if (hotspotMarkup) {
+                    media = '<div class="relative w-full h-full">' + media + hotspotMarkup + '</div>';
+                } else if (actionType === 'download' && safeDownload && downloadUrl) {
                     const attr = downloadName ? ' download="' + popupAttr(downloadName) + '"' : ' download';
                     media = '<a href="' + popupAttr(downloadUrl) + '"' + attr + ' class="block cursor-pointer w-full h-full">' + media + '</a>';
                 } else if (actionType === 'view' && safeActionFile && downloadUrl) {
